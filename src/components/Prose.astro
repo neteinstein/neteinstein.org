@@ -1,0 +1,75 @@
+---
+/**
+ * Typography wrapper for rendered MDX. Tailwind's typography plugin is not
+ * installed — these rules are scoped here so the token-based theming stays
+ * consistent with the rest of the site.
+ */
+---
+
+<div class="prose-body max-w-3xl">
+  <slot />
+</div>
+
+<style is:global>
+  .prose-body :where(h2) {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-block: 2.25rem 0.75rem;
+  }
+  .prose-body :where(h3) {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-block: 1.75rem 0.5rem;
+  }
+  .prose-body :where(p) {
+    margin-block: 1rem;
+    line-height: 1.75;
+  }
+  .prose-body :where(ul, ol) {
+    margin-block: 1rem;
+    padding-inline-start: 1.5rem;
+    line-height: 1.75;
+  }
+  .prose-body :where(ul) {
+    list-style: disc;
+  }
+  .prose-body :where(ol) {
+    list-style: decimal;
+  }
+  .prose-body :where(li) {
+    margin-block: 0.35rem;
+  }
+  .prose-body :where(a) {
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-body :where(strong) {
+    font-weight: 650;
+  }
+  .prose-body :where(blockquote) {
+    border-inline-start: 3px solid var(--border);
+    padding-inline-start: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-block: 1.5rem;
+  }
+  .prose-body :where(hr) {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin-block: 2.5rem;
+  }
+  .prose-body :where(code) {
+    background: var(--surface-raised);
+    border-radius: 0.25rem;
+    padding: 0.1em 0.35em;
+    font-size: 0.9em;
+  }
+  .prose-body :where(img) {
+    border-radius: 0.75rem;
+    margin-block: 1.5rem;
+  }
+</style>

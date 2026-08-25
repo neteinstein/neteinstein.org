@@ -1,0 +1,33 @@
+---
+import { SITE, SOCIALS } from '../config/site';
+import SocialIcon from './SocialIcon.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--border)] py-10">
+  <div class="container-page flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
+    <p class="text-sm text-[var(--text-muted)]">
+      &copy; {year}
+      {SITE.author}. Built with Astro, hosted on Cloudflare.
+    </p>
+
+    <ul class="flex items-center gap-1">
+      {
+        SOCIALS.map((social) => (
+          <li>
+            <a
+              href={social.href}
+              rel="me noopener noreferrer"
+              target="_blank"
+              class="inline-flex rounded-md p-2 text-[var(--text-muted)] transition-colors hover:text-[var(--link)]"
+            >
+              <SocialIcon icon={social.icon} />
+              <span class="sr-only">{social.label}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</footer>

@@ -1,0 +1,21 @@
+---
+import type { LinkEntry } from '../data/types';
+
+interface Props {
+  entry: LinkEntry;
+}
+
+const { entry } = Astro.props;
+const host = new URL(entry.url).hostname.replace(/^www\./, '');
+---
+
+<a
+  href={entry.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="block rounded-lg border border-[var(--border)] bg-[var(--surface-raised)] p-4 transition-colors hover:border-[var(--link)]"
+>
+  <h3 class="font-display font-semibold text-[var(--link)]">{entry.title}</h3>
+  <p class="mt-0.5 text-xs text-[var(--text-muted)]">{host}</p>
+  {entry.description && <p class="mt-2 text-sm">{entry.description}</p>}
+</a>

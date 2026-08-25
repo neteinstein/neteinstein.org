@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import EmptyState from '../../components/EmptyState.astro';
+import { articles } from '../../data/articles';
+
+const sorted = [...articles].sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''));
+---
+
+<BaseLayout title="Articles" description="Articles written by Pedro Vicente.">
+  <PageHeader title="Articles" lead="Things I've written, mostly on Medium." />
+
+  {
+    sorted.length === 0 ? (
+      <EmptyState source="src/data/articles.ts" />
+    ) : (
+      <div>
+        {sorted.map((article) => (
+          <ArticleCard article={article} />
+        ))}
+      </div>
+    )
+  }
+</BaseLayout>

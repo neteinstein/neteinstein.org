@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { NAV } from '../config/site';
+---
+
+<BaseLayout title="Page not found" description="That page doesn't exist.">
+  <PageHeader
+    title="Page not found"
+    lead="That page doesn't exist — or it moved when the site did."
+  />
+
+  <ul class="flex flex-wrap gap-3">
+    {
+      NAV.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="inline-block rounded-full border border-[var(--border)] px-4 py-2 text-sm transition-colors hover:border-[var(--link)] hover:text-[var(--link)]"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

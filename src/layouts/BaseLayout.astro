@@ -1,0 +1,97 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../config/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Set on pages that duplicate another canonical URL. */
+  canonical?: string;
+  /** Suppress the "| Pedro Vicente" suffix (used on the home page). */
+  bareTitle?: boolean;
+}
+
+const { title, description = SITE.description, canonical, bareTitle = false } = Astro.props;
+
+const pageTitle = bareTitle ? title : `${title} | ${SITE.title}`;
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, SITE.url);
+const ogImageUrl = new URL(SITE.ogImage, SITE.url);
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.author,
+  alternateName: 'neteinstein',
+  url: SITE.url,
+  jobTitle: 'Mobile Services Lead & Improver',
+  worksFor: { '@type': 'Organization', name: 'Mindera' },
+  sameAs: [
+    'https://github.com/neteinstein',
+    'https://www.linkedin.com/in/neteinstein/',
+    'https://neteinstein.medium.com',
+  ],
+};
+---
+
+<!doctype html>
+<html lang={SITE.locale} data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={canonicalUrl.href} />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={SITE.author} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.title} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:image" content={ogImageUrl.href} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl.href} />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+    {/* Runs before first paint so the theme never flashes. Mirrors ThemeToggle. */}
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = stored ?? (prefersDark ? 'dark' : 'light');
+          document.documentElement.dataset.theme = theme;
+        } catch {
+          /* private mode / storage blocked — the light default already applies */
+        }
+      })();
+    </script>
+  </head>
+
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#main"
+      class="sr-only rounded-md bg-[var(--surface-raised)] px-4 py-2 focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50"
+    >
+      Skip to content
+    </a>
+
+    <Header />
+
+    <main id="main" class="container-page flex-1 py-10 sm:py-14">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

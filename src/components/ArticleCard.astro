@@ -1,0 +1,24 @@
+---
+import type { Article } from '../data/types';
+
+interface Props {
+  article: Article;
+}
+
+const { article } = Astro.props;
+---
+
+<article class="border-b border-[var(--border)] py-5 last:border-b-0">
+  <h3 class="font-display text-lg font-semibold">
+    <a href={article.url} target="_blank" rel="noopener noreferrer" class="text-[var(--link)]">
+      {article.title}
+    </a>
+  </h3>
+
+  <p class="mt-1 text-sm text-[var(--text-muted)]">
+    {article.publication}{article.date && ` · ${article.date}`} ·{' '}
+    {article.language === 'pt' ? 'Português' : 'English'}
+  </p>
+
+  {article.description && <p class="mt-2 text-sm">{article.description}</p>}
+</article>

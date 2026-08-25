@@ -1,0 +1,92 @@
+@import 'tailwindcss';
+
+/*
+ * Dark mode is driven by `data-theme="dark"` on <html> rather than the `dark:`
+ * media strategy, so the ThemeToggle island and the OS preference agree. The
+ * inline script in BaseLayout sets the attribute before first paint.
+ */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@theme {
+  --font-sans:
+    'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Poppins', var(--font-sans);
+
+  --color-ink-50: oklch(0.98 0.005 250);
+  --color-ink-100: oklch(0.95 0.008 250);
+  --color-ink-200: oklch(0.89 0.01 250);
+  --color-ink-400: oklch(0.65 0.015 250);
+  --color-ink-500: oklch(0.55 0.018 250);
+  --color-ink-700: oklch(0.36 0.02 250);
+  --color-ink-800: oklch(0.26 0.02 250);
+  --color-ink-900: oklch(0.18 0.02 250);
+  --color-ink-950: oklch(0.13 0.018 250);
+
+  --color-accent-400: oklch(0.74 0.15 232);
+  --color-accent-500: oklch(0.64 0.16 232);
+  --color-accent-600: oklch(0.55 0.16 232);
+}
+
+/*
+ * Semantic tokens. Every component references these rather than raw palette
+ * steps, so the dark theme is a single override block instead of a `dark:`
+ * class on every element.
+ */
+:root {
+  --surface: var(--color-white);
+  --surface-raised: var(--color-ink-50);
+  --border: var(--color-ink-200);
+  --text: var(--color-ink-900);
+  --text-muted: var(--color-ink-500);
+  --link: var(--color-accent-600);
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --surface: var(--color-ink-950);
+  --surface-raised: var(--color-ink-900);
+  --border: var(--color-ink-800);
+  --text: var(--color-ink-100);
+  --text-muted: var(--color-ink-400);
+  --link: var(--color-accent-400);
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--surface);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 2px;
+  }
+}
+
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 72rem;
+  padding-inline: 1.25rem;
+}

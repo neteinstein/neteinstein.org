@@ -1,0 +1,66 @@
+---
+import { NAV, SITE, isActive } from '../config/site';
+import MobileNav from './MobileNav.tsx';
+import ThemeToggle from './ThemeToggle.tsx';
+
+const pathname = Astro.url.pathname;
+---
+
+<header
+  class="sticky top-0 z-30 border-b border-[var(--border)] bg-[var(--surface)]/90 backdrop-blur"
+>
+  <div class="container-page relative flex h-16 items-center justify-between gap-4">
+    <a href="/" class="font-display text-lg font-semibold tracking-tight">
+      {SITE.title}
+    </a>
+
+    <nav aria-label="Main" class="hidden md:block">
+      <ul class="flex items-center gap-1">
+        {
+          NAV.map((item) => (
+            <li class="group relative">
+              <a
+                href={item.href}
+                aria-current={isActive(item.href, pathname) ? 'page' : undefined}
+                class:list={[
+                  'inline-flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                  isActive(item.href, pathname)
+                    ? 'text-[var(--link)]'
+                    : 'text-[var(--text-muted)] hover:text-[var(--text)]',
+                ]}
+              >
+                {item.label}
+              </a>
+
+              {item.children && (
+                <ul class="invisible absolute top-full left-0 min-w-52 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-1 opacity-0 shadow-lg transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                  {item.children.map((child) => (
+                    <li>
+                      <a
+                        href={child.href}
+                        aria-current={isActive(child.href, pathname) ? 'page' : undefined}
+                        class:list={[
+                          'block rounded-md px-3 py-2 text-sm transition-colors',
+                          isActive(child.href, pathname)
+                            ? 'text-[var(--link)]'
+                            : 'text-[var(--text-muted)] hover:text-[var(--text)]',
+                        ]}
+                      >
+                        {child.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <ThemeToggle client:load />
+      <MobileNav client:idle items={NAV} pathname={pathname} />
+    </div>
+  </div>
+</header>
