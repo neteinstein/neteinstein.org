@@ -37,7 +37,23 @@ jobs:
       - name: Build
         run: npm run build
 
+      # Cloudflare secrets are added in a manual, one-time setup step (see the
+      # README). Until then, skip cleanly instead of failing the run — a repo
+      # that hasn't finished setup yet should not show a red workflow.
+      - name: Check Cloudflare credentials
+        id: guard
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -n "$CF_TOKEN" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::CLOUDFLARE_API_TOKEN is not set — skipping deploy. See README → Deployment → One-time setup."
+          fi
+
       - name: Deploy
+        if: steps.guard.outputs.ready == 'true'
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
