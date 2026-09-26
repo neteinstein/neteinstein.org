@@ -21,7 +21,7 @@ const sections = navPages().filter((page) => page.href !== '/');
 <BaseLayout title={SITE.title} bareTitle>
   <HomeHero />
 
-  <Section id="who" eyebrow="Who am I?" title="A bit about me">
+  <Section id="who" eyebrow="About me" title="Who am I?">
     <div class="grid gap-5 lg:grid-cols-3" data-reveal-stagger>
       {
         current.map((role, index) => (
