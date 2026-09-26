@@ -1,0 +1,2 @@
+/** Shapes for /hobbies/*. */
+export {};

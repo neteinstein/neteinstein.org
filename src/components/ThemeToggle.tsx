@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import type { MouseEvent } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -7,6 +8,9 @@ type Theme = 'light' | 'dark';
  * it. The initial value is read from the DOM rather than storage, because the
  * inline script in BaseLayout has already resolved stored-vs-system preference
  * and written it to `data-theme`.
+ *
+ * Where the View Transitions API exists, the new theme is revealed as a circle
+ * growing out of the button (CSS in global.css, `html.theme-transition`).
  */
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>('light');
@@ -18,8 +22,7 @@ export default function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  function toggle() {
-    const next: Theme = theme === 'dark' ? 'light' : 'dark';
+  function apply(next: Theme) {
     setTheme(next);
     document.documentElement.dataset.theme = next;
     try {
@@ -29,17 +32,52 @@ export default function ThemeToggle() {
     }
   }
 
+  function toggle(event: MouseEvent<HTMLButtonElement>) {
+    const next: Theme = theme === 'dark' ? 'light' : 'dark';
+    const root = document.documentElement;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!document.startViewTransition || reduced) {
+      apply(next);
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    root.style.setProperty('--vt-x', `${rect.left + rect.width / 2}px`);
+    root.style.setProperty('--vt-y', `${rect.top + rect.height / 2}px`);
+    root.classList.add('theme-transition');
+    const transition = document.startViewTransition(() => apply(next));
+    transition.finished.finally(() => root.classList.remove('theme-transition'));
+  }
+
+  const dark = mounted && theme === 'dark';
+
   return (
     <button
       type="button"
       onClick={toggle}
-      className="rounded-md border border-[var(--border)] p-2 text-[var(--text-muted)] transition-colors hover:text-[var(--text)]"
-      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+      className="group border-line text-muted hover:text-fg relative grid size-10 place-items-center overflow-hidden rounded-xl border transition-colors"
+      aria-label={`Switch to ${dark ? 'light' : 'dark'} theme`}
       // Rendered server-side as light; suppress the label until the real value
       // is known so screen readers never announce a stale state.
       aria-live="polite"
     >
-      {mounted && theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+      <span
+        className={[
+          'absolute transition-all duration-500 ease-[var(--ease-spring)]',
+          dark ? 'translate-y-0 rotate-0 opacity-100' : 'translate-y-6 rotate-90 opacity-0',
+        ].join(' ')}
+      >
+        <SunIcon />
+      </span>
+      <span
+        className={[
+          'absolute transition-all duration-500 ease-[var(--ease-spring)]',
+          dark ? '-translate-y-6 -rotate-90 opacity-0' : 'translate-y-0 rotate-0 opacity-100',
+        ].join(' ')}
+      >
+        <MoonIcon />
+      </span>
     </button>
   );
 }

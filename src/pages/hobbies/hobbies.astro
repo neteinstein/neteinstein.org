@@ -1,35 +1,9 @@
 ---
-import ProsePage from '../../layouts/ProsePage.astro';
-import EmptyState from '../../components/EmptyState.astro';
-import { hobbies } from '../../data/hobbies';
+// TODO(content): stub — ported from https://www.neteinstein.org/hobbies/hobbies in a follow-up step.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
 ---
 
-<ProsePage slug="hobbies">
-  {
-    hobbies.length === 0 ? (
-      <EmptyState source="src/data/hobbies.ts" />
-    ) : (
-      <ul class="mt-8 grid gap-4 sm:grid-cols-2">
-        {hobbies.map((hobby) => (
-          <li class="rounded-lg border border-[var(--border)] bg-[var(--surface-raised)] p-4">
-            <h2 class="font-display font-semibold">
-              {hobby.url ? (
-                <a
-                  href={hobby.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-[var(--link)]"
-                >
-                  {hobby.name}
-                </a>
-              ) : (
-                hobby.name
-              )}
-            </h2>
-            {hobby.description && <p class="mt-2 text-sm">{hobby.description}</p>}
-          </li>
-        ))}
-      </ul>
-    )
-  }
-</ProsePage>
+<BaseLayout title="Hobbies">
+  <PageHero title="Hobbies" eyebrow="Hobbies" />
+</BaseLayout>

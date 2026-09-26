@@ -1,27 +1,50 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHeader from '../components/PageHeader.astro';
-import { NAV } from '../config/site';
+import ButtonLink from '../components/ButtonLink.astro';
+import { navPages } from '../config/site';
+import { withBase } from '../lib/url';
+
+const pages = navPages().filter((page) => page.href !== '/');
 ---
 
 <BaseLayout title="Page not found" description="That page doesn't exist.">
-  <PageHeader
-    title="Page not found"
-    lead="That page doesn't exist — or it moved when the site did."
-  />
+  <section class="container-page grid min-h-[70svh] place-items-center py-16 text-center">
+    <div>
+      <p
+        class="text-gradient font-display text-[clamp(7rem,24vw,14rem)] leading-none font-extrabold tracking-[-0.06em]"
+        data-enter
+      >
+        404
+      </p>
+      <h1
+        class="font-display mt-2 text-3xl font-bold tracking-tight sm:text-4xl"
+        data-enter
+        style="--delay: 150"
+      >
+        This page wandered off
+      </h1>
+      <p class="text-muted mx-auto mt-4 max-w-md text-lg" data-enter style="--delay: 250">
+        That page doesn't exist — or it moved when the site did. Try one of these instead:
+      </p>
 
-  <ul class="flex flex-wrap gap-3">
-    {
-      NAV.map((item) => (
-        <li>
-          <a
-            href={item.href}
-            class="inline-block rounded-full border border-[var(--border)] px-4 py-2 text-sm transition-colors hover:border-[var(--link)] hover:text-[var(--link)]"
-          >
-            {item.label}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+      <ul class="mx-auto mt-8 flex max-w-2xl flex-wrap justify-center gap-2.5" data-reveal-stagger>
+        {
+          pages.map((page) => (
+            <li>
+              <a
+                href={withBase(page.href)}
+                class="border-line bg-surface-raised hover:border-accent hover:text-accent inline-block rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 ease-[var(--ease-spring)] hover:-translate-y-0.5"
+              >
+                {page.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-10" data-enter style="--delay: 400">
+        <ButtonLink href="/" icon="arrow-right" trailing={false}>Take me home</ButtonLink>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

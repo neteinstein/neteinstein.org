@@ -1,0 +1,34 @@
+---
+/**
+ * Renders `text` as one span per word so the headline can rise in word by word
+ * (`.split-word` in global.css). Words listed in `highlight` get the animated
+ * brand gradient. Screen readers get the plain text via `aria-label` on the
+ * heading that wraps this — pass the same string there.
+ */
+interface Props {
+  text: string;
+  /** Words (exact, case-insensitive, punctuation ignored) to paint with the gradient. */
+  highlight?: string[];
+  /** Offset for the stagger index, when several SplitWords share one heading. */
+  start?: number;
+}
+
+const { text, highlight = [], start = 0 } = Astro.props;
+const bare = (word: string) => word.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
+const marked = new Set(highlight.map(bare));
+const words = text.split(/\s+/).filter(Boolean);
+---
+
+{
+  words.map((word, index) => (
+    <>
+      <span
+        class:list={['split-word', marked.has(bare(word)) && 'text-gradient']}
+        style={`--i: ${start + index}`}
+        aria-hidden="true"
+      >
+        {word}
+      </span>{' '}
+    </>
+  ))
+}

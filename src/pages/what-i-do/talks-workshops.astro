@@ -1,33 +1,9 @@
 ---
+// TODO(content): stub — ported from https://www.neteinstein.org/what-i-do/talks-workshops in a follow-up step.
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import TalkCard from '../../components/TalkCard.astro';
-import EmptyState from '../../components/EmptyState.astro';
-import { talks } from '../../data/talks';
-
-// Newest first. Dates are `YYYY`, `YYYY-MM` or `YYYY-MM-DD`, so a plain string
-// comparison orders them correctly without parsing.
-const sorted = [...talks].sort((a, b) => b.date.localeCompare(a.date));
+import PageHero from '../../components/PageHero.astro';
 ---
 
-<BaseLayout
-  title="Talks & Workshops"
-  description="Talks and workshops by Pedro Vicente on mobile engineering, teams and feedback."
->
-  <PageHeader
-    title="Talks & Workshops"
-    lead="Conferences, meetups and workshops — mostly about mobile engineering, teams and feedback."
-  />
-
-  {
-    sorted.length === 0 ? (
-      <EmptyState source="src/data/talks.ts" />
-    ) : (
-      <div class="grid gap-4">
-        {sorted.map((talk) => (
-          <TalkCard talk={talk} />
-        ))}
-      </div>
-    )
-  }
+<BaseLayout title="Talks & Workshops">
+  <PageHero title="Talks & Workshops" eyebrow="What I do" />
 </BaseLayout>

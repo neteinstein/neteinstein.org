@@ -1,24 +1,9 @@
 ---
+// TODO(content): stub — ported from https://www.neteinstein.org/porto/visit-porto in a follow-up step.
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import PlaceFilter from '../../components/PlaceFilter.tsx';
-import { AREA_LABELS, CATEGORY_LABELS, DIET_LABELS, portoPlaces } from '../../data/portoPlaces';
+import PageHero from '../../components/PageHero.astro';
 ---
 
-<BaseLayout
-  title="Visit Porto"
-  description="A curated list of places in Porto, Gaia and Matosinhos to eat traditional food, have a drink, visit, or spend an afternoon."
->
-  <PageHeader
-    title="Visit Porto"
-    lead="Places to eat traditional food, have a drink, get to know the city, or spend an afternoon — alone or with a group. First published in 2023, updated monthly."
-  />
-
-  <PlaceFilter
-    client:visible
-    places={portoPlaces}
-    categoryLabels={CATEGORY_LABELS}
-    areaLabels={AREA_LABELS}
-    dietLabels={DIET_LABELS}
-  />
+<BaseLayout title="Visit Porto">
+  <PageHero title="Visit Porto" eyebrow="Porto" />
 </BaseLayout>

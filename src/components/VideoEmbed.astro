@@ -1,0 +1,114 @@
+---
+import Icon from './Icon.astro';
+
+/**
+ * Click-to-load video. Renders a poster and a play button; the real player
+ * iframe (youtube-nocookie / Vimeo with `dnt`) is only created on click. Pages
+ * with a dozen videos stay fast, and no third-party cookies are set until the
+ * visitor asks for the video — which suits a site that jokes about cookies.
+ *
+ * With JS off, the button falls back to a plain link to the video page.
+ */
+interface Props {
+  provider?: 'youtube' | 'vimeo';
+  /** YouTube video id (`Szq-Yrad74g`) or Vimeo numeric id. */
+  id: string;
+  title: string;
+  /** Vimeo's unlisted-video hash (`h=` parameter), when the video needs one. */
+  hash?: string;
+  /** Start offset in seconds. */
+  start?: number;
+  class?: string;
+}
+
+const { provider = 'youtube', id, title, hash, start, class: className } = Astro.props;
+
+const youtube = provider === 'youtube';
+const params = new URLSearchParams({ autoplay: '1' });
+if (youtube && start) params.set('start', String(start));
+if (!youtube) {
+  params.set('dnt', '1');
+  if (hash) params.set('h', hash);
+}
+
+const embedUrl = youtube
+  ? `https://www.youtube-nocookie.com/embed/${id}?${params}`
+  : `https://player.vimeo.com/video/${id}?${params}${start ? `#t=${start}s` : ''}`;
+const watchUrl = youtube
+  ? `https://www.youtube.com/watch?v=${id}`
+  : `https://vimeo.com/${id}${hash ? `/${hash}` : ''}`;
+const poster = youtube ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : undefined;
+---
+
+<div
+  class:list={[
+    'video-embed group border-line bg-surface-sunken relative aspect-video overflow-hidden rounded-3xl border shadow-[var(--shadow-md)]',
+    className,
+  ]}
+  data-embed-src={embedUrl}
+  data-embed-title={title}
+>
+  {
+    poster ? (
+      <img
+        src={poster}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        class="absolute inset-0 size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-105"
+      />
+    ) : (
+      <div
+        class="absolute inset-0 bg-[image:var(--gradient-brand)] opacity-80"
+        aria-hidden="true"
+      />
+    )
+  }
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"
+    aria-hidden="true"
+  >
+  </div>
+
+  <a
+    href={watchUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="video-embed-trigger absolute inset-0 flex flex-col items-center justify-center gap-4 p-5 text-white"
+  >
+    <span
+      class="relative grid size-16 place-items-center rounded-full bg-white/95 text-black shadow-2xl transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-110"
+    >
+      <span
+        class="absolute inset-0 animate-ping rounded-full bg-white/40 [animation-duration:2.4s]"
+        aria-hidden="true"></span>
+      <Icon name="play" class="relative ml-1 size-7" fill />
+    </span>
+    <span class="font-display absolute inset-x-5 bottom-4 line-clamp-2 text-left font-semibold">
+      <span class="sr-only">Play video: </span>{title}
+    </span>
+  </a>
+</div>
+
+<script>
+  // One delegated listener for every VideoEmbed on the page.
+  document.addEventListener('click', (event) => {
+    const trigger = (event.target as Element | null)?.closest<HTMLAnchorElement>(
+      '.video-embed-trigger',
+    );
+    const host = trigger?.closest<HTMLElement>('.video-embed');
+    if (!trigger || !host?.dataset.embedSrc) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+
+    event.preventDefault();
+    const frame = document.createElement('iframe');
+    frame.src = host.dataset.embedSrc;
+    frame.title = host.dataset.embedTitle ?? 'Video';
+    frame.allow =
+      'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    frame.className = 'absolute inset-0 size-full border-0';
+    host.replaceChildren(frame);
+    frame.focus();
+  });
+</script>

@@ -1,75 +1,129 @@
 ---
 /**
- * Typography wrapper for rendered MDX. Tailwind's typography plugin is not
- * installed — these rules are scoped here so the token-based theming stays
- * consistent with the rest of the site.
+ * Typography wrapper for rendered MDX and long-form copy. Tailwind's
+ * typography plugin is not installed — these rules are scoped here so the
+ * token-based theming stays consistent with the rest of the site.
  */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
-<div class="prose-body max-w-3xl">
+<div class:list={['prose-body max-w-3xl', className]}>
   <slot />
 </div>
 
 <style is:global>
+  .prose-body {
+    font-size: 1.075rem;
+    line-height: 1.8;
+  }
   .prose-body :where(h2) {
     font-family: var(--font-display);
-    font-size: 1.6rem;
+    font-size: clamp(1.6rem, 3vw, 2rem);
     font-weight: 700;
-    letter-spacing: -0.015em;
-    margin-block: 2.25rem 0.75rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-block: 2.75rem 0.85rem;
   }
   .prose-body :where(h3) {
     font-family: var(--font-display);
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-block: 1.75rem 0.5rem;
+    font-size: 1.3rem;
+    font-weight: 650;
+    margin-block: 2rem 0.5rem;
   }
   .prose-body :where(p) {
-    margin-block: 1rem;
-    line-height: 1.75;
+    margin-block: 1.1rem;
+  }
+  .prose-body :where(> :first-child) {
+    margin-top: 0;
   }
   .prose-body :where(ul, ol) {
-    margin-block: 1rem;
-    padding-inline-start: 1.5rem;
-    line-height: 1.75;
+    margin-block: 1.1rem;
+    padding-inline-start: 1.4rem;
   }
   .prose-body :where(ul) {
-    list-style: disc;
+    list-style: none;
+  }
+  .prose-body :where(ul > li) {
+    position: relative;
+  }
+  .prose-body :where(ul > li)::before {
+    content: '';
+    position: absolute;
+    left: -1.1rem;
+    top: 0.72em;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--gradient-brand);
   }
   .prose-body :where(ol) {
     list-style: decimal;
   }
+  .prose-body :where(ol > li)::marker {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-weight: 600;
+  }
   .prose-body :where(li) {
-    margin-block: 0.35rem;
+    margin-block: 0.4rem;
   }
   .prose-body :where(a) {
     color: var(--link);
+    font-weight: 550;
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: color-mix(in oklch, var(--link) 35%, transparent);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.25s ease;
+  }
+  .prose-body :where(a:hover) {
+    text-decoration-color: currentColor;
   }
   .prose-body :where(strong) {
     font-weight: 650;
+    color: var(--text);
   }
   .prose-body :where(blockquote) {
-    border-inline-start: 3px solid var(--border);
-    padding-inline-start: 1rem;
-    color: var(--text-muted);
-    font-style: italic;
-    margin-block: 1.5rem;
+    position: relative;
+    margin-block: 2rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 1.25rem;
+    border: 1px solid var(--border);
+    background: var(--surface-raised);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+  .prose-body :where(blockquote)::before {
+    content: '';
+    position: absolute;
+    inset-block: 1rem;
+    left: 0;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--gradient-brand);
   }
   .prose-body :where(hr) {
     border: 0;
-    border-top: 1px solid var(--border);
-    margin-block: 2.5rem;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-strong), transparent);
+    margin-block: 3rem;
   }
   .prose-body :where(code) {
-    background: var(--surface-raised);
-    border-radius: 0.25rem;
-    padding: 0.1em 0.35em;
-    font-size: 0.9em;
+    background: var(--surface-sunken);
+    border: 1px solid var(--border);
+    border-radius: 0.4rem;
+    padding: 0.1em 0.4em;
+    font-family: var(--font-mono);
+    font-size: 0.88em;
   }
   .prose-body :where(img) {
-    border-radius: 0.75rem;
-    margin-block: 1.5rem;
+    border-radius: 1.25rem;
+    margin-block: 2rem;
+    box-shadow: var(--shadow-md);
   }
 </style>
