@@ -4,8 +4,6 @@ import type { Catalog } from '..';
 export const portoKids: Catalog = {
   'Children playing in a big indoor playground with green and orange slides, climbing nets and soft-play blocks':
     'Crianças a brincar num grande parque infantil coberto com escorregas verdes e laranja, redes de escalada e blocos de espuma',
-  'Yellow "Work in progress" sign with a worker digging with a shovel':
-    'Sinal amarelo de "Obras em curso" com um trabalhador a cavar com uma pá',
   'Where?': 'Onde?',
   Name: 'Nome',
   'Indoor/Outdoor': 'Interior/Exterior',
@@ -18,4 +16,5 @@ export const portoKids: Catalog = {
   Outdoor: 'Exterior',
   'Schedules:': 'Horários:',
   'Includes:': 'Inclui:',
+  'Info:': 'Informação:',
 };
