@@ -19,7 +19,7 @@ export const talksPage: TalkPageCopy = {
     "Pedro Vicente's talks and workshops, from a Google Wave talk in 2009 to a KMP workshop in 2025: company culture, Android and mobile tech, feedback and teams, Walkabout at TEDxCoimbra, and a year-by-year list.",
   quote: "I've been speaking for so long... I still had hair when I started!",
   intro:
-    'Tech is life, but life is much more than tech... and so are my talks, scroll down to check some examples!',
+    'Tech is life, but life is much more than tech... and so are my talks. Scroll down to see some examples!',
   logTitle: 'A more exhaustive list...',
 };
 
@@ -40,7 +40,7 @@ export const talkCategories: TalkCategory[] = [
         {
           title: 'Why Do We Even Work?',
           subtitle:
-            'Work In Progress 2 - A Documentary by KOM and Samuel Durand exploring the Future of Work within companies',
+            'Work In Progress 2 - A documentary by KOM and Samuel Durand exploring the future of work within companies',
           photo: {
             src: wip2Still,
             alt: 'Documentary still: Pedro Vicente, captioned “Software Craftsman @Mindera”, talking on a rooftop above a hazy city',
@@ -265,7 +265,7 @@ export const talkLog: TalkLogYear[] = [
       },
       {
         month: 'Aug',
-        event: ['Encontro da Província Portuguesa Jesuítas (Casa da Torre - Soutelo)'],
+        event: ['Encontro da Província Portuguesa dos Jesuítas (Casa da Torre - Soutelo)'],
         talk: ['O impacto do digital na vida das famílias'],
         tags: ['Education'],
       },

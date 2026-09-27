@@ -49,10 +49,10 @@ import vodacom from '../assets/what-i-do/tech-engineer/vodacom.webp';
 export const techPage = {
   quote:
     '"There are two types of programmers: good programmers, and those that are not Jon Skeet."',
-  persona: 'My "tech persona" for the last 16 years...',
+  persona: 'My "tech persona" over the last 16 years...',
   appeared: 'Appeared at:',
   footprint: 'Online footprint',
-  teacher: 'Been a teacher at:',
+  teacher: 'I have taught at:',
   portfolio: 'Tech Portfolio:',
 };
 
@@ -67,7 +67,7 @@ export const appearances: Appearance[] = [
     title: { label: 'Why Do We Even Work?', href: 'https://www.rtp.pt/programa/tv/p43838' },
     description: [
       { label: 'Work In Progress 2', href: 'https://www.wipdocumentary.com/2' },
-      ' - A Documentary by KOM and Samuel Durand exploring the Future of Work within companies',
+      ' - A documentary by KOM and Samuel Durand exploring the future of work within companies',
     ],
     year: '2021',
     image: {
@@ -98,9 +98,9 @@ export const footprints: Footprint[] = [
     name: { label: 'StackOverflow', href: 'https://stackoverflow.com/users/327011/neteinstein' },
     paragraphs: [
       [
-        "For a few years I was quite active on StackOverflow. It's kind of fun sharing knowledge and helping.",
+        "For a few years, I was quite active on Stack Overflow. It's kind of fun to share knowledge and help.",
       ],
-      ['It ended up gaining me ~18k rep so far.'],
+      ['It has earned me ~18k reputation so far.'],
     ],
     stat: { value: '~18k', label: 'rep' },
     image: {
@@ -113,7 +113,7 @@ export const footprints: Footprint[] = [
     name: { label: 'Medium', href: 'https://medium.com/code-procedure-and-rants' },
     paragraphs: [
       [
-        'I guess from sharing at StackOverflow I jumped to sharing more in-depth articles at Medium',
+        'I guess from sharing on Stack Overflow I jumped to sharing more in-depth articles on Medium.',
       ],
     ],
     image: {
@@ -125,7 +125,7 @@ export const footprints: Footprint[] = [
   {
     name: { label: 'GitHub', href: 'https://github.com/neteinstein' },
     paragraphs: [
-      ['Open sourced is something I always enjoyed.'],
+      ['Open source is something I have always enjoyed.'],
       [
         'Now working on some awesome ',
         { label: 'Mindera', href: 'https://mindera.com/' },
@@ -145,7 +145,7 @@ export const teaching: Teaching[] = [
     name: { label: 'Instituto Superior Politécnico Gaya', href: 'http://www.ispgaya.pt' },
     lines: [
       [
-        'Invited Lecturer of Mobile Communications - ',
+        'Invited Lecturer of Mobile Communications — ',
         {
           label: 'Computer Science Engineering Degree',
           href: 'http://www.ispgaya.pt/site/eng/courses/view/2',
@@ -162,7 +162,7 @@ export const teaching: Teaching[] = [
   {
     name: { label: 'Mindera School', href: 'https://school.mindera.com/' },
     lines: [
-      ["Been a teacher/tutor from Mindera School's get go on 2018."],
+      ["I've been a teacher/tutor at Mindera School since it started in 2018."],
       ['Teaching basic programming, Java and Mobile.'],
     ],
     years: '2018 to 2020',

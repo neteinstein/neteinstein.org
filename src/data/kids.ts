@@ -26,7 +26,7 @@ export const kidsWorkInProgress: KidsPhoto = {
 export const kidsColumns: KidsColumn[] = [
   { key: 'where', label: 'Where?' },
   { key: 'name', label: 'Name' },
-  { key: 'setting', label: 'Indoor Outdoor' },
+  { key: 'setting', label: 'Indoor/Outdoor' },
   { key: 'cost', label: 'Estimated cost per child', footnote: '*' },
   { key: 'ages', label: 'Ages' },
   { key: 'children', label: 'Min/Max children' },
@@ -48,7 +48,7 @@ export const kidsPlaces: KidsPlace[] = [
         items: ['10H30 - 12H30', '15H00 - 17H00', '17H30 - 19H30'],
       },
       {
-        label: 'Has:',
+        label: 'Includes:',
         kind: 'includes',
         items: [
           'Bolo de Aniversário',

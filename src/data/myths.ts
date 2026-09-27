@@ -15,7 +15,7 @@ export const mythsIntro: MythsIntro = {
     attribution: '― Philip Pullman',
   },
   stance:
-    'I refuse to accept that due to the higher effort required bullshit can spread untouched. You can quote me on that.',
+    'I refuse to accept that bullshit can spread untouched just because it takes more effort to fight it. You can quote me on that.',
   figure: { image: bsAsymmetry, alt: bsAsymmetryAlt },
 };
 
@@ -30,7 +30,7 @@ export const mythGroups: MythGroup[] = [
     myths: [
       {
         id: 'paradox-of-tolerance',
-        title: 'Popper never believed anything like this implies.',
+        title: 'Popper never believed anything like what this implies.',
         figure: {
           image: paradoxComic,
           alt: 'Widely shared comic "The Paradox of Tolerance by philosopher Karl Popper*". It asks whether a tolerant society should tolerate intolerance and answers no; panels show a protester holding a "Behead those who insult Islam" sign and rows of black-flag militants, and a cartoon Popper concludes that defending tolerance requires not tolerating the intolerant, and that any movement preaching intolerance must be outside the law.',

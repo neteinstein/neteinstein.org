@@ -121,29 +121,29 @@ export const portoIntro: PortoIntro = {
     image: heroRooftopView,
     alt: 'A rooftop terrace with a parasol and picnic tables, looking out over the rooftops of Porto',
   },
-  recommendTitle: "Below you'll find places at Porto that I recommend to:",
+  recommendTitle: "Below you'll find places in Porto that I recommend to:",
   recommend: [
-    { text: 'eat mostly tradicional food', emphasis: 'mostly', group: 'where-to-eat' },
+    { text: 'eat mostly traditional food', emphasis: 'mostly', group: 'where-to-eat' },
     { text: 'have a drink', group: 'have-a-drink' },
-    { text: 'visit and get the know the city', group: 'what-to-visit' },
+    { text: 'visit and get to know the city', group: 'what-to-visit' },
     {
       text: 'or do an activity to have fun by yourself or with a group',
       group: 'fun-team-building',
     },
   ],
-  history: 'This list was first publish in 2023 and has been updated monthly.',
+  history: 'This list was first published in 2023 and has been updated monthly.',
   support: [
-    'If this was useful to you (and you think it makes sense) incentivise me to continue updating it with a small gift, via ',
+    'If this was useful to you (and you think it makes sense), encourage me to keep updating it with a small gift, via ',
     { label: 'Revolut', href: 'http://revolut.me/neteinstein' },
-    ' or icon below.',
+    ' or the icon below.',
   ],
   jumpTitle: 'Let me give you a glimpse of what you can find:',
-  jumpHint: '(click below to jump into that section!)',
+  jumpHint: '(click below to jump to that section!)',
   jumpExtras: [
     // The quiz photo repeats the Quiz Game card's, so it is decorative here.
     { label: 'Quiz Game', href: '#quiz-game', photo: { image: quizGame, alt: '' } },
   ],
-  supportMessage: 'Thanks for this, here is a few bucks!',
+  supportMessage: 'Thanks for this, here are a few bucks!',
   triviaLabel: 'Trivia:',
 };
 
@@ -161,8 +161,8 @@ export const portoGuide: PlaceGroup[] = [
             id: 'francesinha',
             title: 'Francesinha',
             notes: [
-              'Book in advance since several have high demand.',
-              '(If you still are able to: in Brasão ask Cookie cake for desert, nice variety of beers as well)',
+              'Book in advance, since several are in high demand.',
+              '(If you still have room: at Brasão, ask for the cookie cake for dessert. Nice variety of beers as well.)',
             ],
             venues: [
               {
@@ -321,10 +321,10 @@ export const portoGuide: PlaceGroup[] = [
           },
           {
             id: 'chicken',
-            title: 'Do you like any and everything chicken related?',
+            title: 'Do you like anything and everything chicken-related?',
             notes: [
-              'Welcome to “Peter of chicken!”',
-              'Ask for a “Canja” and Chicken for X people!',
+              'Welcome to “Peter of the Chickens!”',
+              'Ask for a “Canja” (chicken soup) and chicken for X people!',
             ],
             venues: [
               {
@@ -431,7 +431,7 @@ export const portoGuide: PlaceGroup[] = [
           {
             id: 'fish-octopus-squid',
             title: 'Fish / Octopus / Squid',
-            notes: ['(ask for advice on which fish to ask to the employee)'],
+            notes: ['(ask the staff for advice on which fish to order)'],
             venues: [
               { name: 'Tito 2' },
               {
@@ -445,7 +445,7 @@ export const portoGuide: PlaceGroup[] = [
           {
             id: 'meat-heaven',
             title: 'Meat Heaven',
-            notes: ['(ask for advice on which fish to ask to the employee)'],
+            notes: ['(ask the staff for advice on which cut to order)'],
             venues: [
               {
                 name: 'Central Churrasco',
@@ -641,7 +641,7 @@ export const portoGuide: PlaceGroup[] = [
           },
           {
             id: 'salt-mae-experience',
-            title: 'A kind of Salt Mae experience',
+            title: 'A kind of Salt Bae experience',
             venues: [
               {
                 name: 'Steakhouse da Maia',
@@ -654,7 +654,7 @@ export const portoGuide: PlaceGroup[] = [
           },
           {
             id: 'really-expensive',
-            title: 'Really Expensive but great place',
+            title: 'Really expensive, but a great place',
             venues: [
               { name: 'Casa de Chá da Boa Nova', href: 'https://www.casadechadaboanova.pt/' },
             ],
@@ -676,9 +676,9 @@ export const portoGuide: PlaceGroup[] = [
     places: [
       {
         id: 'chapel-wine-bar',
-        title: 'Old chapel turned into a wine bar.',
+        title: 'Old chapel turned into a wine bar',
         notes: [
-          'Amazing place. They kept most of the structure and altars of the chapel, it’s very charming. Good variety of wines, you can ask the staff for advice.',
+          'Amazing place. They kept most of the chapel’s structure and altars, and it’s very charming. Good variety of wines; you can ask the staff for advice.',
         ],
         venues: [
           {
@@ -697,7 +697,7 @@ export const portoGuide: PlaceGroup[] = [
         id: 'craft-beers',
         title: 'Craft beers',
         notes: [
-          'They have a great variety of beers - tap and bottle - both portuguese and foreign. You can ask to have a sip of tap beers if you’re indecise.',
+          'They have a great variety of beers, on tap and bottled, both Portuguese and foreign. You can ask for a taste of the tap beers if you’re undecided.',
           'Cool terrace in the backyard.',
         ],
         venues: [
@@ -717,8 +717,8 @@ export const portoGuide: PlaceGroup[] = [
         id: 'beer-in-a-garden',
         title: 'Beer in a garden',
         notes: [
-          'Nice and helpful staff also nice snacks and good quality craft beer.',
-          'Go down the stairs for extra seating and also to sit in the beer garden. Lovely and quiet place.',
+          'Nice, helpful staff, plus good snacks and good-quality craft beer.',
+          'Go down the stairs for extra seating and the beer garden. A lovely, quiet place.',
         ],
         venues: [
           {
@@ -751,7 +751,7 @@ export const portoGuide: PlaceGroup[] = [
         id: 'cat-cafe',
         title: 'Cat Café',
         notes: [
-          'Purrfect place for cat lovers, this fairly recent space is the first cat café in Porto. The owners belong to an animal welfare association so all the cats in the café are cats taken from the streets that are there to socialise and to be adopted.',
+          'Purrfect place for cat lovers, this fairly recent space is the first cat café in Porto. The owners belong to an animal welfare association, so all the cats in the café were rescued from the streets and are there to socialise and be adopted.',
         ],
         venues: [
           {
@@ -776,7 +776,7 @@ export const portoGuide: PlaceGroup[] = [
     places: [
       {
         id: 'mega-francesinha',
-        title: 'Brace yourself... and ask for the “Mega Francesinha"',
+        title: 'Brace yourself... and ask for the “Mega Francesinha”',
         venues: [
           {
             name: 'Verso em Pedra',
@@ -805,7 +805,7 @@ export const portoGuide: PlaceGroup[] = [
   },
   {
     id: 'desert-or-snack',
-    title: 'Desert or Snack',
+    title: 'Dessert or Snack',
     cover: { image: pastelDeNata, alt: '' },
     places: [
       {
@@ -943,7 +943,7 @@ export const portoGuide: PlaceGroup[] = [
             title: 'Ex-libris of the city',
             notes: [
               'Can be seen from many different points in the city.',
-              'Has a tower, church and a museum',
+              'It has a tower, a church and a museum.',
             ],
             venues: [{ name: 'Clérigos', href: 'https://www.torredosclerigos.pt/en/' }],
             photos: [
@@ -957,7 +957,7 @@ export const portoGuide: PlaceGroup[] = [
             id: 'aliados',
             title: 'Considered the city centre',
             notes: [
-              'This is a majestic avenue surrounded with buildings with beaux arts facades. On top of it it’s the city council.',
+              'A majestic avenue lined with Beaux-Arts buildings, with the city hall at the top.',
             ],
             venues: [{ name: 'Aliados' }],
             photos: [
@@ -971,7 +971,7 @@ export const portoGuide: PlaceGroup[] = [
             id: 'palacio-da-bolsa',
             title: '19th century Stock Exchange Palace',
             notes: [
-              'An a very beautiful historical building in Porto, with a special note to the Arab Room (not the one in the picture for no spoilers).',
+              'A very beautiful historic building in Porto, with a special mention for the Arab Room (not the one in the picture, to avoid spoilers).',
             ],
             venues: [{ name: 'Palácio da Bolsa', href: 'https://palaciodabolsa.com/' }],
             photos: [
@@ -985,7 +985,7 @@ export const portoGuide: PlaceGroup[] = [
             id: 'livraria-lello',
             title: 'The bookshop that is famous for inspiring Harry Potter',
             notes: [
-              'Super iconic bookshop. It is considered one of the most beautiful bookshops in the world. Has a clean/painted/beautiful facade and an amazing staircase inside. Recently, because of the amount of visitors, an entry fee has to be paid to visit the inside but you can trade with when buying a book there. Be ready for queues and a bit of waiting.',
+              'Super iconic bookshop. It is considered one of the most beautiful bookshops in the world. It has a beautifully painted facade and an amazing staircase inside. Because of the number of visitors, there is now an entry fee, but you can deduct it from the price of a book bought there. Be ready for queues and a bit of waiting.',
             ],
             venues: [
               {
@@ -1019,9 +1019,9 @@ export const portoGuide: PlaceGroup[] = [
           },
           {
             id: 'praca-dos-leoes',
-            title: 'Square situated in the heart of the nightlife in Porto.',
+            title: 'A square in the heart of Porto’s nightlife',
             notes: [
-              'Has an important academic tradition and it’s in the middle of amazing buildings like Reitoria do Porto (where the University of Porto was founded) and Igreja do Carmo (tiles church).',
+              'It has an important academic tradition and sits among amazing buildings like the Reitoria do Porto (where the University of Porto was founded) and the Igreja do Carmo (the tiled church).',
             ],
             venues: [
               {
@@ -1038,9 +1038,9 @@ export const portoGuide: PlaceGroup[] = [
           },
           {
             id: 'ribeira',
-            title: 'River-front pedonal street,',
+            title: 'Riverfront pedestrian street',
             notes: [
-              'with coloured and narrow houses, loads of restaurants with traditional and a very good vibe.',
+              'With narrow, colourful houses, loads of traditional restaurants and a very good vibe.',
             ],
             venues: [{ name: 'Ribeira', href: 'https://porto.travel/ribeira/' }],
             photos: [
@@ -1054,7 +1054,7 @@ export const portoGuide: PlaceGroup[] = [
             id: 'jardim-botanico',
             title: 'Porto Botanical Garden',
             notes: [
-              'has several ponds, greenhouses and you can usually see each plants species in a little plaque. The entry is free.',
+              'It has several ponds and greenhouses, and most plants have a little plaque with their species. Entry is free.',
             ],
             venues: [
               {
@@ -1071,9 +1071,9 @@ export const portoGuide: PlaceGroup[] = [
           },
           {
             id: 'majestic',
-            title: 'One of the most beautiful coffee places in the world',
+            title: 'One of the most beautiful cafés in the world',
             notes: [
-              'Most likely expect a queue to enter the most famous coffee place in Porto. It dates back from 1921, with a Belle Epoque-era architectural style.',
+              'Expect a queue to get into the most famous café in Porto. It dates back to 1921 and has a Belle Époque architectural style.',
             ],
             venues: [
               {
@@ -1122,7 +1122,7 @@ export const portoGuide: PlaceGroup[] = [
             id: 'jardins-palacio-cristal',
             title: 'Nice gardens to visit',
             notes: [
-              "It's name Jardins do Palácio de Cristal (Crystal Palace Gardens) due to it's original building now gone. It's has now an event/sport venue maintaining the original gardens with an amazing river view.",
+              "It's called Jardins do Palácio de Cristal (Crystal Palace Gardens) after its original building, now gone. It now has an event/sports venue, while keeping the original gardens with an amazing river view.",
             ],
             venues: [{ name: 'Jardins Palácio Cristal' }],
             photos: [
@@ -1138,9 +1138,9 @@ export const portoGuide: PlaceGroup[] = [
           },
           {
             id: 'alfandega-do-porto',
-            title: 'Old customs building (UNESCO patrimony)',
+            title: 'Old customs building (UNESCO World Heritage)',
             notes: [
-              'Now converted into convention centre. Usually has some interesting exhibitions.',
+              'Now converted into a convention centre. It usually has some interesting exhibitions.',
             ],
             venues: [{ name: 'Alfândega do Porto' }],
             photos: [
@@ -1171,7 +1171,7 @@ export const portoGuide: PlaceGroup[] = [
           },
           {
             id: 'casa-da-musica',
-            title: 'Want to go for a concert on an amazing place?',
+            title: 'Want to see a concert in an amazing place?',
             notes: [
               'Venue for shows and concerts. Known for its advanced architecture and quirky design, it’s a modern symbol of the city.',
             ],
@@ -1185,7 +1185,7 @@ export const portoGuide: PlaceGroup[] = [
           },
           {
             id: 'mcdonalds-aliados',
-            title: "Named most beautiful McDonald's in the world",
+            title: "Named the most beautiful McDonald's in the world",
             venues: [{ name: "McDonald's Aliados" }],
             photos: [
               {
@@ -1282,7 +1282,7 @@ export const portoGuide: PlaceGroup[] = [
           },
           {
             id: 'piscina-das-mares',
-            title: 'Ocean sea pool',
+            title: 'Ocean pool',
             venues: [
               {
                 name: 'Piscina das Marés',
@@ -1295,7 +1295,7 @@ export const portoGuide: PlaceGroup[] = [
           },
           {
             id: 'canned-fish-factory',
-            title: 'Visit traditional canned fish factory',
+            title: 'Visit a traditional canned fish factory',
             venues: [
               { name: 'Portugal Norte', href: 'https://portugalnorte.com/en/visit-the-factory' },
             ],
@@ -1412,7 +1412,7 @@ export const portoGuide: PlaceGroup[] = [
           },
           {
             id: 'golf-on-a-pub',
-            title: 'Golf on a Pub',
+            title: 'Golf in a Pub',
             venues: [{ name: 'FinoGolfClub', href: 'https://www.finogolfclub.com/' }],
             photos: [
               {

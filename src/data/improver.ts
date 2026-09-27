@@ -44,7 +44,7 @@ export const intro: ImproverIntro = {
     linkLabel: '(LoopGain website)',
   },
   tagline: [
-    { text: 'The "I" on a Team, should be from ', strong: true },
+    { text: 'The "I" in Team should stand for ', strong: true },
     { text: '"I"mprovement!', strong: true, mark: true },
   ],
 };
@@ -57,14 +57,14 @@ export const feedback: ImproverFeedback = {
   story: [
     {
       text: [
-        'After working in several companies and volunteer organizations, with very small too very to large teams, we found one thing that was always an issue: ',
-        { text: 'Empathy driven', strong: true, em: true, mark: true },
+        'After working in several companies and volunteer organizations, with teams from very small to very large, we found one thing that was always an issue: ',
+        { text: 'Empathy-driven', strong: true, em: true, mark: true },
         { text: ' Feedback', strong: true, mark: true },
       ],
     },
     {
       text: [
-        'This happened while at organizations that had evaluation processes or where spontaneously day-to-day feedback was preferred. It happened while working with waterfall, agile or with no standard methodology at all... ',
+        'This happened at organizations that had evaluation processes and at ones that preferred spontaneous day-to-day feedback. It happened with waterfall, with agile and with no standard methodology at all... ',
         { text: 'all lacked a common time for teams to really stop and talk!', strong: true },
       ],
     },
@@ -79,15 +79,15 @@ export const feedback: ImproverFeedback = {
     },
     {
       text: [
-        'Yes, most of us gave feedback to one another, but… we were mainly addressing superficial stuff, or just work related processes, so…',
+        'Yes, most of us gave feedback to one another, but… we were mainly addressing superficial stuff, or just work-related processes, so…',
       ],
     },
   ],
   envision: {
     lead: [{ text: 'I envision a session focused on the team', strong: true }, ':'],
     items: [
-      'if the team members liked working with each other;',
-      'how can the team members improve and be even better at working with each other;',
+      'whether the team members liked working with each other;',
+      'how the team members can improve and get even better at working with each other;',
     ],
   },
   knowMore: { label: 'Know more.', href: LOOPGAIN },
@@ -115,19 +115,19 @@ export const workshops: ImproverWorkshops = {
   title: 'Improve Teams Workshops!',
   subtitle: "I've been creating workshops to improve teams for a while.",
   intro: [
-    "By being part of some NGO's and working on the Software Engineering world, working with teams was always present.",
-    'That lead me to build some unusual workshops that will make the team question, think, smile, laugh, doubt, and wonder to finally be able to understand on their own what can be improved.',
+    "Being part of several NGOs and working in software engineering, I've always worked with teams.",
+    'That led me to build some unusual workshops that make teams question, think, smile, laugh, doubt and wonder, so they can finally understand on their own what can be improved.',
   ],
   verbs: ['question', 'think', 'smile', 'laugh', 'doubt', 'wonder'],
   modulesIntro:
-    'The workshops are specifically designed for each organization according to their preference/needs but they can contain some of these modules.',
+    'The workshops are designed specifically for each organization, according to its preferences and needs, but they can include some of these modules.',
   modules: [
     {
       title: 'Team',
       items: [
         { emoji: '🚀', label: 'Personal growth' },
         { emoji: '🗣', label: 'Communication' },
-        { emoji: '⭐️', label: 'Feedback vs or plus Evaluation?' },
+        { emoji: '⭐️', label: 'Feedback vs. (or plus) evaluation?' },
         { emoji: '😡', label: 'Conflict & Feeling safe' },
         { emoji: '💥', label: 'Failure' },
         { emoji: '🧠', label: 'How memory tricks us' },
@@ -138,7 +138,7 @@ export const workshops: ImproverWorkshops = {
       items: [
         { emoji: '✊', label: 'Do we need someone in command?' },
         { emoji: '🤝', label: 'How far can we trust, how far must we validate?' },
-        { emoji: '👂', label: 'Intent based leadership' },
+        { emoji: '👂', label: 'Intent-based leadership' },
         { emoji: '🙇‍♂️', label: 'Servant leadership' },
       ],
     },
@@ -147,7 +147,7 @@ export const workshops: ImproverWorkshops = {
       items: [
         { emoji: '🅿', label: 'Purpose: Why do we do ___ ?' },
         { emoji: '📊', label: 'Performance Evaluation' },
-        { emoji: '🤓', label: 'Interviews: What are the right questions? Or right answers....' },
+        { emoji: '🤓', label: 'Interviews: what are the right questions? Or the right answers...' },
         { emoji: '👓', label: 'Transparency by default' },
       ],
     },
@@ -174,8 +174,8 @@ export const workshops: ImproverWorkshops = {
       alt: 'A facilitator lays cards on a table while a group of young people seated around it watch',
     },
   ],
-  cta: "Curious? Fill the form below and let's talk 🙃",
-  note: "Note: If you work at a non-profit/school I'm glad to provide this pro bono.",
+  cta: "Curious? Fill in the form below and let's talk 🙃",
+  note: "Note: if you work at a non-profit or a school, I'm happy to do this pro bono.",
   form: {
     src: `${FORM}/viewform?embedded=true`,
     title: 'Improve Teams Workshops contact form (Google Forms)',
@@ -192,9 +192,9 @@ export const family: ImproverFamily = {
   subtitle: 'After teams...',
   status: 'Alpha',
   paragraphs: [
-    "I'm a husband for 10+ years and father (of 3) for our 7... that experience made me want to build something to bootstrap conversations and bring (more) empathy driven feedback to family.",
-    'This is still on "Alpha", and may in the future grow to something like LoopGain\'s deck.',
-    'If you are interested please reach me for more info.',
+    "I've been a husband for 10+ years and a father (of three) for 7 years... that experience made me want to build something to kick-start conversations and bring (more) empathy-driven feedback to families.",
+    "This is still in alpha and may one day grow into something like LoopGain's deck.",
+    'If you are interested, please reach out to me for more info.',
   ],
   illustration: {
     image: familySilhouette,

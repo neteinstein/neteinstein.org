@@ -17,7 +17,7 @@ export const podcastsPage: PodcastsPage = {
   eyebrow: 'What I do',
   highlight: ['Podcasts'],
   description:
-    'Episodes of Mindera Yellow Box — tech, business and cultural conversations relating to Mindera and Software Engineering — and O Que Arde Cura.',
+    'Episodes of Mindera Yellow Box — tech, business and cultural conversations about Mindera and software engineering — and O Que Arde Cura.',
 };
 
 export const shows: PodcastShow[] = [
@@ -25,7 +25,7 @@ export const shows: PodcastShow[] = [
     slug: 'mindera-yellow-box',
     name: 'Mindera Yellow Box',
     tagline: [
-      'Tech, business and cultural conversations relating to Mindera and Software Engineering in general',
+      'Tech, business and cultural conversations about Mindera and software engineering in general',
     ],
     href: 'https://yellowbox.mindera.com/',
     logo: yellowBoxLogo,
@@ -121,7 +121,7 @@ export const shows: PodcastShow[] = [
       { em: 'Live Aid' },
       ' meets ',
       { em: 'Hot Ones' },
-      " if Live Aid were done by amateurs and Hot Ones were done with fake chicken and both happened simultaneously in someone's living room.",
+      ", if Live Aid were done by amateurs and Hot Ones with fake chicken, and both happened at the same time in someone's living room.",
     ],
     href: 'https://sites.google.com/view/o-que-arde-cura/in%C3%ADcio',
     logo: oQueArdeCuraLogo,

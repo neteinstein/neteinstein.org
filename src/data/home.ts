@@ -62,7 +62,7 @@ export const glimpses: Glimpse[] = [
       { label: 'Work In Progress 2', href: 'https://www.rtp.pt/programa/tv/p43838' },
       ' - A ',
       { label: 'Documentary', href: 'https://www.wipdocumentary.com/2' },
-      ' by KOM and Samuel Durand exploring the Future of Work within companies',
+      ' by KOM and Samuel Durand exploring the future of work within companies',
     ],
     cta: { label: 'Tech Engineer', href: '/what-i-do/tech-engineer' },
     video: { provider: 'youtube', id: 'Szq-Yrad74g' },
@@ -71,7 +71,7 @@ export const glimpses: Glimpse[] = [
     title: 'Yellow Box Podcast',
     href: '/what-i-do/podcasts',
     description: [
-      'Tech, business and cultural conversations relating to Mindera and Software Engineering in general',
+      'Tech, business and cultural conversations about Mindera and software engineering in general',
     ],
     cta: { label: 'Podcasts', href: '/what-i-do/podcasts' },
     image: yellowBox,
@@ -80,7 +80,7 @@ export const glimpses: Glimpse[] = [
   {
     title: "Team Workshop for A'Corda",
     href: '/what-i-do/improver',
-    description: ["Team & Feedback workshop for A'Corda, a non-profit Summer Camp association."],
+    description: ["A team & feedback workshop for A'Corda, a non-profit summer camp association."],
     cta: { label: 'Coach', href: '/what-i-do/improver' },
     image: acorda,
     imageAlt: "A team workshop with A'Corda volunteers gathered around a table",
@@ -89,7 +89,7 @@ export const glimpses: Glimpse[] = [
     title: 'Is this real life or just fantasy...',
     href: '/what-i-do/talks-workshops',
     description: [
-      'Why do I say we treat people like adults at Mindera? And what is all that self organization about?',
+      'Why do I say we treat people like adults at Mindera? And what is all that self-organization about?',
     ],
     cta: { label: 'Talks', href: '/what-i-do/talks-workshops' },
     video: { provider: 'vimeo', id: '662771995', hash: 'cf530c4bdb' },
@@ -115,7 +115,7 @@ export const useful: Useful[] = [
     title: 'Tesla Utils',
     href: '/tesla',
     description:
-      'If you have a Tesla, here you can find a list of utilities, some useful, some just to have fun',
+      'If you have a Tesla, here you can find a list of utilities: some useful, some just for fun.',
     image: teslaUtils,
     imageAlt: 'Tesla logo',
     imageFit: 'contain',

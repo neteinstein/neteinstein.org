@@ -163,7 +163,7 @@ export const books: AuthoredBook[] = [
   {
     title: 'As coisas que nunca te contei...',
     description: [
-      "I have a book in the works that sums up my view of the world. I'm doing it to share with my kids when they reach adulthood, depending on how it ends up it might be partially shared for a broader audience.",
+      "I have a book in the works that sums up my view of the world. I'm writing it to share with my kids when they reach adulthood; depending on how it turns out, parts of it might be shared with a broader audience.",
     ],
     image: bookInTheWorks,
     imageAlt:
@@ -187,8 +187,8 @@ export const books: AuthoredBook[] = [
 ];
 
 export const mustRead = {
-  heading: "Writing is fun.. but there isn't something as good as reading a great book.",
-  intro: 'So here are some book must reads.',
+  heading: "Writing is fun... but there's nothing quite as good as reading a great book.",
+  intro: 'So here are some must-read books.',
 };
 
 /**
@@ -366,7 +366,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label:
-                'The Rosenhan experiment — conducted to determine validity of psuchiatric diagnosis. The experimenters feigned hallucinations to enter psychiatric hospitals and acted normally afterwards',
+                'The Rosenhan experiment — conducted to determine the validity of psychiatric diagnosis. The experimenters feigned hallucinations to enter psychiatric hospitals and acted normally afterwards',
               href: 'https://en.wikipedia.org/wiki/Rosenhan_experiment',
             },
           ],
@@ -566,7 +566,7 @@ export const readingGroups: ReadingGroup[] = [
           ],
           [
             {
-              label: 'What Google learn in it’s quest for the perfect team',
+              label: 'What Google learned from its quest to build the perfect team',
               href: 'https://www.nytimes.com/2016/02/28/magazine/what-google-learned-from-its-quest-to-build-the-perfect-team.html',
             },
           ],
@@ -696,7 +696,7 @@ export const readingGroups: ReadingGroup[] = [
           ],
           [
             {
-              label: 'Anual Review: Why you should separated performance and pay',
+              label: 'Annual Review: Why you should separate performance and pay',
               href: 'https://www.middlemarketcenter.org/expert-perspectives/annual-reviews-why-you-should-separate-performance-and-pay',
             },
           ],
@@ -1258,7 +1258,7 @@ export const readingGroups: ReadingGroup[] = [
 ];
 
 export const readLateIntro =
-  'Unfiltered list of links that I have to read (some will move here afterwards)';
+  'An unfiltered list of links I still have to read (some will move here afterwards).';
 
 export const toReadList: ReadingDocEmbed = {
   title: 'Pedro Vicente’s To Read List',
