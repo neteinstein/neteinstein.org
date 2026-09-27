@@ -21,7 +21,7 @@ export interface ToolsIndexEntry {
   fileName?: string;
 }
 
-/** An external site shown as a linked screenshot, as /tools/loopgain does. */
+/** An external site shown as a linked screenshot, as /tools/loopgain and /tools/summer-camp-games do. */
 export interface ToolsSiteShowcase {
   /** The site, exactly as the original linked it. */
   href: string;
@@ -29,16 +29,4 @@ export interface ToolsSiteShowcase {
   label: string;
   image: ImageMetadata;
   imageAlt: string;
-}
-
-/** A Google Drive file that the original embedded with Drive's own viewer. */
-export interface ToolsDriveDocument {
-  /** File name as Drive shows it in the embed. */
-  name: string;
-  /** Drive's `/preview` URL — the iframe source. */
-  previewUrl: string;
-  /** Opens the file in Drive. */
-  openUrl: string;
-  /** Drive's direct-download URL for the file. */
-  downloadUrl: string;
 }

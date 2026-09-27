@@ -4,9 +4,10 @@
  * `.crawl/report.json`). Page titles, meta descriptions and the summer camp
  * blurb live in `src/content/pages/{tools,loopgain,summer-camp-games}.mdx`.
  */
-import type { ToolsDriveDocument, ToolsIndexEntry, ToolsSiteShowcase } from './types';
+import type { ToolsIndexEntry, ToolsSiteShowcase } from './types';
 
 import loopgainWebsite from '../assets/tools/loopgain/loopgain-website.webp';
+import cadernoDeJogosWebsite from '../assets/tools/summer-camp-games/caderno-de-jogos-website.webp';
 
 /** /tools/loopgain: a screenshot of the LoopGain site, linked to it, then the link itself. */
 export const loopgain: ToolsSiteShowcase = {
@@ -17,15 +18,12 @@ export const loopgain: ToolsSiteShowcase = {
     'The LoopGain website: “Taking your team from the comfort zone to the trust zone! From training to a methodology supported by a simple deck of cards that will make you grow personally and as a team!”',
 };
 
-/** /tools/summer-camp-games: the book of games, embedded from Google Drive. */
-export const cadernoDeJogos: ToolsDriveDocument = {
-  name: 'Caderno de Jogos.docx',
-  previewUrl:
-    'https://drive.google.com/file/d/0B4t8f8mOxexXZDNkMjEzNTEtYmU0MS00MTBmLTkxYzktZTE1Y2E5NGU5NGZm/preview?resourcekey=0-CIR_NeAlZE3GCZ6ffECERw',
-  openUrl:
-    'https://drive.google.com/open?id=0B4t8f8mOxexXZDNkMjEzNTEtYmU0MS00MTBmLTkxYzktZTE1Y2E5NGU5NGZm&resourcekey=0-CIR_NeAlZE3GCZ6ffECERw',
-  downloadUrl:
-    'https://drive.google.com/uc?id=0B4t8f8mOxexXZDNkMjEzNTEtYmU0MS00MTBmLTkxYzktZTE1Y2E5NGU5NGZm&resourcekey=0-CIR_NeAlZE3GCZ6ffECERw&export=download',
+/** /tools/summer-camp-games: a screenshot of the Caderno de Jogos wiki page, linked to it. */
+export const cadernoDeJogos: ToolsSiteShowcase = {
+  href: 'https://campinacios.pedrovicente.pt/Movimento/Caderno%20de%20Jogos.html',
+  label: 'Caderno de Jogos',
+  image: cadernoDeJogosWebsite,
+  imageAlt: 'The Caderno de Jogos wiki page, listing the book of summer camp games by name.',
 };
 
 /** The /tools index, in menu order. */
@@ -40,7 +38,8 @@ export const toolsIndex: ToolsIndexEntry[] = [
   {
     page: 'summer-camp-games',
     href: '/tools/summer-camp-games',
-    links: [{ label: cadernoDeJogos.name, href: cadernoDeJogos.openUrl }],
-    fileName: cadernoDeJogos.name,
+    links: [{ label: cadernoDeJogos.label, href: cadernoDeJogos.href }],
+    image: cadernoDeJogos.image,
+    imageAlt: cadernoDeJogos.imageAlt,
   },
 ];
