@@ -1,6 +1,6 @@
 # neteinstein.org
 
-Personal site of [Pedro Vicente](https://www.neteinstein.org) (neteinstein) — a static
+Personal site of [Pedro Vicente](https://www.pedrovicente.pt) (neteinstein) — a static
 [Astro](https://astro.build) site with a few React islands, deployed to **GitHub Pages** by
 GitHub Actions.
 
@@ -158,7 +158,7 @@ Until a custom domain is attached, Pages serves the site from
 `actions/configure-pages` and builds with `BASE_PATH` set, so the preview works as-is. Internal
 links therefore always go through `withBase()` (`src/lib/url.ts`) in components; links in MDX are
 rewritten automatically. CI's `check:base` step fails any link that skips it. Canonical URLs always
-point at `https://www.neteinstein.org`.
+point at `https://www.pedrovicente.pt`.
 
 ### One-time setup
 
@@ -169,14 +169,14 @@ point at `https://www.neteinstein.org`.
 3. Merge to `main` (or run `deploy` manually) and check the site at
    `https://neteinstein.github.io/neteinstein.org/`.
 4. Cut DNS over, keeping Google Sites live until this point:
-   - `www.neteinstein.org` → `CNAME` to `neteinstein.github.io`
-   - `neteinstein.org` → `A` records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`,
+   - `www.pedrovicente.pt` → `CNAME` to `neteinstein.github.io`
+   - `pedrovicente.pt` → `A` records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`,
      `185.199.111.153` (and optionally `AAAA` `2606:50c0:8000::153` … `8003::153`)
-5. **Settings → Pages → Custom domain**: `www.neteinstein.org`, then tick **Enforce HTTPS** once
+5. **Settings → Pages → Custom domain**: `www.pedrovicente.pt`, then tick **Enforce HTTPS** once
    the certificate is issued. GitHub redirects the apex to `www` automatically. The next deploy
    builds without a base path.
-6. `www.pedrovicente.pt` / `pedrovicente.pt`: a Pages site has one custom domain, so point this
+6. `www.neteinstein.org` / `neteinstein.org`: a Pages site has one custom domain, so point this
    domain at the site with a URL redirect (301) at the registrar/DNS provider, to
-   `https://www.neteinstein.org` — paths are identical, so path-preserving forwarding keeps deep
+   `https://www.pedrovicente.pt` — paths are identical, so path-preserving forwarding keeps deep
    links working.
 7. Make `ci` a required status check on `main` under **Settings → Rules → Rulesets**.

@@ -36,7 +36,7 @@ export interface SocialLink {
 }
 
 export const SITE = {
-  url: 'https://www.neteinstein.org',
+  url: 'https://www.pedrovicente.pt',
   title: 'Pedro Vicente',
   handle: 'neteinstein',
   tagline: 'Welcome to my little virtual home',
