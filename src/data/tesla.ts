@@ -36,14 +36,13 @@ export const page: TeslaPage = {
   heading: 'Tesla Utils',
   highlight: ['Utils'],
   description:
-    'Useful websites to open on a Tesla browser — entertainment, routing & charging, utils and fun — ' +
+    'Useful websites to open in a Tesla browser — entertainment, routing & charging, utilities and fun — ' +
     'gathered on one page, so you only need to bookmark this one.',
 };
 
 export const intro: TeslaIntro = {
-  lead: 'A little page I created to maintain useful websites to open on a Tesla browser.',
-  bookmark:
-    'Instead of needing to type each of these URLs to bookmark... just bookmark this one! 😉',
+  lead: 'A little page I created to keep track of useful websites to open in a Tesla browser.',
+  bookmark: 'Instead of typing in and bookmarking each of these URLs... just bookmark this one! 😉',
   logo: teslaLogo,
   logoAlt: 'Tesla logo',
 };
@@ -142,7 +141,7 @@ export const categories: TeslaCategory[] = [
     title: 'Routing & Charging',
     sites: [
       {
-        label: 'A Better Routeplanner',
+        label: 'A Better Route Planner',
         href: 'https://abetterrouteplanner.com/',
         image: aBetterRoutePlanner,
         imageAlt: 'A Better Routeplanner’s trip panel over a dark street map',
@@ -167,7 +166,7 @@ export const categories: TeslaCategory[] = [
     title: 'Utils',
     sites: [
       {
-        label: '(PT) Municipios com Isenção para Elétricos',
+        label: '(PT) Municípios com Isenção para Elétricos',
         href: 'https://www.uve.pt/page/municipios-com-isencao-desconto-no-pagamento-de-estacionamento-para-veiculos-eletricos/',
         image: uveMunicipios,
         imageAlt:
@@ -180,7 +179,7 @@ export const categories: TeslaCategory[] = [
         imageAlt: 'Tesla Club Portugal’s Superchargers page, with a row of Teslas in the header',
       },
       {
-        label: 'Tesla fluids identifier',
+        label: 'Tesla fluid identifier',
         href: 'https://teslatap.com/articles/tesla-fluids-identifier/',
         image: teslaTap,
         imageAlt:
@@ -193,7 +192,7 @@ export const categories: TeslaCategory[] = [
     title: 'Fun',
     sites: [
       {
-        label: 'My instants (for horn sounds)',
+        label: 'Myinstants (for horn sounds)',
         href: 'https://www.myinstants.com/en/trending/us/',
         image: myInstants,
         imageAlt: 'Myinstants trending page: a grid of big, glossy, coloured sound buttons',
@@ -216,8 +215,8 @@ export const categories: TeslaCategory[] = [
 ];
 
 export const thanks: TeslaThanks = {
-  title: 'Thank for using this!',
+  title: 'Thanks for using this!',
   message:
-    'If this was useful to you (and you think it makes sense) send me a contribution via the blue icon next to it. 1€ or less is more than enough, and will incentivise me to continue updating it.',
-  widgetMessage: 'I feel grateful for any incentive to continue improving this!',
+    'If this was useful to you (and you think it makes sense), send me a contribution via the blue icon next to it. €1 or less is more than enough, and it will encourage me to keep updating it.',
+  widgetMessage: 'I am grateful for any encouragement to keep improving this!',
 };

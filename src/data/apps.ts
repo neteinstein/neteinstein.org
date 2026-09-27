@@ -25,12 +25,12 @@ const LOOPGAIN = 'http://www.loopgain.org';
 export const donate: RichText = [
   'Donate on ',
   { label: 'Revolut', href: REVOLUT },
-  ' or via the button below',
+  ' or via the button below.',
 ];
 
 export const support: AppsSupport = {
-  title: 'Support me on Buy me a coffee!',
-  message: 'If you want to incentivize me to keep developing for free :-)',
+  title: 'Support me on Buy Me a Coffee!',
+  message: 'If you want to encourage me to keep developing for free :-)',
 };
 
 export const storeBadges: Record<AppStore, AppStoreBadge> = {
@@ -45,9 +45,9 @@ export const apps: AppListing[] = [
     description: [
       'Part of the ',
       { label: 'LoopGain', href: LOOPGAIN },
-      ' Toolbox - The original ',
-      { label: 'feedback game for Teams', href: LOOPGAIN },
-      ' now on an App.',
+      ' toolbox — the original ',
+      { label: 'feedback game for teams', href: LOOPGAIN },
+      ', now as an app.',
     ],
     image: loopgain,
     imageAlt:
@@ -96,7 +96,7 @@ export const apps: AppListing[] = [
     id: 'sms-redirect',
     title: 'SMS Redirect & Schedule',
     description: [
-      'Did you ever wanted just to automatically forward your package deliver SMS to you partner? Or anything else? Here you have it.',
+      'Ever wanted to automatically forward your package delivery texts to your partner? Or anything else? Here you have it.',
     ],
     image: smsRedirect,
     imageAlt:
@@ -113,12 +113,12 @@ export const apps: AppListing[] = [
     id: 'allowed-names',
     title: 'Allowed Names in Portugal',
     description: [
-      'The official list of allowed names is Portugal, directly extracted from ',
+      'The official list of allowed names in Portugal, extracted directly from ',
       {
         label: 'IRN',
         href: 'https://irn.justica.gov.pt/Portals/33/Regras%20Nome%20Proprio/Lista%20Nomes%20Pr%C3%B3prios.pdf?ver=WNDmmwiSO3uacofjmNoxEQ%3D%3D',
       },
-      ' but easily filterable and searchable.',
+      ', but easy to filter and search.',
     ],
     image: allowedNames,
     imageAlt:
