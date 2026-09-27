@@ -1,9 +1,12 @@
 import { useEffect, useId, useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
 import type { NavItem } from '../config/site';
 
 interface Props {
+  /** Nav tree with the deploy base already applied to every href. */
   items: NavItem[];
-  pathname: string;
+  /** Current path in the same form as the hrefs (deploy base included). */
+  current: string;
 }
 
 /**
@@ -11,7 +14,7 @@ interface Props {
  * state — the one part of the header that cannot be a plain Astro component.
  * Hydrated with `client:idle`: it is below the fold of attention on load.
  */
-export default function MobileNav({ items, pathname }: Props) {
+export default function MobileNav({ items, current }: Props) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
@@ -39,12 +42,14 @@ export default function MobileNav({ items, pathname }: Props) {
     };
   }, [open]);
 
+  let index = 0;
+
   return (
-    <div ref={panelRef} className="md:hidden">
+    <div ref={panelRef} className="lg:hidden">
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="rounded-md border border-[var(--border)] p-2 text-[var(--text-muted)]"
+        className="border-line text-muted hover:text-fg grid size-10 place-items-center rounded-xl border transition-colors"
         aria-expanded={open}
         aria-controls={panelId}
         aria-label={open ? 'Close menu' : 'Open menu'}
@@ -57,35 +62,52 @@ export default function MobileNav({ items, pathname }: Props) {
           strokeWidth="2"
           aria-hidden="true"
         >
-          {open ? (
-            <path d="M6 6l12 12M18 6 6 18" strokeLinecap="round" />
-          ) : (
-            <path d="M3 6h18M3 12h18M3 18h18" strokeLinecap="round" />
-          )}
+          <path
+            d={open ? 'M6 6l12 12' : 'M4 7h16'}
+            strokeLinecap="round"
+            className="transition-all duration-300"
+          />
+          <path
+            d={open ? 'M18 6 6 18' : 'M4 17h16'}
+            strokeLinecap="round"
+            className="transition-all duration-300"
+          />
         </svg>
       </button>
 
       {open && (
         <div
           id={panelId}
-          className="absolute inset-x-0 top-full z-40 max-h-[80vh] overflow-y-auto border-b border-[var(--border)] bg-[var(--surface)] px-5 py-4 shadow-lg"
+          className="bg-surface-raised border-line absolute inset-x-0 top-full mt-2 max-h-[calc(100dvh-6rem)] animate-[mobile-nav-in_.45s_var(--ease-out-expo)_both] overflow-y-auto rounded-2xl border p-3 shadow-[var(--shadow-lg)]"
         >
-          <ul className="flex flex-col gap-1">
-            {items.map((item) => (
-              <li key={item.href}>
-                <NavLink item={item} pathname={pathname} />
-                {item.children && (
-                  <ul className="mt-1 ml-4 flex flex-col gap-1 border-l border-[var(--border)] pl-3">
-                    {item.children.map((child) => (
-                      <li key={child.href}>
-                        <NavLink item={child} pathname={pathname} small />
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
+          <nav aria-label="Main">
+            <ul className="flex flex-col gap-1">
+              {items.map((item) => (
+                <li
+                  key={item.label}
+                  style={{ '--i': index++ } as CSSProperties}
+                  className="animate-[mobile-nav-item_.5s_var(--ease-out-expo)_both] [animation-delay:calc(var(--i)*35ms)]"
+                >
+                  {item.href ? (
+                    <NavLink label={item.label} href={item.href} current={current} />
+                  ) : (
+                    <p className="text-accent px-3 pt-3 pb-1 font-mono text-[0.7rem] font-semibold tracking-[0.14em] uppercase">
+                      {item.label}
+                    </p>
+                  )}
+                  {item.children && (
+                    <ul className="border-line ml-3 flex flex-col gap-0.5 border-l pl-2">
+                      {item.children.map((child) => (
+                        <li key={child.href}>
+                          <NavLink label={child.label} href={child.href} current={current} small />
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       )}
     </div>
@@ -93,35 +115,35 @@ export default function MobileNav({ items, pathname }: Props) {
 }
 
 function NavLink({
-  item,
-  pathname,
+  label,
+  href,
+  current,
   small = false,
 }: {
-  item: NavItem;
-  pathname: string;
+  label: string;
+  href: string;
+  current: string;
   small?: boolean;
 }) {
-  const active = isActive(item.href, pathname);
+  const active = trim(href) === trim(current);
   return (
     <a
-      href={item.href}
+      href={href}
       aria-current={active ? 'page' : undefined}
       className={[
-        'block rounded-md px-2 py-2 transition-colors',
-        small ? 'text-sm' : 'font-medium',
-        active ? 'text-[var(--link)]' : 'text-[var(--text)] hover:text-[var(--link)]',
+        'flex items-center justify-between rounded-xl px-3 py-2.5 transition-colors',
+        small ? 'text-[0.95rem]' : 'font-display text-lg font-semibold',
+        active
+          ? 'text-fg bg-[color-mix(in_oklch,var(--accent)_13%,transparent)]'
+          : 'text-fg hover:bg-[color-mix(in_oklch,var(--text)_6%,transparent)]',
       ].join(' ')}
     >
-      {item.label}
+      {label}
+      {active && <span aria-hidden="true" className="bg-accent size-1.5 rounded-full" />}
     </a>
   );
 }
 
-// Duplicated from site.ts rather than imported: keeping the island's bundle free
-// of the full config module keeps the shipped JS small.
-function isActive(href: string, pathname: string): boolean {
-  const current = pathname.replace(/\/+$/, '') || '/';
-  const target = href.replace(/\/+$/, '') || '/';
-  if (target === '/') return current === '/';
-  return current === target || current.startsWith(`${target}/`);
+function trim(path: string): string {
+  return path.replace(/\/+$/, '') || '/';
 }

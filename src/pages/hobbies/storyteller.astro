@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import Prose from '../../components/Prose.astro';
+import StoryTimeline from '../../components/hobbies/StoryTimeline.astro';
+import StoryStats from '../../components/hobbies/StoryStats.astro';
+import { jeepPhoto, stories } from '../../data/stories';
+
+const entry = await getEntry('pages', 'storyteller');
+if (!entry) throw new Error('Missing content entry: src/content/pages/storyteller.mdx');
+const { Content } = await render(entry);
+
+const years = stories.flatMap((story) => (story.year === undefined ? [] : [story.year]));
+const span = `${Math.min(...years)} – ${Math.max(...years)}`;
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description}>
+  <PageHero title={entry.data.title} eyebrow={entry.data.eyebrow} highlight={entry.data.highlight}>
+    <StoryStats count={years.length} span={span} />
+  </PageHero>
+
+  <Section id="bored">
+    <div class="grid items-center gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+      <div data-reveal>
+        <Prose>
+          <Content />
+        </Prose>
+      </div>
+      <figure class="relative mx-auto w-full max-w-md" data-reveal="scale">
+        <div
+          class="absolute -inset-6 -z-10 rounded-[2.5rem] bg-[image:var(--gradient-brand)] opacity-25 blur-3xl"
+          aria-hidden="true"
+        >
+        </div>
+        <div class="animate-float">
+          <div
+            class="glow-ring border-line bg-surface-raised -rotate-2 rounded-[1.75rem] border p-2 shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] hover:rotate-0"
+          >
+            <Image
+              src={jeepPhoto.image}
+              alt={jeepPhoto.alt}
+              widths={[435]}
+              sizes="(min-width: 448px) 28rem, 100vw"
+              class="aspect-[16/9] w-full rounded-[1.4rem] object-cover"
+            />
+          </div>
+        </div>
+      </figure>
+    </div>
+  </Section>
+
+  <Section id="stories" eyebrow="Timeline">
+    <StoryTimeline items={stories} />
+  </Section>
+</BaseLayout>

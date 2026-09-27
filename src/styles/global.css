@@ -4,57 +4,197 @@
  * Dark mode is driven by `data-theme="dark"` on <html> rather than the `dark:`
  * media strategy, so the ThemeToggle island and the OS preference agree. The
  * inline script in BaseLayout sets the attribute before first paint.
+ *
+ * Components never use `dark:` — they reference the semantic tokens below,
+ * which the `[data-theme='dark']` block re-points. The variant stays declared
+ * only so third-party classes that assume it behave.
  */
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
 @theme {
   --font-sans:
     'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Poppins', var(--font-sans);
+  --font-display: 'Bricolage Grotesque Variable', var(--font-sans);
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --color-ink-50: oklch(0.98 0.005 250);
-  --color-ink-100: oklch(0.95 0.008 250);
-  --color-ink-200: oklch(0.89 0.01 250);
-  --color-ink-400: oklch(0.65 0.015 250);
-  --color-ink-500: oklch(0.55 0.018 250);
-  --color-ink-700: oklch(0.36 0.02 250);
-  --color-ink-800: oklch(0.26 0.02 250);
-  --color-ink-900: oklch(0.18 0.02 250);
-  --color-ink-950: oklch(0.13 0.018 250);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  --color-accent-400: oklch(0.74 0.15 232);
-  --color-accent-500: oklch(0.64 0.16 232);
-  --color-accent-600: oklch(0.55 0.16 232);
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-gradient-pan: gradient-pan 7s linear infinite;
+  --animate-wave: wave 2.6s ease-in-out infinite;
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      translate: 0 0;
+      rotate: 0deg;
+    }
+    50% {
+      translate: 0 -12px;
+      rotate: -1.2deg;
+    }
+  }
+  @keyframes gradient-pan {
+    to {
+      background-position: 200% center;
+    }
+  }
+  @keyframes wave {
+    0%,
+    60%,
+    100% {
+      rotate: 0deg;
+    }
+    10%,
+    30% {
+      rotate: 16deg;
+    }
+    20%,
+    40% {
+      rotate: -8deg;
+    }
+  }
+  @keyframes marquee {
+    to {
+      translate: -50% 0;
+    }
+  }
 }
 
 /*
- * Semantic tokens. Every component references these rather than raw palette
- * steps, so the dark theme is a single override block instead of a `dark:`
- * class on every element.
+ * Semantic tokens → Tailwind colours, so components write `bg-surface-raised`
+ * or `text-muted` and still follow the theme. `inline` keeps the var() lookup
+ * at use-site, which is what lets the dark block below re-point them.
  */
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-glass: var(--surface-glass);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-fg: var(--text);
+  --color-muted: var(--text-muted);
+  --color-link: var(--link);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  --color-accent-4: var(--accent-4);
+  --color-on-accent: var(--on-accent);
+}
+
+/* Registered so it can be animated — drives the rotating gradient borders. */
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
 :root {
-  --surface: var(--color-white);
-  --surface-raised: var(--color-ink-50);
-  --border: var(--color-ink-200);
-  --text: var(--color-ink-900);
-  --text-muted: var(--color-ink-500);
-  --link: var(--color-accent-600);
+  --surface: oklch(0.984 0.006 85);
+  --surface-raised: oklch(1 0 0);
+  --surface-sunken: oklch(0.956 0.01 85);
+  --surface-glass: oklch(0.99 0.004 85 / 0.78);
+  --border: oklch(0.25 0.04 285 / 0.11);
+  --border-strong: oklch(0.25 0.04 285 / 0.2);
+  --text: oklch(0.21 0.03 285);
+  --text-muted: oklch(0.47 0.025 285);
+  --accent: oklch(0.55 0.24 292);
+  --accent-2: oklch(0.63 0.25 356);
+  --accent-3: oklch(0.75 0.17 58);
+  --accent-4: oklch(0.66 0.13 205);
+  --link: var(--accent);
+  --on-accent: oklch(1 0 0);
+
+  /* Aurora blobs behind the page. */
+  --glow-a: oklch(0.8 0.15 292 / 0.5);
+  --glow-b: oklch(0.83 0.14 356 / 0.38);
+  --glow-c: oklch(0.9 0.12 70 / 0.5);
+  --glow-d: oklch(0.86 0.1 205 / 0.35);
+
+  --gradient-brand: linear-gradient(
+    100deg,
+    var(--accent) 0%,
+    var(--accent-2) 45%,
+    var(--accent-3) 80%,
+    var(--accent) 100%
+  );
+  --shadow-color: 285 40% 25%;
+  --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.06), 0 2px 6px hsl(var(--shadow-color) / 0.05);
+  --shadow-md:
+    0 2px 4px hsl(var(--shadow-color) / 0.05), 0 10px 24px -6px hsl(var(--shadow-color) / 0.12);
+  --shadow-lg:
+    0 4px 8px hsl(var(--shadow-color) / 0.05), 0 24px 48px -12px hsl(var(--shadow-color) / 0.22);
+
   color-scheme: light;
 }
 
 [data-theme='dark'] {
-  --surface: var(--color-ink-950);
-  --surface-raised: var(--color-ink-900);
-  --border: var(--color-ink-800);
-  --text: var(--color-ink-100);
-  --text-muted: var(--color-ink-400);
-  --link: var(--color-accent-400);
+  --surface: oklch(0.145 0.025 285);
+  --surface-raised: oklch(0.195 0.03 285);
+  --surface-sunken: oklch(0.12 0.02 285);
+  --surface-glass: oklch(0.19 0.03 285 / 0.78);
+  --border: oklch(1 0 0 / 0.09);
+  --border-strong: oklch(1 0 0 / 0.17);
+  --text: oklch(0.955 0.01 285);
+  --text-muted: oklch(0.75 0.025 285);
+  --accent: oklch(0.74 0.17 292);
+  --accent-2: oklch(0.74 0.19 356);
+  --accent-3: oklch(0.83 0.14 65);
+  --accent-4: oklch(0.8 0.11 205);
+  --link: oklch(0.8 0.13 292);
+  --on-accent: oklch(0.16 0.03 285);
+
+  --glow-a: oklch(0.5 0.22 292 / 0.42);
+  --glow-b: oklch(0.52 0.22 356 / 0.3);
+  --glow-c: oklch(0.6 0.15 58 / 0.22);
+  --glow-d: oklch(0.55 0.12 205 / 0.28);
+
+  --shadow-color: 285 50% 3%;
+  --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.4);
+  --shadow-md:
+    0 2px 4px hsl(var(--shadow-color) / 0.3), 0 12px 28px -8px hsl(var(--shadow-color) / 0.6);
+  --shadow-lg:
+    0 4px 8px hsl(var(--shadow-color) / 0.3), 0 28px 56px -12px hsl(var(--shadow-color) / 0.7);
+
   color-scheme: dark;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--surface);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--accent) 30%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 3px;
+    border-radius: 0.375rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -69,24 +209,361 @@
       transition-duration: 0.01ms !important;
     }
   }
-
-  body {
-    background-color: var(--surface);
-    color: var(--text);
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--link);
-    outline-offset: 2px;
-  }
 }
 
 @utility container-page {
   margin-inline: auto;
   width: 100%;
-  max-width: 72rem;
-  padding-inline: 1.25rem;
+  max-width: 76rem;
+  padding-inline: 1rem;
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* Animated brand gradient clipped to text. */
+@utility text-gradient {
+  background-image: var(--gradient-brand);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: var(--animate-gradient-pan);
+}
+
+/* Small uppercase mono label above headings. */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Frosted panel — header, hero cards, overlays. */
+@utility glass {
+  background-color: var(--surface-glass);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+}
+
+/*
+ * ───────────────────────── Motion primitives ─────────────────────────
+ *
+ * All motion is progressive: with JS off, reduced motion on, or an old
+ * browser, content renders static and fully visible.
+ */
+
+/*
+ * Scroll reveal. `motion-ok` is set on <html> by BaseLayout's inline script
+ * (never under reduced motion); `src/scripts/motion.ts` adds `is-visible` as
+ * elements enter the viewport. Children of `[data-reveal-stagger]` get a
+ * `--stagger` index so grids cascade in.
+ */
+.motion-ok [data-reveal] {
+  opacity: 0;
+  translate: 0 1.75rem;
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    translate 0.9s var(--ease-out-expo),
+    scale 0.9s var(--ease-out-expo),
+    filter 0.9s var(--ease-out-expo);
+  transition-delay: calc(var(--stagger, 0) * 75ms);
+}
+.motion-ok [data-reveal='fade'] {
+  translate: none;
+}
+.motion-ok [data-reveal='scale'] {
+  translate: none;
+  scale: 0.94;
+}
+.motion-ok [data-reveal='left'] {
+  translate: -2.5rem 0;
+}
+.motion-ok [data-reveal='right'] {
+  translate: 2.5rem 0;
+}
+.motion-ok [data-reveal='blur'] {
+  translate: none;
+  filter: blur(10px);
+}
+.motion-ok [data-reveal].is-visible {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  filter: none;
+}
+
+/* Hero headline: each word rises in on load. Words are split by `SplitWords`. */
+.motion-ok .split-word {
+  display: inline-block;
+  animation: word-rise 1s var(--ease-out-expo) both;
+  animation-delay: calc(120ms + var(--i, 0) * 70ms);
+}
+@keyframes word-rise {
+  from {
+    opacity: 0;
+    translate: 0 0.6em;
+    rotate: 4deg;
+    filter: blur(8px);
+  }
+}
+
+/* Load-in for above-the-fold blocks that should not wait for the observer. */
+.motion-ok [data-enter] {
+  animation: enter 1s var(--ease-out-expo) both;
+  animation-delay: calc(var(--delay, 0) * 1ms);
+}
+@keyframes enter {
+  from {
+    opacity: 0;
+    translate: 0 1.25rem;
+  }
+}
+
+/*
+ * Pointer spotlight. `motion.ts` writes `--mx`/`--my` on `[data-spotlight]`
+ * elements as the pointer moves over them.
+ */
+[data-spotlight] {
+  position: relative;
+  isolation: isolate;
+}
+[data-spotlight]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in oklch, var(--accent) 16%, transparent),
+    transparent 65%
+  );
+}
+[data-spotlight]:hover::before {
+  opacity: 1;
+}
+
+/* Rotating conic gradient ring, shown on hover/focus of `.glow-ring` hosts. */
+.glow-ring {
+  position: relative;
+}
+.glow-ring::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--angle),
+    var(--accent),
+    var(--accent-2),
+    var(--accent-3),
+    var(--accent-4),
+    var(--accent)
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  animation: spin-angle 4s linear infinite;
+  pointer-events: none;
+}
+.glow-ring:hover::after,
+.glow-ring:focus-within::after {
+  opacity: 1;
+}
+@keyframes spin-angle {
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* Reading progress bar — scroll-driven where supported, absent elsewhere. */
+.scroll-progress {
+  display: none;
+}
+@supports (animation-timeline: scroll()) {
+  .motion-ok .scroll-progress {
+    display: block;
+    transform-origin: 0 50%;
+    animation: grow-x linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+@keyframes grow-x {
+  from {
+    scale: 0 1;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+/* Header tightens as the page scrolls (scroll-driven, progressive). */
+@supports (animation-timeline: scroll()) {
+  .motion-ok .site-header-bar {
+    animation: header-settle linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 140px;
+  }
+}
+@keyframes header-settle {
+  to {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-strong);
+  }
+}
+
+/*
+ * Page transitions: cross-document View Transitions — zero JS, and browsers
+ * without support simply navigate normally. The header is named so it stays
+ * put while the page content slides.
+ */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root) {
+  animation: 220ms ease both vt-out;
+}
+::view-transition-new(root) {
+  animation: 520ms var(--ease-out-expo) both vt-in;
+}
+@keyframes vt-out {
+  to {
+    opacity: 0;
+    translate: 0 -0.5rem;
+  }
+}
+@keyframes vt-in {
+  from {
+    opacity: 0;
+    translate: 0 1rem;
+  }
+}
+
+/* Theme toggle: circular reveal from the button (see ThemeToggle.tsx). */
+html.theme-transition::view-transition-old(root) {
+  animation: none;
+}
+html.theme-transition::view-transition-new(root) {
+  animation: theme-reveal 650ms var(--ease-out-expo) both;
+}
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--vt-x, 100%) var(--vt-y, 0%));
+  }
+  to {
+    clip-path: circle(150vmax at var(--vt-x, 100%) var(--vt-y, 0%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+
+/*
+ * Aurora: soft drifting colour fields behind every page. Radial gradients
+ * rather than `filter: blur()` so it stays cheap to composite.
+ */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora > span {
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  will-change: transform;
+}
+.aurora > span:nth-child(1) {
+  top: -30vmax;
+  left: -18vmax;
+  background: radial-gradient(closest-side, var(--glow-a), transparent);
+  animation: drift-a 26s ease-in-out infinite alternate;
+}
+.aurora > span:nth-child(2) {
+  top: -25vmax;
+  right: -22vmax;
+  background: radial-gradient(closest-side, var(--glow-b), transparent);
+  animation: drift-b 32s ease-in-out infinite alternate;
+}
+.aurora > span:nth-child(3) {
+  bottom: -38vmax;
+  left: 20vmax;
+  background: radial-gradient(closest-side, var(--glow-c), transparent);
+  animation: drift-c 38s ease-in-out infinite alternate;
+}
+.aurora > span:nth-child(4) {
+  top: 30vh;
+  left: -30vmax;
+  width: 45vmax;
+  height: 45vmax;
+  background: radial-gradient(closest-side, var(--glow-d), transparent);
+  animation: drift-b 44s ease-in-out infinite alternate-reverse;
+}
+@keyframes drift-a {
+  to {
+    transform: translate(14vmax, 10vmax) scale(1.15);
+  }
+}
+@keyframes drift-b {
+  to {
+    transform: translate(-12vmax, 14vmax) scale(0.9);
+  }
+}
+@keyframes drift-c {
+  to {
+    transform: translate(-16vmax, -8vmax) scale(1.2);
+  }
+}
+
+/* Mobile nav panel (MobileNav.tsx). */
+@keyframes mobile-nav-in {
+  from {
+    opacity: 0;
+    translate: 0 -0.5rem;
+    scale: 0.98;
+  }
+}
+@keyframes mobile-nav-item {
+  from {
+    opacity: 0;
+    translate: -0.75rem 0;
+  }
+}
+
+/* Faint dot grid, faded out towards the edges. Used behind heroes. */
+.dot-grid {
+  background-image: radial-gradient(
+    color-mix(in oklch, var(--text) 16%, transparent) 1px,
+    transparent 1.5px
+  );
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse at center, #000 20%, transparent 72%);
+}
+
+/* Animated underline for inline links in prose and footers. */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s var(--ease-out-expo);
+}
+.link-underline:hover,
+.link-underline:focus-visible {
+  background-size: 100% 1.5px;
 }

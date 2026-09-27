@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import { SITE } from '../../config/site';
+import { stripBase } from '../../lib/url';
+import type { TeslaIntro } from '../../data/types';
+
+/**
+ * The original's "just bookmark this one! 😉" line, dressed as a browser
+ * address bar with this page's URL already starred. The Tesla logo that
+ * opened the original page sits beside it like an app icon.
+ */
+interface Props {
+  intro: TeslaIntro;
+}
+
+const { intro } = Astro.props;
+
+// Always the custom domain, even on the github.io preview — it is what people bookmark.
+const url = new URL(stripBase(Astro.url.pathname), SITE.url);
+---
+
+<div class="mt-8 max-w-2xl" data-enter style="--delay: 450">
+  <div
+    class="glass border-line grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-4 gap-y-3 rounded-[1.75rem] border p-3 shadow-[var(--shadow-md)] sm:gap-x-5 sm:p-4"
+  >
+    <Image
+      src={intro.logo}
+      alt={intro.logoAlt}
+      width={160}
+      class="ring-line row-span-2 size-16 self-start rounded-2xl shadow-[var(--shadow-sm)] ring-1 sm:size-20"
+      loading="eager"
+    />
+    <div
+      class="bg-surface-sunken border-line flex min-w-0 items-center gap-2 rounded-full border py-2 pr-2.5 pl-4"
+    >
+      <span class="text-muted min-w-0 flex-1 truncate font-mono text-sm">
+        <span class="text-fg">{url.host}</span>{url.pathname}
+      </span>
+      <svg
+        class="bookmark-star text-accent-3 size-6 shrink-0"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+        focusable="false"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.48 3.5a.56.56 0 0 1 1.04 0l2.13 5.1a.56.56 0 0 0 .47.35l5.52.44c.5.04.7.66.32.99l-4.2 3.6a.56.56 0 0 0-.18.56l1.28 5.38a.56.56 0 0 1-.84.61l-4.73-2.89a.56.56 0 0 0-.58 0l-4.73 2.89a.56.56 0 0 1-.84-.6l1.28-5.39a.56.56 0 0 0-.18-.56l-4.2-3.6a.56.56 0 0 1 .32-.99l5.52-.44a.56.56 0 0 0 .47-.35l2.13-5.1Z"
+        ></path>
+      </svg>
+    </div>
+    <p
+      class="font-display col-start-2 pr-1 text-lg leading-snug font-semibold text-pretty sm:text-xl"
+    >
+      {intro.bookmark}
+    </p>
+  </div>
+</div>
+
+<style>
+  /* The star "gets bookmarked" just after the headline lands. */
+  .motion-ok .bookmark-star {
+    animation: star-pop 0.9s var(--ease-spring) 1.1s both;
+  }
+  @keyframes star-pop {
+    from {
+      opacity: 0;
+      scale: 0.2;
+      rotate: -120deg;
+    }
+  }
+</style>

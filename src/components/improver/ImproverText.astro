@@ -1,0 +1,44 @@
+---
+import type { ImproverText } from '../../data/types';
+import { isExternal, withBase } from '../../lib/url';
+
+/**
+ * Renders an `ImproverText` paragraph: plain strings plus runs carrying the
+ * original's bold/italic, an optional gradient accent and inline links.
+ * Emits phrasing content only — the caller supplies the block element.
+ */
+interface Props {
+  text: ImproverText;
+}
+
+const { text } = Astro.props;
+---
+
+{
+  text.map((part) => {
+    if (typeof part === 'string') return part;
+
+    const inner = part.em ? <em>{part.text}</em> : part.text;
+    const styled = part.strong ? (
+      <strong class:list={['font-bold', part.mark ? 'text-gradient' : 'text-fg']}>{inner}</strong>
+    ) : part.mark ? (
+      <span class="text-gradient">{inner}</span>
+    ) : (
+      inner
+    );
+
+    if (!part.href) return styled;
+    const external = isExternal(part.href);
+    const newTab = external && !part.href.startsWith('mailto:');
+    return (
+      <a
+        href={withBase(part.href)}
+        target={newTab ? '_blank' : undefined}
+        rel={newTab ? 'noopener noreferrer' : undefined}
+        class="text-link link-underline font-semibold"
+      >
+        {styled}
+      </a>
+    );
+  })
+}

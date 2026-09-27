@@ -1,0 +1,44 @@
+---
+import SiteTile from './SiteTile.astro';
+import type { TeslaSite } from '../../data/types';
+
+/**
+ * A category's tiles, as a list. Each `<li>` takes the scroll-reveal (via
+ * `data-reveal-stagger`) so the tile inside keeps its own hover lift — both
+ * animate `translate`, and on the same element the reveal would win.
+ *
+ * - `grid`  — the long Entertainment list: 2 → 3 → 4 columns.
+ * - `trio`  — three equal tiles.
+ * - `bento` — the first tile is a large feature card, the rest stack beside it.
+ * - `single` — one feature tile filling its column.
+ */
+interface Props {
+  sites: TeslaSite[];
+  layout?: 'grid' | 'trio' | 'bento' | 'single';
+  class?: string;
+}
+
+const { sites, layout = 'grid', class: className } = Astro.props;
+
+const columns = {
+  grid: 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
+  trio: 'sm:grid-cols-2 md:grid-cols-3',
+  bento: 'sm:grid-cols-2 lg:grid-cols-3',
+  single: '',
+}[layout];
+---
+
+<ul class:list={['grid gap-4 sm:gap-6', columns, className]} data-reveal-stagger>
+  {
+    sites.map((site, index) => {
+      const lead = (layout === 'bento' && index === 0) || layout === 'single';
+      return (
+        <li
+          class:list={['grid', layout === 'bento' && index === 0 && 'sm:col-span-2 lg:row-span-2']}
+        >
+          <SiteTile site={site} variant={lead ? 'feature' : 'default'} fill={lead} />
+        </li>
+      );
+    })
+  }
+</ul>

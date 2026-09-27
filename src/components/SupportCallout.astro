@@ -1,0 +1,50 @@
+---
+import ButtonLink from './ButtonLink.astro';
+
+/**
+ * "Buy me a coffee" / Revolut call to action. Replaces the Buy Me a Coffee
+ * widget script the Google Sites original embedded on /my-apps,
+ * /porto/visit-porto and /tesla — same destinations, no third-party script.
+ */
+interface Props {
+  title?: string;
+  /** Page-specific thank-you copy (the original widget's `data-message`). */
+  message?: string;
+  class?: string;
+}
+
+const {
+  title = 'Found this useful?',
+  message = 'A coffee (or 1€ or less) is more than enough, and keeps me motivated to keep this updated.',
+  class: className,
+} = Astro.props;
+---
+
+<aside
+  class:list={[
+    'border-line bg-surface-raised relative overflow-hidden rounded-3xl border p-7 shadow-[var(--shadow-md)] sm:p-9',
+    className,
+  ]}
+  data-reveal="scale"
+>
+  <div
+    class="pointer-events-none absolute -right-20 -bottom-24 size-72 rounded-full bg-[radial-gradient(closest-side,var(--glow-c),transparent)]"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex items-start gap-4">
+      <span class="text-4xl" aria-hidden="true">☕</span>
+      <div>
+        <h2 class="font-display text-2xl font-bold tracking-tight">{title}</h2>
+        <p class="text-muted mt-1.5 max-w-xl text-pretty">{message}</p>
+      </div>
+    </div>
+    <div class="flex shrink-0 flex-wrap gap-3">
+      <ButtonLink href="https://www.buymeacoffee.com/neteinstein" icon="coffee">
+        Buy me a coffee
+      </ButtonLink>
+      <ButtonLink href="https://revolut.me/neteinstein" variant="secondary">Revolut</ButtonLink>
+    </div>
+  </div>
+</aside>

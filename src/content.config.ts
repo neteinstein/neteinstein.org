@@ -11,7 +11,11 @@ const pages = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    /** Optional intro paragraph rendered above the prose by PageHeader. */
+    /** Small uppercase label above the title — usually the nav group. */
+    eyebrow: z.string().optional(),
+    /** Words of the title painted with the brand gradient. */
+    highlight: z.array(z.string()).default([]),
+    /** Optional intro paragraph rendered under the title by PageHero. */
     lead: z.string().optional(),
     updated: z.coerce.date().optional(),
     draft: z.boolean().default(false),

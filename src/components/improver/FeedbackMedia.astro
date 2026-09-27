@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import type { ImproverFeedback } from '../../data/types';
+import VideoEmbed from '../VideoEmbed.astro';
+
+/**
+ * The "Feedback" chapter's full-width row: the LoopGain video next to the
+ * card decks photo (linked to LoopGain, as on the original) and its caption.
+ */
+interface Props {
+  video: ImproverFeedback['video'];
+  deck: ImproverFeedback['deck'];
+}
+
+const { video, deck } = Astro.props;
+---
+
+<div class="grid items-center gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-10">
+  <div data-reveal="left">
+    <p class="eyebrow mb-3">Watch</p>
+    <VideoEmbed id={video.id} title={video.title} />
+  </div>
+
+  <figure data-reveal="right">
+    <a
+      href={deck.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group glow-ring border-line bg-surface-raised block overflow-hidden rounded-3xl border shadow-[var(--shadow-md)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-lg)]"
+    >
+      <Image
+        src={deck.image}
+        alt={deck.alt}
+        widths={[420, 640, 900]}
+        sizes="(min-width: 1024px) 28rem, 100vw"
+        class="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-105"
+      />
+      <span class="sr-only">{deck.linkLabel}</span>
+    </a>
+    <figcaption class="font-display mt-4 text-lg leading-snug font-semibold text-pretty">
+      {deck.caption}
+    </figcaption>
+  </figure>
+</div>

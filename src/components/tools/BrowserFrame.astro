@@ -1,0 +1,98 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Icon from '../Icon.astro';
+import { isExternal, withBase } from '../../lib/url';
+
+/**
+ * A screenshot of a website in a browser window, linked to that site. The
+ * window chrome (dots, address bar) is decoration; the link's accessible name
+ * is the screenshot's alt text.
+ *
+ * Where scroll-driven animations are supported (and motion is allowed) the
+ * window starts tipped back and settles flat as it scrolls into view.
+ */
+interface Props {
+  href: string;
+  /** Shown in the address bar. */
+  address: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  class?: string;
+}
+
+const { href, address, image, imageAlt, class: className } = Astro.props;
+const external = isExternal(href);
+---
+
+<div class:list={['browser-frame relative isolate', className]}>
+  <div
+    class="absolute inset-x-[6%] -inset-y-6 -z-10 rounded-[3rem] bg-[image:var(--gradient-brand)] opacity-30 blur-3xl sm:-inset-y-10"
+    aria-hidden="true"
+  >
+  </div>
+
+  <a
+    href={withBase(href)}
+    target={external ? '_blank' : undefined}
+    rel={external ? 'noopener noreferrer' : undefined}
+    class="browser-frame-window group glow-ring border-line bg-surface-raised block rounded-[1.25rem] border p-1.5 shadow-[var(--shadow-lg)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 sm:rounded-[1.75rem] sm:p-2.5"
+  >
+    <span class="flex items-center gap-3 px-2 pt-1 pb-2.5 sm:px-3 sm:pb-3" aria-hidden="true">
+      <span class="hidden shrink-0 gap-1.5 min-[420px]:flex">
+        <span class="bg-accent-2 size-2.5 rounded-full sm:size-3"></span>
+        <span class="bg-accent-3 size-2.5 rounded-full sm:size-3"></span>
+        <span class="bg-accent-4 size-2.5 rounded-full sm:size-3"></span>
+      </span>
+      <span
+        class="border-line bg-surface-sunken text-muted mx-auto flex max-w-sm min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-1 font-mono text-[0.7rem] sm:py-1.5 sm:text-xs"
+      >
+        <Icon name="globe" class="size-3.5 shrink-0" />
+        <span class="truncate">{address}</span>
+      </span>
+      <span
+        class="text-muted group-hover:text-accent grid size-7 shrink-0 place-items-center transition-colors"
+      >
+        <Icon
+          name="arrow-up-right"
+          class="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        />
+      </span>
+    </span>
+
+    <span class="relative block overflow-hidden rounded-[0.9rem] sm:rounded-[1.25rem]">
+      <Image
+        src={image}
+        alt={imageAlt}
+        widths={[480, 720, 960, 1270]}
+        sizes="(min-width: 1216px) 72rem, 100vw"
+        loading="eager"
+        class="block h-auto w-full transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.02]"
+      />
+    </span>
+  </a>
+</div>
+
+<style>
+  @supports (animation-timeline: view()) {
+    :global(.motion-ok) .browser-frame {
+      perspective: 1600px;
+    }
+    :global(.motion-ok) .browser-frame-window {
+      transform-origin: 50% 100%;
+      animation: frame-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+  }
+  @keyframes frame-settle {
+    from {
+      transform: rotateX(16deg) scale(0.94);
+      opacity: 0.4;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+</style>

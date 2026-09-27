@@ -1,24 +1,61 @@
 ---
+import { getEntry, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import SupportCallout from '../../components/SupportCallout.astro';
 import PlaceFilter from '../../components/PlaceFilter.tsx';
-import { AREA_LABELS, CATEGORY_LABELS, DIET_LABELS, portoPlaces } from '../../data/portoPlaces';
+import RecommendTiles from '../../components/porto/RecommendTiles.astro';
+import JumpMosaic from '../../components/porto/JumpMosaic.astro';
+import Trivia from '../../components/porto/Trivia.astro';
+import { resolveGuide } from '../../components/porto/guide';
+import { navPages } from '../../config/site';
+import { portoGuide, portoIntro } from '../../data/porto';
+
+const PATH = '/porto/visit-porto';
+
+const entry = await getEntry('pages', 'visit-porto');
+if (!entry) throw new Error('Missing content entry: src/content/pages/visit-porto.mdx');
+const { Content: TriviaNote } = await render(entry);
+
+const pageName = navPages().find((page) => page.href === PATH)?.label ?? entry.data.title;
+const guide = await resolveGuide(portoGuide);
 ---
 
-<BaseLayout
-  title="Visit Porto"
-  description="A curated list of places in Porto, Gaia and Matosinhos to eat traditional food, have a drink, visit, or spend an afternoon."
->
-  <PageHeader
-    title="Visit Porto"
-    lead="Places to eat traditional food, have a drink, get to know the city, or spend an afternoon — alone or with a group. First published in 2023, updated monthly."
-  />
+<BaseLayout title={pageName} description={entry.data.description}>
+  <PageHero
+    title={entry.data.title}
+    eyebrow={entry.data.eyebrow}
+    highlight={entry.data.highlight}
+    lead={entry.data.lead}
+    image={portoIntro.hero.image}
+    imageAlt={portoIntro.hero.alt}
+  >
+    <p
+      class="text-muted mt-4 inline-flex max-w-xl items-start gap-2 text-base text-pretty"
+      data-enter
+      style="--delay: 420"
+    >
+      {portoIntro.heroCaption}
+    </p>
+  </PageHero>
 
-  <PlaceFilter
-    client:visible
-    places={portoPlaces}
-    categoryLabels={CATEGORY_LABELS}
-    areaLabels={AREA_LABELS}
-    dietLabels={DIET_LABELS}
-  />
+  <Section id="intro" title={portoIntro.recommendTitle}>
+    <RecommendTiles intro={portoIntro} groups={portoGuide} />
+    <SupportCallout class="mt-10" message={portoIntro.supportMessage} />
+  </Section>
+
+  <Section id="glimpse" eyebrow="Jump to" title={portoIntro.jumpTitle} intro={portoIntro.jumpHint}>
+    <JumpMosaic groups={portoGuide} extras={portoIntro.jumpExtras} />
+  </Section>
+
+  <Section id="guide">
+    <PlaceFilter client:visible groups={guide} />
+  </Section>
+
+  <Section width="default">
+    <Trivia label={portoIntro.triviaLabel}>
+      <TriviaNote />
+    </Trivia>
+  </Section>
 </BaseLayout>

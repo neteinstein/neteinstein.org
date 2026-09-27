@@ -1,33 +1,62 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import TalkCard from '../../components/TalkCard.astro';
-import EmptyState from '../../components/EmptyState.astro';
-import { talks } from '../../data/talks';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import Marquee from '../../components/Marquee.astro';
+import TalkHeroIntro from '../../components/talks/TalkHeroIntro.astro';
+import TalkCategorySection from '../../components/talks/TalkCategorySection.astro';
+import TalkLog from '../../components/talks/TalkLog.astro';
+import {
+  talkCategories,
+  talkLog,
+  talkStages,
+  talkStats,
+  talkTagTones,
+  talksPage,
+} from '../../data/talks';
 
-// Newest first. Dates are `YYYY`, `YYYY-MM` or `YYYY-MM-DD`, so a plain string
-// comparison orders them correctly without parsing.
-const sorted = [...talks].sort((a, b) => b.date.localeCompare(a.date));
+const jumps = [
+  ...talkCategories.map((category) => ({
+    href: `#${category.id}`,
+    label: category.title,
+    icon: category.icon,
+  })),
+  { href: '#all-talks', label: 'Full list', icon: 'calendar' as const },
+];
 ---
 
-<BaseLayout
-  title="Talks & Workshops"
-  description="Talks and workshops by Pedro Vicente on mobile engineering, teams and feedback."
->
-  <PageHeader
-    title="Talks & Workshops"
-    lead="Conferences, meetups and workshops — mostly about mobile engineering, teams and feedback."
-  />
+<BaseLayout title={talksPage.title} description={talksPage.description}>
+  <PageHero
+    title={talksPage.title}
+    eyebrow={talksPage.eyebrow}
+    highlight={talksPage.highlight}
+    quote={{ text: talksPage.quote }}
+  >
+    <TalkHeroIntro intro={talksPage.intro} stats={talkStats} jumps={jumps} />
+  </PageHero>
+
+  <div class="py-4 sm:py-6" role="region" aria-label="Some of the stages on the list">
+    <Marquee duration={50}>
+      {
+        talkStages.map((stage) => (
+          <span class="font-display text-muted inline-flex items-center gap-4 text-2xl font-bold tracking-tight whitespace-nowrap sm:text-4xl">
+            {stage}
+            <span class="text-gradient text-xl sm:text-2xl" aria-hidden="true">
+              ✦
+            </span>
+          </span>
+        ))
+      }
+    </Marquee>
+  </div>
 
   {
-    sorted.length === 0 ? (
-      <EmptyState source="src/data/talks.ts" />
-    ) : (
-      <div class="grid gap-4">
-        {sorted.map((talk) => (
-          <TalkCard talk={talk} />
-        ))}
-      </div>
-    )
+    talkCategories.map((category, index) => (
+      <TalkCategorySection category={category} index={index} />
+    ))
   }
+
+  <Section id="all-talks" eyebrow="Year by year" title={talksPage.logTitle}>
+    <TalkLog years={talkLog} tones={talkTagTones} />
+  </Section>
 </BaseLayout>

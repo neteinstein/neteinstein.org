@@ -1,0 +1,49 @@
+---
+import type { TechLink } from '../../data/types';
+import Icon from '../Icon.astro';
+import { withBase } from '../../lib/url';
+
+/** The page's closing link to the talks page, as a large gradient banner. */
+interface Props {
+  link: TechLink;
+}
+
+const { link } = Astro.props;
+---
+
+<div
+  class="group glow-ring border-line bg-surface-raised relative overflow-hidden rounded-[2rem] border p-8 shadow-[var(--shadow-md)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-lg)] sm:p-12"
+  data-spotlight
+  data-reveal="scale"
+>
+  <div
+    class="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full bg-[radial-gradient(closest-side,var(--glow-b),transparent)]"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute -bottom-28 -left-16 size-72 rounded-full bg-[radial-gradient(closest-side,var(--glow-a),transparent)]"
+    aria-hidden="true"
+  >
+  </div>
+  <p class="eyebrow relative inline-flex items-center gap-2">
+    <Icon name="presentation" class="size-4" />
+    Talks &amp; workshops
+  </p>
+  <h2
+    class="font-display relative mt-3 max-w-3xl text-3xl leading-tight font-bold tracking-tight text-balance sm:text-5xl"
+  >
+    <a
+      href={withBase(link.href)}
+      class="after:absolute after:inset-0 after:rounded-[2rem] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"
+    >
+      {link.label}
+    </a>
+  </h2>
+  <span
+    class="text-on-accent relative mt-8 inline-grid size-14 place-items-center rounded-full bg-[image:var(--gradient-brand)] shadow-[var(--shadow-md)] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:translate-x-2"
+    aria-hidden="true"
+  >
+    <Icon name="arrow-right" class="size-6" />
+  </span>
+</div>

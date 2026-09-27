@@ -1,0 +1,62 @@
+---
+import type { ReadingGroup } from '../../data/types';
+import ReadingEntryLine from './ReadingEntryLine.astro';
+
+/**
+ * A top-level group of the reading list ("People", "Organisations", …): the
+ * title sticks beside its topics on wide screens; topics flow as a masonry of
+ * small cards.
+ */
+interface Props {
+  group: ReadingGroup;
+  /** Position in the list, shown as a big faded number. */
+  index: number;
+  tone: '--accent' | '--accent-2' | '--accent-3' | '--accent-4';
+}
+
+const { group, index, tone } = Astro.props;
+const links = group.topics
+  .flatMap((topic) => topic.entries.flat())
+  .filter((part) => typeof part !== 'string').length;
+---
+
+<div
+  id={group.id}
+  class="border-line grid scroll-mt-28 gap-6 border-t pt-10 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-10"
+  style={`--tone: var(${tone})`}
+>
+  <header class="lg:sticky lg:top-28 lg:self-start" data-reveal="left">
+    <p
+      class="font-display text-6xl leading-none font-extrabold tracking-tighter text-[color-mix(in_oklch,var(--tone)_45%,transparent)]"
+      aria-hidden="true"
+    >
+      {String(index + 1).padStart(2, '0')}
+    </p>
+    <h3 class="font-display mt-2 text-3xl font-bold tracking-tight">{group.title}</h3>
+    <p class="text-muted mt-2 font-mono text-xs">
+      {group.topics.length} topics · {links} links
+    </p>
+  </header>
+
+  <div class="min-w-0 columns-1 gap-5 md:columns-2 xl:columns-3">
+    {
+      group.topics.map((topic) => (
+        <section
+          class="border-line bg-surface-raised mb-5 break-inside-avoid rounded-2xl border p-5 shadow-[var(--shadow-sm)]"
+          data-reveal
+          data-spotlight
+        >
+          <h4 class="flex items-center gap-2 font-mono text-xs font-semibold tracking-[0.12em] uppercase">
+            <span class="size-2 rounded-full bg-[var(--tone)]" aria-hidden="true" />
+            {topic.title}
+          </h4>
+          <ul class="mt-4 space-y-3 text-[0.95rem]">
+            {topic.entries.map((entry) => (
+              <ReadingEntryLine entry={entry} />
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</div>

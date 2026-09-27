@@ -1,0 +1,46 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import ButtonLink from '../../components/ButtonLink.astro';
+import PlacesTable from '../../components/kids/PlacesTable.astro';
+import WipNote from '../../components/kids/WipNote.astro';
+import { navPages } from '../../config/site';
+import { kidsColumns, kidsHero, kidsPlaces, kidsWorkInProgress } from '../../data/kids';
+
+const PATH = '/porto/with-kids';
+const NOTE_ID = 'cost-note';
+
+const entry = await getEntry('pages', 'with-kids');
+if (!entry) throw new Error('Missing content entry: src/content/pages/with-kids.mdx');
+const { Content: CostNote } = await render(entry);
+
+const pageName = navPages().find((page) => page.href === PATH)?.label ?? entry.data.title;
+const listTitle = 'Places for kids';
+---
+
+<BaseLayout title={pageName} description={entry.data.description}>
+  <PageHero
+    title={entry.data.title}
+    eyebrow={entry.data.eyebrow}
+    highlight={entry.data.highlight}
+    lead={entry.data.lead}
+    image={kidsHero.image}
+    imageAlt={kidsHero.alt}
+  >
+    <ButtonLink slot="actions" href="#places" size="lg" trailing="arrow-down">
+      Jump to the list
+    </ButtonLink>
+  </PageHero>
+
+  <Section id="places" eyebrow="Play & parties" title={listTitle}>
+    <PlacesTable places={kidsPlaces} columns={kidsColumns} caption={listTitle} noteId={NOTE_ID} />
+
+    <div class="mt-14 sm:mt-16">
+      <WipNote sign={kidsWorkInProgress} noteId={NOTE_ID}>
+        <CostNote />
+      </WipNote>
+    </div>
+  </Section>
+</BaseLayout>

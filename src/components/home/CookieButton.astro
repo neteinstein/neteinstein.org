@@ -1,0 +1,87 @@
+---
+/**
+ * The original home page asked "Do you want some cookies 🍪?" above its
+ * (Google-mandated) cookie banner. This site sets no cookies at all, so the
+ * question gets an honest answer — and a shower of the edible kind.
+ */
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="cookie-jar relative inline-flex flex-col items-start gap-2">
+  <button
+    type="button"
+    class="cookie-trigger group border-line-strong text-muted hover:border-accent-3 hover:text-fg inline-flex items-center gap-2 rounded-full border border-dashed px-4 py-2 font-mono text-xs font-semibold tracking-[0.12em] uppercase transition-colors"
+    aria-controls="cookie-answer"
+    aria-expanded="false"
+  >
+    {label}
+    <span
+      class="inline-block text-base transition-transform duration-500 ease-[var(--ease-spring)] group-hover:rotate-[200deg]"
+      aria-hidden="true">🍪</span
+    >
+  </button>
+  <p id="cookie-answer" class="cookie-answer text-muted hidden text-sm" role="status">
+    Only the edible kind — this site doesn't track you. 🍪
+  </p>
+</div>
+
+<script>
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  for (const jar of document.querySelectorAll<HTMLElement>('.cookie-jar')) {
+    const trigger = jar.querySelector<HTMLButtonElement>('.cookie-trigger')!;
+    const answer = jar.querySelector<HTMLElement>('.cookie-answer')!;
+
+    trigger.addEventListener('click', () => {
+      answer.classList.remove('hidden');
+      trigger.setAttribute('aria-expanded', 'true');
+      if (reduced) return;
+
+      const rect = trigger.getBoundingClientRect();
+      for (let index = 0; index < 18; index += 1) {
+        const cookie = document.createElement('span');
+        cookie.textContent = '🍪';
+        cookie.setAttribute('aria-hidden', 'true');
+        Object.assign(cookie.style, {
+          position: 'fixed',
+          left: `${rect.left + rect.width / 2}px`,
+          top: `${rect.top + rect.height / 2}px`,
+          fontSize: `${16 + Math.random() * 18}px`,
+          pointerEvents: 'none',
+          zIndex: '70',
+        });
+        document.body.append(cookie);
+
+        const angle = (Math.PI * 2 * index) / 18 + Math.random() * 0.5;
+        const distance = 90 + Math.random() * 160;
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance - 60;
+        cookie
+          .animate(
+            [
+              { transform: 'translate(-50%, -50%) scale(0.4) rotate(0deg)', opacity: 1 },
+              {
+                transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(1) rotate(${
+                  Math.random() * 540 - 270
+                }deg)`,
+                opacity: 1,
+                offset: 0.6,
+              },
+              {
+                transform: `translate(calc(-50% + ${x * 1.1}px), calc(-50% + ${y + 140}px)) scale(0.9) rotate(${
+                  Math.random() * 720 - 360
+                }deg)`,
+                opacity: 0,
+              },
+            ],
+            { duration: 1400 + Math.random() * 600, easing: 'cubic-bezier(.2,.8,.3,1)' },
+          )
+          .finished.then(() => cookie.remove());
+      }
+    });
+  }
+</script>

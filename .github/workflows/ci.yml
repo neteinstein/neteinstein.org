@@ -44,6 +44,11 @@ jobs:
       - name: Check internal links
         run: npm run check:links
 
+      # Rebuilds under a dummy base path, as the github.io preview is served,
+      # and fails on any internal link that skipped `withBase()`.
+      - name: Check links under a base path
+        run: npm run check:base
+
       - name: Upload build output
         uses: actions/upload-artifact@v4
         with:
