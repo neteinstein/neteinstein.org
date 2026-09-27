@@ -1,0 +1,62 @@
+---
+import type { ImproverWorkshops } from '../../data/types';
+import Embed from '../Embed.astro';
+import Icon from '../Icon.astro';
+
+/**
+ * The workshops call to action: the invitation and the pro bono note on a
+ * banner, then the original Google Forms embed below it (the copy says
+ * "the form below", so the form stays underneath at every width).
+ */
+interface Props {
+  cta: string;
+  note: string;
+  form: ImproverWorkshops['form'];
+}
+
+const { cta, note, form } = Astro.props;
+---
+
+<div class="mt-14 sm:mt-20">
+  <div
+    class="glow-ring border-line bg-surface-raised relative overflow-hidden rounded-3xl border p-7 shadow-[var(--shadow-md)] sm:p-10"
+    data-spotlight
+    data-reveal
+  >
+    <div
+      class="pointer-events-none absolute -top-24 -right-16 size-72 rounded-full bg-[radial-gradient(closest-side,var(--glow-b),transparent)]"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute -bottom-28 -left-20 size-72 rounded-full bg-[radial-gradient(closest-side,var(--glow-a),transparent)]"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="relative grid items-center gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-10"
+    >
+      <p
+        class="font-display text-3xl leading-tight font-bold tracking-tight text-balance sm:text-4xl"
+      >
+        {cta}
+      </p>
+      <p
+        class="border-line-strong bg-surface/60 text-muted flex items-start gap-3 rounded-2xl border border-dashed p-4 leading-relaxed"
+      >
+        <Icon name="heart" class="text-accent-2 mt-0.5 size-5 shrink-0" />
+        <span>{note}</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-8 max-w-3xl" data-reveal>
+    <Embed
+      src={form.src}
+      title={form.title}
+      height={form.height}
+      fallbackHref={form.fallbackHref}
+      fallbackLabel={form.fallbackLabel}
+    />
+  </div>
+</div>

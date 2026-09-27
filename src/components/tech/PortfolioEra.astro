@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+import type { PortfolioEra } from '../../data/types';
+import Icon from '../Icon.astro';
+import ProjectCard from './ProjectCard.astro';
+import { useI18n } from '../../i18n';
+
+/**
+ * One era of the tech portfolio: a big gradient year range, the employer's
+ * logo, an optional feature image, then the era's project cards.
+ */
+interface Props {
+  era: PortfolioEra;
+}
+
+const { era } = Astro.props;
+const { employer, feature } = era;
+const headingId = `era-${era.id}`;
+
+const { t, localHref } = useI18n(Astro);
+---
+
+<section aria-labelledby={headingId} class="relative">
+  <div
+    class:list={[
+      'grid items-center gap-8',
+      feature && 'lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-12',
+    ]}
+  >
+    <div data-reveal="left">
+      <p class="eyebrow">{t('Era')}</p>
+      <h3
+        id={headingId}
+        class="text-gradient font-display mt-2 text-[clamp(2.5rem,9vw,4.5rem)] leading-none font-extrabold tracking-[-0.04em]"
+      >
+        {era.label}
+      </h3>
+      <a
+        href={localHref(employer.href)}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group glow-ring border-line mt-6 inline-block rounded-2xl border p-1.5 shadow-[var(--shadow-sm)] transition-transform duration-500 ease-[var(--ease-spring)] hover:-translate-y-0.5"
+      >
+        <Image
+          src={employer.src}
+          alt={employer.alt}
+          widths={[employer.src.width]}
+          sizes="10rem"
+          class="h-24 w-auto rounded-xl"
+        />
+      </a>
+    </div>
+
+    {
+      feature && (
+        <figure
+          class="group glow-ring border-line bg-surface-raised relative rounded-[2rem] border p-2 shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] hover:-rotate-[0.6deg]"
+          data-reveal="scale"
+        >
+          <Image
+            src={feature.src}
+            alt={feature.alt}
+            widths={[640, 960, 1280]}
+            sizes="(min-width: 1024px) 40rem, 100vw"
+            class="w-full rounded-[1.6rem]"
+          />
+          <figcaption class="flex items-center gap-3 px-3 pt-3 pb-2">
+            <span
+              class="text-on-accent grid size-10 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-110"
+              aria-hidden="true"
+            >
+              <Icon name="play" class="ml-0.5 size-4" fill />
+            </span>
+            <a
+              href={localHref(feature.href)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm leading-snug font-semibold after:absolute after:inset-0 after:rounded-[2rem] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"
+            >
+              <span class="text-muted block font-mono text-[0.7rem] tracking-[0.14em] uppercase">
+                {t('Watch')}
+              </span>
+              {feature.linkLabel}
+            </a>
+          </figcaption>
+        </figure>
+      )
+    }
+  </div>
+
+  <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
+    {era.projects.map((project) => <ProjectCard project={project} />)}
+  </div>
+</section>

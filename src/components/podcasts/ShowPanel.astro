@@ -1,0 +1,119 @@
+---
+import { Image } from 'astro:assets';
+import ButtonLink from '../ButtonLink.astro';
+import EmphasisText from './EmphasisText.astro';
+import SoundBars from './SoundBars.astro';
+import type { PodcastShow } from '../../data/types';
+import { useI18n } from '../../i18n';
+
+/**
+ * A show's header block: cover art (linked to the show's site, as the
+ * original linked the logo), name, tagline and a call to action. Alternate
+ * shows mirror the layout and swap the glow colours.
+ */
+interface Props {
+  show: PodcastShow;
+  /** Position on the page, from 0 — drives the "Show 01" label and mirroring. */
+  index: number;
+}
+
+const { show, index } = Astro.props;
+const { t } = useI18n(Astro);
+const mirrored = index % 2 === 1;
+const count = show.episodes.length;
+---
+
+<div
+  class="border-line bg-surface-raised relative isolate overflow-hidden rounded-[2rem] border px-6 pt-10 pb-24 shadow-[var(--shadow-md)] sm:px-10 sm:pt-12 sm:pb-28 lg:px-14"
+  data-reveal="scale"
+>
+  <div class="dot-grid absolute inset-0 -z-10 opacity-50" aria-hidden="true"></div>
+  <div
+    class:list={[
+      'pointer-events-none absolute -top-32 -z-10 size-[26rem] rounded-full',
+      mirrored
+        ? '-right-24 bg-[radial-gradient(closest-side,var(--glow-b),transparent)]'
+        : '-left-24 bg-[radial-gradient(closest-side,var(--glow-c),transparent)]',
+    ]}
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class:list={[
+      'pointer-events-none absolute -bottom-40 -z-10 size-[30rem] rounded-full',
+      mirrored
+        ? '-left-24 bg-[radial-gradient(closest-side,var(--glow-c),transparent)]'
+        : '-right-24 bg-[radial-gradient(closest-side,var(--glow-a),transparent)]',
+    ]}
+    aria-hidden="true"
+  >
+  </div>
+  <SoundBars
+    size="lg"
+    class="pointer-events-none absolute inset-x-6 bottom-0 -z-10 opacity-20 sm:inset-x-10 lg:inset-x-14"
+  />
+
+  <div
+    class:list={[
+      'grid items-center gap-10 lg:gap-16',
+      mirrored ? 'lg:grid-cols-[1fr_auto]' : 'lg:grid-cols-[auto_1fr]',
+    ]}
+  >
+    <a
+      href={show.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class:list={['group/cover relative mx-auto block w-48 sm:w-56', mirrored && 'lg:order-last']}
+    >
+      <span
+        class="absolute -inset-5 -z-10 rounded-[2.5rem] bg-[image:var(--gradient-brand)] opacity-30 blur-2xl transition-opacity duration-500 group-hover/cover:opacity-60"
+        aria-hidden="true"></span>
+      <span class="animate-float block" style={`animation-delay: -${index * 2.5}s`}>
+        <span
+          class:list={[
+            'glow-ring block rounded-[1.75rem] shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] group-hover/cover:scale-[1.03] group-hover/cover:rotate-0',
+            mirrored ? 'rotate-[3deg]' : '-rotate-[3deg]',
+          ]}
+        >
+          <Image
+            src={show.logo}
+            alt={show.logoAlt}
+            widths={[224, 400]}
+            sizes="(min-width: 640px) 14rem, 12rem"
+            class="border-line aspect-square w-full rounded-[1.75rem] border object-cover"
+          />
+        </span>
+      </span>
+    </a>
+
+    <div class="text-center lg:text-left">
+      <p class="eyebrow inline-flex items-center gap-3">
+        {t('Show {number}', { number: String(index + 1).padStart(2, '0') })}
+        <SoundBars />
+      </p>
+      <h2
+        class="font-display mt-3 text-[clamp(2.25rem,5.5vw,4.25rem)] leading-[1.02] font-extrabold tracking-[-0.035em] text-balance"
+      >
+        {show.name}
+      </h2>
+      <p class="text-muted mx-auto mt-5 max-w-2xl text-lg text-pretty sm:text-xl lg:mx-0">
+        <EmphasisText text={show.tagline} />
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-5 lg:justify-start">
+        <ButtonLink href={show.href} size="lg">{t('Visit {name}', { name: show.name })}</ButtonLink>
+        {
+          count > 0 && (
+            <p class="flex items-baseline gap-2.5">
+              <span class="font-display text-gradient text-5xl leading-none font-extrabold tracking-tight">
+                {count}
+              </span>
+              <span class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
+                {t('episodes below')}
+              </span>
+            </p>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</div>

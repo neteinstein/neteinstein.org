@@ -1,0 +1,22 @@
+---
+/**
+ * Responsive grid whose direct children cascade in on scroll
+ * (`data-reveal-stagger`, handled by `src/scripts/motion.ts`).
+ */
+interface Props {
+  cols?: 2 | 3 | 4;
+  class?: string;
+}
+
+const { cols = 3, class: className } = Astro.props;
+
+const colClass = {
+  2: 'sm:grid-cols-2',
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+}[cols];
+---
+
+<div class:list={['grid gap-5 sm:gap-6', colClass, className]} data-reveal-stagger>
+  <slot />
+</div>

@@ -1,0 +1,62 @@
+---
+import Icon from '../Icon.astro';
+import type { IconName } from '../Icon.astro';
+import type { TalkStat } from '../../data/types';
+import { useI18n } from '../../i18n';
+
+/**
+ * Hero extras for the talks page, rendered in `PageHero`'s default slot (so
+ * they follow the banner quote, as on the original): the intro line, a row of
+ * big numbers counted from the list, and jump links to each section.
+ */
+interface Props {
+  intro: string;
+  stats: TalkStat[];
+  jumps: { href: string; label: string; icon: IconName }[];
+}
+
+const { intro, stats, jumps } = Astro.props;
+const { t } = useI18n(Astro);
+---
+
+<p class="text-muted mt-8 max-w-2xl text-lg text-pretty sm:text-xl" data-enter style="--delay: 550">
+  {intro}
+</p>
+
+<dl class="mt-8 grid max-w-2xl grid-cols-3 gap-3 sm:gap-4" data-enter style="--delay: 650">
+  {
+    stats.map((stat) => (
+      <div
+        class="glow-ring border-line bg-surface-raised flex flex-col-reverse justify-end rounded-2xl border p-3 shadow-[var(--shadow-sm)] sm:p-5"
+        data-spotlight
+      >
+        <dt class="text-muted mt-1 text-xs leading-snug sm:text-sm">{stat.label}</dt>
+        <dd class="font-display text-gradient text-3xl leading-none font-extrabold tracking-tight sm:text-5xl">
+          {stat.value}
+        </dd>
+      </div>
+    ))
+  }
+</dl>
+
+<nav aria-label={t('On this page')} class="mt-8" data-enter style="--delay: 750">
+  <ul class="flex flex-wrap gap-2">
+    {
+      jumps.map((jump) => (
+        <li>
+          <a
+            href={jump.href}
+            class="group glass border-line-strong text-fg hover:border-accent inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-300 ease-[var(--ease-spring)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]"
+          >
+            <Icon name={jump.icon} class="text-accent size-4" />
+            {jump.label}
+            <Icon
+              name="arrow-down"
+              class="text-muted size-3.5 transition-transform group-hover:translate-y-0.5"
+            />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

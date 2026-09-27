@@ -1,0 +1,28 @@
+---
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+
+/**
+ * The Portuguese mirror of the site: `/pt/tesla` renders `src/pages/tesla.astro`.
+ *
+ * Every English route is picked up automatically, so a new page is translated
+ * by adding its strings to `src/i18n/pt/` — never by copying the route here.
+ * The page's components read the locale from the URL (`useI18n(Astro)`).
+ */
+export function getStaticPaths() {
+  const pages = import.meta.glob<{ default: AstroComponentFactory }>(
+    ['../*.astro', '../*/*.astro', '!../404.astro', '!../pt/**'],
+    { eager: true },
+  );
+  return Object.entries(pages).map(([file, page]) => {
+    const slug = file
+      .replace(/^\.\.\//, '')
+      .replace(/\.astro$/, '')
+      .replace(/^index$/, '');
+    return { params: { slug: slug || undefined }, props: { Page: page.default } };
+  });
+}
+
+const { Page } = Astro.props;
+---
+
+<Page />

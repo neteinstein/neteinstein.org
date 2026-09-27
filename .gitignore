@@ -1,12 +1,14 @@
-# build output
+# build output (dist-base/ is the base-path link check build)
 dist/
+dist-base/
 .astro/
 
 # dependencies
 node_modules/
 
-# crawl working files — report.json and assets/ are committed, raw HTML is not
+# crawl working files — report.json is committed; raw HTML and images are bulky
 .crawl/raw/
+.crawl/assets/
 
 # logs
 npm-debug.log*
@@ -17,10 +19,6 @@ pnpm-debug.log*
 # environment
 .env
 .env.production
-.dev.vars
-
-# cloudflare
-.wrangler/
 
 # macOS
 .DS_Store

@@ -1,0 +1,135 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+/**
+ * One question-and-answer tile on /what-i-do/why. The question (an `##`
+ * heading) and the answer are Markdown children, so the copy stays in the MDX
+ * file and the headings get ids; this component only frames them.
+ *
+ * `wide` spans both grid columns. `finale` spans both too, sets the answer in
+ * display type and shows `image` beside it.
+ */
+interface Props {
+  /** Decorative running number ("01"). */
+  n: string;
+  variant?: 'default' | 'wide' | 'finale';
+  image?: ImageMetadata;
+  imageAlt?: string;
+}
+
+const { n, variant = 'default', image, imageAlt = '' } = Astro.props;
+---
+
+<article
+  class:list={[
+    'why-card group glow-ring border-line bg-surface-raised relative flex flex-col overflow-hidden rounded-3xl border p-6 shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-lg)] sm:p-8',
+    variant !== 'default' && 'sm:col-span-2',
+    variant === 'finale' && 'why-card--finale',
+    variant === 'wide' && 'why-card--wide',
+  ]}
+  data-spotlight
+>
+  <span
+    class:list={[
+      'why-mark font-display text-accent/10 pointer-events-none absolute -right-3 leading-none font-extrabold transition-transform duration-700 ease-[var(--ease-spring)] select-none group-hover:-rotate-12',
+      variant === 'finale'
+        ? '-bottom-16 text-[16rem] sm:hidden'
+        : '-bottom-10 text-[10rem] sm:text-[12rem]',
+    ]}
+    aria-hidden="true">?</span
+  >
+
+  <div
+    class:list={[
+      'relative flex flex-1 flex-col',
+      variant === 'finale' && 'sm:flex-row sm:items-center sm:justify-between sm:gap-10',
+    ]}
+  >
+    <div class="min-w-0 flex-1">
+      <div
+        class="text-accent flex items-center gap-3 font-mono text-xs font-semibold tracking-[0.14em]"
+        aria-hidden="true"
+      >
+        {n}
+        <span class="h-px w-10 bg-[image:var(--gradient-brand)]"></span>
+      </div>
+      <div class="why-body">
+        <slot />
+      </div>
+    </div>
+
+    {
+      image && (
+        <div class="relative mx-auto mt-8 w-full max-w-[17rem] shrink-0 sm:mx-0 sm:mt-0 sm:w-64">
+          <div
+            class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-[image:var(--gradient-brand)] opacity-30 blur-2xl"
+            aria-hidden="true"
+          />
+          <div class="animate-float">
+            <div class="border-line bg-surface-raised -rotate-3 rounded-[1.75rem] border p-2 shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] group-hover:rotate-0">
+              <Image
+                src={image}
+                alt={imageAlt}
+                widths={[256, 523]}
+                sizes="(min-width: 640px) 16rem, 17rem"
+                class="why-gif aspect-[523/471] w-full rounded-[1.35rem] object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  /* Children come from MDX, hence :global. Prose's own rules use :where(), so these win. */
+  .why-body :global(h2) {
+    margin-block: 0.75rem 0.85rem;
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-wrap: balance;
+  }
+  .why-card--wide .why-body :global(h2) {
+    font-size: clamp(1.6rem, 3.4vw, 2.15rem);
+  }
+  .why-body :global(p) {
+    margin-block: 0.85rem;
+    color: var(--text-muted);
+  }
+  .why-body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* "Why not?" — the answer as the punchline. */
+  .why-card--finale .why-body :global(h2) {
+    font-size: clamp(1.6rem, 3.4vw, 2.15rem);
+  }
+  .why-card--finale .why-body :global(p) {
+    margin-top: 0.5rem;
+    padding-bottom: 0.1em;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 9vw, 5.25rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.045em;
+    background-image: var(--gradient-brand);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: var(--animate-gradient-pan);
+  }
+
+  /* Undo Prose's generic image margins/shadow; the frame provides both. */
+  .why-gif {
+    margin: 0;
+    border-radius: 1.35rem;
+    box-shadow: none;
+  }
+</style>

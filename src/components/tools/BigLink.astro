@@ -1,0 +1,104 @@
+---
+import Icon from '../Icon.astro';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
+
+/**
+ * A closing call to action: one link, set huge in the brand gradient, over a
+ * row of rounded bars that sway gently (a nod to the LoopGain site's artwork).
+ * The bars are decoration and hold still under reduced motion.
+ */
+interface Props {
+  href: string;
+  /** The link text, shown verbatim. */
+  label: string;
+  /** Small label above the link. */
+  eyebrow?: string;
+  class?: string;
+}
+
+const { href, label, eyebrow, class: className } = Astro.props;
+const external = isExternal(href);
+
+/** Deterministic pseudo-random bar heights (percent of the strip), so builds are stable. */
+const BARS = Array.from({ length: 56 }, (_, index) => {
+  const noise = Math.abs(Math.sin((index + 1) * 12.9898) * 43758.5453) % 1;
+  return {
+    height: Math.round(28 + noise * 62),
+    dot: noise > 0.45,
+    tone: ['--accent', '--accent-2', '--accent-3', '--accent-4'][index % 4],
+  };
+});
+
+const { localHref } = useI18n(Astro);
+---
+
+<div
+  class:list={[
+    'border-line bg-surface-raised relative isolate overflow-hidden rounded-[2rem] border px-5 pt-12 pb-32 text-center shadow-[var(--shadow-md)] sm:px-10 sm:pt-16 sm:pb-40',
+    className,
+  ]}
+  data-reveal="scale"
+>
+  <div class="dot-grid absolute inset-0 -z-10 opacity-60" aria-hidden="true"></div>
+  <div
+    class="pointer-events-none absolute -top-32 left-1/2 -z-10 size-[34rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,var(--glow-a),transparent)]"
+    aria-hidden="true"
+  >
+  </div>
+
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+
+  <a
+    href={localHref(href)}
+    target={external ? '_blank' : undefined}
+    rel={external ? 'noopener noreferrer' : undefined}
+    class="group font-display mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-5 gap-y-4 text-[clamp(1.9rem,7.5vw,5.75rem)] leading-none font-extrabold tracking-[-0.04em]"
+  >
+    <span class="text-gradient min-w-0 pb-[0.08em] break-all">{label}</span>
+    <span
+      class="text-on-accent grid size-[1.3em] shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)] bg-[length:200%_auto] shadow-[0_14px_32px_-10px_color-mix(in_oklch,var(--accent-2)_80%,transparent)] transition-all duration-500 ease-[var(--ease-spring)] group-hover:scale-110 group-hover:rotate-45 group-hover:bg-right"
+    >
+      <Icon name="arrow-up-right" class="size-[0.6em]" stroke-width={2.5} />
+    </span>
+  </a>
+
+  <div
+    class="absolute inset-x-0 bottom-0 flex h-24 items-end justify-center gap-[clamp(5px,0.9vw,11px)] sm:h-32"
+    aria-hidden="true"
+  >
+    {
+      BARS.map((bar, index) => (
+        <span
+          class="big-link-bar flex h-full w-[clamp(7px,1.25vw,15px)] shrink-0 flex-col items-center justify-end gap-[clamp(3px,0.5vw,6px)]"
+          style={`--tone: var(${bar.tone}); --i: ${index}`}
+        >
+          {bar.dot && <span class="big-link-tint aspect-square w-full rounded-full" />}
+          <span
+            class="big-link-tint w-full translate-y-1/4 rounded-full"
+            style={`height: ${bar.height}%`}
+          />
+        </span>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .big-link-tint {
+    background: color-mix(in oklch, var(--tone) 42%, transparent);
+  }
+  :global(.motion-ok) .big-link-bar {
+    animation: bar-sway 3.2s ease-in-out infinite alternate;
+    animation-delay: calc(var(--i) * -0.23s);
+    transform-origin: 50% 100%;
+  }
+  @keyframes bar-sway {
+    from {
+      translate: 0 12%;
+    }
+    to {
+      translate: 0 -2%;
+    }
+  }
+</style>

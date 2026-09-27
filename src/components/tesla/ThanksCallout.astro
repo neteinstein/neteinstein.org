@@ -1,0 +1,27 @@
+---
+import SupportCallout from '../SupportCallout.astro';
+import type { TeslaThanks } from '../../data/types';
+
+/**
+ * The original closed with a thank-you next to a Buy Me a Coffee widget,
+ * whose floating button popped up a little speech bubble. The kit's
+ * `SupportCallout` replaces the widget; the bubble keeps its message.
+ */
+interface Props {
+  thanks: TeslaThanks;
+}
+
+const { thanks } = Astro.props;
+---
+
+<div class="relative">
+  <p
+    class="glass border-line relative z-10 mb-4 ml-auto w-fit max-w-xs rounded-2xl rounded-br-sm border px-4 py-3 text-sm leading-snug font-medium shadow-[var(--shadow-md)] sm:absolute sm:-top-7 sm:right-10 sm:mb-0 sm:max-w-sm"
+    data-reveal="scale"
+    style="--stagger: 4"
+  >
+    <span class="mr-1" aria-hidden="true">☕</span>
+    {thanks.widgetMessage}
+  </p>
+  <SupportCallout title={thanks.title} message={thanks.message} />
+</div>

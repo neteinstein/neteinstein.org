@@ -1,0 +1,47 @@
+---
+import type { ReadingEntry } from '../../data/types';
+import { hostOf } from './host';
+
+/**
+ * One bullet of the reading list: plain runs and links in their original
+ * order, italic runs kept as <em>, with a small host hint after the first link.
+ */
+interface Props {
+  entry: ReadingEntry;
+}
+
+const { entry } = Astro.props;
+const firstLink = entry.find((part) => typeof part !== 'string');
+const host = firstLink && typeof firstLink !== 'string' ? hostOf(firstLink.href) : '';
+---
+
+<li class="reading-entry relative pl-5 leading-snug text-pretty [overflow-wrap:anywhere]">
+  <span
+    class="absolute top-[0.55em] left-0 size-1.5 rounded-full bg-[image:var(--gradient-brand)]"
+    aria-hidden="true"></span>
+  {
+    entry.map((part) =>
+      typeof part === 'string' ? (
+        <span class="text-muted">{part}</span>
+      ) : (
+        <a
+          href={part.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-fg hover:text-link decoration-[color-mix(in_oklch,var(--link)_35%,transparent)] underline-offset-[3px] transition-colors hover:underline"
+        >
+          {typeof part.label === 'string'
+            ? part.label
+            : part.label.map((run) => (typeof run === 'string' ? run : <em>{run.em}</em>))}
+        </a>
+      ),
+    )
+  }
+  {
+    host && (
+      <span class="text-muted ml-1 font-mono text-[0.68rem] [overflow-wrap:anywhere] opacity-80">
+        {host}
+      </span>
+    )
+  }
+</li>

@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import RichText from '../RichText.astro';
+import StoreBadges from './StoreBadges.astro';
+import type { AppListing } from '../../data/types';
+
+/**
+ * An app, framed like a phone: a bezel with a notch around the app's banner,
+ * then a store-listing block — icon, name, description and store badges.
+ * `featured` lays the banner and the listing side by side on wide screens.
+ *
+ * Hover lifts the device, zooms the banner and tilts the icon. Decoration only.
+ */
+interface Props {
+  app: AppListing;
+  /** Position in the list, shown as a faint "01", "02"… */
+  index: number;
+  featured?: boolean;
+  class?: string;
+}
+
+const { app, index, featured = false, class: className } = Astro.props;
+const number = String(index + 1).padStart(2, '0');
+---
+
+<article
+  id={app.id}
+  class:list={[
+    'group glow-ring border-line bg-surface-raised relative flex h-full scroll-mt-28 flex-col rounded-[2.25rem] border p-2 shadow-[var(--shadow-md)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)] sm:p-2.5',
+    featured && 'lg:flex-row lg:items-center',
+    className,
+  ]}
+  data-spotlight
+>
+  <div
+    class:list={[
+      'border-line bg-surface-sunken relative overflow-hidden rounded-[1.8rem] border',
+      featured && 'lg:w-[58%] lg:shrink-0',
+    ]}
+  >
+    <span
+      class="bg-surface-raised absolute top-0 left-1/2 z-10 flex h-[1.1rem] w-24 -translate-x-1/2 items-center justify-end gap-1.5 rounded-b-2xl pr-4"
+      aria-hidden="true"
+    >
+      <span class="bg-line-strong size-1.5 rounded-full"></span>
+    </span>
+    <div class="aspect-video">
+      <Image
+        src={app.image}
+        alt={app.imageAlt}
+        widths={[480, 720, 900]}
+        sizes={featured
+          ? '(min-width: 1024px) 42rem, (min-width: 768px) 90vw, 100vw'
+          : '(min-width: 1024px) 36rem, (min-width: 768px) 45vw, 100vw'}
+        class="size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
+      />
+    </div>
+  </div>
+
+  <div
+    class:list={[
+      'relative flex flex-1 flex-col px-4 pb-5 sm:px-5 sm:pb-6',
+      featured && 'lg:justify-center lg:px-10 lg:py-8',
+    ]}
+  >
+    <p
+      class="text-muted absolute top-4 right-5 font-mono text-xs font-semibold tracking-[0.14em]"
+      aria-hidden="true"
+    >
+      {number}
+    </p>
+    <Image
+      src={app.icon}
+      alt=""
+      widths={[96, 192]}
+      sizes="6rem"
+      class:list={[
+        'ring-surface-raised relative z-10 -mt-10 size-20 rounded-[24%] shadow-[var(--shadow-md)] ring-4 transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-110 group-hover:-rotate-6',
+        featured && 'lg:mt-0 lg:size-24',
+      ]}
+    />
+    <h2
+      class:list={[
+        'font-display mt-4 leading-tight font-bold tracking-tight text-balance',
+        featured ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-2xl',
+      ]}
+    >
+      {app.title}
+    </h2>
+    <p class:list={['text-muted mt-2.5 leading-relaxed text-pretty', featured && 'lg:text-lg']}>
+      <RichText text={app.description} />
+    </p>
+    <StoreBadges app={app.title} links={app.links} class="mt-auto pt-6" />
+  </div>
+</article>

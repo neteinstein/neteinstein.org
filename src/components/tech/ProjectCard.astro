@@ -1,0 +1,53 @@
+---
+import type { Project, TechText as TechTextParts } from '../../data/types';
+import Icon from '../Icon.astro';
+import TechImageFrame from './TechImageFrame.astro';
+import TechText from './TechText.astro';
+
+/** A "Tech Portfolio:" card: screenshot/logo, project name, role lines and years. */
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+const hrefsIn = (text: TechTextParts) =>
+  text.flatMap((part) => (typeof part === 'string' ? [] : [part.href]));
+const siblingHrefs = [
+  ...hrefsIn(project.name),
+  ...project.stints.flatMap((stint) => stint.lines.flatMap(hrefsIn)),
+];
+---
+
+<article
+  class="group glow-ring border-line bg-surface-raised relative flex h-full flex-col rounded-3xl border p-2.5 shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)]"
+  data-spotlight
+>
+  <TechImageFrame
+    image={project.image}
+    siblingHrefs={siblingHrefs}
+    class="border-line aspect-square rounded-[1.1rem] border"
+  />
+  <div class="flex flex-1 flex-col px-3 pt-4 pb-3">
+    <h4 class="font-display text-lg leading-snug font-bold tracking-tight text-pretty">
+      <TechText text={project.name} />
+    </h4>
+    <div class="mt-auto flex flex-col gap-3 pt-3">
+      {
+        project.stints.map((stint) => (
+          <div>
+            {stint.lines.map((line) => (
+              <p class="text-muted text-sm leading-relaxed text-pretty">
+                <TechText text={line} />
+              </p>
+            ))}
+            <p class="text-accent mt-2 inline-flex items-center gap-1.5 rounded-full bg-[color-mix(in_oklch,var(--accent)_12%,transparent)] px-2.5 py-1 font-mono text-xs font-semibold">
+              <Icon name="calendar" class="size-3.5" />
+              {stint.years}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</article>
