@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Pedro Vicente's personal site — neteinstein.org",
+  "description": "Pedro Vicente's personal site — pedrovicente.pt",
   "engines": {
     "node": ">=22.12.0"
   },

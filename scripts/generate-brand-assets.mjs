@@ -108,7 +108,7 @@ async function ogCard() {
         <text x="68" y="262" font-size="112" font-weight="800" letter-spacing="-4">Pedro</text>
         <text x="68" y="372" font-size="112" font-weight="800" letter-spacing="-4" fill="url(#text)">Vicente</text>
         <text x="72" y="446" font-size="32" font-weight="500" fill-opacity="0.85">Improver · Tech Engineer · Podcast host</text>
-        <text x="72" y="560" font-size="28" font-weight="700" fill-opacity="0.9">@neteinstein · neteinstein.org</text>
+        <text x="72" y="560" font-size="28" font-weight="700" fill-opacity="0.9">@neteinstein · pedrovicente.pt</text>
       </g>
     </svg>`);
 
