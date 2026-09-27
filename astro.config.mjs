@@ -24,6 +24,8 @@ export default defineConfig({
   redirects: {
     '/home': '/',
     '/visit-porto': '/porto/visit-porto',
+    '/tools/summer-camp-games':
+      'https://campinacios.pedrovicente.pt/Movimento/Caderno%20de%20Jogos.html',
   },
 
   image: {
