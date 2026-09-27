@@ -20,7 +20,7 @@ export const talksPage: TalkPageCopy = {
   quote: "I've been speaking for so long... I still had hair when I started!",
   intro:
     'Tech is life, but life is much more than tech... and so are my talks. Scroll down to see some examples!',
-  logTitle: 'A more exhaustive list...',
+  logTitle: 'A more exhaustive list (of the ones that can be public)...',
 };
 
 // Links used by both the showcase tiles and the exhaustive list.
@@ -250,6 +250,17 @@ export const talkTagTones: Record<TalkTag, 'neutral' | 'accent' | 'pink' | 'ambe
 
 /** "A more exhaustive list...", newest first, in the original's order. */
 export const talkLog: TalkLogYear[] = [
+  {
+    year: '2026',
+    entries: [
+      {
+        month: 'Set',
+        event: ['Mindera AI Insights Event'],
+        talk: ['Pending Approvals: An AI Story'],
+        tags: ['Tech'],
+      },
+    ],
+  },
   {
     year: '2025',
     entries: [{ month: 'Apr', event: ['KMP Workshop'], talk: [], tags: ['Tech'] }],

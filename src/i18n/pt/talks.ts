@@ -11,7 +11,8 @@ export const talks: Catalog = {
     'Faço palestras há tanto tempo... ainda tinha cabelo quando comecei!',
   'Tech is life, but life is much more than tech... and so are my talks. Scroll down to see some examples!':
     'A tecnologia é vida, mas a vida é muito mais do que tecnologia... e as minhas palestras também. Desliza para veres alguns exemplos!',
-  'A more exhaustive list...': 'Uma lista mais exaustiva...',
+  'A more exhaustive list (of the ones that can be public)...':
+    'Uma lista mais exaustiva (das que podem ser públicas)...',
   'Company Culture': 'Cultura de Empresa',
   'Work In Progress 2 - A documentary by KOM and Samuel Durand exploring the future of work within companies':
     'Work In Progress 2 - Um documentário da KOM e de Samuel Durand que explora o futuro do trabalho nas empresas',
