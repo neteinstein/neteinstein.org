@@ -23,11 +23,16 @@ const sorted = [...talks].sort((a, b) => b.date.localeCompare(a.date));
     sorted.length === 0 ? (
       <EmptyState source="src/data/talks.ts" />
     ) : (
-      <div class="grid gap-4">
-        {sorted.map((talk) => (
-          <TalkCard talk={talk} />
-        ))}
-      </div>
+      <>
+        <h2 class="font-display text-xl font-semibold">
+          A more exhaustive list (of the ones that can be public)...
+        </h2>
+        <div class="mt-4 grid gap-4">
+          {sorted.map((talk) => (
+            <TalkCard talk={talk} />
+          ))}
+        </div>
+      </>
     )
   }
 </BaseLayout>

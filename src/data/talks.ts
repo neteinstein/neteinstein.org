@@ -9,6 +9,12 @@ import type { Talk } from './types';
  */
 export const talks: Talk[] = [
   {
+    title: 'Pending Approvals: An AI Story',
+    event: 'Mindera AI Insights Event',
+    date: '2026-09',
+    type: 'talk',
+  },
+  {
     title: 'Once Upon a Time… a Multiplatform, Multi-Tenant Challenge (KMP)',
     event: 'Droidcon Lisbon',
     location: 'Lisbon, Portugal',
