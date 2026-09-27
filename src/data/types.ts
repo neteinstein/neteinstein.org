@@ -52,6 +52,25 @@ export interface Place {
   mapUrl?: string;
 }
 
+export interface KidsPlace {
+  name: string;
+  area: string;
+  setting: 'indoor' | 'outdoor' | 'both';
+  /** Per-child cost range in euros. */
+  costMin: number;
+  costMax: number;
+  minChildren: number;
+  maxChildren?: number;
+  ages?: string;
+  duration?: string;
+  schedules?: string[];
+  /** What is included in the base package. */
+  includes?: string[];
+  notes?: string;
+  url?: string;
+  mapUrl?: string;
+}
+
 export interface LinkEntry {
   title: string;
   url: string;

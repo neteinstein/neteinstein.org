@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import KidsPlaceCard from '../../components/KidsPlaceCard.astro';
+import EmptyState from '../../components/EmptyState.astro';
+import { COST_NOTE, kidsPlaces } from '../../data/kidsPlaces';
+---
+
+<BaseLayout
+  title="With Kids"
+  description="Places in and around Porto for kids to play or to throw a birthday party."
+>
+  <PageHeader
+    title="With Kids"
+    lead="Want a place in Porto for kids to play or for a party? No worries, I got you covered!"
+  />
+
+  <h2 class="font-display text-2xl font-semibold">Where?</h2>
+
+  {
+    kidsPlaces.length === 0 ? (
+      <EmptyState source="src/data/kidsPlaces.ts" />
+    ) : (
+      <div class="mt-4 grid gap-4">
+        {kidsPlaces.map((place) => (
+          <KidsPlaceCard place={place} />
+        ))}
+      </div>
+    )
+  }
+
+  <p id="cost-note" class="mt-6 text-xs text-[var(--text-muted)]">* {COST_NOTE}</p>
+</BaseLayout>

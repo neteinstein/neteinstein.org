@@ -51,7 +51,10 @@ export const NAV: NavItem[] = [
   {
     label: 'Porto',
     href: '/porto/visit-porto',
-    children: [{ label: 'Visit Porto', href: '/porto/visit-porto' }],
+    children: [
+      { label: 'Visit Porto', href: '/porto/visit-porto' },
+      { label: 'With Kids', href: '/porto/with-kids' },
+    ],
   },
   { label: 'Hobbies', href: '/hobbies/hobbies' },
   { label: 'Tesla', href: '/tesla' },
