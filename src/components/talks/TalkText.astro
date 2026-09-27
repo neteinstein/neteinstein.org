@@ -1,0 +1,54 @@
+---
+import type { TalkEmphasis, TalkLink, TalkRichText } from '../../data/types';
+import { isExternal, withBase } from '../../lib/url';
+
+/**
+ * Renders a `TalkRichText` run: plain strings, inline links and the italic
+ * parentheticals the original used. Like the kit's `RichText`, plus `em`
+ * runs and an optional accessible name for vague link text ("here").
+ */
+interface Props {
+  text: TalkRichText;
+  linkClass?: string;
+}
+
+const { text, linkClass = 'text-link link-underline font-semibold' } = Astro.props;
+
+const isLink = (part: TalkLink | TalkEmphasis): part is TalkLink => 'href' in part;
+---
+
+{
+  text.map((part) =>
+    typeof part === 'string' ? (
+      part
+    ) : isLink(part) ? (
+      <a
+        href={withBase(part.href)}
+        target={isExternal(part.href) ? '_blank' : undefined}
+        rel={isExternal(part.href) ? 'noopener noreferrer' : undefined}
+        aria-label={part.ariaLabel}
+        class:list={['relative z-10', linkClass]}
+      >
+        {part.label}
+      </a>
+    ) : (
+      <em>
+        {part.em.map((inner) =>
+          typeof inner === 'string' ? (
+            inner
+          ) : (
+            <a
+              href={withBase(inner.href)}
+              target={isExternal(inner.href) ? '_blank' : undefined}
+              rel={isExternal(inner.href) ? 'noopener noreferrer' : undefined}
+              aria-label={inner.ariaLabel}
+              class:list={['relative z-10', linkClass]}
+            >
+              {inner.label}
+            </a>
+          ),
+        )}
+      </em>
+    ),
+  )
+}

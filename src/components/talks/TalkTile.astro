@@ -1,0 +1,175 @@
+---
+import { Image } from 'astro:assets';
+import Embed from '../Embed.astro';
+import VideoEmbed from '../VideoEmbed.astro';
+import Icon from '../Icon.astro';
+import TalkText from './TalkText.astro';
+import type { TalkShowcase } from '../../data/types';
+
+/**
+ * One talk from the original's category grids: an optional photo, the
+ * talk's video or slide deck, its title and the event line under it.
+ *
+ * `card` stacks everything (grids of two or three); `feature` puts the media
+ * beside the text, for the rows where the original gave a talk the full width.
+ * A photo *and* an embed (Droidcon, Commit Porto) tuck the player just over
+ * the photo's bottom edge — only slightly, so the photo itself stays whole
+ * (Commit Porto's "How to get bald" slide sits near its bottom).
+ */
+interface Props {
+  talk: TalkShowcase;
+  layout?: 'card' | 'feature';
+}
+
+const { talk, layout = 'card' } = Astro.props;
+const { title, subtitle, photo, video, slides, caption = [] } = talk;
+
+const feature = layout === 'feature';
+const kind = video ? 'Watch' : slides ? 'Slides' : undefined;
+const embed = Boolean(video || slides);
+---
+
+<article
+  class:list={[
+    'talk-tile group glow-ring border-line bg-surface-raised relative h-full overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)]',
+    feature ? 'grid lg:grid-cols-[1.4fr_1fr] lg:items-center' : 'flex flex-col',
+  ]}
+  data-spotlight
+>
+  <div class:list={['talk-media relative', feature && 'lg:h-full']}>
+    {
+      photo && (
+        <div
+          class:list={[
+            'border-line bg-surface-sunken overflow-hidden',
+            feature ? 'lg:h-full' : 'border-b',
+            feature && !embed && 'border-b lg:border-r lg:border-b-0',
+          ]}
+        >
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            widths={feature ? [640, 960, 1280] : [480, 720, 900]}
+            sizes={
+              feature
+                ? '(min-width: 1024px) 42rem, 100vw'
+                : '(min-width: 1024px) 36rem, (min-width: 640px) 50vw, 100vw'
+            }
+            class:list={[
+              'w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]',
+              feature ? 'aspect-[2.1/1] lg:aspect-auto lg:h-full' : 'aspect-[2.17/1]',
+            ]}
+          />
+        </div>
+      )
+    }
+
+    {
+      embed && (
+        <div class:list={['relative z-10 p-3', photo && '-mt-5 px-5 sm:px-8']}>
+          {video && (
+            <VideoEmbed
+              provider={video.provider}
+              id={video.id}
+              hash={video.hash}
+              title={video.title}
+              class="rounded-2xl"
+            />
+          )}
+          {slides && (
+            <Embed
+              src={slides.src}
+              title={slides.title}
+              aspect={slides.aspect}
+              class="talk-slides"
+            />
+          )}
+          {slides?.byline && (
+            <p class="text-muted mt-2.5 px-1 text-xs leading-relaxed">
+              <TalkText text={slides.byline} linkClass="text-fg link-underline font-bold" />
+            </p>
+          )}
+        </div>
+      )
+    }
+  </div>
+
+  <div
+    class:list={[
+      'flex flex-1 flex-col',
+      feature ? 'p-6 sm:p-8 lg:p-10' : embed ? 'px-6 pt-3 pb-6' : 'p-6',
+    ]}
+  >
+    {
+      kind && (
+        <p class="eyebrow inline-flex items-center gap-1.5">
+          <Icon name={video ? 'video' : 'presentation'} class="size-3.5" />
+          {kind}
+        </p>
+      )
+    }
+    <h3
+      class:list={[
+        'font-display leading-tight font-bold tracking-tight text-balance',
+        kind && 'mt-2',
+        feature ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-xl',
+      ]}
+    >
+      {title}
+    </h3>
+    {
+      subtitle && (
+        <p
+          class:list={[
+            'text-muted mt-3 leading-relaxed text-pretty',
+            feature ? 'text-base sm:text-lg' : 'text-[0.95rem]',
+          ]}
+        >
+          {subtitle}
+        </p>
+      )
+    }
+    {
+      caption.length > 0 && (
+        <div class="text-muted mt-3 space-y-1 text-sm leading-relaxed">
+          {caption.map((line, index) => (
+            <p class:list={[index === 0 && 'flex items-start gap-1.5']}>
+              {index === 0 && <Icon name="map-pin" class="text-accent-2 mt-0.5 size-4 shrink-0" />}
+              <span>
+                <TalkText text={line} />
+              </span>
+            </p>
+          ))}
+        </div>
+      )
+    }
+    {
+      slides?.href && (
+        <a
+          href={slides.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent relative z-10 mt-auto inline-flex items-center gap-1.5 self-start pt-5 font-mono text-xs font-semibold tracking-[0.14em] uppercase"
+        >
+          {slides.hrefLabel ?? 'Open'}
+          <span class="sr-only">: {title}</span>
+          <Icon
+            name="arrow-up-right"
+            class="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
+        </a>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  /* The kit's Embed frame is a free-standing card; inside a tile it sits inset. */
+  .talk-tile :global(.talk-slides > div) {
+    border-radius: 1rem;
+  }
+  .talk-media :global(.video-embed),
+  .talk-media :global(.talk-slides > div) {
+    box-shadow: var(--shadow-md);
+  }
+</style>
