@@ -21,23 +21,31 @@ const { notes, class: className } = Astro.props;
     notes.map((list) => (
       <div>
         <p class="text-fg text-[0.8rem] font-bold">{list.label}</p>
-        <ul class="mt-2 flex flex-wrap gap-1.5">
-          {list.items.map((item) => (
-            <li>
-              {list.kind === 'times' ? (
-                <Tag tone="teal" class="font-mono whitespace-nowrap">
-                  <KidsGlyph name="clock" class="text-accent-4 size-3.5 shrink-0" />
-                  {item}
-                </Tag>
-              ) : (
-                <Tag tone="amber" class="whitespace-nowrap">
-                  <Icon name="check" class="text-accent-3 size-3.5 shrink-0" stroke-width={3} />
-                  {item}
-                </Tag>
-              )}
-            </li>
-          ))}
-        </ul>
+        {list.kind === 'info' ? (
+          <ul class="text-muted mt-2 space-y-1 text-sm">
+            {list.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        ) : (
+          <ul class="mt-2 flex flex-wrap gap-1.5">
+            {list.items.map((item) => (
+              <li>
+                {list.kind === 'times' ? (
+                  <Tag tone="teal" class="font-mono whitespace-nowrap">
+                    <KidsGlyph name="clock" class="text-accent-4 size-3.5 shrink-0" />
+                    {item}
+                  </Tag>
+                ) : (
+                  <Tag tone="amber" class="whitespace-nowrap">
+                    <Icon name="check" class="text-accent-3 size-3.5 shrink-0" stroke-width={3} />
+                    {item}
+                  </Tag>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     ))
   }

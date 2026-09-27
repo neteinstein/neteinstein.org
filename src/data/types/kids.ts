@@ -6,8 +6,12 @@ import type { LinkRef } from './shared';
 export interface KidsNoteList {
   /** Shown bold above the list, colon included, as on the original. */
   label: string;
-  /** `times` renders the items as time slots; `includes` as things the party comes with. */
-  kind: 'times' | 'includes';
+  /**
+   * `times` renders the items as time slots, `includes` as things the party
+   * comes with (both as pills); `info` is any other fact (a discount, a
+   * rental fee, an age range) shown as plain text.
+   */
+  kind: 'times' | 'includes' | 'info';
   items: string[];
 }
 
