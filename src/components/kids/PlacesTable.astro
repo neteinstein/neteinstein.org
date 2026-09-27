@@ -26,9 +26,10 @@ interface Props {
 const { places, columns, caption, noteId } = Astro.props;
 const { t, localHref } = useI18n(Astro);
 
-/** Plain-text cells; `name` and `notes` are rendered by hand. */
-type TextKey = Exclude<KidsColumnKey, 'name' | 'notes'>;
-const isText = (key: KidsColumnKey): key is TextKey => key !== 'name' && key !== 'notes';
+/** Plain-text cells; `where`, `name` and `notes` are rendered by hand. */
+type TextKey = Exclude<KidsColumnKey, 'where' | 'name' | 'notes'>;
+const isText = (key: KidsColumnKey): key is TextKey =>
+  key !== 'where' && key !== 'name' && key !== 'notes';
 
 const tiles = columns.filter((column) => isText(column.key));
 const notesColumn = columns.find((column) => column.key === 'notes');
@@ -78,6 +79,21 @@ const linkAttrs = (href: string) =>
             <tr class="border-line hover:bg-surface-sunken/40 border-b align-top transition-colors last:border-b-0">
               {columns.map((column) => {
                 const cell = 'px-4 py-7 first:pl-7 last:pr-7';
+                if (column.key === 'where') {
+                  return (
+                    <td class:list={[cell, 'whitespace-nowrap']}>
+                      <a
+                        href={place.where.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-link link-underline inline-flex items-center gap-1 font-semibold"
+                      >
+                        <Icon name="map-pin" class="size-3.5 shrink-0" />
+                        {place.where.label}
+                      </a>
+                    </td>
+                  );
+                }
                 if (column.key === 'name') {
                   return (
                     <th scope="row" class:list={[cell, 'font-normal whitespace-nowrap']}>
@@ -148,6 +164,15 @@ const linkAttrs = (href: string) =>
 
           <div class="grid gap-6 p-4 sm:p-7 md:grid-cols-[1.15fr_1fr] md:gap-8">
             <div>
+              <a
+                href={place.where.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-link link-underline text-muted inline-flex items-center gap-1 text-xs font-semibold tracking-wide uppercase"
+              >
+                <Icon name="map-pin" class="size-3.5 shrink-0" />
+                {place.where.label}
+              </a>
               <h3 class="font-display pr-14 text-2xl leading-tight font-bold tracking-tight">
                 <a
                   href={localHref(place.name.href)}
