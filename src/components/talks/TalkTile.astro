@@ -5,6 +5,7 @@ import VideoEmbed from '../VideoEmbed.astro';
 import Icon from '../Icon.astro';
 import TalkText from './TalkText.astro';
 import type { TalkShowcase } from '../../data/types';
+import { useI18n } from '../../i18n';
 
 /**
  * One talk from the original's category grids: an optional photo, the
@@ -22,10 +23,11 @@ interface Props {
 }
 
 const { talk, layout = 'card' } = Astro.props;
+const { t } = useI18n(Astro);
 const { title, subtitle, photo, video, slides, caption = [] } = talk;
 
 const feature = layout === 'feature';
-const kind = video ? 'Watch' : slides ? 'Slides' : undefined;
+const kind = video ? t('Watch') : slides ? t('Slides') : undefined;
 const embed = Boolean(video || slides);
 ---
 
@@ -151,7 +153,7 @@ const embed = Boolean(video || slides);
           rel="noopener noreferrer"
           class="text-accent relative z-10 mt-auto inline-flex items-center gap-1.5 self-start pt-5 font-mono text-xs font-semibold tracking-[0.14em] uppercase"
         >
-          {slides.hrefLabel ?? 'Open'}
+          {slides.hrefLabel ?? t('Open')}
           <span class="sr-only">: {title}</span>
           <Icon
             name="arrow-up-right"

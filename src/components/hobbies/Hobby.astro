@@ -3,8 +3,9 @@ import { Image } from 'astro:assets';
 import Prose from '../Prose.astro';
 import VideoEmbed from '../VideoEmbed.astro';
 import Icon from '../Icon.astro';
-import { hobbies } from '../../data/hobbies';
-import { isExternal, withBase } from '../../lib/url';
+import { hobbies as allHobbies } from '../../data/hobbies';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
 
 /**
  * One block of /hobbies/hobbies, used from `hobbies.mdx` as
@@ -18,14 +19,17 @@ interface Props {
 }
 
 const { id } = Astro.props;
+const { localize, localHref } = useI18n(Astro);
+const hobbies = localize(allHobbies);
 const index = hobbies.findIndex((hobby) => hobby.id === id);
 const hobby = hobbies[index];
 if (!hobby) throw new Error(`Unknown hobby: ${id}`);
 
 const flip = index % 2 === 1;
 const external = isExternal(hobby.href);
+
 const linkProps = {
-  href: withBase(hobby.href),
+  href: localHref(hobby.href),
   target: external ? '_blank' : undefined,
   rel: external ? 'noopener noreferrer' : undefined,
 };

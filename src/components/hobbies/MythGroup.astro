@@ -1,5 +1,6 @@
 ---
-import { mythGroups } from '../../data/myths';
+import { mythGroups as groups } from '../../data/myths';
+import { useI18n } from '../../i18n';
 
 /**
  * A group of myths ("Global Myths", "Portuguese Myths"), used from
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const { id } = Astro.props;
+const mythGroups = useI18n(Astro).localize(groups);
 const group = mythGroups.find((entry) => entry.id === id);
 if (!group) throw new Error(`Unknown myth group: ${id}`);
 ---

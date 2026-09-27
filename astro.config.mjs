@@ -6,7 +6,8 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-import { SITE } from './src/config/site.ts';
+import { SITE, navPages } from './src/config/site.ts';
+import { DEFAULT_LOCALE, LOCALES, LOCALE_INFO } from './src/i18n/config.ts';
 import githubPages from './src/integrations/github-pages.ts';
 import rehypeBaseLinks from './src/integrations/rehype-base-links.ts';
 
@@ -31,11 +32,32 @@ export default defineConfig({
   trailingSlash: 'never',
   build: { format: 'file' },
 
-  integrations: [react(), mdx(), sitemap(), githubPages()],
+  integrations: [
+    react(),
+    mdx(),
+    sitemap({
+      i18n: {
+        defaultLocale: DEFAULT_LOCALE,
+        locales: Object.fromEntries(LOCALES.map((locale) => [locale, LOCALE_INFO[locale].tag])),
+      },
+    }),
+    githubPages(),
+  ],
 
   // MDX inherits this processor's plugins.
   markdown: {
-    processor: unified({ rehypePlugins: [[rehypeBaseLinks, { base }]] }),
+    processor: unified({
+      rehypePlugins: [
+        [
+          rehypeBaseLinks,
+          {
+            base,
+            locales: LOCALES.filter((locale) => locale !== DEFAULT_LOCALE),
+            pages: ['/', ...navPages().map((page) => page.href)],
+          },
+        ],
+      ],
+    }),
   },
 
   vite: {

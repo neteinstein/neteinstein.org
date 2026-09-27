@@ -1,5 +1,6 @@
 ---
 import type { ImproverChapter } from '../../data/types';
+import { useI18n } from '../../i18n';
 import Icon from '../Icon.astro';
 
 /**
@@ -11,9 +12,10 @@ interface Props {
 }
 
 const { chapters } = Astro.props;
+const { t } = useI18n(Astro);
 ---
 
-<nav aria-label="On this page" class="mt-10" data-enter style="--delay: 600">
+<nav aria-label={t('On this page')} class="mt-10" data-enter style="--delay: 600">
   <ol class="flex flex-wrap gap-2.5">
     {
       chapters.map((chapter, index) => (

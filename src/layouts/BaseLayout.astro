@@ -6,7 +6,16 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE, SOCIALS } from '../config/site';
-import { stripBase, withBase } from '../lib/url';
+import { withBase } from '../lib/url';
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  LOCALE_INFO,
+  LOCALE_STORAGE_KEY,
+  currentPage,
+  localizePath,
+  useI18n,
+} from '../i18n';
 
 interface Props {
   title: string;
@@ -17,21 +26,49 @@ interface Props {
   bareTitle?: boolean;
   /** Site-absolute path to a page-specific social card under `public/`. */
   ogImage?: string;
+  /**
+   * Whether this page exists in every locale. Off for the 404 page, which
+   * GitHub Pages serves at any missing URL.
+   */
+  translated?: boolean;
 }
+
+const { locale, t } = useI18n(Astro);
 
 const {
   title,
-  description = SITE.description,
+  description = t(SITE.description),
   canonical,
   bareTitle = false,
   ogImage = SITE.ogImage,
+  translated = true,
 } = Astro.props;
 
 const pageTitle = bareTitle ? title : `${title} | ${SITE.title}`;
+// The page's path with no base and no locale — the key shared by its translations.
+const path = canonical ?? currentPage(Astro.url);
 // Canonical URLs always name the custom domain, even on the github.io preview,
 // so search engines never index the preview as a duplicate.
-const canonicalUrl = new URL(canonical ?? stripBase(Astro.url.pathname), SITE.url);
+const canonicalUrl = new URL(localizePath(path, locale), SITE.url);
 const ogImageUrl = new URL(ogImage, SITE.url);
+
+const alternates = translated
+  ? LOCALES.map((alternate) => ({
+      locale: alternate,
+      url: new URL(localizePath(path, alternate), SITE.url).href,
+      local: withBase(localizePath(path, alternate)),
+    }))
+  : [];
+// Where a visitor whose browser prefers another language is sent on arrival.
+// Only the default locale redirects, so an explicit /pt link always sticks.
+const redirects =
+  locale === DEFAULT_LOCALE
+    ? Object.fromEntries(
+        alternates
+          .filter((alternate) => alternate.locale !== DEFAULT_LOCALE)
+          .map((alternate) => [alternate.locale, alternate.local]),
+      )
+    : {};
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -39,14 +76,14 @@ const personSchema = {
   name: SITE.author,
   alternateName: SITE.handle,
   url: SITE.url,
-  jobTitle: 'Mobile Services Lead & Improver',
+  jobTitle: t('Mobile Services Lead & Improver'),
   worksFor: { '@type': 'Organization', name: 'Mindera', url: 'https://www.mindera.com' },
   sameAs: SOCIALS.map((social) => social.href),
 };
 ---
 
 <!doctype html>
-<html lang={SITE.locale} data-theme="light">
+<html lang={LOCALE_INFO[locale].tag} data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -58,6 +95,16 @@ const personSchema = {
     <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
     <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
     <link rel="canonical" href={canonicalUrl.href} />
+    {
+      alternates.map((alternate) => (
+        <link rel="alternate" hreflang={LOCALE_INFO[alternate.locale].tag} href={alternate.url} />
+      ))
+    }
+    {
+      alternates
+        .filter((alternate) => alternate.locale === DEFAULT_LOCALE)
+        .map((alternate) => <link rel="alternate" hreflang="x-default" href={alternate.url} />)
+    }
 
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
@@ -68,6 +115,14 @@ const personSchema = {
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:locale" content={LOCALE_INFO[locale].og} />
+    {
+      alternates
+        .filter((alternate) => alternate.locale !== locale)
+        .map((alternate) => (
+          <meta property="og:locale:alternate" content={LOCALE_INFO[alternate.locale].og} />
+        ))
+    }
     <meta property="og:image" content={ogImageUrl.href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -79,6 +134,31 @@ const personSchema = {
     <meta name="twitter:image" content={ogImageUrl.href} />
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+    {
+      /*
+      Sends a first-time visitor whose browser prefers another language to this
+      page's translation, before anything paints. A language picked in the
+      header switcher is stored and always wins over the browser's.
+    */
+    }
+    <script
+      is:inline
+      define:vars={{ redirects, fallback: DEFAULT_LOCALE, storageKey: LOCALE_STORAGE_KEY }}
+    >
+      (() => {
+        try {
+          if (localStorage.getItem(storageKey)) return;
+        } catch {
+          /* storage blocked — fall back to the browser's languages */
+        }
+        const preferred = (navigator.languages?.length ? navigator.languages : [navigator.language])
+          .map((tag) => (tag || '').toLowerCase().split('-')[0])
+          .find((language) => language === fallback || language in redirects);
+        const target = preferred && redirects[preferred];
+        if (target) location.replace(target + location.search + location.hash);
+      })();
+    </script>
 
     {/* Runs before first paint so neither the theme nor the reveal state flashes. */}
     <script is:inline>
@@ -124,10 +204,10 @@ const personSchema = {
       href="#main"
       class="bg-surface-raised sr-only rounded-full px-4 py-2 shadow-[var(--shadow-md)] focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]"
     >
-      Skip to content
+      {t('Skip to content')}
     </a>
 
-    <Header />
+    <Header translated={translated} />
 
     <main id="main" class="flex-1">
       <slot />

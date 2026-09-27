@@ -7,6 +7,8 @@ interface Props {
   items: NavItem[];
   /** Current path in the same form as the hrefs (deploy base included). */
   current: string;
+  /** Accessible names, already translated. */
+  labels: { open: string; close: string; nav: string };
 }
 
 /**
@@ -14,7 +16,7 @@ interface Props {
  * state — the one part of the header that cannot be a plain Astro component.
  * Hydrated with `client:idle`: it is below the fold of attention on load.
  */
-export default function MobileNav({ items, current }: Props) {
+export default function MobileNav({ items, current, labels }: Props) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
@@ -52,7 +54,7 @@ export default function MobileNav({ items, current }: Props) {
         className="border-line text-muted hover:text-fg grid size-10 place-items-center rounded-xl border transition-colors"
         aria-expanded={open}
         aria-controls={panelId}
-        aria-label={open ? 'Close menu' : 'Open menu'}
+        aria-label={open ? labels.close : labels.open}
       >
         <svg
           className="size-5"
@@ -80,7 +82,7 @@ export default function MobileNav({ items, current }: Props) {
           id={panelId}
           className="bg-surface-raised border-line absolute inset-x-0 top-full mt-2 max-h-[calc(100dvh-6rem)] animate-[mobile-nav-in_.45s_var(--ease-out-expo)_both] overflow-y-auto rounded-2xl border p-3 shadow-[var(--shadow-lg)]"
         >
-          <nav aria-label="Main">
+          <nav aria-label={labels.nav}>
             <ul className="flex flex-col gap-1">
               {items.map((item) => (
                 <li

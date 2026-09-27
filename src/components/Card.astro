@@ -4,7 +4,8 @@ import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import type { IconName } from './Icon.astro';
 import Tag from './Tag.astro';
-import { isExternal, withBase } from '../lib/url';
+import { isExternal } from '../lib/url';
+import { useI18n } from '../i18n';
 
 /**
  * The workhorse content card: optional image, eyebrow/meta line, title,
@@ -53,7 +54,9 @@ const {
 
 const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4';
 const external = href ? isExternal(href) : false;
-const resolvedHref = href && withBase(href);
+const { localHref } = useI18n(Astro);
+
+const resolvedHref = href && localHref(href);
 ---
 
 <article
@@ -146,7 +149,7 @@ const resolvedHref = href && withBase(href);
             return (
               <li>
                 <a
-                  href={withBase(link.href)}
+                  href={localHref(link.href)}
                   target={out ? '_blank' : undefined}
                   rel={out ? 'noopener noreferrer' : undefined}
                   class="link-underline text-link inline-flex items-center gap-1 text-sm font-semibold"

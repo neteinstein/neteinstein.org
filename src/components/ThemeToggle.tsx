@@ -12,7 +12,12 @@ type Theme = 'light' | 'dark';
  * Where the View Transitions API exists, the new theme is revealed as a circle
  * growing out of the button (CSS in global.css, `html.theme-transition`).
  */
-export default function ThemeToggle() {
+interface Props {
+  /** Accessible names for the button, already translated. */
+  labels: { dark: string; light: string };
+}
+
+export default function ThemeToggle({ labels }: Props) {
   const [theme, setTheme] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
@@ -57,7 +62,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       className="group border-line text-muted hover:text-fg relative grid size-10 place-items-center overflow-hidden rounded-xl border transition-colors"
-      aria-label={`Switch to ${dark ? 'light' : 'dark'} theme`}
+      aria-label={dark ? labels.light : labels.dark}
       // Rendered server-side as light; suppress the label until the real value
       // is known so screen readers never announce a stale state.
       aria-live="polite"

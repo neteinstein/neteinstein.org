@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Icon from '../Icon.astro';
 import type { PodcastShow } from '../../data/types';
+import { useI18n } from '../../i18n';
 
 /** In-page shortcuts to each show, rendered under the page hero's title. */
 interface Props {
@@ -9,9 +10,10 @@ interface Props {
 }
 
 const { shows } = Astro.props;
+const { t } = useI18n(Astro);
 ---
 
-<nav aria-label="Shows on this page" class="mt-9" data-enter style="--delay: 400">
+<nav aria-label={t('Shows on this page')} class="mt-9" data-enter style="--delay: 400">
   <ul class="grid gap-3 sm:grid-cols-2">
     {
       shows.map((show, index) => (
@@ -30,8 +32,9 @@ const { shows } = Astro.props;
             <span class="min-w-0 flex-1">
               <span class="font-display block leading-tight font-bold">{show.name}</span>
               <span class="text-muted mt-1 block font-mono text-[0.7rem] font-semibold tracking-[0.14em] uppercase">
-                Show {String(index + 1).padStart(2, '0')}
-                {show.episodes.length > 0 && ` · ${show.episodes.length} episodes`}
+                {t('Show {number}', { number: String(index + 1).padStart(2, '0') })}
+                {show.episodes.length > 0 &&
+                  ` · ${t('{count} episodes', { count: show.episodes.length })}`}
               </span>
             </span>
             <Icon

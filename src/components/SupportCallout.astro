@@ -1,5 +1,6 @@
 ---
 import ButtonLink from './ButtonLink.astro';
+import { useI18n } from '../i18n';
 
 /**
  * "Buy me a coffee" / Revolut call to action. Replaces the Buy Me a Coffee
@@ -13,9 +14,12 @@ interface Props {
   class?: string;
 }
 
+const { t } = useI18n(Astro);
 const {
-  title = 'Found this useful?',
-  message = 'A coffee (or 1€ or less) is more than enough, and keeps me motivated to keep this updated.',
+  title = t('Found this useful?'),
+  message = t(
+    'A coffee (or 1€ or less) is more than enough, and keeps me motivated to keep this updated.',
+  ),
   class: className,
 } = Astro.props;
 ---
@@ -42,7 +46,7 @@ const {
     </div>
     <div class="flex shrink-0 flex-wrap gap-3">
       <ButtonLink href="https://www.buymeacoffee.com/neteinstein" icon="coffee">
-        Buy me a coffee
+        {t('Buy me a coffee')}
       </ButtonLink>
       <ButtonLink href="https://revolut.me/neteinstein" variant="secondary">Revolut</ButtonLink>
     </div>

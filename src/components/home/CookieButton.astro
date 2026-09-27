@@ -1,4 +1,6 @@
 ---
+import { useI18n } from '../../i18n';
+
 /**
  * The original home page asked "Do you want some cookies 🍪?" above its
  * (Google-mandated) cookie banner. This site sets no cookies at all, so the
@@ -9,6 +11,7 @@ interface Props {
 }
 
 const { label } = Astro.props;
+const { t } = useI18n(Astro);
 ---
 
 <div class="cookie-jar relative inline-flex flex-col items-start gap-2">
@@ -25,7 +28,7 @@ const { label } = Astro.props;
     >
   </button>
   <p id="cookie-answer" class="cookie-answer text-muted hidden text-sm" role="status">
-    Only the edible kind — this site doesn't track you. 🍪
+    {t("Only the edible kind — this site doesn't track you.")} 🍪
   </p>
 </div>
 

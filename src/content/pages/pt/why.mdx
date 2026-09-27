@@ -1,0 +1,92 @@
+---
+title: 'Porquê, Como, O Quê!'
+description: 'Porquê "neteinstein.org", porquê Google Sites, porquê inglês e não português, porquê GIFs e mais alguns porquês, incluindo a história dos tempos do IRC por trás do nickname.'
+eyebrow: 'O que faço'
+highlight: ['Porquê']
+---
+
+import WhyGrid from '../../../components/why/WhyGrid.astro';
+import WhyCard from '../../../components/why/WhyCard.astro';
+import NickTrail from '../../../components/why/NickTrail.astro';
+import WhyChain from '../../../components/why/WhyChain.astro';
+import { closingGif } from '../../../data/why';
+
+<WhyGrid>
+
+<WhyCard n="01" variant="wide">
+
+## Porquê "neteinstein.org"?
+
+Bem, na verdade "neteinstein" é um username que uso desde muito novo (na altura era a versão lamer NeTeInStEiN... 😬).
+
+Em 1999, o [IRC](https://pt.wikipedia.org/wiki/Internet_Relay_Chat) era "a cena". Comecei na DALnet e depois mudei-me para a [PTnet](http://www.ptnet.org). Encontrar um username livre não era fácil. Gostava muito do Einstein, mas estava ocupado, por isso... acabei com este. Como estava disponível em (quase) todas as plataformas, continuei a usá-lo... até hoje, pelos vistos.
+
+<NickTrail
+  label="IRC · 1999"
+  nicks={[
+    { nick: 'Einstein', note: 'ocupado', state: 'taken' },
+    { nick: 'NeTeInStEiN', note: 'a versão lamer', state: 'then' },
+    { nick: 'neteinstein', note: 'até hoje', state: 'now' },
+  ]}
+/>
+
+</WhyCard>
+
+<WhyCard n="02">
+
+## Porquê Google Sites?
+
+Só queria algo rápido, simples e fácil de atualizar. É bastante limitado, mas não estou a construir um foguetão 🚀 (pelo menos aqui!)
+
+</WhyCard>
+
+<WhyCard n="03">
+
+## Porquê inglês e não português?
+
+É um hábito, acho eu. Passo o dia de trabalho a falar e a escrever em inglês... e habituei-me. Por isso acabo por escrever tudo o que tem a ver com trabalho em inglês.
+
+Não me interpretes mal, gosto mesmo de escrever em português — e, como estás a ver, agora o site também existe em português. Mas o original continua a ser em inglês, porque tem muito conteúdo de trabalho/tecnologia.
+
+</WhyCard>
+
+<WhyCard n="04">
+
+## Porquê GIFs?
+
+Não me levo demasiado a sério. Vamos todos morrer de qualquer maneira, por isso não sejas demasiado rígido com a vida. Vais divertir-te muito mais!
+
+</WhyCard>
+
+<WhyCard n="05">
+
+## Porque és tão bonito?
+
+Já nasci assim 💥
+
+</WhyCard>
+
+<WhyCard n="06" variant="wide">
+
+## Porquê...?
+
+Porquê, depois Como e finalmente O Quê! 👌
+
+<WhyChain steps={['Porquê', 'Como', 'O Quê!']} />
+
+</WhyCard>
+
+<WhyCard
+  n="07"
+  variant="finale"
+  image={closingGif.src}
+  imageAlt="GIF animado: um grande plano do mesmo homem, com um pequeno microfone de auscultadores junto à cara, a olhar para a câmara com ar impávido"
+>
+
+## Porquê?
+
+Porque não?
+
+</WhyCard>
+
+</WhyGrid>

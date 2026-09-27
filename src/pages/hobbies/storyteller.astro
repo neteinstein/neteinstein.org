@@ -1,16 +1,19 @@
 ---
 import { Image } from 'astro:assets';
-import { getEntry, render } from 'astro:content';
+import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import Prose from '../../components/Prose.astro';
 import StoryTimeline from '../../components/hobbies/StoryTimeline.astro';
 import StoryStats from '../../components/hobbies/StoryStats.astro';
-import { jeepPhoto, stories } from '../../data/stories';
+import * as storyData from '../../data/stories';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
 
-const entry = await getEntry('pages', 'storyteller');
-if (!entry) throw new Error('Missing content entry: src/content/pages/storyteller.mdx');
+const { t, locale, localize } = useI18n(Astro);
+const { jeepPhoto, stories } = localize(storyData);
+const entry = await getPage('storyteller', locale);
 const { Content } = await render(entry);
 
 const years = stories.flatMap((story) => (story.year === undefined ? [] : [story.year]));
@@ -52,7 +55,7 @@ const span = `${Math.min(...years)} – ${Math.max(...years)}`;
     </div>
   </Section>
 
-  <Section id="stories" eyebrow="Timeline">
+  <Section id="stories" eyebrow={t('Timeline')}>
     <StoryTimeline items={stories} />
   </Section>
 </BaseLayout>

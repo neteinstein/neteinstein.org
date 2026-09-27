@@ -1,5 +1,6 @@
 ---
-import { isExternal, withBase } from '../lib/url';
+import { isExternal } from '../lib/url';
+import { useI18n } from '../i18n';
 import Tag from './Tag.astro';
 
 /**
@@ -23,6 +24,8 @@ interface Props {
 }
 
 const { items, class: className } = Astro.props;
+
+const { localHref } = useI18n(Astro);
 ---
 
 <ol class:list={['timeline relative ml-3 space-y-8 border-l-0 pl-8 sm:ml-4 sm:pl-10', className]}>
@@ -45,7 +48,7 @@ const { items, class: className } = Astro.props;
           <h3 class="font-display mt-1 text-lg leading-snug font-bold">
             {item.href ? (
               <a
-                href={withBase(item.href)}
+                href={localHref(item.href)}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
                 class="link-underline"

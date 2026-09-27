@@ -2,6 +2,7 @@
 import Icon from '../Icon.astro';
 import type { IconName } from '../Icon.astro';
 import type { TeslaCategory } from '../../data/types';
+import { useI18n } from '../../i18n';
 
 /**
  * Big, thumb-sized jump links to each category — the page is mostly used on
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const { categories } = Astro.props;
+const { t } = useI18n(Astro);
 
 const ICONS: Record<TeslaCategory['id'], IconName> = {
   entertainment: 'play',
@@ -23,7 +25,7 @@ const ICONS: Record<TeslaCategory['id'], IconName> = {
 };
 ---
 
-<nav aria-label="Categories" class="w-full">
+<nav aria-label={t('Categories')} class="w-full">
   <ul class="flex flex-wrap gap-2.5">
     {
       categories.map((category) => (
@@ -42,7 +44,7 @@ const ICONS: Record<TeslaCategory['id'], IconName> = {
             {category.title}
             <span class="bg-surface-sunken text-muted rounded-full px-2.5 py-1 font-mono text-xs">
               {category.sites.length}
-              <span class="sr-only">{` ${category.sites.length === 1 ? 'link' : 'links'}`}</span>
+              <span class="sr-only">{` ${t(category.sites.length === 1 ? 'link' : 'links')}`}</span>
             </span>
           </a>
         </li>

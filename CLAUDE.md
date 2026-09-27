@@ -24,10 +24,19 @@ requirement**.
 - **`src/config/site.ts` owns navigation and site metadata.** Header, Footer,
   sitemap and JSON-LD all read from it. Adding a nav entry anywhere else is a
   bug.
-- **Every internal link goes through `withBase()`** (`src/lib/url.ts`) in
-  `.astro`/`.tsx`. The site must also work under the `*.github.io/<repo>/`
-  preview path; MDX links are rewritten by `rehype-base-links`, and
-  `npm run check:base` fails any link that skipped the helper.
+- **Every internal link goes through `localHref()`** from `useI18n(Astro)`
+  (`src/i18n/index.ts`), which wraps `withBase()` (`src/lib/url.ts`) and adds
+  the locale prefix on translated pages. The site must also work under the
+  `*.github.io/<repo>/` preview path; MDX links are rewritten by
+  `rehype-base-links`, and `npm run check:base` fails any link that skipped
+  the helper.
+- **Every visible string is translatable.** English is written where it
+  already lives; Portuguese is a catalogue keyed by the English text in
+  `src/i18n/pt/<area>.ts`. In components, wrap literals in `t()` and pass data
+  through `localize()` (both from `useI18n(Astro)`); islands get translated
+  strings as props. Prose translations live in `src/content/pages/pt/*.mdx`
+  and are loaded with `getPage()` (`src/i18n/content.ts`). A string with no
+  entry falls back to English, so names and external titles simply get none.
 - **Styling is token-based.** Semantic CSS variables (`--surface`, `--text`,
   `--accent`, …) are defined in `src/styles/global.css` and exposed to Tailwind
   as `bg-surface`, `text-muted`, `border-line`, `text-accent`, …; dark mode
@@ -52,6 +61,15 @@ If this checkout is a git worktree nested inside another checkout of the repo
 (e.g. under `.claude/worktrees/`), Vite may resolve the outer checkout's
 `tsconfig.json` and fail with `Tsconfig not found astro/tsconfigs/strict`. Run
 the build from a copy outside the outer checkout instead.
+
+## Languages
+
+English lives at the original URLs. Portuguese mirrors every page under `/pt`
+(`src/pages/pt/[...slug].astro` renders each English route), so a new page is
+translated by adding catalogue entries, never by copying the route. A first
+visit from a browser that prefers Portuguese is redirected to `/pt` by an
+inline script in `BaseLayout`; the header switch stores an explicit choice,
+which always wins.
 
 ## URL changes
 

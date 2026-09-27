@@ -1,9 +1,13 @@
 ---
 import ProsePage from '../../layouts/ProsePage.astro';
 import QuestionIndex from '../../components/why/QuestionIndex.astro';
-import { heroGif } from '../../data/why';
+import { heroGif as gif } from '../../data/why';
+import { useI18n } from '../../i18n';
+
+const { t, localize } = useI18n(Astro);
+const heroGif = localize(gif);
 ---
 
 <ProsePage slug="why" image={heroGif.src} imageAlt={heroGif.alt}>
-  <QuestionIndex slot="hero" slug="why" label="On this page" />
+  <QuestionIndex slot="hero" slug="why" label={t('On this page')} />
 </ProsePage>

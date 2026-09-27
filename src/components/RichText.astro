@@ -1,6 +1,7 @@
 ---
 import type { RichText } from '../data/types';
-import { isExternal, withBase } from '../lib/url';
+import { isExternal } from '../lib/url';
+import { useI18n } from '../i18n';
 
 /** Renders a `RichText` array — plain strings with inline links — from a data file. */
 interface Props {
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const { text, linkClass = 'font-semibold text-link link-underline' } = Astro.props;
+
+const { localHref } = useI18n(Astro);
 ---
 
 {
@@ -18,7 +21,7 @@ const { text, linkClass = 'font-semibold text-link link-underline' } = Astro.pro
       part
     ) : (
       <a
-        href={withBase(part.href)}
+        href={localHref(part.href)}
         target={isExternal(part.href) ? '_blank' : undefined}
         rel={isExternal(part.href) ? 'noopener noreferrer' : undefined}
         class:list={['relative z-10', linkClass]}

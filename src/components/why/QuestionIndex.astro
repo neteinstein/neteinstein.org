@@ -1,5 +1,7 @@
 ---
-import { getEntry, render } from 'astro:content';
+import { render } from 'astro:content';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
 
 /**
  * Jump links to every question on a prose page, built from the `##` headings
@@ -13,10 +15,7 @@ interface Props {
 
 const { slug, label } = Astro.props;
 
-const entry = await getEntry('pages', slug);
-if (!entry) {
-  throw new Error(`Missing content entry: src/content/pages/${slug}.mdx`);
-}
+const entry = await getPage(slug, useI18n(Astro).locale);
 const { headings } = await render(entry);
 const questions = headings.filter((heading) => heading.depth === 2);
 ---

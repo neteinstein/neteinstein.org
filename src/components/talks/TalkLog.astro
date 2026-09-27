@@ -2,6 +2,7 @@
 import Tag from '../Tag.astro';
 import TalkText from './TalkText.astro';
 import type { TalkLogYear, TalkTag } from '../../data/types';
+import { useI18n } from '../../i18n';
 
 type Tone = 'neutral' | 'accent' | 'pink' | 'amber' | 'teal';
 
@@ -20,6 +21,7 @@ interface Props {
 }
 
 const { years, tones } = Astro.props;
+const { t } = useI18n(Astro);
 
 const entries = years.flatMap((year) => year.entries);
 const counts = new Map<TalkTag, number>();
@@ -41,23 +43,33 @@ const button =
   'border-line-strong bg-surface-raised text-fg hover:border-accent inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm font-semibold transition-all duration-300 ease-[var(--ease-spring)] hover:-translate-y-0.5 aria-pressed:border-transparent aria-pressed:bg-[image:var(--gradient-brand)] aria-pressed:text-on-accent aria-pressed:shadow-[var(--shadow-md)]';
 ---
 
-<div data-talk-log>
+<div
+  data-talk-log
+  data-status-all={t('Showing all {total}')}
+  data-status-tag={t('Showing {shown} of {total}, tagged #{tag}')}
+>
   <div class="mb-8 sm:mb-10" hidden data-talk-filter>
-    <p id="talk-filter-label" class="text-muted mb-3 text-sm font-medium">Filter by #tag:</p>
+    <p id="talk-filter-label" class="text-muted mb-3 text-sm font-medium">{t('Filter by #tag:')}</p>
     <div role="group" aria-labelledby="talk-filter-label" class="flex flex-wrap gap-2">
       <button type="button" class={button} aria-pressed="true" data-tag="">
-        All
+        {t('All')}
         <span class="font-mono text-xs opacity-70">{entries.length}</span>
       </button>
       {
         tags.map(([tag, count]) => (
-          <button type="button" class={button} aria-pressed="false" data-tag={tag}>
+          <button
+            type="button"
+            class={button}
+            aria-pressed="false"
+            data-tag={tag}
+            data-label={t(tag)}
+          >
             <span
               class="size-2 rounded-full"
               style={`background: ${dotColor[tones[tag]]}`}
               aria-hidden="true"
             />
-            #{tag}
+            #{t(tag)}
             <span class="font-mono text-xs opacity-70">{count}</span>
           </button>
         ))
@@ -108,10 +120,10 @@ const button =
                       </>
                     )}
                   </p>
-                  <ul class="mt-2 flex flex-wrap gap-1.5" aria-label="Tags">
+                  <ul class="mt-2 flex flex-wrap gap-1.5" aria-label={t('Tags')}>
                     {entry.tags.map((tag) => (
                       <li>
-                        <Tag tone={tones[tag]}>#{tag}</Tag>
+                        <Tag tone={tones[tag]}>#{t(tag)}</Tag>
                       </li>
                     ))}
                   </ul>
@@ -151,9 +163,11 @@ const button =
       }
       for (const year of years) year.hidden = !year.querySelector('[data-tags]:not([hidden])');
       if (status) {
-        status.textContent = tag
-          ? `Showing ${shown} of ${entries.length}, tagged #${tag}`
-          : `Showing all ${entries.length}`;
+        const template = (tag ? root.dataset.statusTag : root.dataset.statusAll) ?? '';
+        status.textContent = template
+          .replace('{shown}', String(shown))
+          .replace('{total}', String(entries.length))
+          .replace('{tag}', pressed.dataset.label ?? tag);
       }
     });
   }

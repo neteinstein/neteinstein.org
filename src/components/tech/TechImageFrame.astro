@@ -1,7 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import type { TechImage } from '../../data/types';
-import { isExternal, withBase } from '../../lib/url';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
 
 /**
  * An image in a rounded frame, wrapped in its original link when it had one.
@@ -34,10 +35,12 @@ const Wrapper = image.href ? 'a' : 'div';
 // Never ask for a rendition wider than the source; small logos get one size.
 const smaller = widths.filter((width) => width < image.src.width);
 const fitted = [...smaller, image.src.width].slice(-widths.length);
+
+const { localHref } = useI18n(Astro);
 ---
 
 <Wrapper
-  href={image.href && withBase(image.href)}
+  href={image.href && localHref(image.href)}
   target={external ? '_blank' : undefined}
   rel={external ? 'noopener noreferrer' : undefined}
   tabindex={duplicate ? -1 : undefined}

@@ -1,8 +1,9 @@
 ---
 import { NAV, SITE, SOCIALS } from '../config/site';
-import { withBase } from '../lib/url';
+import { useI18n } from '../i18n';
 import SocialIcon from './SocialIcon.astro';
 
+const { t, localHref } = useI18n(Astro);
 const year = new Date().getFullYear();
 const primary = SOCIALS.filter((social) => social.footer);
 const secondary = SOCIALS.filter((social) => !social.footer);
@@ -27,12 +28,14 @@ const secondary = SOCIALS.filter((social) => !social.footer);
 
     <div class="relative grid gap-10 px-6 py-12 sm:px-10 sm:py-14 lg:grid-cols-[1.3fr_1fr]">
       <div>
-        <p class="eyebrow">Say hello</p>
+        <p class="eyebrow">{t('Say hello')}</p>
         <h2 class="font-display mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-          Drop a <span class="animate-wave inline-block origin-[70%_70%]">👋</span>
+          {t('Drop a')}
+          <span class="animate-wave inline-block origin-[70%_70%]">👋</span>
         </h2>
         <p class="text-muted mt-3 text-lg">
-          I don't bite... just <span class="text-gradient font-semibold">bytes</span>{' '}
+          {t("I don't bite... just")}{' '}
+          <span class="text-gradient font-semibold">bytes</span>{' '}
           <span aria-hidden="true">🥁</span>
         </p>
 
@@ -65,25 +68,25 @@ const secondary = SOCIALS.filter((social) => !social.footer);
         </ul>
       </div>
 
-      <nav aria-label="Footer" class="grid grid-cols-2 gap-x-6 gap-y-8 text-sm sm:grid-cols-3">
+      <nav aria-label={t('Footer')} class="grid grid-cols-2 gap-x-6 gap-y-8 text-sm sm:grid-cols-3">
         {
           NAV.filter((item) => item.children).map((group) => (
             <div>
               <p class="text-muted font-mono text-[0.7rem] font-semibold tracking-[0.14em] uppercase">
-                {group.label}
+                {t(group.label)}
               </p>
               <ul class="mt-3 space-y-2">
                 {group.href && (
                   <li>
-                    <a href={withBase(group.href)} class="link-underline text-fg">
-                      {group.label}
+                    <a href={localHref(group.href)} class="link-underline text-fg">
+                      {t(group.label)}
                     </a>
                   </li>
                 )}
                 {group.children!.map((child) => (
                   <li>
-                    <a href={withBase(child.href)} class="link-underline text-fg">
-                      {child.label}
+                    <a href={localHref(child.href)} class="link-underline text-fg">
+                      {t(child.label)}
                     </a>
                   </li>
                 ))}
@@ -93,14 +96,14 @@ const secondary = SOCIALS.filter((social) => !social.footer);
         }
         <div>
           <p class="text-muted font-mono text-[0.7rem] font-semibold tracking-[0.14em] uppercase">
-            Elsewhere
+            {t('Elsewhere')}
           </p>
           <ul class="mt-3 space-y-2">
             {
               NAV.filter((item) => !item.children && item.href !== '/').map((item) => (
                 <li>
-                  <a href={withBase(item.href!)} class="link-underline text-fg">
-                    {item.label}
+                  <a href={localHref(item.href!)} class="link-underline text-fg">
+                    {t(item.label)}
                   </a>
                 </li>
               ))
@@ -128,8 +131,12 @@ const secondary = SOCIALS.filter((social) => !social.footer);
       class="border-line text-muted relative flex flex-col gap-3 border-t px-6 py-6 text-xs sm:px-10 md:flex-row md:items-center md:justify-between"
     >
       <p class="max-w-2xl text-pretty">
-        {SITE.author} asserts the moral right to be identified as the author of this website and will
-        challenge to a food challenge anyone that says otherwise.
+        {
+          t(
+            '{author} asserts the moral right to be identified as the author of this website and will challenge to a food challenge anyone that says otherwise.',
+            { author: SITE.author },
+          )
+        }
       </p>
       <p class="shrink-0 font-mono">PV © {year}</p>
     </div>

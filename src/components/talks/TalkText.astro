@@ -1,6 +1,7 @@
 ---
 import type { TalkEmphasis, TalkLink, TalkRichText } from '../../data/types';
-import { isExternal, withBase } from '../../lib/url';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
 
 /**
  * Renders a `TalkRichText` run: plain strings, inline links and the italic
@@ -15,6 +16,8 @@ interface Props {
 const { text, linkClass = 'text-link link-underline font-semibold' } = Astro.props;
 
 const isLink = (part: TalkLink | TalkEmphasis): part is TalkLink => 'href' in part;
+
+const { localHref } = useI18n(Astro);
 ---
 
 {
@@ -23,7 +26,7 @@ const isLink = (part: TalkLink | TalkEmphasis): part is TalkLink => 'href' in pa
       part
     ) : isLink(part) ? (
       <a
-        href={withBase(part.href)}
+        href={localHref(part.href)}
         target={isExternal(part.href) ? '_blank' : undefined}
         rel={isExternal(part.href) ? 'noopener noreferrer' : undefined}
         aria-label={part.ariaLabel}
@@ -38,7 +41,7 @@ const isLink = (part: TalkLink | TalkEmphasis): part is TalkLink => 'href' in pa
             inner
           ) : (
             <a
-              href={withBase(inner.href)}
+              href={localHref(inner.href)}
               target={isExternal(inner.href) ? '_blank' : undefined}
               rel={isExternal(inner.href) ? 'noopener noreferrer' : undefined}
               aria-label={inner.ariaLabel}

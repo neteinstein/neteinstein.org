@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImproverFeedback } from '../../data/types';
+import { useI18n } from '../../i18n';
 import VideoEmbed from '../VideoEmbed.astro';
 
 /**
@@ -13,11 +14,12 @@ interface Props {
 }
 
 const { video, deck } = Astro.props;
+const { t } = useI18n(Astro);
 ---
 
 <div class="grid items-center gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-10">
   <div data-reveal="left">
-    <p class="eyebrow mb-3">Watch</p>
+    <p class="eyebrow mb-3">{t('Watch')}</p>
     <VideoEmbed id={video.id} title={video.title} />
   </div>
 

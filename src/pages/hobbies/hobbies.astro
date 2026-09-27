@@ -1,12 +1,15 @@
 ---
-import { getEntry, render } from 'astro:content';
+import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import JumpLinks from '../../components/hobbies/JumpLinks.astro';
-import { hobbies } from '../../data/hobbies';
+import { hobbies as allHobbies } from '../../data/hobbies';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
 
-const entry = await getEntry('pages', 'hobbies');
-if (!entry) throw new Error('Missing content entry: src/content/pages/hobbies.mdx');
+const { locale, localize } = useI18n(Astro);
+const hobbies = localize(allHobbies);
+const entry = await getPage('hobbies', locale);
 const { Content } = await render(entry);
 ---
 

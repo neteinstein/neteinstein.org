@@ -1,16 +1,15 @@
 ---
-import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
 import ToolFeature from '../components/tools/ToolFeature.astro';
-import { toolsIndex } from '../data/tools';
+import { toolsIndex as index } from '../data/tools';
+import { useI18n } from '../i18n';
+import { getPage } from '../i18n/content';
 
-async function page(slug: string) {
-  const entry = await getEntry('pages', slug);
-  if (!entry) throw new Error(`Missing content entry: src/content/pages/${slug}.mdx`);
-  return entry.data;
-}
+const { locale, localize } = useI18n(Astro);
+const toolsIndex = localize(index);
+const page = async (slug: string) => (await getPage(slug, locale)).data;
 
 const hero = await page('tools');
 // The original /tools page had no copy of its own: each tile borrows its

@@ -3,7 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import ShowJumpLinks from '../../components/podcasts/ShowJumpLinks.astro';
 import ShowSection from '../../components/podcasts/ShowSection.astro';
-import { podcastsPage, shows } from '../../data/podcasts';
+import * as podcasts from '../../data/podcasts';
+import { useI18n } from '../../i18n';
+
+const { podcastsPage, shows } = useI18n(Astro).localize(podcasts);
 ---
 
 <BaseLayout title={podcastsPage.title} description={podcastsPage.description}>

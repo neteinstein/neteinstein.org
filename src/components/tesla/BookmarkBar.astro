@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { SITE } from '../../config/site';
-import { stripBase } from '../../lib/url';
+import { currentPage, localizePath, useI18n } from '../../i18n';
 import type { TeslaIntro } from '../../data/types';
 
 /**
@@ -16,7 +16,7 @@ interface Props {
 const { intro } = Astro.props;
 
 // Always the custom domain, even on the github.io preview — it is what people bookmark.
-const url = new URL(stripBase(Astro.url.pathname), SITE.url);
+const url = new URL(localizePath(currentPage(Astro.url), useI18n(Astro).locale), SITE.url);
 ---
 
 <div class="mt-8 max-w-2xl" data-enter style="--delay: 450">
