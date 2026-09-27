@@ -94,26 +94,26 @@
 }
 
 :root {
-  --surface: oklch(0.984 0.006 85);
+  --surface: oklch(0.965 0.012 210);
   --surface-raised: oklch(1 0 0);
-  --surface-sunken: oklch(0.956 0.01 85);
-  --surface-glass: oklch(0.99 0.004 85 / 0.78);
-  --border: oklch(0.25 0.04 285 / 0.11);
-  --border-strong: oklch(0.25 0.04 285 / 0.2);
-  --text: oklch(0.21 0.03 285);
-  --text-muted: oklch(0.47 0.025 285);
-  --accent: oklch(0.55 0.24 292);
-  --accent-2: oklch(0.63 0.25 356);
-  --accent-3: oklch(0.75 0.17 58);
-  --accent-4: oklch(0.66 0.13 205);
+  --surface-sunken: oklch(0.93 0.016 210);
+  --surface-glass: oklch(0.965 0.012 210 / 0.82);
+  --border: oklch(0.24 0.03 210 / 0.14);
+  --border-strong: oklch(0.24 0.03 210 / 0.26);
+  --text: oklch(0.2 0.02 210);
+  --text-muted: oklch(0.46 0.035 210);
+  --accent: oklch(0.56 0.11 210);
+  --accent-2: oklch(0.38 0.08 210);
+  --accent-3: oklch(0.72 0.15 70);
+  --accent-4: oklch(0.76 0.09 210);
   --link: var(--accent);
   --on-accent: oklch(1 0 0);
 
-  /* Aurora blobs behind the page. */
-  --glow-a: oklch(0.8 0.15 292 / 0.5);
-  --glow-b: oklch(0.83 0.14 356 / 0.38);
-  --glow-c: oklch(0.9 0.12 70 / 0.5);
-  --glow-d: oklch(0.86 0.1 205 / 0.35);
+  /* Circuit-grid glow behind the page. */
+  --glow-a: oklch(0.78 0.12 210 / 0.4);
+  --glow-b: oklch(0.85 0.14 70 / 0.28);
+  --glow-c: oklch(0.9 0.06 210 / 0.4);
+  --glow-d: oklch(0.7 0.09 210 / 0.3);
 
   --gradient-brand: linear-gradient(
     100deg,
@@ -122,7 +122,7 @@
     var(--accent-3) 80%,
     var(--accent) 100%
   );
-  --shadow-color: 285 40% 25%;
+  --shadow-color: 210 40% 20%;
   --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.06), 0 2px 6px hsl(var(--shadow-color) / 0.05);
   --shadow-md:
     0 2px 4px hsl(var(--shadow-color) / 0.05), 0 10px 24px -6px hsl(var(--shadow-color) / 0.12);
@@ -133,27 +133,28 @@
 }
 
 [data-theme='dark'] {
-  --surface: oklch(0.145 0.025 285);
-  --surface-raised: oklch(0.195 0.03 285);
-  --surface-sunken: oklch(0.12 0.02 285);
-  --surface-glass: oklch(0.19 0.03 285 / 0.78);
-  --border: oklch(1 0 0 / 0.09);
-  --border-strong: oklch(1 0 0 / 0.17);
-  --text: oklch(0.955 0.01 285);
-  --text-muted: oklch(0.75 0.025 285);
-  --accent: oklch(0.74 0.17 292);
-  --accent-2: oklch(0.74 0.19 356);
-  --accent-3: oklch(0.83 0.14 65);
-  --accent-4: oklch(0.8 0.11 205);
-  --link: oklch(0.8 0.13 292);
-  --on-accent: oklch(0.16 0.03 285);
+  --surface: oklch(0.1 0.014 220);
+  --surface-raised: oklch(0.16 0.018 220);
+  --surface-sunken: oklch(0.07 0.012 220);
+  --surface-glass: oklch(0.15 0.018 220 / 0.78);
+  --border: oklch(0.78 0.1 200 / 0.16);
+  --border-strong: oklch(0.78 0.1 200 / 0.28);
+  --text: oklch(0.97 0.012 200);
+  --text-muted: oklch(0.74 0.06 200);
+  --accent: oklch(0.85 0.13 200);
+  --accent-2: oklch(0.56 0.11 210);
+  --accent-3: oklch(0.8 0.15 70);
+  --accent-4: oklch(0.72 0.07 200);
+  --link: oklch(0.85 0.13 200);
+  --on-accent: oklch(0.12 0.02 220);
 
-  --glow-a: oklch(0.5 0.22 292 / 0.42);
-  --glow-b: oklch(0.52 0.22 356 / 0.3);
-  --glow-c: oklch(0.6 0.15 58 / 0.22);
-  --glow-d: oklch(0.55 0.12 205 / 0.28);
+  /* Circuit-grid glow, lit from the dark. */
+  --glow-a: oklch(0.65 0.16 200 / 0.45);
+  --glow-b: oklch(0.68 0.16 70 / 0.28);
+  --glow-c: oklch(0.5 0.09 210 / 0.32);
+  --glow-d: oklch(0.55 0.07 230 / 0.26);
 
-  --shadow-color: 285 50% 3%;
+  --shadow-color: 220 60% 3%;
   --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.4);
   --shadow-md:
     0 2px 4px hsl(var(--shadow-color) / 0.3), 0 12px 28px -8px hsl(var(--shadow-color) / 0.6);
