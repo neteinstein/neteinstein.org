@@ -1,0 +1,40 @@
+---
+/**
+ * Endless horizontal strip (logos, keywords). The slot is rendered twice —
+ * the copy is `aria-hidden` — and the track slides by half its width, so the
+ * loop is seamless (and `inert`, so its links are not tabbed to twice).
+ * Pauses on hover; static under reduced motion.
+ */
+interface Props {
+  /** Seconds per loop. */
+  duration?: number;
+  reverse?: boolean;
+  class?: string;
+}
+
+const { duration = 40, reverse = false, class: className } = Astro.props;
+const content = await Astro.slots.render('default');
+---
+
+<div
+  class:list={[
+    'group relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)]',
+    className,
+  ]}
+>
+  <div
+    class:list={[
+      'animate-marquee flex w-max group-hover:[animation-play-state:paused]',
+      reverse && '[animation-direction:reverse]',
+    ]}
+    style={`--marquee-duration: ${duration}s`}
+  >
+    <div class="flex shrink-0 items-center gap-4 pr-4" set:html={content} />
+    <div
+      class="flex shrink-0 items-center gap-4 pr-4"
+      aria-hidden="true"
+      inert
+      set:html={content}
+    />
+  </div>
+</div>

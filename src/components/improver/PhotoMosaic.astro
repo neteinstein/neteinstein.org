@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import type { ImproverImage } from '../../data/types';
+
+/**
+ * Workshop photos as a mosaic: the first photo takes a 2×2 tile, the rest
+ * fill the grid around it. Two columns on phones, four from `md` up.
+ */
+interface Props {
+  photos: ImproverImage[];
+  label: string;
+}
+
+const { photos, label } = Astro.props;
+---
+
+<ul
+  class="grid auto-rows-[9.5rem] grid-cols-2 gap-3 sm:auto-rows-[12rem] sm:gap-4 md:grid-cols-4 lg:auto-rows-[14rem]"
+  aria-label={label}
+  data-reveal-stagger
+>
+  {
+    photos.map((photo, index) => (
+      <li
+        class:list={[
+          'group border-line bg-surface-sunken relative overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-lg)]',
+          index === 0 && 'col-span-2 row-span-2',
+        ]}
+      >
+        <Image
+          src={photo.image}
+          alt={photo.alt}
+          widths={index === 0 ? [480, 720] : [320, 480, 720]}
+          sizes={index === 0 ? '(min-width: 768px) 36rem, 100vw' : '(min-width: 768px) 18rem, 50vw'}
+          class="size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-105"
+        />
+        <div
+          class="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-t from-[color-mix(in_oklch,var(--accent)_28%,transparent)] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          aria-hidden="true"
+        />
+      </li>
+    ))
+  }
+</ul>

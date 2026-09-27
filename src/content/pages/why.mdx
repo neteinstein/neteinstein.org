@@ -1,14 +1,77 @@
 ---
-title: 'Why "neteinstein"?'
-description: 'Where the neteinstein username came from — IRC, Dalnet, PTnet, and a name that was already taken.'
-needsContent: true
-todo: 'TODO(content): verify against https://www.neteinstein.org/what-i-do/why — reconstructed from search summaries'
+title: 'Why, How, What!'
+description: 'Why "neteinstein.org", why GitHub Pages, why GIFs and a few more whys, including the IRC-era story behind the nickname.'
+eyebrow: 'What I do'
+highlight: ['Why']
 ---
 
-I've used **neteinstein** since I was very young.
+import WhyGrid from '../../components/why/WhyGrid.astro';
+import WhyCard from '../../components/why/WhyCard.astro';
+import NickTrail from '../../components/why/NickTrail.astro';
+import WhyChain from '../../components/why/WhyChain.astro';
+import { closingGif } from '../../data/why';
 
-During 1999 I started using the name on IRC, at Dalnet, and then moved to PTnet. Finding a
-free username wasn't very easy — I was fond of Einstein, but _einstein_ was taken, so I
-ended up with **neteinstein**.
+<WhyGrid>
 
-Since it was available on almost every platform, I just kept using it.
+<WhyCard n="01" variant="wide">
+
+## Why "neteinstein.org"?
+
+Well, actually "neteinstein" is a username I've used since I was very young (it was actually the lamer NeTeInStEiN version... 😬).
+
+In 1999, [IRC](https://en.wikipedia.org/wiki/Internet_Relay_Chat) was "the thing". I started on DALnet and then moved to [PTnet](http://www.ptnet.org). Finding a free username wasn't easy. I was very fond of Einstein, but it was taken, so... I ended up with this one. Since it was available on (almost) every platform, I kept using it... to this day, I guess.
+
+<NickTrail
+  label="IRC · 1999"
+  nicks={[
+    { nick: 'Einstein', note: 'taken', state: 'taken' },
+    { nick: 'NeTeInStEiN', note: 'the lamer version', state: 'then' },
+    { nick: 'neteinstein', note: 'until today', state: 'now' },
+  ]}
+/>
+
+</WhyCard>
+
+<WhyCard n="02">
+
+## Why GitHub Pages?
+
+This site started on Google Sites because I wanted something fast, simple and easy to update. Over time it became too limiting, so it now lives on GitHub Pages as a small static site: still fast, still simple, and a lot more fun to tinker with. Then again, I'm not building a rocket ship 🚀 (here, at least!)
+
+</WhyCard>
+
+<WhyCard n="03">
+
+## Why GIFs?
+
+I don't take myself too seriously. We're all going to die anyway, so don't be too stiff about life. You'll have much more fun!
+
+</WhyCard>
+
+<WhyCard n="04">
+
+## Why are you so beautiful?
+
+I was just born this way 💥
+
+</WhyCard>
+
+<WhyCard n="05" variant="wide">
+
+## Why...?
+
+Why, then How and finally What! 👌
+
+<WhyChain steps={['Why', 'How', 'What!']} />
+
+</WhyCard>
+
+<WhyCard n="06" variant="finale" image={closingGif.src} imageAlt={closingGif.alt}>
+
+## Why?
+
+Why not?
+
+</WhyCard>
+
+</WhyGrid>

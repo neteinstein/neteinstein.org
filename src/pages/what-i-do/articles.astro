@@ -1,25 +1,172 @@
 ---
+import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
-import EmptyState from '../../components/EmptyState.astro';
-import { articles } from '../../data/articles';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import Embed from '../../components/Embed.astro';
+import RichText from '../../components/RichText.astro';
+import Icon from '../../components/Icon.astro';
+import PhotoRibbon from '../../components/articles/PhotoRibbon.astro';
+import OutletCard from '../../components/articles/OutletCard.astro';
+import HighlightColumn from '../../components/articles/HighlightColumn.astro';
+import BookFeature from '../../components/articles/BookFeature.astro';
+import GoodreadsShelf from '../../components/articles/GoodreadsShelf.astro';
+import ReadingGroupBlock from '../../components/articles/ReadingGroupBlock.astro';
+import * as articles from '../../data/articles';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
+import pageCloseup from '../../assets/what-i-do/articles/book-page-closeup.webp';
 
-const sorted = [...articles].sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''));
+const { t, locale, localize } = useI18n(Astro);
+const {
+  books,
+  favouriteBooks,
+  goodreadsProfile,
+  headings,
+  highlights,
+  mustRead,
+  outlets,
+  readingGroups,
+  readLateIntro,
+  shorterIntro,
+  shorterOrigin,
+  toReadList,
+} = localize(articles);
+const entry = await getPage('articles', locale);
+const { Content } = await render(entry);
+
+const highlightStyle = [
+  { icon: 'code', tone: '--accent' },
+  { icon: 'users', tone: '--accent-2' },
+  { icon: 'book', tone: '--accent-4' },
+] as const;
+const groupTones = ['--accent', '--accent-2', '--accent-3', '--accent-4'] as const;
+const bookBadges = [t('In the works'), t('Contributor')];
+
+const articleCount = highlights.reduce(
+  (sum, group) => sum + group.years.reduce((n, year) => n + year.articles.length, 0),
+  0,
+);
+const readingLinks = readingGroups
+  .flatMap((group) => group.topics.flatMap((topic) => topic.entries.flat()))
+  .filter((part) => typeof part !== 'string').length;
+
+const stats = [
+  { value: articleCount, label: t('Highlighted articles'), href: '#articles' },
+  { value: books.length, label: headings.books, href: '#books' },
+  { value: favouriteBooks.length, label: t('Favourite books'), href: '#must-read' },
+  { value: readingLinks, label: t('Shorter reads'), href: '#shorter' },
+];
 ---
 
-<BaseLayout title="Articles" description="Articles written by Pedro Vicente.">
-  <PageHeader title="Articles" lead="Things I've written, mostly on Medium." />
+<BaseLayout title={headings.articles} description={entry.data.description}>
+  <PageHero
+    title={entry.data.title}
+    eyebrow={entry.data.eyebrow}
+    highlight={entry.data.highlight}
+    lead={entry.data.lead}
+  >
+    <div
+      class="text-muted mt-5 max-w-2xl space-y-3 text-lg text-pretty [&_p]:m-0"
+      data-enter
+      style="--delay: 450"
+    >
+      <Content />
+    </div>
+  </PageHero>
 
-  {
-    sorted.length === 0 ? (
-      <EmptyState source="src/data/articles.ts" />
-    ) : (
-      <div>
-        {sorted.map((article) => (
-          <ArticleCard article={article} />
-        ))}
+  <PhotoRibbon
+    image={pageCloseup}
+    imageAlt={t('Close-up of a printed book page, the lines of text curving out of focus')}
+    stats={stats}
+  />
+
+  <Section id="articles" eyebrow={t('Writing')} title={headings.articles}>
+    <div class="grid gap-5 md:grid-cols-2" data-reveal-stagger>
+      {outlets.map((outlet) => <OutletCard outlet={outlet} />)}
+    </div>
+    <div class="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3" data-reveal-stagger>
+      {
+        highlights.map((group, index) => {
+          const style = highlightStyle[index % highlightStyle.length]!;
+          return <HighlightColumn group={group} icon={style.icon} tone={style.tone} />;
+        })
+      }
+    </div>
+  </Section>
+
+  <Section id="books" eyebrow={t('Published')} title={headings.books}>
+    <div class="grid gap-6 lg:grid-cols-2" data-reveal-stagger>
+      {books.map((book, index) => <BookFeature book={book} badge={bookBadges[index]} />)}
+    </div>
+  </Section>
+
+  <Section id="must-read" eyebrow={t('Reading')} title={headings.mustRead}>
+    <div
+      class="border-line bg-surface-sunken relative mb-8 overflow-hidden rounded-3xl border p-6 sm:p-10"
+      data-reveal
+    >
+      <div
+        class="pointer-events-none absolute -top-24 -left-16 size-72 rounded-full bg-[radial-gradient(closest-side,var(--glow-b),transparent)]"
+        aria-hidden="true"
+      >
       </div>
-    )
-  }
+      <Icon name="quote" class="text-accent-2 relative size-9" fill />
+      <h3
+        class="font-display relative mt-4 max-w-3xl text-2xl leading-snug font-bold tracking-tight text-balance sm:text-4xl"
+      >
+        {mustRead.heading}
+      </h3>
+      <p class="text-muted relative mt-4 text-lg">{mustRead.intro}</p>
+    </div>
+    <GoodreadsShelf books={favouriteBooks} profile={goodreadsProfile} />
+  </Section>
+
+  <Section id="shorter" eyebrow={t('Must read')} title={headings.shorter} intro={shorterIntro}>
+    <nav aria-label={t('Reading list topics')} class="mb-4" data-reveal>
+      <ul class="flex flex-wrap gap-2">
+        {
+          readingGroups.map((group) => (
+            <li>
+              <a
+                href={`#${group.id}`}
+                class="border-line bg-surface-raised hover:border-accent hover:text-link inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-medium shadow-[var(--shadow-sm)] transition-colors"
+              >
+                {group.title}
+                <Icon name="arrow-down" class="size-3.5" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="space-y-10">
+      {
+        readingGroups.map((group, index) => (
+          <ReadingGroupBlock
+            group={group}
+            index={index}
+            tone={groupTones[index % groupTones.length]!}
+          />
+        ))
+      }
+    </div>
+
+    <p class="text-muted border-line mt-10 border-t pt-6 text-sm" data-reveal>
+      <RichText text={shorterOrigin} />
+    </p>
+  </Section>
+
+  <Section id="read-late" eyebrow={t('Queue')} title={headings.readLate} intro={readLateIntro}>
+    <div data-reveal>
+      <Embed
+        src={toReadList.src}
+        title={toReadList.title}
+        height={640}
+        fallbackHref={toReadList.href}
+        fallbackLabel={toReadList.title}
+      />
+    </div>
+  </Section>
 </BaseLayout>

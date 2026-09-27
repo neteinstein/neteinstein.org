@@ -1,0 +1,68 @@
+---
+import Icon from '../Icon.astro';
+
+/**
+ * A fanned stack of pages standing in for a document the page links to.
+ * Drive's own thumbnail is served by Google, so the preview is drawn instead:
+ * the file name is the only real content, the "text" lines are placeholders,
+ * and the whole thing is hidden from assistive tech. The pages fan out further
+ * when a `.group` ancestor is hovered.
+ */
+interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+
+/** Placeholder line widths for the top page, top to bottom. */
+const LINES = ['w-full', 'w-11/12', 'w-full', 'w-3/4', 'w-full', 'w-5/6', 'w-2/3'];
+---
+
+<div class:list={['doc-stack relative aspect-[4/5] w-full', className]} aria-hidden="true">
+  <div
+    class="doc-sheet border-line absolute inset-0 [translate:7%_2%] [rotate:7deg] rounded-[1.4rem] border bg-[color-mix(in_oklch,var(--accent-3)_22%,var(--surface-raised))] shadow-[var(--shadow-sm)] transition-transform duration-700 ease-[var(--ease-spring)] group-hover:[translate:13%_3%] group-hover:[rotate:12deg]"
+  >
+  </div>
+  <div
+    class="doc-sheet border-line absolute inset-0 [translate:-5%_1%] [rotate:-5deg] rounded-[1.4rem] border bg-[color-mix(in_oklch,var(--accent-2)_16%,var(--surface-raised))] shadow-[var(--shadow-sm)] transition-transform duration-700 ease-[var(--ease-spring)] group-hover:[translate:-11%_2%] group-hover:[rotate:-10deg]"
+  >
+  </div>
+  <div
+    class="doc-sheet border-line bg-surface-raised absolute inset-0 flex flex-col rounded-[1.4rem] border p-[9%] shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] group-hover:-translate-y-1.5"
+  >
+    <div class="flex items-center gap-[6%]">
+      <span
+        class="text-on-accent grid aspect-square w-[22%] shrink-0 place-items-center rounded-[28%] bg-[image:var(--gradient-brand)] shadow-[var(--shadow-md)]"
+      >
+        <Icon name="book" class="size-1/2" />
+      </span>
+      <span class="flex flex-1 flex-col gap-[0.4em]">
+        <span
+          class="h-[0.55em] w-4/5 rounded-full bg-[color-mix(in_oklch,var(--text)_70%,transparent)]"
+        ></span>
+        <span
+          class="h-[0.45em] w-1/2 rounded-full bg-[color-mix(in_oklch,var(--text)_22%,transparent)]"
+        ></span>
+      </span>
+    </div>
+    <span class="mt-[12%] flex flex-col gap-[0.7em]">
+      {
+        LINES.map((width) => (
+          <span
+            class:list={[
+              'h-[0.4em] rounded-full bg-[color-mix(in_oklch,var(--text)_12%,transparent)]',
+              width,
+            ]}
+          />
+        ))
+      }
+    </span>
+    <span
+      class="border-line text-muted mt-auto flex min-w-0 items-center gap-[0.5em] border-t pt-[0.8em] font-mono text-[0.7em] font-semibold"
+    >
+      <span class="bg-accent-4 size-[0.6em] shrink-0 rounded-full"></span>
+      <span class="truncate">{name}</span>
+    </span>
+  </div>
+</div>

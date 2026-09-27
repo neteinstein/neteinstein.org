@@ -1,33 +1,144 @@
 ---
-import { SITE, SOCIALS } from '../config/site';
+import { NAV, SITE, SOCIALS } from '../config/site';
+import { useI18n } from '../i18n';
 import SocialIcon from './SocialIcon.astro';
 
+const { t, localHref } = useI18n(Astro);
 const year = new Date().getFullYear();
+const primary = SOCIALS.filter((social) => social.footer);
+const secondary = SOCIALS.filter((social) => !social.footer);
 ---
 
-<footer class="border-t border-[var(--border)] py-10">
-  <div class="container-page flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
-    <p class="text-sm text-[var(--text-muted)]">
-      &copy; {year}
-      {SITE.author}. Built with Astro, hosted on Cloudflare.
-    </p>
+<footer class="mt-24 px-3 pb-6 sm:px-4">
+  <div
+    class="border-line bg-surface-raised relative mx-auto max-w-[76rem] overflow-hidden rounded-[2rem] border shadow-[var(--shadow-md)]"
+    data-reveal
+  >
+    <div class="dot-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden="true"></div>
+    <div
+      class="pointer-events-none absolute -top-40 -right-24 size-[28rem] rounded-full bg-[radial-gradient(closest-side,var(--glow-b),transparent)]"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute -bottom-48 -left-24 size-[30rem] rounded-full bg-[radial-gradient(closest-side,var(--glow-a),transparent)]"
+      aria-hidden="true"
+    >
+    </div>
 
-    <ul class="flex items-center gap-1">
-      {
-        SOCIALS.map((social) => (
+    <div class="relative grid gap-10 px-6 py-12 sm:px-10 sm:py-14 lg:grid-cols-[1.3fr_1fr]">
+      <div>
+        <p class="eyebrow">{t('Say hello')}</p>
+        <h2 class="font-display mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
+          {t('Drop a')}
+          <span class="animate-wave inline-block origin-[70%_70%]">👋</span>
+        </h2>
+        <p class="text-muted mt-3 text-lg">
+          {t("I don't bite... just")}{' '}
+          <span class="text-gradient font-semibold">bytes</span>{' '}
+          <span aria-hidden="true">🥁</span>
+        </p>
+
+        <ul class="mt-7 flex flex-wrap gap-2.5">
           <li>
-            <a
-              href={social.href}
-              rel="me noopener noreferrer"
-              target="_blank"
-              class="inline-flex rounded-md p-2 text-[var(--text-muted)] transition-colors hover:text-[var(--link)]"
+            <span
+              class="border-line bg-surface inline-flex items-center rounded-full border px-4 py-2.5 font-mono text-sm font-semibold"
             >
-              <SocialIcon icon={social.icon} />
-              <span class="sr-only">{social.label}</span>
-            </a>
+              @{SITE.handle}
+            </span>
           </li>
-        ))
-      }
-    </ul>
+          {
+            primary.map((social) => (
+              <li>
+                <a
+                  href={social.href}
+                  rel="me noopener noreferrer"
+                  target="_blank"
+                  class="group border-line bg-surface hover:bg-fg hover:text-surface inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-300 ease-[var(--ease-spring)] hover:-translate-y-0.5 hover:border-transparent hover:shadow-[var(--shadow-md)]"
+                >
+                  <SocialIcon
+                    icon={social.icon}
+                    class="size-4 transition-transform duration-300 group-hover:scale-110"
+                  />
+                  {social.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <nav aria-label={t('Footer')} class="grid grid-cols-2 gap-x-6 gap-y-8 text-sm sm:grid-cols-3">
+        {
+          NAV.filter((item) => item.children).map((group) => (
+            <div>
+              <p class="text-muted font-mono text-[0.7rem] font-semibold tracking-[0.14em] uppercase">
+                {t(group.label)}
+              </p>
+              <ul class="mt-3 space-y-2">
+                {group.href && (
+                  <li>
+                    <a href={localHref(group.href)} class="link-underline text-fg">
+                      {t(group.label)}
+                    </a>
+                  </li>
+                )}
+                {group.children!.map((child) => (
+                  <li>
+                    <a href={localHref(child.href)} class="link-underline text-fg">
+                      {t(child.label)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+        <div>
+          <p class="text-muted font-mono text-[0.7rem] font-semibold tracking-[0.14em] uppercase">
+            {t('Elsewhere')}
+          </p>
+          <ul class="mt-3 space-y-2">
+            {
+              NAV.filter((item) => !item.children && item.href !== '/').map((item) => (
+                <li>
+                  <a href={localHref(item.href!)} class="link-underline text-fg">
+                    {t(item.label)}
+                  </a>
+                </li>
+              ))
+            }
+            {
+              secondary.map((social) => (
+                <li>
+                  <a
+                    href={social.href}
+                    rel="me noopener noreferrer"
+                    target="_blank"
+                    class="link-underline text-fg"
+                  >
+                    {social.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div
+      class="border-line text-muted relative flex flex-col gap-3 border-t px-6 py-6 text-xs sm:px-10 md:flex-row md:items-center md:justify-between"
+    >
+      <p class="max-w-2xl text-pretty">
+        {
+          t(
+            '{author} asserts the moral right to be identified as the author of this website and will challenge to a food challenge anyone that says otherwise.',
+            { author: SITE.author },
+          )
+        }
+      </p>
+      <p class="shrink-0 font-mono">PV © {year}</p>
+    </div>
   </div>
 </footer>

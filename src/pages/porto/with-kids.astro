@@ -1,0 +1,60 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import ButtonLink from '../../components/ButtonLink.astro';
+import Icon from '../../components/Icon.astro';
+import PlacesTable from '../../components/kids/PlacesTable.astro';
+import { navPages } from '../../config/site';
+import * as kids from '../../data/kids';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
+
+const PATH = '/porto/with-kids';
+const NOTE_ID = 'cost-note';
+
+const { t, locale, localize } = useI18n(Astro);
+const { kidsColumns, kidsHero, kidsPlaces } = localize(kids);
+const entry = await getPage('with-kids', locale);
+const { Content: CostNote } = await render(entry);
+
+const navLabel = navPages().find((page) => page.href === PATH)?.label;
+const pageName = navLabel ? t(navLabel) : entry.data.title;
+const listTitle = t('Places for kids');
+---
+
+<BaseLayout title={pageName} description={entry.data.description}>
+  <PageHero
+    title={entry.data.title}
+    eyebrow={entry.data.eyebrow}
+    highlight={entry.data.highlight}
+    lead={entry.data.lead}
+    image={kidsHero.image}
+    imageAlt={kidsHero.alt}
+  >
+    <ButtonLink slot="actions" href="#places" size="lg" trailing="arrow-down">
+      {t('Jump to the list')}
+    </ButtonLink>
+  </PageHero>
+
+  <Section id="places" eyebrow={t('Play & parties')} title={listTitle}>
+    <PlacesTable places={kidsPlaces} columns={kidsColumns} caption={listTitle} noteId={NOTE_ID} />
+
+    <div
+      id={NOTE_ID}
+      class="border-line-strong target:border-accent relative mt-14 scroll-mt-28 rounded-3xl border border-dashed p-6 transition-colors duration-500 target:bg-[color-mix(in_oklch,var(--accent)_8%,transparent)] sm:mt-16 sm:p-8"
+      data-reveal
+    >
+      <span
+        class="text-accent-3 mb-4 grid size-11 place-items-center rounded-2xl bg-[color-mix(in_oklch,var(--accent-3)_16%,transparent)]"
+        aria-hidden="true"
+      >
+        <Icon name="calendar" class="size-5" />
+      </span>
+      <div class="text-muted text-lg leading-relaxed text-pretty [&_em]:italic [&_p]:m-0">
+        <CostNote />
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

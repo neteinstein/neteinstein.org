@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../Icon.astro';
+import Tag from '../Tag.astro';
+import type { ArticleOutlet } from '../../data/types';
+
+/** A publication Pedro writes for: logo tile, name (the whole card links), blurb, years. */
+interface Props {
+  outlet: ArticleOutlet;
+}
+
+const { outlet } = Astro.props;
+---
+
+<article
+  class="group glow-ring border-line bg-surface-raised relative flex h-full items-center gap-5 rounded-3xl border p-5 shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-lg)] sm:gap-6 sm:p-6"
+  data-spotlight
+>
+  <Image
+    src={outlet.logo}
+    alt={outlet.logoAlt}
+    width={96}
+    height={96}
+    densities={[1, 2]}
+    class="size-16 shrink-0 rounded-2xl shadow-[var(--shadow-md)] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-105 group-hover:-rotate-6 sm:size-24"
+  />
+  <div class="min-w-0 flex-1">
+    <h3 class="font-display text-2xl font-bold tracking-tight sm:text-3xl">
+      <a
+        href={outlet.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 after:absolute after:inset-0 after:rounded-3xl focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"
+      >
+        {outlet.name}
+        <Icon
+          name="arrow-up-right"
+          class="text-accent size-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        />
+      </a>
+    </h3>
+    <p class="text-muted mt-1.5 text-pretty">{outlet.description}</p>
+    {
+      outlet.period && (
+        <p class="mt-3">
+          <Tag tone="amber">
+            <Icon name="calendar" class="size-3.5" />
+            {outlet.period}
+          </Tag>
+        </p>
+      )
+    }
+  </div>
+</article>

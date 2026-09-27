@@ -1,0 +1,207 @@
+---
+import { Image } from 'astro:assets';
+import type { AppListing } from '../../data/types';
+import { useI18n } from '../../i18n';
+
+/**
+ * The app icons, each jumping to that app further down the page.
+ *
+ * Below `lg` it is a phone-style glass dock under the hero copy: icons pop in
+ * one by one, bob gently and magnify under the pointer (neighbours grow a
+ * little too). From `lg` up the same list floats in the hero's empty right
+ * half as a loose constellation of big, tilted tiles around a dashed orbit.
+ * Placed inside `PageHero`'s default slot; the wide layout positions itself
+ * against the hero `<section>` (the nearest positioned ancestor). All CSS.
+ */
+interface Props {
+  apps: AppListing[];
+  /** Load-in delay (ms) of the first icon; the rest follow 80ms apart. */
+  delay?: number;
+  class?: string;
+}
+
+const { apps, delay = 0, class: className } = Astro.props;
+const { t } = useI18n(Astro);
+
+/** Wide-layout slots: top-left corner (% of the square), tilt, and tile size. Decorative. */
+const SLOTS = [
+  { x: 4, y: 30, r: -9, s: 8.25 },
+  { x: 44, y: 3, r: 7, s: 6.5 },
+  { x: 70, y: 32, r: -6, s: 6.25 },
+  { x: 38, y: 60, r: 10, s: 6.5 },
+  { x: 71, y: 70, r: -4, s: 5.5 },
+];
+---
+
+<div class:list={['dock-slot', className]}>
+  <nav aria-label={t('Apps on this page')} class="dock-nav max-w-full">
+    <span class="dock-glow" aria-hidden="true"></span>
+    <span class="dock-orbit" aria-hidden="true"></span>
+    <ul
+      class="dock-list glass border-line flex items-end gap-2.5 rounded-[1.9rem] border p-2.5 shadow-[var(--shadow-lg)] sm:gap-3 sm:p-3"
+    >
+      {
+        apps.map((app, index) => {
+          const slot = SLOTS[index % SLOTS.length]!;
+          return (
+            <li
+              class="dock-li"
+              data-enter
+              style={`--delay: ${delay + index * 80}; --x: ${slot.x}%; --y: ${slot.y}%; --r: ${slot.r}deg; --s: ${slot.s}rem`}
+            >
+              <a href={`#${app.id}`} class="dock-item group relative block rounded-[24%]">
+                <span
+                  class="dock-bob block"
+                  style={`animation-delay: -${(index * 1.3).toFixed(1)}s`}
+                  aria-hidden="true"
+                >
+                  <Image
+                    src={app.icon}
+                    alt=""
+                    widths={[64, 128, 256]}
+                    sizes="(min-width: 1024px) 8.25rem, 4rem"
+                    class="dock-icon size-12 rounded-[24%] shadow-[var(--shadow-md)] sm:size-16"
+                    loading="eager"
+                  />
+                </span>
+                <span class="dock-label glass border-line text-fg pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 rounded-full border px-2.5 py-1 text-xs font-semibold whitespace-nowrap opacity-0 shadow-[var(--shadow-md)] transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                  {app.title}
+                </span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+</div>
+
+<style>
+  .dock-slot {
+    display: flex;
+  }
+
+  .dock-glow,
+  .dock-orbit {
+    display: none;
+  }
+
+  .dock-item {
+    transform-origin: 50% 100%;
+    transition:
+      scale 0.35s var(--ease-spring),
+      translate 0.35s var(--ease-spring),
+      rotate 0.5s var(--ease-spring);
+  }
+
+  :global(.motion-ok) .dock-bob {
+    animation: app-bob 5s ease-in-out infinite;
+  }
+  @keyframes app-bob {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0 -4px;
+    }
+  }
+
+  /* Dock: magnify the hovered icon, and its neighbours a little. */
+  @media (width < 64rem) {
+    .dock-item:hover,
+    .dock-item:focus-visible {
+      scale: 1.3;
+      translate: 0 -0.4rem;
+    }
+    li:has(+ li > .dock-item:hover) > .dock-item,
+    li:has(> .dock-item:hover) + li > .dock-item {
+      scale: 1.12;
+      translate: 0 -0.15rem;
+    }
+  }
+
+  /* Constellation: big tilted tiles floating in the hero's right half. */
+  @media (width >= 64rem) {
+    /* Keeps the hero tall enough for the constellation beside it. */
+    .dock-slot {
+      height: 3.5rem;
+    }
+    .dock-nav {
+      position: absolute;
+      top: calc(50% - 12rem);
+      right: max(1.5rem, calc((100% - 76rem) / 2 + 2.5rem));
+      width: 24rem;
+      height: 24rem;
+    }
+    .dock-glow {
+      display: block;
+      position: absolute;
+      inset: 14%;
+      border-radius: 50%;
+      background: var(--gradient-brand);
+      opacity: 0.28;
+      filter: blur(56px);
+    }
+    .dock-orbit {
+      display: block;
+      position: absolute;
+      inset: 6%;
+      border-radius: 50%;
+      border: 2px dashed color-mix(in oklch, var(--accent) 30%, transparent);
+    }
+    :global(.motion-ok) .dock-orbit {
+      animation: app-orbit 40s linear infinite;
+    }
+    .dock-list {
+      position: absolute;
+      inset: 0;
+      display: block;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    .dock-li {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+    }
+    .dock-item {
+      rotate: var(--r);
+      transform-origin: 50% 50%;
+    }
+    .dock-item:hover,
+    .dock-item:focus-visible {
+      rotate: 0deg;
+      scale: 1.1;
+      z-index: 1;
+    }
+    .dock-icon {
+      width: var(--s);
+      height: var(--s);
+      box-shadow: var(--shadow-lg);
+    }
+    :global(.motion-ok) .dock-bob {
+      animation: app-float 7s ease-in-out infinite;
+    }
+  }
+
+  @keyframes app-float {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0 -12px;
+    }
+  }
+  @keyframes app-orbit {
+    to {
+      rotate: 360deg;
+    }
+  }
+</style>

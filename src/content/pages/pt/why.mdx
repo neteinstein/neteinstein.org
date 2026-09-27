@@ -1,0 +1,82 @@
+---
+title: 'Porquê, Como, O Quê!'
+description: 'Porquê "neteinstein.org", porquê GitHub Pages, porquê GIFs e mais alguns porquês, incluindo a história dos tempos do IRC por trás do nickname.'
+eyebrow: 'O que faço'
+highlight: ['Porquê']
+---
+
+import WhyGrid from '../../../components/why/WhyGrid.astro';
+import WhyCard from '../../../components/why/WhyCard.astro';
+import NickTrail from '../../../components/why/NickTrail.astro';
+import WhyChain from '../../../components/why/WhyChain.astro';
+import { closingGif } from '../../../data/why';
+
+<WhyGrid>
+
+<WhyCard n="01" variant="wide">
+
+## Porquê "neteinstein.org"?
+
+Bem, na verdade "neteinstein" é um username que uso desde muito novo (na altura era a versão lamer NeTeInStEiN... 😬).
+
+Em 1999, o [IRC](https://pt.wikipedia.org/wiki/Internet_Relay_Chat) era "a cena". Comecei na DALnet e depois mudei-me para a [PTnet](http://www.ptnet.org). Encontrar um username livre não era fácil. Gostava muito do Einstein, mas estava ocupado, por isso... acabei com este. Como estava disponível em (quase) todas as plataformas, continuei a usá-lo... até hoje, pelos vistos.
+
+<NickTrail
+  label="IRC · 1999"
+  nicks={[
+    { nick: 'Einstein', note: 'ocupado', state: 'taken' },
+    { nick: 'NeTeInStEiN', note: 'a versão lamer', state: 'then' },
+    { nick: 'neteinstein', note: 'até hoje', state: 'now' },
+  ]}
+/>
+
+</WhyCard>
+
+<WhyCard n="02">
+
+## Porquê GitHub Pages?
+
+Este site começou no Google Sites porque queria algo rápido, simples e fácil de atualizar. Com o tempo tornou-se demasiado limitado, por isso agora vive no GitHub Pages como um pequeno site estático: continua rápido, continua simples e é muito mais divertido de mexer. Mas, lá está, não estou a construir um foguetão 🚀 (pelo menos aqui!)
+
+</WhyCard>
+
+<WhyCard n="03">
+
+## Porquê GIFs?
+
+Não me levo demasiado a sério. Vamos todos morrer de qualquer maneira, por isso não sejas demasiado rígido com a vida. Vais divertir-te muito mais!
+
+</WhyCard>
+
+<WhyCard n="04">
+
+## Porque és tão bonito?
+
+Já nasci assim 💥
+
+</WhyCard>
+
+<WhyCard n="05" variant="wide">
+
+## Porquê...?
+
+Porquê, depois Como e finalmente O Quê! 👌
+
+<WhyChain steps={['Porquê', 'Como', 'O Quê!']} />
+
+</WhyCard>
+
+<WhyCard
+  n="06"
+  variant="finale"
+  image={closingGif.src}
+  imageAlt="GIF animado: um grande plano do mesmo homem, com um pequeno microfone de auscultadores junto à cara, a olhar para a câmara com ar impávido"
+>
+
+## Porquê?
+
+Porque não?
+
+</WhyCard>
+
+</WhyGrid>

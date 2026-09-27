@@ -1,0 +1,107 @@
+---
+import RichText from '../RichText.astro';
+import Icon from '../Icon.astro';
+import type { TrueStory } from '../../data/types';
+
+/**
+ * The /hobbies/storyteller list as a zig-zag timeline: one rail down the
+ * middle (down the left edge on phones) that fills with the brand gradient as
+ * it scrolls through the viewport, and one card per story sliding in from
+ * its side. An entry without a year (the original's closing "...") becomes
+ * the rail's pulsing tail.
+ */
+interface Props {
+  items: TrueStory[];
+}
+
+const { items } = Astro.props;
+const dated = items.filter((story) => story.year !== undefined);
+---
+
+<ol class="story-timeline relative mx-auto max-w-5xl">
+  <span
+    class="story-rail absolute top-3 bottom-16 left-4 w-[3px] -translate-x-1/2 rounded-full md:left-1/2"
+    aria-hidden="true"></span>
+  {
+    dated.map((story, index) => {
+      const right = index % 2 === 1;
+      const linked = story.text.some((part) => typeof part !== 'string');
+      return (
+        <li
+          class:list={[
+            'relative pl-12 md:w-1/2',
+            index > 0 && 'mt-5 md:-mt-10',
+            right ? 'md:ml-auto md:pl-12' : 'md:pr-12 md:pl-0',
+          ]}
+          data-reveal={right ? 'right' : 'left'}
+        >
+          <span
+            class:list={[
+              'border-accent bg-surface absolute top-7 left-4 grid size-5 -translate-x-1/2 place-items-center rounded-full border-2 shadow-[0_0_0_6px_var(--surface)]',
+              right ? 'md:left-0' : 'md:right-0 md:left-auto md:translate-x-1/2',
+            ]}
+            aria-hidden="true"
+          >
+            <span class="bg-accent-2 size-2 rounded-full" />
+          </span>
+          <div
+            class:list={[
+              'group glow-ring border-line bg-surface-raised rounded-2xl border p-5 shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-md)] sm:p-6',
+              !right && 'md:text-right',
+            ]}
+            data-spotlight
+          >
+            <p
+              class:list={[
+                'flex items-center gap-2 font-mono text-2xl leading-none font-bold tracking-tight',
+                !right && 'md:justify-end',
+              ]}
+            >
+              <span class="text-gradient">{story.year}</span>
+              <span class="sr-only">: </span>
+              {linked && <Icon name="arrow-up-right" class="text-accent size-4" />}
+            </p>
+            <p class="font-display mt-2 text-lg leading-snug font-semibold text-pretty">
+              <RichText text={story.text} />
+            </p>
+          </div>
+        </li>
+      );
+    })
+  }
+  {
+    items
+      .filter((story) => story.year === undefined)
+      .map((story) => (
+        <li class="relative mt-10 pl-12 md:pl-0 md:text-center" data-reveal="fade">
+          <span class="font-display text-gradient inline-block animate-pulse text-5xl leading-none font-extrabold tracking-[0.2em]">
+            <RichText text={story.text} />
+          </span>
+        </li>
+      ))
+  }
+</ol>
+
+<style>
+  .story-rail {
+    background: var(--border-strong);
+  }
+  @supports (animation-timeline: view()) {
+    :global(.motion-ok) .story-rail {
+      background:
+        linear-gradient(to bottom, var(--accent), var(--accent-2) 50%, var(--accent-3)) top / 100%
+          0% no-repeat,
+        var(--border-strong);
+      animation: story-rail-fill linear both;
+      animation-timeline: view();
+      animation-range: entry 10% exit 60%;
+    }
+  }
+  @keyframes story-rail-fill {
+    to {
+      background-size:
+        100% 100%,
+        auto;
+    }
+  }
+</style>

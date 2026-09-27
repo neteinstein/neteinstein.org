@@ -1,0 +1,99 @@
+---
+import { Image } from 'astro:assets';
+import CardGrid from '../CardGrid.astro';
+import Icon from '../Icon.astro';
+import TalkTile from './TalkTile.astro';
+import type { TalkCategory } from '../../data/types';
+import { useI18n } from '../../i18n';
+
+/**
+ * One of the original's talk categories ("Company Culture", "Tech", "Other
+ * Talks"): a numbered header, the optional banner photo, then the rows of
+ * tiles as the original laid them out — a lone talk becomes a wide feature,
+ * two or three share a grid.
+ */
+interface Props {
+  category: TalkCategory;
+  /** Zero-based position, for the outlined number behind the header. */
+  index: number;
+}
+
+const { category, index } = Astro.props;
+const { t } = useI18n(Astro);
+const number = String(index + 1).padStart(2, '0');
+const headingId = `${category.id}-title`;
+---
+
+<section
+  id={category.id}
+  aria-labelledby={headingId}
+  class="container-page relative py-10 sm:py-14"
+>
+  <header class="relative mb-8 flex items-center gap-4 sm:mb-10 sm:gap-5" data-reveal>
+    <span
+      class="text-on-accent grid size-12 shrink-0 place-items-center rounded-2xl bg-[image:var(--gradient-brand)] bg-[length:200%_auto] shadow-[var(--shadow-md)] sm:size-14"
+      aria-hidden="true"
+    >
+      <Icon name={category.icon} class="size-6 sm:size-7" />
+    </span>
+    <div class="min-w-0">
+      <p class="eyebrow">{t('Category {number}', { number })}</p>
+      <h2
+        id={headingId}
+        class="font-display mt-1 text-3xl font-bold tracking-tight text-balance sm:text-5xl"
+      >
+        {category.title}
+      </h2>
+    </div>
+    <span
+      class="talk-outline font-display pointer-events-none ml-auto hidden text-8xl leading-none font-extrabold tracking-tighter select-none sm:block lg:text-9xl"
+      aria-hidden="true"
+    >
+      {number}
+    </span>
+  </header>
+
+  {
+    category.banner && (
+      <div
+        class="glow-ring border-line bg-surface-sunken mb-6 overflow-hidden rounded-3xl border shadow-[var(--shadow-md)]"
+        data-reveal="scale"
+      >
+        <Image
+          src={category.banner.src}
+          alt={category.banner.alt}
+          widths={[640, 960]}
+          sizes="(min-width: 1216px) 74rem, 100vw"
+          class="aspect-[2.6/1] w-full object-cover object-[62%_50%] sm:aspect-[960/215]"
+        />
+      </div>
+    )
+  }
+
+  <div class="space-y-6">
+    {
+      category.rows.map((row) => {
+        const [only] = row;
+        return row.length === 1 && only ? (
+          <div data-reveal>
+            <TalkTile talk={only} layout="feature" />
+          </div>
+        ) : (
+          <CardGrid cols={row.length >= 3 ? 3 : 2}>
+            {row.map((talk) => (
+              <TalkTile talk={talk} />
+            ))}
+          </CardGrid>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  /* Outlined numeral behind the header — decoration, drawn with the border token. */
+  .talk-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--border-strong);
+  }
+</style>

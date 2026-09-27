@@ -1,0 +1,12 @@
+---
+import type { EmphasisText } from '../../data/types';
+
+/** Renders an `EmphasisText` array — plain strings with italic runs — from a data file. */
+interface Props {
+  text: EmphasisText;
+}
+
+const { text } = Astro.props;
+---
+
+{text.map((part) => (typeof part === 'string' ? part : <em>{part.em}</em>))}

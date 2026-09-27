@@ -1,0 +1,30 @@
+---
+/** Small pill label — categories, years, tech. `tone` picks the accent. */
+interface Props {
+  tone?: 'neutral' | 'accent' | 'pink' | 'amber' | 'teal';
+  class?: string;
+}
+
+const { tone = 'neutral', class: className } = Astro.props;
+
+const toneVar = {
+  neutral: '',
+  accent: '--accent',
+  pink: '--accent-2',
+  amber: '--accent-3',
+  teal: '--accent-4',
+}[tone];
+---
+
+<span
+  class:list={[
+    'inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-medium',
+    tone === 'neutral'
+      ? 'border-line bg-surface-sunken text-muted'
+      : 'text-fg border-[color-mix(in_oklch,var(--tag)_30%,transparent)] bg-[color-mix(in_oklch,var(--tag)_12%,transparent)]',
+    className,
+  ]}
+  style={toneVar ? `--tag: var(${toneVar})` : undefined}
+>
+  <slot />
+</span>

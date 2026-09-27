@@ -1,0 +1,33 @@
+---
+import Section from '../Section.astro';
+import ShowPanel from './ShowPanel.astro';
+import SeasonWall from './SeasonWall.astro';
+import type { PodcastEpisode, PodcastShow } from '../../data/types';
+
+/** One show: its header panel, then its episodes grouped by season (page order kept). */
+interface Props {
+  show: PodcastShow;
+  index: number;
+}
+
+const { show, index } = Astro.props;
+
+const seasons = new Map<number, PodcastEpisode[]>();
+for (const episode of show.episodes) {
+  seasons.set(episode.season, [...(seasons.get(episode.season) ?? []), episode]);
+}
+---
+
+<Section id={show.slug}>
+  <ShowPanel show={show} index={index} />
+
+  {
+    seasons.size > 0 && (
+      <div class="mt-14 space-y-16 sm:mt-16 sm:space-y-20">
+        {[...seasons].map(([season, episodes]) => (
+          <SeasonWall show={show.name} season={season} episodes={episodes} />
+        ))}
+      </div>
+    )
+  }
+</Section>

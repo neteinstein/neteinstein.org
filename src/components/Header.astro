@@ -1,66 +1,164 @@
 ---
-import { NAV, SITE, isActive } from '../config/site';
+import { Image } from 'astro:assets';
+import { NAV, SITE, isActive, isGroupActive } from '../config/site';
+import type { NavItem } from '../config/site';
+import { currentPage, useI18n } from '../i18n';
+import avatar from '../assets/brand/avatar.webp';
 import MobileNav from './MobileNav.tsx';
 import ThemeToggle from './ThemeToggle.tsx';
+import LanguageSwitch from './LanguageSwitch.astro';
 
-const pathname = Astro.url.pathname;
+interface Props {
+  /** Offer the language switch — off on pages with no translation (the 404). */
+  translated?: boolean;
+}
+
+const { translated = true } = Astro.props;
+const { t, localHref } = useI18n(Astro);
+// Base- and locale-free, like the hrefs in `NAV`.
+const pathname = currentPage(Astro.url);
+
+// The island receives translated labels and base-prefixed, localised hrefs so
+// it never needs to import the helpers.
+const mobileItems: NavItem[] = NAV.map((item) => ({
+  label: t(item.label),
+  href: item.href && localHref(item.href),
+  children: item.children?.map((child) => ({ label: t(child.label), href: localHref(child.href) })),
+}));
 ---
 
-<header
-  class="sticky top-0 z-30 border-b border-[var(--border)] bg-[var(--surface)]/90 backdrop-blur"
->
-  <div class="container-page relative flex h-16 items-center justify-between gap-4">
-    <a href="/" class="font-display text-lg font-semibold tracking-tight">
-      {SITE.title}
+<header class="sticky top-0 z-40 px-3 pt-3 [view-transition-name:site-header] sm:px-4">
+  <div
+    class="site-header-bar glass border-line relative mx-auto flex h-16 max-w-[76rem] items-center justify-between gap-3 rounded-2xl border pr-2 pl-2.5 shadow-[var(--shadow-sm)] sm:pl-3"
+  >
+    <a
+      href={localHref('/')}
+      class="group flex items-center gap-2.5 rounded-xl py-1 pr-2"
+      aria-label={t('{name} — home', { name: SITE.title })}
+    >
+      <span
+        class="relative grid size-10 place-items-center overflow-hidden rounded-xl bg-[image:var(--gradient-brand)] p-[2px] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-105 group-hover:-rotate-6"
+      >
+        <Image
+          src={avatar}
+          alt=""
+          width={80}
+          height={80}
+          class="bg-surface-raised size-full rounded-[10px] object-cover"
+          loading="eager"
+        />
+      </span>
+      <span class="hidden leading-tight min-[340px]:block">
+        <span class="font-display block text-[1.05rem] font-bold tracking-tight">{SITE.title}</span>
+        <span class="text-muted block font-mono text-[0.68rem]">@{SITE.handle}</span>
+      </span>
     </a>
 
-    <nav aria-label="Main" class="hidden md:block">
-      <ul class="flex items-center gap-1">
+    {
+      /*
+      Dropdowns use a solid surface, not `glass`: this bar's backdrop-filter
+      makes it a backdrop root, so a nested panel could only blur the bar itself.
+    */
+    }
+    <nav aria-label={t('Main')} class="hidden lg:block">
+      <ul class="flex items-center gap-0.5">
         {
-          NAV.map((item) => (
-            <li class="group relative">
-              <a
-                href={item.href}
-                aria-current={isActive(item.href, pathname) ? 'page' : undefined}
-                class:list={[
-                  'inline-flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors',
-                  isActive(item.href, pathname)
-                    ? 'text-[var(--link)]'
-                    : 'text-[var(--text-muted)] hover:text-[var(--text)]',
-                ]}
-              >
-                {item.label}
-              </a>
-
-              {item.children && (
-                <ul class="invisible absolute top-full left-0 min-w-52 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-1 opacity-0 shadow-lg transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-                  {item.children.map((child) => (
-                    <li>
-                      <a
-                        href={child.href}
-                        aria-current={isActive(child.href, pathname) ? 'page' : undefined}
-                        class:list={[
-                          'block rounded-md px-3 py-2 text-sm transition-colors',
-                          isActive(child.href, pathname)
-                            ? 'text-[var(--link)]'
-                            : 'text-[var(--text-muted)] hover:text-[var(--text)]',
-                        ]}
+          NAV.map((item) => {
+            const active = isGroupActive(item, pathname);
+            const itemClass = [
+              'relative inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-300',
+              active
+                ? 'bg-[color-mix(in_oklch,var(--accent)_13%,transparent)] text-fg'
+                : 'text-muted hover:bg-[color-mix(in_oklch,var(--text)_6%,transparent)] hover:text-fg',
+            ];
+            return (
+              <li class="group relative">
+                {item.href ? (
+                  <a
+                    href={localHref(item.href)}
+                    aria-current={pathname === item.href ? 'page' : undefined}
+                    class:list={itemClass}
+                  >
+                    {t(item.label)}
+                    {item.children && (
+                      <svg
+                        class="size-3.5 opacity-60 transition-transform duration-300 group-focus-within:rotate-180 group-hover:rotate-180"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        aria-hidden="true"
                       >
-                        {child.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))
+                        <path d="m4 6 4 4 4-4" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    )}
+                  </a>
+                ) : (
+                  <button type="button" class:list={[itemClass, 'cursor-default']}>
+                    {t(item.label)}
+                    <svg
+                      class="size-3.5 opacity-60 transition-transform duration-300 group-focus-within:rotate-180 group-hover:rotate-180"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      aria-hidden="true"
+                    >
+                      <path d="m4 6 4 4 4-4" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                )}
+
+                {item.children && (
+                  <div class="invisible absolute top-full left-1/2 z-50 -translate-x-1/2 translate-y-1 scale-95 pt-3 opacity-0 transition-all duration-300 ease-[var(--ease-out-expo)] group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:scale-100 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100">
+                    <ul class="bg-surface-raised border-line min-w-56 rounded-2xl border p-1.5 shadow-[var(--shadow-lg)]">
+                      {item.children.map((child) => {
+                        const childActive = isActive(child.href, pathname);
+                        return (
+                          <li>
+                            <a
+                              href={localHref(child.href)}
+                              aria-current={childActive ? 'page' : undefined}
+                              class:list={[
+                                'group/item flex items-center justify-between gap-4 rounded-xl px-3.5 py-2.5 text-sm transition-colors',
+                                childActive
+                                  ? 'text-fg bg-[color-mix(in_oklch,var(--accent)_13%,transparent)] font-medium'
+                                  : 'text-muted hover:text-fg hover:bg-[color-mix(in_oklch,var(--text)_6%,transparent)]',
+                              ]}
+                            >
+                              {t(child.label)}
+                              <span
+                                aria-hidden="true"
+                                class="text-accent -translate-x-1 opacity-0 transition-all duration-300 group-hover/item:translate-x-0 group-hover/item:opacity-100"
+                              >
+                                →
+                              </span>
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              </li>
+            );
+          })
         }
       </ul>
     </nav>
 
-    <div class="flex items-center gap-2">
-      <ThemeToggle client:load />
-      <MobileNav client:idle items={NAV} pathname={pathname} />
+    <div class="flex items-center gap-1.5">
+      {translated && <LanguageSwitch />}
+      <ThemeToggle
+        client:load
+        labels={{ dark: t('Switch to dark theme'), light: t('Switch to light theme') }}
+      />
+      <MobileNav
+        client:idle
+        items={mobileItems}
+        current={localHref(pathname)}
+        labels={{ open: t('Open menu'), close: t('Close menu'), nav: t('Main') }}
+      />
     </div>
   </div>
 </header>

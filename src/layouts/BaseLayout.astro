@@ -1,49 +1,110 @@
 ---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE } from '../config/site';
+import { SITE, SOCIALS } from '../config/site';
+import { withBase } from '../lib/url';
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  LOCALE_INFO,
+  LOCALE_STORAGE_KEY,
+  currentPage,
+  localizePath,
+  useI18n,
+} from '../i18n';
 
 interface Props {
   title: string;
   description?: string;
-  /** Set on pages that duplicate another canonical URL. */
+  /** Site-absolute path of the canonical URL, when it differs from this page's. */
   canonical?: string;
   /** Suppress the "| Pedro Vicente" suffix (used on the home page). */
   bareTitle?: boolean;
+  /** Site-absolute path to a page-specific social card under `public/`. */
+  ogImage?: string;
+  /**
+   * Whether this page exists in every locale. Off for the 404 page, which
+   * GitHub Pages serves at any missing URL.
+   */
+  translated?: boolean;
 }
 
-const { title, description = SITE.description, canonical, bareTitle = false } = Astro.props;
+const { locale, t } = useI18n(Astro);
+
+const {
+  title,
+  description = t(SITE.description),
+  canonical,
+  bareTitle = false,
+  ogImage = SITE.ogImage,
+  translated = true,
+} = Astro.props;
 
 const pageTitle = bareTitle ? title : `${title} | ${SITE.title}`;
-const canonicalUrl = new URL(canonical ?? Astro.url.pathname, SITE.url);
-const ogImageUrl = new URL(SITE.ogImage, SITE.url);
+// The page's path with no base and no locale — the key shared by its translations.
+const path = canonical ?? currentPage(Astro.url);
+// Canonical URLs always name the custom domain, even on the github.io preview,
+// so search engines never index the preview as a duplicate.
+const canonicalUrl = new URL(localizePath(path, locale), SITE.url);
+const ogImageUrl = new URL(ogImage, SITE.url);
+
+const alternates = translated
+  ? LOCALES.map((alternate) => ({
+      locale: alternate,
+      url: new URL(localizePath(path, alternate), SITE.url).href,
+      local: withBase(localizePath(path, alternate)),
+    }))
+  : [];
+// Where a visitor whose browser prefers another language is sent on arrival.
+// Only the default locale redirects, so an explicit /pt link always sticks.
+const redirects =
+  locale === DEFAULT_LOCALE
+    ? Object.fromEntries(
+        alternates
+          .filter((alternate) => alternate.locale !== DEFAULT_LOCALE)
+          .map((alternate) => [alternate.locale, alternate.local]),
+      )
+    : {};
 
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: SITE.author,
-  alternateName: 'neteinstein',
+  alternateName: SITE.handle,
   url: SITE.url,
-  jobTitle: 'Mobile Services Lead & Improver',
-  worksFor: { '@type': 'Organization', name: 'Mindera' },
-  sameAs: [
-    'https://github.com/neteinstein',
-    'https://www.linkedin.com/in/neteinstein/',
-    'https://neteinstein.medium.com',
-  ],
+  jobTitle: t('Mobile Services Lead & Improver'),
+  worksFor: { '@type': 'Organization', name: 'Mindera', url: 'https://www.mindera.com' },
+  sameAs: SOCIALS.map((social) => social.href),
 };
 ---
 
 <!doctype html>
-<html lang={SITE.locale} data-theme="light">
+<html lang={LOCALE_INFO[locale].tag} data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#fbf9f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d0b1a" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href={withBase('/favicon.ico')} sizes="48x48" />
+    <link rel="icon" href={withBase('/favicon.png')} type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
+    <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
     <link rel="canonical" href={canonicalUrl.href} />
+    {
+      alternates.map((alternate) => (
+        <link rel="alternate" hreflang={LOCALE_INFO[alternate.locale].tag} href={alternate.url} />
+      ))
+    }
+    {
+      alternates
+        .filter((alternate) => alternate.locale === DEFAULT_LOCALE)
+        .map((alternate) => <link rel="alternate" hreflang="x-default" href={alternate.url} />)
+    }
 
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
@@ -54,44 +115,109 @@ const personSchema = {
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:locale" content={LOCALE_INFO[locale].og} />
+    {
+      alternates
+        .filter((alternate) => alternate.locale !== locale)
+        .map((alternate) => (
+          <meta property="og:locale:alternate" content={LOCALE_INFO[alternate.locale].og} />
+        ))
+    }
     <meta property="og:image" content={ogImageUrl.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={`@${SITE.handle}`} />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl.href} />
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
-    {/* Runs before first paint so the theme never flashes. Mirrors ThemeToggle. */}
+    {
+      /*
+      Sends a first-time visitor whose browser prefers another language to this
+      page's translation, before anything paints. A language picked in the
+      header switcher is stored and always wins over the browser's.
+    */
+    }
+    <script
+      is:inline
+      define:vars={{ redirects, fallback: DEFAULT_LOCALE, storageKey: LOCALE_STORAGE_KEY }}
+    >
+      (() => {
+        try {
+          if (localStorage.getItem(storageKey)) return;
+        } catch {
+          /* storage blocked — fall back to the browser's languages */
+        }
+        const preferred = (navigator.languages?.length ? navigator.languages : [navigator.language])
+          .map((tag) => (tag || '').toLowerCase().split('-')[0])
+          .find((language) => language === fallback || language in redirects);
+        const target = preferred && redirects[preferred];
+        if (target) location.replace(target + location.search + location.hash);
+      })();
+    </script>
+
+    {/* Runs before first paint so neither the theme nor the reveal state flashes. */}
     <script is:inline>
       (() => {
+        const root = document.documentElement;
         try {
           const stored = localStorage.getItem('theme');
           const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
-          const theme = stored ?? (prefersDark ? 'dark' : 'light');
-          document.documentElement.dataset.theme = theme;
+          root.dataset.theme = stored ?? (prefersDark ? 'dark' : 'light');
         } catch {
           /* private mode / storage blocked — the light default already applies */
+        }
+
+        // Motion is opt-in: hide reveal targets only when the motion runtime can
+        // show them again. If it has not reported in by shortly after load
+        // (blocked script, old browser), fall back to static content.
+        if (
+          !matchMedia('(prefers-reduced-motion: reduce)').matches &&
+          'IntersectionObserver' in window
+        ) {
+          root.classList.add('motion-ok');
+          addEventListener('load', () =>
+            setTimeout(() => {
+              if (!window.__motionReady) root.classList.remove('motion-ok');
+            }, 1200),
+          );
         }
       })();
     </script>
   </head>
 
-  <body class="flex min-h-screen flex-col">
+  <body class="flex min-h-screen flex-col overflow-x-clip">
+    <div class="aurora" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div
+      class="scroll-progress fixed inset-x-0 top-0 z-50 h-[3px] bg-[image:var(--gradient-brand)]"
+      aria-hidden="true"
+    >
+    </div>
+
     <a
       href="#main"
-      class="sr-only rounded-md bg-[var(--surface-raised)] px-4 py-2 focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50"
+      class="bg-surface-raised sr-only rounded-full px-4 py-2 shadow-[var(--shadow-md)] focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]"
     >
-      Skip to content
+      {t('Skip to content')}
     </a>
 
-    <Header />
+    <Header translated={translated} />
 
-    <main id="main" class="container-page flex-1 py-10 sm:py-14">
+    <!-- Curious? Not everything on this site is in the menu. -->
+    <main id="main" class="flex-1">
       <slot />
     </main>
 
     <Footer />
+
+    <script>
+      import '../scripts/motion.ts';
+    </script>
   </body>
 </html>

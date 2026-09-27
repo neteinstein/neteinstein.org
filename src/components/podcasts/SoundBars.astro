@@ -1,0 +1,66 @@
+---
+/**
+ * Decorative audio-level bars. `sm` sits inline next to a label; `lg` is a
+ * wide, faint strip laid along the bottom of a show panel. The bars pulse
+ * only under `motion-ok`; otherwise they render as a static skyline.
+ */
+interface Props {
+  size?: 'sm' | 'lg';
+  bars?: number;
+  class?: string;
+}
+
+const { size = 'sm', bars = size === 'sm' ? 5 : 56, class: className } = Astro.props;
+
+// Deterministic "random" heights so builds are stable.
+const levels = Array.from({ length: bars }, (_, index) => 28 + ((index * 37 + 11) % 72));
+---
+
+<span class:list={['sound-bars', `sound-bars-${size}`, className]} aria-hidden="true">
+  {levels.map((level, index) => <span style={`--h: ${level}%; --i: ${index}`} />)}
+</span>
+
+<style>
+  .sound-bars {
+    display: inline-flex;
+    align-items: flex-end;
+  }
+  .sound-bars > span {
+    height: var(--h);
+    border-radius: 999px;
+    background: linear-gradient(to top, var(--accent), var(--accent-2) 60%, var(--accent-3));
+    transform-origin: 50% 100%;
+  }
+  .sound-bars-sm {
+    height: 0.9rem;
+    gap: 2px;
+  }
+  .sound-bars-sm > span {
+    width: 3px;
+  }
+  .sound-bars-lg {
+    display: flex;
+    height: 5.5rem;
+    gap: 5px;
+  }
+  .sound-bars-lg > span {
+    flex: 1;
+    min-width: 2px;
+  }
+
+  :global(.motion-ok) .sound-bars > span {
+    animation: level 1.2s ease-in-out infinite alternate;
+    animation-delay: calc(var(--i) * -0.27s);
+  }
+  :global(.motion-ok) .sound-bars-lg > span {
+    animation-duration: 1.8s;
+  }
+  @keyframes level {
+    from {
+      scale: 1 0.3;
+    }
+    to {
+      scale: 1 1;
+    }
+  }
+</style>

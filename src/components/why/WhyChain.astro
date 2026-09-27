@@ -1,0 +1,76 @@
+---
+import Icon from '../Icon.astro';
+
+/**
+ * "Why → How → What" as a row of pills that light up in turn. A visual echo
+ * of the answer it sits under, so it is hidden from assistive tech.
+ */
+interface Props {
+  steps: string[];
+}
+
+const { steps } = Astro.props;
+---
+
+<div class="mt-7 flex flex-wrap items-center gap-2.5 sm:gap-3" aria-hidden="true">
+  {
+    steps.map((step, index) => (
+      <>
+        {index > 0 && <Icon name="arrow-right" class="text-muted size-4 shrink-0" />}
+        <span
+          class="chain-step border-line-strong text-fg font-display relative isolate overflow-hidden rounded-full border px-5 py-2 text-lg font-bold tracking-tight sm:text-xl"
+          style={`--i: ${index}; --n: ${steps.length}`}
+        >
+          {step}
+        </span>
+      </>
+    ))
+  }
+</div>
+
+<style>
+  .chain-step::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--gradient-brand);
+    opacity: 0.16;
+  }
+
+  /* Each pill takes a turn in the spotlight: Why, then How and finally What. */
+  :global(.motion-ok) .chain-step {
+    animation: chain-lit 4.5s var(--ease-out-expo) infinite;
+    animation-delay: calc(var(--i) * 1.5s);
+  }
+  :global(.motion-ok) .chain-step::before {
+    animation: chain-fill 4.5s var(--ease-out-expo) infinite;
+    animation-delay: calc(var(--i) * 1.5s);
+  }
+  @keyframes chain-lit {
+    0%,
+    30%,
+    100% {
+      color: var(--text);
+      border-color: var(--border-strong);
+      translate: 0 0;
+    }
+    8%,
+    24% {
+      color: var(--on-accent);
+      border-color: transparent;
+      translate: 0 -3px;
+    }
+  }
+  @keyframes chain-fill {
+    0%,
+    30%,
+    100% {
+      opacity: 0.16;
+    }
+    8%,
+    24% {
+      opacity: 1;
+    }
+  }
+</style>
