@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import type { TechImage } from '../../data/types';
+import { isExternal, withBase } from '../../lib/url';
+
+/**
+ * An image in a rounded frame, wrapped in its original link when it had one.
+ * When the same card already links to that target in text, the image link is
+ * kept for pointer users but hidden from keyboard and screen readers, so the
+ * destination is not announced twice.
+ */
+interface Props {
+  image: TechImage;
+  /** Hrefs the surrounding card already exposes as text links. */
+  siblingHrefs?: string[];
+  widths?: number[];
+  sizes?: string;
+  class?: string;
+  imgClass?: string;
+}
+
+const {
+  image,
+  siblingHrefs = [],
+  widths = [240, 400, 640],
+  sizes = '(min-width: 1024px) 16rem, (min-width: 640px) 45vw, 90vw',
+  class: className,
+  imgClass,
+} = Astro.props;
+
+const duplicate = image.href ? siblingHrefs.includes(image.href) : false;
+const external = image.href ? isExternal(image.href) : false;
+const Wrapper = image.href ? 'a' : 'div';
+// Never ask for a rendition wider than the source; small logos get one size.
+const smaller = widths.filter((width) => width < image.src.width);
+const fitted = [...smaller, image.src.width].slice(-widths.length);
+---
+
+<Wrapper
+  href={image.href && withBase(image.href)}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  tabindex={duplicate ? -1 : undefined}
+  aria-hidden={duplicate ? 'true' : undefined}
+  class:list={['bg-surface-sunken relative block overflow-hidden', className]}
+>
+  <Image
+    src={image.src}
+    alt={image.alt}
+    widths={fitted}
+    sizes={sizes}
+    class:list={[
+      'size-full transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.06]',
+      image.fit === 'contain' ? 'object-contain p-5' : 'object-cover',
+      imgClass,
+    ]}
+  />
+</Wrapper>

@@ -1,0 +1,67 @@
+---
+import type { Footprint } from '../../data/types';
+import TechImageFrame from './TechImageFrame.astro';
+import TechText from './TechText.astro';
+
+/**
+ * An "Online footprint" profile. `featured` gives the card room for its stat
+ * as a big gradient number (decorative — the paragraph states it too).
+ */
+interface Props {
+  footprint: Footprint;
+  featured?: boolean;
+  class?: string;
+}
+
+const { footprint, featured = false, class: className } = Astro.props;
+const { name, paragraphs, image, stat } = footprint;
+---
+
+<article
+  class:list={[
+    'group glow-ring border-line bg-surface-raised relative flex gap-5 overflow-hidden rounded-3xl border p-5 shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-lg)] sm:p-6',
+    featured ? 'flex-col' : 'flex-col sm:flex-row sm:items-center',
+    className,
+  ]}
+  data-spotlight
+>
+  <TechImageFrame
+    image={image}
+    siblingHrefs={[name.href]}
+    widths={[160, 320]}
+    sizes="10rem"
+    class:list={[
+      'border-line shrink-0 rounded-2xl border',
+      featured ? 'aspect-[11/8] w-full max-w-60' : 'aspect-[11/8] w-32 sm:w-36',
+    ]}
+  />
+  <div class="min-w-0 flex-1">
+    {
+      stat && (
+        <p class="flex items-baseline gap-2" aria-hidden="true">
+          <span class="text-gradient font-display text-6xl leading-none font-extrabold tracking-tight sm:text-7xl">
+            {stat.value}
+          </span>
+          <span class="text-muted font-mono text-sm font-semibold tracking-[0.14em] uppercase">
+            {stat.label}
+          </span>
+        </p>
+      )
+    }
+    <h3
+      class:list={[
+        'font-display font-bold tracking-tight',
+        featured ? 'mt-4 text-3xl' : 'text-2xl',
+      ]}
+    >
+      <TechText text={[name]} linkClass="link-underline" />
+    </h3>
+    {
+      paragraphs.map((paragraph) => (
+        <p class="text-muted mt-2 leading-relaxed text-pretty">
+          <TechText text={paragraph} />
+        </p>
+      ))
+    }
+  </div>
+</article>

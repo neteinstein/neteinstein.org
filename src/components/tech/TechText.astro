@@ -1,0 +1,34 @@
+---
+import type { TechText } from '../../data/types';
+import { isExternal, withBase } from '../../lib/url';
+
+/**
+ * Renders a `TechText` array — plain strings with inline links. Like the
+ * shared `RichText`, plus an optional `aria-label` per link so repeated store
+ * labels ("Android", "iOS") say which app they open.
+ */
+interface Props {
+  text: TechText;
+  linkClass?: string;
+}
+
+const { text, linkClass = 'font-semibold text-link link-underline' } = Astro.props;
+---
+
+{
+  text.map((part) =>
+    typeof part === 'string' ? (
+      part
+    ) : (
+      <a
+        href={withBase(part.href)}
+        target={isExternal(part.href) ? '_blank' : undefined}
+        rel={isExternal(part.href) ? 'noopener noreferrer' : undefined}
+        aria-label={part.ariaLabel}
+        class:list={['relative z-10', linkClass]}
+      >
+        {part.label}
+      </a>
+    ),
+  )
+}
