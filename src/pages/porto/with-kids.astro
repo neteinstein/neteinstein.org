@@ -5,7 +5,7 @@ import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import ButtonLink from '../../components/ButtonLink.astro';
 import Icon from '../../components/Icon.astro';
-import PlacesTable from '../../components/kids/PlacesTable.astro';
+import KidsFilter from '../../components/kids/KidsFilter.tsx';
 import { navPages } from '../../config/site';
 import * as kids from '../../data/kids';
 import { useI18n } from '../../i18n';
@@ -39,7 +39,24 @@ const listTitle = t('Places for kids');
   </PageHero>
 
   <Section id="places" eyebrow={t('Play & parties')} title={listTitle}>
-    <PlacesTable places={kidsPlaces} columns={kidsColumns} caption={listTitle} noteId={NOTE_ID} />
+    <KidsFilter
+      client:visible
+      places={kidsPlaces}
+      columns={kidsColumns}
+      caption={listTitle}
+      noteId={NOTE_ID}
+      labels={{
+        search: t('Search the list'),
+        placeholder: t('Search a place, a town, an age range…'),
+        setting: t('Indoor/Outdoor'),
+        all: t('All'),
+        count: t('{shown} of {total} places'),
+        empty: t('Nothing matches those filters.'),
+        clear: t('Clear the search'),
+        seeNoteTable: t('see the note under the table'),
+        seeNoteList: t('see the note under the list'),
+      }}
+    />
 
     <div
       id={NOTE_ID}

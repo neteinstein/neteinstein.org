@@ -8,8 +8,9 @@ requirement**.
 
 - **Node 22.12+.** Astro 7 will not run on older versions.
 - **Astro first, React only where state is genuinely needed.** There are exactly
-  three islands — `ThemeToggle` (`client:load`), `MobileNav` (`client:idle`) and
-  `PlaceFilter` (`client:visible`). Everything else is zero-JS `.astro`, plus
+  four islands — `ThemeToggle` (`client:load`), `MobileNav` (`client:idle`) and
+  the two search-and-filter tables, `PlaceFilter` and `KidsFilter` (both
+  `client:visible`). Everything else is zero-JS `.astro`, plus
   small vanilla `<script>`s for pure DOM effects (`src/scripts/motion.ts`,
   `VideoEmbed`, the home page's cookie button). Do not reach for a React
   component because it feels familiar; check whether an `.astro` component does
