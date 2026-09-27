@@ -1,0 +1,52 @@
+---
+import Icon from '../Icon.astro';
+import type { IconName } from '../Icon.astro';
+import type { TeslaCategory } from '../../data/types';
+
+/**
+ * Big, thumb-sized jump links to each category — the page is mostly used on
+ * a car touchscreen, where scrolling past a dozen tiles to reach "Routing &
+ * Charging" is a chore.
+ */
+interface Props {
+  categories: TeslaCategory[];
+}
+
+const { categories } = Astro.props;
+
+const ICONS: Record<TeslaCategory['id'], IconName> = {
+  entertainment: 'play',
+  'routing-charging': 'zap',
+  utils: 'car',
+  fun: 'sparkles',
+  others: 'globe',
+};
+---
+
+<nav aria-label="Categories" class="w-full">
+  <ul class="flex flex-wrap gap-2.5">
+    {
+      categories.map((category) => (
+        <li>
+          <a
+            href={`#${category.id}`}
+            class="group glass border-line-strong hover:border-accent inline-flex min-h-12 items-center gap-2.5 rounded-full border py-1.5 pr-2 pl-1.5 font-semibold shadow-[var(--shadow-sm)] transition-all duration-300 ease-[var(--ease-spring)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)] active:scale-[0.97]"
+          >
+            <span class="text-accent grid size-9 place-items-center rounded-full bg-[color-mix(in_oklch,var(--accent)_14%,transparent)] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-110 group-hover:-rotate-12">
+              <Icon
+                name={ICONS[category.id]}
+                class="size-[1.1rem]"
+                fill={category.id === 'entertainment'}
+              />
+            </span>
+            {category.title}
+            <span class="bg-surface-sunken text-muted rounded-full px-2.5 py-1 font-mono text-xs">
+              {category.sites.length}
+              <span class="sr-only">{` ${category.sites.length === 1 ? 'link' : 'links'}`}</span>
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
