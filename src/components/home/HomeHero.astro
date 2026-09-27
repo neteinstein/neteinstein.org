@@ -8,18 +8,11 @@ import { welcome } from '../../data/home';
 import portrait from '../../assets/home/portrait.webp';
 
 /** Roles cycled by the ticker. Each is a section of this site. */
-const TICKER = [
-  'Husband & Father',
-  'Tech Engineer',
-  'Improver',
-  'Podcast Host',
-  'Speaker',
-  'Storyteller',
-];
+const TICKER = ['Tech Engineer', 'Improver', 'Podcast Host', 'Speaker', 'Storyteller'];
 
 /** Chips orbiting the portrait. Decorative; the same facts are in "Who am I?". */
 const CHIPS = [
-  { text: '📱 Mobile @ Mindera', class: 'top-[8%] -left-2 sm:left-0', delay: 0 },
+  { text: '📱 AI & Mobile @ Mindera', class: 'top-[8%] -left-2 sm:left-0', delay: 0 },
   { text: '🎙️ Yellow Box', class: 'top-[18%] -right-2 sm:right-2', delay: 1.2 },
   { text: '🔁 LoopGain', class: 'bottom-[26%] -left-4 sm:-left-6', delay: 2.1 },
   { text: '🌶️ O Que Arde Cura', class: 'bottom-[12%] right-0 sm:right-4', delay: 0.6 },
@@ -142,37 +135,33 @@ const CHIPS = [
 </section>
 
 <style>
-  /* Six roles, each held ~2s, then slide up; the duplicated first row makes the loop seamless. */
+  /* Five roles, each held ~2s, then slide up; the duplicated first row makes the loop seamless. */
   .motion-ok .role-ticker-track {
-    animation: ticker 13.2s var(--ease-out-expo) infinite;
+    animation: ticker 11s var(--ease-out-expo) infinite;
   }
   @keyframes ticker {
     0%,
-    13% {
+    15.6% {
       translate: 0 0;
     }
-    16.67%,
-    29.67% {
+    20%,
+    35.6% {
       translate: 0 -1.3em;
     }
-    33.33%,
-    46.33% {
+    40%,
+    55.6% {
       translate: 0 -2.6em;
     }
-    50%,
-    63% {
+    60%,
+    75.6% {
       translate: 0 -3.9em;
     }
-    66.67%,
-    79.67% {
+    80%,
+    95.6% {
       translate: 0 -5.2em;
     }
-    83.33%,
-    96.33% {
-      translate: 0 -6.5em;
-    }
     100% {
-      translate: 0 -7.8em;
+      translate: 0 -6.5em;
     }
   }
 

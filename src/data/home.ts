@@ -25,6 +25,7 @@ export const roles: Role[] = [
       { label: 'Mindera', href: 'http://www.mindera.com' },
     ],
   },
+  { emoji: '🧠', text: ['AI Coach'] },
   {
     emoji: '🔁',
     text: [
@@ -108,7 +109,7 @@ export const useful: Useful[] = [
     href: '/my-apps',
     description: "I've been developing a number of free number of apps.",
     image: myApps,
-    imageAlt: 'The Android mascot next to a phone showing the Google Play logo',
+    imageAlt: 'Illustration of the same app running in a browser window and on a phone',
   },
   {
     title: 'Tesla Utils',
