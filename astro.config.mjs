@@ -13,7 +13,12 @@ export default defineConfig({
   trailingSlash: 'never',
   build: { format: 'file' },
 
-  integrations: [react(), mdx(), sitemap()],
+  integrations: [
+    react(),
+    mdx(),
+    // The easter egg is meant to be found in the source, not the sitemap.
+    sitemap({ filter: (page) => !page.endsWith('/easter-egg') }),
+  ],
 
   vite: {
     plugins: [tailwindcss()],
