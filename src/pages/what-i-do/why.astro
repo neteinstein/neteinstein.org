@@ -1,9 +1,9 @@
 ---
-// TODO(content): stub — ported from https://www.neteinstein.org/what-i-do/why in a follow-up step.
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHero from '../../components/PageHero.astro';
+import ProsePage from '../../layouts/ProsePage.astro';
+import QuestionIndex from '../../components/why/QuestionIndex.astro';
+import { heroGif } from '../../data/why';
 ---
 
-<BaseLayout title="Why?">
-  <PageHero title="Why?" eyebrow="What I do" />
-</BaseLayout>
+<ProsePage slug="why" image={heroGif.src} imageAlt={heroGif.alt}>
+  <QuestionIndex slot="hero" slug="why" label="On this page" />
+</ProsePage>

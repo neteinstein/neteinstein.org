@@ -1,0 +1,87 @@
+---
+title: 'Why, How, What!'
+description: 'Why "neteinstein.org", why Google Sites, why English and not Portuguese, why GIFs and a few more whys, including the IRC-era story behind the nickname.'
+eyebrow: 'What I do'
+highlight: ['Why']
+---
+
+import WhyGrid from '../../components/why/WhyGrid.astro';
+import WhyCard from '../../components/why/WhyCard.astro';
+import NickTrail from '../../components/why/NickTrail.astro';
+import WhyChain from '../../components/why/WhyChain.astro';
+import { closingGif } from '../../data/why';
+
+<WhyGrid>
+
+<WhyCard n="01" variant="wide">
+
+## Why "neteinstein.org"?
+
+Well, actually "neteinstein" is a username I use since I was very young (it was actually the lamer NeTeInStEiN version... 😬).
+
+During 1999 [IRC](https://en.wikipedia.org/wiki/Internet_Relay_Chat) was "the thing". I started at Dalnet and then moved to [PTnet](http://www.ptnet.org). Finding a free username wasn't very easy. I was very fond of Einstein but it was taken, so... I ended up with this one. Since it was available in (almost) every platform I continued using it... until today I guess.
+
+<NickTrail
+  label="IRC · 1999"
+  nicks={[
+    { nick: 'Einstein', note: 'taken', state: 'taken' },
+    { nick: 'NeTeInStEiN', note: 'the lamer version', state: 'then' },
+    { nick: 'neteinstein', note: 'until today', state: 'now' },
+  ]}
+/>
+
+</WhyCard>
+
+<WhyCard n="02">
+
+## Why Google Sites?
+
+I just wanted something fast, simple and easy to update. It's quite limited, but I'm not building a rocket ship 🚀 (here at least!)
+
+</WhyCard>
+
+<WhyCard n="03">
+
+## Why English and not Portuguese?
+
+It's a habit, I guess. I spend my working day speaking and writing in English... and I got used to it. So I end up writing in English everything that is work related.
+
+Don't get me wrong, I do really like to write in Portuguese, but since this has a lot of work/tech parts, I decided to leave it this way.
+
+</WhyCard>
+
+<WhyCard n="04">
+
+## Why Gifs?
+
+I don't take myself too serious. We're all going to die anyway, so don't be too stiff about life. You'll have much more fun!
+
+</WhyCard>
+
+<WhyCard n="05">
+
+## Why are you so beautiful?
+
+I was just born this way 💥
+
+</WhyCard>
+
+<WhyCard n="06" variant="wide">
+
+## Why...?
+
+Why, then How and finally What! 👌
+
+<WhyChain steps={['Why', 'How', 'What!']} />
+
+</WhyCard>
+
+<WhyCard n="07" variant="finale" image={closingGif.src} imageAlt={closingGif.alt}>
+
+## Why?
+
+Why not?
+
+</WhyCard>
+
+</WhyGrid>
