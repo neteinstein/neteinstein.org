@@ -1,0 +1,66 @@
+---
+import type { ImproverChapter } from '../../data/types';
+
+/**
+ * One chapter of /what-i-do/improver. From `lg` up the header (big number,
+ * eyebrow, title, subtitle) sticks in a left rail while the body scrolls
+ * past it; below that it simply stacks. The `wide` slot renders after the
+ * two-column grid, at full container width (galleries, forms).
+ */
+interface Props {
+  chapter: ImproverChapter;
+  /** 1-based position, shown as the big decorative number. */
+  index: number;
+  /** Pull the `wide` slot closer, when it continues the body's last line. */
+  tightWide?: boolean;
+}
+
+const { chapter, index, tightWide = false } = Astro.props;
+const number = String(index).padStart(2, '0');
+---
+
+<section id={chapter.id} class="container-page relative py-14 sm:py-20">
+  <div
+    class="via-line-strong absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent to-transparent sm:inset-x-6"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="grid gap-8 lg:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] lg:gap-16">
+    <header class="lg:sticky lg:top-28 lg:self-start" data-reveal>
+      <p class="flex items-end gap-4 lg:block">
+        <span
+          class="font-display text-gradient block text-6xl leading-none font-extrabold tracking-tighter sm:text-7xl lg:text-8xl"
+          aria-hidden="true"
+        >
+          {number}
+        </span>
+        <span class="eyebrow block pb-1 lg:mt-5 lg:pb-0">{chapter.eyebrow}</span>
+      </p>
+      <h2
+        class="font-display mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:mt-2"
+      >
+        {chapter.title}
+      </h2>
+      {
+        chapter.subtitle && (
+          <p class="font-display text-muted mt-3 text-lg leading-snug text-pretty sm:text-xl">
+            {chapter.subtitle}
+          </p>
+        )
+      }
+    </header>
+
+    <div class="min-w-0">
+      <slot />
+    </div>
+  </div>
+
+  {
+    Astro.slots.has('wide') && (
+      <div class:list={[tightWide ? 'mt-10' : 'mt-14 sm:mt-20']}>
+        <slot name="wide" />
+      </div>
+    )
+  }
+</section>

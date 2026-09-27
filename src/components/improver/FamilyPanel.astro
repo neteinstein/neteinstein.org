@@ -1,0 +1,67 @@
+---
+import { getImage } from 'astro:assets';
+import type { ImproverFamily } from '../../data/types';
+
+/**
+ * Body of the "LoopGain Family" chapter: the status pill, the copy and the
+ * family silhouette. The silhouette is black on transparent, so rather than
+ * vanish on the dark theme it is used as a mask over the brand gradient —
+ * the same shape, painted in whichever accents the theme defines.
+ */
+interface Props {
+  family: ImproverFamily;
+}
+
+const { family } = Astro.props;
+const { width, height } = family.illustration.image;
+const silhouette = await getImage({
+  src: family.illustration.image,
+  width: 480,
+  format: 'webp',
+});
+---
+
+<div class="grid items-center gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,16rem)] md:gap-12">
+  <div data-reveal>
+    <p
+      class="border-line bg-surface-raised inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs font-semibold tracking-[0.14em] uppercase shadow-[var(--shadow-sm)]"
+    >
+      <span class="bg-accent-3 size-2 animate-pulse rounded-full" aria-hidden="true"></span>
+      {family.status}
+    </p>
+    <div class="text-muted mt-6 space-y-4 text-lg leading-relaxed text-pretty">
+      {
+        family.paragraphs.map((paragraph, index) => (
+          <p class:list={[index === 0 && 'font-display text-fg text-xl leading-snug sm:text-2xl']}>
+            {paragraph}
+          </p>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="relative isolate mx-auto w-full max-w-64" data-reveal="scale">
+    <div
+      class="absolute inset-0 -z-10 scale-110 rounded-full bg-[radial-gradient(closest-side,var(--glow-a),transparent)]"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="silhouette w-full"
+      role="img"
+      aria-label={family.illustration.alt}
+      style={`--silhouette: url('${silhouette.src}'); aspect-ratio: ${width} / ${height}`}
+    >
+    </div>
+  </div>
+</div>
+
+<style>
+  .silhouette {
+    background-image: var(--gradient-brand);
+    background-size: 200% auto;
+    animation: var(--animate-gradient-pan);
+    -webkit-mask: var(--silhouette) center / contain no-repeat;
+    mask: var(--silhouette) center / contain no-repeat;
+  }
+</style>

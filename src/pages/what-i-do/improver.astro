@@ -1,9 +1,64 @@
 ---
-// TODO(content): stub — ported from https://www.neteinstein.org/what-i-do/improver in a follow-up step.
+import { getEntry, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
+import Prose from '../../components/Prose.astro';
+import Chapter from '../../components/improver/Chapter.astro';
+import ChapterIndex from '../../components/improver/ChapterIndex.astro';
+import TeamNote from '../../components/improver/TeamNote.astro';
+import FeedbackStory from '../../components/improver/FeedbackStory.astro';
+import FeedbackMedia from '../../components/improver/FeedbackMedia.astro';
+import WorkshopModules from '../../components/improver/WorkshopModules.astro';
+import VerbMarquee from '../../components/improver/VerbMarquee.astro';
+import PhotoMosaic from '../../components/improver/PhotoMosaic.astro';
+import WorkshopContact from '../../components/improver/WorkshopContact.astro';
+import FamilyPanel from '../../components/improver/FamilyPanel.astro';
+import { family, feedback, intro, quote, workshops } from '../../data/improver';
+
+const entry = await getEntry('pages', 'improver');
+if (!entry) throw new Error('Missing content entry: src/content/pages/improver.mdx');
+const { Content } = await render(entry);
+const page = entry.data;
 ---
 
-<BaseLayout title="Improver">
-  <PageHero title="Improver" eyebrow="What I do" />
+<BaseLayout title={page.title} description={page.description}>
+  <PageHero title={page.title} eyebrow={page.eyebrow} highlight={page.highlight} quote={quote}>
+    <ChapterIndex chapters={[intro, feedback, workshops, family]} />
+  </PageHero>
+
+  <Chapter chapter={intro} index={1}>
+    <div data-reveal>
+      <Prose class="text-muted">
+        <Content />
+      </Prose>
+    </div>
+    <TeamNote card={intro.card} tagline={intro.tagline} />
+  </Chapter>
+
+  <Chapter chapter={feedback} index={2}>
+    <FeedbackStory feedback={feedback} />
+    <FeedbackMedia slot="wide" video={feedback.video} deck={feedback.deck} />
+  </Chapter>
+
+  <Chapter chapter={workshops} index={3} tightWide>
+    <div class="text-muted max-w-3xl space-y-5 text-lg leading-relaxed text-pretty" data-reveal>
+      {workshops.intro.map((paragraph) => <p>{paragraph}</p>)}
+      <p class="text-fg font-medium">{workshops.modulesIntro}</p>
+    </div>
+
+    <Fragment slot="wide">
+      <WorkshopModules groups={workshops.modules} />
+      <div class="mt-14 sm:mt-20">
+        <VerbMarquee verbs={workshops.verbs} />
+      </div>
+      <div class="mt-10 sm:mt-14">
+        <PhotoMosaic photos={workshops.photos} label="Photos from Improve Teams workshops" />
+      </div>
+      <WorkshopContact cta={workshops.cta} note={workshops.note} form={workshops.form} />
+    </Fragment>
+  </Chapter>
+
+  <Chapter chapter={family} index={4}>
+    <FamilyPanel family={family} />
+  </Chapter>
 </BaseLayout>
