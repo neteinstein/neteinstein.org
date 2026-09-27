@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+import type { AppStoreLink } from '../../data/types';
+import { storeBadges } from '../../data/apps';
+
+/**
+ * The original's "Get it on Google Play" / "Open it on Web" badge images, each
+ * linking to that app's listing. The app name is prepended for screen readers
+ * so five "Get it on Google Play" links stay distinguishable out of context.
+ */
+interface Props {
+  app: string;
+  links: AppStoreLink[];
+  class?: string;
+}
+
+const { app, links, class: className } = Astro.props;
+---
+
+<ul class:list={['relative z-10 flex flex-wrap items-center gap-3', className]}>
+  {
+    links.map((link) => {
+      const badge = storeBadges[link.store];
+      return (
+        <li>
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block rounded-[0.55rem] shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-300 ease-[var(--ease-spring)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]"
+          >
+            <span class="sr-only">{app}: </span>
+            <Image
+              src={badge.image}
+              alt={badge.alt}
+              widths={[160, 320]}
+              sizes="10rem"
+              class="h-11 w-auto rounded-[0.55rem]"
+            />
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>

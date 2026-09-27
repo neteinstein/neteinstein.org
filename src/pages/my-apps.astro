@@ -1,9 +1,58 @@
 ---
-// TODO(content): stub — ported from https://www.neteinstein.org/my-apps in a follow-up step.
+import { getEntry, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import RichText from '../components/RichText.astro';
+import SupportCallout from '../components/SupportCallout.astro';
+import AppDock from '../components/apps/AppDock.astro';
+import AppCard from '../components/apps/AppCard.astro';
+import { apps, donate, support } from '../data/apps';
+
+// Hero copy and the FAQ live in MDX; the FAQ renders after the apps, so the
+// entry is rendered here rather than through ProsePage (which puts prose first).
+const entry = await getEntry('pages', 'my-apps');
+if (!entry) {
+  throw new Error('Missing content entry: src/content/pages/my-apps.mdx');
+}
+const { Content } = await render(entry);
+const page = entry.data;
 ---
 
-<BaseLayout title="My Apps">
-  <PageHero title="My Apps" />
+<BaseLayout title={page.title} description={page.description}>
+  <PageHero title={page.title} eyebrow={page.eyebrow} highlight={page.highlight} lead={page.lead}>
+    <p
+      class="text-muted mt-3 max-w-2xl text-lg text-pretty sm:text-xl"
+      data-enter
+      style="--delay: 420"
+    >
+      <RichText text={donate} />
+    </p>
+    <AppDock apps={apps} delay={520} class="mt-10" />
+  </PageHero>
+
+  <Section id="apps" eyebrow="The apps">
+    <div class="grid gap-6 md:grid-cols-2 lg:gap-8" data-reveal-stagger>
+      {
+        apps.map((app, index) => (
+          <AppCard
+            app={app}
+            index={index}
+            featured={index === 0}
+            class:list={[index === 0 && 'md:col-span-2']}
+          />
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section id="faq" eyebrow="FAQ">
+    <div class="grid items-start gap-6 lg:grid-cols-2">
+      <Content />
+    </div>
+  </Section>
+
+  <div id="support" class="container-page scroll-mt-24 pt-4 pb-16 sm:pb-20">
+    <SupportCallout title={support.title} message={support.message} class="mx-auto max-w-5xl" />
+  </div>
 </BaseLayout>
