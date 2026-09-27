@@ -1,0 +1,63 @@
+---
+import EpisodeTile from './EpisodeTile.astro';
+import type { PodcastEpisode } from '../../data/types';
+import { useI18n } from '../../i18n';
+
+/**
+ * A season's episodes: a header row with a big gradient season numeral and a
+ * hairline, then the episode wall. Tiles stay at least ~350px wide so the
+ * VideoEmbed's play button never sits on its two-line title.
+ */
+interface Props {
+  show: string;
+  season: number;
+  episodes: PodcastEpisode[];
+}
+
+const { show, season, episodes } = Astro.props;
+
+// Nine tiles fill a 3×3 wall; four read better as a 2×2 than as 3 + 1.
+const threeUp = episodes.length % 3 === 0 || episodes.length > 4;
+// On the two-up wall an odd last tile spans both columns — a feature, not an orphan.
+const wideLast = episodes.length % 2 === 1 && episodes.length > 1;
+const wideClass = threeUp ? 'md:max-xl:col-span-2' : 'md:col-span-2';
+const { t } = useI18n(Astro);
+const countLabel = t(episodes.length === 1 ? '{count} episode' : '{count} episodes', {
+  count: episodes.length,
+});
+---
+
+<div>
+  <header class="mb-7 flex items-end gap-4 sm:gap-5" data-reveal="left">
+    <span
+      class="font-display text-gradient text-[4.5rem] leading-[0.8] font-extrabold tracking-[-0.06em] sm:text-[5.5rem]"
+      aria-hidden="true"
+    >
+      {String(season).padStart(2, '0')}
+    </span>
+    <div class="shrink-0 pb-1">
+      <h3 class="font-display text-2xl font-bold tracking-tight">
+        {t('Season {season}', { season })}
+      </h3>
+      <p class="text-muted mt-1 font-mono text-xs font-semibold tracking-[0.14em] uppercase">
+        {countLabel}
+      </p>
+    </div>
+    <span
+      class="from-line-strong mb-3 ml-2 hidden h-px flex-1 bg-gradient-to-r to-transparent sm:block"
+      aria-hidden="true"></span>
+  </header>
+
+  <ul class:list={['grid gap-5 md:grid-cols-2', threeUp && 'xl:grid-cols-3']} data-reveal-stagger>
+    {
+      episodes.map((episode, index) => (
+        <EpisodeTile
+          episode={episode}
+          show={show}
+          wide={wideLast && index === episodes.length - 1}
+          class={wideLast && index === episodes.length - 1 ? wideClass : undefined}
+        />
+      ))
+    }
+  </ul>
+</div>

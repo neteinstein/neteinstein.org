@@ -1,0 +1,50 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import ButtonLink from '../../components/ButtonLink.astro';
+import PlacesTable from '../../components/kids/PlacesTable.astro';
+import WipNote from '../../components/kids/WipNote.astro';
+import { navPages } from '../../config/site';
+import * as kids from '../../data/kids';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
+
+const PATH = '/porto/with-kids';
+const NOTE_ID = 'cost-note';
+
+const { t, locale, localize } = useI18n(Astro);
+const { kidsColumns, kidsHero, kidsPlaces, kidsWorkInProgress } = localize(kids);
+const entry = await getPage('with-kids', locale);
+const { Content: CostNote } = await render(entry);
+
+const navLabel = navPages().find((page) => page.href === PATH)?.label;
+const pageName = navLabel ? t(navLabel) : entry.data.title;
+const listTitle = t('Places for kids');
+---
+
+<BaseLayout title={pageName} description={entry.data.description}>
+  <PageHero
+    title={entry.data.title}
+    eyebrow={entry.data.eyebrow}
+    highlight={entry.data.highlight}
+    lead={entry.data.lead}
+    image={kidsHero.image}
+    imageAlt={kidsHero.alt}
+  >
+    <ButtonLink slot="actions" href="#places" size="lg" trailing="arrow-down">
+      {t('Jump to the list')}
+    </ButtonLink>
+  </PageHero>
+
+  <Section id="places" eyebrow={t('Play & parties')} title={listTitle}>
+    <PlacesTable places={kidsPlaces} columns={kidsColumns} caption={listTitle} noteId={NOTE_ID} />
+
+    <div class="mt-14 sm:mt-16">
+      <WipNote sign={kidsWorkInProgress} noteId={NOTE_ID}>
+        <CostNote />
+      </WipNote>
+    </div>
+  </Section>
+</BaseLayout>

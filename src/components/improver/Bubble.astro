@@ -1,0 +1,60 @@
+---
+/**
+ * A speech bubble for the imagined reader's aside in the "Improver?" prose
+ * (used from `src/content/pages/improver.mdx`). Rendered as a paragraph, so
+ * it keeps the prose rhythm; the tail and tilt are decoration. The reveal
+ * sits on a wrapper so its transition does not fight the bubble's own.
+ */
+---
+
+<div data-reveal="scale">
+  <p class="bubble"><slot /></p>
+</div>
+
+<style>
+  .bubble {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    margin-block: 1.75rem 2rem;
+    padding: 0.9rem 1.25rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 1.4rem 1.4rem 1.4rem 0.35rem;
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-md);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.45;
+    rotate: -1.2deg;
+    transition: rotate 0.5s var(--ease-spring);
+  }
+  .bubble:hover {
+    rotate: 0deg;
+  }
+  /* Tail. */
+  .bubble::after {
+    content: '';
+    position: absolute;
+    left: -1px;
+    bottom: -0.7rem;
+    width: 1.1rem;
+    height: 0.75rem;
+    background: var(--surface-raised);
+    border-left: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    border-bottom-left-radius: 100% 100%;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+  /* A gradient edge on the left, echoing the prose blockquote. */
+  .bubble::before {
+    content: '';
+    position: absolute;
+    inset-block: 0.8rem;
+    left: -1px;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--gradient-brand);
+  }
+</style>

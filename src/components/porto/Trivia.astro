@@ -1,0 +1,41 @@
+---
+import Icon from '../Icon.astro';
+
+/**
+ * The original's closing "Trivia:" note — how the guide came to be. The note
+ * itself is the MDX body of `src/content/pages/visit-porto.mdx`, passed in
+ * the default slot.
+ */
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<aside
+  class="border-line bg-surface-raised relative overflow-hidden rounded-3xl border p-7 shadow-[var(--shadow-sm)] sm:p-10"
+  data-reveal="scale"
+>
+  <div
+    class="pointer-events-none absolute -top-20 -left-16 size-64 rounded-full bg-[radial-gradient(closest-side,var(--glow-d),transparent)]"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-8">
+    <span
+      class="bg-surface-sunken text-accent-2 grid size-14 shrink-0 place-items-center rounded-2xl"
+      aria-hidden="true"
+    >
+      <Icon name="sparkles" class="size-7" />
+    </span>
+    <div>
+      <p class="font-display text-accent text-lg font-bold">{label}</p>
+      <div
+        class="font-display mt-2 text-xl leading-snug font-medium text-pretty sm:text-2xl [&_p]:m-0"
+      >
+        <slot />
+      </div>
+    </div>
+  </div>
+</aside>

@@ -1,6 +1,177 @@
 ---
-import ProsePage from '../layouts/ProsePage.astro';
-import { SITE } from '../config/site';
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeHero from '../components/home/HomeHero.astro';
+import Section from '../components/Section.astro';
+import CardGrid from '../components/CardGrid.astro';
+import Card from '../components/Card.astro';
+import Marquee from '../components/Marquee.astro';
+import RichText from '../components/RichText.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+import Icon from '../components/Icon.astro';
+import { SITE, navPages } from '../config/site';
+import * as home from '../data/home';
+import { isExternal } from '../lib/url';
+import { useI18n } from '../i18n';
+
+const { t, localize, localHref } = useI18n(Astro);
+const { glimpses, roles, useful } = localize(home);
+
+const current = roles.filter((role) => !role.past);
+const previously = roles.filter((role) => role.past);
+const sections = navPages().filter((page) => page.href !== '/');
 ---
 
-<ProsePage slug="home" title={SITE.title} bareTitle />
+<BaseLayout title={SITE.title} bareTitle>
+  <HomeHero />
+
+  <Section id="who" eyebrow={t('About me')} title={t('Who am I?')}>
+    <div class="grid gap-5 lg:grid-cols-3" data-reveal-stagger>
+      {
+        current.map((role, index) => (
+          <div
+            class:list={[
+              'group glow-ring border-line bg-surface-raised relative flex items-start gap-4 rounded-3xl border p-6 shadow-[var(--shadow-sm)] transition-transform duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1',
+              index === 0 && 'lg:row-span-2 lg:flex-col lg:justify-between',
+            ]}
+            data-spotlight
+          >
+            <span
+              class:list={[
+                'bg-surface-sunken grid shrink-0 place-items-center rounded-2xl transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-110 group-hover:-rotate-6',
+                index === 0 ? 'size-14 text-3xl lg:size-20 lg:text-5xl' : 'size-14 text-3xl',
+              ]}
+              aria-hidden="true"
+            >
+              {role.emoji}
+            </span>
+            <p
+              class:list={[
+                'font-display leading-snug font-semibold text-pretty',
+                index === 0 ? 'text-xl lg:text-3xl' : 'text-lg',
+              ]}
+            >
+              <RichText text={role.text} />
+            </p>
+          </div>
+        ))
+      }
+      <div
+        class="border-line-strong relative flex flex-col gap-4 rounded-3xl border border-dashed p-6"
+      >
+        <p class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
+          {t('Previously:')}
+        </p>
+        <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+          {
+            previously.map((role) => (
+              <li class="flex items-start gap-3">
+                <span class="text-2xl" aria-hidden="true">
+                  {role.emoji}
+                </span>
+                <p class="leading-snug text-pretty">
+                  <RichText text={role.text} />
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="glimpses" eyebrow={t('What I do')} title={t('Glimpses of what I do...')}>
+    <div class="grid gap-6 md:grid-cols-2" data-reveal-stagger>
+      {
+        glimpses.map((glimpse) => {
+          const external = isExternal(glimpse.href);
+          return (
+            <article class="group glow-ring border-line bg-surface-raised flex flex-col overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)]">
+              {glimpse.video ? (
+                <VideoEmbed
+                  provider={glimpse.video.provider}
+                  id={glimpse.video.id}
+                  hash={glimpse.video.hash}
+                  title={glimpse.title}
+                  class="rounded-none border-0 border-b shadow-none"
+                />
+              ) : (
+                glimpse.image && (
+                  <div class="border-line aspect-video overflow-hidden border-b">
+                    <Image
+                      src={glimpse.image}
+                      alt={glimpse.imageAlt ?? ''}
+                      widths={[480, 720, 960]}
+                      sizes="(min-width: 768px) 36rem, 100vw"
+                      class="size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-105"
+                    />
+                  </div>
+                )
+              )}
+              <div class="flex flex-1 flex-col p-6 sm:p-7">
+                <h3 class="font-display text-2xl font-bold tracking-tight">
+                  <a
+                    href={localHref(glimpse.href)}
+                    target={external ? '_blank' : undefined}
+                    rel={external ? 'noopener noreferrer' : undefined}
+                    class="link-underline"
+                  >
+                    {glimpse.title}
+                  </a>
+                </h3>
+                <p class="text-muted mt-3 leading-relaxed">
+                  <RichText text={glimpse.description} />
+                </p>
+                <a
+                  href={localHref(glimpse.cta.href)}
+                  class="text-accent mt-auto inline-flex items-center gap-1.5 self-start pt-5 font-mono text-xs font-semibold tracking-[0.14em] uppercase"
+                >
+                  {glimpse.cta.label}
+                  <Icon
+                    name="arrow-right"
+                    class="size-3.5 transition-transform group-hover:translate-x-1"
+                  />
+                </a>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </Section>
+
+  <div class="py-6" aria-label={t('Sections of this site')} role="region">
+    <Marquee duration={45}>
+      {
+        sections.map((page) => (
+          <a
+            href={localHref(page.href)}
+            class="group font-display text-muted hover:text-fg inline-flex items-center gap-4 text-3xl font-bold tracking-tight whitespace-nowrap transition-colors sm:text-5xl"
+          >
+            {t(page.label)}
+            <span class="text-gradient text-2xl sm:text-3xl" aria-hidden="true">
+              ✦
+            </span>
+          </a>
+        ))
+      }
+    </Marquee>
+  </div>
+
+  <Section eyebrow={t('Free stuff')} title={t('Things that can be useful:')}>
+    <CardGrid cols={3}>
+      {
+        useful.map((item) => (
+          <Card
+            title={item.title}
+            href={item.href}
+            description={item.description}
+            image={item.image}
+            imageAlt={item.imageAlt}
+            imageFit={item.imageFit}
+          />
+        ))
+      }
+    </CardGrid>
+  </Section>
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+import { useI18n } from '../i18n';
+
+/**
+ * Responsive, lazy-loaded third-party iframe (SlideShare, Prezi, Google
+ * Docs/Forms/Drive previews). For YouTube and Vimeo prefer `VideoEmbed`, which
+ * defers the player until clicked.
+ *
+ * Give either `aspect` (CSS ratio, for slides and video-like content) or
+ * `height` (px, for documents and forms that scroll).
+ */
+interface Props {
+  src: string;
+  title: string;
+  aspect?: string;
+  height?: number;
+  /** Link shown under the frame for people who would rather open it directly. */
+  fallbackHref?: string;
+  fallbackLabel?: string;
+  class?: string;
+}
+
+const { t } = useI18n(Astro);
+const {
+  src,
+  title,
+  aspect = '16 / 9',
+  height,
+  fallbackHref,
+  fallbackLabel = t('Open in a new tab'),
+  class: className,
+} = Astro.props;
+
+// The original embeds used protocol-relative URLs (`//www.slideshare.net/…`).
+const url = src.startsWith('//') ? `https:${src}` : src;
+---
+
+<figure class:list={['w-full', className]}>
+  <div
+    class="border-line bg-surface-sunken overflow-hidden rounded-3xl border shadow-[var(--shadow-md)]"
+    style={height ? `height: ${height}px` : `aspect-ratio: ${aspect}`}
+  >
+    <iframe
+      src={url}
+      title={title}
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="strict-origin-when-cross-origin"
+      class="size-full border-0"></iframe>
+  </div>
+  {
+    fallbackHref && (
+      <figcaption class="mt-3 text-sm">
+        <a
+          href={fallbackHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-underline text-link font-medium"
+        >
+          {fallbackLabel} ↗
+        </a>
+      </figcaption>
+    )
+  }
+</figure>

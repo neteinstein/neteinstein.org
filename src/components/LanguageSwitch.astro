@@ -1,0 +1,43 @@
+---
+import { withBase } from '../lib/url';
+import { LOCALES, LOCALE_INFO, currentPage, localizePath, useI18n } from '../i18n';
+
+/**
+ * Links to this page in the other language(s). Choosing one is remembered, so
+ * it overrides the browser-language redirect in `BaseLayout` from then on.
+ */
+const { locale, t } = useI18n(Astro);
+const path = currentPage(Astro.url);
+const targets = LOCALES.filter((other) => other !== locale);
+---
+
+{
+  targets.map((target) => (
+    <a
+      href={withBase(localizePath(path, target))}
+      hreflang={LOCALE_INFO[target].tag}
+      lang={LOCALE_INFO[target].tag}
+      data-set-locale={target}
+      title={LOCALE_INFO[target].name}
+      aria-label={t('Read this page in {language}', { language: LOCALE_INFO[target].name })}
+      class="border-line text-muted hover:text-fg grid h-10 min-w-10 place-items-center rounded-xl border px-2 font-mono text-xs font-semibold tracking-[0.08em] transition-colors"
+    >
+      {LOCALE_INFO[target].short}
+    </a>
+  ))
+}
+
+<script>
+  import { LOCALE_STORAGE_KEY } from '../i18n/config';
+
+  document.addEventListener('click', (event) => {
+    const link = (event.target as Element | null)?.closest<HTMLElement>('[data-set-locale]');
+    const locale = link?.dataset.setLocale;
+    if (!locale) return;
+    try {
+      localStorage.setItem(LOCALE_STORAGE_KEY, locale);
+    } catch {
+      /* storage blocked — the link still navigates */
+    }
+  });
+</script>

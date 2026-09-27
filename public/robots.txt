@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /easter-egg
 
-Sitemap: https://neteinstein.org/sitemap-index.xml
+Sitemap: https://www.neteinstein.org/sitemap-index.xml

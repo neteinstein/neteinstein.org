@@ -1,0 +1,55 @@
+---
+import type { Appearance } from '../../data/types';
+import TechImageFrame from './TechImageFrame.astro';
+import TechText from './TechText.astro';
+import { useI18n } from '../../i18n';
+
+/** An "Appeared at:" feature card — poster, linked title, blurb and year. */
+interface Props {
+  appearance: Appearance;
+}
+
+const { appearance } = Astro.props;
+const { title, description, year, image } = appearance;
+const siblingHrefs = [
+  title.href,
+  ...description.flatMap((part) => (typeof part === 'string' ? [] : [part.href])),
+];
+
+const { localHref } = useI18n(Astro);
+---
+
+<article
+  class="group glow-ring border-line bg-surface-raised relative flex h-full flex-col overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)]"
+  data-spotlight
+>
+  <TechImageFrame
+    image={image}
+    siblingHrefs={siblingHrefs}
+    widths={[480, 720, 960]}
+    sizes="(min-width: 768px) 36rem, 100vw"
+    class="border-line aspect-[21/10] border-b"
+  />
+  <div class="flex flex-1 flex-col p-6 sm:p-7">
+    <div class="flex items-start justify-between gap-4">
+      <h3 class="font-display text-2xl leading-tight font-bold tracking-tight">
+        <a
+          href={localHref(title.href)}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-underline"
+        >
+          {title.label}
+        </a>
+      </h3>
+      <span
+        class="text-accent shrink-0 rounded-full bg-[color-mix(in_oklch,var(--accent)_12%,transparent)] px-3 py-1 font-mono text-xs font-semibold"
+      >
+        {year}
+      </span>
+    </div>
+    <p class="text-muted mt-3 leading-relaxed text-pretty">
+      <TechText text={description} />
+    </p>
+  </div>
+</article>

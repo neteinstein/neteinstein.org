@@ -1,0 +1,100 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import { useI18n } from '../../i18n';
+
+/**
+ * The original opened with a wide strip photo of a printed page. Here it is a
+ * slowly panning ribbon under the hero, with a row of "big number" tiles that
+ * jump to the page's sections.
+ */
+interface Stat {
+  value: number;
+  label: string;
+  /** In-page anchor (`#books`). */
+  href: string;
+}
+
+interface Props {
+  image: ImageMetadata;
+  imageAlt: string;
+  stats: Stat[];
+}
+
+const { image, imageAlt, stats } = Astro.props;
+
+const { localHref } = useI18n(Astro);
+---
+
+<div class="container-page pb-8 sm:pb-12" data-reveal="scale">
+  <div class="border-line relative overflow-hidden rounded-[2rem] border shadow-[var(--shadow-lg)]">
+    <Image
+      src={image}
+      alt={imageAlt}
+      widths={[480, 910]}
+      sizes="(min-width: 1216px) 73rem, 100vw"
+      class="ribbon-photo h-32 w-full object-cover sm:h-48 lg:h-56"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 bg-[color-mix(in_oklch,var(--surface)_30%,transparent)]"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-[image:var(--gradient-brand)] opacity-25 mix-blend-soft-light"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="from-surface absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+  </div>
+
+  <ul
+    class="relative z-10 -mt-14 grid grid-cols-2 gap-3 px-3 sm:-mt-20 sm:gap-4 sm:px-6 lg:grid-cols-4 lg:px-10"
+    data-reveal-stagger
+  >
+    {
+      stats.map((stat) => (
+        <li>
+          <a
+            href={localHref(stat.href)}
+            class="group glow-ring glass border-line flex h-full flex-col justify-between gap-1 rounded-2xl border p-4 shadow-[var(--shadow-md)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-lg)] sm:p-5"
+          >
+            <span class="font-display text-gradient text-4xl leading-none font-extrabold tracking-tight sm:text-5xl">
+              {stat.value}
+            </span>
+            <span class="text-muted group-hover:text-fg flex items-center justify-between gap-2 text-sm font-medium transition-colors">
+              {stat.label}
+              <span
+                class="transition-transform duration-300 group-hover:translate-y-0.5"
+                aria-hidden="true"
+              >
+                ↓
+              </span>
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .motion-ok .ribbon-photo {
+    animation: ribbon-pan 28s ease-in-out infinite alternate;
+  }
+  @keyframes ribbon-pan {
+    from {
+      scale: 1.04;
+      translate: -1.5% 0;
+    }
+    to {
+      scale: 1.14;
+      translate: 1.5% -3%;
+    }
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+/**
+ * A titled block of page content, constrained to the page container. Its
+ * header reveals on scroll; children opt in themselves (`data-reveal`, or a
+ * `CardGrid`, which staggers its items).
+ */
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+  /** Body width — `narrow` for reading columns, `wide` for grids. */
+  width?: 'narrow' | 'default' | 'wide';
+  align?: 'left' | 'center';
+  class?: string;
+}
+
+const { id, eyebrow, title, intro, width = 'wide', align = 'left', class: className } = Astro.props;
+
+const widthClass = { narrow: 'max-w-3xl', default: 'max-w-5xl', wide: '' }[width];
+---
+
+<section id={id} class:list={['container-page py-10 sm:py-14', className]}>
+  {
+    (eyebrow || title || intro) && (
+      <header
+        class:list={['mb-8 max-w-3xl sm:mb-10', align === 'center' && 'mx-auto text-center']}
+        data-reveal
+      >
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {title && (
+          <h2 class="font-display mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
+        )}
+        {intro && <p class="text-muted mt-4 text-lg text-pretty">{intro}</p>}
+      </header>
+    )
+  }
+  <div class:list={[widthClass, align === 'center' && widthClass && 'mx-auto']}>
+    <slot />
+  </div>
+</section>
