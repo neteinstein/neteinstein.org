@@ -1,0 +1,22 @@
+---
+import Icon from '../Icon.astro';
+import KidsGlyph from './KidsGlyph.astro';
+import type { KidsColumnKey } from '../../data/types';
+
+/** The small decorative glyph shown next to each column label of the kids table. */
+interface Props {
+  column: KidsColumnKey;
+  class?: string;
+}
+
+const { column, class: className = 'size-3.5' } = Astro.props;
+---
+
+{column === 'where' && <Icon name="map-pin" class={className} />}
+{column === 'name' && <Icon name="sparkles" class={className} />}
+{column === 'setting' && <KidsGlyph name="house" class={className} />}
+{column === 'cost' && <KidsGlyph name="euro" class={className} />}
+{column === 'ages' && <KidsGlyph name="cake" class={className} />}
+{column === 'children' && <Icon name="users" class={className} />}
+{column === 'duration' && <KidsGlyph name="clock" class={className} />}
+{column === 'notes' && <KidsGlyph name="list" class={className} />}

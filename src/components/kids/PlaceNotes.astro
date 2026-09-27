@@ -1,0 +1,44 @@
+---
+import Icon from '../Icon.astro';
+import Tag from '../Tag.astro';
+import KidsGlyph from './KidsGlyph.astro';
+import type { KidsNoteList } from '../../data/types';
+
+/**
+ * A place's "Notes" cell: each bold label ("Schedules:", "Has:") over its
+ * bullet list, the items shown as pills — time slots in mono, inclusions ticked.
+ */
+interface Props {
+  notes: KidsNoteList[];
+  class?: string;
+}
+
+const { notes, class: className } = Astro.props;
+---
+
+<div class:list={['space-y-4', className]}>
+  {
+    notes.map((list) => (
+      <div>
+        <p class="text-fg text-[0.8rem] font-bold">{list.label}</p>
+        <ul class="mt-2 flex flex-wrap gap-1.5">
+          {list.items.map((item) => (
+            <li>
+              {list.kind === 'times' ? (
+                <Tag tone="teal" class="font-mono whitespace-nowrap">
+                  <KidsGlyph name="clock" class="text-accent-4 size-3.5 shrink-0" />
+                  {item}
+                </Tag>
+              ) : (
+                <Tag tone="amber" class="whitespace-nowrap">
+                  <Icon name="check" class="text-accent-3 size-3.5 shrink-0" stroke-width={3} />
+                  {item}
+                </Tag>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>
