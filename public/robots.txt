@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /easter-egg
 
 Sitemap: https://www.neteinstein.org/sitemap-index.xml

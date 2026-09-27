@@ -36,6 +36,8 @@ export default defineConfig({
     react(),
     mdx(),
     sitemap({
+      // The easter egg is meant to be found in the source, not the sitemap.
+      filter: (page) => !page.endsWith('/easter-egg'),
       i18n: {
         defaultLocale: DEFAULT_LOCALE,
         locales: Object.fromEntries(LOCALES.map((locale) => [locale, LOCALE_INFO[locale].tag])),
