@@ -1,5 +1,5 @@
 ---
-import { getEntry, render } from 'astro:content';
+import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
@@ -12,7 +12,13 @@ import HighlightColumn from '../../components/articles/HighlightColumn.astro';
 import BookFeature from '../../components/articles/BookFeature.astro';
 import GoodreadsShelf from '../../components/articles/GoodreadsShelf.astro';
 import ReadingGroupBlock from '../../components/articles/ReadingGroupBlock.astro';
-import {
+import * as articles from '../../data/articles';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
+import pageCloseup from '../../assets/what-i-do/articles/book-page-closeup.webp';
+
+const { t, locale, localize } = useI18n(Astro);
+const {
   books,
   favouriteBooks,
   goodreadsProfile,
@@ -25,11 +31,8 @@ import {
   shorterIntro,
   shorterOrigin,
   toReadList,
-} from '../../data/articles';
-import pageCloseup from '../../assets/what-i-do/articles/book-page-closeup.webp';
-
-const entry = await getEntry('pages', 'articles');
-if (!entry) throw new Error('Missing content entry: src/content/pages/articles.mdx');
+} = localize(articles);
+const entry = await getPage('articles', locale);
 const { Content } = await render(entry);
 
 const highlightStyle = [
@@ -38,7 +41,7 @@ const highlightStyle = [
   { icon: 'book', tone: '--accent-4' },
 ] as const;
 const groupTones = ['--accent', '--accent-2', '--accent-3', '--accent-4'] as const;
-const bookBadges = ['In the works', 'Contributor'];
+const bookBadges = [t('In the works'), t('Contributor')];
 
 const articleCount = highlights.reduce(
   (sum, group) => sum + group.years.reduce((n, year) => n + year.articles.length, 0),
@@ -49,10 +52,10 @@ const readingLinks = readingGroups
   .filter((part) => typeof part !== 'string').length;
 
 const stats = [
-  { value: articleCount, label: 'Highlighted articles', href: '#articles' },
+  { value: articleCount, label: t('Highlighted articles'), href: '#articles' },
   { value: books.length, label: headings.books, href: '#books' },
-  { value: favouriteBooks.length, label: 'Favourite books', href: '#must-read' },
-  { value: readingLinks, label: 'Shorter reads', href: '#shorter' },
+  { value: favouriteBooks.length, label: t('Favourite books'), href: '#must-read' },
+  { value: readingLinks, label: t('Shorter reads'), href: '#shorter' },
 ];
 ---
 
@@ -74,11 +77,11 @@ const stats = [
 
   <PhotoRibbon
     image={pageCloseup}
-    imageAlt="Close-up of a printed book page, the lines of text curving out of focus"
+    imageAlt={t('Close-up of a printed book page, the lines of text curving out of focus')}
     stats={stats}
   />
 
-  <Section id="articles" eyebrow="Writing" title={headings.articles}>
+  <Section id="articles" eyebrow={t('Writing')} title={headings.articles}>
     <div class="grid gap-5 md:grid-cols-2" data-reveal-stagger>
       {outlets.map((outlet) => <OutletCard outlet={outlet} />)}
     </div>
@@ -92,13 +95,13 @@ const stats = [
     </div>
   </Section>
 
-  <Section id="books" eyebrow="Published" title={headings.books}>
+  <Section id="books" eyebrow={t('Published')} title={headings.books}>
     <div class="grid gap-6 lg:grid-cols-2" data-reveal-stagger>
       {books.map((book, index) => <BookFeature book={book} badge={bookBadges[index]} />)}
     </div>
   </Section>
 
-  <Section id="must-read" eyebrow="Reading" title={headings.mustRead}>
+  <Section id="must-read" eyebrow={t('Reading')} title={headings.mustRead}>
     <div
       class="border-line bg-surface-sunken relative mb-8 overflow-hidden rounded-3xl border p-6 sm:p-10"
       data-reveal
@@ -119,8 +122,8 @@ const stats = [
     <GoodreadsShelf books={favouriteBooks} profile={goodreadsProfile} />
   </Section>
 
-  <Section id="shorter" eyebrow="Must read" title={headings.shorter} intro={shorterIntro}>
-    <nav aria-label="Reading list topics" class="mb-4" data-reveal>
+  <Section id="shorter" eyebrow={t('Must read')} title={headings.shorter} intro={shorterIntro}>
+    <nav aria-label={t('Reading list topics')} class="mb-4" data-reveal>
       <ul class="flex flex-wrap gap-2">
         {
           readingGroups.map((group) => (
@@ -155,7 +158,7 @@ const stats = [
     </p>
   </Section>
 
-  <Section id="read-late" eyebrow="Queue" title={headings.readLate} intro={readLateIntro}>
+  <Section id="read-late" eyebrow={t('Queue')} title={headings.readLate} intro={readLateIntro}>
     <div data-reveal>
       <Embed
         src={toReadList.src}

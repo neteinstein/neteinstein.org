@@ -1,6 +1,7 @@
 ---
 import type { TechText } from '../../data/types';
-import { isExternal, withBase } from '../../lib/url';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
 
 /**
  * Renders a `TechText` array — plain strings with inline links. Like the
@@ -13,6 +14,8 @@ interface Props {
 }
 
 const { text, linkClass = 'font-semibold text-link link-underline' } = Astro.props;
+
+const { localHref } = useI18n(Astro);
 ---
 
 {
@@ -21,7 +24,7 @@ const { text, linkClass = 'font-semibold text-link link-underline' } = Astro.pro
       part
     ) : (
       <a
-        href={withBase(part.href)}
+        href={localHref(part.href)}
         target={isExternal(part.href) ? '_blank' : undefined}
         rel={isExternal(part.href) ? 'noopener noreferrer' : undefined}
         aria-label={part.ariaLabel}

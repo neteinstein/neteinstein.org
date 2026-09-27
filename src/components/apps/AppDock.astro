@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { AppListing } from '../../data/types';
+import { useI18n } from '../../i18n';
 
 /**
  * The app icons, each jumping to that app further down the page.
@@ -20,6 +21,7 @@ interface Props {
 }
 
 const { apps, delay = 0, class: className } = Astro.props;
+const { t } = useI18n(Astro);
 
 /** Wide-layout slots: top-left corner (% of the square), tilt, and tile size. Decorative. */
 const SLOTS = [
@@ -32,7 +34,7 @@ const SLOTS = [
 ---
 
 <div class:list={['dock-slot', className]}>
-  <nav aria-label="Apps on this page" class="dock-nav max-w-full">
+  <nav aria-label={t('Apps on this page')} class="dock-nav max-w-full">
     <span class="dock-glow" aria-hidden="true"></span>
     <span class="dock-orbit" aria-hidden="true"></span>
     <ul

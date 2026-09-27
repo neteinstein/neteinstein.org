@@ -2,18 +2,28 @@
 import { Image } from 'astro:assets';
 import { NAV, SITE, isActive, isGroupActive } from '../config/site';
 import type { NavItem } from '../config/site';
-import { stripBase, withBase } from '../lib/url';
+import { currentPage, useI18n } from '../i18n';
 import avatar from '../assets/brand/avatar.webp';
 import MobileNav from './MobileNav.tsx';
 import ThemeToggle from './ThemeToggle.tsx';
+import LanguageSwitch from './LanguageSwitch.astro';
 
-const pathname = stripBase(Astro.url.pathname);
+interface Props {
+  /** Offer the language switch — off on pages with no translation (the 404). */
+  translated?: boolean;
+}
 
-// The island receives base-prefixed hrefs so it never needs to import the helper.
+const { translated = true } = Astro.props;
+const { t, localHref } = useI18n(Astro);
+// Base- and locale-free, like the hrefs in `NAV`.
+const pathname = currentPage(Astro.url);
+
+// The island receives translated labels and base-prefixed, localised hrefs so
+// it never needs to import the helpers.
 const mobileItems: NavItem[] = NAV.map((item) => ({
-  ...item,
-  href: item.href && withBase(item.href),
-  children: item.children?.map((child) => ({ ...child, href: withBase(child.href) })),
+  label: t(item.label),
+  href: item.href && localHref(item.href),
+  children: item.children?.map((child) => ({ label: t(child.label), href: localHref(child.href) })),
 }));
 ---
 
@@ -22,9 +32,9 @@ const mobileItems: NavItem[] = NAV.map((item) => ({
     class="site-header-bar glass border-line relative mx-auto flex h-16 max-w-[76rem] items-center justify-between gap-3 rounded-2xl border pr-2 pl-2.5 shadow-[var(--shadow-sm)] sm:pl-3"
   >
     <a
-      href={withBase('/')}
+      href={localHref('/')}
       class="group flex items-center gap-2.5 rounded-xl py-1 pr-2"
-      aria-label={`${SITE.title} — home`}
+      aria-label={t('{name} — home', { name: SITE.title })}
     >
       <span
         class="relative grid size-10 place-items-center overflow-hidden rounded-xl bg-[image:var(--gradient-brand)] p-[2px] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-105 group-hover:-rotate-6"
@@ -50,7 +60,7 @@ const mobileItems: NavItem[] = NAV.map((item) => ({
       makes it a backdrop root, so a nested panel could only blur the bar itself.
     */
     }
-    <nav aria-label="Main" class="hidden lg:block">
+    <nav aria-label={t('Main')} class="hidden lg:block">
       <ul class="flex items-center gap-0.5">
         {
           NAV.map((item) => {
@@ -65,11 +75,11 @@ const mobileItems: NavItem[] = NAV.map((item) => ({
               <li class="group relative">
                 {item.href ? (
                   <a
-                    href={withBase(item.href)}
+                    href={localHref(item.href)}
                     aria-current={pathname === item.href ? 'page' : undefined}
                     class:list={itemClass}
                   >
-                    {item.label}
+                    {t(item.label)}
                     {item.children && (
                       <svg
                         class="size-3.5 opacity-60 transition-transform duration-300 group-focus-within:rotate-180 group-hover:rotate-180"
@@ -85,7 +95,7 @@ const mobileItems: NavItem[] = NAV.map((item) => ({
                   </a>
                 ) : (
                   <button type="button" class:list={[itemClass, 'cursor-default']}>
-                    {item.label}
+                    {t(item.label)}
                     <svg
                       class="size-3.5 opacity-60 transition-transform duration-300 group-focus-within:rotate-180 group-hover:rotate-180"
                       viewBox="0 0 16 16"
@@ -107,7 +117,7 @@ const mobileItems: NavItem[] = NAV.map((item) => ({
                         return (
                           <li>
                             <a
-                              href={withBase(child.href)}
+                              href={localHref(child.href)}
                               aria-current={childActive ? 'page' : undefined}
                               class:list={[
                                 'group/item flex items-center justify-between gap-4 rounded-xl px-3.5 py-2.5 text-sm transition-colors',
@@ -116,7 +126,7 @@ const mobileItems: NavItem[] = NAV.map((item) => ({
                                   : 'text-muted hover:text-fg hover:bg-[color-mix(in_oklch,var(--text)_6%,transparent)]',
                               ]}
                             >
-                              {child.label}
+                              {t(child.label)}
                               <span
                                 aria-hidden="true"
                                 class="text-accent -translate-x-1 opacity-0 transition-all duration-300 group-hover/item:translate-x-0 group-hover/item:opacity-100"
@@ -138,8 +148,17 @@ const mobileItems: NavItem[] = NAV.map((item) => ({
     </nav>
 
     <div class="flex items-center gap-1.5">
-      <ThemeToggle client:load />
-      <MobileNav client:idle items={mobileItems} current={withBase(pathname)} />
+      {translated && <LanguageSwitch />}
+      <ThemeToggle
+        client:load
+        labels={{ dark: t('Switch to dark theme'), light: t('Switch to light theme') }}
+      />
+      <MobileNav
+        client:idle
+        items={mobileItems}
+        current={localHref(pathname)}
+        labels={{ open: t('Open menu'), close: t('Close menu'), nav: t('Main') }}
+      />
     </div>
   </div>
 </header>

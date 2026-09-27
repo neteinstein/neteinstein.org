@@ -1,5 +1,5 @@
 ---
-import { getEntry, render } from 'astro:content';
+import { render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
@@ -7,14 +7,16 @@ import RichText from '../components/RichText.astro';
 import SupportCallout from '../components/SupportCallout.astro';
 import AppDock from '../components/apps/AppDock.astro';
 import AppCard from '../components/apps/AppCard.astro';
-import { apps, donate, support } from '../data/apps';
+import * as appsData from '../data/apps';
+import { useI18n } from '../i18n';
+import { getPage } from '../i18n/content';
+
+const { t, locale, localize } = useI18n(Astro);
+const { apps, donate, support } = localize(appsData);
 
 // Hero copy and the FAQ live in MDX; the FAQ renders after the apps, so the
 // entry is rendered here rather than through ProsePage (which puts prose first).
-const entry = await getEntry('pages', 'my-apps');
-if (!entry) {
-  throw new Error('Missing content entry: src/content/pages/my-apps.mdx');
-}
+const entry = await getPage('my-apps', locale);
 const { Content } = await render(entry);
 const page = entry.data;
 ---
@@ -31,7 +33,7 @@ const page = entry.data;
     <AppDock apps={apps} delay={520} class="mt-10" />
   </PageHero>
 
-  <Section id="apps" eyebrow="The apps">
+  <Section id="apps" eyebrow={t('The apps')}>
     <div class="grid gap-6 md:grid-cols-2 lg:gap-8" data-reveal-stagger>
       {
         apps.map((app, index) => (
@@ -46,7 +48,7 @@ const page = entry.data;
     </div>
   </Section>
 
-  <Section id="faq" eyebrow="FAQ">
+  <Section id="faq" eyebrow={t('FAQ')}>
     <div class="grid items-start gap-6 lg:grid-cols-2">
       <Content />
     </div>

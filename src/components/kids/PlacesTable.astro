@@ -5,7 +5,8 @@ import ColumnGlyph from './ColumnGlyph.astro';
 import KidsGlyph from './KidsGlyph.astro';
 import PlaceNotes from './PlaceNotes.astro';
 import type { KidsColumn, KidsColumnKey, KidsPlace } from '../../data/types';
-import { isExternal, withBase } from '../../lib/url';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
 
 /**
  * The "places for kids" table. From `xl` up it is a real `<table>` (column
@@ -23,6 +24,7 @@ interface Props {
 }
 
 const { places, columns, caption, noteId } = Astro.props;
+const { t, localHref } = useI18n(Astro);
 
 /** Plain-text cells; `name` and `notes` are rendered by hand. */
 type TextKey = Exclude<KidsColumnKey, 'name' | 'notes'>;
@@ -62,7 +64,7 @@ const linkAttrs = (href: string) =>
                     class="text-accent-2 hover:text-fg ml-0.5 inline-grid min-w-5 place-items-center rounded-full text-sm leading-none font-bold transition-colors"
                   >
                     {column.footnote}
-                    <span class="sr-only"> (see the note under the table)</span>
+                    <span class="sr-only"> ({t('see the note under the table')})</span>
                   </a>
                 )}
               </th>
@@ -80,7 +82,7 @@ const linkAttrs = (href: string) =>
                   return (
                     <th scope="row" class:list={[cell, 'font-normal whitespace-nowrap']}>
                       <a
-                        href={withBase(place.name.href)}
+                        href={localHref(place.name.href)}
                         {...linkAttrs(place.name.href)}
                         class="font-display text-link link-underline inline text-lg leading-snug font-bold"
                       >
@@ -148,7 +150,7 @@ const linkAttrs = (href: string) =>
             <div>
               <h3 class="font-display pr-14 text-2xl leading-tight font-bold tracking-tight">
                 <a
-                  href={withBase(place.name.href)}
+                  href={localHref(place.name.href)}
                   {...linkAttrs(place.name.href)}
                   class="text-link link-underline"
                 >
@@ -182,7 +184,7 @@ const linkAttrs = (href: string) =>
                               class="text-accent-2 ml-0.5 text-xs leading-none font-bold"
                             >
                               {column.footnote}
-                              <span class="sr-only"> (see the note under the list)</span>
+                              <span class="sr-only"> ({t('see the note under the list')})</span>
                             </a>
                           )}
                         </span>

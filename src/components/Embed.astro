@@ -1,4 +1,6 @@
 ---
+import { useI18n } from '../i18n';
+
 /**
  * Responsive, lazy-loaded third-party iframe (SlideShare, Prezi, Google
  * Docs/Forms/Drive previews). For YouTube and Vimeo prefer `VideoEmbed`, which
@@ -18,13 +20,14 @@ interface Props {
   class?: string;
 }
 
+const { t } = useI18n(Astro);
 const {
   src,
   title,
   aspect = '16 / 9',
   height,
   fallbackHref,
-  fallbackLabel = 'Open in a new tab',
+  fallbackLabel = t('Open in a new tab'),
   class: className,
 } = Astro.props;
 

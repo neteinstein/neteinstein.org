@@ -4,7 +4,8 @@ import { Image } from 'astro:assets';
 import Icon from '../Icon.astro';
 import DocStack from './DocStack.astro';
 import type { LinkRef } from '../../data/types';
-import { isExternal, withBase } from '../../lib/url';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
 
 /**
  * A large tile on the /tools index: a visual (a screenshot, or a drawn stack
@@ -28,6 +29,8 @@ interface Props {
 const { index, title, href, description, links = [], image, imageAlt = '', fileName } = Astro.props;
 
 const ordinal = String(index).padStart(2, '0');
+
+const { localHref } = useI18n(Astro);
 ---
 
 <article
@@ -69,7 +72,7 @@ const ordinal = String(index).padStart(2, '0');
     <div class="flex items-start justify-between gap-4">
       <h2 class="font-display text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
         <a
-          href={withBase(href)}
+          href={localHref(href)}
           class="after:absolute after:inset-0 after:z-0 after:rounded-[2rem] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"
         >
           {title}
@@ -98,7 +101,7 @@ const ordinal = String(index).padStart(2, '0');
               return (
                 <li class="min-w-0">
                   <a
-                    href={withBase(link.href)}
+                    href={localHref(link.href)}
                     target={external ? '_blank' : undefined}
                     rel={external ? 'noopener noreferrer' : undefined}
                     class="link-underline text-link inline-flex items-center gap-1.5 font-mono text-sm font-semibold break-all"

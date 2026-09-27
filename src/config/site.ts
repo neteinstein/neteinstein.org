@@ -44,7 +44,6 @@ export const SITE = {
     'Pedro Vicente (neteinstein) — husband & father, Mobile Services Lead & Improver at Mindera, ' +
     'podcast host, speaker and creator of the LoopGain feedback game.',
   author: 'Pedro Vicente',
-  locale: 'en',
   /** OpenGraph fallback image. Relative to `public/`. */
   ogImage: '/og-default.jpg',
 } as const;

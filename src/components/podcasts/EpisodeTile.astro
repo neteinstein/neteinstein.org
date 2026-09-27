@@ -1,6 +1,7 @@
 ---
 import VideoEmbed from '../VideoEmbed.astro';
 import type { PodcastEpisode } from '../../data/types';
+import { useI18n } from '../../i18n';
 
 /**
  * One episode on the wall: the click-to-load video with its season/episode
@@ -22,6 +23,7 @@ interface Props {
 
 const { episode, show, wide = false, class: className } = Astro.props;
 const number = String(episode.episode).padStart(2, '0');
+const { t } = useI18n(Astro);
 ---
 
 <li class={className}>
@@ -40,7 +42,15 @@ const number = String(episode.episode).padStart(2, '0');
         class="glass border-line text-fg rounded-full border px-2.5 py-1 font-mono text-[0.7rem] font-semibold tracking-wider uppercase shadow-[var(--shadow-sm)]"
       >
         <span aria-hidden="true">S{episode.season} · E{number}</span>
-        <span class="sr-only">{show}, season {episode.season}, episode {episode.episode}</span>
+        <span class="sr-only">
+          {
+            t('{show}, season {season}, episode {episode}', {
+              show,
+              season: episode.season,
+              episode: episode.episode,
+            })
+          }
+        </span>
       </span>
       {
         episode.format && (

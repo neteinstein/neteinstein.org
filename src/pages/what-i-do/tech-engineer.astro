@@ -1,5 +1,5 @@
 ---
-import { getEntry, render } from 'astro:content';
+import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
@@ -10,10 +10,13 @@ import FootprintCard from '../../components/tech/FootprintCard.astro';
 import TeachingCard from '../../components/tech/TeachingCard.astro';
 import PortfolioEra from '../../components/tech/PortfolioEra.astro';
 import TalksCallout from '../../components/tech/TalksCallout.astro';
-import { appearances, footprints, portfolio, talksLink, teaching, techPage } from '../../data/tech';
+import * as tech from '../../data/tech';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
 
-const entry = await getEntry('pages', 'tech-engineer');
-if (!entry) throw new Error('Missing content entry: src/content/pages/tech-engineer.mdx');
+const { t, locale, localize } = useI18n(Astro);
+const { appearances, footprints, portfolio, talksLink, teaching, techPage } = localize(tech);
+const entry = await getPage('tech-engineer', locale);
 const { Content } = await render(entry);
 const { title, description, eyebrow, highlight } = entry.data;
 
@@ -23,8 +26,9 @@ const [featuredFootprint, ...otherFootprints] = footprints;
 <BaseLayout title={title} description={description}>
   <PageHero title={title} eyebrow={eyebrow} highlight={highlight} quote={{ text: techPage.quote }}>
     <Fragment slot="actions">
-      <ButtonLink href="#portfolio" trailing="arrow-down">Tech Portfolio</ButtonLink>
-      <ButtonLink href="#appeared" variant="secondary" trailing="arrow-down">Appearances</ButtonLink
+      <ButtonLink href="#portfolio" trailing="arrow-down">{t('Tech Portfolio')}</ButtonLink>
+      <ButtonLink href="#appeared" variant="secondary" trailing="arrow-down"
+        >{t('Appearances')}</ButtonLink
       >
     </Fragment>
   </PageHero>
@@ -32,7 +36,7 @@ const [featuredFootprint, ...otherFootprints] = footprints;
   <section id="persona" class="container-page py-10 sm:py-14" aria-labelledby="persona-title">
     <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-14">
       <header class="lg:sticky lg:top-28 lg:self-start" data-reveal>
-        <p class="eyebrow">About</p>
+        <p class="eyebrow">{t('About')}</p>
         <h2
           id="persona-title"
           class="font-display mt-2 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
@@ -53,13 +57,13 @@ const [featuredFootprint, ...otherFootprints] = footprints;
     </div>
   </section>
 
-  <Section id="appeared" eyebrow="Media" title={techPage.appeared}>
+  <Section id="appeared" eyebrow={t('Media')} title={techPage.appeared}>
     <div class="grid gap-6 md:grid-cols-2" data-reveal-stagger>
       {appearances.map((appearance) => <AppearanceCard appearance={appearance} />)}
     </div>
   </Section>
 
-  <Section id="footprint" eyebrow="Online" title={techPage.footprint}>
+  <Section id="footprint" eyebrow={t('Online')} title={techPage.footprint}>
     <div class="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]" data-reveal-stagger>
       {
         featuredFootprint && (
@@ -70,13 +74,13 @@ const [featuredFootprint, ...otherFootprints] = footprints;
     </div>
   </Section>
 
-  <Section id="teacher" eyebrow="Teaching" title={techPage.teacher}>
+  <Section id="teacher" eyebrow={t('Teaching')} title={techPage.teacher}>
     <div class="grid gap-5 md:grid-cols-2" data-reveal-stagger>
       {teaching.map((item) => <TeachingCard teaching={item} />)}
     </div>
   </Section>
 
-  <Section id="portfolio" eyebrow="Work" title={techPage.portfolio}>
+  <Section id="portfolio" eyebrow={t('Work')} title={techPage.portfolio}>
     <div class="space-y-20 sm:space-y-24">
       {portfolio.map((era) => <PortfolioEra era={era} />)}
     </div>

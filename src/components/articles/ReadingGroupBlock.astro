@@ -1,5 +1,6 @@
 ---
 import type { ReadingGroup } from '../../data/types';
+import { useI18n } from '../../i18n';
 import ReadingEntryLine from './ReadingEntryLine.astro';
 
 /**
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const { group, index, tone } = Astro.props;
+const { t } = useI18n(Astro);
 const links = group.topics
   .flatMap((topic) => topic.entries.flat())
   .filter((part) => typeof part !== 'string').length;
@@ -34,7 +36,7 @@ const links = group.topics
     </p>
     <h3 class="font-display mt-2 text-3xl font-bold tracking-tight">{group.title}</h3>
     <p class="text-muted mt-2 font-mono text-xs">
-      {group.topics.length} topics · {links} links
+      {t('{topics} topics · {links} links', { topics: group.topics.length, links })}
     </p>
   </header>
 

@@ -4,8 +4,12 @@ import ButtonLink from '../ButtonLink.astro';
 import SplitWords from '../SplitWords.astro';
 import CookieButton from './CookieButton.astro';
 import { SITE } from '../../config/site';
-import { welcome } from '../../data/home';
+import { welcome as welcomeCopy } from '../../data/home';
+import { useI18n } from '../../i18n';
 import portrait from '../../assets/home/portrait.webp';
+
+const { t, localize } = useI18n(Astro);
+const welcome = localize(welcomeCopy);
 
 /** Roles cycled by the ticker. Each is a section of this site. */
 const TICKER = [
@@ -15,11 +19,11 @@ const TICKER = [
   'Podcast Host',
   'Speaker',
   'Storyteller',
-];
+].map((role) => t(role));
 
 /** Chips orbiting the portrait. Decorative; the same facts are in "Who am I?". */
 const CHIPS = [
-  { text: '📱 AI & Mobile @ Mindera', class: 'top-[8%] -left-2 sm:left-0', delay: 0 },
+  { text: t('📱 AI & Mobile @ Mindera'), class: 'top-[8%] -left-2 sm:left-0', delay: 0 },
   { text: '🎙️ Yellow Box', class: 'top-[18%] -right-2 sm:right-2', delay: 1.2 },
   { text: '🔁 LoopGain', class: 'bottom-[26%] -left-4 sm:-left-6', delay: 2.1 },
   { text: '🌶️ O Que Arde Cura', class: 'bottom-[12%] right-0 sm:right-4', delay: 0.6 },
@@ -40,14 +44,14 @@ const CHIPS = [
           ></span>
           <span class="bg-accent-2 relative inline-flex size-2 rounded-full"></span>
         </span>
-        Hi, I'm {SITE.author} · @{SITE.handle}
+        {t("Hi, I'm {name}", { name: SITE.author })} · @{SITE.handle}
       </p>
 
       <h1
         class="font-display mt-5 text-[clamp(2.9rem,8vw,6.25rem)] leading-[0.95] font-extrabold tracking-[-0.045em]"
         aria-label={welcome.title}
       >
-        <SplitWords text={welcome.title} highlight={['virtual', 'home']} />
+        <SplitWords text={welcome.title} highlight={[t('virtual'), t('home')]} />
       </h1>
 
       <p
@@ -55,7 +59,7 @@ const CHIPS = [
         data-enter
         style="--delay: 500"
       >
-        <span>I'm a</span>
+        <span>{t("I'm a")}</span>
         <span
           class="role-ticker font-display text-fg relative inline-block h-[1.3em] overflow-hidden align-bottom font-bold"
           aria-hidden="true"
@@ -73,7 +77,7 @@ const CHIPS = [
 
       <div class="mt-9 flex flex-wrap items-center gap-3" data-enter style="--delay: 650">
         <ButtonLink href="#glimpses" size="lg" trailing="arrow-down"
-          >Glimpses of what I do</ButtonLink
+          >{t('Glimpses of what I do')}</ButtonLink
         >
         <ButtonLink
           href="/porto/visit-porto"
@@ -82,7 +86,7 @@ const CHIPS = [
           icon="map-pin"
           trailing={false}
         >
-          Porto guide
+          {t('Porto guide')}
         </ButtonLink>
       </div>
 
@@ -105,7 +109,7 @@ const CHIPS = [
         </div>
         <Image
           src={portrait}
-          alt={`${SITE.author} mid-talk, gesturing with both hands`}
+          alt={t('{name} mid-talk, gesturing with both hands', { name: SITE.author })}
           class="absolute inset-x-0 bottom-[6%] mx-auto w-[92%] [mask-image:linear-gradient(to_bottom,#000_78%,transparent_99%)]"
           loading="eager"
           fetchpriority="high"
@@ -132,9 +136,9 @@ const CHIPS = [
   <a
     href="#who"
     class="text-muted absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-mono text-[0.7rem] tracking-[0.2em] uppercase lg:flex"
-    aria-label="Scroll to Who am I?"
+    aria-label={t('Scroll to Who am I?')}
   >
-    Scroll
+    {t('Scroll')}
     <span class="border-line-strong flex h-9 w-5 justify-center rounded-full border-2 pt-1.5">
       <span class="scroll-dot bg-accent size-1.5 rounded-full"></span>
     </span>

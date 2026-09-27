@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import { useI18n } from '../i18n';
 
 /**
  * Click-to-load video. Renders a poster and a play button; the real player
@@ -22,6 +23,7 @@ interface Props {
 }
 
 const { provider = 'youtube', id, title, hash, start, class: className } = Astro.props;
+const { t } = useI18n(Astro);
 
 const youtube = provider === 'youtube';
 const params = new URLSearchParams({ autoplay: '1' });
@@ -85,7 +87,7 @@ const poster = youtube ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : undefine
       <Icon name="play" class="relative ml-1 size-7" fill />
     </span>
     <span class="font-display absolute inset-x-5 bottom-4 line-clamp-2 text-left font-semibold">
-      <span class="sr-only">Play video: </span>{title}
+      <span class="sr-only">{t('Play video:')} </span>{title}
     </span>
   </a>
 </div>

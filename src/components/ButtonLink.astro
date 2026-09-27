@@ -1,7 +1,8 @@
 ---
 import Icon from './Icon.astro';
 import type { IconName } from './Icon.astro';
-import { isExternal, withBase } from '../lib/url';
+import { isExternal } from '../lib/url';
+import { useI18n } from '../i18n';
 
 /**
  * A link styled as a button. `primary` is the gradient pill with a light
@@ -32,10 +33,12 @@ const {
 const external = isExternal(href);
 const trailingIcon =
   trailing === false ? undefined : (trailing ?? (external ? 'arrow-up-right' : 'arrow-right'));
+
+const { localHref } = useI18n(Astro);
 ---
 
 <a
-  href={withBase(href)}
+  href={localHref(href)}
   target={external ? '_blank' : undefined}
   rel={external ? 'noopener noreferrer' : undefined}
   download={download || undefined}

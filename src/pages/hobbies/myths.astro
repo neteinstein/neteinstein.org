@@ -1,13 +1,16 @@
 ---
-import { getEntry, render } from 'astro:content';
+import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import PullQuote from '../../components/hobbies/PullQuote.astro';
 import JumpLinks from '../../components/hobbies/JumpLinks.astro';
-import { mythGroups, mythsIntro } from '../../data/myths';
+import * as myths from '../../data/myths';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
 
-const entry = await getEntry('pages', 'myths');
-if (!entry) throw new Error('Missing content entry: src/content/pages/myths.mdx');
+const { locale, localize } = useI18n(Astro);
+const { mythGroups, mythsIntro } = localize(myths);
+const entry = await getPage('myths', locale);
 const { Content } = await render(entry);
 ---
 

@@ -1,15 +1,16 @@
 ---
-import { getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import BrowserFrame from '../../components/tools/BrowserFrame.astro';
 import BigLink from '../../components/tools/BigLink.astro';
-import { loopgain } from '../../data/tools';
+import { loopgain as tool } from '../../data/tools';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
 
-const entry = await getEntry('pages', 'loopgain');
-if (!entry) throw new Error('Missing content entry: src/content/pages/loopgain.mdx');
-const page = entry.data;
+const { t, locale, localize } = useI18n(Astro);
+const page = (await getPage('loopgain', locale)).data;
+const loopgain = localize(tool);
 ---
 
 <BaseLayout title={page.title} description={page.description}>
@@ -22,6 +23,11 @@ const page = entry.data;
       image={loopgain.image}
       imageAlt={loopgain.imageAlt}
     />
-    <BigLink href={loopgain.href} label={loopgain.label} eyebrow="Visit" class="mt-16 sm:mt-24" />
+    <BigLink
+      href={loopgain.href}
+      label={loopgain.label}
+      eyebrow={t('Visit')}
+      class="mt-16 sm:mt-24"
+    />
   </Section>
 </BaseLayout>

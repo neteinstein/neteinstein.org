@@ -4,8 +4,27 @@ import type { GuideGroup, Place, PlacePhotoUrl, Venue } from '../data/types';
 
 type GuidePlace = Place<PlacePhotoUrl>;
 
+/** The island's own copy, translated by the route. */
+export interface PlaceFilterLabels {
+  search: string;
+  placeholder: string;
+  category: string;
+  section: string;
+  all: string;
+  /** With `{shown}` and `{total}` placeholders. */
+  count: string;
+  empty: string;
+  clear: string;
+  /** A group's place count, with a `{count}` placeholder. */
+  place: string;
+  places: string;
+  /** Names a group's subsection jump links, with a `{group}` placeholder. */
+  sections: string;
+}
+
 interface Props {
   groups: GuideGroup[];
+  labels: PlaceFilterLabels;
 }
 
 /**
@@ -18,7 +37,7 @@ interface Props {
  * card survives. Following a jump link while a filter hides its target clears
  * the filters first.
  */
-export default function PlaceFilter({ groups }: Props) {
+export default function PlaceFilter({ groups, labels }: Props) {
   const [query, setQuery] = useState('');
   const [groupId, setGroupId] = useState('all');
   const [subgroupId, setSubgroupId] = useState('all');
@@ -76,7 +95,7 @@ export default function PlaceFilter({ groups }: Props) {
       <div className="glass border-line sticky top-[5.25rem] z-30 -mx-2 mb-10 rounded-3xl border p-3 shadow-[var(--shadow-md)] sm:mx-0 sm:p-4">
         <div className="flex items-center gap-3">
           <label className="relative block flex-1">
-            <span className="sr-only">Search the guide</span>
+            <span className="sr-only">{labels.search}</span>
             <svg
               className="text-muted pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2"
               viewBox="0 0 24 24"
@@ -92,7 +111,7 @@ export default function PlaceFilter({ groups }: Props) {
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search a dish, a place, a neighbourhood…"
+              placeholder={labels.placeholder}
               className="border-line-strong bg-surface-raised text-fg placeholder:text-muted w-full rounded-2xl border py-2.5 pr-3 pl-10 text-base transition-shadow focus:shadow-[0_0_0_4px_color-mix(in_oklch,var(--accent)_18%,transparent)] focus:outline-none sm:text-sm"
             />
           </label>
@@ -105,7 +124,8 @@ export default function PlaceFilter({ groups }: Props) {
         </div>
 
         <ChipRow
-          label="Category"
+          label={labels.category}
+          allLabel={labels.all}
           value={groupId}
           options={groups.map((group) => ({
             value: group.id,
@@ -120,7 +140,8 @@ export default function PlaceFilter({ groups }: Props) {
         />
         {selectedGroup?.subgroups && selectedGroup.subgroups.length > 1 && (
           <ChipRow
-            label="Section"
+            label={labels.section}
+            allLabel={labels.all}
             small
             value={subgroupId}
             options={selectedGroup.subgroups.map((subgroup) => ({
@@ -133,7 +154,7 @@ export default function PlaceFilter({ groups }: Props) {
           />
         )}
         <p aria-live="polite" className="text-muted mt-2 font-mono text-xs sm:hidden">
-          {shown} of {total} places
+          {labels.count.replace('{shown}', String(shown)).replace('{total}', String(total))}
         </p>
       </div>
 
@@ -157,7 +178,10 @@ export default function PlaceFilter({ groups }: Props) {
               </span>
               <div className="min-w-0 flex-1">
                 <p className="eyebrow">
-                  {entries.length} {entries.length === 1 ? 'place' : 'places'}
+                  {(entries.length === 1 ? labels.place : labels.places).replace(
+                    '{count}',
+                    String(entries.length),
+                  )}
                 </p>
                 <h2
                   id={`${group.id}-title`}
@@ -167,7 +191,10 @@ export default function PlaceFilter({ groups }: Props) {
                 </h2>
               </div>
               {group.subgroups && group.subgroups.length > 1 && (
-                <nav aria-label={`${group.title} sections`} className="w-full">
+                <nav
+                  aria-label={labels.sections.replace('{group}', group.title)}
+                  className="w-full"
+                >
                   <ul className="flex flex-wrap gap-2">
                     {group.subgroups.map((subgroup) => (
                       <li key={subgroup.id}>
@@ -233,13 +260,13 @@ export default function PlaceFilter({ groups }: Props) {
 
       {shown === 0 && (
         <div className="border-line-strong rounded-3xl border border-dashed p-10 text-center">
-          <p className="font-display text-xl font-semibold">Nothing matches those filters.</p>
+          <p className="font-display text-xl font-semibold">{labels.empty}</p>
           <button
             type="button"
             onClick={reset}
             className="text-link link-underline mt-3 text-sm font-semibold"
           >
-            Clear the search
+            {labels.clear}
           </button>
         </div>
       )}
@@ -418,6 +445,7 @@ function VenueName({ venue }: { venue: Venue }) {
 
 interface ChipRowProps {
   label: string;
+  allLabel: string;
   value: string;
   options: { value: string; label: string; count: number }[];
   allCount: number;
@@ -425,12 +453,20 @@ interface ChipRowProps {
   small?: boolean;
 }
 
-function ChipRow({ label, value, options, allCount, onChange, small = false }: ChipRowProps) {
+function ChipRow({
+  label,
+  allLabel,
+  value,
+  options,
+  allCount,
+  onChange,
+  small = false,
+}: ChipRowProps) {
   return (
     <fieldset className="mt-3 min-w-0">
       <legend className="sr-only">{label}</legend>
       <div className="-mx-1 flex [scrollbar-width:none] gap-2 overflow-x-auto px-1 pb-1">
-        {[{ value: 'all', label: 'All', count: allCount }, ...options].map((option) => {
+        {[{ value: 'all', label: allLabel, count: allCount }, ...options].map((option) => {
           const active = value === option.value;
           return (
             <button

@@ -2,6 +2,7 @@
 import Icon from '../Icon.astro';
 import type { IconName } from '../Icon.astro';
 import type { TalkStat } from '../../data/types';
+import { useI18n } from '../../i18n';
 
 /**
  * Hero extras for the talks page, rendered in `PageHero`'s default slot (so
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const { intro, stats, jumps } = Astro.props;
+const { t } = useI18n(Astro);
 ---
 
 <p class="text-muted mt-8 max-w-2xl text-lg text-pretty sm:text-xl" data-enter style="--delay: 550">
@@ -37,7 +39,7 @@ const { intro, stats, jumps } = Astro.props;
   }
 </dl>
 
-<nav aria-label="On this page" class="mt-8" data-enter style="--delay: 750">
+<nav aria-label={t('On this page')} class="mt-8" data-enter style="--delay: 750">
   <ul class="flex flex-wrap gap-2">
     {
       jumps.map((jump) => (

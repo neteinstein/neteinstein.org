@@ -1,9 +1,11 @@
 ---
 import type { ImageMetadata } from 'astro';
-import { getEntry, render } from 'astro:content';
+import { render } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Prose from '../components/Prose.astro';
+import { useI18n } from '../i18n';
+import { getPage } from '../i18n/content';
 
 /**
  * A page whose body is one MDX entry from `src/content/pages/`. Hero fields
@@ -23,10 +25,7 @@ interface Props {
 
 const { slug, title, bareTitle = false, image, imageAlt, quote } = Astro.props;
 
-const entry = await getEntry('pages', slug);
-if (!entry) {
-  throw new Error(`Missing content entry: src/content/pages/${slug}.mdx`);
-}
+const entry = await getPage(slug, useI18n(Astro).locale);
 
 const { Content } = await render(entry);
 const heading = title ?? entry.data.title;

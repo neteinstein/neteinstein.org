@@ -2,7 +2,8 @@
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import Icon from '../Icon.astro';
-import { isExternal, withBase } from '../../lib/url';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
 
 /**
  * A screenshot of a website in a browser window, linked to that site. The
@@ -23,6 +24,8 @@ interface Props {
 
 const { href, address, image, imageAlt, class: className } = Astro.props;
 const external = isExternal(href);
+
+const { localHref } = useI18n(Astro);
 ---
 
 <div class:list={['browser-frame relative isolate', className]}>
@@ -33,7 +36,7 @@ const external = isExternal(href);
   </div>
 
   <a
-    href={withBase(href)}
+    href={localHref(href)}
     target={external ? '_blank' : undefined}
     rel={external ? 'noopener noreferrer' : undefined}
     class="browser-frame-window group glow-ring border-line bg-surface-raised block rounded-[1.25rem] border p-1.5 shadow-[var(--shadow-lg)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 sm:rounded-[1.75rem] sm:p-2.5"

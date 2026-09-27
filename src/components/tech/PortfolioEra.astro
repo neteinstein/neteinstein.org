@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import type { PortfolioEra } from '../../data/types';
 import Icon from '../Icon.astro';
 import ProjectCard from './ProjectCard.astro';
-import { withBase } from '../../lib/url';
+import { useI18n } from '../../i18n';
 
 /**
  * One era of the tech portfolio: a big gradient year range, the employer's
@@ -16,6 +16,8 @@ interface Props {
 const { era } = Astro.props;
 const { employer, feature } = era;
 const headingId = `era-${era.id}`;
+
+const { t, localHref } = useI18n(Astro);
 ---
 
 <section aria-labelledby={headingId} class="relative">
@@ -26,7 +28,7 @@ const headingId = `era-${era.id}`;
     ]}
   >
     <div data-reveal="left">
-      <p class="eyebrow">Era</p>
+      <p class="eyebrow">{t('Era')}</p>
       <h3
         id={headingId}
         class="text-gradient font-display mt-2 text-[clamp(2.5rem,9vw,4.5rem)] leading-none font-extrabold tracking-[-0.04em]"
@@ -34,7 +36,7 @@ const headingId = `era-${era.id}`;
         {era.label}
       </h3>
       <a
-        href={withBase(employer.href)}
+        href={localHref(employer.href)}
         target="_blank"
         rel="noopener noreferrer"
         class="group glow-ring border-line mt-6 inline-block rounded-2xl border p-1.5 shadow-[var(--shadow-sm)] transition-transform duration-500 ease-[var(--ease-spring)] hover:-translate-y-0.5"
@@ -70,13 +72,13 @@ const headingId = `era-${era.id}`;
               <Icon name="play" class="ml-0.5 size-4" fill />
             </span>
             <a
-              href={withBase(feature.href)}
+              href={localHref(feature.href)}
               target="_blank"
               rel="noopener noreferrer"
               class="text-sm leading-snug font-semibold after:absolute after:inset-0 after:rounded-[2rem] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"
             >
               <span class="text-muted block font-mono text-[0.7rem] tracking-[0.14em] uppercase">
-                Watch
+                {t('Watch')}
               </span>
               {feature.linkLabel}
             </a>

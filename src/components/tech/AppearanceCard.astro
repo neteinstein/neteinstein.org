@@ -2,7 +2,7 @@
 import type { Appearance } from '../../data/types';
 import TechImageFrame from './TechImageFrame.astro';
 import TechText from './TechText.astro';
-import { withBase } from '../../lib/url';
+import { useI18n } from '../../i18n';
 
 /** An "Appeared at:" feature card — poster, linked title, blurb and year. */
 interface Props {
@@ -15,6 +15,8 @@ const siblingHrefs = [
   title.href,
   ...description.flatMap((part) => (typeof part === 'string' ? [] : [part.href])),
 ];
+
+const { localHref } = useI18n(Astro);
 ---
 
 <article
@@ -32,7 +34,7 @@ const siblingHrefs = [
     <div class="flex items-start justify-between gap-4">
       <h3 class="font-display text-2xl leading-tight font-bold tracking-tight">
         <a
-          href={withBase(title.href)}
+          href={localHref(title.href)}
           target="_blank"
           rel="noopener noreferrer"
           class="link-underline"

@@ -3,7 +3,8 @@ import { Image } from 'astro:assets';
 import Icon from '../Icon.astro';
 import Tag from '../Tag.astro';
 import type { TeslaSite } from '../../data/types';
-import { isExternal, withBase } from '../../lib/url';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
 
 /**
  * One launcher tile on /tesla. People open this page on the car's
@@ -40,6 +41,8 @@ function address(href: string): string {
 const target = address(site.href);
 // Most captions already are the address; only spell it out when they are not.
 const showAddress = target.toLowerCase() !== site.label.toLowerCase().replace(/\/+$/, '');
+
+const { localHref } = useI18n(Astro);
 ---
 
 <article
@@ -84,7 +87,7 @@ const showAddress = target.toLowerCase() !== site.label.toLowerCase().replace(/\
         ]}
       >
         <a
-          href={withBase(site.href)}
+          href={localHref(site.href)}
           target={external ? '_blank' : undefined}
           rel={external ? 'noopener noreferrer' : undefined}
           class="after:absolute after:inset-0 after:z-10 after:rounded-3xl focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-[-3px] focus-visible:after:outline-[var(--link)]"

@@ -1,4 +1,6 @@
 ---
+import { useI18n } from '../../i18n';
+
 /**
  * Two big numbers under the storyteller hero, both derived from the story
  * list: how many stories and the years they span.
@@ -9,17 +11,22 @@ interface Props {
 }
 
 const { count, span } = Astro.props;
+const { t } = useI18n(Astro);
 ---
 
 <dl class="mt-10 flex flex-wrap gap-x-12 gap-y-6" data-enter style="--delay: 450">
   <div>
-    <dt class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">Stories</dt>
+    <dt class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
+      {t('Stories')}
+    </dt>
     <dd class="font-display text-gradient mt-1 text-5xl font-extrabold tracking-tight sm:text-6xl">
       {count}
     </dd>
   </div>
   <div>
-    <dt class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">Years</dt>
+    <dt class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
+      {t('Years')}
+    </dt>
     <dd class="font-display text-fg mt-1 text-5xl font-extrabold tracking-tight sm:text-6xl">
       {span}
     </dd>

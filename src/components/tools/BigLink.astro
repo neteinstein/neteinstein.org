@@ -1,6 +1,7 @@
 ---
 import Icon from '../Icon.astro';
-import { isExternal, withBase } from '../../lib/url';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
 
 /**
  * A closing call to action: one link, set huge in the brand gradient, over a
@@ -28,6 +29,8 @@ const BARS = Array.from({ length: 56 }, (_, index) => {
     tone: ['--accent', '--accent-2', '--accent-3', '--accent-4'][index % 4],
   };
 });
+
+const { localHref } = useI18n(Astro);
 ---
 
 <div
@@ -47,7 +50,7 @@ const BARS = Array.from({ length: 56 }, (_, index) => {
   {eyebrow && <p class="eyebrow">{eyebrow}</p>}
 
   <a
-    href={withBase(href)}
+    href={localHref(href)}
     target={external ? '_blank' : undefined}
     rel={external ? 'noopener noreferrer' : undefined}
     class="group font-display mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-5 gap-y-4 text-[clamp(1.9rem,7.5vw,5.75rem)] leading-none font-extrabold tracking-[-0.04em]"

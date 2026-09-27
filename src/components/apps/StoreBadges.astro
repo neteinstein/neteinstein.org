@@ -1,7 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import type { AppStoreLink } from '../../data/types';
-import { storeBadges } from '../../data/apps';
+import { storeBadges as badges } from '../../data/apps';
+import { useI18n } from '../../i18n';
 
 /**
  * The original's "Get it on Google Play" / "Open it on Web" badge images, each
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const { app, links, class: className } = Astro.props;
+const storeBadges = useI18n(Astro).localize(badges);
 ---
 
 <ul class:list={['relative z-10 flex flex-wrap items-center gap-3', className]}>

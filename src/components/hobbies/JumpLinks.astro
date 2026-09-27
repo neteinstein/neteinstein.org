@@ -1,4 +1,6 @@
 ---
+import { useI18n } from '../../i18n';
+
 /**
  * In-page index for a hero: numbered pill links to the page's blocks.
  * Goes in PageHero's `actions` slot.
@@ -8,7 +10,7 @@ interface Props {
   label?: string;
 }
 
-const { items, label = 'On this page' } = Astro.props;
+const { items, label = useI18n(Astro).t('On this page') } = Astro.props;
 ---
 
 <nav aria-label={label} class="w-full">

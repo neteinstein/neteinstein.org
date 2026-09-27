@@ -1,6 +1,7 @@
 ---
 import EpisodeTile from './EpisodeTile.astro';
 import type { PodcastEpisode } from '../../data/types';
+import { useI18n } from '../../i18n';
 
 /**
  * A season's episodes: a header row with a big gradient season numeral and a
@@ -20,7 +21,10 @@ const threeUp = episodes.length % 3 === 0 || episodes.length > 4;
 // On the two-up wall an odd last tile spans both columns — a feature, not an orphan.
 const wideLast = episodes.length % 2 === 1 && episodes.length > 1;
 const wideClass = threeUp ? 'md:max-xl:col-span-2' : 'md:col-span-2';
-const countLabel = `${episodes.length} ${episodes.length === 1 ? 'episode' : 'episodes'}`;
+const { t } = useI18n(Astro);
+const countLabel = t(episodes.length === 1 ? '{count} episode' : '{count} episodes', {
+  count: episodes.length,
+});
 ---
 
 <div>
@@ -32,7 +36,9 @@ const countLabel = `${episodes.length} ${episodes.length === 1 ? 'episode' : 'ep
       {String(season).padStart(2, '0')}
     </span>
     <div class="shrink-0 pb-1">
-      <h3 class="font-display text-2xl font-bold tracking-tight">Season {season}</h3>
+      <h3 class="font-display text-2xl font-bold tracking-tight">
+        {t('Season {season}', { season })}
+      </h3>
       <p class="text-muted mt-1 font-mono text-xs font-semibold tracking-[0.14em] uppercase">
         {countLabel}
       </p>

@@ -74,6 +74,21 @@ Page images live in `src/assets/<area>/<page>/` and are optimised by Astro at bu
 npm run import:image -- <crawl-file> src/assets/porto/visit-porto/francesinha [maxWidth]
 ```
 
+### Translations
+
+The site is published in English (the default, at the original URLs) and European Portuguese
+(everything under `/pt`). Visitors whose browser prefers Portuguese are sent to `/pt` on their
+first visit; the `EN`/`PT` switch in the header overrides that and is remembered.
+
+- **Data and component strings** are translated by a catalogue keyed by the English text, one
+  module per area in `src/i18n/pt/`. Anything without an entry renders in English — names,
+  places and titles of external articles deliberately have none.
+- **Prose** is translated by a same-named file in `src/content/pages/pt/`. Until one exists the
+  English MDX is used.
+
+When you change English copy, update (or add) its catalogue entry — the old key simply stops
+matching and the page falls back to English.
+
 ### Navigation
 
 `src/config/site.ts` is the single source of truth for the nav tree, site metadata and social

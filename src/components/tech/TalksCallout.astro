@@ -1,7 +1,7 @@
 ---
 import type { TechLink } from '../../data/types';
 import Icon from '../Icon.astro';
-import { withBase } from '../../lib/url';
+import { useI18n } from '../../i18n';
 
 /** The page's closing link to the talks page, as a large gradient banner. */
 interface Props {
@@ -9,6 +9,8 @@ interface Props {
 }
 
 const { link } = Astro.props;
+
+const { t, localHref } = useI18n(Astro);
 ---
 
 <div
@@ -28,13 +30,13 @@ const { link } = Astro.props;
   </div>
   <p class="eyebrow relative inline-flex items-center gap-2">
     <Icon name="presentation" class="size-4" />
-    Talks &amp; workshops
+    {t('Talks & workshops')}
   </p>
   <h2
     class="font-display relative mt-3 max-w-3xl text-3xl leading-tight font-bold tracking-tight text-balance sm:text-5xl"
   >
     <a
-      href={withBase(link.href)}
+      href={localHref(link.href)}
       class="after:absolute after:inset-0 after:rounded-[2rem] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"
     >
       {link.label}

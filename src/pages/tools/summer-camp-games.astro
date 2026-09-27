@@ -1,14 +1,15 @@
 ---
-import { getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import DriveDocument from '../../components/tools/DriveDocument.astro';
-import { cadernoDeJogos } from '../../data/tools';
+import { cadernoDeJogos as doc } from '../../data/tools';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
 
-const entry = await getEntry('pages', 'summer-camp-games');
-if (!entry) throw new Error('Missing content entry: src/content/pages/summer-camp-games.mdx');
-const page = entry.data;
+const { locale, localize } = useI18n(Astro);
+const page = (await getPage('summer-camp-games', locale)).data;
+const cadernoDeJogos = localize(doc);
 ---
 
 <BaseLayout title={page.title} description={page.description}>

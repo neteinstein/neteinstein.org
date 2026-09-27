@@ -8,7 +8,11 @@ import SiteGrid from '../components/tesla/SiteGrid.astro';
 import CategoryColumn from '../components/tesla/CategoryColumn.astro';
 import ThanksCallout from '../components/tesla/ThanksCallout.astro';
 import type { TeslaCategory } from '../data/types';
-import { categories, intro, page, thanks } from '../data/tesla';
+import * as tesla from '../data/tesla';
+import { useI18n } from '../i18n';
+
+const { t, localize } = useI18n(Astro);
+const { categories, intro, page, thanks } = localize(tesla);
 
 /** How each category's tiles are laid out; `pair` categories share a row. */
 const LAYOUT: Record<TeslaCategory['id'], 'grid' | 'bento' | 'trio' | 'pair'> = {
@@ -23,7 +27,7 @@ const LAYOUT: Record<TeslaCategory['id'], 'grid' | 'bento' | 'trio' | 'pair'> = 
 const eyebrow = (category: TeslaCategory) => {
   const index = String(categories.indexOf(category) + 1).padStart(2, '0');
   const count = category.sites.length;
-  return `${index} · ${count} ${count === 1 ? 'link' : 'links'}`;
+  return `${index} · ${t(count === 1 ? '{count} link' : '{count} links', { count })}`;
 };
 
 const full = categories.filter((category) => LAYOUT[category.id] !== 'pair');
