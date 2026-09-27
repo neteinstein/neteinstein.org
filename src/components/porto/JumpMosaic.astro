@@ -1,0 +1,132 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../Icon.astro';
+import type { PlaceGroup, PlacePhoto } from '../../data/types';
+import { placeCount } from './guide';
+
+/**
+ * The original's "click below to jump into that section!" list as a photo
+ * bento: one tile per guide group (its cover photo behind it, its subgroups as
+ * chips), plus the extra links the original appends ("Quiz Game"). Every link
+ * is a plain in-page anchor, so it works without JS.
+ *
+ * Cover photos repeat a card photo further down, so they are decorative here.
+ */
+interface Props {
+  groups: PlaceGroup[];
+  extras: { label: string; href: string; photo?: PlacePhoto }[];
+}
+
+const { groups, extras } = Astro.props;
+
+/** Bento spans for a 3-column grid, by position: big, tall pair, then a wide row. */
+const spans = [
+  'lg:col-span-2 lg:row-span-2 min-h-[22rem]',
+  'min-h-[13rem]',
+  'min-h-[13rem]',
+  'min-h-[15rem]',
+  'lg:col-span-2 min-h-[15rem]',
+  'lg:col-span-2 min-h-[15rem]',
+];
+---
+
+<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
+  {
+    groups.map((group, index) => (
+      <li
+        class:list={[
+          'group glow-ring border-line relative isolate flex flex-col justify-end overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-lg)]',
+          spans[index] ?? 'min-h-[13rem]',
+        ]}
+      >
+        <Image
+          src={group.cover.image}
+          alt=""
+          widths={[480, 800]}
+          sizes="(min-width: 1024px) 40rem, (min-width: 640px) 50vw, 100vw"
+          class="absolute inset-0 -z-20 size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-110"
+        />
+        <div
+          class="absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--surface-raised)_18%,color-mix(in_oklch,var(--surface-raised)_78%,transparent)_48%,transparent_85%)]"
+          aria-hidden="true"
+        />
+        <div class="p-5 sm:p-6">
+          <p class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
+            <span class="text-gradient">{String(index + 1).padStart(2, '0')}</span>
+            <span aria-hidden="true"> · </span>
+            {placeCount(group)} places
+          </p>
+          <h3
+            class:list={[
+              'font-display mt-1.5 leading-tight font-bold tracking-tight text-balance',
+              index === 0 ? 'text-3xl sm:text-4xl' : 'text-2xl',
+            ]}
+          >
+            <a
+              href={`#${group.id}`}
+              class="inline-flex items-center gap-2 after:absolute after:inset-0 after:rounded-3xl focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"
+            >
+              {group.title}
+              <Icon
+                name="arrow-down"
+                class="text-accent size-5 shrink-0 transition-transform duration-300 group-hover:translate-y-1"
+              />
+            </a>
+          </h3>
+          {group.subgroups && (
+            <ul class="relative z-10 mt-3 flex flex-wrap gap-1.5">
+              {group.subgroups.map((subgroup) => (
+                <li>
+                  <a
+                    href={`#${subgroup.id}`}
+                    class="glass border-line text-fg hover:border-accent inline-flex rounded-full border px-3 py-1 text-sm font-medium transition-colors"
+                  >
+                    {subgroup.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </li>
+    ))
+  }
+  {
+    extras.map((extra) => (
+      <li class="group glow-ring border-line bg-surface-raised relative isolate flex min-h-[13rem] flex-col justify-end overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-lg)]">
+        {extra.photo && (
+          <>
+            <Image
+              src={extra.photo.image}
+              alt=""
+              widths={[480, 800]}
+              sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw"
+              class="absolute inset-0 -z-20 size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--surface-raised)_18%,color-mix(in_oklch,var(--surface-raised)_78%,transparent)_48%,transparent_85%)]"
+              aria-hidden="true"
+            />
+          </>
+        )}
+        <div class="p-5 sm:p-6">
+          <p class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
+            <Icon name="sparkles" class="text-accent-2 inline size-3.5 align-[-0.15em]" /> And also
+          </p>
+          <h3 class="font-display mt-1.5 text-2xl leading-tight font-bold tracking-tight">
+            <a
+              href={extra.href}
+              class="inline-flex items-center gap-2 after:absolute after:inset-0 after:rounded-3xl focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"
+            >
+              {extra.label}
+              <Icon
+                name="arrow-down"
+                class="text-accent size-5 shrink-0 transition-transform duration-300 group-hover:translate-y-1"
+              />
+            </a>
+          </h3>
+        </div>
+      </li>
+    ))
+  }
+</ul>
