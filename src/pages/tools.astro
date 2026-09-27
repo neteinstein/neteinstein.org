@@ -1,9 +1,45 @@
 ---
-// TODO(content): stub — ported from https://www.neteinstein.org/tools in a follow-up step.
+import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import ToolFeature from '../components/tools/ToolFeature.astro';
+import { toolsIndex } from '../data/tools';
+
+async function page(slug: string) {
+  const entry = await getEntry('pages', slug);
+  if (!entry) throw new Error(`Missing content entry: src/content/pages/${slug}.mdx`);
+  return entry.data;
+}
+
+const hero = await page('tools');
+// The original /tools page had no copy of its own: each tile borrows its
+// child page's title and lead.
+const tools = await Promise.all(
+  toolsIndex.map(async (tool) => ({ ...tool, ...(await page(tool.page)) })),
+);
 ---
 
-<BaseLayout title="Tools">
-  <PageHero title="Tools" />
+<BaseLayout title={hero.title} description={hero.description}>
+  <PageHero title={hero.title} eyebrow={hero.eyebrow} highlight={hero.highlight} lead={hero.lead} />
+
+  <Section class="pt-0 sm:pt-2">
+    {/* One column until lg: at tablet width two tiles squeeze the titles. */}
+    <div class="grid gap-6 lg:grid-cols-2" data-reveal-stagger>
+      {
+        tools.map((tool, index) => (
+          <ToolFeature
+            index={index + 1}
+            title={tool.title}
+            href={tool.href}
+            description={tool.lead}
+            links={tool.links}
+            image={tool.image}
+            imageAlt={tool.imageAlt}
+            fileName={tool.fileName}
+          />
+        ))
+      }
+    </div>
+  </Section>
 </BaseLayout>

@@ -1,9 +1,27 @@
 ---
-// TODO(content): stub — ported from https://www.neteinstein.org/tools/loopgain in a follow-up step.
+import { getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import BrowserFrame from '../../components/tools/BrowserFrame.astro';
+import BigLink from '../../components/tools/BigLink.astro';
+import { loopgain } from '../../data/tools';
+
+const entry = await getEntry('pages', 'loopgain');
+if (!entry) throw new Error('Missing content entry: src/content/pages/loopgain.mdx');
+const page = entry.data;
 ---
 
-<BaseLayout title="LoopGain">
-  <PageHero title="LoopGain" eyebrow="Tools" />
+<BaseLayout title={page.title} description={page.description}>
+  <PageHero title={page.title} eyebrow={page.eyebrow} highlight={page.highlight} lead={page.lead} />
+
+  <Section class="pt-2 sm:pt-4">
+    <BrowserFrame
+      href={loopgain.href}
+      address={loopgain.label}
+      image={loopgain.image}
+      imageAlt={loopgain.imageAlt}
+    />
+    <BigLink href={loopgain.href} label={loopgain.label} eyebrow="Visit" class="mt-16 sm:mt-24" />
+  </Section>
 </BaseLayout>

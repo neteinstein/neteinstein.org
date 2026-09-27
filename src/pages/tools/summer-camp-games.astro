@@ -1,9 +1,20 @@
 ---
-// TODO(content): stub — ported from https://www.neteinstein.org/tools/summer-camp-games in a follow-up step.
+import { getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import DriveDocument from '../../components/tools/DriveDocument.astro';
+import { cadernoDeJogos } from '../../data/tools';
+
+const entry = await getEntry('pages', 'summer-camp-games');
+if (!entry) throw new Error('Missing content entry: src/content/pages/summer-camp-games.mdx');
+const page = entry.data;
 ---
 
-<BaseLayout title="Summer Camp Games">
-  <PageHero title="Summer Camp Games" eyebrow="Tools" />
+<BaseLayout title={page.title} description={page.description}>
+  <PageHero title={page.title} eyebrow={page.eyebrow} highlight={page.highlight} lead={page.lead} />
+
+  <Section id="caderno" class="pt-2 sm:pt-4">
+    <DriveDocument doc={cadernoDeJogos} />
+  </Section>
 </BaseLayout>
