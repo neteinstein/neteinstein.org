@@ -12,14 +12,9 @@ const { t, localize } = useI18n(Astro);
 const welcome = localize(welcomeCopy);
 
 /** Roles cycled by the ticker. Each is a section of this site. */
-const TICKER = [
-  'Husband & Father',
-  'Tech Engineer',
-  'Improver',
-  'Podcast Host',
-  'Speaker',
-  'Storyteller',
-].map((role) => t(role));
+const TICKER = ['Tech Engineer', 'Improver', 'Podcast Host', 'Speaker', 'Storyteller'].map((role) =>
+  t(role),
+);
 
 /** Chips orbiting the portrait. Decorative; the same facts are in "Who am I?". */
 const CHIPS = [
@@ -146,37 +141,33 @@ const CHIPS = [
 </section>
 
 <style>
-  /* Six roles, each held ~2s, then slide up; the duplicated first row makes the loop seamless. */
+  /* Five roles, each held ~2s, then slide up; the duplicated first row makes the loop seamless. */
   .motion-ok .role-ticker-track {
-    animation: ticker 13.2s var(--ease-out-expo) infinite;
+    animation: ticker 11s var(--ease-out-expo) infinite;
   }
   @keyframes ticker {
     0%,
-    13% {
+    16% {
       translate: 0 0;
     }
-    16.67%,
-    29.67% {
+    20%,
+    36% {
       translate: 0 -1.3em;
     }
-    33.33%,
-    46.33% {
+    40%,
+    56% {
       translate: 0 -2.6em;
     }
-    50%,
-    63% {
+    60%,
+    76% {
       translate: 0 -3.9em;
     }
-    66.67%,
-    79.67% {
+    80%,
+    96% {
       translate: 0 -5.2em;
     }
-    83.33%,
-    96.33% {
-      translate: 0 -6.5em;
-    }
     100% {
-      translate: 0 -7.8em;
+      translate: 0 -6.5em;
     }
   }
 
