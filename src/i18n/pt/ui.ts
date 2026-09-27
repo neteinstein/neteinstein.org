@@ -173,6 +173,8 @@ export const ui: Catalog = {
   'Places for kids': 'Sítios para crianças',
   'Jump to the list': 'Saltar para a lista',
   'Play & parties': 'Brincadeira & festas',
+  'Search the list': 'Pesquisar na lista',
+  'Search a place, a town, an age range…': 'Procura um sítio, uma localidade, uma faixa etária…',
   'see the note under the table': 'ver a nota por baixo da tabela',
   'see the note under the list': 'ver a nota por baixo da lista',
 
