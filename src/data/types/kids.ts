@@ -20,8 +20,8 @@ export interface KidsNoteList {
  * original left blank — they stay blank here rather than being guessed.
  */
 export interface KidsPlace {
-  /** "Where?" — the town or neighbourhood. */
-  where: string;
+  /** "Where?" — the town or neighbourhood, linked to its Google Maps location. */
+  where: LinkRef;
   /** "Name" — linked to the page the prices were read from. */
   name: LinkRef;
   /** "Indoor Outdoor". */
