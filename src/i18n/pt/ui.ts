@@ -79,7 +79,6 @@ export const ui: Catalog = {
   virtual: 'virtual',
   home: 'casa',
   "I'm a": 'Sou',
-  'Husband & Father': 'Marido & Pai',
   'Podcast Host': 'Anfitrião de Podcasts',
   Speaker: 'Orador',
   '📱 AI & Mobile @ Mindera': '📱 IA & Mobile @ Mindera',
