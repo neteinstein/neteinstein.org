@@ -1,0 +1,41 @@
+---
+import Icon from '../Icon.astro';
+
+/**
+ * A highlighted note inside prose — the storyteller's "Warning: …" line.
+ * Scoped rules so the surrounding `Prose` paragraph margins don't leak in.
+ */
+---
+
+<div class="heads-up">
+  <span class="heads-up-icon" aria-hidden="true">
+    <Icon name="zap" class="size-5" fill />
+  </span>
+  <div class="heads-up-body"><slot /></div>
+</div>
+
+<style>
+  .heads-up {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-block: 1.75rem 0;
+    padding: 1.1rem 1.25rem;
+    border-radius: 1.25rem;
+    border: 1px solid color-mix(in oklch, var(--accent-3) 45%, transparent);
+    background: color-mix(in oklch, var(--accent-3) 12%, var(--surface-raised));
+  }
+  .heads-up-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    background: var(--gradient-brand);
+    color: var(--on-accent);
+  }
+  .heads-up-body :global(p) {
+    margin: 0;
+  }
+</style>

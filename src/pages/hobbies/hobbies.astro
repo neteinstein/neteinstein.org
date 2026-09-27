@@ -1,9 +1,24 @@
 ---
-// TODO(content): stub — ported from https://www.neteinstein.org/hobbies/hobbies in a follow-up step.
+import { getEntry, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
+import JumpLinks from '../../components/hobbies/JumpLinks.astro';
+import { hobbies } from '../../data/hobbies';
+
+const entry = await getEntry('pages', 'hobbies');
+if (!entry) throw new Error('Missing content entry: src/content/pages/hobbies.mdx');
+const { Content } = await render(entry);
 ---
 
-<BaseLayout title="Hobbies">
-  <PageHero title="Hobbies" eyebrow="Hobbies" />
+<BaseLayout title={entry.data.title} description={entry.data.description}>
+  <PageHero title={entry.data.title} eyebrow={entry.data.eyebrow} highlight={entry.data.highlight}>
+    <JumpLinks
+      slot="actions"
+      items={hobbies.map(({ id, shortTitle }) => ({ id, label: shortTitle }))}
+    />
+  </PageHero>
+
+  <div class="container-page pb-10 sm:pb-16">
+    <Content />
+  </div>
 </BaseLayout>
