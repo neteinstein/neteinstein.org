@@ -107,7 +107,7 @@ export const useful: Useful[] = [
   {
     title: 'My Apps',
     href: '/my-apps',
-    description: "I've been developing a number of free number of apps.",
+    description: "I've been developing a number of free apps.",
     image: myApps,
     imageAlt: 'Illustration of the same app running in a browser window and on a phone',
   },
