@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../Icon.astro';
+import type { PodcastShow } from '../../data/types';
+
+/** In-page shortcuts to each show, rendered under the page hero's title. */
+interface Props {
+  shows: PodcastShow[];
+}
+
+const { shows } = Astro.props;
+---
+
+<nav aria-label="Shows on this page" class="mt-9" data-enter style="--delay: 400">
+  <ul class="grid gap-3 sm:grid-cols-2">
+    {
+      shows.map((show, index) => (
+        <li>
+          <a
+            href={`#${show.slug}`}
+            class="group glass glow-ring border-line flex items-center gap-4 rounded-2xl border p-3 pr-5 shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]"
+          >
+            <Image
+              src={show.logo}
+              alt=""
+              widths={[112]}
+              sizes="3.5rem"
+              class="border-line size-14 shrink-0 rounded-xl border object-cover transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-105 group-hover:-rotate-3"
+            />
+            <span class="min-w-0 flex-1">
+              <span class="font-display block leading-tight font-bold">{show.name}</span>
+              <span class="text-muted mt-1 block font-mono text-[0.7rem] font-semibold tracking-[0.14em] uppercase">
+                Show {String(index + 1).padStart(2, '0')}
+                {show.episodes.length > 0 && ` · ${show.episodes.length} episodes`}
+              </span>
+            </span>
+            <Icon
+              name="arrow-down"
+              class="text-accent size-4 shrink-0 transition-transform duration-300 group-hover:translate-y-0.5"
+            />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

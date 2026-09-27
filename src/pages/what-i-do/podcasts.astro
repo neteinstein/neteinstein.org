@@ -1,9 +1,19 @@
 ---
-// TODO(content): stub — ported from https://www.neteinstein.org/what-i-do/podcasts in a follow-up step.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
+import ShowJumpLinks from '../../components/podcasts/ShowJumpLinks.astro';
+import ShowSection from '../../components/podcasts/ShowSection.astro';
+import { podcastsPage, shows } from '../../data/podcasts';
 ---
 
-<BaseLayout title="Podcasts">
-  <PageHero title="Podcasts" eyebrow="What I do" />
+<BaseLayout title={podcastsPage.title} description={podcastsPage.description}>
+  <PageHero
+    title={podcastsPage.title}
+    eyebrow={podcastsPage.eyebrow}
+    highlight={podcastsPage.highlight}
+  >
+    <ShowJumpLinks shows={shows} />
+  </PageHero>
+
+  {shows.map((show, index) => <ShowSection show={show} index={index} />)}
 </BaseLayout>
