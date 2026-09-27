@@ -41,7 +41,6 @@ export const ui: Catalog = {
   // Footer
   'Say hello': 'Diz olá',
   'Drop a': 'Deixa um',
-  "I don't bite... just": 'Não mordo... só',
   Footer: 'Rodapé',
   Elsewhere: 'Noutros sítios',
   '{author} asserts the moral right to be identified as the author of this website and will challenge to a food challenge anyone that says otherwise.':
