@@ -152,11 +152,6 @@ export const ui: Catalog = {
   FAQ: 'Perguntas frequentes',
   'Apps on this page': 'Apps nesta página',
 
-  // Tools
-  'Open in Google Drive': 'Abrir no Google Drive',
-  'Open {name} in Google Drive': 'Abrir {name} no Google Drive',
-  Download: 'Descarregar',
-
   // Porto
   'Jump to': 'Saltar para',
   '{count} place': '{count} sítio',
