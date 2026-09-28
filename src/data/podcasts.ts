@@ -123,7 +123,7 @@ export const shows: PodcastShow[] = [
       { em: 'Hot Ones' },
       ", if Live Aid were done by amateurs and Hot Ones with fake chicken, and both happened at the same time in someone's living room.",
     ],
-    href: 'https://sites.google.com/view/o-que-arde-cura/in%C3%ADcio',
+    href: 'https://oqueardecura.pedrovicente.pt/',
     logo: oQueArdeCuraLogo,
     logoAlt:
       'O Que Arde Cura logo: “O Que Arde Cura!” hand-lettered in white on a red chilli pepper',
