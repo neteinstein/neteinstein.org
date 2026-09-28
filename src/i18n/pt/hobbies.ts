@@ -50,6 +50,7 @@ export const hobbies: Catalog = {
     'Ou como saltar de varandas de um segundo andar...',
   "Porto or Madrid? It's all the same when flying from Dublin":
     'Porto ou Madrid? É tudo igual quando se voa de Dublin',
+  '"Crickets" in the office': '"Grilos" no escritório',
   'A white off-road jeep stuck in a muddy puddle on a dirt track, with trees behind it':
     'Um jipe todo-o-terreno branco atolado numa poça de lama num caminho de terra, com árvores atrás',
 
