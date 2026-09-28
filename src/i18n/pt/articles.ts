@@ -15,7 +15,8 @@ export const articles: Catalog = {
   'PontoSJ logo': 'Logótipo do PontoSJ',
   'Tech highlights': 'Destaques de tecnologia',
   'Company/Team highlights': 'Destaques de empresa/equipa',
-  'Education highlights (in Portuguese only)': 'Destaques de educação',
+  'Education highlights': 'Destaques de educação',
+  Utils: 'Utilitários',
   "I have a book in the works that sums up my view of the world. I'm writing it to share with my kids when they reach adulthood; depending on how it turns out, parts of it might be shared with a broader audience.":
     'Tenho um livro em curso que resume a minha visão do mundo. Estou a escrevê-lo para partilhar com os meus filhos quando chegarem à idade adulta; dependendo de como correr, partes dele poderão ser partilhadas com um público mais alargado.',
   'A black leather-bound book with a gold flourish on its blank cover, on a wooden table':
