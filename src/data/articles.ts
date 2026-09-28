@@ -122,11 +122,29 @@ export const highlights: ArticleHighlightGroup[] = [
           },
         ],
       },
+      {
+        year: '2016',
+        articles: [
+          {
+            label: 'Not another Android interviews article',
+            href: 'https://medium.com/@neteinstein/not-another-android-interviews-article-5b478671793b',
+          },
+        ],
+      },
     ],
   },
   {
-    title: 'Education highlights (in Portuguese only)',
+    title: 'Education highlights',
     years: [
+      {
+        year: '2024',
+        articles: [
+          {
+            label: 'Not being a luddite, neither a “what’s the problem?” parent',
+            href: 'https://neteinstein.medium.com/not-being-a-luddite-neither-a-whats-the-problem-parent-70cc1bfac31a',
+          },
+        ],
+      },
       {
         year: '2021',
         articles: [
@@ -145,11 +163,51 @@ export const highlights: ArticleHighlightGroup[] = [
         ],
       },
       {
+        year: '2020',
+        articles: [
+          {
+            label: 'O melhor de todos nós',
+            href: 'https://pontosj.pt/opiniao/o-melhor-de-todos-nos/',
+          },
+        ],
+      },
+      {
         year: '2016',
         articles: [
           {
             label: 'Contracto de Associação?',
             href: 'https://medium.com/me/stats/post/2a52ee799ae3?source=main_stats_page',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: 'Utils',
+    years: [
+      {
+        year: '2023',
+        articles: [
+          {
+            label: 'How to download Teams / Sharepoint videos',
+            href: 'https://neteinstein.medium.com/how-to-download-teams-sharepoint-videos-8b81eff4026d',
+          },
+          {
+            label: 'My Android Apps',
+            href: 'https://neteinstein.medium.com/my-android-apps-396cd2266040',
+          },
+        ],
+      },
+      {
+        year: '2020',
+        articles: [
+          {
+            label: 'My Mac OS Software Toolkit',
+            href: 'https://medium.com/code-procedure-and-rants/my-software-tool-kit-94e07b731486',
+          },
+          {
+            label: 'My Chrome Extensions',
+            href: 'https://medium.com/code-procedure-and-rants/my-chrome-plugins-ba7c3a6cdea2',
           },
         ],
       },
