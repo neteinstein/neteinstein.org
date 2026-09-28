@@ -1,12 +1,12 @@
 ---
 import type { ImproverWorkshops } from '../../data/types';
-import Embed from '../Embed.astro';
+import WorkshopForm from './WorkshopForm.astro';
 import Icon from '../Icon.astro';
 
 /**
  * The workshops call to action: the invitation and the pro bono note on a
- * banner, then the original Google Forms embed below it (the copy says
- * "the form below", so the form stays underneath at every width).
+ * banner, then a native-styled contact form below it (the copy says "the
+ * form below", so the form stays underneath at every width).
  */
 interface Props {
   cta: string;
@@ -51,12 +51,6 @@ const { cta, note, form } = Astro.props;
   </div>
 
   <div class="mx-auto mt-8 max-w-3xl" data-reveal>
-    <Embed
-      src={form.src}
-      title={form.title}
-      height={form.height}
-      fallbackHref={form.fallbackHref}
-      fallbackLabel={form.fallbackLabel}
-    />
+    <WorkshopForm form={form} />
   </div>
 </div>

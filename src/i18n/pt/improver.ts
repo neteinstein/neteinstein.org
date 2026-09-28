@@ -87,9 +87,14 @@ export const improver: Catalog = {
     'Curioso? Preenche o formulário abaixo e vamos conversar 🙃',
   "Note: if you work at a non-profit or a school, I'm happy to do this pro bono.":
     'Nota: se trabalhas numa organização sem fins lucrativos ou numa escola, faço isto pro bono com todo o gosto.',
-  'Improve Teams Workshops contact form (Google Forms)':
-    'Formulário de contacto dos Workshops Improve Teams (Google Forms)',
-  'Open the form in a new tab': 'Abrir o formulário num novo separador',
+  Name: 'Nome',
+  Email: 'Email',
+  'Phone number': 'Número de telefone',
+  Comments: 'Comentários',
+  Send: 'Enviar',
+  "Thanks! I'll reach out soon.": 'Obrigado! Entro em contacto em breve.',
+  'Prefer the original Google Form?': 'Prefere o formulário original do Google?',
+  'Form submission target': 'Destino do envio do formulário',
   Family: 'Família',
   'After teams...': 'Depois das equipas...',
   Alpha: 'Alfa',
