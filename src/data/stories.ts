@@ -45,6 +45,7 @@ export const stories: TrueStory[] = [
   { year: 2021, text: ['How to do a remote Squid Game...'] },
   { year: 2023, text: ['Or how to jump from second-floor balconies...'] },
   { year: 2023, text: ["Porto or Madrid? It's all the same when flying from Dublin"] },
+  { year: 2025, text: ['"Crickets" in the office'] },
   { text: ['...'] },
 ];
 
