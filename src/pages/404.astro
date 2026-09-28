@@ -1,27 +1,117 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHeader from '../components/PageHeader.astro';
-import { NAV } from '../config/site';
+import ButtonLink from '../components/ButtonLink.astro';
+import { navPages } from '../config/site';
+import { withBase } from '../lib/url';
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  LOCALE_INFO,
+  LOCALE_STORAGE_KEY,
+  localizePath,
+  translate,
+} from '../i18n';
+
+/**
+ * GitHub Pages serves this one file for every missing URL, in any language,
+ * so it carries every locale's copy and shows the right one on arrival: the
+ * locale of the URL that 404'd, else the visitor's saved or browser language.
+ */
+const pages = navPages().filter((page) => page.href !== '/');
+const title = translate(DEFAULT_LOCALE, 'Page not found');
+const titles = Object.fromEntries(
+  LOCALES.map((locale) => [locale, translate(locale, 'Page not found')]),
+);
+const tags = Object.fromEntries(LOCALES.map((locale) => [locale, LOCALE_INFO[locale].tag]));
+const base = withBase('/').replace(/\/+$/, '');
 ---
 
-<BaseLayout title="Page not found" description="That page doesn't exist.">
-  <PageHeader
-    title="Page not found"
-    lead="That page doesn't exist — or it moved when the site did."
-  />
+<BaseLayout title={title} description="That page doesn't exist." translated={false}>
+  <section class="container-page grid min-h-[70svh] place-items-center py-16 text-center">
+    <div>
+      <p
+        class="text-gradient font-display text-[clamp(7rem,24vw,14rem)] leading-none font-extrabold tracking-[-0.06em]"
+        data-enter
+      >
+        404
+      </p>
+      {
+        LOCALES.map((locale) => {
+          const t = (text: string) => translate(locale, text);
+          return (
+            <div
+              data-not-found={locale}
+              lang={LOCALE_INFO[locale].tag}
+              hidden={locale !== DEFAULT_LOCALE}
+            >
+              <h1
+                class="font-display mt-2 text-3xl font-bold tracking-tight sm:text-4xl"
+                data-enter
+                style="--delay: 150"
+              >
+                {t('This page wandered off')}
+              </h1>
+              <p class="text-muted mx-auto mt-4 max-w-md text-lg" data-enter style="--delay: 250">
+                {t(
+                  "That page doesn't exist — or it moved when the site did. Try one of these instead:",
+                )}
+              </p>
 
-  <ul class="flex flex-wrap gap-3">
-    {
-      NAV.map((item) => (
-        <li>
-          <a
-            href={item.href}
-            class="inline-block rounded-full border border-[var(--border)] px-4 py-2 text-sm transition-colors hover:border-[var(--link)] hover:text-[var(--link)]"
-          >
-            {item.label}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+              <ul
+                class="mx-auto mt-8 flex max-w-2xl flex-wrap justify-center gap-2.5"
+                data-reveal-stagger
+              >
+                {pages.map((page) => (
+                  <li>
+                    <a
+                      href={withBase(localizePath(page.href, locale))}
+                      class="border-line bg-surface-raised hover:border-accent hover:text-accent inline-block rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 ease-[var(--ease-spring)] hover:-translate-y-0.5"
+                    >
+                      {t(page.label)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <div class="mt-10" data-enter style="--delay: 400">
+                <ButtonLink href={localizePath('/', locale)} icon="arrow-right" trailing={false}>
+                  {t('Take me home')}
+                </ButtonLink>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <script
+    is:inline
+    define:vars={{ base, fallback: DEFAULT_LOCALE, titles, tags, storageKey: LOCALE_STORAGE_KEY }}
+  >
+    (() => {
+      const path = location.pathname.slice(base.length);
+      let locale = Object.keys(titles).find(
+        (candidate) => candidate !== fallback && (path + '/').startsWith('/' + candidate + '/'),
+      );
+      if (!locale) {
+        try {
+          locale = localStorage.getItem(storageKey);
+        } catch {
+          /* storage blocked */
+        }
+      }
+      if (!(locale in titles)) {
+        locale = (navigator.languages?.length ? navigator.languages : [navigator.language])
+          .map((tag) => (tag || '').toLowerCase().split('-')[0])
+          .find((language) => language in titles);
+      }
+      if (!locale || locale === fallback) return;
+      for (const block of document.querySelectorAll('[data-not-found]')) {
+        block.hidden = block.dataset.notFound !== locale;
+      }
+      document.documentElement.lang = tags[locale];
+      document.title = document.title.replace(titles[fallback], titles[locale]);
+    })();
+  </script>
 </BaseLayout>

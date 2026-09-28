@@ -1,0 +1,71 @@
+---
+import Icon from '../Icon.astro';
+import type { GoodreadsBook, LinkRef } from '../../data/types';
+
+/**
+ * Static stand-in for the Goodreads grid widget the original embedded: the
+ * books from the widget's own fallback markup as a shelf of "spines", and the
+ * widget's profile link as a card. No third-party script is loaded.
+ */
+interface Props {
+  books: GoodreadsBook[];
+  profile: LinkRef;
+}
+
+const { books, profile } = Astro.props;
+const tones = ['--accent', '--accent-2', '--accent-3', '--accent-4'];
+---
+
+<div class="grid gap-5 lg:grid-cols-[1fr_17rem]">
+  <ol class="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3" data-reveal-stagger>
+    {
+      books.map((book, index) => (
+        <li>
+          <a
+            href={book.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group border-line bg-surface-raised hover:border-line-strong relative flex h-full items-stretch overflow-hidden rounded-2xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow,border-color] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-md)]"
+            style={`--tone: var(${tones[index % tones.length]})`}
+          >
+            <span
+              class="grid w-12 shrink-0 place-items-center bg-[color-mix(in_oklch,var(--tone)_16%,transparent)] font-mono text-sm font-bold text-[color-mix(in_oklch,var(--tone)_70%,var(--text))] transition-[width] duration-500 ease-[var(--ease-out-expo)] group-hover:w-14"
+              aria-hidden="true"
+            >
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <span class="flex min-w-0 flex-1 items-center gap-2 px-4 py-3">
+              <span class="font-display min-w-0 flex-1 leading-snug font-semibold text-pretty">
+                {book.title}
+              </span>
+              <Icon
+                name="arrow-up-right"
+                class="text-accent size-4 shrink-0 opacity-50 transition-[opacity,translate] duration-300 group-hover:translate-x-0.5 group-hover:opacity-100"
+              />
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+
+  <a
+    href={profile.href}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="group glow-ring border-line relative flex flex-col justify-between gap-8 overflow-hidden rounded-3xl border bg-[image:var(--gradient-brand)] p-6 text-[var(--on-accent)] shadow-[var(--shadow-lg)] transition-transform duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 lg:sticky lg:top-28 lg:min-h-72 lg:self-start"
+    data-reveal="right"
+  >
+    <span
+      class="grid size-12 place-items-center rounded-2xl bg-[color-mix(in_oklch,var(--on-accent)_18%,transparent)]"
+    >
+      <Icon name="book" class="size-6" />
+    </span>
+    <span>
+      <span class="block font-mono text-xs font-semibold tracking-[0.14em] uppercase opacity-80">
+        Goodreads
+      </span>
+      <span class="font-display mt-2 block text-2xl leading-tight font-bold">{profile.label}</span>
+    </span>
+  </a>
+</div>

@@ -1,0 +1,136 @@
+---
+import { Image } from 'astro:assets';
+import Prose from '../Prose.astro';
+import VideoEmbed from '../VideoEmbed.astro';
+import Icon from '../Icon.astro';
+import { hobbies as allHobbies } from '../../data/hobbies';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
+
+/**
+ * One block of /hobbies/hobbies, used from `hobbies.mdx` as
+ * `<Hobby id="…">prose</Hobby>`. The logo (or illustration), kicker, linked
+ * heading and videos come from `src/data/hobbies.ts`; the prose is the slot.
+ * Blocks alternate sides on wide screens, and the picture stays pinned while
+ * the prose scrolls past it.
+ */
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const { localize, localHref } = useI18n(Astro);
+const hobbies = localize(allHobbies);
+const index = hobbies.findIndex((hobby) => hobby.id === id);
+const hobby = hobbies[index];
+if (!hobby) throw new Error(`Unknown hobby: ${id}`);
+
+const flip = index % 2 === 1;
+const external = isExternal(hobby.href);
+
+const linkProps = {
+  href: localHref(hobby.href),
+  target: external ? '_blank' : undefined,
+  rel: external ? 'noopener noreferrer' : undefined,
+};
+const { visual } = hobby;
+const logo = visual.kind === 'logo';
+const number = String(index + 1).padStart(2, '0');
+const total = String(hobbies.length).padStart(2, '0');
+
+const [firstVideo, ...moreVideos] = hobby.videos ?? [];
+---
+
+<article
+  id={hobby.id}
+  class="border-line grid scroll-mt-24 gap-8 border-t py-12 first:border-t-0 first:pt-4 sm:py-16 lg:grid-cols-12 lg:gap-14"
+>
+  <div class:list={[logo ? 'lg:col-span-4' : 'lg:col-span-5', flip && 'lg:order-2']}>
+    <div class="lg:sticky lg:top-28" data-reveal="scale">
+      <div class:list={['relative mx-auto w-full', logo ? 'max-w-xs lg:max-w-none' : 'max-w-xl']}>
+        <div
+          class="absolute -inset-5 -z-10 rounded-[2.5rem] bg-[image:var(--gradient-brand)] opacity-20 blur-3xl"
+          aria-hidden="true"
+        >
+        </div>
+        <div
+          class:list={[
+            'glow-ring border-line bg-surface-raised overflow-hidden rounded-[2rem] border shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] hover:rotate-0',
+            flip ? 'rotate-[1.5deg]' : '-rotate-[1.5deg]',
+            logo && 'aspect-square',
+          ]}
+          data-spotlight
+        >
+          {
+            hobby.visualLinked ? (
+              <a {...linkProps} class="block size-full">
+                <Image
+                  src={visual.image}
+                  alt={visual.alt}
+                  widths={[320, 480, 640]}
+                  sizes="(min-width: 1024px) 22rem, 20rem"
+                  class:list={[
+                    'size-full',
+                    visual.fit === 'cover' ? 'object-cover' : 'object-contain p-8',
+                  ]}
+                />
+              </a>
+            ) : (
+              <Image
+                src={visual.image}
+                alt={visual.alt}
+                widths={[480, 720, 900]}
+                sizes="(min-width: 1024px) 28rem, 100vw"
+                class="h-auto w-full"
+              />
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class:list={[logo ? 'lg:col-span-8' : 'lg:col-span-7', 'min-w-0']}>
+    <div data-reveal>
+      <p
+        class="text-muted flex items-center gap-3 font-mono text-xs font-semibold tracking-[0.14em]"
+      >
+        <span class="text-gradient text-base">{number}</span>
+        <span class="bg-line-strong h-px w-8" aria-hidden="true"></span>
+        <span>{total}</span>
+      </p>
+      {hobby.kicker && <p class="eyebrow mt-5">{hobby.kicker}</p>}
+      <h2
+        class="font-display mt-2 text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-5xl"
+      >
+        <a {...linkProps} class="group/title hover:text-link inline-flex items-start gap-2">
+          <span class="link-underline">{hobby.title}</span>
+          <Icon
+            name={external ? 'arrow-up-right' : 'arrow-right'}
+            class="text-accent mt-2 size-6 shrink-0 transition-transform duration-300 group-hover/title:translate-x-1 sm:mt-3 sm:size-7"
+          />
+        </a>
+      </h2>
+    </div>
+    <div class="mt-6" data-reveal>
+      <Prose>
+        <slot />
+      </Prose>
+    </div>
+  </div>
+
+  {
+    firstVideo && (
+      <div class="grid gap-5 sm:grid-cols-3 lg:col-span-12" data-reveal-stagger>
+        <VideoEmbed
+          id={firstVideo.id}
+          title={firstVideo.title}
+          class="sm:col-span-2 sm:row-span-2"
+        />
+        {moreVideos.map((video) => (
+          <VideoEmbed id={video.id} title={video.title} />
+        ))}
+      </div>
+    )
+  }
+</article>

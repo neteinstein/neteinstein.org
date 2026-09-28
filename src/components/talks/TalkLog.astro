@@ -1,0 +1,174 @@
+---
+import Tag from '../Tag.astro';
+import TalkText from './TalkText.astro';
+import type { TalkLogYear, TalkTag } from '../../data/types';
+import { useI18n } from '../../i18n';
+
+type Tone = 'neutral' | 'accent' | 'pink' | 'amber' | 'teal';
+
+/**
+ * "A more exhaustive list...": one card per year, newest first, the year
+ * pinned beside its card on wide screens. Each line keeps the original's
+ * `<month> @ <event> - <talk> #Tag` wording; the hashtags become chips.
+ *
+ * A row of #tag buttons filters the list. It is a progressive enhancement:
+ * the bar ships `hidden` and the script below reveals it, so without JS the
+ * full list simply shows.
+ */
+interface Props {
+  years: TalkLogYear[];
+  tones: Record<TalkTag, Tone>;
+}
+
+const { years, tones } = Astro.props;
+const { t } = useI18n(Astro);
+
+const entries = years.flatMap((year) => year.entries);
+const counts = new Map<TalkTag, number>();
+for (const entry of entries) {
+  for (const tag of entry.tags) counts.set(tag, (counts.get(tag) ?? 0) + 1);
+}
+// Most-used first; ties keep first-seen order (Map iteration order).
+const tags = [...counts].sort((a, b) => b[1] - a[1]);
+
+const dotColor: Record<Tone, string> = {
+  neutral: 'var(--text-muted)',
+  accent: 'var(--accent)',
+  pink: 'var(--accent-2)',
+  amber: 'var(--accent-3)',
+  teal: 'var(--accent-4)',
+};
+
+const button =
+  'border-line-strong bg-surface-raised text-fg hover:border-accent inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm font-semibold transition-all duration-300 ease-[var(--ease-spring)] hover:-translate-y-0.5 aria-pressed:border-transparent aria-pressed:bg-[image:var(--gradient-brand)] aria-pressed:text-on-accent aria-pressed:shadow-[var(--shadow-md)]';
+---
+
+<div
+  data-talk-log
+  data-status-all={t('Showing all {total}')}
+  data-status-tag={t('Showing {shown} of {total}, tagged #{tag}')}
+>
+  <div class="mb-8 sm:mb-10" hidden data-talk-filter>
+    <p id="talk-filter-label" class="text-muted mb-3 text-sm font-medium">{t('Filter by #tag:')}</p>
+    <div role="group" aria-labelledby="talk-filter-label" class="flex flex-wrap gap-2">
+      <button type="button" class={button} aria-pressed="true" data-tag="">
+        {t('All')}
+        <span class="font-mono text-xs opacity-70">{entries.length}</span>
+      </button>
+      {
+        tags.map(([tag, count]) => (
+          <button
+            type="button"
+            class={button}
+            aria-pressed="false"
+            data-tag={tag}
+            data-label={t(tag)}
+          >
+            <span
+              class="size-2 rounded-full"
+              style={`background: ${dotColor[tones[tag]]}`}
+              aria-hidden="true"
+            />
+            #{t(tag)}
+            <span class="font-mono text-xs opacity-70">{count}</span>
+          </button>
+        ))
+      }
+    </div>
+    <p class="sr-only" aria-live="polite" data-talk-status></p>
+  </div>
+
+  <div class="space-y-8 sm:space-y-10">
+    {
+      years.map((year) => (
+        <section
+          class="grid gap-4 lg:grid-cols-[11rem_1fr] lg:gap-10"
+          aria-labelledby={`talks-${year.year}`}
+          data-talk-year
+        >
+          <div class="lg:sticky lg:top-28 lg:self-start" data-reveal="left">
+            <h3
+              id={`talks-${year.year}`}
+              class="font-display text-gradient text-5xl leading-none font-extrabold tracking-tight sm:text-6xl lg:pt-4"
+            >
+              {year.year}
+            </h3>
+          </div>
+          <ol
+            class="border-line bg-surface-raised divide-line divide-y overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)]"
+            data-reveal
+            data-spotlight
+          >
+            {year.entries.map((entry) => (
+              <li
+                class="hover:bg-surface-sunken/60 grid grid-cols-[3rem_1fr] items-start gap-x-3 p-4 transition-colors sm:grid-cols-[4rem_1fr] sm:gap-x-4 sm:px-6 sm:py-5"
+                data-tags={entry.tags.join(' ')}
+              >
+                <span class="bg-surface-sunken text-accent rounded-lg py-1 text-center font-mono text-xs font-semibold tracking-wider uppercase">
+                  {entry.month}
+                </span>
+                <div class="min-w-0">
+                  <p class="leading-relaxed text-pretty [overflow-wrap:anywhere]">
+                    <span class="text-accent-2 font-semibold">@</span>{' '}
+                    <span class="font-semibold">
+                      <TalkText text={entry.event} />
+                    </span>
+                    {entry.talk && (
+                      <>
+                        <span class="text-muted">{entry.separator ?? ' - '}</span>
+                        <TalkText text={entry.talk} />
+                      </>
+                    )}
+                  </p>
+                  <ul class="mt-2 flex flex-wrap gap-1.5" aria-label={t('Tags')}>
+                    {entry.tags.map((tag) => (
+                      <li>
+                        <Tag tone={tones[tag]}>#{t(tag)}</Tag>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>('[data-talk-log]')) {
+    const bar = root.querySelector<HTMLElement>('[data-talk-filter]');
+    if (!bar) continue;
+    const status = root.querySelector<HTMLElement>('[data-talk-status]');
+    const buttons = [...bar.querySelectorAll<HTMLButtonElement>('button[data-tag]')];
+    const entries = [...root.querySelectorAll<HTMLElement>('[data-tags]')];
+    const years = [...root.querySelectorAll<HTMLElement>('[data-talk-year]')];
+
+    bar.hidden = false;
+    bar.addEventListener('click', (event) => {
+      const pressed = (event.target as Element | null)?.closest<HTMLButtonElement>(
+        'button[data-tag]',
+      );
+      if (!pressed) return;
+      const tag = pressed.dataset.tag ?? '';
+      for (const button of buttons) button.setAttribute('aria-pressed', String(button === pressed));
+
+      let shown = 0;
+      for (const entry of entries) {
+        const match = tag === '' || (entry.dataset.tags ?? '').split(' ').includes(tag);
+        entry.hidden = !match;
+        if (match) shown += 1;
+      }
+      for (const year of years) year.hidden = !year.querySelector('[data-tags]:not([hidden])');
+      if (status) {
+        const template = (tag ? root.dataset.statusTag : root.dataset.statusAll) ?? '';
+        status.textContent = template
+          .replace('{shown}', String(shown))
+          .replace('{total}', String(entries.length))
+          .replace('{tag}', pressed.dataset.label ?? tag);
+      }
+    });
+  }
+</script>

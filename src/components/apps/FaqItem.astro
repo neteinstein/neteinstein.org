@@ -1,0 +1,39 @@
+---
+import Icon from '../Icon.astro';
+import type { IconName } from '../Icon.astro';
+import Prose from '../Prose.astro';
+
+/**
+ * One question of the /my-apps FAQ. Used from `src/content/pages/my-apps.mdx`,
+ * so the answer stays Markdown (bold, links) while the card stays a component.
+ */
+interface Props {
+  question: string;
+  /** Decorative glyph in the badge beside the question. */
+  icon: IconName;
+}
+
+const { question, icon } = Astro.props;
+---
+
+<div data-reveal>
+  <article
+    class="group glow-ring border-line bg-surface-raised relative rounded-3xl border p-6 shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-md)] sm:p-8"
+    data-spotlight
+  >
+    <div class="flex items-start gap-4">
+      <span
+        class="text-accent grid size-12 shrink-0 place-items-center rounded-2xl bg-[color-mix(in_oklch,var(--accent)_14%,transparent)] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-110 group-hover:-rotate-6"
+        aria-hidden="true"
+      >
+        <Icon name={icon} class="size-6" />
+      </span>
+      <h2 class="font-display pt-1.5 text-2xl leading-snug font-bold tracking-tight">
+        {question}
+      </h2>
+    </div>
+    <Prose class="text-muted mt-4 sm:pl-16">
+      <slot />
+    </Prose>
+  </article>
+</div>

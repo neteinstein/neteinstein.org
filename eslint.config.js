@@ -6,7 +6,7 @@ import astro from 'eslint-plugin-astro';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 export default defineConfig([
-  globalIgnores(['dist/**', '.astro/**', '.crawl/**', 'node_modules/**']),
+  globalIgnores(['dist/**', 'dist-base/**', '.astro/**', '.crawl/**', 'node_modules/**']),
 
   js.configs.recommended,
   tseslint.configs.recommended,
@@ -30,7 +30,7 @@ export default defineConfig([
   },
 
   {
-    files: ['scripts/**/*.mjs'],
+    files: ['scripts/**/*.mjs', '*.config.{js,mjs}'],
     languageOptions: {
       globals: { ...globals.node },
     },

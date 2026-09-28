@@ -1,0 +1,66 @@
+---
+import VideoEmbed from '../VideoEmbed.astro';
+import type { PodcastEpisode } from '../../data/types';
+import { useI18n } from '../../i18n';
+
+/**
+ * One episode on the wall: the click-to-load video with its season/episode
+ * badge (and format note) floating over the poster. The badges step aside
+ * once the player iframe replaces the poster.
+ *
+ * The `<li>` is the scroll-reveal target; the lift lives on the inner frame
+ * so the two `translate`s never fight. Two-up tiles are only ~350px wide
+ * below `lg` (a wide tile only below `md`), so there the poster title drops a
+ * size to clear the play button in two lines.
+ */
+interface Props {
+  episode: PodcastEpisode;
+  show: string;
+  /** Spans both columns of the two-up wall (from `md`). */
+  wide?: boolean;
+  class?: string;
+}
+
+const { episode, show, wide = false, class: className } = Astro.props;
+const number = String(episode.episode).padStart(2, '0');
+const { t } = useI18n(Astro);
+---
+
+<li class={className}>
+  <div
+    class:list={[
+      'episode-tile glow-ring relative rounded-3xl transition-[translate] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1',
+      wide
+        ? 'max-md:[&_.video-embed-trigger>span:last-child]:text-sm'
+        : 'max-lg:[&_.video-embed-trigger>span:last-child]:text-sm',
+    ]}
+  >
+    <p
+      class="pointer-events-none absolute inset-x-3 top-3 z-10 flex items-start justify-between gap-2 [.episode-tile:has(iframe)_&]:hidden"
+    >
+      <span
+        class="glass border-line text-fg rounded-full border px-2.5 py-1 font-mono text-[0.7rem] font-semibold tracking-wider uppercase shadow-[var(--shadow-sm)]"
+      >
+        <span aria-hidden="true">S{episode.season} · E{number}</span>
+        <span class="sr-only">
+          {
+            t('{show}, season {season}, episode {episode}', {
+              show,
+              season: episode.season,
+              episode: episode.episode,
+            })
+          }
+        </span>
+      </span>
+      {
+        episode.format && (
+          <span class="glass border-line text-fg inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[0.7rem] font-semibold shadow-[var(--shadow-sm)]">
+            <span class="bg-accent-2 size-1.5 rounded-full" aria-hidden="true" />
+            {episode.format}
+          </span>
+        )
+      }
+    </p>
+    <VideoEmbed id={episode.youtubeId} title={episode.title} />
+  </div>
+</li>

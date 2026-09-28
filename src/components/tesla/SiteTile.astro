@@ -1,0 +1,124 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../Icon.astro';
+import Tag from '../Tag.astro';
+import type { TeslaSite } from '../../data/types';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
+
+/**
+ * One launcher tile on /tesla. People open this page on the car's
+ * touchscreen, so the whole tile is the tap target (the title link is
+ * stretched over it), the "open" affordance is always visible rather than
+ * hover-only, and a press gives tactile feedback.
+ *
+ * `default` is a compact row on phones and a screenshot card from `sm` up;
+ * `feature` is always a card with a wide screenshot. `fill` lets a feature
+ * tile's screenshot grow to the height of its grid area (bento layouts).
+ */
+interface Props {
+  site: TeslaSite;
+  variant?: 'default' | 'feature';
+  fill?: boolean;
+  class?: string;
+}
+
+const { site, variant = 'default', fill = false, class: className } = Astro.props;
+
+const feature = variant === 'feature';
+const external = isExternal(site.href);
+
+// "(PT) Compara Ervilhas" → a PT badge + the name; the text reads the same.
+const regional = /^\((\w{2})\)\s+(.+)$/.exec(site.label);
+const name = regional?.[2] ?? site.label;
+
+/** host + path, without scheme, `www.` or trailing slash — what the tile opens. */
+function address(href: string): string {
+  const url = new URL(href);
+  const path = url.pathname.replace(/\/+$/, '');
+  return `${url.hostname.replace(/^www\./, '')}${path}`;
+}
+const target = address(site.href);
+// Most captions already are the address; only spell it out when they are not.
+const showAddress = target.toLowerCase() !== site.label.toLowerCase().replace(/\/+$/, '');
+
+const { localHref } = useI18n(Astro);
+---
+
+<article
+  class:list={[
+    'group glow-ring border-line bg-surface-raised relative flex h-full overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow,scale] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)] active:scale-[0.98]',
+    feature ? 'flex-col' : 'flex-row sm:flex-col',
+    className,
+  ]}
+  data-spotlight
+>
+  <div
+    class:list={[
+      'bg-surface-sunken border-line relative shrink-0 overflow-hidden',
+      feature
+        ? ['aspect-video border-b', fill && 'lg:aspect-auto lg:min-h-72 lg:flex-1']
+        : 'min-h-24 w-28 border-r sm:aspect-[4/3] sm:min-h-0 sm:w-auto sm:border-r-0 sm:border-b',
+    ]}
+  >
+    <Image
+      src={site.image}
+      alt={site.imageAlt}
+      widths={feature ? [480, 720, 900] : [240, 400, 640]}
+      sizes={feature
+        ? '(min-width: 1024px) 48rem, 100vw'
+        : '(min-width: 1024px) 18rem, (min-width: 640px) 50vw, 7rem'}
+      class="absolute inset-0 size-full object-cover object-top transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.06]"
+    />
+  </div>
+
+  <div
+    class:list={[
+      'flex min-w-0 flex-1 items-center gap-3',
+      feature ? 'p-5 sm:p-6' : 'p-4 sm:p-5',
+      fill && 'lg:flex-none',
+    ]}
+  >
+    <div class="min-w-0 flex-1">
+      <h3
+        class:list={[
+          'font-display leading-snug font-bold tracking-tight [overflow-wrap:anywhere]',
+          feature ? 'text-xl sm:text-2xl' : 'text-lg sm:text-xl',
+        ]}
+      >
+        <a
+          href={localHref(site.href)}
+          target={external ? '_blank' : undefined}
+          rel={external ? 'noopener noreferrer' : undefined}
+          class="after:absolute after:inset-0 after:z-10 after:rounded-3xl focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-[-3px] focus-visible:after:outline-[var(--link)]"
+        >
+          {
+            regional && (
+              <>
+                <Tag tone="teal" class="mr-1 translate-y-[-0.15em] align-middle font-mono">
+                  ({regional[1]})
+                </Tag>{' '}
+              </>
+            )
+          }{name}
+        </a>
+      </h3>
+      {
+        showAddress && (
+          <p class="text-muted mt-1 truncate font-mono text-xs" title={target}>
+            {target}
+          </p>
+        )
+      }
+    </div>
+    <span
+      class:list={[
+        'text-on-accent grid shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)] bg-[length:200%_auto] bg-left shadow-[0_8px_20px_-8px_color-mix(in_oklch,var(--accent)_70%,transparent)] transition-[rotate,background-position,scale] duration-500 ease-[var(--ease-spring)] group-hover:rotate-45 group-hover:bg-right group-active:scale-90',
+        feature ? 'size-12' : 'size-10 sm:size-11',
+      ]}
+      aria-hidden="true"
+    >
+      <Icon name="arrow-up-right" class="size-5" stroke-width={2.5} />
+    </span>
+  </div>
+</article>
