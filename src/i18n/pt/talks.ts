@@ -34,7 +34,6 @@ export const talks: Catalog = {
     'aqui: Walkabout no TEDxCoimbra 2012, no Medium',
   ', and other info ': ', e mais informação ',
   'Open the slides': 'Abrir os slides',
-  'Open on Prezi': 'Abrir no Prezi',
   'Other Talks': 'Outras Palestras',
   'A speaker alone on the TEDxCoimbra stage, the red TEDx Coimbra letters behind him, facing a packed auditorium':
     'Um orador sozinho no palco do TEDxCoimbra, com as letras vermelhas TEDx Coimbra atrás de si, perante um auditório cheio',
