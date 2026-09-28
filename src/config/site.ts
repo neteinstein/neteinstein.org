@@ -62,14 +62,7 @@ export const NAV: NavItem[] = [
     ],
   },
   { label: 'My Apps', href: '/my-apps' },
-  {
-    label: 'Tools',
-    href: '/tools',
-    children: [
-      { label: 'LoopGain', href: '/tools/loopgain' },
-      { label: 'Summer Camp Games', href: '/tools/summer-camp-games' },
-    ],
-  },
+  { label: 'Tools', href: '/tools' },
   {
     label: 'Hobbies',
     children: [
