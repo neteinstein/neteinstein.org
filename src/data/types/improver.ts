@@ -88,13 +88,32 @@ export interface ImproverWorkshops extends ImproverChapter {
   photos: ImproverImage[];
   cta: string;
   note: string;
-  form: {
-    src: string;
-    title: string;
-    height: number;
-    fallbackHref: string;
-    fallbackLabel: string;
-  };
+  form: ImproverWorkshopForm;
+}
+
+/** A single field of the workshops contact form, keyed to a Google Forms entry id. */
+export interface ImproverWorkshopField {
+  entry: string;
+  label: string;
+  required?: boolean;
+  /** Defaults to a single-line text input. */
+  type?: 'email' | 'tel' | 'textarea';
+}
+
+/**
+ * The workshops contact form: posts straight to the Google Form's
+ * `formResponse` endpoint (via a hidden iframe target, so it works without
+ * JS) instead of embedding the Google Forms iframe.
+ */
+export interface ImproverWorkshopForm {
+  /** `.../formResponse` endpoint of the underlying Google Form. */
+  action: string;
+  fields: ImproverWorkshopField[];
+  submitLabel: string;
+  successMessage: string;
+  /** Link to the original Google Form, for people who'd rather use that. */
+  fallbackHref: string;
+  fallbackLabel: string;
 }
 
 export interface ImproverFamily extends ImproverChapter {

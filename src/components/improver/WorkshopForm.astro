@@ -1,0 +1,102 @@
+---
+import type { ImproverWorkshopForm } from '../../data/types';
+import { useI18n } from '../../i18n';
+
+/**
+ * Native-styled contact form that posts straight to the underlying Google
+ * Form's `formResponse` endpoint (same spreadsheet the original embed wrote
+ * to), instead of embedding the Google Forms iframe. Submission targets a
+ * hidden iframe, so it works with JS off too; the inline `<script>` just
+ * swaps in an optimistic success message instead of leaving the visitor
+ * staring at Google's own confirmation page inside the hidden frame.
+ */
+interface Props {
+  form: ImproverWorkshopForm;
+}
+
+const { form } = Astro.props;
+const { t } = useI18n(Astro);
+const frameName = 'workshop-form-target';
+---
+
+<div class="border-line bg-surface-sunken rounded-3xl border p-6 shadow-[var(--shadow-md)] sm:p-8">
+  <form
+    action={form.action}
+    method="POST"
+    target={frameName}
+    class="grid gap-4 sm:grid-cols-2"
+    data-workshop-form
+    data-success-message={form.successMessage}
+  >
+    {
+      form.fields.map((field) => {
+        const isWide = field.type === 'textarea';
+        const inputClass =
+          'border-line-strong bg-surface-raised text-fg placeholder:text-muted w-full rounded-2xl border px-4 py-2.5 text-base transition-shadow focus:shadow-[0_0_0_4px_color-mix(in_oklch,var(--accent)_18%,transparent)] focus:outline-none sm:text-sm';
+        return (
+          <label
+            class:list={['flex flex-col gap-1.5 text-sm font-medium', isWide && 'sm:col-span-2']}
+          >
+            <span>
+              {field.label}
+              {field.required && (
+                <span class="text-accent-2" aria-hidden="true">
+                  {' '}
+                  *
+                </span>
+              )}
+            </span>
+            {field.type === 'textarea' ? (
+              <textarea name={field.entry} required={field.required} rows={4} class={inputClass} />
+            ) : (
+              <input
+                type={field.type === 'email' ? 'email' : field.type === 'tel' ? 'tel' : 'text'}
+                name={field.entry}
+                required={field.required}
+                class={inputClass}
+              />
+            )}
+          </label>
+        );
+      })
+    }
+
+    <div class="flex flex-wrap items-center gap-4 sm:col-span-2">
+      <button
+        type="submit"
+        class="text-on-accent rounded-full bg-[image:var(--gradient-brand)] bg-[length:200%_auto] bg-left px-6 py-2.5 text-sm font-semibold shadow-[0_8px_24px_-8px_color-mix(in_oklch,var(--accent)_70%,transparent)] transition-all duration-300 ease-[var(--ease-spring)] hover:-translate-y-0.5 hover:bg-right active:scale-[0.97]"
+      >
+        {form.submitLabel}
+      </button>
+      <p class="text-muted text-sm" data-workshop-form-status role="status" aria-live="polite"></p>
+    </div>
+  </form>
+
+  <p class="text-muted mt-4 text-sm">
+    <a
+      href={form.fallbackHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="link-underline text-link font-medium"
+    >
+      {form.fallbackLabel} ↗
+    </a>
+  </p>
+
+  <iframe name={frameName} hidden title={t('Form submission target')}></iframe>
+</div>
+
+<script>
+  const forms = document.querySelectorAll<HTMLFormElement>('[data-workshop-form]');
+  forms.forEach((form) => {
+    const status = form.parentElement?.querySelector<HTMLElement>('[data-workshop-form-status]');
+    const successMessage = form.dataset.successMessage ?? '';
+    form.addEventListener('submit', () => {
+      if (!status) return;
+      window.setTimeout(() => {
+        status.textContent = successMessage;
+        form.reset();
+      }, 400);
+    });
+  });
+</script>

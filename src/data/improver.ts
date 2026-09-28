@@ -180,10 +180,16 @@ export const workshops: ImproverWorkshops = {
   cta: "Curious? Fill in the form below and let's talk 🙃",
   note: "Note: if you work at a non-profit or a school, I'm happy to do this pro bono.",
   form: {
-    src: `${FORM}/viewform?embedded=true`,
-    title: 'Improve Teams Workshops contact form (Google Forms)',
-    fallbackLabel: 'Open the form in a new tab',
-    height: 860,
+    action: `${FORM}/formResponse`,
+    fields: [
+      { entry: 'entry.232342842', label: 'Name', required: true },
+      { entry: 'entry.2141756413', label: 'Email', required: true, type: 'email' },
+      { entry: 'entry.1107375189', label: 'Phone number', type: 'tel' },
+      { entry: 'entry.168693155', label: 'Comments', type: 'textarea' },
+    ],
+    submitLabel: 'Send',
+    successMessage: "Thanks! I'll reach out soon.",
+    fallbackLabel: 'Prefer the original Google Form?',
     fallbackHref: `${FORM}/viewform`,
   },
 };
