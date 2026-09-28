@@ -102,7 +102,7 @@ export const useful: Useful[] = [
     href: '/porto/visit-porto',
     description: 'A quick guide on places to visit, eat and have fun!',
     image: portoGuide,
-    imageAlt: 'Porto riverside at dusk, seen from across the Douro',
+    imageAlt: 'Illustration of the Ribeira do Porto skyline at dusk, with the Dom Luís bridge',
   },
   {
     title: 'My Apps',
@@ -117,7 +117,6 @@ export const useful: Useful[] = [
     description:
       'If you have a Tesla, here you can find a list of utilities: some useful, some just for fun.',
     image: teslaUtils,
-    imageAlt: 'Tesla logo',
-    imageFit: 'contain',
+    imageAlt: 'The Tesla logo as a glossy sticker on a dark card',
   },
 ];

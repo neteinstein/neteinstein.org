@@ -33,11 +33,12 @@ export const home: Catalog = {
   'Porto Guide': 'Guia do Porto',
   'A quick guide on places to visit, eat and have fun!':
     'Um guia rápido de sítios para visitar, comer e divertir-se!',
-  'Porto riverside at dusk, seen from across the Douro':
-    'A zona ribeirinha do Porto ao entardecer, vista do outro lado do Douro',
+  'Illustration of the Ribeira do Porto skyline at dusk, with the Dom Luís bridge':
+    'Ilustração da Ribeira do Porto ao entardecer, com a Ponte D. Luís',
   "I've been developing a number of free apps.": 'Tenho desenvolvido várias apps gratuitas.',
   'Tesla Utils': 'Utilitários Tesla',
   'If you have a Tesla, here you can find a list of utilities: some useful, some just for fun.':
     'Se tens um Tesla, aqui encontras uma lista de utilitários: alguns úteis, outros só por diversão.',
-  'Tesla logo': 'Logótipo da Tesla',
+  'The Tesla logo as a glossy sticker on a dark card':
+    'O logótipo da Tesla como autocolante sobre um cartão escuro',
 };
