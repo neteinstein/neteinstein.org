@@ -62,7 +62,7 @@ export interface ImproverStoryParagraph {
 export interface ImproverFeedback extends ImproverChapter {
   story: ImproverStoryParagraph[];
   envision: { lead: ImproverText; items: string[] };
-  knowMore: LinkRef;
+  actions: LinkRef[];
   training: ImproverText[];
   video: { id: string; title: string };
   deck: ImproverLinkedImage & { caption: string };

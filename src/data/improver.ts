@@ -25,6 +25,9 @@ import familySilhouette from '../assets/what-i-do/improver/family-silhouette.web
 
 const MY_APPS = '/my-apps';
 const LOOPGAIN_TEAMS_APP = `${MY_APPS}#loopgain`;
+const LOOPGAIN_SITE = 'https://www.loopgain.org';
+/** The footer's "Drop a 👋" card, which carries every contact link. */
+const CONTACT = '#contact';
 const FAMILY_MOMENTS_APP = `${MY_APPS}#family-moments`;
 const COUPLE_MOMENTS_APP = `${MY_APPS}#couple-moments`;
 const FORM =
@@ -93,12 +96,14 @@ export const feedback: ImproverFeedback = {
       'how the team members can improve and get even better at working with each other;',
     ],
   },
-  knowMore: { label: 'Know more.', href: LOOPGAIN_TEAMS_APP },
+  actions: [
+    { label: 'Get the App', href: LOOPGAIN_TEAMS_APP },
+    { label: 'Get the deck', href: LOOPGAIN_SITE },
+  ],
   training: [
-    ['At LoopGain we provide training on feedback both for session moderators and teams.'],
     [
-      'If you want to talk more about this, check the website or ',
-      { text: 'reach me', href: 'mailto:neteinstein@gmail.com' },
+      'We provide training on feedback both for session moderators and teams, ',
+      { text: 'reach me', href: CONTACT },
       '.',
     ],
   ],
