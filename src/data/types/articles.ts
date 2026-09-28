@@ -75,10 +75,3 @@ export interface ReadingGroup {
   title: string;
   topics: ReadingTopic[];
 }
-
-/** A Google Docs embed, with the link its preview chip pointed to. */
-export interface ReadingDocEmbed {
-  title: string;
-  src: string;
-  href: string;
-}

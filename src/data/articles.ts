@@ -10,7 +10,6 @@ import type {
   AuthoredBook,
   GoodreadsBook,
   LinkRef,
-  ReadingDocEmbed,
   ReadingGroup,
   RichText,
 } from './types';
@@ -26,7 +25,6 @@ export const headings = {
   books: 'Books',
   mustRead: 'Must read',
   shorter: 'Shorter but also incredible',
-  readLate: 'Read Late',
 };
 
 export const outlets: ArticleOutlet[] = [
@@ -1256,12 +1254,3 @@ export const readingGroups: ReadingGroup[] = [
     ],
   },
 ];
-
-export const readLateIntro =
-  'An unfiltered list of links I still have to read (some will move here afterwards).';
-
-export const toReadList: ReadingDocEmbed = {
-  title: 'Pedro Vicente’s To Read List',
-  src: 'https://docs.google.com/document/d/14SD3mdfjCkdIRN3ePVMKLXc0JxVYZGPJwYTGe8VYtDU/preview',
-  href: 'https://docs.google.com/document/d/14SD3mdfjCkdIRN3ePVMKLXc0JxVYZGPJwYTGe8VYtDU/edit#heading=h.i0b3hefj872p',
-};
