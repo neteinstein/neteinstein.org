@@ -141,30 +141,6 @@ export const talkCategories: TalkCategory[] = [
           ],
         },
       ],
-      [
-        {
-          title: "Kotlin'ize your app",
-          slides: {
-            src: 'https://www.slideshare.net/slideshow/embed_code/key/2foAQ4BHt6KYxB',
-            title: "Kotlin'ize your app — slides",
-            aspect: SLIDESHARE_ASPECT,
-            href: 'https://www.slideshare.net/slideshow/embed_code/key/2foAQ4BHt6KYxB',
-            hrefLabel: 'Open the slides',
-          },
-          caption: [['GDG DevFest Coimbra 2017 - Slides']],
-        },
-        {
-          title: "Android's Warp Pipe",
-          slides: {
-            src: 'https://www.slideshare.net/slideshow/embed_code/key/5hOVRLvJiQCGa7',
-            title: "Android's Warp Pipe — slides",
-            aspect: SLIDESHARE_ASPECT,
-            href: 'https://www.slideshare.net/slideshow/embed_code/key/5hOVRLvJiQCGa7',
-            hrefLabel: 'Open the slides',
-          },
-          caption: [['GDG DevFest Lisboa 2016 - Slides']],
-        },
-      ],
     ],
   },
   {
@@ -187,17 +163,6 @@ export const talkCategories: TalkCategory[] = [
             hrefLabel: 'Open the slides',
           },
           caption: [['Agile Connect 2020 - Slides']],
-        },
-        {
-          title: 'Walkabout',
-          slides: {
-            src: 'https://prezi.com/embed/nzaaehdznz51/',
-            title: 'Walkabout - Colégio das Caldinhas (Prezi)',
-            aspect: '560 / 315',
-            href: 'https://prezi.com/embed/nzaaehdznz51/',
-            hrefLabel: 'Open on Prezi',
-          },
-          caption: [['Colégio das Caldinhas 2013 - Slides']],
         },
         {
           title: 'Walkabout',
