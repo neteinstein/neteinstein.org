@@ -17,6 +17,7 @@ export const podcasts: Podcast[] = [
     show: 'O Que Arde Cura',
     title: 'O Que Arde Cura',
     language: 'pt',
+    url: 'https://oqueardecura.pedrovicente.pt/',
     description:
       'Created as a modest contribution to help those who help others, while trying to make people ' +
       'laugh. Every month a guest from a charity association is interviewed while both eat ' +
