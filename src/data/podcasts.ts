@@ -8,6 +8,15 @@ import type { Podcast } from './types';
 export const podcasts: Podcast[] = [
   {
     show: 'Mindera Yellow Box',
+    title: 'AI and the Future of Platform Engineering — S3E5',
+    language: 'en',
+    date: '2026-09-21',
+    url: 'https://www.youtube.com/watch?v=paFl2Tl7utE&list=PLUjtx-mX3t3bqn9J6V_qqgt6JT7pQPzy3&index=1',
+    description:
+      'Technical Product Owner Hélder Pereira joins Pedro Vicente to discuss platform engineering in the agentic era.',
+  },
+  {
+    show: 'Mindera Yellow Box',
     title: 'Mindera Yellow Box',
     language: 'en',
     description:
