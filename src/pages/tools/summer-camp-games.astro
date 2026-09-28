@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import BrowserFrame from '../../components/tools/BrowserFrame.astro';
+import BigLink from '../../components/tools/BigLink.astro';
+import { cadernoDeJogos as tool } from '../../data/tools';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
+
+const { t, locale, localize } = useI18n(Astro);
+const page = (await getPage('summer-camp-games', locale)).data;
+const cadernoDeJogos = localize(tool);
+---
+
+<BaseLayout title={page.title} description={page.description}>
+  <PageHero title={page.title} eyebrow={page.eyebrow} highlight={page.highlight} lead={page.lead} />
+
+  <Section class="pt-2 sm:pt-4">
+    <BrowserFrame
+      href={cadernoDeJogos.href}
+      address={cadernoDeJogos.label}
+      image={cadernoDeJogos.image}
+      imageAlt={cadernoDeJogos.imageAlt}
+    />
+    <BigLink
+      href={cadernoDeJogos.href}
+      label={cadernoDeJogos.label}
+      eyebrow={t('Visit')}
+      class="mt-16 sm:mt-24"
+    />
+  </Section>
+</BaseLayout>

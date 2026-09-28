@@ -1,0 +1,212 @@
+---
+import { Image } from 'astro:assets';
+import ButtonLink from '../ButtonLink.astro';
+import SplitWords from '../SplitWords.astro';
+import CookieButton from './CookieButton.astro';
+import { SITE } from '../../config/site';
+import { welcome as welcomeCopy } from '../../data/home';
+import { useI18n } from '../../i18n';
+import portrait from '../../assets/home/portrait.webp';
+
+const { t, localize } = useI18n(Astro);
+const welcome = localize(welcomeCopy);
+
+/** Roles cycled by the ticker. Each is a section of this site. */
+const TICKER = ['Tech Engineer', 'Improver', 'Podcast Host', 'Speaker', 'Storyteller'].map((role) =>
+  t(role),
+);
+
+/** Chips orbiting the portrait. Decorative; the same facts are in "Who am I?". */
+const CHIPS = [
+  { text: t('📱 AI & Mobile @ Mindera'), class: 'top-[8%] -left-2 sm:left-0', delay: 0 },
+  { text: '🎙️ Yellow Box', class: 'top-[18%] -right-2 sm:right-2', delay: 1.2 },
+  { text: '🔁 LoopGain', class: 'bottom-[26%] -left-4 sm:-left-6', delay: 2.1 },
+  { text: '🌶️ O Que Arde Cura', class: 'bottom-[12%] right-0 sm:right-4', delay: 0.6 },
+];
+---
+
+<section class="relative isolate overflow-hidden">
+  <div class="dot-grid absolute inset-0 -z-10 opacity-80" aria-hidden="true"></div>
+
+  <div
+    class="container-page grid min-h-[calc(100svh-5rem)] items-center gap-10 py-12 lg:grid-cols-[1.2fr_1fr] lg:gap-6 lg:py-16"
+  >
+    <div>
+      <p class="eyebrow inline-flex items-center gap-2" data-enter>
+        <span class="relative flex size-2">
+          <span
+            class="bg-accent-2 absolute inline-flex size-full animate-ping rounded-full opacity-60"
+          ></span>
+          <span class="bg-accent-2 relative inline-flex size-2 rounded-full"></span>
+        </span>
+        {t("Hi, I'm {name}", { name: SITE.author })} · @{SITE.handle}
+      </p>
+
+      <h1
+        class="font-display mt-5 text-[clamp(2.9rem,8vw,6.25rem)] leading-[0.95] font-extrabold tracking-[-0.045em]"
+        aria-label={welcome.title}
+      >
+        <SplitWords text={welcome.title} highlight={[t('virtual'), t('home')]} />
+      </h1>
+
+      <p
+        class="text-muted mt-7 flex flex-wrap items-baseline gap-x-2.5 text-xl sm:text-2xl"
+        data-enter
+        style="--delay: 500"
+      >
+        <span>{t("I'm a")}</span>
+        <span
+          class="role-ticker font-display text-fg relative inline-block h-[1.3em] overflow-hidden align-bottom font-bold"
+          aria-hidden="true"
+        >
+          <span class="role-ticker-track block">
+            {
+              [...TICKER, TICKER[0]].map((role) => (
+                <span class="block h-[1.3em] leading-[1.3em] whitespace-nowrap">{role}</span>
+              ))
+            }
+          </span>
+        </span>
+        <span class="sr-only">{TICKER.join(', ')}</span>
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-3" data-enter style="--delay: 650">
+        <ButtonLink href="#glimpses" size="lg" trailing="arrow-down"
+          >{t('Glimpses of what I do')}</ButtonLink
+        >
+        <ButtonLink
+          href="/porto/visit-porto"
+          variant="secondary"
+          size="lg"
+          icon="map-pin"
+          trailing={false}
+        >
+          {t('Porto guide')}
+        </ButtonLink>
+      </div>
+
+      <div class="mt-8" data-enter style="--delay: 800">
+        <CookieButton label={welcome.cookies} />
+      </div>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-[30rem]" data-enter style="--delay: 200">
+      <div class="relative aspect-square">
+        <div
+          class="hero-blob absolute inset-[6%] bg-[image:var(--gradient-brand)] opacity-90 shadow-[0_30px_80px_-20px_color-mix(in_oklch,var(--accent)_60%,transparent)]"
+          aria-hidden="true"
+        >
+        </div>
+        <div
+          class="animate-spin-slow absolute inset-0 rounded-full border-2 border-dashed border-[color-mix(in_oklch,var(--accent)_35%,transparent)]"
+          aria-hidden="true"
+        >
+        </div>
+        <Image
+          src={portrait}
+          alt={t('{name} mid-talk, gesturing with both hands', { name: SITE.author })}
+          class="absolute inset-x-0 bottom-[6%] mx-auto w-[92%] [mask-image:linear-gradient(to_bottom,#000_78%,transparent_99%)]"
+          loading="eager"
+          fetchpriority="high"
+          widths={[394]}
+        />
+        {
+          CHIPS.map((chip) => (
+            <span
+              class:list={[
+                'glass border-line animate-float absolute rounded-full border px-3.5 py-2 text-sm font-semibold whitespace-nowrap shadow-[var(--shadow-md)]',
+                chip.class,
+              ]}
+              style={`animation-delay: -${chip.delay}s`}
+              aria-hidden="true"
+            >
+              {chip.text}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <a
+    href="#who"
+    class="text-muted absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-mono text-[0.7rem] tracking-[0.2em] uppercase lg:flex"
+    aria-label={t('Scroll to Who am I?')}
+  >
+    {t('Scroll')}
+    <span class="border-line-strong flex h-9 w-5 justify-center rounded-full border-2 pt-1.5">
+      <span class="scroll-dot bg-accent size-1.5 rounded-full"></span>
+    </span>
+  </a>
+</section>
+
+<style>
+  /* Five roles, each held ~2s, then slide up; the duplicated first row makes the loop seamless. */
+  .motion-ok .role-ticker-track {
+    animation: ticker 11s var(--ease-out-expo) infinite;
+  }
+  @keyframes ticker {
+    0%,
+    16% {
+      translate: 0 0;
+    }
+    20%,
+    36% {
+      translate: 0 -1.3em;
+    }
+    40%,
+    56% {
+      translate: 0 -2.6em;
+    }
+    60%,
+    76% {
+      translate: 0 -3.9em;
+    }
+    80%,
+    96% {
+      translate: 0 -5.2em;
+    }
+    100% {
+      translate: 0 -6.5em;
+    }
+  }
+
+  .hero-blob {
+    border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+  }
+  .motion-ok .hero-blob {
+    animation: morph 14s ease-in-out infinite;
+  }
+  @keyframes morph {
+    0%,
+    100% {
+      border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+      rotate: 0deg;
+    }
+    33% {
+      border-radius: 63% 37% 45% 55% / 55% 36% 64% 45%;
+    }
+    66% {
+      border-radius: 36% 64% 38% 62% / 63% 58% 42% 37%;
+      rotate: 8deg;
+    }
+  }
+
+  .motion-ok .scroll-dot {
+    animation: scroll-dot 1.8s ease-in-out infinite;
+  }
+  @keyframes scroll-dot {
+    0% {
+      translate: 0 0;
+      opacity: 1;
+    }
+    70% {
+      translate: 0 12px;
+      opacity: 0;
+    }
+    100% {
+      translate: 0 0;
+      opacity: 0;
+    }
+  }
+</style>

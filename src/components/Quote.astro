@@ -1,0 +1,53 @@
+---
+import Icon from './Icon.astro';
+
+/** A pull quote with a gradient mark and optional attribution. */
+interface Props {
+  text: string;
+  author?: string;
+  /** Source URL for the quote, when there is one. */
+  cite?: string;
+  size?: 'md' | 'lg';
+  class?: string;
+}
+
+const { text, author, cite, size = 'md', class: className } = Astro.props;
+---
+
+<figure
+  class:list={[
+    'border-line bg-surface-raised relative overflow-hidden rounded-3xl border p-7 shadow-[var(--shadow-sm)] sm:p-10',
+    className,
+  ]}
+  data-reveal
+>
+  <div
+    class="pointer-events-none absolute -top-16 -right-16 size-56 rounded-full bg-[radial-gradient(closest-side,var(--glow-a),transparent)]"
+    aria-hidden="true"
+  >
+  </div>
+  <Icon name="quote" class="text-accent-2 relative size-9" fill />
+  <blockquote
+    cite={cite}
+    class:list={[
+      'font-display relative mt-4 leading-snug font-semibold text-pretty',
+      size === 'lg' ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl',
+    ]}
+  >
+    {text}
+  </blockquote>
+  {
+    author && (
+      <figcaption class="text-muted relative mt-5 font-mono text-sm">
+        —{' '}
+        {cite ? (
+          <a href={cite} target="_blank" rel="noopener noreferrer" class="link-underline">
+            {author}
+          </a>
+        ) : (
+          author
+        )}
+      </figcaption>
+    )
+  }
+</figure>

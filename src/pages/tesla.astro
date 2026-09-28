@@ -1,26 +1,68 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHeader from '../components/PageHeader.astro';
-import LinkCard from '../components/LinkCard.astro';
-import EmptyState from '../components/EmptyState.astro';
-import { teslaLinks } from '../data/teslaLinks';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import BookmarkBar from '../components/tesla/BookmarkBar.astro';
+import CategoryDock from '../components/tesla/CategoryDock.astro';
+import SiteGrid from '../components/tesla/SiteGrid.astro';
+import CategoryColumn from '../components/tesla/CategoryColumn.astro';
+import ThanksCallout from '../components/tesla/ThanksCallout.astro';
+import type { TeslaCategory } from '../data/types';
+import * as tesla from '../data/tesla';
+import { useI18n } from '../i18n';
+
+const { t, localize } = useI18n(Astro);
+const { categories, intro, page, thanks } = localize(tesla);
+
+/** How each category's tiles are laid out; `pair` categories share a row. */
+const LAYOUT: Record<TeslaCategory['id'], 'grid' | 'bento' | 'trio' | 'pair'> = {
+  entertainment: 'grid',
+  'routing-charging': 'bento',
+  utils: 'trio',
+  fun: 'pair',
+  others: 'pair',
+};
+
+/** "01 · 12 links" — the category's position and size. */
+const eyebrow = (category: TeslaCategory) => {
+  const index = String(categories.indexOf(category) + 1).padStart(2, '0');
+  const count = category.sites.length;
+  return `${index} · ${t(count === 1 ? '{count} link' : '{count} links', { count })}`;
+};
+
+const full = categories.filter((category) => LAYOUT[category.id] !== 'pair');
+const paired = categories.filter((category) => LAYOUT[category.id] === 'pair');
 ---
 
-<BaseLayout title="Tesla" description="Websites that work well in the Tesla in-car browser.">
-  <PageHeader
-    title="Tesla"
-    lead="A list of sites that actually work well inside the Tesla browser."
-  />
+<BaseLayout title={page.title} description={page.description}>
+  <PageHero
+    eyebrow={page.eyebrow}
+    title={page.heading}
+    highlight={page.highlight}
+    lead={intro.lead}
+  >
+    <BookmarkBar intro={intro} />
+    <div class="mt-8" data-enter style="--delay: 600">
+      <CategoryDock categories={categories} />
+    </div>
+  </PageHero>
 
   {
-    teslaLinks.length === 0 ? (
-      <EmptyState source="src/data/teslaLinks.ts" />
-    ) : (
-      <div class="grid gap-4 sm:grid-cols-2">
-        {teslaLinks.map((entry) => (
-          <LinkCard entry={entry} />
-        ))}
-      </div>
-    )
+    full.map((category) => {
+      const layout = LAYOUT[category.id];
+      return (
+        <Section id={category.id} eyebrow={eyebrow(category)} title={category.title}>
+          <SiteGrid sites={category.sites} layout={layout === 'pair' ? 'single' : layout} />
+        </Section>
+      );
+    })
   }
+
+  <div class="container-page grid gap-x-6 md:grid-cols-2">
+    {paired.map((category) => <CategoryColumn category={category} eyebrow={eyebrow(category)} />)}
+  </div>
+
+  <Section width="default" align="center" class="pt-16 sm:pt-20">
+    <ThanksCallout thanks={thanks} />
+  </Section>
 </BaseLayout>

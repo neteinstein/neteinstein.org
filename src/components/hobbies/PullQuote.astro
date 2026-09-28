@@ -1,0 +1,75 @@
+---
+import Icon from '../Icon.astro';
+
+/**
+ * A quotation with its attribution line rendered verbatim ("― Philip Pullman"
+ * keeps the original's horizontal bar). Works inside `Prose` (its scoped rules
+ * outrank the prose blockquote box) and on its own, e.g. in a hero.
+ */
+interface Props {
+  attribution: string;
+  /** The quote text; the default slot is used when omitted (MDX). */
+  text?: string;
+  class?: string;
+}
+
+const { attribution, text, class: className } = Astro.props;
+---
+
+<figure class:list={['pull-quote group', className]}>
+  <span class="pull-quote-glow" aria-hidden="true"></span>
+  <Icon name="quote" class="text-accent-2 relative size-8" fill />
+  <blockquote class="relative text-pretty">
+    {text ?? <slot />}
+  </blockquote>
+  <figcaption class="text-muted relative mt-4 font-mono text-sm">{attribution}</figcaption>
+</figure>
+
+<style>
+  .pull-quote {
+    position: relative;
+    overflow: hidden;
+    margin-block: 2rem;
+    padding: 1.75rem 1.75rem 1.5rem;
+    border-radius: 1.75rem;
+    border: 1px solid var(--border);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-sm);
+  }
+  .pull-quote::before {
+    content: '';
+    position: absolute;
+    inset-block: 1.25rem;
+    left: 0;
+    width: 4px;
+    border-radius: 4px;
+    background: var(--gradient-brand);
+  }
+  .pull-quote-glow {
+    position: absolute;
+    top: -5rem;
+    right: -5rem;
+    width: 14rem;
+    height: 14rem;
+    border-radius: 999px;
+    background: radial-gradient(closest-side, var(--glow-a), transparent);
+    pointer-events: none;
+  }
+  .pull-quote blockquote {
+    margin: 0.75rem 0 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1rem + 0.9vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text);
+  }
+  .pull-quote blockquote::before {
+    content: none;
+  }
+  .pull-quote blockquote :global(p) {
+    margin: 0;
+  }
+</style>

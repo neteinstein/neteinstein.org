@@ -1,0 +1,25 @@
+---
+import SiteGrid from './SiteGrid.astro';
+import type { TeslaCategory } from '../../data/types';
+
+/**
+ * A single-tile category ("Fun", "Others") laid out as one column of a
+ * side-by-side pair, with the same header styling as the kit's `Section`.
+ */
+interface Props {
+  category: TeslaCategory;
+  eyebrow: string;
+}
+
+const { category, eyebrow } = Astro.props;
+---
+
+<section id={category.id} class="flex flex-col py-10 sm:py-14">
+  <header class="mb-8 max-w-3xl sm:mb-10" data-reveal>
+    <p class="eyebrow">{eyebrow}</p>
+    <h2 class="font-display mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+      {category.title}
+    </h2>
+  </header>
+  <SiteGrid sites={category.sites} layout="single" class="flex-1" />
+</section>

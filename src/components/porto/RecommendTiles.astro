@@ -1,0 +1,88 @@
+---
+import Icon from '../Icon.astro';
+import type { IconName } from '../Icon.astro';
+import RichText from '../RichText.astro';
+import type { PlaceGroup, PortoIntro } from '../../data/types';
+import { placeCount } from './guide';
+
+/**
+ * "Below you'll find places at Porto that I recommend to:" — the original's
+ * four bullets as tiles, each counting (and jumping to) the part of the guide
+ * it describes, followed by the page's update note and support line.
+ */
+interface Props {
+  intro: PortoIntro;
+  groups: PlaceGroup[];
+}
+
+const { intro, groups } = Astro.props;
+
+const icons: IconName[] = ['utensils', 'coffee', 'compass', 'zap'];
+const tones = ['--accent', '--accent-2', '--accent-4', '--accent-3'];
+
+const tiles = intro.recommend.map((item, index) => {
+  const group = groups.find((candidate) => candidate.id === item.group);
+  const [before, after] = item.emphasis ? item.text.split(item.emphasis) : [item.text];
+  return {
+    ...item,
+    before,
+    after,
+    count: group ? placeCount(group) : 0,
+    icon: icons[index % icons.length] ?? 'sparkles',
+    tone: tones[index % tones.length],
+  };
+});
+---
+
+<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
+  {
+    tiles.map((tile) => (
+      <li>
+        <a
+          href={`#${tile.group}`}
+          class="group glow-ring border-line bg-surface-raised relative flex h-full flex-col gap-6 overflow-hidden rounded-3xl border p-6 shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)]"
+          style={`--tone: var(${tile.tone})`}
+          data-spotlight
+        >
+          <span
+            class="pointer-events-none absolute -top-10 -right-10 size-32 rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklch,var(--tone)_28%,transparent),transparent)]"
+            aria-hidden="true"
+          />
+          <span class="flex items-center justify-between">
+            <span class="grid size-12 place-items-center rounded-2xl bg-[color-mix(in_oklch,var(--tone)_15%,transparent)] text-[var(--tone)] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-110 group-hover:-rotate-6">
+              <Icon name={tile.icon} class="size-6" />
+            </span>
+            <Icon
+              name="arrow-down"
+              class="text-muted size-4 transition-transform duration-300 group-hover:translate-y-1"
+            />
+          </span>
+          <span class="font-display mt-auto text-5xl leading-none font-extrabold tracking-tighter">
+            {tile.count}
+          </span>
+          <span class="text-lg leading-snug font-semibold text-pretty">
+            {tile.before}
+            {tile.emphasis && (
+              <>
+                <em>{tile.emphasis}</em>
+                {tile.after}
+              </>
+            )}
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<div class="mt-8 grid gap-4 md:grid-cols-[auto_1fr] md:items-center" data-reveal>
+  <p
+    class="border-line bg-surface-sunken text-muted inline-flex items-center gap-2.5 self-start rounded-full border px-4 py-2 text-sm"
+  >
+    <Icon name="calendar" class="text-accent size-4 shrink-0" />
+    {intro.history}
+  </p>
+  <p class="text-muted text-pretty md:pl-2">
+    <RichText text={intro.support} />
+  </p>
+</div>

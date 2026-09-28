@@ -1,0 +1,28 @@
+---
+import Marquee from '../Marquee.astro';
+
+/**
+ * A slow strip of the verbs the workshops aim for ("question, think,
+ * smile…"), lifted from the chapter copy. Purely decorative — the words are
+ * already in the paragraph above — so the whole strip is hidden from
+ * assistive tech.
+ */
+interface Props {
+  verbs: string[];
+}
+
+const { verbs } = Astro.props;
+---
+
+<div class="py-2" aria-hidden="true">
+  <Marquee duration={32}>
+    {
+      verbs.map((verb, index) => (
+        <span class="font-display inline-flex items-center gap-4 text-4xl font-extrabold tracking-tight whitespace-nowrap sm:text-6xl">
+          <span class:list={[index % 2 === 0 ? 'text-gradient' : 'text-muted/60']}>{verb}</span>
+          <span class="text-accent-3 text-2xl sm:text-3xl">✦</span>
+        </span>
+      ))
+    }
+  </Marquee>
+</div>

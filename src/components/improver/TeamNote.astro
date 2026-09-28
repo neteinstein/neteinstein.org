@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import type { ImproverLinkedImage, ImproverText as Text } from '../../data/types';
+import ImproverText from './ImproverText.astro';
+
+/**
+ * The TEAM drawing and its tagline, closing the "Improver?" chapter. The
+ * drawing is black ink on a transparent background, so it sits on an amber
+ * sticky note (`--accent-3` stays light in both themes) instead of a surface
+ * token that turns dark. The note links where the original image did.
+ */
+interface Props {
+  card: ImproverLinkedImage;
+  tagline: Text;
+}
+
+const { card, tagline } = Astro.props;
+---
+
+<figure
+  class="mt-12 grid items-center gap-8 sm:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] sm:gap-10"
+>
+  <div class="mx-auto w-full max-w-60 sm:max-w-none" data-reveal="scale">
+    <a
+      href={card.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="note bg-accent-3 relative block rounded-2xl p-5 pt-7 shadow-[var(--shadow-lg)]"
+    >
+      <span class="tape" aria-hidden="true"></span>
+      <Image src={card.image} alt={card.alt} widths={[240, 480]} sizes="15rem" class="w-full" />
+      <span class="sr-only">{card.linkLabel}</span>
+    </a>
+  </div>
+  <figcaption
+    class="font-display text-center text-2xl leading-snug text-pretty sm:text-left sm:text-3xl"
+    data-reveal="right"
+  >
+    <ImproverText text={tagline} />
+  </figcaption>
+</figure>
+
+<style>
+  .note {
+    rotate: -2.5deg;
+    transition:
+      rotate 0.6s var(--ease-spring),
+      translate 0.6s var(--ease-spring);
+  }
+  .note:hover,
+  .note:focus-visible {
+    rotate: 0deg;
+    translate: 0 -4px;
+  }
+  /* A strip of translucent tape holding the note up. */
+  .tape {
+    position: absolute;
+    top: -0.7rem;
+    left: 50%;
+    width: 5.5rem;
+    height: 1.5rem;
+    translate: -50% 0;
+    rotate: 3deg;
+    border-radius: 0.2rem;
+    background: color-mix(in oklch, var(--surface-raised) 62%, transparent);
+    box-shadow: var(--shadow-sm);
+  }
+</style>

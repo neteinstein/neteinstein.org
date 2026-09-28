@@ -4,15 +4,22 @@
  *
  * External URLs are deliberately not fetched: a third-party outage should never
  * turn a pull request red. Run against `dist/` after `astro build`.
+ *
+ * Environment:
+ *   DIST       build directory to check (default `dist`)
+ *   BASE_PATH  the deploy base the build used (e.g. `/neteinstein.org`). Every
+ *              internal link must then start with it — a link that doesn't
+ *              skipped `withBase()` and would 404 on the github.io preview.
  */
 import { readdir, readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 
-const DIST = path.resolve('dist');
+const DIST = path.resolve(process.env.DIST ?? 'dist');
+const BASE = (process.env.BASE_PATH ?? '').replace(/\/+$/, '');
 
 if (!existsSync(DIST)) {
-  console.error('dist/ not found — run `npm run build` first.');
+  console.error(`${path.relative('.', DIST)}/ not found — run the build first.`);
   process.exit(1);
 }
 
@@ -31,8 +38,8 @@ async function htmlFiles(dir) {
 
 /**
  * Maps a site-absolute URL path to the file that serves it, mirroring Astro's
- * `build.format: 'file'` output and the Worker's `auto-trailing-slash`
- * handling: `/me` is served by `dist/me.html`, `/` by `dist/index.html`.
+ * `build.format: 'file'` output and GitHub Pages' lookup order: `/tesla` is
+ * served by `dist/tesla.html`, `/` by `dist/index.html`.
  */
 function candidatesFor(urlPath) {
   const clean = urlPath.replace(/\/+$/, '');
@@ -76,7 +83,13 @@ for (const page of pages) {
     seen.add(withoutHash);
     checked += 1;
 
-    if (!candidatesFor(withoutHash).some((candidate) => existsSync(candidate))) {
+    if (BASE && withoutHash !== BASE && !withoutHash.startsWith(`${BASE}/`)) {
+      failures.push(`${rel(page)} → ${raw} (missing deploy base ${BASE} — use withBase())`);
+      continue;
+    }
+    const sitePath = BASE ? withoutHash.slice(BASE.length) || '/' : withoutHash;
+
+    if (!candidatesFor(sitePath).some((candidate) => existsSync(candidate))) {
       failures.push(`${rel(page)} → ${withoutHash} (no matching file in dist/)`);
     }
   }
