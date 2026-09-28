@@ -41,7 +41,7 @@ export const storeBadges: Record<AppStore, AppStoreBadge> = {
 export const apps: AppListing[] = [
   {
     id: 'loopgain',
-    title: 'LoopGain',
+    title: 'LoopGain: Teams',
     description: [
       'Part of the ',
       { label: 'LoopGain', href: LOOPGAIN },

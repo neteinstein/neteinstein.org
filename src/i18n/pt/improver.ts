@@ -7,7 +7,7 @@ export const improver: Catalog = {
   'The title': 'O título',
   'The word TEAM, with an arrow pointing at a blue letter “i” hidden inside the A':
     'A palavra TEAM, com uma seta a apontar para uma letra “i” azul escondida dentro do A',
-  '(LoopGain website)': '(site do LoopGain)',
+  '(LoopGain: Teams app)': '(app LoopGain: Teams)',
   'The "I" in Team should stand for ': 'O "I" de Team devia querer dizer ',
   "(some call it evaluation... but that's a long story)":
     '(há quem lhe chame avaliação... mas isso é uma longa história)',
@@ -37,8 +37,8 @@ export const improver: Catalog = {
   'What is LoopGain?': 'O que é o LoopGain?',
   'Two LoopGain card boxes: the “Feedback Sessions Deck” and the Portuguese “Baralho para sessões de feedback”':
     'Duas caixas de cartas LoopGain: o “Feedback Sessions Deck” e o “Baralho para sessões de feedback”, em português',
-  "LoopGain - Much more than a deck of cards, it's feedback for Teams made easy!":
-    'LoopGain - Muito mais do que um baralho de cartas, é feedback para Equipas de forma simples!',
+  "LoopGain: Teams - Much more than a deck of cards, it's feedback for Teams made easy!":
+    'LoopGain: Teams - Muito mais do que um baralho de cartas, é feedback para Equipas de forma simples!',
   'Improve Teams Workshops!': 'Workshops Improve Teams!',
   "I've been creating workshops to improve teams for a while.":
     'Há algum tempo que crio workshops para melhorar equipas.',
@@ -95,13 +95,16 @@ export const improver: Catalog = {
   "Thanks! I'll reach out soon.": 'Obrigado! Entro em contacto em breve.',
   'Prefer the original Google Form?': 'Prefere o formulário original do Google?',
   'Form submission target': 'Destino do envio do formulário',
-  Family: 'Família',
+  'Family & Couple': 'Família & Casal',
+  'LoopGain Family & Couple': 'LoopGain Family & Couple',
   'After teams...': 'Depois das equipas...',
-  Alpha: 'Alfa',
-  "I've been a husband for 10+ years and a father (of three) for 7 years... that experience made me want to build something to kick-start conversations and bring (more) empathy-driven feedback to families.":
-    'Sou marido há mais de 10 anos e pai (de três) há 7... essa experiência deu-me vontade de criar algo para dar início a conversas e levar (mais) feedback com empatia às famílias.',
-  "This is still in alpha and may one day grow into something like LoopGain's deck.":
-    'Ainda está em fase alfa e talvez um dia cresça até ser algo como o baralho do LoopGain.',
+  Live: 'Disponível',
+  "I've been a husband for 15+ years and a father (of three) for 12 years... that experience made me want to build something to kick-start conversations and bring (more) empathy-driven feedback to families and couples.":
+    'Sou marido há mais de 15 anos e pai (de três) há 12... essa experiência deu-me vontade de criar algo para dar início a conversas e levar (mais) feedback com empatia a famílias e casais.',
+  'This is now available on ': 'Já está disponível no ',
+  'LoopGain: Family Moments': 'LoopGain: Family Moments',
+  ' and ': ' e no ',
+  'LoopGain: Couple Moments': 'LoopGain: Couple Moments',
   'If you are interested, please reach out to me for more info.':
     'Se tiveres interesse, fala comigo para saberes mais.',
   'Silhouette of a family — two adults and two children, some with their arms raised':

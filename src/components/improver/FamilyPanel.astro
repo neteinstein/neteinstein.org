@@ -1,6 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import type { ImproverFamily } from '../../data/types';
+import ImproverText from './ImproverText.astro';
 
 /**
  * Body of the "LoopGain Family" chapter: the status pill, the copy and the
@@ -33,7 +34,7 @@ const silhouette = await getImage({
       {
         family.paragraphs.map((paragraph, index) => (
           <p class:list={[index === 0 && 'font-display text-fg text-xl leading-snug sm:text-2xl']}>
-            {paragraph}
+            <ImproverText text={paragraph} />
           </p>
         ))
       }
