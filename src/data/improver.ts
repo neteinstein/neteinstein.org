@@ -23,7 +23,10 @@ import stickTower from '../assets/what-i-do/improver/workshop-stick-tower.webp';
 import cardGame from '../assets/what-i-do/improver/workshop-card-game.webp';
 import familySilhouette from '../assets/what-i-do/improver/family-silhouette.webp';
 
-const LOOPGAIN = 'http://www.loopgain.org';
+const MY_APPS = '/my-apps';
+const LOOPGAIN_TEAMS_APP = `${MY_APPS}#loopgain`;
+const FAMILY_MOMENTS_APP = `${MY_APPS}#family-moments`;
+const COUPLE_MOMENTS_APP = `${MY_APPS}#couple-moments`;
 const FORM =
   'https://docs.google.com/forms/d/e/1FAIpQLSf8F6_thSujbMg-awqkQYA4wABkjGjRGAK8bwWs-s1duE6WpQ';
 
@@ -40,8 +43,8 @@ export const intro: ImproverIntro = {
   card: {
     image: teamImage,
     alt: 'The word TEAM, with an arrow pointing at a blue letter “i” hidden inside the A',
-    href: LOOPGAIN,
-    linkLabel: '(LoopGain website)',
+    href: LOOPGAIN_TEAMS_APP,
+    linkLabel: '(LoopGain: Teams app)',
   },
   tagline: [
     { text: 'The "I" in Team should stand for ', strong: true },
@@ -51,7 +54,7 @@ export const intro: ImproverIntro = {
 
 export const feedback: ImproverFeedback = {
   id: 'feedback',
-  eyebrow: 'LoopGain',
+  eyebrow: 'LoopGain: Teams',
   title: 'Feedback',
   subtitle: "(some call it evaluation... but that's a long story)",
   story: [
@@ -90,7 +93,7 @@ export const feedback: ImproverFeedback = {
       'how the team members can improve and get even better at working with each other;',
     ],
   },
-  knowMore: { label: 'Know more.', href: LOOPGAIN },
+  knowMore: { label: 'Know more.', href: LOOPGAIN_TEAMS_APP },
   training: [
     ['At LoopGain we provide training on feedback both for session moderators and teams.'],
     [
@@ -103,9 +106,9 @@ export const feedback: ImproverFeedback = {
   deck: {
     image: deckImage,
     alt: 'Two LoopGain card boxes: the “Feedback Sessions Deck” and the Portuguese “Baralho para sessões de feedback”',
-    href: LOOPGAIN,
-    linkLabel: '(LoopGain website)',
-    caption: "LoopGain - Much more than a deck of cards, it's feedback for Teams made easy!",
+    href: LOOPGAIN_TEAMS_APP,
+    linkLabel: '(LoopGain: Teams app)',
+    caption: "LoopGain: Teams - Much more than a deck of cards, it's feedback for Teams made easy!",
   },
 };
 
@@ -187,14 +190,22 @@ export const workshops: ImproverWorkshops = {
 
 export const family: ImproverFamily = {
   id: 'family',
-  eyebrow: 'Family',
-  title: 'LoopGain Family',
+  eyebrow: 'Family & Couple',
+  title: 'LoopGain Family & Couple',
   subtitle: 'After teams...',
-  status: 'Alpha',
+  status: 'Live',
   paragraphs: [
-    "I've been a husband for 10+ years and a father (of three) for 7 years... that experience made me want to build something to kick-start conversations and bring (more) empathy-driven feedback to families.",
-    "This is still in alpha and may one day grow into something like LoopGain's deck.",
-    'If you are interested, please reach out to me for more info.',
+    [
+      "I've been a husband for 15+ years and a father (of three) for 12 years... that experience made me want to build something to kick-start conversations and bring (more) empathy-driven feedback to families and couples.",
+    ],
+    [
+      'This is now available on ',
+      { text: 'LoopGain: Family Moments', strong: true, href: FAMILY_MOMENTS_APP },
+      ' and ',
+      { text: 'LoopGain: Couple Moments', strong: true, href: COUPLE_MOMENTS_APP },
+      '.',
+    ],
+    ['If you are interested, please reach out to me for more info.'],
   ],
   illustration: {
     image: familySilhouette,

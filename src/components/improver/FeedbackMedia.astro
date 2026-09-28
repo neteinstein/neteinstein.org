@@ -1,12 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImproverFeedback } from '../../data/types';
+import { isExternal } from '../../lib/url';
 import { useI18n } from '../../i18n';
 import VideoEmbed from '../VideoEmbed.astro';
 
 /**
  * The "Feedback" chapter's full-width row: the LoopGain video next to the
- * card decks photo (linked to LoopGain, as on the original) and its caption.
+ * card decks photo (linked to the LoopGain: Teams app) and its caption.
  */
 interface Props {
   video: ImproverFeedback['video'];
@@ -14,7 +15,8 @@ interface Props {
 }
 
 const { video, deck } = Astro.props;
-const { t } = useI18n(Astro);
+const { t, localHref } = useI18n(Astro);
+const external = isExternal(deck.href);
 ---
 
 <div class="grid items-center gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-10">
@@ -25,9 +27,9 @@ const { t } = useI18n(Astro);
 
   <figure data-reveal="right">
     <a
-      href={deck.href}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={localHref(deck.href)}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
       class="group glow-ring border-line bg-surface-raised block overflow-hidden rounded-3xl border shadow-[var(--shadow-md)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-lg)]"
     >
       <Image

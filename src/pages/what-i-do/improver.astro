@@ -26,7 +26,7 @@ const page = entry.data;
 
 <BaseLayout title={page.title} description={page.description}>
   <PageHero title={page.title} eyebrow={page.eyebrow} highlight={page.highlight} quote={quote}>
-    <ChapterIndex chapters={[intro, feedback, workshops, family]} />
+    <ChapterIndex chapters={[intro, workshops, feedback, family]} />
   </PageHero>
 
   <Chapter chapter={intro} index={1}>
@@ -38,12 +38,7 @@ const page = entry.data;
     <TeamNote card={intro.card} tagline={intro.tagline} />
   </Chapter>
 
-  <Chapter chapter={feedback} index={2}>
-    <FeedbackStory feedback={feedback} />
-    <FeedbackMedia slot="wide" video={feedback.video} deck={feedback.deck} />
-  </Chapter>
-
-  <Chapter chapter={workshops} index={3} tightWide>
+  <Chapter chapter={workshops} index={2} tightWide>
     <div class="text-muted max-w-3xl space-y-5 text-lg leading-relaxed text-pretty" data-reveal>
       {workshops.intro.map((paragraph) => <p>{paragraph}</p>)}
       <p class="text-fg font-medium">{workshops.modulesIntro}</p>
@@ -59,6 +54,11 @@ const page = entry.data;
       </div>
       <WorkshopContact cta={workshops.cta} note={workshops.note} form={workshops.form} />
     </Fragment>
+  </Chapter>
+
+  <Chapter chapter={feedback} index={3}>
+    <FeedbackStory feedback={feedback} />
+    <FeedbackMedia slot="wide" video={feedback.video} deck={feedback.deck} />
   </Chapter>
 
   <Chapter chapter={family} index={4}>

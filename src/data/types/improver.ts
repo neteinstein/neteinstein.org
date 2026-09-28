@@ -98,8 +98,8 @@ export interface ImproverWorkshops extends ImproverChapter {
 }
 
 export interface ImproverFamily extends ImproverChapter {
-  /** Short status pill, taken from the copy ("Alpha"). */
+  /** Short status pill, taken from the copy ("Live"). */
   status: string;
-  paragraphs: string[];
+  paragraphs: ImproverText[];
   illustration: ImproverImage;
 }

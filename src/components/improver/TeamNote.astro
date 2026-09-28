@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImproverLinkedImage, ImproverText as Text } from '../../data/types';
+import { isExternal } from '../../lib/url';
+import { useI18n } from '../../i18n';
 import ImproverText from './ImproverText.astro';
 
 /**
@@ -15,6 +17,9 @@ interface Props {
 }
 
 const { card, tagline } = Astro.props;
+
+const external = isExternal(card.href);
+const { localHref } = useI18n(Astro);
 ---
 
 <figure
@@ -22,9 +27,9 @@ const { card, tagline } = Astro.props;
 >
   <div class="mx-auto w-full max-w-60 sm:max-w-none" data-reveal="scale">
     <a
-      href={card.href}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={localHref(card.href)}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
       class="note bg-accent-3 relative block rounded-2xl p-5 pt-7 shadow-[var(--shadow-lg)]"
     >
       <span class="tape" aria-hidden="true"></span>
