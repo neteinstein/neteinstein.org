@@ -28,11 +28,10 @@ export const improver: Catalog = {
     'se os membros da equipa gostam de trabalhar uns com os outros;',
   'how the team members can improve and get even better at working with each other;':
     'como os membros da equipa podem melhorar e trabalhar ainda melhor uns com os outros;',
-  'Know more.': 'Saber mais.',
-  'At LoopGain we provide training on feedback both for session moderators and teams.':
-    'No LoopGain damos formação em feedback, tanto para moderadores de sessões como para equipas.',
-  'If you want to talk more about this, check the website or ':
-    'Se quiseres falar mais sobre isto, vê o site ou ',
+  'Get the App': 'Obter a app',
+  'Get the deck': 'Obter o baralho',
+  'We provide training on feedback both for session moderators and teams, ':
+    'Damos formação em feedback, tanto para moderadores de sessões como para equipas, ',
   'reach me': 'fala comigo',
   'What is LoopGain?': 'O que é o LoopGain?',
   'Two LoopGain card boxes: the “Feedback Sessions Deck” and the Portuguese “Baralho para sessões de feedback”':

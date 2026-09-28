@@ -6,8 +6,8 @@ import ImproverText from './ImproverText.astro';
 
 /**
  * Body of the "Feedback" chapter: the LoopGain story (one line set large as a
- * pull statement), the envisioned session as a checklist card, the "Know
- * more." call to action and the training note.
+ * pull statement), the envisioned session as a checklist card, the "Get the
+ * App" / "Get the deck" calls to action and the training note.
  */
 interface Props {
   feedback: ImproverFeedback;
@@ -62,8 +62,14 @@ const { feedback } = Astro.props;
       ))
     }
   </ul>
-  <div class="mt-7">
-    <ButtonLink href={feedback.knowMore.href}>{feedback.knowMore.label}</ButtonLink>
+  <div class="mt-7 flex flex-wrap gap-3">
+    {
+      feedback.actions.map((action, i) => (
+        <ButtonLink href={action.href} variant={i === 0 ? 'primary' : 'secondary'}>
+          {action.label}
+        </ButtonLink>
+      ))
+    }
   </div>
 </div>
 
