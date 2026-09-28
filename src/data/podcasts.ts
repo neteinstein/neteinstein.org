@@ -112,6 +112,12 @@ export const shows: PodcastShow[] = [
         season: 3,
         episode: 4,
       },
+      {
+        youtubeId: 'paFl2Tl7utE',
+        title: 'AI and the Future of Platform Engineering with Hélder Pereira',
+        season: 3,
+        episode: 5,
+      },
     ],
   },
   {
