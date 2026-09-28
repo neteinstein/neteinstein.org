@@ -3,7 +3,6 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
-import Embed from '../../components/Embed.astro';
 import RichText from '../../components/RichText.astro';
 import Icon from '../../components/Icon.astro';
 import PhotoRibbon from '../../components/articles/PhotoRibbon.astro';
@@ -27,10 +26,8 @@ const {
   mustRead,
   outlets,
   readingGroups,
-  readLateIntro,
   shorterIntro,
   shorterOrigin,
-  toReadList,
 } = localize(articles);
 const entry = await getPage('articles', locale);
 const { Content } = await render(entry);
@@ -156,17 +153,5 @@ const stats = [
     <p class="text-muted border-line mt-10 border-t pt-6 text-sm" data-reveal>
       <RichText text={shorterOrigin} />
     </p>
-  </Section>
-
-  <Section id="read-late" eyebrow={t('Queue')} title={headings.readLate} intro={readLateIntro}>
-    <div data-reveal>
-      <Embed
-        src={toReadList.src}
-        title={toReadList.title}
-        height={640}
-        fallbackHref={toReadList.href}
-        fallbackLabel={toReadList.title}
-      />
-    </div>
   </Section>
 </BaseLayout>
