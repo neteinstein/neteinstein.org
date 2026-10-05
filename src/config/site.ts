@@ -46,6 +46,12 @@ export const SITE = {
   author: 'Pedro Vicente',
   /** OpenGraph fallback image. Relative to `public/`. */
   ogImage: '/og-default.jpg',
+  /**
+   * GoatCounter site code (the `<code>` in `<code>.goatcounter.com`). Empty
+   * disables analytics. Pageviews are only sent from the `url` host above, so
+   * local builds and the github.io preview never count.
+   */
+  goatcounter: 'neteinstein',
 } as const;
 
 export const NAV: NavItem[] = [
