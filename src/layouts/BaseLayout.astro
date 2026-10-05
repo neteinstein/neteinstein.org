@@ -188,6 +188,23 @@ const personSchema = {
         }
       })();
     </script>
+
+    {
+      /*
+      Cookieless GoatCounter analytics, loaded only on the production host so
+      local builds and the github.io preview never record pageviews.
+    */
+    }
+    <script is:inline define:vars={{ code: SITE.goatcounter, host: new URL(SITE.url).hostname }}>
+      (() => {
+        if (!code || location.hostname !== host) return;
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://gc.zgo.at/count.js';
+        script.dataset.goatcounter = `https://${code}.goatcounter.com/count`;
+        document.head.append(script);
+      })();
+    </script>
   </head>
 
   <body class="flex min-h-screen flex-col overflow-x-clip">
