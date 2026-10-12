@@ -28,6 +28,7 @@ export interface GameFilterLabels {
   howToPlay: string;
   materials: string;
   setup: string;
+  goal: string;
   rules: string;
   tips: string;
   /** Leads the card's source links. */
@@ -275,17 +276,28 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
       className="group glow-ring border-line bg-surface-raised relative flex scroll-mt-[8rem] flex-col overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)]"
     >
       <div className="border-line bg-surface-sunken relative aspect-[18/13] overflow-hidden border-b">
-        <img
-          src={game.image.src}
-          srcSet={game.image.srcSet || undefined}
-          sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw"
-          width={game.image.width}
-          height={game.image.height}
-          alt={game.image.alt}
-          loading="lazy"
-          decoding="async"
-          className="size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.06]"
-        />
+        {game.image ? (
+          <img
+            src={game.image.src}
+            srcSet={game.image.srcSet || undefined}
+            sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw"
+            width={game.image.width}
+            height={game.image.height}
+            alt={game.image.alt}
+            loading="lazy"
+            decoding="async"
+            className="size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.06]"
+          />
+        ) : (
+          <div
+            className="grid size-full place-items-center bg-[radial-gradient(circle_at_50%_60%,color-mix(in_oklch,var(--accent)_22%,transparent),transparent_70%)]"
+            aria-hidden="true"
+          >
+            <span className="text-7xl transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-110">
+              {game.emoji ?? '🎲'}
+            </span>
+          </div>
+        )}
         {label && (
           <span className="glass text-fg border-line absolute top-3 left-3 rounded-full border px-2.5 py-1 font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase">
             {label}
@@ -303,9 +315,11 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
         <h3 className="font-display text-xl leading-snug font-bold tracking-tight text-balance">
           {game.title}
         </h3>
-        <p className="text-muted mt-1 text-sm italic">
-          {labels.originalName} {game.originalName}
-        </p>
+        {game.originalName && (
+          <p className="text-muted mt-1 text-sm italic">
+            {labels.originalName} {game.originalName}
+          </p>
+        )}
 
         <dl className="mt-4 grid grid-cols-2 gap-2">
           {facts.map((fact) => (
@@ -345,6 +359,12 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
                 {game.note}
               </p>
             )}
+            {game.goal && (
+              <div>
+                <SheetTitle>{labels.goal}</SheetTitle>
+                <p className="text-pretty">{game.goal}</p>
+              </div>
+            )}
             {lists.map((list) => (
               <SheetList key={list.title} title={list.title} items={list.items} />
             ))}
@@ -359,7 +379,9 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
                     >
                       {step + 1}
                     </span>
-                    <span className="min-w-0 text-pretty">{rule}</span>
+                    <span className="min-w-0 text-pretty">
+                      <Inline text={rule} />
+                    </span>
                   </li>
                 ))}
               </ol>
@@ -391,6 +413,41 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
   );
 }
 
+/** `[text](https://…)` inside a sheet line. */
+const INLINE_LINK = /\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g;
+
+/** A sheet line with its `[text](https://…)` links drawn as external links. */
+function Inline({ text }: { text: string }) {
+  const parts: (string | { label: string; href: string })[] = [];
+  let last = 0;
+  for (const match of text.matchAll(INLINE_LINK)) {
+    const [whole, label = '', href = ''] = match;
+    parts.push(text.slice(last, match.index), { label, href });
+    last = match.index + whole.length;
+  }
+  parts.push(text.slice(last));
+  return parts.map((part, position) =>
+    typeof part === 'string' ? (
+      part
+    ) : (
+      <a
+        key={position}
+        href={part.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-link link-underline font-semibold"
+      >
+        {part.label}
+      </a>
+    ),
+  );
+}
+
+/** A sheet line as it reads, links reduced to their text. */
+function plainText(text: string): string {
+  return text.replace(INLINE_LINK, '$1');
+}
+
 function SheetTitle({ children }: { children: string }) {
   return (
     <h4 className="text-muted mb-2 font-mono text-[0.7rem] font-semibold tracking-[0.14em] uppercase">
@@ -400,6 +457,7 @@ function SheetTitle({ children }: { children: string }) {
 }
 
 function SheetList({ title, items }: { title: string; items: string[] }) {
+  if (items.length === 0) return null;
   return (
     <div>
       <SheetTitle>{title}</SheetTitle>
@@ -410,7 +468,9 @@ function SheetList({ title, items }: { title: string; items: string[] }) {
               className="bg-accent-2 mt-[0.6em] inline-block size-1.5 shrink-0 rounded-full"
               aria-hidden="true"
             />
-            <span className="min-w-0 text-pretty">{item}</span>
+            <span className="min-w-0 text-pretty">
+              <Inline text={item} />
+            </span>
           </li>
         ))}
       </ul>
@@ -495,8 +555,9 @@ function buildIndex(categories: GuideCategory[]): Map<string, string> {
         game.note,
         ...game.materials,
         ...game.setup,
-        ...game.rules,
-        ...game.tips,
+        game.goal,
+        ...game.rules.map(plainText),
+        ...game.tips.map(plainText),
         ...game.sources.map((source) => source.label),
       ]
         .filter(Boolean)

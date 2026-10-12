@@ -33,6 +33,13 @@ const spans = [
   'min-h-[15rem]',
 ];
 
+/**
+ * The extra tile fills what the categories leave of the last `lg` row: the
+ * first three take two rows (big + pair), the rest run three to a row.
+ */
+const left = (3 - ((categories.length - 3) % 3)) % 3;
+const extraSpan = ['lg:col-span-3', 'lg:col-span-1', 'lg:col-span-2'][left];
+
 const gradient =
   'absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--surface-raised)_18%,color-mix(in_oklch,var(--surface-raised)_78%,transparent)_48%,transparent_85%)]';
 const tile =
@@ -45,7 +52,7 @@ const link =
   {
     categories.map((category, index) => (
       <li class:list={[tile, spans[index] ?? 'min-h-[13rem]']}>
-        {category.games[0] && (
+        {category.games[0]?.image && (
           <Image
             src={category.games[0].image}
             alt=""
@@ -82,7 +89,7 @@ const link =
       </li>
     ))
   }
-  <li class:list={[tile, 'bg-surface-raised min-h-[15rem] sm:col-span-2']}>
+  <li class:list={[tile, 'bg-surface-raised min-h-[15rem] sm:col-span-2', extraSpan]}>
     {
       extra.image && (
         <Image

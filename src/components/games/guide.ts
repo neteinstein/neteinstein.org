@@ -18,6 +18,7 @@ export async function resolveGuide(
       ...category,
       games: await Promise.all(
         category.games.map(async ({ image, ...game }) => {
+          if (!image) return game;
           const widths = [...new Set(WIDTHS.map((width) => Math.min(width, image.width)))];
           const result = await getImage({ src: image, widths });
           return {

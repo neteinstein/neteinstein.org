@@ -28,7 +28,8 @@ export const games: Catalog = {
   Setup: 'Preparação',
   'Rules, step by step': 'Regras, passo a passo',
   'Variations and tips': 'Variações e dicas',
-  'Original video on Instagram:': 'Vídeo original no Instagram:',
+  'Original video:': 'Vídeo original:',
+  Goal: 'Objetivo',
   'Original title:': 'Nome original:',
   'Christmas and Family Games': 'Jogos de Natal e de Família',
   'Quick, very visual parlour games, ideal for Christmas Eve or a family dinner. Almost all of them use plastic cups, balloons and things you already have at home.':
@@ -675,14 +676,13 @@ export const games: Catalog = {
   'Whoever does it in under 30 seconds wins.': 'Vence quem conseguir em menos de 30 segundos.',
   'Tip: film it in slow motion, the faces are the best part of the game.':
     'Dica: filmar em câmara lenta, as caretas são o melhor do jogo.',
-  'Shake Off the Sticky Notes': 'Livra-te dos Papelinhos',
   '4 to 20 players': '4 a 20 jogadores',
   'Post-its (10 to 20 per player)': 'Post-its (10 a 20 por jogador)',
   'Upbeat music': 'Música animada',
   "Stick the post-its on each player's clothes (arms, back, legs, head).":
     'Colar os post-its na roupa de cada jogador (braços, costas, pernas, cabeça).',
-  'On the signal (and with music), everyone tries to make the post-its fall off by shaking, dancing and jumping.':
-    'Ao sinal (e com música), todos tentam fazer cair os post-its abanando o corpo, dançando e saltando.',
+  'On the signal (and with [music](https://www.youtube.com/watch?v=nfWlot6h_JM)), everyone tries to make the post-its fall off by shaking, dancing and jumping.':
+    'Ao sinal (e com [música](https://www.youtube.com/watch?v=nfWlot6h_JM)), todos tentam fazer cair os post-its abanando o corpo, dançando e saltando.',
   'No using hands or rubbing against objects or people.':
     'É proibido usar as mãos ou esfregar-se em objetos ou pessoas.',
   'The first to be rid of all their notes wins.': 'Ganha quem ficar sem papelinhos primeiro.',
@@ -1268,4 +1268,68 @@ export const games: Catalog = {
   'A jury giving marks from 1 to 10.': 'Júri a dar notas de 1 a 10.',
   'Tip: it is easier on smooth surfaces (socks on a wooden floor).':
     'Dica: em superfícies lisas (meias em chão de madeira) é mais fácil.',
+
+  // Team-Building Games
+  'Team-Building Games': 'Jogos de Team Building',
+  'Team building': 'Team building',
+  'Short challenges for teams that have to plan, coordinate and trust each other.':
+    'Desafios curtos para equipas que têm de planear, coordenar-se e confiar umas nas outras.',
+  'Egg Drop Challenge': 'Egg Drop Challenge',
+  'Teams of 3 to 5': 'Equipas de 3 a 5',
+  '30 to 45 min': '30 a 45 min',
+  'Indoors (the drop can be outdoors)': 'Interior (o lançamento pode ser no exterior)',
+  'Build a structure that keeps a raw egg from breaking when it is dropped from a high place.':
+    'Construir uma estrutura para um ovo cru, com material de escritório, de forma a não partir sendo atirado de um lugar alto.',
+  '1 raw egg per team': '1 ovo cru por equipa',
+  'Office supplies: paper, paper clips, rubber bands, etc.':
+    'Material de escritório: papel, clipes, elásticos, etc.',
+  'Give every team the same materials and pick a high place to drop from.':
+    'Dar o mesmo material a todas as equipas e escolher um lugar alto de onde atirar.',
+  'Each team builds a structure around its raw egg using only the office supplies.':
+    'Cada equipa constrói uma estrutura à volta do seu ovo cru só com o material de escritório.',
+  'When time is up, every structure is dropped from the high place.':
+    'Acabado o tempo, cada estrutura é atirada do lugar alto.',
+  'The teams whose egg survives win.': 'Ganham as equipas cujo ovo não parte.',
+  'Ball Point Game': 'Ball Point Game',
+  'Teams of 5 or more': 'Equipas de 5 ou mais',
+  'About 20 min': 'Cerca de 20 min',
+  'Maximise the number of balls your team can process.':
+    'Maximizar o número de bolas que a tua equipa consegue processar.',
+  'Tennis balls': 'Bolas de ténis',
+  'The team sets a goal for how many points it thinks it can score.':
+    'A equipa tem de definir o objetivo de quantos pontos acha que consegue.',
+  'Every member of the team must touch the ball for it to count.':
+    'Cada elemento da equipa deve tocar na bola para contar.',
+  'Each ball is passed between team members and must have air time: it never goes straight from hand to hand.':
+    'Cada bola é passada entre elementos da equipa e deve ter tempo aéreo, isto é, não deve passar diretamente de mão para mão.',
+  'You cannot pass the ball to the person immediately to your right or left.':
+    'Não podem passar a bola à pessoa imediatamente à vossa direita ou esquerda.',
+  'If you drop the ball, you LOSE 2 points and must start that ball again.':
+    'Se deixares cair a bola, PERDES 2 pontos e deves começar essa bola outra vez.',
+  'Each ball ends where it started. Every successful ball is 1 point.':
+    'Cada bola acaba onde começou. Cada bola bem-sucedida é 1 ponto.',
+  'Energy Wave (Movement + Rhythm)': 'Onda de Energia (Movimento + Ritmo)',
+  'Create a quick and fun group dynamic.': 'Criar uma dinâmica de grupo rápida e divertida.',
+  'The group forms a circle.': 'O grupo forma um círculo.',
+  'One person makes a movement (e.g. a jump, beating their chest, swinging their arms).':
+    'Uma pessoa faz um movimento (ex.: dar um pulo, bater no peito, rodar os braços).',
+  'The person on their right has to repeat the movement and add a new one.':
+    'A pessoa à direita tem de repetir o movimento e acrescentar um novo.',
+  'And so on, building a growing sequence.':
+    'E assim sucessivamente, criando uma sequência crescente.',
+  'Whoever forgets the sequence or gets it wrong is out, or does a funny mini-challenge.':
+    'Quem esquecer a sequência ou errar sai ou paga um mini-desafio engraçado.',
+  'The Coin Maze (Coordination and Teamwork)':
+    'O Labirinto da Moeda (Coordenação e Trabalho em Equipa)',
+  'Teams of 4': 'Equipas de 4',
+  'About 7 min': 'Cerca de 7 min',
+  'Encourage creativity and collaboration.': 'Promover a criatividade e a colaboração.',
+  'Card stock': 'Cartolina',
+  'A coin': 'Uma moeda',
+  'Draw a maze on a sheet of card stock for each team.':
+    'Desenhar um labirinto numa cartolina por equipa.',
+  'Draw a large maze on the card and put a coin at the start of the path.':
+    'Desenha um labirinto grande numa cartolina e coloca uma moeda no início do percurso.',
+  'The players hold the four corners of the card and must tilt it carefully to move the coin to the exit of the maze.':
+    'Os jogadores seguram os quatro cantos da cartolina e devem incliná-la cuidadosamente para levar a moeda até à saída do labirinto.',
 };
