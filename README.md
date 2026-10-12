@@ -33,6 +33,11 @@ npm run dev        # http://localhost:4321
 | `npm run import:image` | Copy a crawled image into `src/assets/`, resized and as WebP    |
 | `npm run brand`        | Regenerate favicons and the social card from `src/assets/brand` |
 
+Every page except home gets its own social card at build time: `src/integrations/og-cards.ts`
+draws `dist/og/<page>.jpg` from the page's title and description, in each language. Home and 404
+keep the portrait card from `npm run brand`. `robots.txt` and the feed at `/rss.xml` (talks and
+article highlights) are generated from `src/pages/robots.txt.ts` and `src/pages/rss.xml.ts`.
+
 ## Editing content
 
 Content is split by shape. Neither kind needs a code change to update.
@@ -146,10 +151,14 @@ calls this out.
 
 **GitHub Pages**, built and deployed by GitHub Actions. There is no server: Pages serves `dist/`.
 
-| Workflow     | Trigger                  | Does                                                 |
-| ------------ | ------------------------ | ---------------------------------------------------- |
-| `ci.yml`     | every PR, push to `main` | format, lint, typecheck, build, link checks          |
-| `deploy.yml` | push to `main`, manual   | builds with the Pages base path and deploys to Pages |
+| Workflow         | Trigger                  | Does                                                                 |
+| ---------------- | ------------------------ | -------------------------------------------------------------------- |
+| `ci.yml`         | every PR, push to `main` | format, lint, typecheck, build, link checks                          |
+| `lighthouse.yml` | every PR, push to `main` | Lighthouse on sample pages (`lighthouserc.json`); a11y/SEO must pass |
+| `links.yml`      | Mondays, manual          | checks external links (`lychee.toml`), keeps a `broken-links` issue  |
+| `deploy.yml`     | push to `main`, manual   | builds with the Pages base path and deploys to Pages                 |
+
+Dependabot (`.github/dependabot.yml`) opens grouped weekly updates for npm and Actions.
 
 ### Base path
 
