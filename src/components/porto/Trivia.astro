@@ -20,8 +20,7 @@ const { label } = Astro.props;
   <div
     class="pointer-events-none absolute -top-20 -left-16 size-64 rounded-full bg-[radial-gradient(closest-side,var(--glow-d),transparent)]"
     aria-hidden="true"
-  >
-  </div>
+  ></div>
   <div class="relative flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-8">
     <span
       class="bg-surface-sunken text-accent-2 grid size-14 shrink-0 place-items-center rounded-2xl"
@@ -31,9 +30,7 @@ const { label } = Astro.props;
     </span>
     <div>
       <p class="font-display text-accent text-lg font-bold">{label}</p>
-      <div
-        class="font-display mt-2 text-xl leading-snug font-medium text-pretty sm:text-2xl [&_p]:m-0"
-      >
+      <div class="font-display mt-2 text-xl leading-snug font-medium text-pretty sm:text-2xl [&_p]:m-0">
         <slot />
       </div>
     </div>

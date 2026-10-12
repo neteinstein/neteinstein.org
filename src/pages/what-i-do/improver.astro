@@ -40,7 +40,9 @@ const page = entry.data;
 
   <Chapter chapter={workshops} index={2} tightWide>
     <div class="text-muted max-w-3xl space-y-5 text-lg leading-relaxed text-pretty" data-reveal>
-      {workshops.intro.map((paragraph) => <p>{paragraph}</p>)}
+      {workshops.intro.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
       <p class="text-fg font-medium">{workshops.modulesIntro}</p>
     </div>
 

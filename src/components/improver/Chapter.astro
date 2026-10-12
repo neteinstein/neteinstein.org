@@ -23,8 +23,7 @@ const number = String(index).padStart(2, '0');
   <div
     class="via-line-strong absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent to-transparent sm:inset-x-6"
     aria-hidden="true"
-  >
-  </div>
+  ></div>
 
   <div class="grid gap-8 lg:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] lg:gap-16">
     <header class="lg:sticky lg:top-28 lg:self-start" data-reveal>
@@ -37,18 +36,14 @@ const number = String(index).padStart(2, '0');
         </span>
         <span class="eyebrow block pb-1 lg:mt-5 lg:pb-0">{chapter.eyebrow}</span>
       </p>
-      <h2
-        class="font-display mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:mt-2"
-      >
+      <h2 class="font-display mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:mt-2">
         {chapter.title}
       </h2>
-      {
-        chapter.subtitle && (
-          <p class="font-display text-muted mt-3 text-lg leading-snug text-pretty sm:text-xl">
-            {chapter.subtitle}
-          </p>
-        )
-      }
+      {chapter.subtitle && (
+        <p class="font-display text-muted mt-3 text-lg leading-snug text-pretty sm:text-xl">
+          {chapter.subtitle}
+        </p>
+      )}
     </header>
 
     <div class="min-w-0">
@@ -56,11 +51,9 @@ const number = String(index).padStart(2, '0');
     </div>
   </div>
 
-  {
-    Astro.slots.has('wide') && (
-      <div class:list={[tightWide ? 'mt-10' : 'mt-14 sm:mt-20']}>
-        <slot name="wide" />
-      </div>
-    )
-  }
+  {Astro.slots.has('wide') && (
+    <div class:list={[tightWide ? 'mt-10' : 'mt-14 sm:mt-20']}>
+      <slot name="wide" />
+    </div>
+  )}
 </section>

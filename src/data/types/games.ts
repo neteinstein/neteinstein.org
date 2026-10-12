@@ -17,6 +17,12 @@ export interface GameImageUrl {
   alt: string;
 }
 
+/** A themed round of a quiz game's questions ("Round 1: general knowledge"). */
+export interface QuestionRound {
+  title: string;
+  questions: string[];
+}
+
 /** One game's card: the doc's summary table, then its how-to-play sheet. */
 export interface Game<Image = ImageMetadata> {
   /** Anchor id — unique across the page. */
@@ -49,6 +55,8 @@ export interface Game<Image = ImageMetadata> {
   rules: string[];
   /** Variations and tips. */
   tips: string[];
+  /** A bank of questions to ask, in themed rounds, for quiz games. */
+  questions?: QuestionRound[];
   /** The videos the game was collected from. */
   sources: LinkRef[];
 }

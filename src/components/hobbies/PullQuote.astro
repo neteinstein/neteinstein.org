@@ -19,9 +19,7 @@ const { attribution, text, class: className } = Astro.props;
 <figure class:list={['pull-quote group', className]}>
   <span class="pull-quote-glow" aria-hidden="true"></span>
   <Icon name="quote" class="text-accent-2 relative size-8" fill />
-  <blockquote class="relative text-pretty">
-    {text ?? <slot />}
-  </blockquote>
+  <blockquote class="relative text-pretty">{text ?? <slot />}</blockquote>
   <figcaption class="text-muted relative mt-4 font-mono text-sm">{attribution}</figcaption>
 </figure>
 

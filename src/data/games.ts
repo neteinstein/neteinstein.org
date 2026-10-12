@@ -2,10 +2,10 @@
  * /games — "Jogos de Grupo", 59 group games for parties, Christmas, camps and
  * bachelor parties, from Pedro Vicente's Google Doc
  * (https://docs.google.com/document/d/1OtB2EOQaHNQXJmdBBEnhErcTn1BxYwAM6JH-4ZvKUVU),
- * plus games added since: a closing chapter of team-building games and a
- * few classics (many from the TV show "Minute to Win It") at the end of the
- * other chapters. These have no source video; their drawings were made in
- * the doc's style.
+ * plus games added since that have no source video: the bachelor-party
+ * quiz, a closing chapter of team-building games, and a few classics
+ * (many from the TV show "Minute to Win It") at the end of the other
+ * chapters. Their drawings were made in the doc's style.
  * The doc is in Portuguese: the English here is its translation, and the
  * original wording is the `src/i18n/pt/games.ts` catalogue. Page title, lead
  * and the "how to use" prose live in `src/content/pages/games.mdx`.
@@ -76,6 +76,7 @@ import ballInTheWaistBasket from '../assets/games/ball-in-the-waist-basket.webp'
 import blindfoldedSwappedArmsYoghurt from '../assets/games/blindfolded-swapped-arms-yoghurt.webp';
 import blindfoldedHoopOrienteering from '../assets/games/blindfolded-hoop-orienteering.webp';
 import whoseBodyPartIsThis from '../assets/games/whose-body-part-is-this.webp';
+import howWellDoYouKnowYourPartner from '../assets/games/how-well-do-you-know-your-partner.webp';
 import learnTheAirwalkIn20Seconds from '../assets/games/learn-the-airwalk-in-20-seconds.webp';
 import eggDropChallenge from '../assets/games/egg-drop-challenge.webp';
 import ballPointGame from '../assets/games/ball-point-game.webp';
@@ -91,7 +92,6 @@ import balloonWaddle from '../assets/games/balloon-waddle.webp';
 import minefield from '../assets/games/minefield.webp';
 import humanKnot from '../assets/games/human-knot.webp';
 import passIt from '../assets/games/pass-it.webp';
-import howWellDoesTheBrideKnowTheGroom from '../assets/games/how-well-does-the-bride-know-the-groom.webp';
 import dareJar from '../assets/games/dare-jar.webp';
 import photoScavengerHunt from '../assets/games/photo-scavenger-hunt.webp';
 import heliumStick from '../assets/games/helium-stick.webp';
@@ -2138,7 +2138,7 @@ export const gameCategories: GameCategory[] = [
     title: 'Bachelor Parties',
     short: 'Bachelor parties',
     intro:
-      'From a Portuguese video of a joint bachelor party for a sister and Gabriel: a whole weekend of "Olympics" with colour teams, wristbands, scores on a board and a final prize. These games also work at birthdays and team-buildings.',
+      'From a Portuguese video of a joint bachelor party for a sister and Gabriel: a whole weekend of "Olympics" with colour teams, wristbands, scores on a board and a final prize. These games also work at birthdays and team-buildings. The last one is a drinking quiz on how well the groom knows his partner.',
     games: [
       {
         id: 'ring-hunt',
@@ -2246,33 +2246,106 @@ export const gameCategories: GameCategory[] = [
         sources: [{ label: '@paulonsousa', href: 'https://www.instagram.com/reel/DX1OknrM4du/' }],
       },
       {
-        id: 'how-well-does-the-bride-know-the-groom',
+        id: 'how-well-do-you-know-your-partner',
         number: 69,
-        title: 'How Well Does the Bride Know the Groom?',
-        players: 'The bride (or the groom) and any number of guests',
+        title: 'How Well Do You Know Your Partner?',
+        players: 'The groom + 2 friends at a time',
         age: 'Adults',
-        duration: '15 to 30 min',
-        setting: 'Indoors or outdoors',
+        duration: '45 to 60 min',
+        setting: 'Indoors or outdoors (plus a tent for the finale)',
         where: ['indoor', 'outdoor'],
-        image: howWellDoesTheBrideKnowTheGroom,
+        image: howWellDoYouKnowYourPartner,
+        goal: 'The groom answers questions about his partner; every wrong answer costs him a shot, and his friends can make it worse.',
         materials: [
-          'A list of 15 to 20 questions about the groom',
-          'His answers, collected in advance',
-          'Forfeits or small prizes',
+          'Plastic shot glasses',
+          'Alcoholic drinks',
+          'Juice',
+          '1 tin of surströmming (Swedish fermented herring)',
+          'A tent (for the finale)',
         ],
         setup: [
-          'Days before, send the groom the questions ("first date?", "favourite food?", "what annoys him most?") and keep his answers secret.',
+          "Before the party, ask the bride (or groom) to answer the questions below. They can skip any they'd rather not answer.",
+          'Sit the groom down and have him pick 2 friends he trusts to sit beside him.',
+          'Line up several shot glasses in front of each of the three. Each row of 3 (one glass per person) holds the same drink.',
         ],
         rules: [
-          'At the party, read each question to the bride.',
-          "She answers, then the groom's answer is revealed (on paper or in a video).",
-          'Each wrong answer earns a forfeit; each right one, a point.',
-          'At the end, count how many she got right.',
+          "Ask the groom a question and check his answer against the bride's.",
+          'If he gets it wrong, he drinks the shot in front of him. Each of the 2 friends then chooses: drink their own shot, or hand it to the groom to drink too.',
+          'If he gets it right, nothing happens, unless the friends have already made him drink. In that case he can send them to drink their shots anyway.',
+          'Every 5 or 6 questions, 2 new friends take the seats beside the groom.',
+          'At the end, the groom picks 5 friends and they all go into a tent to eat the surströmming together.',
         ],
         tips: [
-          'Reverse it at the bachelor party: the groom answers questions about the bride.',
-          'Guests can play too: whoever knows the groom best wins.',
-          'Record the groom answering on video: his face is half the fun.',
+          'Go through the rounds in order, so the questions get spicier as the night goes on.',
+          "Read out the partner's answer after each question: the funny ones are half the game.",
+          'Mixing some shots with juice keeps the pace up without anyone dropping out early.',
+          'Tip: open the surströmming tin under water or outdoors. The smell is legendary.',
+        ],
+        questions: [
+          {
+            title: 'Round 1: general knowledge',
+            questions: [
+              "What is the bride's full name?",
+              "When is the bride's birthday?",
+              'And her star sign?',
+              'When did you meet?',
+              "What is the bride's favourite colour?",
+              "What is her sister's (or brother's) middle name?",
+              'What clothes does she prefer you to wear?',
+              'City or countryside?',
+              'What was the first meal you had together?',
+              'And the first drink?',
+              "What is the bride's favourite film?",
+              'Which app does the bride spend most time on?',
+            ],
+          },
+          {
+            title: 'Round 2: the interesting stuff',
+            questions: [
+              'When and where was your first kiss?',
+              'What does she love about you?',
+              'What would she like you to have less of?',
+              "What is the bride's biggest dream?",
+              'What does the bride see herself doing in 20 years?',
+              'And what does she see you doing?',
+              'What is the way to make the bride happy?',
+              'High heels or flats?',
+              'Feet or hands?',
+              'Which of us (the friends here) does the bride think is the worst influence on you, and why?',
+            ],
+          },
+          {
+            title: 'Round 3: life together',
+            questions: [
+              'What is the bride proudest of having "changed" in you since you started dating?',
+              'When she says "I don\'t know, you choose what we have for dinner", which 3 dishes do you know she doesn\'t want?',
+              "Which cheesy song or embarrassing reality show does she love but won't admit to anyone?",
+              'What does the bride think of the time you spend sitting on the toilet with your phone?',
+              "If the bride's handbag were on fire and she could only save one thing, what would it be?",
+              'The phrase she says to you most often.',
+              'Which of your habits drives her mad (the one that makes her roll her eyes instantly)?',
+              "What does the bride's mother say most often about you?",
+              "What cute or ridiculous pet names do you use for each other when you're alone (that nobody can know)?",
+              'What is the bride most nervous about for the wedding day: the dress, the food, or the fact that you are having this party first and anything could happen?',
+              'What will your first official argument as a married couple be about (right on the honeymoon)?',
+            ],
+          },
+          {
+            title: 'Round 4: the spicy round',
+            questions: [
+              "Who is the bride's celebrity crush?",
+              'What colour is the underwear the bride is wearing right now?',
+              'What does the bride prefer you to wear in bed: flannel pyjamas, old-man briefs or nothing?',
+              'If you dressed up as something on the wedding night to surprise her, what would surprise her?',
+              'If the bride had to choose between a month on a desert island with you or with your mother, how long would she take to choose your mother?',
+              'Rough or tender?',
+              'Love or passion?',
+              'Hands, feet and mouth?',
+              'The bride had to rate your "stamina" from 1 to 10. What score do you think she gave?',
+              'Where has the bride always wanted to do "it", but you were afraid of getting caught?',
+              "Which part of the bride's body do you love, but she hates you touching?",
+            ],
+          },
         ],
         sources: [],
       },

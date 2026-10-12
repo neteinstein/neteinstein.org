@@ -46,20 +46,19 @@ const url = src.startsWith('//') ? `https:${src}` : src;
       loading="lazy"
       allowfullscreen
       referrerpolicy="strict-origin-when-cross-origin"
-      class="size-full border-0"></iframe>
+      class="size-full border-0"
+    ></iframe>
   </div>
-  {
-    fallbackHref && (
-      <figcaption class="mt-3 text-sm">
-        <a
-          href={fallbackHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="link-underline text-link font-medium"
-        >
-          {fallbackLabel} ↗
-        </a>
-      </figcaption>
-    )
-  }
+  {fallbackHref && (
+    <figcaption class="mt-3 text-sm">
+      <a
+        href={fallbackHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="link-underline text-link font-medium"
+      >
+        {fallbackLabel} ↗
+      </a>
+    </figcaption>
+  )}
 </figure>

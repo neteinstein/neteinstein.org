@@ -28,15 +28,11 @@ const CHIPS = [
 <section class="relative isolate overflow-hidden">
   <div class="dot-grid absolute inset-0 -z-10 opacity-80" aria-hidden="true"></div>
 
-  <div
-    class="container-page grid min-h-[calc(100svh-5rem)] items-center gap-10 py-12 lg:grid-cols-[1.2fr_1fr] lg:gap-6 lg:py-16"
-  >
+  <div class="container-page grid min-h-[calc(100svh-5rem)] items-center gap-10 py-12 lg:grid-cols-[1.2fr_1fr] lg:gap-6 lg:py-16">
     <div>
       <p class="eyebrow inline-flex items-center gap-2" data-enter>
         <span class="relative flex size-2">
-          <span
-            class="bg-accent-2 absolute inline-flex size-full animate-ping rounded-full opacity-60"
-          ></span>
+          <span class="bg-accent-2 absolute inline-flex size-full animate-ping rounded-full opacity-60"></span>
           <span class="bg-accent-2 relative inline-flex size-2 rounded-full"></span>
         </span>
         {t("Hi, I'm {name}", { name: SITE.author })} · @{SITE.handle}
@@ -60,20 +56,18 @@ const CHIPS = [
           aria-hidden="true"
         >
           <span class="role-ticker-track block">
-            {
-              [...TICKER, TICKER[0]].map((role) => (
-                <span class="block h-[1.3em] leading-[1.3em] whitespace-nowrap">{role}</span>
-              ))
-            }
+            {[...TICKER, TICKER[0]].map((role) => (
+              <span class="block h-[1.3em] leading-[1.3em] whitespace-nowrap">{role}</span>
+            ))}
           </span>
         </span>
         <span class="sr-only">{TICKER.join(', ')}</span>
       </p>
 
       <div class="mt-9 flex flex-wrap items-center gap-3" data-enter style="--delay: 650">
-        <ButtonLink href="#glimpses" size="lg" trailing="arrow-down"
-          >{t('Glimpses of what I do')}</ButtonLink
-        >
+        <ButtonLink href="#glimpses" size="lg" trailing="arrow-down">
+          {t('Glimpses of what I do')}
+        </ButtonLink>
         <ButtonLink
           href="/porto/visit-porto"
           variant="secondary"
@@ -95,13 +89,11 @@ const CHIPS = [
         <div
           class="hero-blob absolute inset-[6%] bg-[image:var(--gradient-brand)] opacity-90 shadow-[0_30px_80px_-20px_color-mix(in_oklch,var(--accent)_60%,transparent)]"
           aria-hidden="true"
-        >
-        </div>
+        ></div>
         <div
           class="animate-spin-slow absolute inset-0 rounded-full border-2 border-dashed border-[color-mix(in_oklch,var(--accent)_35%,transparent)]"
           aria-hidden="true"
-        >
-        </div>
+        ></div>
         <Image
           src={portrait}
           alt={t('{name} mid-talk, gesturing with both hands', { name: SITE.author })}
@@ -110,20 +102,18 @@ const CHIPS = [
           fetchpriority="high"
           widths={[394]}
         />
-        {
-          CHIPS.map((chip) => (
-            <span
-              class:list={[
-                'glass border-line animate-float absolute rounded-full border px-3.5 py-2 text-sm font-semibold whitespace-nowrap shadow-[var(--shadow-md)]',
-                chip.class,
-              ]}
-              style={`animation-delay: -${chip.delay}s`}
-              aria-hidden="true"
-            >
-              {chip.text}
-            </span>
-          ))
-        }
+        {CHIPS.map((chip) => (
+          <span
+            class:list={[
+              'glass border-line animate-float absolute rounded-full border px-3.5 py-2 text-sm font-semibold whitespace-nowrap shadow-[var(--shadow-md)]',
+              chip.class,
+            ]}
+            style={`animation-delay: -${chip.delay}s`}
+            aria-hidden="true"
+          >
+            {chip.text}
+          </span>
+        ))}
       </div>
     </div>
   </div>

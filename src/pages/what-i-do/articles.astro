@@ -81,21 +81,23 @@ const stats = [
 
   <Section id="articles" eyebrow={t('Writing')} title={headings.articles}>
     <div class="grid gap-5 md:grid-cols-2" data-reveal-stagger>
-      {outlets.map((outlet) => <OutletCard outlet={outlet} />)}
+      {outlets.map((outlet) => (
+        <OutletCard outlet={outlet} />
+      ))}
     </div>
     <div class="mt-6 grid gap-5 md:grid-cols-2" data-reveal-stagger>
-      {
-        highlights.map((group, index) => {
-          const style = highlightStyle[index % highlightStyle.length]!;
-          return <HighlightColumn group={group} icon={style.icon} tone={style.tone} />;
-        })
-      }
+      {highlights.map((group, index) => {
+        const style = highlightStyle[index % highlightStyle.length]!;
+        return <HighlightColumn group={group} icon={style.icon} tone={style.tone} />;
+      })}
     </div>
   </Section>
 
   <Section id="books" eyebrow={t('Published')} title={headings.books}>
     <div class="grid gap-6 lg:grid-cols-2" data-reveal-stagger>
-      {books.map((book, index) => <BookFeature book={book} badge={bookBadges[index]} />)}
+      {books.map((book, index) => (
+        <BookFeature book={book} badge={bookBadges[index]} />
+      ))}
     </div>
   </Section>
 
@@ -107,12 +109,9 @@ const stats = [
       <div
         class="pointer-events-none absolute -top-24 -left-16 size-72 rounded-full bg-[radial-gradient(closest-side,var(--glow-b),transparent)]"
         aria-hidden="true"
-      >
-      </div>
+      ></div>
       <Icon name="quote" class="text-accent-2 relative size-9" fill />
-      <h3
-        class="font-display relative mt-4 max-w-3xl text-2xl leading-snug font-bold tracking-tight text-balance sm:text-4xl"
-      >
+      <h3 class="font-display relative mt-4 max-w-3xl text-2xl leading-snug font-bold tracking-tight text-balance sm:text-4xl">
         {mustRead.heading}
       </h3>
       <p class="text-muted relative mt-4 text-lg">{mustRead.intro}</p>
@@ -123,32 +122,28 @@ const stats = [
   <Section id="shorter" eyebrow={t('Must read')} title={headings.shorter} intro={shorterIntro}>
     <nav aria-label={t('Reading list topics')} class="mb-4" data-reveal>
       <ul class="flex flex-wrap gap-2">
-        {
-          readingGroups.map((group) => (
-            <li>
-              <a
-                href={`#${group.id}`}
-                class="border-line bg-surface-raised hover:border-accent hover:text-link inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-medium shadow-[var(--shadow-sm)] transition-colors"
-              >
-                {group.title}
-                <Icon name="arrow-down" class="size-3.5" />
-              </a>
-            </li>
-          ))
-        }
+        {readingGroups.map((group) => (
+          <li>
+            <a
+              href={`#${group.id}`}
+              class="border-line bg-surface-raised hover:border-accent hover:text-link inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-medium shadow-[var(--shadow-sm)] transition-colors"
+            >
+              {group.title}
+              <Icon name="arrow-down" class="size-3.5" />
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
 
     <div class="space-y-10">
-      {
-        readingGroups.map((group, index) => (
-          <ReadingGroupBlock
-            group={group}
-            index={index}
-            tone={groupTones[index % groupTones.length]!}
-          />
-        ))
-      }
+      {readingGroups.map((group, index) => (
+        <ReadingGroupBlock
+          group={group}
+          index={index}
+          tone={groupTones[index % groupTones.length]!}
+        />
+      ))}
     </div>
 
     <p class="text-muted border-line mt-10 border-t pt-6 text-sm" data-reveal>

@@ -29,16 +29,12 @@ const columns = {
 ---
 
 <ul class:list={['grid gap-4 sm:gap-6', columns, className]} data-reveal-stagger>
-  {
-    sites.map((site, index) => {
-      const lead = (layout === 'bento' && index === 0) || layout === 'single';
-      return (
-        <li
-          class:list={['grid', layout === 'bento' && index === 0 && 'sm:col-span-2 lg:row-span-2']}
-        >
-          <SiteTile site={site} variant={lead ? 'feature' : 'default'} fill={lead} />
-        </li>
-      );
-    })
-  }
+  {sites.map((site, index) => {
+    const lead = (layout === 'bento' && index === 0) || layout === 'single';
+    return (
+      <li class:list={['grid', layout === 'bento' && index === 0 && 'sm:col-span-2 lg:row-span-2']}>
+        <SiteTile site={site} variant={lead ? 'feature' : 'default'} fill={lead} />
+      </li>
+    );
+  })}
 </ul>

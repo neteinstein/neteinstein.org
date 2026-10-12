@@ -27,57 +27,51 @@ const { label, nicks } = Astro.props;
   class="nick-trail border-line bg-surface-sunken mt-8 overflow-hidden rounded-2xl border font-mono"
   aria-hidden="true"
 >
-  <div
-    class="border-line text-muted flex items-center gap-2 border-b px-4 py-2.5 text-[0.7rem] tracking-[0.14em] uppercase"
-  >
+  <div class="border-line text-muted flex items-center gap-2 border-b px-4 py-2.5 text-[0.7rem] tracking-[0.14em] uppercase">
     <span class="bg-accent-2 size-2.5 rounded-full"></span>
     <span class="bg-accent-3 size-2.5 rounded-full"></span>
     <span class="bg-accent-4 size-2.5 rounded-full"></span>
     <span class="ml-2">{label}</span>
   </div>
 
-  <div
-    class="flex flex-col gap-3 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-2 sm:px-6"
-  >
-    {
-      nicks.map((item, index) => (
-        <>
-          {index > 0 && (
-            <span
-              class="nick-step text-muted ml-1 shrink-0 rotate-90 sm:ml-0 sm:rotate-0"
-              style={`--d: ${index * 2 - 1}`}
-            >
-              <Icon name="arrow-right" class="size-4" />
-            </span>
-          )}
-          <div
-            class="nick-step flex items-baseline gap-3 sm:flex-col sm:items-center sm:gap-1.5"
-            style={`--d: ${index * 2}`}
+  <div class="flex flex-col gap-3 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-2 sm:px-6">
+    {nicks.map((item, index) => (
+      <>
+        {index > 0 && (
+          <span
+            class="nick-step text-muted ml-1 shrink-0 rotate-90 sm:ml-0 sm:rotate-0"
+            style={`--d: ${index * 2 - 1}`}
           >
-            <span class="text-lg leading-none font-semibold sm:text-xl">
-              {item.state === 'taken' && (
-                <span class="text-muted decoration-accent-2 line-through decoration-2">
-                  {item.nick}
+            <Icon name="arrow-right" class="size-4" />
+          </span>
+        )}
+        <div
+          class="nick-step flex items-baseline gap-3 sm:flex-col sm:items-center sm:gap-1.5"
+          style={`--d: ${index * 2}`}
+        >
+          <span class="text-lg leading-none font-semibold sm:text-xl">
+            {item.state === 'taken' && (
+              <span class="text-muted decoration-accent-2 line-through decoration-2">
+                {item.nick}
+              </span>
+            )}
+            {item.state === 'then' &&
+              [...item.nick].map((char) => (
+                <span class={char === char.toUpperCase() ? 'text-accent-2' : 'text-fg'}>
+                  {char}
                 </span>
-              )}
-              {item.state === 'then' &&
-                [...item.nick].map((char) => (
-                  <span class={char === char.toUpperCase() ? 'text-accent-2' : 'text-fg'}>
-                    {char}
-                  </span>
-                ))}
-              {item.state === 'now' && (
-                <>
-                  <span class="text-gradient">{item.nick}</span>
-                  <span class="nick-caret bg-accent ml-0.5 inline-block h-[1em] w-[0.5em] translate-y-[0.12em]" />
-                </>
-              )}
-            </span>
-            <span class="text-muted text-[0.68rem] tracking-[0.12em] uppercase">{item.note}</span>
-          </div>
-        </>
-      ))
-    }
+              ))}
+            {item.state === 'now' && (
+              <>
+                <span class="text-gradient">{item.nick}</span>
+                <span class="nick-caret bg-accent ml-0.5 inline-block h-[1em] w-[0.5em] translate-y-[0.12em]" />
+              </>
+            )}
+          </span>
+          <span class="text-muted text-[0.68rem] tracking-[0.12em] uppercase">{item.note}</span>
+        </div>
+      </>
+    ))}
   </div>
 </div>
 

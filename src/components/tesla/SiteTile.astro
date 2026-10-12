@@ -65,9 +65,11 @@ const { localHref } = useI18n(Astro);
       src={site.image}
       alt={site.imageAlt}
       widths={feature ? [480, 720, 900] : [240, 400, 640]}
-      sizes={feature
-        ? '(min-width: 1024px) 48rem, 100vw'
-        : '(min-width: 1024px) 18rem, (min-width: 640px) 50vw, 7rem'}
+      sizes={
+        feature
+          ? '(min-width: 1024px) 48rem, 100vw'
+          : '(min-width: 1024px) 18rem, (min-width: 640px) 50vw, 7rem'
+      }
       class="absolute inset-0 size-full object-cover object-top transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.06]"
     />
   </div>
@@ -92,24 +94,21 @@ const { localHref } = useI18n(Astro);
           rel={external ? 'noopener noreferrer' : undefined}
           class="after:absolute after:inset-0 after:z-10 after:rounded-3xl focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-[-3px] focus-visible:after:outline-[var(--link)]"
         >
-          {
-            regional && (
-              <>
-                <Tag tone="teal" class="mr-1 translate-y-[-0.15em] align-middle font-mono">
-                  ({regional[1]})
-                </Tag>{' '}
-              </>
-            )
-          }{name}
+          {regional && (
+            <>
+              <Tag tone="teal" class="mr-1 translate-y-[-0.15em] align-middle font-mono">
+                ({regional[1]})
+              </Tag>{' '}
+            </>
+          )}
+          {name}
         </a>
       </h3>
-      {
-        showAddress && (
-          <p class="text-muted mt-1 truncate font-mono text-xs" title={target}>
-            {target}
-          </p>
-        )
-      }
+      {showAddress && (
+        <p class="text-muted mt-1 truncate font-mono text-xs" title={target}>
+          {target}
+        </p>
+      )}
     </div>
     <span
       class:list={[

@@ -47,19 +47,19 @@ const paired = categories.filter((category) => LAYOUT[category.id] === 'pair');
     </div>
   </PageHero>
 
-  {
-    full.map((category) => {
-      const layout = LAYOUT[category.id];
-      return (
-        <Section id={category.id} eyebrow={eyebrow(category)} title={category.title}>
-          <SiteGrid sites={category.sites} layout={layout === 'pair' ? 'single' : layout} />
-        </Section>
-      );
-    })
-  }
+  {full.map((category) => {
+    const layout = LAYOUT[category.id];
+    return (
+      <Section id={category.id} eyebrow={eyebrow(category)} title={category.title}>
+        <SiteGrid sites={category.sites} layout={layout === 'pair' ? 'single' : layout} />
+      </Section>
+    );
+  })}
 
   <div class="container-page grid gap-x-6 md:grid-cols-2">
-    {paired.map((category) => <CategoryColumn category={category} eyebrow={eyebrow(category)} />)}
+    {paired.map((category) => (
+      <CategoryColumn category={category} eyebrow={eyebrow(category)} />
+    ))}
   </div>
 
   <Section width="default" align="center" class="pt-16 sm:pt-20">

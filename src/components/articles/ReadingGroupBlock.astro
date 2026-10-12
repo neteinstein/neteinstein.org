@@ -41,24 +41,22 @@ const links = group.topics
   </header>
 
   <div class="min-w-0 columns-1 gap-5 md:columns-2 xl:columns-3">
-    {
-      group.topics.map((topic) => (
-        <section
-          class="border-line bg-surface-raised mb-5 break-inside-avoid rounded-2xl border p-5 shadow-[var(--shadow-sm)]"
-          data-reveal
-          data-spotlight
-        >
-          <h4 class="flex items-center gap-2 font-mono text-xs font-semibold tracking-[0.12em] uppercase">
-            <span class="size-2 rounded-full bg-[var(--tone)]" aria-hidden="true" />
-            {topic.title}
-          </h4>
-          <ul class="mt-4 space-y-3 text-[0.95rem]">
-            {topic.entries.map((entry) => (
-              <ReadingEntryLine entry={entry} />
-            ))}
-          </ul>
-        </section>
-      ))
-    }
+    {group.topics.map((topic) => (
+      <section
+        class="border-line bg-surface-raised mb-5 break-inside-avoid rounded-2xl border p-5 shadow-[var(--shadow-sm)]"
+        data-reveal
+        data-spotlight
+      >
+        <h4 class="flex items-center gap-2 font-mono text-xs font-semibold tracking-[0.12em] uppercase">
+          <span class="size-2 rounded-full bg-[var(--tone)]" aria-hidden="true" />
+          {topic.title}
+        </h4>
+        <ul class="mt-4 space-y-3 text-[0.95rem]">
+          {topic.entries.map((entry) => (
+            <ReadingEntryLine entry={entry} />
+          ))}
+        </ul>
+      </section>
+    ))}
   </div>
 </div>

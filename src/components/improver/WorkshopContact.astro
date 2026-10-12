@@ -26,24 +26,16 @@ const { cta, note, form } = Astro.props;
     <div
       class="pointer-events-none absolute -top-24 -right-16 size-72 rounded-full bg-[radial-gradient(closest-side,var(--glow-b),transparent)]"
       aria-hidden="true"
-    >
-    </div>
+    ></div>
     <div
       class="pointer-events-none absolute -bottom-28 -left-20 size-72 rounded-full bg-[radial-gradient(closest-side,var(--glow-a),transparent)]"
       aria-hidden="true"
-    >
-    </div>
-    <div
-      class="relative grid items-center gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-10"
-    >
-      <p
-        class="font-display text-3xl leading-tight font-bold tracking-tight text-balance sm:text-4xl"
-      >
+    ></div>
+    <div class="relative grid items-center gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-10">
+      <p class="font-display text-3xl leading-tight font-bold tracking-tight text-balance sm:text-4xl">
         {cta}
       </p>
-      <p
-        class="border-line-strong bg-surface/60 text-muted flex items-start gap-3 rounded-2xl border border-dashed p-4 leading-relaxed"
-      >
+      <p class="border-line-strong bg-surface/60 text-muted flex items-start gap-3 rounded-2xl border border-dashed p-4 leading-relaxed">
         <Icon name="heart" class="text-accent-2 mt-0.5 size-5 shrink-0" />
         <span>{note}</span>
       </p>

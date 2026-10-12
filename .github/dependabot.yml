@@ -13,6 +13,8 @@ updates:
         patterns: ['astro', '@astrojs/*']
       minor-and-patch:
         update-types: [minor, patch]
+        # astro pins @astrojs/markdown-remark exactly, so they must move together.
+        exclude-patterns: ['astro', '@astrojs/*']
 
   - package-ecosystem: github-actions
     directory: /

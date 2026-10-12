@@ -24,8 +24,7 @@ const { text, author, cite, size = 'md', class: className } = Astro.props;
   <div
     class="pointer-events-none absolute -top-16 -right-16 size-56 rounded-full bg-[radial-gradient(closest-side,var(--glow-a),transparent)]"
     aria-hidden="true"
-  >
-  </div>
+  ></div>
   <Icon name="quote" class="text-accent-2 relative size-9" fill />
   <blockquote
     cite={cite}
@@ -36,18 +35,16 @@ const { text, author, cite, size = 'md', class: className } = Astro.props;
   >
     {text}
   </blockquote>
-  {
-    author && (
-      <figcaption class="text-muted relative mt-5 font-mono text-sm">
-        —{' '}
-        {cite ? (
-          <a href={cite} target="_blank" rel="noopener noreferrer" class="link-underline">
-            {author}
-          </a>
-        ) : (
-          author
-        )}
-      </figcaption>
-    )
-  }
+  {author && (
+    <figcaption class="text-muted relative mt-5 font-mono text-sm">
+      —{' '}
+      {cite ? (
+        <a href={cite} target="_blank" rel="noopener noreferrer" class="link-underline">
+          {author}
+        </a>
+      ) : (
+        author
+      )}
+    </figcaption>
+  )}
 </figure>
