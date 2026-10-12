@@ -1111,8 +1111,8 @@ export const games: Catalog = {
   'Tip: choose songs everyone already knows.':
     'Dica: escolham músicas que toda a gente já conheça.',
   'Bachelor Parties': 'Despedidas de Solteiro',
-  'From a Portuguese video of a joint bachelor party for a sister and Gabriel: a whole weekend of "Olympics" with colour teams, wristbands, scores on a board and a final prize. These games also work at birthdays and team-buildings.':
-    'Do vídeo em português da despedida de solteiros da irmã e do Gabriel: um fim de semana inteiro de "olimpíadas" por equipas de cores, com pulseiras, pontuações num quadro e um prémio final. Estes jogos funcionam também em aniversários e team-buildings.',
+  'From a Portuguese video of a joint bachelor party for a sister and Gabriel: a whole weekend of "Olympics" with colour teams, wristbands, scores on a board and a final prize. These games also work at birthdays and team-buildings. The last one is a drinking quiz on how well the groom knows his partner.':
+    'Do vídeo em português da despedida de solteiros da irmã e do Gabriel: um fim de semana inteiro de "olimpíadas" por equipas de cores, com pulseiras, pontuações num quadro e um prémio final. Estes jogos funcionam também em aniversários e team-buildings. O último é um quiz com shots sobre o quanto o noivo conhece a noiva.',
   'Bachelor parties': 'Despedidas de Solteiro',
   'Secret Missions': 'Missões Secretas',
   '10 to 40 players': '10 a 40 jogadores',
@@ -1248,6 +1248,112 @@ export const games: Catalog = {
   'Include smiles or eyes.': 'Incluir sorrisos ou olhos.',
   'Tip: a projector turns any game into a "TV show".':
     'Dica: o projetor transforma qualquer jogo num "programa de TV".',
+  'How Well Do You Know Your Partner?': 'Quanto Conheces a Tua Cara-Metade?',
+  'The groom + 2 friends at a time': 'O noivo + 2 amigos de cada vez',
+  '45 to 60 min': '45 a 60 min',
+  'Indoors or outdoors (plus a tent for the finale)':
+    'Interior ou exterior (mais uma tenda para o final)',
+  'The groom answers questions about his partner; every wrong answer costs him a shot, and his friends can make it worse.':
+    'O noivo responde a perguntas sobre a noiva; cada resposta errada custa-lhe um shot, e os amigos podem piorar as coisas.',
+  'Plastic shot glasses': 'Copos de shot de plástico',
+  'Alcoholic drinks': 'Bebidas alcoólicas',
+  Juice: 'Sumo',
+  '1 tin of surströmming (Swedish fermented herring)':
+    '1 lata de Surströmming (arenque fermentado sueco)',
+  'A tent (for the finale)': 'Uma tenda (para o final)',
+  "Before the party, ask the bride (or groom) to answer the questions below. They can skip any they'd rather not answer.":
+    'Antes da despedida, pedir à noiva (ou ao noivo) para responder às perguntas abaixo. Pode não responder às que não quiser.',
+  'Sit the groom down and have him pick 2 friends he trusts to sit beside him.':
+    'Sentar o noivo e pedir-lhe para escolher 2 amigos em quem confia para se sentarem ao lado dele.',
+  'Line up several shot glasses in front of each of the three. Each row of 3 (one glass per person) holds the same drink.':
+    'Cada um tem vários copos de shot à sua frente. Cada "linha" de 3 (um copo por pessoa) tem a mesma bebida.',
+  "Ask the groom a question and check his answer against the bride's.":
+    'Fazer a pergunta ao noivo e comparar a resposta dele com a da noiva.',
+  'If he gets it wrong, he drinks the shot in front of him. Each of the 2 friends then chooses: drink their own shot, or hand it to the groom to drink too.':
+    'Se ele falhar, tem de beber o shot à frente dele. Os 2 amigos podem escolher beber o seu, ou dá-lo também ao noivo para beber.',
+  'If he gets it right, nothing happens, unless the friends have already made him drink. In that case he can send them to drink their shots anyway.':
+    'Se ele acertar, não acontece nada, exceto se os amigos já o tiverem mandado beber: nesse caso, ele pode mandá-los beber na mesma.',
+  'Every 5 or 6 questions, 2 new friends take the seats beside the groom.':
+    'A cada 5 ou 6 perguntas, os 2 amigos mudam.',
+  'At the end, the groom picks 5 friends and they all go into a tent to eat the surströmming together.':
+    'No fim, o noivo escolhe 5 amigos e entram todos numa tenda para comerem o Surströmming.',
+  'Go through the rounds in order, so the questions get spicier as the night goes on.':
+    'Seguir as rondas por ordem, para as perguntas irem aquecendo ao longo da noite.',
+  "Read out the partner's answer after each question: the funny ones are half the game.":
+    'Ler a resposta da noiva depois de cada pergunta: as engraçadas são metade do jogo.',
+  'Mixing some shots with juice keeps the pace up without anyone dropping out early.':
+    'Misturar alguns shots com sumo mantém o ritmo sem ninguém ir abaixo cedo demais.',
+  'Tip: open the surströmming tin under water or outdoors. The smell is legendary.':
+    'Dica: abrir a lata de Surströmming dentro de água ou ao ar livre. O cheiro é lendário.',
+  'Round 1: general knowledge': 'Ronda 1: conhecimento geral',
+  "What is the bride's full name?": 'Qual é o nome completo da noiva?',
+  "When is the bride's birthday?": 'Em que dia é que ela faz anos?',
+  'And her star sign?': 'E o signo?',
+  'When did you meet?': 'Quando é que se conheceram?',
+  "What is the bride's favourite colour?": 'Qual é a cor favorita da noiva?',
+  "What is her sister's (or brother's) middle name?":
+    'Qual é o 2.º nome da irmã (ou do irmão) dela?',
+  'What clothes does she prefer you to wear?': 'Qual é a roupa que ela prefere que uses?',
+  'City or countryside?': 'Cidade ou campo?',
+  'What was the first meal you had together?': 'Qual foi a primeira refeição que comeram juntos?',
+  'And the first drink?': 'E a bebida?',
+  "What is the bride's favourite film?": 'Qual é o filme favorito da noiva?',
+  'Which app does the bride spend most time on?':
+    'Qual é a app em que a noiva passa mais tempo no telemóvel?',
+  'Round 2: the interesting stuff': 'Ronda 2: conhecimento interessante',
+  'When and where was your first kiss?': 'Quando e onde foi o primeiro beijo?',
+  'What does she love about you?': 'O que é que ela adora em ti?',
+  'What would she like you to have less of?': 'O que é que ela gostava que tivesses menos?',
+  "What is the bride's biggest dream?": 'Qual é o maior sonho da noiva?',
+  'What does the bride see herself doing in 20 years?':
+    'O que é que a noiva se vê a fazer daqui a 20 anos?',
+  'And what does she see you doing?': 'E o que é que ela te vê a ti a fazer?',
+  'What is the way to make the bride happy?': 'Qual é a maneira de deixar a noiva contente?',
+  'High heels or flats?': 'Salto alto ou raso?',
+  'Feet or hands?': 'Pés ou mãos?',
+  'Which of us (the friends here) does the bride think is the worst influence on you, and why?':
+    'Qual de nós (amigos aqui presentes) é que a noiva acha que é a pior influência para ti, e porquê?',
+  'Round 3: life together': 'Ronda 3: a vida juntos',
+  'What is the bride proudest of having "changed" in you since you started dating?':
+    'Qual é a coisa que a noiva mais se orgulha de ter "mudado" em ti desde que começaram a namorar?',
+  'When she says "I don\'t know, you choose what we have for dinner", which 3 dishes do you know she doesn\'t want?':
+    'Quando ela diz "não sei, escolhe tu o que vamos jantar", quais são os 3 pratos que tu sabes que ela não quer?',
+  "Which cheesy song or embarrassing reality show does she love but won't admit to anyone?":
+    'Qual é aquela música pimba ou reality show vergonhoso que ela adora e não admite a ninguém?',
+  'What does the bride think of the time you spend sitting on the toilet with your phone?':
+    'Qual é a opinião da noiva sobre o tempo que passas sentado na sanita com o telemóvel na mão?',
+  "If the bride's handbag were on fire and she could only save one thing, what would it be?":
+    'Se a mala da noiva estivesse a arder e ela só pudesse salvar um objeto, o que seria?',
+  'The phrase she says to you most often.': 'A frase que ela te diz mais vezes.',
+  'Which of your habits drives her mad (the one that makes her roll her eyes instantly)?':
+    'Qual é o teu hábito que mais a tira do sério (aquela coisa que a faz revirar os olhos instantaneamente)?',
+  "What does the bride's mother say most often about you?":
+    'Qual é a frase que a mãe da noiva diz mais vezes sobre ti?',
+  "What cute or ridiculous pet names do you use for each other when you're alone (that nobody can know)?":
+    'Qual é o nome "fofinho" ou ridículo que usam um para o outro quando estão sozinhos (e que ninguém pode saber)?',
+  'What is the bride most nervous about for the wedding day: the dress, the food, or the fact that you are having this party first and anything could happen?':
+    'Com o que é que a noiva está mais nervosa para o dia do casamento: o vestido, a comida ou o facto de tu teres esta despedida antes e tudo poder acontecer?',
+  'What will your first official argument as a married couple be about (right on the honeymoon)?':
+    'Sobre o que é que vai ser a vossa primeira discussão oficial como casados (logo na lua de mel)?',
+  'Round 4: the spicy round': 'Ronda 4: o erótico badalhoco',
+  "Who is the bride's celebrity crush?": 'Quem é o "celebrity crush" da noiva?',
+  'What colour is the underwear the bride is wearing right now?':
+    'De que cor é a roupa interior que a noiva está a usar neste preciso momento?',
+  'What does the bride prefer you to wear in bed: flannel pyjamas, old-man briefs or nothing?':
+    'O que é que a noiva prefere que tu uses na cama: pijama de flanela, cueca "slip" de velho ou nada?',
+  'If you dressed up as something on the wedding night to surprise her, what would surprise her?':
+    'Se te mascarasses de alguma coisa na noite de núpcias para a surpreender, o que é que seria surpreendente?',
+  'If the bride had to choose between a month on a desert island with you or with your mother, how long would she take to choose your mother?':
+    'Se a noiva tivesse de escolher entre passar um mês numa ilha deserta contigo ou com a tua mãe, quanto tempo é que ela demorava a escolher a tua mãe?',
+  'Rough or tender?': 'Bruto ou amoroso?',
+  'Love or passion?': 'Amor ou paixão?',
+  'Hands, feet and mouth?': 'Mãos, pés e boca?',
+  'The bride had to rate your "stamina" from 1 to 10. What score do you think she gave?':
+    'A noiva teve de dar uma nota de 1 a 10 à tua "resistência". Qual achas que foi a nota que ela deu?',
+  'Where has the bride always wanted to do "it", but you were afraid of getting caught?':
+    'Qual é o sítio onde a noiva sempre quis fazer "aquilo", mas tu tiveste medo de ser apanhado?',
+  "Which part of the bride's body do you love, but she hates you touching?":
+    'Qual é a parte do corpo da noiva que tu adoras, mas que ela odeia que lhe toques?',
   'Bonus: Skill Challenge': 'Bónus: Desafio de Habilidade',
   'Not quite a game, but it makes a good challenge station.':
     'Não é bem um jogo, mas dá uma boa estação de desafio.',
