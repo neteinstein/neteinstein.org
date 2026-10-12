@@ -35,53 +35,51 @@ const base = withBase('/').replace(/\/+$/, '');
       >
         404
       </p>
-      {
-        LOCALES.map((locale) => {
-          const t = (text: string) => translate(locale, text);
-          return (
-            <div
-              data-not-found={locale}
-              lang={LOCALE_INFO[locale].tag}
-              hidden={locale !== DEFAULT_LOCALE}
+      {LOCALES.map((locale) => {
+        const t = (text: string) => translate(locale, text);
+        return (
+          <div
+            data-not-found={locale}
+            lang={LOCALE_INFO[locale].tag}
+            hidden={locale !== DEFAULT_LOCALE}
+          >
+            <h1
+              class="font-display mt-2 text-3xl font-bold tracking-tight sm:text-4xl"
+              data-enter
+              style="--delay: 150"
             >
-              <h1
-                class="font-display mt-2 text-3xl font-bold tracking-tight sm:text-4xl"
-                data-enter
-                style="--delay: 150"
-              >
-                {t('This page wandered off')}
-              </h1>
-              <p class="text-muted mx-auto mt-4 max-w-md text-lg" data-enter style="--delay: 250">
-                {t(
-                  "That page doesn't exist — or it moved when the site did. Try one of these instead:",
-                )}
-              </p>
+              {t('This page wandered off')}
+            </h1>
+            <p class="text-muted mx-auto mt-4 max-w-md text-lg" data-enter style="--delay: 250">
+              {t(
+                "That page doesn't exist — or it moved when the site did. Try one of these instead:",
+              )}
+            </p>
 
-              <ul
-                class="mx-auto mt-8 flex max-w-2xl flex-wrap justify-center gap-2.5"
-                data-reveal-stagger
-              >
-                {pages.map((page) => (
-                  <li>
-                    <a
-                      href={withBase(localizePath(page.href, locale))}
-                      class="border-line bg-surface-raised hover:border-accent hover:text-accent inline-block rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 ease-[var(--ease-spring)] hover:-translate-y-0.5"
-                    >
-                      {t(page.label)}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+            <ul
+              class="mx-auto mt-8 flex max-w-2xl flex-wrap justify-center gap-2.5"
+              data-reveal-stagger
+            >
+              {pages.map((page) => (
+                <li>
+                  <a
+                    href={withBase(localizePath(page.href, locale))}
+                    class="border-line bg-surface-raised hover:border-accent hover:text-accent inline-block rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 ease-[var(--ease-spring)] hover:-translate-y-0.5"
+                  >
+                    {t(page.label)}
+                  </a>
+                </li>
+              ))}
+            </ul>
 
-              <div class="mt-10" data-enter style="--delay: 400">
-                <ButtonLink href={localizePath('/', locale)} icon="arrow-right" trailing={false}>
-                  {t('Take me home')}
-                </ButtonLink>
-              </div>
+            <div class="mt-10" data-enter style="--delay: 400">
+              <ButtonLink href={localizePath('/', locale)} icon="arrow-right" trailing={false}>
+                {t('Take me home')}
+              </ButtonLink>
             </div>
-          );
-        })
-      }
+          </div>
+        );
+      })}
     </div>
   </section>
 

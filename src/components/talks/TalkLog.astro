@@ -49,91 +49,89 @@ const button =
   data-status-tag={t('Showing {shown} of {total}, tagged #{tag}')}
 >
   <div class="mb-8 sm:mb-10" hidden data-talk-filter>
-    <p id="talk-filter-label" class="text-muted mb-3 text-sm font-medium">{t('Filter by #tag:')}</p>
+    <p id="talk-filter-label" class="text-muted mb-3 text-sm font-medium">
+      {t('Filter by #tag:')}
+    </p>
     <div role="group" aria-labelledby="talk-filter-label" class="flex flex-wrap gap-2">
       <button type="button" class={button} aria-pressed="true" data-tag="">
         {t('All')}
         <span class="font-mono text-xs opacity-70">{entries.length}</span>
       </button>
-      {
-        tags.map(([tag, count]) => (
-          <button
-            type="button"
-            class={button}
-            aria-pressed="false"
-            data-tag={tag}
-            data-label={t(tag)}
-          >
-            <span
-              class="size-2 rounded-full"
-              style={`background: ${dotColor[tones[tag]]}`}
-              aria-hidden="true"
-            />
-            #{t(tag)}
-            <span class="font-mono text-xs opacity-70">{count}</span>
-          </button>
-        ))
-      }
+      {tags.map(([tag, count]) => (
+        <button
+          type="button"
+          class={button}
+          aria-pressed="false"
+          data-tag={tag}
+          data-label={t(tag)}
+        >
+          <span
+            class="size-2 rounded-full"
+            style={`background: ${dotColor[tones[tag]]}`}
+            aria-hidden="true"
+          />
+          #{t(tag)}
+          <span class="font-mono text-xs opacity-70">{count}</span>
+        </button>
+      ))}
     </div>
     <p class="sr-only" aria-live="polite" data-talk-status></p>
   </div>
 
   <div class="space-y-8 sm:space-y-10">
-    {
-      years.map((year) => (
-        <section
-          class="grid gap-4 lg:grid-cols-[11rem_1fr] lg:gap-10"
-          aria-labelledby={`talks-${year.year}`}
-          data-talk-year
-        >
-          <div class="lg:sticky lg:top-28 lg:self-start" data-reveal="left">
-            <h3
-              id={`talks-${year.year}`}
-              class="font-display text-gradient text-5xl leading-none font-extrabold tracking-tight sm:text-6xl lg:pt-4"
-            >
-              {year.year}
-            </h3>
-          </div>
-          <ol
-            class="border-line bg-surface-raised divide-line divide-y overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)]"
-            data-reveal
-            data-spotlight
+    {years.map((year) => (
+      <section
+        class="grid gap-4 lg:grid-cols-[11rem_1fr] lg:gap-10"
+        aria-labelledby={`talks-${year.year}`}
+        data-talk-year
+      >
+        <div class="lg:sticky lg:top-28 lg:self-start" data-reveal="left">
+          <h3
+            id={`talks-${year.year}`}
+            class="font-display text-gradient text-5xl leading-none font-extrabold tracking-tight sm:text-6xl lg:pt-4"
           >
-            {year.entries.map((entry) => (
-              <li
-                class="hover:bg-surface-sunken/60 grid grid-cols-[3rem_1fr] items-start gap-x-3 p-4 transition-colors sm:grid-cols-[4rem_1fr] sm:gap-x-4 sm:px-6 sm:py-5"
-                data-tags={entry.tags.join(' ')}
-              >
-                <span class="bg-surface-sunken text-accent rounded-lg py-1 text-center font-mono text-xs font-semibold tracking-wider uppercase">
-                  {entry.month}
-                </span>
-                <div class="min-w-0">
-                  <p class="leading-relaxed text-pretty [overflow-wrap:anywhere]">
-                    <span class="text-accent-2 font-semibold">@</span>{' '}
-                    <span class="font-semibold">
-                      <TalkText text={entry.event} />
-                    </span>
-                    {entry.talk && (
-                      <>
-                        <span class="text-muted">{entry.separator ?? ' - '}</span>
-                        <TalkText text={entry.talk} />
-                      </>
-                    )}
-                  </p>
-                  <ul class="mt-2 flex flex-wrap gap-1.5" aria-label={t('Tags')}>
-                    {entry.tags.map((tag) => (
-                      <li>
-                        <Tag tone={tones[tag]}>#{t(tag)}</Tag>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-      ))
-    }
+            {year.year}
+          </h3>
+        </div>
+        <ol
+          class="border-line bg-surface-raised divide-line divide-y overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)]"
+          data-reveal
+          data-spotlight
+        >
+          {year.entries.map((entry) => (
+            <li
+              class="hover:bg-surface-sunken/60 grid grid-cols-[3rem_1fr] items-start gap-x-3 p-4 transition-colors sm:grid-cols-[4rem_1fr] sm:gap-x-4 sm:px-6 sm:py-5"
+              data-tags={entry.tags.join(' ')}
+            >
+              <span class="bg-surface-sunken text-accent rounded-lg py-1 text-center font-mono text-xs font-semibold tracking-wider uppercase">
+                {entry.month}
+              </span>
+              <div class="min-w-0">
+                <p class="leading-relaxed text-pretty [overflow-wrap:anywhere]">
+                  <span class="text-accent-2 font-semibold">@</span>{' '}
+                  <span class="font-semibold">
+                    <TalkText text={entry.event} />
+                  </span>
+                  {entry.talk && (
+                    <>
+                      <span class="text-muted">{entry.separator ?? ' - '}</span>
+                      <TalkText text={entry.talk} />
+                    </>
+                  )}
+                </p>
+                <ul class="mt-2 flex flex-wrap gap-1.5" aria-label={t('Tags')}>
+                  {entry.tags.map((tag) => (
+                    <li>
+                      <Tag tone={tones[tag]}>#{t(tag)}</Tag>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
   </div>
 </div>
 

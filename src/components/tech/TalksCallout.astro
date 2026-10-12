@@ -21,20 +21,16 @@ const { t, localHref } = useI18n(Astro);
   <div
     class="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full bg-[radial-gradient(closest-side,var(--glow-b),transparent)]"
     aria-hidden="true"
-  >
-  </div>
+  ></div>
   <div
     class="pointer-events-none absolute -bottom-28 -left-16 size-72 rounded-full bg-[radial-gradient(closest-side,var(--glow-a),transparent)]"
     aria-hidden="true"
-  >
-  </div>
+  ></div>
   <p class="eyebrow relative inline-flex items-center gap-2">
     <Icon name="presentation" class="size-4" />
     {t('Talks & workshops')}
   </p>
-  <h2
-    class="font-display relative mt-3 max-w-3xl text-3xl leading-tight font-bold tracking-tight text-balance sm:text-5xl"
-  >
+  <h2 class="font-display relative mt-3 max-w-3xl text-3xl leading-tight font-bold tracking-tight text-balance sm:text-5xl">
     <a
       href={localHref(link.href)}
       class="after:absolute after:inset-0 after:rounded-[2rem] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"

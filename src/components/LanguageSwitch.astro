@@ -11,21 +11,19 @@ const path = currentPage(Astro.url);
 const targets = LOCALES.filter((other) => other !== locale);
 ---
 
-{
-  targets.map((target) => (
-    <a
-      href={withBase(localizePath(path, target))}
-      hreflang={LOCALE_INFO[target].tag}
-      lang={LOCALE_INFO[target].tag}
-      data-set-locale={target}
-      title={LOCALE_INFO[target].name}
-      aria-label={t('Read this page in {language}', { language: LOCALE_INFO[target].name })}
-      class="border-line text-muted hover:text-fg grid h-10 min-w-10 place-items-center rounded-xl border px-2 font-mono text-xs font-semibold tracking-[0.08em] transition-colors"
-    >
-      {LOCALE_INFO[target].short}
-    </a>
-  ))
-}
+{targets.map((target) => (
+  <a
+    href={withBase(localizePath(path, target))}
+    hreflang={LOCALE_INFO[target].tag}
+    lang={LOCALE_INFO[target].tag}
+    data-set-locale={target}
+    title={LOCALE_INFO[target].name}
+    aria-label={t('Read this page in {language}', { language: LOCALE_INFO[target].name })}
+    class="border-line text-muted hover:text-fg grid h-10 min-w-10 place-items-center rounded-xl border px-2 font-mono text-xs font-semibold tracking-[0.08em] transition-colors"
+  >
+    {LOCALE_INFO[target].short}
+  </a>
+))}
 
 <script>
   import { LOCALE_STORAGE_KEY } from '../i18n/config';

@@ -36,18 +36,16 @@ const { name, paragraphs, image, stat } = footprint;
     ]}
   />
   <div class="min-w-0 flex-1">
-    {
-      stat && (
-        <p class="flex items-baseline gap-2" aria-hidden="true">
-          <span class="text-gradient font-display text-6xl leading-none font-extrabold tracking-tight sm:text-7xl">
-            {stat.value}
-          </span>
-          <span class="text-muted font-mono text-sm font-semibold tracking-[0.14em] uppercase">
-            {stat.label}
-          </span>
-        </p>
-      )
-    }
+    {stat && (
+      <p class="flex items-baseline gap-2" aria-hidden="true">
+        <span class="text-gradient font-display text-6xl leading-none font-extrabold tracking-tight sm:text-7xl">
+          {stat.value}
+        </span>
+        <span class="text-muted font-mono text-sm font-semibold tracking-[0.14em] uppercase">
+          {stat.label}
+        </span>
+      </p>
+    )}
     <h3
       class:list={[
         'font-display font-bold tracking-tight',
@@ -56,12 +54,10 @@ const { name, paragraphs, image, stat } = footprint;
     >
       <TechText text={[name]} linkClass="link-underline" />
     </h3>
-    {
-      paragraphs.map((paragraph) => (
-        <p class="text-muted mt-2 leading-relaxed text-pretty">
-          <TechText text={paragraph} />
-        </p>
-      ))
-    }
+    {paragraphs.map((paragraph) => (
+      <p class="text-muted mt-2 leading-relaxed text-pretty">
+        <TechText text={paragraph} />
+      </p>
+    ))}
   </div>
 </article>

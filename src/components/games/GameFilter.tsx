@@ -375,6 +375,9 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
                 ))}
               </ol>
             </div>
+            {game.questions?.map((round) => (
+              <SheetList key={round.title} title={round.title} items={round.questions} />
+            ))}
             <SheetList title={labels.tips} items={game.tips} />
             {game.sources.length > 0 && (
               <p className="text-muted border-line border-t pt-4 text-sm">
@@ -547,6 +550,7 @@ function buildIndex(categories: GuideCategory[]): Map<string, string> {
         game.goal,
         ...game.rules.map(plainText),
         ...game.tips.map(plainText),
+        ...(game.questions ?? []).flatMap((round) => [round.title, ...round.questions]),
         ...game.sources.map((source) => source.label),
       ]
         .filter(Boolean)

@@ -33,21 +33,19 @@ const siblingHrefs = [
       <TechText text={project.name} />
     </h4>
     <div class="mt-auto flex flex-col gap-3 pt-3">
-      {
-        project.stints.map((stint) => (
-          <div>
-            {stint.lines.map((line) => (
-              <p class="text-muted text-sm leading-relaxed text-pretty">
-                <TechText text={line} />
-              </p>
-            ))}
-            <p class="text-accent mt-2 inline-flex items-center gap-1.5 rounded-full bg-[color-mix(in_oklch,var(--accent)_12%,transparent)] px-2.5 py-1 font-mono text-xs font-semibold">
-              <Icon name="calendar" class="size-3.5" />
-              {stint.years}
+      {project.stints.map((stint) => (
+        <div>
+          {stint.lines.map((line) => (
+            <p class="text-muted text-sm leading-relaxed text-pretty">
+              <TechText text={line} />
             </p>
-          </div>
-        ))
-      }
+          ))}
+          <p class="text-accent mt-2 inline-flex items-center gap-1.5 rounded-full bg-[color-mix(in_oklch,var(--accent)_12%,transparent)] px-2.5 py-1 font-mono text-xs font-semibold">
+            <Icon name="calendar" class="size-3.5" />
+            {stint.years}
+          </p>
+        </div>
+      ))}
     </div>
   </div>
 </article>

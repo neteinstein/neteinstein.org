@@ -50,27 +50,21 @@ const poster = youtube ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : undefine
   data-embed-src={embedUrl}
   data-embed-title={title}
 >
-  {
-    poster ? (
-      <img
-        src={poster}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        class="absolute inset-0 size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-105"
-      />
-    ) : (
-      <div
-        class="absolute inset-0 bg-[image:var(--gradient-brand)] opacity-80"
-        aria-hidden="true"
-      />
-    )
-  }
+  {poster ? (
+    <img
+      src={poster}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-105"
+    />
+  ) : (
+    <div class="absolute inset-0 bg-[image:var(--gradient-brand)] opacity-80" aria-hidden="true" />
+  )}
   <div
     class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"
     aria-hidden="true"
-  >
-  </div>
+  ></div>
 
   <a
     href={watchUrl}
@@ -78,16 +72,16 @@ const poster = youtube ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : undefine
     rel="noopener noreferrer"
     class="video-embed-trigger absolute inset-0 flex flex-col items-center justify-center gap-4 p-5 text-white"
   >
-    <span
-      class="relative grid size-16 place-items-center rounded-full bg-white/95 text-black shadow-2xl transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-110"
-    >
+    <span class="relative grid size-16 place-items-center rounded-full bg-white/95 text-black shadow-2xl transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-110">
       <span
         class="absolute inset-0 animate-ping rounded-full bg-white/40 [animation-duration:2.4s]"
-        aria-hidden="true"></span>
+        aria-hidden="true"
+      ></span>
       <Icon name="play" class="relative ml-1 size-7" fill />
     </span>
     <span class="font-display absolute inset-x-5 bottom-4 line-clamp-2 text-left font-semibold">
-      <span class="sr-only">{t('Play video:')} </span>{title}
+      <span class="sr-only">{t('Play video:')} </span>
+      {title}
     </span>
   </a>
 </div>

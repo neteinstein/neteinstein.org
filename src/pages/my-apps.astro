@@ -35,16 +35,14 @@ const page = entry.data;
 
   <Section id="apps" eyebrow={t('The apps')}>
     <div class="grid gap-6 md:grid-cols-2 lg:gap-8" data-reveal-stagger>
-      {
-        apps.map((app, index) => (
-          <AppCard
-            app={app}
-            index={index}
-            featured={index === 0}
-            class:list={[index === 0 && 'md:col-span-2']}
-          />
-        ))
-      }
+      {apps.map((app, index) => (
+        <AppCard
+          app={app}
+          index={index}
+          featured={index === 0}
+          class:list={[index === 0 && 'md:col-span-2']}
+        />
+      ))}
     </div>
   </Section>
 

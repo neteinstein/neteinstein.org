@@ -28,9 +28,7 @@ const { question, icon } = Astro.props;
       >
         <Icon name={icon} class="size-6" />
       </span>
-      <h2 class="font-display pt-1.5 text-2xl leading-snug font-bold tracking-tight">
-        {question}
-      </h2>
+      <h2 class="font-display pt-1.5 text-2xl leading-snug font-bold tracking-tight">{question}</h2>
     </div>
     <Prose class="text-muted mt-4 sm:pl-16">
       <slot />

@@ -36,8 +36,7 @@ const sources = myth.sources ?? [];
   <div
     class="pointer-events-none absolute -top-24 -left-24 size-72 rounded-full bg-[radial-gradient(closest-side,var(--glow-a),transparent)] opacity-70"
     aria-hidden="true"
-  >
-  </div>
+  ></div>
 
   <div class="relative grid gap-8 lg:grid-cols-12 lg:gap-12">
     <div class="lg:col-span-5">
@@ -69,9 +68,7 @@ const sources = myth.sources ?? [];
         <span>{t('Myth')}</span>
         <span class="text-gradient font-display text-2xl tracking-tight">#{number}</span>
       </p>
-      <h3
-        class="font-display mt-3 text-2xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl"
-      >
+      <h3 class="font-display mt-3 text-2xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
         {myth.title}
       </h3>
       <div class="mt-6">
@@ -82,26 +79,24 @@ const sources = myth.sources ?? [];
     </div>
   </div>
 
-  {
-    sources.length > 0 && (
-      <ul class="relative mt-10 grid gap-4 sm:grid-cols-3" data-reveal-stagger>
-        {sources.map((source) => (
-          <li>
-            <a
-              href={source.image.src}
-              class="group/scan glow-ring border-line bg-surface-sunken block overflow-hidden rounded-2xl border shadow-[var(--shadow-sm)] transition-transform duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1"
-            >
-              <Image
-                src={source.image}
-                alt={source.alt}
-                widths={[400, 640, 960]}
-                sizes="(min-width: 640px) 22rem, 100vw"
-                class="aspect-[3/2] w-full object-cover object-top transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover/scan:scale-[1.04]"
-              />
-            </a>
-          </li>
-        ))}
-      </ul>
-    )
-  }
+  {sources.length > 0 && (
+    <ul class="relative mt-10 grid gap-4 sm:grid-cols-3" data-reveal-stagger>
+      {sources.map((source) => (
+        <li>
+          <a
+            href={source.image.src}
+            class="group/scan glow-ring border-line bg-surface-sunken block overflow-hidden rounded-2xl border shadow-[var(--shadow-sm)] transition-transform duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1"
+          >
+            <Image
+              src={source.image}
+              alt={source.alt}
+              widths={[400, 640, 960]}
+              sizes="(min-width: 640px) 22rem, 100vw"
+              class="aspect-[3/2] w-full object-cover object-top transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover/scan:scale-[1.04]"
+            />
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
 </article>
