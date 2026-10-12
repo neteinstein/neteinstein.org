@@ -60,7 +60,7 @@ export const games: Catalog = {
     'Em equipas: o colega pode soprar o balão, mas não lhe tocar.',
   'Use balloons with a little water inside so they are heavier and less predictable.':
     'Usar balões com um pouco de água para ficarem mais pesados e imprevisíveis.',
-  'Balloon Jet vs. the Cup': 'Balão a Jato contra o Copo',
+  'Blown Away': 'Balão a Jato contra o Copo',
   '2 players (or 2 teams in a relay)': '2 jogadores (ou 2 equipas em estafeta)',
   '1 to 3 min': '1 a 3 min',
   'Balloons (several per player)': 'Balões (vários por jogador)',
@@ -210,7 +210,7 @@ export const games: Catalog = {
     'Versão sem doces: um gancho feito com um clipe ou cabide.',
   'Tip: wide-necked glass bottles make it easier for the little ones.':
     'Dica: garrafas de vidro com gargalo largo facilitam para os mais novos.',
-  'Bows in the Bowl': 'Laços na Taça',
+  'Bow Scoop': 'Laços na Taça',
   'Teams of 2': 'Equipas de 2',
   '1 min per team': '1 min por equipa',
   'Lots of self-adhesive gift bows': 'Muitos laços autocolantes de embrulho',
@@ -659,7 +659,7 @@ export const games: Catalog = {
   'Cookie on top of an upside-down cup (higher).': 'Bolacha em cima de um copo virado (mais alto).',
   'Use sandwich cookies that break easily.': 'Usar bolachas recheadas que partem facilmente.',
   'Tip: a clean floor and a mat for the knees.': 'Dica: chão limpo e um tapete para os joelhos.',
-  'Cookie from Forehead to Mouth': 'Bolacha da Testa à Boca',
+  'Face the Cookie': 'Bolacha da Testa à Boca',
   'Everyone at once': 'Todos ao mesmo tempo',
   '1 Oreo-type cookie per player': '1 bolacha tipo Oreo por jogador',
   'Everyone sitting at the table.': 'Todos sentados à mesa.',
@@ -1183,7 +1183,7 @@ export const games: Catalog = {
   "Also guess the groom's suit.": 'Adivinhar também o fato do noivo.',
   'Tip: keep the drawings to show at the wedding!':
     'Dica: guardar os desenhos para mostrar no casamento!',
-  'Ball in the Waist Basket': 'Bola no Cesto à Cintura',
+  'Junk in the Trunk': 'Bola no Cesto à Cintura',
   'Teams, 1 player at a time': 'Equipas, 1 jogador de cada vez',
   '1 min per player': '1 min por jogador',
   'Small basket (or big cup) attached to a belt': 'Cesto pequeno (ou copo grande) preso num cinto',
@@ -1438,4 +1438,291 @@ export const games: Catalog = {
     'Desenha um labirinto grande numa cartolina e coloca uma moeda no início do percurso.',
   'The players hold the four corners of the card and must tilt it carefully to move the coin to the exit of the maze.':
     'Os jogadores seguram os quatro cantos da cartolina e devem incliná-la cuidadosamente para levar a moeda até à saída do labirinto.',
+  // Family Games: games added since the doc
+  'Get the Cup': 'Apanha o Copo',
+  '2 players at a time (or a whole circle around a table)':
+    '2 jogadores de cada vez (ou uma roda inteira à volta de uma mesa)',
+  '1 plastic cup (or any small object) per pair':
+    '1 copo de plástico (ou outro objeto pequeno) por par',
+  '1 table': '1 mesa',
+  'Players stand on opposite sides of the table, with the cup upside down in the middle.':
+    'Os jogadores ficam em lados opostos da mesa, com o copo virado ao contrário no meio.',
+  'Pick a caller who is not playing.': 'Escolher alguém que não joga para dar as ordens.',
+  'The caller shouts body parts ("head!", "shoulders!", "knees!") and the players touch them as fast as they can.':
+    'Quem dá as ordens grita partes do corpo («cabeça!», «ombros!», «joelhos!») e os jogadores tocam-lhes o mais depressa possível.',
+  'At any moment, the caller shouts "cup!" instead.':
+    'A qualquer momento, em vez disso, grita «copo!».',
+  'The first player to grab the cup wins the round.':
+    'O primeiro jogador a agarrar o copo ganha a ronda.',
+  'Grabbing the cup on any other word costs a point.':
+    'Agarrar o copo com qualquer outra palavra custa um ponto.',
+  'Best of 5 rounds wins; the winner stays on against the next challenger.':
+    'Ganha quem vencer 3 de 5 rondas; o vencedor fica para enfrentar o próximo desafiante.',
+  'Tricky caller: say words that sound like "cup" ("cap!", "cop!", "cupcake!").':
+    'Ordens traiçoeiras: dizer palavras parecidas com «copo» («corpo!», «coco!», «copa!»).',
+  'Everyone at once: a circle of players around a table with one cup fewer than players.':
+    'Todos ao mesmo tempo: uma roda de jogadores à volta da mesa com menos um copo do que jogadores.',
+  'Safety: use plastic cups and a light object; heads can bump over the table.':
+    'Segurança: usar copos de plástico e um objeto leve; as cabeças podem chocar por cima da mesa.',
+  'Stack Attack': 'Ataque de Copos',
+  '1 player per table (or several side by side)': '1 jogador por mesa (ou vários lado a lado)',
+  '21 or 36 plastic cups per player': '21 ou 36 copos de plástico por jogador',
+  'Give each player a single stack of cups on the table.':
+    'Dar a cada jogador uma única pilha de copos em cima da mesa.',
+  'On the signal, the player builds a pyramid with all the cups (6-5-4-3-2-1 for 21 cups, 8 rows for 36).':
+    'Ao sinal, o jogador constrói uma pirâmide com todos os copos (6-5-4-3-2-1 para 21 copos, 8 filas para 36).',
+  'Once the pyramid is complete, they take it apart into a single stack again.':
+    'Com a pirâmide completa, desmonta-a de novo numa única pilha.',
+  'If the pyramid falls, they gather the cups and carry on building.':
+    'Se a pirâmide cair, junta os copos e continua a construir.',
+  'Whoever finishes inside 60 seconds wins; with several players, the fastest wins.':
+    'Ganha quem acabar em menos de 60 segundos; com vários jogadores, ganha o mais rápido.',
+  'Easier: 10 cups (4-3-2-1).': 'Mais fácil: 10 copos (4-3-2-1).',
+  'Harder: only one hand, or the cups must go back into the stack in colour order.':
+    'Mais difícil: só com uma mão, ou os copos têm de voltar à pilha por ordem de cor.',
+  'From the TV show "Minute to Win It".': 'Do programa de televisão «Minute to Win It».',
+  'Cup Flip Race': 'Corrida de Copos Virados',
+  '2 to 6 players, or teams in a relay': '2 a 6 jogadores, ou equipas em estafeta',
+  '5 to 10 plastic cups per player': '5 a 10 copos de plástico por jogador',
+  "Line each player's cups up mouth up along the edge of the table, with the rim sticking out a little.":
+    'Alinhar os copos de cada jogador de boca para cima junto à borda da mesa, com a borda do copo um pouco de fora.',
+  'On the signal, the player flicks the rim of the first cup upwards so it flips and lands upside down.':
+    'Ao sinal, o jogador dá um toque por baixo da borda do primeiro copo para ele dar uma volta e cair virado ao contrário.',
+  'They may only move on to the next cup once the current one has landed upside down.':
+    'Só pode passar ao copo seguinte quando o atual tiver caído virado ao contrário.',
+  'If a cup falls off the table, they put it back and try again.':
+    'Se um copo cair da mesa, volta a pô-lo no sítio e tenta outra vez.',
+  'The first to flip all their cups wins.': 'Ganha o primeiro a virar todos os copos.',
+  'Relay: each team member flips one cup and runs to tag the next.':
+    'Estafeta: cada elemento da equipa vira um copo e corre para tocar no seguinte.',
+  'Harder: flip them all, then flip them back mouth up.':
+    'Mais difícil: virar todos e depois voltar a pô-los de boca para cima.',
+  'Tip: a little water in the bottom of the cup makes the flip easier.':
+    'Dica: um pouco de água no fundo do copo facilita a volta.',
+  'Defy Gravity': 'Desafiar a Gravidade',
+  '1 to 4 players at a time': '1 a 4 jogadores de cada vez',
+  '2 or 3 inflated balloons per player': '2 ou 3 balões cheios por jogador',
+  'Clear the middle of the room and give each player their balloons.':
+    'Abrir espaço no meio da sala e dar a cada jogador os seus balões.',
+  'The player puts one hand behind their back.': 'O jogador põe uma mão atrás das costas.',
+  'On the signal, they throw the balloons up and have to keep them all in the air for 60 seconds, tapping them with the free hand only.':
+    'Ao sinal, atira os balões ao ar e tem de os manter todos no ar durante 60 segundos, tocando-lhes só com a mão livre.',
+  'If a balloon touches the floor, or they touch one with anything else, they are out.':
+    'Se um balão tocar no chão, ou se lhe tocar com outra coisa, é eliminado.',
+  'Whoever lasts the full minute wins.': 'Ganha quem aguentar o minuto inteiro.',
+  'Easier: 2 balloons; harder: 3.': 'Mais fácil: 2 balões; mais difícil: 3.',
+  'Everyone at once in the same space, so the balloons get mixed up.':
+    'Todos ao mesmo tempo no mesmo espaço, para os balões se misturarem.',
+  'Balloon Pop Countdown': 'Rebentar Balões por Ordem',
+  '1 player at a time (or teams in a relay)': '1 jogador de cada vez (ou equipas em estafeta)',
+  '10 balloons per player': '10 balões por jogador',
+  'Permanent marker': 'Marcador permanente',
+  'Write the numbers 1 to 10 on the balloons, one per balloon.':
+    'Escrever os números de 1 a 10 nos balões, um por balão.',
+  'Scatter them around the room.': 'Espalhá-los pela sala.',
+  'On the signal, the player has to pop the balloons in order, from 1 to 10.':
+    'Ao sinal, o jogador tem de rebentar os balões por ordem, do 1 ao 10.',
+  'Popping with hands, feet or by sitting on them is allowed; sharp objects are not.':
+    'Pode rebentá-los com as mãos, os pés ou sentando-se em cima; objetos afiados não.',
+  'Popping the wrong number costs 5 seconds.': 'Rebentar o número errado custa 5 segundos.',
+  'The fastest to pop all 10 wins.': 'Ganha o mais rápido a rebentar os 10.',
+  'Countdown: from 10 to 1, as the name says.': 'Contagem decrescente: do 10 ao 1.',
+  'For little ones: use colours instead of numbers.':
+    'Para os mais pequenos: usar cores em vez de números.',
+  'Put a small prize or a dare inside some balloons.':
+    'Pôr um pequeno prémio ou um desafio dentro de alguns balões.',
+  // No-Hands and Skill Challenges: games added since the doc
+  'Nose Dive': 'Nariz de Algodão',
+  'Cotton balls': 'Bolas de algodão',
+  'Petroleum jelly (Vaseline)': 'Vaselina',
+  '2 bowls per player': '2 taças por jogador',
+  'Put a bowl full of cotton balls at one end of the table and an empty bowl at the other.':
+    'Pôr uma taça cheia de bolas de algodão numa ponta da mesa e uma taça vazia na outra.',
+  'Each player puts a dab of petroleum jelly on the tip of their nose.':
+    'Cada jogador põe um pouco de vaselina na ponta do nariz.',
+  'With hands behind their back, the player picks up a cotton ball with their nose.':
+    'De mãos atrás das costas, o jogador apanha uma bola de algodão com o nariz.',
+  'They carry it to the empty bowl and drop it in, still without hands.':
+    'Leva-a até à taça vazia e larga-a lá dentro, sempre sem mãos.',
+  'If a cotton ball falls on the way, it goes back to the start.':
+    'Se uma bola cair pelo caminho, volta ao início.',
+  'Whoever moves the most cotton balls in 1 minute wins.':
+    'Ganha quem passar mais bolas de algodão num minuto.',
+  'Harder: put the bowls on chairs at different heights.':
+    'Mais difícil: pôr as taças em cadeiras a alturas diferentes.',
+  'Have wet wipes ready for the noses at the end.': 'Ter toalhitas prontas para os narizes no fim.',
+  'Balloon Waddle': 'Balão entre os Joelhos',
+  '2 to 8 players at once, or teams in a relay':
+    '2 a 8 jogadores ao mesmo tempo, ou equipas em estafeta',
+  'Tape or a cone to mark the finish': 'Fita-cola ou um cone para marcar a meta',
+  'Mark a starting line and a finish 5 to 10 metres away.':
+    'Marcar uma linha de partida e uma meta a 5 a 10 metros.',
+  'Each player holds a balloon between their knees, without using their hands.':
+    'Cada jogador segura um balão entre os joelhos, sem usar as mãos.',
+  'On the signal, they waddle to the finish line.': 'Ao sinal, avança aos saltinhos até à meta.',
+  'If the balloon falls or pops, they go back to the start.':
+    'Se o balão cair ou rebentar, volta ao início.',
+  'The first to cross the finish with the balloon wins.':
+    'Ganha o primeiro a cruzar a meta com o balão.',
+  'Relay: at the finish, pass the balloon to the next teammate without hands.':
+    'Estafeta: na meta, passar o balão ao colega seguinte sem mãos.',
+  'In pairs: the balloon goes between two foreheads or two backs.':
+    'Em pares: o balão vai entre as testas ou entre as costas dos dois.',
+  // Guess, Communicate and Trust: games added since the doc
+  Minefield: 'Campo Minado',
+  'Teams of 2 (several pairs at once)': 'Equipas de 2 (vários pares ao mesmo tempo)',
+  '1 blindfold per pair': '1 venda por par',
+  'Lots of "mines": cups, cones, cushions, shoes':
+    'Muitas «minas»: copos, cones, almofadas, sapatos',
+  'Rope or tape to mark the field': 'Corda ou fita-cola para marcar o campo',
+  'Mark a rectangular field and scatter the mines all over it.':
+    'Marcar um campo retangular e espalhar as minas por todo o lado.',
+  'Blindfold one player in each pair and stand them at one end.':
+    'Vendar um jogador de cada par e pô-lo numa das pontas.',
+  'The guide stays outside the field and may only give instructions with their voice.':
+    'O guia fica fora do campo e só pode dar instruções com a voz.',
+  'The blindfolded player has to cross the field without touching any mine.':
+    'O jogador vendado tem de atravessar o campo sem tocar em nenhuma mina.',
+  'Touching a mine sends them back to the start (or out).':
+    'Tocar numa mina manda-o de volta ao início (ou é eliminado).',
+  'Every pair plays at once, so guides have to make themselves heard over the others.':
+    'Todos os pares jogam ao mesmo tempo, por isso os guias têm de se fazer ouvir por cima dos outros.',
+  'The first pair to get across wins; then they swap roles.':
+    'Ganha o primeiro par a atravessar; depois trocam de papéis.',
+  'Harder: the guide stands with their back to the field and gets told what is happening by a third player.':
+    'Mais difícil: o guia fica de costas para o campo e um terceiro jogador conta-lhe o que se passa.',
+  'Treasure version: the blindfolded player also has to pick up an object in the middle.':
+    'Versão tesouro: o jogador vendado também tem de apanhar um objeto no meio.',
+  'Safety: soft mines only, and no running.': 'Segurança: só minas macias, e nada de correr.',
+  // Games for Large Groups: games added since the doc
+  'Human Knot': 'Nó Humano',
+  'Groups of 8 to 12': 'Grupos de 8 a 12',
+  'Each group stands in a tight circle, shoulder to shoulder.':
+    'Cada grupo fica numa roda apertada, ombro com ombro.',
+  'Everyone reaches into the middle with their right hand and holds the hand of someone across the circle.':
+    'Todos esticam a mão direita para o meio e agarram a mão de alguém do outro lado da roda.',
+  'Then they do the same with their left hand, holding a different person.':
+    'Depois fazem o mesmo com a mão esquerda, agarrando uma pessoa diferente.',
+  'Nobody may hold hands with the person right next to them.':
+    'Ninguém pode dar a mão à pessoa que está mesmo ao seu lado.',
+  'Without letting go, the group untangles itself by stepping over, ducking under and turning around.':
+    'Sem largar, o grupo desembaraça-se passando por cima, por baixo e dando voltas.',
+  'The knot is undone when everyone forms one big circle (some may face outwards). The first group to finish wins.':
+    'O nó está desfeito quando todos formam uma grande roda (alguns podem ficar virados para fora). Ganha o primeiro grupo a acabar.',
+  'If a hand lets go, the group starts again (or loses 30 seconds).':
+    'Se alguém largar a mão, o grupo recomeça (ou perde 30 segundos).',
+  'Harder: in silence.': 'Mais difícil: em silêncio.',
+  'Sometimes the knot becomes two circles: that also counts.':
+    'Às vezes o nó dá duas rodas: também conta.',
+  'Pass It!': 'Passa!',
+  '2 teams of 8 to 20': '2 equipas de 8 a 20',
+  '1 small object per team (a ball, a beanbag, an orange)':
+    '1 objeto pequeno por equipa (uma bola, um saquinho, uma laranja)',
+  'Each team forms a circle (or a line) and gets its object.':
+    'Cada equipa forma uma roda (ou uma fila) e recebe o seu objeto.',
+  'On the signal, each team passes its object all the way around the circle and back to the first player.':
+    'Ao sinal, cada equipa passa o objeto a toda a roda até voltar ao primeiro jogador.',
+  'Every player must touch the object.': 'Todos os jogadores têm de tocar no objeto.',
+  'The leader announces a new way of passing each round: over the head, between the legs, elbows only, chin to chin…':
+    'O monitor anuncia uma maneira nova de passar em cada ronda: por cima da cabeça, por entre as pernas, só com os cotovelos, queixo com queixo…',
+  'If the object falls, it goes back to the first player.':
+    'Se o objeto cair, volta ao primeiro jogador.',
+  'The first team to complete the round wins a point.':
+    'A primeira equipa a completar a volta ganha um ponto.',
+  'Several objects at once, going in opposite directions.':
+    'Vários objetos ao mesmo tempo, em sentidos opostos.',
+  'Water version: pass a full cup over the head and see who has the most water left at the end.':
+    'Versão água: passar um copo cheio por cima da cabeça e ver quem tem mais água no fim.',
+  // Bachelor Parties: games added since the doc
+  'Dare Jar': 'Frasco de Desafios',
+  'The groom (or the bride) and the whole group': 'O noivo (ou a noiva) e o grupo todo',
+  'All night': 'A noite toda',
+  '1 jar or box': '1 frasco ou caixa',
+  'Slips of paper and pens': 'Papelinhos e canetas',
+  'At the start, every guest writes 2 or 3 dares on slips of paper, folds them and puts them in the jar.':
+    'No início, cada convidado escreve 2 ou 3 desafios em papelinhos, dobra-os e põe-nos no frasco.',
+  'Throughout the night, the groom draws a slip whenever the group says so (every bar, every hour…).':
+    'Ao longo da noite, o noivo tira um papelinho sempre que o grupo decidir (em cada bar, a cada hora…).',
+  'He has to complete the dare before drawing the next one.':
+    'Tem de cumprir o desafio antes de tirar o seguinte.',
+  'He has 3 "passes" for the whole night to skip a dare he will not do.':
+    'Tem 3 «passes» para toda a noite para saltar um desafio que não queira fazer.',
+  'Someone films or photographs each completed dare.':
+    'Alguém filma ou fotografa cada desafio cumprido.',
+  'Set a rule beforehand: nothing dangerous, illegal or that he would regret.':
+    'Combinar uma regra antes: nada perigoso, ilegal ou de que se arrependa.',
+  'Use one colour of paper for easy dares and another for hard ones.':
+    'Usar papel de uma cor para desafios fáceis e de outra para os difíceis.',
+  'Photo Scavenger Hunt': 'Caça ao Tesouro Fotográfica',
+  '2 or more teams of 3 to 6': '2 ou mais equipas de 3 a 6',
+  'Adults (or 12+ with an adapted list)': 'Adultos (ou 12+ com uma lista adaptada)',
+  '1 to 3 hours': '1 a 3 horas',
+  'Outdoors (in town)': 'Exterior (na cidade)',
+  '1 phone per team': '1 telemóvel por equipa',
+  'A list of photo challenges per team': 'Uma lista de desafios fotográficos por equipa',
+  'Write a list of 15 to 30 photo challenges with points ("a selfie with a police officer: 3 points", "the groom in a shop window: 2 points").':
+    'Escrever uma lista de 15 a 30 desafios fotográficos com pontos («uma selfie com um polícia: 3 pontos», «o noivo numa montra: 2 pontos»).',
+  'Set a time limit and a meeting point.': 'Combinar um limite de tempo e um ponto de encontro.',
+  'Each team gets the list and has to photograph as many challenges as it can.':
+    'Cada equipa recebe a lista e tem de fotografar o maior número de desafios possível.',
+  'The whole team (or at least the groom, if he is with them) has to appear in each photo.':
+    'A equipa inteira (ou pelo menos o noivo, se estiver com eles) tem de aparecer em cada foto.',
+  'Teams send the photos to the group chat as they go.':
+    'As equipas enviam as fotos para o grupo à medida que as tiram.',
+  'Back at the meeting point, the jury counts the points; late teams lose points.':
+    'De volta ao ponto de encontro, o júri conta os pontos; as equipas atrasadas perdem pontos.',
+  'Add bonus challenges announced live in the chat.':
+    'Acrescentar desafios bónus anunciados ao vivo no grupo.',
+  'Bar crawl version: one challenge per bar.': 'Versão roteiro de bares: um desafio por bar.',
+  'The photos make a great slideshow at the wedding.':
+    'As fotos dão um ótimo diaporama no casamento.',
+  // Team-Building Games: games added since the doc
+  'Helium Stick': 'Pau de Hélio',
+  'About 15 min': 'Cerca de 15 min',
+  'Lower a stick to the ground together, without anyone losing contact with it.':
+    'Pousar um pau no chão em conjunto, sem ninguém perder o contacto com ele.',
+  '1 long, light stick per team (a tent pole, a broom handle or a hula hoop)':
+    '1 pau comprido e leve por equipa (uma vara de tenda, um cabo de vassoura ou um arco)',
+  'The team stands in two lines facing each other.':
+    'A equipa fica em duas filas, frente a frente.',
+  'Everyone holds out their index fingers at chest height, and the stick is laid across all the fingers.':
+    'Todos esticam os indicadores à altura do peito e pousa-se o pau em cima de todos os dedos.',
+  'The stick must rest on top of the fingers: no gripping, hooking or pinching.':
+    'O pau tem de assentar em cima dos dedos: nada de agarrar, enganchar ou apertar.',
+  'Every finger must touch the stick at all times.':
+    'Todos os dedos têm de tocar no pau a toda a hora.',
+  'If any finger loses contact, the stick goes back up to the start.':
+    'Se algum dedo perder o contacto, o pau volta ao início.',
+  'The team wins when the stick touches the ground.': 'A equipa ganha quando o pau tocar no chão.',
+  'It almost always goes up first: everyone pushes to keep contact, so the stick "floats". That is the lesson.':
+    'Quase sempre começa por subir: todos empurram para manter o contacto e o pau «flutua». É essa a lição.',
+  'After the first failed try, give the team 2 minutes to agree on a plan.':
+    'Depois da primeira tentativa falhada, dar 2 minutos à equipa para combinar um plano.',
+  'Harder: in silence, or with a hula hoop.': 'Mais difícil: em silêncio, ou com um arco.',
+  'Marshmallow Challenge': 'Desafio do Marshmallow',
+  '18 min (plus 10 min to talk about it)': '18 min (mais 10 min para conversar)',
+  'Indoors (table)': 'Interior (mesa)',
+  'Build the tallest freestanding tower with a marshmallow on top.':
+    'Construir a torre mais alta que se aguente sozinha, com um marshmallow no topo.',
+  'Per team: 20 sticks of uncooked spaghetti, 1 metre of tape, 1 metre of string and 1 marshmallow':
+    'Por equipa: 20 esparguetes crus, 1 metro de fita-cola, 1 metro de fio e 1 marshmallow',
+  'Measuring tape': 'Fita métrica',
+  'Give every team the same kit on its own table.': 'Dar a cada equipa o mesmo kit, na sua mesa.',
+  'Teams have 18 minutes to build a tower from the kit.':
+    'As equipas têm 18 minutos para construir uma torre com o kit.',
+  'The whole marshmallow must be on top; it cannot be cut or eaten.':
+    'O marshmallow inteiro tem de estar no topo; não se pode cortar nem comer.',
+  'The tower must stand on its own: it cannot hang from the ceiling or be held when time is up.':
+    'A torre tem de se aguentar sozinha: não pode estar pendurada no teto nem ser segurada quando o tempo acabar.',
+  'The spaghetti, tape and string can be broken or cut.':
+    'O esparguete, a fita-cola e o fio podem ser partidos ou cortados.',
+  'The tallest tower, measured from the table to the top of the marshmallow, wins.':
+    'Ganha a torre mais alta, medida da mesa até ao topo do marshmallow.',
+  'Many towers collapse when the marshmallow goes on at the last second: test early, test often.':
+    'Muitas torres caem quando o marshmallow é posto no último segundo: testar cedo, testar muitas vezes.',
+  'Afterwards, talk about how each team planned and who took the lead.':
+    'No fim, conversar sobre como cada equipa planeou e quem liderou.',
+  'Created by Peter Skillman and popularised by Tom Wujec.':
+    'Criado por Peter Skillman e popularizado por Tom Wujec.',
+  '10 to 15 min': '10 a 15 min',
 };
