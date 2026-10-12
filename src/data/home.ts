@@ -62,7 +62,7 @@ export const glimpses: Glimpse[] = [
     description: [
       'My journey at ',
       { label: 'Mindera', href: 'https://www.mindera.com' },
-      ', project by project, from Android Tech Lead to Mobile Lead',
+      ', project by project, from Developer to Mobile Lead & AI Coach',
     ],
     cta: { label: 'Tech Engineer', href: '/what-i-do/tech-engineer' },
     image: minderaJourneyMap,
