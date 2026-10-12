@@ -1,10 +1,11 @@
 /**
- * /tools, /tools/loopgain and /tools/summer-camp-games, ported from the Google
- * Sites original (https://www.neteinstein.org/tools… — crawl snapshot in
+ * /tools/loopgain and /tools/summer-camp-games, ported from the Google Sites
+ * original (https://www.neteinstein.org/tools… — crawl snapshot in
  * `.crawl/report.json`). Page titles, meta descriptions and the summer camp
- * blurb live in `src/content/pages/{tools,loopgain,summer-camp-games}.mdx`.
+ * blurb live in `src/content/pages/{loopgain,summer-camp-games}.mdx`. The
+ * /tools index itself is now /games (`src/data/games.ts`).
  */
-import type { ToolsIndexEntry, ToolsSiteShowcase } from './types';
+import type { ToolsSiteShowcase } from './types';
 
 import loopgainWebsite from '../assets/tools/loopgain/loopgain-website.webp';
 import cadernoDeJogosWebsite from '../assets/tools/summer-camp-games/caderno-de-jogos-website.webp';
@@ -25,21 +26,3 @@ export const cadernoDeJogos: ToolsSiteShowcase = {
   image: cadernoDeJogosWebsite,
   imageAlt: 'The Caderno de Jogos wiki page, listing the book of summer camp games by name.',
 };
-
-/** The /tools index, in menu order. */
-export const toolsIndex: ToolsIndexEntry[] = [
-  {
-    page: 'loopgain',
-    href: '/tools/loopgain',
-    links: [{ label: loopgain.label, href: loopgain.href }],
-    image: loopgain.image,
-    imageAlt: 'The LoopGain website: “Taking your team from the comfort zone to the trust zone!”',
-  },
-  {
-    page: 'summer-camp-games',
-    href: '/tools/summer-camp-games',
-    links: [{ label: cadernoDeJogos.label, href: cadernoDeJogos.href }],
-    image: cadernoDeJogos.image,
-    imageAlt: cadernoDeJogos.imageAlt,
-  },
-];

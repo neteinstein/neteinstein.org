@@ -8,9 +8,9 @@ requirement**.
 
 - **Node 22.12+.** Astro 7 will not run on older versions.
 - **Astro first, React only where state is genuinely needed.** There are exactly
-  four islands — `ThemeToggle` (`client:load`), `MobileNav` (`client:idle`) and
-  the two search-and-filter tables, `PlaceFilter` and `KidsFilter` (both
-  `client:visible`). Everything else is zero-JS `.astro`, plus
+  five islands — `ThemeToggle` (`client:load`), `MobileNav` (`client:idle`) and
+  the three search-and-filter guides, `PlaceFilter`, `KidsFilter` and
+  `GameFilter` (all `client:visible`). Everything else is zero-JS `.astro`, plus
   small vanilla `<script>`s for pure DOM effects (`src/scripts/motion.ts`,
   `VideoEmbed`, the home page's cookie button). Do not reach for a React
   component because it feels familiar; check whether an `.astro` component does
@@ -82,9 +82,10 @@ which always wins.
 ## URL changes
 
 Every route under `src/pages/` maps to a URL that exists on the Google Sites
-original (`/tools` gets a twin `tools/index.html` at build time so GitHub Pages
-serves it next to the `tools/` directory). If a route must move, add an entry to
-`redirects` in `astro.config.mjs` in the same change.
+original, except `/games`, which replaced `/tools` (now a redirect; its twin
+`tools/index.html` is written at build time so GitHub Pages serves it next to
+the `tools/` directory, whose pages keep their URLs). If a route must move, add
+an entry to `redirects` in `astro.config.mjs` in the same change.
 
 ## Content parity
 

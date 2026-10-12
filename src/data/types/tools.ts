@@ -1,10 +1,10 @@
-/** Shapes for /tools and its children (/tools/loopgain, /tools/summer-camp-games). */
+/** Shapes for the pages under /tools (/tools/loopgain, /tools/summer-camp-games). */
 import type { ImageMetadata } from 'astro';
 import type { LinkRef } from './shared';
 
 /**
- * One tile on the /tools index. The original /tools page had no copy of its
- * own, so the tile's title and blurb are read from the child page's entry in
+ * A tile linking to one of the /tools pages (the /games page closes with
+ * one). The tile's title and blurb are read from that page's entry in
  * `src/content/pages/` (`page`) rather than written again here.
  */
 export interface ToolsIndexEntry {

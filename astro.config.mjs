@@ -68,11 +68,14 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  // The Google Sites original serves both of these as live duplicates. Keep
+  // The Google Sites original serves the first two as live duplicates. Keep
   // them resolvable so existing inbound links and bookmarks do not 404.
+  // `/tools` became `/games`; the pages under it keep their URLs.
   redirects: {
     '/home': to('/'),
     '/visit-porto': to('/porto/visit-porto'),
+    '/tools': to('/games'),
+    '/pt/tools': to('/pt/games'),
   },
 
   image: {

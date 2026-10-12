@@ -8,14 +8,15 @@ import { isExternal } from '../../lib/url';
 import { useI18n } from '../../i18n';
 
 /**
- * A large tile on the /tools index: a visual (a screenshot, or a drawn stack
- * of pages for a document), a gradient ordinal, the tool's title — whose link
- * is stretched over the whole tile — and its own outbound links, which stay
+ * A large tile linking to one of the /tools pages (the /games page closes
+ * with one): a visual (a screenshot, or a drawn stack of pages for a
+ * document), an optional gradient ordinal, the page's title — whose link is
+ * stretched over the whole tile — and its own outbound links, which stay
  * independently clickable above the stretched link.
  */
 interface Props {
   /** 1-based position, shown as a large "01". */
-  index: number;
+  index?: number;
   title: string;
   href: string;
   description?: string;
@@ -28,7 +29,7 @@ interface Props {
 
 const { index, title, href, description, links = [], image, imageAlt = '', fileName } = Astro.props;
 
-const ordinal = String(index).padStart(2, '0');
+const ordinal = index === undefined ? undefined : String(index).padStart(2, '0');
 
 const { localHref } = useI18n(Astro);
 ---
@@ -78,12 +79,16 @@ const { localHref } = useI18n(Astro);
           {title}
         </a>
       </h2>
-      <span
-        class="text-gradient font-display shrink-0 text-5xl leading-none font-extrabold tracking-tighter sm:text-6xl"
-        aria-hidden="true"
-      >
-        {ordinal}
-      </span>
+      {
+        ordinal && (
+          <span
+            class="text-gradient font-display shrink-0 text-5xl leading-none font-extrabold tracking-tighter sm:text-6xl"
+            aria-hidden="true"
+          >
+            {ordinal}
+          </span>
+        )
+      }
     </div>
 
     {
