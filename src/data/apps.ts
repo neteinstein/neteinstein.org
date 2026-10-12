@@ -53,6 +53,7 @@ export const apps: AppListing[] = [
     imageAlt:
       'LoopGain banner: the infinity logo, the tagline "Structured feedback sessions for teams — timed & kind." and a fan of question cards',
     icon: loopgainIcon,
+    video: '_Ob4dB5KpL4',
     links: [
       {
         store: 'google-play',
@@ -68,6 +69,7 @@ export const apps: AppListing[] = [
     imageAlt:
       'Family Moments banner: a campfire icon, the tagline "Spark deeper conversations with the people you love." and the topics Ice Breakers, Memories, Values and Future Dreams',
     icon: familyMomentsIcon,
+    video: 'qvqCsuftl0Y',
     links: [
       {
         store: 'google-play',
@@ -84,6 +86,7 @@ export const apps: AppListing[] = [
     imageAlt:
       'Couple Moments banner: the app icon, the tagline "Swipe your way to deeper conversations", the badges 100% private, 5 languages and 600+ prompts, and two question cards',
     icon: coupleMomentsIcon,
+    video: '5mNRw3EoWRg',
     links: [
       {
         store: 'google-play',
@@ -124,6 +127,7 @@ export const apps: AppListing[] = [
     imageAlt:
       'Allowed Names in Portugal banner: a checked-list app icon and the tagline "Officially approved Portuguese first names"',
     icon: allowedNamesIcon,
+    video: 'CnM1HFw-scM',
     links: [
       {
         store: 'google-play',
