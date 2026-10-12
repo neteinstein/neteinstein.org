@@ -78,7 +78,7 @@ export const glimpses: Glimpse[] = [
     ],
     cta: { label: 'Podcasts', href: '/what-i-do/podcasts' },
     image: yellowBox,
-    imageAlt: 'Two hosts recording a Yellow Box podcast episode on a sofa',
+    imageAlt: 'Pedro Vicente at a podcast microphone, next to the title "Mobile & Mindera"',
   },
   {
     title: "Team Workshop for A'Corda",
