@@ -9,6 +9,7 @@ import acorda from '../assets/home/acorda-workshop.webp';
 import portoGuide from '../assets/home/porto-guide.webp';
 import myApps from '../assets/home/my-apps.webp';
 import teslaUtils from '../assets/home/tesla-utils.webp';
+import minderaJourneyMap from '../assets/what-i-do/tech-engineer/mindera-journey-map.webp';
 
 export const welcome = {
   title: 'Welcome to my little virtual home',
@@ -56,19 +57,17 @@ export const roles: Role[] = [
 
 export const glimpses: Glimpse[] = [
   {
-    title: 'Why Do We Even Work?',
-    href: 'https://wipdocumentaries.sellfy.store/p/why-do-we-even-work-documentary/',
+    title: 'Mobile Lead, AI-Enabled SDLC Craftsman at Mindera',
+    href: '/what-i-do/tech-engineer',
     description: [
-      { label: 'Work In Progress 2', href: 'https://www.rtp.pt/programa/tv/p43838' },
-      ' - A ',
-      {
-        label: 'Documentary',
-        href: 'https://wipdocumentaries.sellfy.store/p/why-do-we-even-work-documentary/',
-      },
-      ' by KOM and Samuel Durand exploring the future of work within companies',
+      'My journey at ',
+      { label: 'Mindera', href: 'https://www.mindera.com' },
+      ', project by project, from Android Tech Lead to Mobile Lead',
     ],
     cta: { label: 'Tech Engineer', href: '/what-i-do/tech-engineer' },
-    video: { provider: 'youtube', id: 'LfNQmvJ36OE' },
+    image: minderaJourneyMap,
+    imageAlt:
+      'Hand-drawn map titled "Pedro Vicente" tracing a path from "Arrived Mindera" through flags for NAP 2016, TUI 2016, Waitrose 2016, Smartbox 2019, Rows 2020, New Look 2020, Waitrose 2021 and Kingfisher 2022, with a legend for TL (Tech Lead), BE (Back End) and DL (Delivery Lead)',
   },
   {
     title: 'Yellow Box Podcast',
