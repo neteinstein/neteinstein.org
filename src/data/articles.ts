@@ -385,7 +385,7 @@ export const readingGroups: ReadingGroup[] = [
             {
               label:
                 'Hannah Arendt on “Personal Responsibility Under Dictatorship:” Better to Suffer Than Collaborate',
-              href: 'http://www.openculture.com/2017/01/hannah-arendt-on-personal-responsibility-under-dictatorship.html',
+              href: 'https://www.openculture.com/2017/01/hannah-arendt-on-personal-responsibility-under-dictatorship.html',
             },
           ],
         ],
@@ -451,7 +451,7 @@ export const readingGroups: ReadingGroup[] = [
                 },
                 '— Johann Hari',
               ],
-              href: 'http://t.ted.com/cXvjJRp',
+              href: 'https://t.ted.com/cXvjJRp',
             },
           ],
           [
@@ -646,7 +646,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'Decision making',
-              href: 'http://www.reinventingorganizationswiki.com/Decision_Making',
+              href: 'https://www.reinventingorganizationswiki.com/Decision_Making',
             },
           ],
           [
@@ -823,7 +823,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'Implementing Intent based leadership with David Marquet',
-              href: 'http://www.andycleff.com/2018/01/implementing-intent-based-leadership/',
+              href: 'https://www.andycleff.com/2018/01/implementing-intent-based-leadership/',
             },
             ' — ',
             { label: 'Video', href: 'https://www.youtube.com/watch?v=IzJL8zX3EVk' },
@@ -896,7 +896,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'Why an open salary policy always beats secrecy',
-              href: 'http://techcrunch.com/2015/03/21/why-an-open-salary-policy-always-beats-secrecy/',
+              href: 'https://techcrunch.com/2015/03/21/why-an-open-salary-policy-always-beats-secrecy/',
             },
           ],
           [
@@ -908,13 +908,13 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'Open salaries',
-              href: 'http://blog.lunarlogic.io/2016/open-salaries-outcomes/',
+              href: 'https://blog.lunarlogic.io/2016/open-salaries-outcomes/',
             },
           ],
           [
             {
               label: 'How much should you pay developers',
-              href: 'http://blog.stackoverflow.com/2011/07/how-much-should-you-pay-developers/',
+              href: 'https://blog.stackoverflow.com/2011/07/how-much-should-you-pay-developers/',
             },
           ],
           [
@@ -926,7 +926,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'Why I never let employees negotiate a raise',
-              href: 'http://www.inc.com/magazine/20090401/how-hard-could-it-be-employees-negotiate-pay-raises.html?partner=fogcreek',
+              href: 'https://www.inc.com/magazine/20090401/how-hard-could-it-be-employees-negotiate-pay-raises.html?partner=fogcreek',
             },
           ],
           [

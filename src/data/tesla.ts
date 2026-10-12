@@ -122,7 +122,7 @@ export const categories: TeslaCategory[] = [
       },
       {
         label: 'incarweb.app',
-        href: 'http://incarweb.app',
+        href: 'https://incarweb.app',
         image: inCarWeb,
         imageAlt:
           'Dark launcher with icons for Reminders, Notes, Mail, Calculator, Microsoft 365, Gmail, Google Drive and Keep',

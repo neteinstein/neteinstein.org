@@ -126,7 +126,7 @@ export const kidsPlaces: KidsPlace[] = [
     where: { label: 'Porto', href: maps('Rua Fonte de Outeiro 272, 4200-303 Paranhos, Porto') },
     name: {
       label: 'Pony Club do Porto',
-      href: 'http://www.ponyclubdoporto.org/festas-de-aniversario/',
+      href: 'https://www.ponyclubdoporto.org/festas-de-aniversario/',
     },
     setting: 'Indoor/Outdoor',
     cost: '12€',
