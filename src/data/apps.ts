@@ -53,6 +53,7 @@ export const apps: AppListing[] = [
     imageAlt:
       'LoopGain banner: the infinity logo, the tagline "Structured feedback sessions for teams — timed & kind." and a fan of question cards',
     icon: loopgainIcon,
+    video: '_Ob4dB5KpL4',
     links: [
       {
         store: 'google-play',
