@@ -93,24 +93,5 @@ const poster = youtube ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : undefine
 </div>
 
 <script>
-  // One delegated listener for every VideoEmbed on the page.
-  document.addEventListener('click', (event) => {
-    const trigger = (event.target as Element | null)?.closest<HTMLAnchorElement>(
-      '.video-embed-trigger',
-    );
-    const host = trigger?.closest<HTMLElement>('.video-embed');
-    if (!trigger || !host?.dataset.embedSrc) return;
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
-
-    event.preventDefault();
-    const frame = document.createElement('iframe');
-    frame.src = host.dataset.embedSrc;
-    frame.title = host.dataset.embedTitle ?? 'Video';
-    frame.allow =
-      'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
-    frame.allowFullscreen = true;
-    frame.className = 'absolute inset-0 size-full border-0';
-    host.replaceChildren(frame);
-    frame.focus();
-  });
+  import '../scripts/video-embed';
 </script>

@@ -29,6 +29,8 @@ export interface AppListing {
   /** The app icon, cropped from that banner. Decorative next to the title. */
   icon: ImageMetadata;
   links: AppStoreLink[];
+  /** YouTube video id. When set, clicking the banner plays the video in its place. */
+  video?: string;
 }
 
 /** Copy from the Buy Me a Coffee widget the original embedded on this page. */

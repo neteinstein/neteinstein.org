@@ -1,8 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import RichText from '../RichText.astro';
+import Icon from '../Icon.astro';
 import StoreBadges from './StoreBadges.astro';
 import type { AppListing } from '../../data/types';
+import { useI18n } from '../../i18n';
 
 /**
  * An app, framed like a phone: a bezel with a notch around the app's banner,
@@ -10,6 +12,10 @@ import type { AppListing } from '../../data/types';
  * `featured` lays the banner and the listing side by side on wide screens.
  *
  * Hover lifts the device, zooms the banner and tilts the icon. Decoration only.
+ *
+ * When the app has a `video`, the banner becomes a play button that loads the
+ * YouTube player in its place (same click-to-load as `VideoEmbed`; with JS off
+ * it links to the video).
  */
 interface Props {
   app: AppListing;
@@ -20,7 +26,13 @@ interface Props {
 }
 
 const { app, index, featured = false, class: className } = Astro.props;
+const { t } = useI18n(Astro);
 const number = String(index + 1).padStart(2, '0');
+const bannerSizes = featured
+  ? '(min-width: 1024px) 42rem, (min-width: 768px) 90vw, 100vw'
+  : '(min-width: 1024px) 36rem, (min-width: 768px) 45vw, 100vw';
+const embedUrl = app.video && `https://www.youtube-nocookie.com/embed/${app.video}?autoplay=1`;
+const watchUrl = app.video && `https://www.youtube.com/watch?v=${app.video}`;
 ---
 
 <article
@@ -44,17 +56,51 @@ const number = String(index + 1).padStart(2, '0');
     >
       <span class="bg-line-strong size-1.5 rounded-full"></span>
     </span>
-    <div class="aspect-video">
-      <Image
-        src={app.image}
-        alt={app.imageAlt}
-        widths={[480, 720, 900]}
-        sizes={featured
-          ? '(min-width: 1024px) 42rem, (min-width: 768px) 90vw, 100vw'
-          : '(min-width: 1024px) 36rem, (min-width: 768px) 45vw, 100vw'}
-        class="size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
-      />
-    </div>
+    {
+      watchUrl ? (
+        <div
+          class="video-embed relative aspect-video"
+          data-embed-src={embedUrl}
+          data-embed-title={app.title}
+        >
+          <a
+            href={watchUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="video-embed-trigger absolute inset-0 block"
+          >
+            <Image
+              src={app.image}
+              alt={app.imageAlt}
+              widths={[480, 720, 900]}
+              sizes={bannerSizes}
+              class="size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
+            />
+            <span
+              class="absolute inset-0 grid place-items-center bg-black/10 transition-colors duration-500 group-hover:bg-black/25"
+              aria-hidden="true"
+            >
+              <span class="grid size-16 place-items-center rounded-full bg-white/95 text-black shadow-2xl transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-110">
+                <Icon name="play" class="ml-1 size-7" fill />
+              </span>
+            </span>
+            <span class="sr-only">
+              {t('Play video:')} {app.title}
+            </span>
+          </a>
+        </div>
+      ) : (
+        <div class="aspect-video">
+          <Image
+            src={app.image}
+            alt={app.imageAlt}
+            widths={[480, 720, 900]}
+            sizes={bannerSizes}
+            class="size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
+          />
+        </div>
+      )
+    }
   </div>
 
   <div
@@ -93,3 +139,7 @@ const number = String(index + 1).padStart(2, '0');
     <StoreBadges app={app.title} links={app.links} class="mt-auto pt-6" />
   </div>
 </article>
+
+<script>
+  import '../../scripts/video-embed';
+</script>
