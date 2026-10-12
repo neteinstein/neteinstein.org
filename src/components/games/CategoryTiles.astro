@@ -52,7 +52,7 @@ const link =
   {
     categories.map((category, index) => (
       <li class:list={[tile, spans[index] ?? 'min-h-[13rem]']}>
-        {category.games[0]?.image && (
+        {category.games[0] && (
           <Image
             src={category.games[0].image}
             alt=""

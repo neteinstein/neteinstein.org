@@ -276,28 +276,17 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
       className="group glow-ring border-line bg-surface-raised relative flex scroll-mt-[8rem] flex-col overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)]"
     >
       <div className="border-line bg-surface-sunken relative aspect-[18/13] overflow-hidden border-b">
-        {game.image ? (
-          <img
-            src={game.image.src}
-            srcSet={game.image.srcSet || undefined}
-            sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw"
-            width={game.image.width}
-            height={game.image.height}
-            alt={game.image.alt}
-            loading="lazy"
-            decoding="async"
-            className="size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.06]"
-          />
-        ) : (
-          <div
-            className="grid size-full place-items-center bg-[radial-gradient(circle_at_50%_60%,color-mix(in_oklch,var(--accent)_22%,transparent),transparent_70%)]"
-            aria-hidden="true"
-          >
-            <span className="text-7xl transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-110">
-              {game.emoji ?? '🎲'}
-            </span>
-          </div>
-        )}
+        <img
+          src={game.image.src}
+          srcSet={game.image.srcSet || undefined}
+          sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw"
+          width={game.image.width}
+          height={game.image.height}
+          alt={game.image.alt}
+          loading="lazy"
+          decoding="async"
+          className="size-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.06]"
+        />
         {label && (
           <span className="glass text-fg border-line absolute top-3 left-3 rounded-full border px-2.5 py-1 font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase">
             {label}

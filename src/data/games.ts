@@ -3,7 +3,7 @@
  * bachelor parties, from Pedro Vicente's Google Doc
  * (https://docs.google.com/document/d/1OtB2EOQaHNQXJmdBBEnhErcTn1BxYwAM6JH-4ZvKUVU),
  * plus a closing chapter of team-building games added since (60 onwards),
- * which have no drawing or source video.
+ * which have no source video; their drawings were made in the doc's style.
  * The doc is in Portuguese: the English here is its translation, and the
  * original wording is the `src/i18n/pt/games.ts` catalogue. Page title, lead
  * and the "how to use" prose live in `src/content/pages/games.mdx`.
@@ -75,6 +75,10 @@ import blindfoldedSwappedArmsYoghurt from '../assets/games/blindfolded-swapped-a
 import blindfoldedHoopOrienteering from '../assets/games/blindfolded-hoop-orienteering.webp';
 import whoseBodyPartIsThis from '../assets/games/whose-body-part-is-this.webp';
 import learnTheAirwalkIn20Seconds from '../assets/games/learn-the-airwalk-in-20-seconds.webp';
+import eggDropChallenge from '../assets/games/egg-drop-challenge.webp';
+import ballPointGame from '../assets/games/ball-point-game.webp';
+import energyWave from '../assets/games/energy-wave.webp';
+import coinMaze from '../assets/games/coin-maze.webp';
 
 /** The guide, in the doc's order. Game numbers run on across categories. */
 export const gameCategories: GameCategory[] = [
@@ -2004,12 +2008,12 @@ export const gameCategories: GameCategory[] = [
         id: 'egg-drop-challenge',
         number: 60,
         title: 'Egg Drop Challenge',
-        emoji: '🥚',
         players: 'Teams of 3 to 5',
         age: '8+',
         duration: '30 to 45 min',
         setting: 'Indoors (the drop can be outdoors)',
         where: ['indoor', 'outdoor'],
+        image: eggDropChallenge,
         goal: 'Build a structure that keeps a raw egg from breaking when it is dropped from a high place.',
         materials: [
           '1 raw egg per team',
@@ -2028,12 +2032,12 @@ export const gameCategories: GameCategory[] = [
         id: 'ball-point-game',
         number: 61,
         title: 'Ball Point Game',
-        emoji: '🎾',
         players: 'Teams of 5 or more',
         age: '8+',
         duration: 'About 20 min',
         setting: 'Indoors or outdoors',
         where: ['indoor', 'outdoor'],
+        image: ballPointGame,
         goal: 'Maximise the number of balls your team can process.',
         materials: ['Tennis balls'],
         setup: [],
@@ -2052,12 +2056,12 @@ export const gameCategories: GameCategory[] = [
         id: 'energy-wave',
         number: 62,
         title: 'Energy Wave (Movement + Rhythm)',
-        emoji: '⚡',
         players: 'Any number',
         age: '6+',
         duration: '10 min',
         setting: 'Indoors or outdoors',
         where: ['indoor', 'outdoor'],
+        image: energyWave,
         goal: 'Create a quick and fun group dynamic.',
         materials: [],
         setup: [],
@@ -2075,12 +2079,12 @@ export const gameCategories: GameCategory[] = [
         id: 'coin-maze',
         number: 63,
         title: 'The Coin Maze (Coordination and Teamwork)',
-        emoji: '🪙',
         players: 'Teams of 4',
         age: '8+',
         duration: 'About 7 min',
         setting: 'Indoors',
         where: ['indoor'],
+        image: coinMaze,
         goal: 'Encourage creativity and collaboration.',
         materials: ['Card stock', 'Pens', 'A coin'],
         setup: ['Draw a maze on a sheet of card stock for each team.'],

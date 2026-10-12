@@ -35,9 +35,7 @@ export interface Game<Image = ImageMetadata> {
   /** `setting` reduced to the filter's two values. */
   where: GameSetting[];
   /** The doc's drawing of the game's main rule. */
-  image?: Image;
-  /** Stands in for `image` on the card when a game has no drawing. */
-  emoji?: string;
+  image: Image;
   /** A caveat printed above the rules ("rules reconstructed from the video"). */
   note?: string;
   /** What the group is trying to achieve, when the sheet states it. */
