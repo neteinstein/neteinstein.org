@@ -66,14 +66,17 @@ export const appearances: Appearance[] = [
   {
     title: { label: 'Why Do We Even Work?', href: 'https://www.rtp.pt/programa/tv/p43838' },
     description: [
-      { label: 'Work In Progress 2', href: 'https://www.wipdocumentary.com/2' },
+      {
+        label: 'Work In Progress 2',
+        href: 'https://wipdocumentaries.sellfy.store/p/why-do-we-even-work-documentary/',
+      },
       ' - A documentary by KOM and Samuel Durand exploring the future of work within companies',
     ],
     year: '2021',
     image: {
       src: whyDoWeEvenWork,
       alt: 'Poster for "Why Do We Even Work?", a Work In Progress documentary: a person working at a desk in front of snowy mountains',
-      href: 'https://www.wipdocumentary.com/2',
+      href: 'https://wipdocumentaries.sellfy.store/p/why-do-we-even-work-documentary/',
     },
   },
   {

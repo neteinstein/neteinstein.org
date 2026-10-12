@@ -57,15 +57,18 @@ export const roles: Role[] = [
 export const glimpses: Glimpse[] = [
   {
     title: 'Why Do We Even Work?',
-    href: 'https://www.wipdocumentary.com/2',
+    href: 'https://wipdocumentaries.sellfy.store/p/why-do-we-even-work-documentary/',
     description: [
       { label: 'Work In Progress 2', href: 'https://www.rtp.pt/programa/tv/p43838' },
       ' - A ',
-      { label: 'Documentary', href: 'https://www.wipdocumentary.com/2' },
+      {
+        label: 'Documentary',
+        href: 'https://wipdocumentaries.sellfy.store/p/why-do-we-even-work-documentary/',
+      },
       ' by KOM and Samuel Durand exploring the future of work within companies',
     ],
     cta: { label: 'Tech Engineer', href: '/what-i-do/tech-engineer' },
-    video: { provider: 'youtube', id: 'Szq-Yrad74g' },
+    video: { provider: 'youtube', id: 'LfNQmvJ36OE' },
   },
   {
     title: 'Yellow Box Podcast',
@@ -92,7 +95,7 @@ export const glimpses: Glimpse[] = [
       'Why do I say we treat people like adults at Mindera? And what is all that self-organization about?',
     ],
     cta: { label: 'Talks', href: '/what-i-do/talks-workshops' },
-    video: { provider: 'vimeo', id: '662771995', hash: 'cf530c4bdb' },
+    video: { provider: 'youtube', id: 'Szq-Yrad74g' },
   },
 ];
 
