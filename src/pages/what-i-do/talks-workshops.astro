@@ -34,24 +34,20 @@ const jumps = [
 
   <div class="py-4 sm:py-6" role="region" aria-label={t('Some of the stages on the list')}>
     <Marquee duration={50}>
-      {
-        talkStages.map((stage) => (
-          <span class="font-display text-muted inline-flex items-center gap-4 text-2xl font-bold tracking-tight whitespace-nowrap sm:text-4xl">
-            {stage}
-            <span class="text-gradient text-xl sm:text-2xl" aria-hidden="true">
-              ✦
-            </span>
+      {talkStages.map((stage) => (
+        <span class="font-display text-muted inline-flex items-center gap-4 text-2xl font-bold tracking-tight whitespace-nowrap sm:text-4xl">
+          {stage}
+          <span class="text-gradient text-xl sm:text-2xl" aria-hidden="true">
+            ✦
           </span>
-        ))
-      }
+        </span>
+      ))}
     </Marquee>
   </div>
 
-  {
-    talkCategories.map((category, index) => (
-      <TalkCategorySection category={category} index={index} />
-    ))
-  }
+  {talkCategories.map((category, index) => (
+    <TalkCategorySection category={category} index={index} />
+  ))}
 
   <Section id="all-talks" eyebrow={t('Year by year')} title={talksPage.logTitle}>
     <TalkLog years={talkLog} tones={talkTagTones} />

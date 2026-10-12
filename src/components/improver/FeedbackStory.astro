@@ -17,26 +17,24 @@ const { feedback } = Astro.props;
 ---
 
 <div class="text-muted max-w-3xl space-y-6 text-lg leading-relaxed text-pretty">
-  {
-    feedback.story.map((paragraph) =>
-      paragraph.statement ? (
-        <p
-          class="font-display text-fg relative py-2 pl-6 text-2xl leading-snug sm:text-3xl"
-          data-reveal="left"
-        >
-          <span
-            class="absolute inset-y-1 left-0 w-1 rounded-full bg-[image:var(--gradient-brand)]"
-            aria-hidden="true"
-          />
-          <ImproverText text={paragraph.text} />
-        </p>
-      ) : (
-        <p data-reveal>
-          <ImproverText text={paragraph.text} />
-        </p>
-      ),
-    )
-  }
+  {feedback.story.map((paragraph) =>
+    paragraph.statement ? (
+      <p
+        class="font-display text-fg relative py-2 pl-6 text-2xl leading-snug sm:text-3xl"
+        data-reveal="left"
+      >
+        <span
+          class="absolute inset-y-1 left-0 w-1 rounded-full bg-[image:var(--gradient-brand)]"
+          aria-hidden="true"
+        />
+        <ImproverText text={paragraph.text} />
+      </p>
+    ) : (
+      <p data-reveal>
+        <ImproverText text={paragraph.text} />
+      </p>
+    ),
+  )}
 </div>
 
 <div
@@ -48,37 +46,31 @@ const { feedback } = Astro.props;
     <ImproverText text={feedback.envision.lead} />
   </p>
   <ul class="mt-5 space-y-3" data-reveal-stagger>
-    {
-      feedback.envision.items.map((item) => (
-        <li class="flex items-start gap-3">
-          <span
-            class="text-on-accent mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)]"
-            aria-hidden="true"
-          >
-            <Icon name="check" class="size-4" stroke-width={3} />
-          </span>
-          <span class="text-lg leading-relaxed">{item}</span>
-        </li>
-      ))
-    }
+    {feedback.envision.items.map((item) => (
+      <li class="flex items-start gap-3">
+        <span
+          class="text-on-accent mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)]"
+          aria-hidden="true"
+        >
+          <Icon name="check" class="size-4" stroke-width={3} />
+        </span>
+        <span class="text-lg leading-relaxed">{item}</span>
+      </li>
+    ))}
   </ul>
   <div class="mt-7 flex flex-wrap gap-3">
-    {
-      feedback.actions.map((action, i) => (
-        <ButtonLink href={action.href} variant={i === 0 ? 'primary' : 'secondary'}>
-          {action.label}
-        </ButtonLink>
-      ))
-    }
+    {feedback.actions.map((action, i) => (
+      <ButtonLink href={action.href} variant={i === 0 ? 'primary' : 'secondary'}>
+        {action.label}
+      </ButtonLink>
+    ))}
   </div>
 </div>
 
 <div class="text-muted mt-10 max-w-3xl space-y-4 text-lg leading-relaxed" data-reveal>
-  {
-    feedback.training.map((paragraph) => (
-      <p>
-        <ImproverText text={paragraph} />
-      </p>
-    ))
-  }
+  {feedback.training.map((paragraph) => (
+    <p>
+      <ImproverText text={paragraph} />
+    </p>
+  ))}
 </div>

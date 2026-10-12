@@ -17,7 +17,9 @@ const levels = Array.from({ length: bars }, (_, index) => 28 + ((index * 37 + 11
 ---
 
 <span class:list={['sound-bars', `sound-bars-${size}`, className]} aria-hidden="true">
-  {levels.map((level, index) => <span style={`--h: ${level}%; --i: ${index}`} />)}
+  {levels.map((level, index) => (
+    <span style={`--h: ${level}%; --i: ${index}`} />
+  ))}
 </span>
 
 <style>

@@ -18,5 +18,7 @@ const { podcastsPage, shows } = useI18n(Astro).localize(podcasts);
     <ShowJumpLinks shows={shows} />
   </PageHero>
 
-  {shows.map((show, index) => <ShowSection show={show} index={index} />)}
+  {shows.map((show, index) => (
+    <ShowSection show={show} index={index} />
+  ))}
 </BaseLayout>

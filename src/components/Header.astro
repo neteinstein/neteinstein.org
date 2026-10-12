@@ -28,17 +28,13 @@ const mobileItems: NavItem[] = NAV.map((item) => ({
 ---
 
 <header class="sticky top-0 z-40 px-3 pt-3 [view-transition-name:site-header] sm:px-4">
-  <div
-    class="site-header-bar glass border-line relative mx-auto flex h-16 max-w-[76rem] items-center justify-between gap-3 rounded-2xl border pr-2 pl-2.5 shadow-[var(--shadow-sm)] sm:pl-3"
-  >
+  <div class="site-header-bar glass border-line relative mx-auto flex h-16 max-w-[76rem] items-center justify-between gap-3 rounded-2xl border pr-2 pl-2.5 shadow-[var(--shadow-sm)] sm:pl-3">
     <a
       href={localHref('/')}
       class="group flex items-center gap-2.5 rounded-xl py-1 pr-2"
       aria-label={t('{name} — home', { name: SITE.title })}
     >
-      <span
-        class="relative grid size-10 place-items-center overflow-hidden rounded-xl bg-[image:var(--gradient-brand)] p-[2px] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-105 group-hover:-rotate-6"
-      >
+      <span class="relative grid size-10 place-items-center overflow-hidden rounded-xl bg-[image:var(--gradient-brand)] p-[2px] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-105 group-hover:-rotate-6">
         <Image
           src={avatar}
           alt=""
@@ -54,48 +50,30 @@ const mobileItems: NavItem[] = NAV.map((item) => ({
       </span>
     </a>
 
-    {
-      /*
+    {/*
       Dropdowns use a solid surface, not `glass`: this bar's backdrop-filter
       makes it a backdrop root, so a nested panel could only blur the bar itself.
-    */
-    }
+    */}
     <nav aria-label={t('Main')} class="hidden lg:block">
       <ul class="flex items-center gap-0.5">
-        {
-          NAV.map((item) => {
-            const active = isGroupActive(item, pathname);
-            const itemClass = [
-              'relative inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-300',
-              active
-                ? 'bg-[color-mix(in_oklch,var(--accent)_13%,transparent)] text-fg'
-                : 'text-muted hover:bg-[color-mix(in_oklch,var(--text)_6%,transparent)] hover:text-fg',
-            ];
-            return (
-              <li class="group relative">
-                {item.href ? (
-                  <a
-                    href={localHref(item.href)}
-                    aria-current={pathname === item.href ? 'page' : undefined}
-                    class:list={itemClass}
-                  >
-                    {t(item.label)}
-                    {item.children && (
-                      <svg
-                        class="size-3.5 opacity-60 transition-transform duration-300 group-focus-within:rotate-180 group-hover:rotate-180"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        aria-hidden="true"
-                      >
-                        <path d="m4 6 4 4 4-4" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    )}
-                  </a>
-                ) : (
-                  <button type="button" class:list={[itemClass, 'cursor-default']}>
-                    {t(item.label)}
+        {NAV.map((item) => {
+          const active = isGroupActive(item, pathname);
+          const itemClass = [
+            'relative inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-300',
+            active
+              ? 'bg-[color-mix(in_oklch,var(--accent)_13%,transparent)] text-fg'
+              : 'text-muted hover:bg-[color-mix(in_oklch,var(--text)_6%,transparent)] hover:text-fg',
+          ];
+          return (
+            <li class="group relative">
+              {item.href ? (
+                <a
+                  href={localHref(item.href)}
+                  aria-current={pathname === item.href ? 'page' : undefined}
+                  class:list={itemClass}
+                >
+                  {t(item.label)}
+                  {item.children && (
                     <svg
                       class="size-3.5 opacity-60 transition-transform duration-300 group-focus-within:rotate-180 group-hover:rotate-180"
                       viewBox="0 0 16 16"
@@ -106,44 +84,58 @@ const mobileItems: NavItem[] = NAV.map((item) => ({
                     >
                       <path d="m4 6 4 4 4-4" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                  </button>
-                )}
+                  )}
+                </a>
+              ) : (
+                <button type="button" class:list={[itemClass, 'cursor-default']}>
+                  {t(item.label)}
+                  <svg
+                    class="size-3.5 opacity-60 transition-transform duration-300 group-focus-within:rotate-180 group-hover:rotate-180"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path d="m4 6 4 4 4-4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              )}
 
-                {item.children && (
-                  <div class="invisible absolute top-full left-1/2 z-50 -translate-x-1/2 translate-y-1 scale-95 pt-3 opacity-0 transition-all duration-300 ease-[var(--ease-out-expo)] group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:scale-100 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100">
-                    <ul class="bg-surface-raised border-line min-w-56 rounded-2xl border p-1.5 shadow-[var(--shadow-lg)]">
-                      {item.children.map((child) => {
-                        const childActive = isActive(child.href, pathname);
-                        return (
-                          <li>
-                            <a
-                              href={localHref(child.href)}
-                              aria-current={childActive ? 'page' : undefined}
-                              class:list={[
-                                'group/item flex items-center justify-between gap-4 rounded-xl px-3.5 py-2.5 text-sm transition-colors',
-                                childActive
-                                  ? 'text-fg bg-[color-mix(in_oklch,var(--accent)_13%,transparent)] font-medium'
-                                  : 'text-muted hover:text-fg hover:bg-[color-mix(in_oklch,var(--text)_6%,transparent)]',
-                              ]}
+              {item.children && (
+                <div class="invisible absolute top-full left-1/2 z-50 -translate-x-1/2 translate-y-1 scale-95 pt-3 opacity-0 transition-all duration-300 ease-[var(--ease-out-expo)] group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:scale-100 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100">
+                  <ul class="bg-surface-raised border-line min-w-56 rounded-2xl border p-1.5 shadow-[var(--shadow-lg)]">
+                    {item.children.map((child) => {
+                      const childActive = isActive(child.href, pathname);
+                      return (
+                        <li>
+                          <a
+                            href={localHref(child.href)}
+                            aria-current={childActive ? 'page' : undefined}
+                            class:list={[
+                              'group/item flex items-center justify-between gap-4 rounded-xl px-3.5 py-2.5 text-sm transition-colors',
+                              childActive
+                                ? 'text-fg bg-[color-mix(in_oklch,var(--accent)_13%,transparent)] font-medium'
+                                : 'text-muted hover:text-fg hover:bg-[color-mix(in_oklch,var(--text)_6%,transparent)]',
+                            ]}
+                          >
+                            {t(child.label)}
+                            <span
+                              aria-hidden="true"
+                              class="text-accent -translate-x-1 opacity-0 transition-all duration-300 group-hover/item:translate-x-0 group-hover/item:opacity-100"
                             >
-                              {t(child.label)}
-                              <span
-                                aria-hidden="true"
-                                class="text-accent -translate-x-1 opacity-0 transition-all duration-300 group-hover/item:translate-x-0 group-hover/item:opacity-100"
-                              >
-                                →
-                              </span>
-                            </a>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                )}
-              </li>
-            );
-          })
-        }
+                              →
+                            </span>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </nav>
 

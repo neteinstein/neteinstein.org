@@ -53,40 +53,36 @@ const headingId = `${category.id}-title`;
     </span>
   </header>
 
-  {
-    category.banner && (
-      <div
-        class="glow-ring border-line bg-surface-sunken mb-6 overflow-hidden rounded-3xl border shadow-[var(--shadow-md)]"
-        data-reveal="scale"
-      >
-        <Image
-          src={category.banner.src}
-          alt={category.banner.alt}
-          widths={[640, 960]}
-          sizes="(min-width: 1216px) 74rem, 100vw"
-          class="aspect-[2.6/1] w-full object-cover object-[62%_50%] sm:aspect-[960/215]"
-        />
-      </div>
-    )
-  }
+  {category.banner && (
+    <div
+      class="glow-ring border-line bg-surface-sunken mb-6 overflow-hidden rounded-3xl border shadow-[var(--shadow-md)]"
+      data-reveal="scale"
+    >
+      <Image
+        src={category.banner.src}
+        alt={category.banner.alt}
+        widths={[640, 960]}
+        sizes="(min-width: 1216px) 74rem, 100vw"
+        class="aspect-[2.6/1] w-full object-cover object-[62%_50%] sm:aspect-[960/215]"
+      />
+    </div>
+  )}
 
   <div class="space-y-6">
-    {
-      category.rows.map((row) => {
-        const [only] = row;
-        return row.length === 1 && only ? (
-          <div data-reveal>
-            <TalkTile talk={only} layout="feature" />
-          </div>
-        ) : (
-          <CardGrid cols={row.length >= 3 ? 3 : 2}>
-            {row.map((talk) => (
-              <TalkTile talk={talk} />
-            ))}
-          </CardGrid>
-        );
-      })
-    }
+    {category.rows.map((row) => {
+      const [only] = row;
+      return row.length === 1 && only ? (
+        <div data-reveal>
+          <TalkTile talk={only} layout="feature" />
+        </div>
+      ) : (
+        <CardGrid cols={row.length >= 3 ? 3 : 2}>
+          {row.map((talk) => (
+            <TalkTile talk={talk} />
+          ))}
+        </CardGrid>
+      );
+    })}
   </div>
 </section>
 

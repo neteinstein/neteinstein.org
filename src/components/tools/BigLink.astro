@@ -44,8 +44,7 @@ const { localHref } = useI18n(Astro);
   <div
     class="pointer-events-none absolute -top-32 left-1/2 -z-10 size-[34rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,var(--glow-a),transparent)]"
     aria-hidden="true"
-  >
-  </div>
+  ></div>
 
   {eyebrow && <p class="eyebrow">{eyebrow}</p>}
 
@@ -56,9 +55,7 @@ const { localHref } = useI18n(Astro);
     class="group font-display mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-5 gap-y-4 text-[clamp(1.9rem,7.5vw,5.75rem)] leading-none font-extrabold tracking-[-0.04em]"
   >
     <span class="text-gradient min-w-0 pb-[0.08em] break-all">{label}</span>
-    <span
-      class="text-on-accent grid size-[1.3em] shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)] bg-[length:200%_auto] shadow-[0_14px_32px_-10px_color-mix(in_oklch,var(--accent-2)_80%,transparent)] transition-all duration-500 ease-[var(--ease-spring)] group-hover:scale-110 group-hover:rotate-45 group-hover:bg-right"
-    >
+    <span class="text-on-accent grid size-[1.3em] shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)] bg-[length:200%_auto] shadow-[0_14px_32px_-10px_color-mix(in_oklch,var(--accent-2)_80%,transparent)] transition-all duration-500 ease-[var(--ease-spring)] group-hover:scale-110 group-hover:rotate-45 group-hover:bg-right">
       <Icon name="arrow-up-right" class="size-[0.6em]" stroke-width={2.5} />
     </span>
   </a>
@@ -67,20 +64,18 @@ const { localHref } = useI18n(Astro);
     class="absolute inset-x-0 bottom-0 flex h-24 items-end justify-center gap-[clamp(5px,0.9vw,11px)] sm:h-32"
     aria-hidden="true"
   >
-    {
-      BARS.map((bar, index) => (
+    {BARS.map((bar, index) => (
+      <span
+        class="big-link-bar flex h-full w-[clamp(7px,1.25vw,15px)] shrink-0 flex-col items-center justify-end gap-[clamp(3px,0.5vw,6px)]"
+        style={`--tone: var(${bar.tone}); --i: ${index}`}
+      >
+        {bar.dot && <span class="big-link-tint aspect-square w-full rounded-full" />}
         <span
-          class="big-link-bar flex h-full w-[clamp(7px,1.25vw,15px)] shrink-0 flex-col items-center justify-end gap-[clamp(3px,0.5vw,6px)]"
-          style={`--tone: var(${bar.tone}); --i: ${index}`}
-        >
-          {bar.dot && <span class="big-link-tint aspect-square w-full rounded-full" />}
-          <span
-            class="big-link-tint w-full translate-y-1/4 rounded-full"
-            style={`height: ${bar.height}%`}
-          />
-        </span>
-      ))
-    }
+          class="big-link-tint w-full translate-y-1/4 rounded-full"
+          style={`height: ${bar.height}%`}
+        />
+      </span>
+    ))}
   </div>
 </div>
 

@@ -20,38 +20,36 @@ const isLink = (part: TalkLink | TalkEmphasis): part is TalkLink => 'href' in pa
 const { localHref } = useI18n(Astro);
 ---
 
-{
-  text.map((part) =>
-    typeof part === 'string' ? (
-      part
-    ) : isLink(part) ? (
-      <a
-        href={localHref(part.href)}
-        target={isExternal(part.href) ? '_blank' : undefined}
-        rel={isExternal(part.href) ? 'noopener noreferrer' : undefined}
-        aria-label={part.ariaLabel}
-        class:list={['relative z-10', linkClass]}
-      >
-        {part.label}
-      </a>
-    ) : (
-      <em>
-        {part.em.map((inner) =>
-          typeof inner === 'string' ? (
-            inner
-          ) : (
-            <a
-              href={localHref(inner.href)}
-              target={isExternal(inner.href) ? '_blank' : undefined}
-              rel={isExternal(inner.href) ? 'noopener noreferrer' : undefined}
-              aria-label={inner.ariaLabel}
-              class:list={['relative z-10', linkClass]}
-            >
-              {inner.label}
-            </a>
-          ),
-        )}
-      </em>
-    ),
-  )
-}
+{text.map((part) =>
+  typeof part === 'string' ? (
+    part
+  ) : isLink(part) ? (
+    <a
+      href={localHref(part.href)}
+      target={isExternal(part.href) ? '_blank' : undefined}
+      rel={isExternal(part.href) ? 'noopener noreferrer' : undefined}
+      aria-label={part.ariaLabel}
+      class:list={['relative z-10', linkClass]}
+    >
+      {part.label}
+    </a>
+  ) : (
+    <em>
+      {part.em.map((inner) =>
+        typeof inner === 'string' ? (
+          inner
+        ) : (
+          <a
+            href={localHref(inner.href)}
+            target={isExternal(inner.href) ? '_blank' : undefined}
+            rel={isExternal(inner.href) ? 'noopener noreferrer' : undefined}
+            aria-label={inner.ariaLabel}
+            class:list={['relative z-10', linkClass]}
+          >
+            {inner.label}
+          </a>
+        ),
+      )}
+    </em>
+  ),
+)}

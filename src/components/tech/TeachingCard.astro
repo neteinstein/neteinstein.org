@@ -31,16 +31,12 @@ const siblingHrefs = [
     <h3 class="font-display text-xl leading-snug font-bold tracking-tight sm:text-2xl">
       <TechText text={[name]} linkClass="link-underline" />
     </h3>
-    {
-      lines.map((line) => (
-        <p class="text-muted mt-2 leading-relaxed text-pretty">
-          <TechText text={line} />
-        </p>
-      ))
-    }
-    <p
-      class="text-accent mt-auto self-start pt-4 font-mono text-xs font-semibold tracking-[0.14em] uppercase"
-    >
+    {lines.map((line) => (
+      <p class="text-muted mt-2 leading-relaxed text-pretty">
+        <TechText text={line} />
+      </p>
+    ))}
+    <p class="text-accent mt-auto self-start pt-4 font-mono text-xs font-semibold tracking-[0.14em] uppercase">
       {years}
     </p>
   </div>

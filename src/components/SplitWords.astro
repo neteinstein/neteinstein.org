@@ -19,16 +19,14 @@ const marked = new Set(highlight.map(bare));
 const words = text.split(/\s+/).filter(Boolean);
 ---
 
-{
-  words.map((word, index) => (
-    <>
-      <span
-        class:list={['split-word', marked.has(bare(word)) && 'text-gradient']}
-        style={`--i: ${start + index}`}
-        aria-hidden="true"
-      >
-        {word}
-      </span>{' '}
-    </>
-  ))
-}
+{words.map((word, index) => (
+  <>
+    <span
+      class:list={['split-word', marked.has(bare(word)) && 'text-gradient']}
+      style={`--i: ${start + index}`}
+      aria-hidden="true"
+    >
+      {word}
+    </span>{' '}
+  </>
+))}

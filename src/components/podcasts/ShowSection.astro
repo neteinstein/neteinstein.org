@@ -21,13 +21,11 @@ for (const episode of show.episodes) {
 <Section id={show.slug}>
   <ShowPanel show={show} index={index} />
 
-  {
-    seasons.size > 0 && (
-      <div class="mt-14 space-y-16 sm:mt-16 sm:space-y-20">
-        {[...seasons].map(([season, episodes]) => (
-          <SeasonWall show={show.name} season={season} episodes={episodes} />
-        ))}
-      </div>
-    )
-  }
+  {seasons.size > 0 && (
+    <div class="mt-14 space-y-16 sm:mt-16 sm:space-y-20">
+      {[...seasons].map(([season, episodes]) => (
+        <SeasonWall show={show.name} season={season} episodes={episodes} />
+      ))}
+    </div>
+  )}
 </Section>

@@ -32,8 +32,7 @@ const { localHref } = useI18n(Astro);
   <div
     class="absolute inset-x-[6%] -inset-y-6 -z-10 rounded-[3rem] bg-[image:var(--gradient-brand)] opacity-30 blur-3xl sm:-inset-y-10"
     aria-hidden="true"
-  >
-  </div>
+  ></div>
 
   <a
     href={localHref(href)}
@@ -47,15 +46,11 @@ const { localHref } = useI18n(Astro);
         <span class="bg-accent-3 size-2.5 rounded-full sm:size-3"></span>
         <span class="bg-accent-4 size-2.5 rounded-full sm:size-3"></span>
       </span>
-      <span
-        class="border-line bg-surface-sunken text-muted mx-auto flex max-w-sm min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-1 font-mono text-[0.7rem] sm:py-1.5 sm:text-xs"
-      >
+      <span class="border-line bg-surface-sunken text-muted mx-auto flex max-w-sm min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-1 font-mono text-[0.7rem] sm:py-1.5 sm:text-xs">
         <Icon name="globe" class="size-3.5 shrink-0" />
         <span class="truncate">{address}</span>
       </span>
-      <span
-        class="text-muted group-hover:text-accent grid size-7 shrink-0 place-items-center transition-colors"
-      >
+      <span class="text-muted group-hover:text-accent grid size-7 shrink-0 place-items-center transition-colors">
         <Icon
           name="arrow-up-right"
           class="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

@@ -114,16 +114,14 @@ const personSchema = {
       href={withBase('/rss.xml')}
     />
     <link rel="canonical" href={canonicalUrl.href} />
-    {
-      alternates.map((alternate) => (
-        <link rel="alternate" hreflang={LOCALE_INFO[alternate.locale].tag} href={alternate.url} />
-      ))
-    }
-    {
-      alternates
-        .filter((alternate) => alternate.locale === DEFAULT_LOCALE)
-        .map((alternate) => <link rel="alternate" hreflang="x-default" href={alternate.url} />)
-    }
+    {alternates.map((alternate) => (
+      <link rel="alternate" hreflang={LOCALE_INFO[alternate.locale].tag} href={alternate.url} />
+    ))}
+    {alternates
+      .filter((alternate) => alternate.locale === DEFAULT_LOCALE)
+      .map((alternate) => (
+        <link rel="alternate" hreflang="x-default" href={alternate.url} />
+      ))}
 
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
@@ -135,13 +133,11 @@ const personSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl.href} />
     <meta property="og:locale" content={LOCALE_INFO[locale].og} />
-    {
-      alternates
-        .filter((alternate) => alternate.locale !== locale)
-        .map((alternate) => (
-          <meta property="og:locale:alternate" content={LOCALE_INFO[alternate.locale].og} />
-        ))
-    }
+    {alternates
+      .filter((alternate) => alternate.locale !== locale)
+      .map((alternate) => (
+        <meta property="og:locale:alternate" content={LOCALE_INFO[alternate.locale].og} />
+      ))}
     <meta property="og:image" content={ogImageUrl.href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -153,14 +149,11 @@ const personSchema = {
     <meta name="twitter:image" content={ogImageUrl.href} />
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
-
-    {
-      /*
+    {/*
       Sends a first-time visitor whose browser prefers another language to this
       page's translation, before anything paints. A language picked in the
       header switcher is stored and always wins over the browser's.
-    */
-    }
+    */}
     <script
       is:inline
       define:vars={{ redirects, fallback: DEFAULT_LOCALE, storageKey: LOCALE_STORAGE_KEY }}
@@ -178,7 +171,6 @@ const personSchema = {
         if (target) location.replace(target + location.search + location.hash);
       })();
     </script>
-
     {/* Runs before first paint so neither the theme nor the reveal state flashes. */}
     <script is:inline>
       (() => {
@@ -207,13 +199,10 @@ const personSchema = {
         }
       })();
     </script>
-
-    {
-      /*
+    {/*
       Cookieless GoatCounter analytics, loaded only on the production host so
       local builds and the github.io preview never record pageviews.
-    */
-    }
+    */}
     <script is:inline define:vars={{ code: SITE.goatcounter, host: new URL(SITE.url).hostname }}>
       (() => {
         if (!code || location.hostname !== host) return;
@@ -228,13 +217,15 @@ const personSchema = {
 
   <body class="flex min-h-screen flex-col overflow-x-clip">
     <div class="aurora" aria-hidden="true">
-      <span></span><span></span><span></span><span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
     <div
       class="scroll-progress fixed inset-x-0 top-0 z-50 h-[3px] bg-[image:var(--gradient-brand)]"
       aria-hidden="true"
-    >
-    </div>
+    ></div>
 
     <a
       href="#main"

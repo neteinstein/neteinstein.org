@@ -49,58 +49,54 @@ const link =
 ---
 
 <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
-  {
-    categories.map((category, index) => (
-      <li class:list={[tile, spans[index] ?? 'min-h-[13rem]']}>
-        {category.games[0] && (
-          <Image
-            src={category.games[0].image}
-            alt=""
-            widths={[480, 800]}
-            sizes="(min-width: 1024px) 40rem, (min-width: 640px) 50vw, 100vw"
-            class="absolute inset-0 -z-20 size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-110"
-          />
-        )}
-        <div class={gradient} aria-hidden="true" />
-        <div class="p-5 sm:p-6">
-          <p class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
-            <span class="text-gradient">{String(index + 1).padStart(2, '0')}</span>
-            <span aria-hidden="true"> · </span>
-            {t(category.games.length === 1 ? '{count} game' : '{count} games', {
-              count: category.games.length,
-            })}
-          </p>
-          <h3
-            class:list={[
-              'font-display mt-1.5 leading-tight font-bold tracking-tight text-balance',
-              index === 0 ? 'text-3xl sm:text-4xl' : 'text-2xl',
-            ]}
-          >
-            <a href={`#${category.id}`} class={link}>
-              <span aria-hidden="true">{category.emoji}</span>
-              {category.short}
-              <Icon
-                name="arrow-down"
-                class="text-accent size-5 shrink-0 transition-transform duration-300 group-hover:translate-y-1"
-              />
-            </a>
-          </h3>
-        </div>
-      </li>
-    ))
-  }
-  <li class:list={[tile, 'bg-surface-raised min-h-[15rem] sm:col-span-2', extraSpan]}>
-    {
-      extra.image && (
+  {categories.map((category, index) => (
+    <li class:list={[tile, spans[index] ?? 'min-h-[13rem]']}>
+      {category.games[0] && (
         <Image
-          src={extra.image}
+          src={category.games[0].image}
           alt=""
-          widths={[480, 800, 1200]}
-          sizes="(min-width: 1024px) 48rem, 100vw"
-          class="absolute inset-0 -z-20 size-full object-cover object-top transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-110"
+          widths={[480, 800]}
+          sizes="(min-width: 1024px) 40rem, (min-width: 640px) 50vw, 100vw"
+          class="absolute inset-0 -z-20 size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-110"
         />
-      )
-    }
+      )}
+      <div class={gradient} aria-hidden="true" />
+      <div class="p-5 sm:p-6">
+        <p class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
+          <span class="text-gradient">{String(index + 1).padStart(2, '0')}</span>
+          <span aria-hidden="true"> · </span>
+          {t(category.games.length === 1 ? '{count} game' : '{count} games', {
+            count: category.games.length,
+          })}
+        </p>
+        <h3
+          class:list={[
+            'font-display mt-1.5 leading-tight font-bold tracking-tight text-balance',
+            index === 0 ? 'text-3xl sm:text-4xl' : 'text-2xl',
+          ]}
+        >
+          <a href={`#${category.id}`} class={link}>
+            <span aria-hidden="true">{category.emoji}</span>
+            {category.short}
+            <Icon
+              name="arrow-down"
+              class="text-accent size-5 shrink-0 transition-transform duration-300 group-hover:translate-y-1"
+            />
+          </a>
+        </h3>
+      </div>
+    </li>
+  ))}
+  <li class:list={[tile, 'bg-surface-raised min-h-[15rem] sm:col-span-2', extraSpan]}>
+    {extra.image && (
+      <Image
+        src={extra.image}
+        alt=""
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 1024px) 48rem, 100vw"
+        class="absolute inset-0 -z-20 size-full object-cover object-top transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-110"
+      />
+    )}
     <div class={gradient} aria-hidden="true"></div>
     <div class="p-5 sm:p-6">
       <p class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">

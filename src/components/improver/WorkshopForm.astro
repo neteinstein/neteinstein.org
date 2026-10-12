@@ -28,38 +28,36 @@ const frameName = 'workshop-form-target';
     data-workshop-form
     data-success-message={form.successMessage}
   >
-    {
-      form.fields.map((field) => {
-        const isWide = field.type === 'textarea';
-        const inputClass =
-          'border-line-strong bg-surface-raised text-fg placeholder:text-muted w-full rounded-2xl border px-4 py-2.5 text-base transition-shadow focus:shadow-[0_0_0_4px_color-mix(in_oklch,var(--accent)_18%,transparent)] focus:outline-none sm:text-sm';
-        return (
-          <label
-            class:list={['flex flex-col gap-1.5 text-sm font-medium', isWide && 'sm:col-span-2']}
-          >
-            <span>
-              {field.label}
-              {field.required && (
-                <span class="text-accent-2" aria-hidden="true">
-                  {' '}
-                  *
-                </span>
-              )}
-            </span>
-            {field.type === 'textarea' ? (
-              <textarea name={field.entry} required={field.required} rows={4} class={inputClass} />
-            ) : (
-              <input
-                type={field.type === 'email' ? 'email' : field.type === 'tel' ? 'tel' : 'text'}
-                name={field.entry}
-                required={field.required}
-                class={inputClass}
-              />
+    {form.fields.map((field) => {
+      const isWide = field.type === 'textarea';
+      const inputClass =
+        'border-line-strong bg-surface-raised text-fg placeholder:text-muted w-full rounded-2xl border px-4 py-2.5 text-base transition-shadow focus:shadow-[0_0_0_4px_color-mix(in_oklch,var(--accent)_18%,transparent)] focus:outline-none sm:text-sm';
+      return (
+        <label
+          class:list={['flex flex-col gap-1.5 text-sm font-medium', isWide && 'sm:col-span-2']}
+        >
+          <span>
+            {field.label}
+            {field.required && (
+              <span class="text-accent-2" aria-hidden="true">
+                {' '}
+                *
+              </span>
             )}
-          </label>
-        );
-      })
-    }
+          </span>
+          {field.type === 'textarea' ? (
+            <textarea name={field.entry} required={field.required} rows={4} class={inputClass} />
+          ) : (
+            <input
+              type={field.type === 'email' ? 'email' : field.type === 'tel' ? 'tel' : 'text'}
+              name={field.entry}
+              required={field.required}
+              class={inputClass}
+            />
+          )}
+        </label>
+      );
+    })}
 
     <div class="flex flex-wrap items-center gap-4 sm:col-span-2">
       <button
