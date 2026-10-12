@@ -53,7 +53,7 @@ export interface Game<Image = ImageMetadata> {
   sources: LinkRef[];
 }
 
-/** A chapter of the guide — "Christmas and Family Games", "Camp: …". */
+/** A chapter of the guide — "Family Games (Christmas or Other Occasions)", "Camp: …". */
 export interface GameCategory<Image = ImageMetadata> {
   id: string;
   /** The doc's heading emoji. */

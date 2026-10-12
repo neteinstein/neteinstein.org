@@ -80,13 +80,13 @@ import ballPointGame from '../assets/games/ball-point-game.webp';
 import energyWave from '../assets/games/energy-wave.webp';
 import coinMaze from '../assets/games/coin-maze.webp';
 
-/** The guide, in the doc's order. Game numbers run on across categories. */
+/** The guide's chapters. Game numbers run on across categories, in page order. */
 export const gameCategories: GameCategory[] = [
   {
     id: 'christmas-and-family',
     emoji: '🎄',
-    title: 'Christmas and Family Games',
-    short: 'Christmas & family',
+    title: 'Family Games (Christmas or Other Occasions)',
+    short: 'Family',
     intro:
       'Quick, very visual parlour games, ideal for Christmas Eve or a family dinner. Almost all of them use plastic cups, balloons and things you already have at home.',
     games: [
@@ -993,6 +993,126 @@ export const gameCategories: GameCategory[] = [
         ],
         sources: [{ label: '@isabootelho', href: 'https://www.instagram.com/reel/DSsWzkojsLB/' }],
       },
+      {
+        id: 'ball-in-the-waist-basket',
+        number: 28,
+        title: 'Ball in the Waist Basket',
+        originalName: 'Despedida de solteiros (PT)',
+        players: 'Teams, 1 player at a time',
+        age: '12+',
+        duration: '1 min per player',
+        setting: 'Outdoors',
+        where: ['outdoor'],
+        image: ballInTheWaistBasket,
+        materials: [
+          'Small basket (or big cup) attached to a belt',
+          'Light ball on a string tied to the belt, hanging behind',
+        ],
+        setup: [
+          'Fasten the belt with the basket at the front and the ball on the string behind the player.',
+        ],
+        rules: [
+          'On the signal, the player has to swing their hips to land the hanging ball in the basket.',
+          'No using hands.',
+          'Whoever does it fastest (or most times in a minute) wins.',
+        ],
+        tips: [
+          'Longer string for more difficulty.',
+          'Tip: the spectators laugh their heads off, film it!',
+        ],
+        sources: [{ label: '@paulonsousa', href: 'https://www.instagram.com/reel/DX1OknrM4du/' }],
+      },
+      {
+        id: 'blindfolded-swapped-arms-yoghurt',
+        number: 29,
+        title: 'Blindfolded Swapped-Arms Yoghurt',
+        originalName: 'Despedida de solteiros (PT)',
+        players: 'Pairs',
+        age: '12+',
+        duration: '2 min',
+        setting: 'Indoors or outdoors',
+        where: ['indoor', 'outdoor'],
+        image: blindfoldedSwappedArmsYoghurt,
+        materials: [
+          '1 yoghurt and 1 spoon per pair',
+          '1 blindfold',
+          '1 large black card with two arm holes (or a loose sweater)',
+          'Bibs or towels (it will get messy!)',
+        ],
+        setup: [
+          'The front player sits with their hands behind their back, hidden.',
+          "Their partner, blindfolded, stands behind and puts their arms through the holes in the card, as if they were the front player's arms.",
+        ],
+        rules: [
+          "On the signal, the blindfolded player (behind) has to spoon the yoghurt into the front player's mouth.",
+          'The front player may only give directions by voice.',
+          'The first pair to finish the yoghurt wins.',
+        ],
+        tips: [
+          "Brush the front player's teeth or comb their hair.",
+          'Hygiene: bib compulsory.',
+          'Tip: it has everyone crying with laughter.',
+        ],
+        sources: [{ label: '@paulonsousa', href: 'https://www.instagram.com/reel/DX1OknrM4du/' }],
+      },
+      {
+        id: 'blindfolded-hoop-orienteering',
+        number: 30,
+        title: 'Blindfolded Hoop Orienteering',
+        originalName: 'Despedida de solteiros (PT)',
+        players: 'Teams of 3 to 8',
+        age: '8+',
+        duration: '5 to 10 min',
+        setting: 'Outdoors',
+        where: ['outdoor'],
+        image: blindfoldedHoopOrienteering,
+        materials: ['Small hoops or plastic rings', '1 blindfold per team', 'Cones'],
+        setup: ['Spread the hoops over the lawn.', 'Blindfold one player from each team.'],
+        rules: [
+          'The team gives directions to the blindfolded player to reach each hoop.',
+          'The blindfolded player has to pick the hoop up off the ground and bring it back.',
+          'Each hoop brought back scores extra points.',
+          'Whoever has the most hoops when time is up wins.',
+        ],
+        tips: [
+          'Each team may only use 5 words.',
+          'Tip: colour teams with wristbands help keep things organised.',
+        ],
+        sources: [{ label: '@paulonsousa', href: 'https://www.instagram.com/reel/DX1OknrM4du/' }],
+      },
+      {
+        id: 'secret-missions',
+        number: 31,
+        title: 'Secret Missions',
+        originalName: 'Despedida de solteiros (PT)',
+        players: '10 to 40 players',
+        age: 'Adults',
+        duration: 'The whole weekend',
+        setting: 'Indoors and outdoors',
+        where: ['indoor', 'outdoor'],
+        image: secretMissions,
+        materials: [
+          'Plastic eggs or slips of paper',
+          'List of missions (one per guest)',
+          'Phone to record the proof',
+        ],
+        setup: [
+          'Write one mission per guest (e.g. "Take a photo of someone sleeping", "Swap an accessory with one of the couple", "Tell Daniel you are thinking of buying a car").',
+          'Put each mission in a plastic egg and hand them out in secret.',
+        ],
+        rules: [
+          'Each guest opens their egg and keeps it secret.',
+          'During the weekend they have to complete the mission without the couple noticing.',
+          'They record a video or take a photo as proof.',
+          'On the last day, the missions and the proof are revealed to the couple (ideally on a projector).',
+        ],
+        tips: [
+          'Missions that score points for the team.',
+          "The couple try to guess each person's mission.",
+          'Tip: funny missions, but never humiliating ones.',
+        ],
+        sources: [{ label: '@paulonsousa', href: 'https://www.instagram.com/reel/DX1OknrM4du/' }],
+      },
     ],
   },
   {
@@ -1004,7 +1124,7 @@ export const gameCategories: GameCategory[] = [
     games: [
       {
         id: 'no-hands-cookie',
-        number: 28,
+        number: 32,
         title: 'No-Hands Cookie',
         originalName: 'No Hands Cookie Challenge (EN)',
         players: 'Pairs or 3 to 6 players',
@@ -1036,7 +1156,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'cookie-from-forehead-to-mouth',
-        number: 29,
+        number: 33,
         title: 'Cookie from Forehead to Mouth',
         originalName: 'Brincadeira 3 (PT-BR)',
         players: 'Everyone at once',
@@ -1063,7 +1183,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'shake-off-the-sticky-notes',
-        number: 30,
+        number: 34,
         title: 'Shake It Off',
         originalName: 'Quien se quite todos los papelitos primero, gana (ES)',
         players: '4 to 20 players',
@@ -1094,7 +1214,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'touch-the-bottle-with-one-eye',
-        number: 31,
+        number: 35,
         title: 'Touch the Bottle with One Eye',
         originalName: 'New funny game unlocked (EN)',
         players: '1 player at a time',
@@ -1125,7 +1245,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'catch-the-balloon',
-        number: 32,
+        number: 36,
         title: 'Catch the Balloon',
         originalName: 'Catch the balloon (EN)',
         players: '2 to 10 players',
@@ -1162,7 +1282,7 @@ export const gameCategories: GameCategory[] = [
     games: [
       {
         id: 'guess-by-the-noises-duo-edition',
-        number: 33,
+        number: 37,
         title: 'Guess by the Noises (Duo Edition)',
         originalName: 'THE funniest game in history – duo edition (EN)',
         players: '6 to 20 players (2 guess)',
@@ -1195,7 +1315,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'dolphin-training',
-        number: 34,
+        number: 38,
         title: 'Dolphin Training',
         originalName: 'Dolphin training game (EN)',
         players: '8 to 40 players',
@@ -1225,7 +1345,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'find-your-herd',
-        number: 35,
+        number: 39,
         title: 'Find Your Herd',
         originalName: 'Find Your Herd – Filipino parlor game (EN)',
         players: '12 to 60 players',
@@ -1261,7 +1381,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'crossed-hands-on-the-table',
-        number: 36,
+        number: 40,
         title: 'Crossed Hands on the Table',
         originalName: 'Chi ricorda questo gioco? (IT)',
         players: '5 to 12 players',
@@ -1303,7 +1423,7 @@ export const gameCategories: GameCategory[] = [
     games: [
       {
         id: 'dont-touch-the-bin',
-        number: 37,
+        number: 41,
         title: "Don't Touch the Bin",
         originalName: "Don't Touch the Can (EN)",
         players: '3 to 6 players per round',
@@ -1336,7 +1456,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'ball-up-high-in-pairs',
-        number: 38,
+        number: 42,
         title: 'Ball Up High in Pairs',
         originalName: 'The most ruthless game to play in pairs (EN)',
         players: '10 to 40 players, in pairs',
@@ -1377,7 +1497,7 @@ export const gameCategories: GameCategory[] = [
     games: [
       {
         id: 'balloon-caterpillar',
-        number: 39,
+        number: 43,
         title: 'Balloon Caterpillar',
         originalName: 'Caterpillar relay (EN)',
         players: 'Teams of 6 to 12',
@@ -1406,7 +1526,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'giant-group-maze',
-        number: 40,
+        number: 44,
         title: 'Giant Group Maze',
         originalName: 'Giant group maze (EN)',
         players: '8 to 16 per team',
@@ -1440,7 +1560,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'ladder-in-the-air',
-        number: 41,
+        number: 45,
         title: 'Ladder in the Air',
         originalName: 'Ladder in the air challenge (EN)',
         players: 'Teams of 6 to 10',
@@ -1469,7 +1589,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'emoji-movie-challenge',
-        number: 42,
+        number: 46,
         title: 'Emoji Movie Challenge',
         originalName: 'Emoji-movie challenge (EN)',
         players: 'Teams of 3 to 10',
@@ -1498,7 +1618,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'birthday-line-up-without-talking',
-        number: 43,
+        number: 47,
         title: 'Birthday Line-Up Without Talking',
         originalName: 'Birthday order lineup, no talking (EN)',
         players: '10 to 40 per team',
@@ -1525,7 +1645,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'musical-plates',
-        number: 44,
+        number: 48,
         title: 'Musical Plates',
         originalName: 'Musical paper plates (EN)',
         players: '10 to 100 players',
@@ -1552,7 +1672,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'nukeem-throwing-volleyball',
-        number: 45,
+        number: 49,
         title: "Nuke'em (Throwing Volleyball)",
         originalName: "Nuke'em (EN)",
         players: '2 teams of 6 to 15',
@@ -1579,7 +1699,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'string-cup-pyramid',
-        number: 46,
+        number: 50,
         title: 'String Cup Pyramid',
         originalName: 'Group pyramid going up (EN)',
         players: 'Teams of 4 to 8',
@@ -1612,7 +1732,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'outward-pyramid-reach-the-bottles',
-        number: 47,
+        number: 51,
         title: 'Outward Pyramid (Reach the Bottles)',
         originalName: 'Group pyramid going out (EN)',
         players: 'Teams of 5 to 12',
@@ -1642,7 +1762,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'flip-the-sheet',
-        number: 48,
+        number: 52,
         title: 'Flip the Sheet',
         originalName: 'Flip the sheet (and popcorn) (EN)',
         players: 'Teams of 8 to 15',
@@ -1668,7 +1788,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'four-corners',
-        number: 49,
+        number: 53,
         title: 'Four Corners',
         originalName: '4 corners (EN)',
         players: '10 to 100 players',
@@ -1697,7 +1817,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'group-dances',
-        number: 50,
+        number: 54,
         title: 'Group Dances',
         originalName: 'Learn group dances (EN)',
         players: '20 to 300 players',
@@ -1735,41 +1855,8 @@ export const gameCategories: GameCategory[] = [
       'From a Portuguese video of a joint bachelor party for a sister and Gabriel: a whole weekend of "Olympics" with colour teams, wristbands, scores on a board and a final prize. These games also work at birthdays and team-buildings.',
     games: [
       {
-        id: 'secret-missions',
-        number: 51,
-        title: 'Secret Missions',
-        originalName: 'Despedida de solteiros (PT)',
-        players: '10 to 40 players',
-        age: 'Adults',
-        duration: 'The whole weekend',
-        setting: 'Indoors and outdoors',
-        where: ['indoor', 'outdoor'],
-        image: secretMissions,
-        materials: [
-          'Plastic eggs or slips of paper',
-          'List of missions (one per guest)',
-          'Phone to record the proof',
-        ],
-        setup: [
-          'Write one mission per guest (e.g. "Take a photo of someone sleeping", "Swap an accessory with one of the couple", "Tell Daniel you are thinking of buying a car").',
-          'Put each mission in a plastic egg and hand them out in secret.',
-        ],
-        rules: [
-          'Each guest opens their egg and keeps it secret.',
-          'During the weekend they have to complete the mission without the couple noticing.',
-          'They record a video or take a photo as proof.',
-          'On the last day, the missions and the proof are revealed to the couple (ideally on a projector).',
-        ],
-        tips: [
-          'Missions that score points for the team.',
-          "The couple try to guess each person's mission.",
-          'Tip: funny missions, but never humiliating ones.',
-        ],
-        sources: [{ label: '@paulonsousa', href: 'https://www.instagram.com/reel/DX1OknrM4du/' }],
-      },
-      {
         id: 'ring-hunt',
-        number: 52,
+        number: 55,
         title: 'Ring Hunt',
         originalName: 'Despedida de solteiros (PT)',
         players: 'The couple (or 2 teams)',
@@ -1796,7 +1883,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'groom-scratch-cards',
-        number: 53,
+        number: 56,
         title: 'Groom Scratch Cards',
         originalName: 'Despedida de solteiros (PT)',
         players: 'All the guests',
@@ -1826,7 +1913,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'guess-the-brides-dress',
-        number: 54,
+        number: 57,
         title: "Guess the Bride's Dress",
         originalName: 'Despedida de solteiros (PT)',
         players: 'All the guests',
@@ -1843,93 +1930,6 @@ export const gameCategories: GameCategory[] = [
           'The closest ones score points for the team.',
         ],
         tips: ["Also guess the groom's suit.", 'Tip: keep the drawings to show at the wedding!'],
-        sources: [{ label: '@paulonsousa', href: 'https://www.instagram.com/reel/DX1OknrM4du/' }],
-      },
-      {
-        id: 'ball-in-the-waist-basket',
-        number: 55,
-        title: 'Ball in the Waist Basket',
-        originalName: 'Despedida de solteiros (PT)',
-        players: 'Teams, 1 player at a time',
-        age: '12+',
-        duration: '1 min per player',
-        setting: 'Outdoors',
-        where: ['outdoor'],
-        image: ballInTheWaistBasket,
-        materials: [
-          'Small basket (or big cup) attached to a belt',
-          'Light ball on a string tied to the belt, hanging behind',
-        ],
-        setup: [
-          'Fasten the belt with the basket at the front and the ball on the string behind the player.',
-        ],
-        rules: [
-          'On the signal, the player has to swing their hips to land the hanging ball in the basket.',
-          'No using hands.',
-          'Whoever does it fastest (or most times in a minute) wins.',
-        ],
-        tips: [
-          'Longer string for more difficulty.',
-          'Tip: the spectators laugh their heads off, film it!',
-        ],
-        sources: [{ label: '@paulonsousa', href: 'https://www.instagram.com/reel/DX1OknrM4du/' }],
-      },
-      {
-        id: 'blindfolded-swapped-arms-yoghurt',
-        number: 56,
-        title: 'Blindfolded Swapped-Arms Yoghurt',
-        originalName: 'Despedida de solteiros (PT)',
-        players: 'Pairs',
-        age: '12+',
-        duration: '2 min',
-        setting: 'Indoors or outdoors',
-        where: ['indoor', 'outdoor'],
-        image: blindfoldedSwappedArmsYoghurt,
-        materials: [
-          '1 yoghurt and 1 spoon per pair',
-          '1 blindfold',
-          '1 large black card with two arm holes (or a loose sweater)',
-          'Bibs or towels (it will get messy!)',
-        ],
-        setup: [
-          'The front player sits with their hands behind their back, hidden.',
-          "Their partner, blindfolded, stands behind and puts their arms through the holes in the card, as if they were the front player's arms.",
-        ],
-        rules: [
-          "On the signal, the blindfolded player (behind) has to spoon the yoghurt into the front player's mouth.",
-          'The front player may only give directions by voice.',
-          'The first pair to finish the yoghurt wins.',
-        ],
-        tips: [
-          "Brush the front player's teeth or comb their hair.",
-          'Hygiene: bib compulsory.',
-          'Tip: it has everyone crying with laughter.',
-        ],
-        sources: [{ label: '@paulonsousa', href: 'https://www.instagram.com/reel/DX1OknrM4du/' }],
-      },
-      {
-        id: 'blindfolded-hoop-orienteering',
-        number: 57,
-        title: 'Blindfolded Hoop Orienteering',
-        originalName: 'Despedida de solteiros (PT)',
-        players: 'Teams of 3 to 8',
-        age: '8+',
-        duration: '5 to 10 min',
-        setting: 'Outdoors',
-        where: ['outdoor'],
-        image: blindfoldedHoopOrienteering,
-        materials: ['Small hoops or plastic rings', '1 blindfold per team', 'Cones'],
-        setup: ['Spread the hoops over the lawn.', 'Blindfold one player from each team.'],
-        rules: [
-          'The team gives directions to the blindfolded player to reach each hoop.',
-          'The blindfolded player has to pick the hoop up off the ground and bring it back.',
-          'Each hoop brought back scores extra points.',
-          'Whoever has the most hoops when time is up wins.',
-        ],
-        tips: [
-          'Each team may only use 5 words.',
-          'Tip: colour teams with wristbands help keep things organised.',
-        ],
         sources: [{ label: '@paulonsousa', href: 'https://www.instagram.com/reel/DX1OknrM4du/' }],
       },
       {

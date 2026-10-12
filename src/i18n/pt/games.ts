@@ -31,10 +31,10 @@ export const games: Catalog = {
   'Original video:': 'Vídeo original:',
   Goal: 'Objetivo',
   'Original title:': 'Nome original:',
-  'Christmas and Family Games': 'Jogos de Natal e de Família',
+  'Family Games (Christmas or Other Occasions)': 'Jogos de Família (Natal ou outras ocasiões)',
   'Quick, very visual parlour games, ideal for Christmas Eve or a family dinner. Almost all of them use plastic cups, balloons and things you already have at home.':
     'Jogos de sala, rápidos e muito visuais, ideais para a noite de Natal ou um jantar de família. Quase todos usam copos de plástico, balões e coisas que já há em casa.',
-  'Christmas & family': 'Natal e família',
+  Family: 'Família',
   'Sweater Without Dropping the Balloon': 'Camisola sem Deixar Cair o Balão',
   '2 to 4 players at a time': '2 a 4 jogadores de cada vez',
   '1 to 2 min per round': '1 a 2 min por ronda',
