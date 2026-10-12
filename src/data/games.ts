@@ -2,13 +2,15 @@
  * /games — "Jogos de Grupo", 59 group games for parties, Christmas, camps and
  * bachelor parties, from Pedro Vicente's Google Doc
  * (https://docs.google.com/document/d/1OtB2EOQaHNQXJmdBBEnhErcTn1BxYwAM6JH-4ZvKUVU),
- * plus a closing chapter of team-building games added since (60 onwards),
- * which have no source video; their drawings were made in the doc's style.
+ * plus games added since: a closing chapter of team-building games and a
+ * few classics (many from the TV show "Minute to Win It") at the end of the
+ * other chapters. These have no source video; their drawings were made in
+ * the doc's style.
  * The doc is in Portuguese: the English here is its translation, and the
  * original wording is the `src/i18n/pt/games.ts` catalogue. Page title, lead
  * and the "how to use" prose live in `src/content/pages/games.mdx`.
  *
- * Each game's illustration is the doc's own drawing of its main rule.
+ * Each game's illustration is a drawing of its main rule.
  * `originalName` is the title of the video the game was collected from, kept
  * in its own language; `sources` are those videos.
  */
@@ -79,6 +81,21 @@ import eggDropChallenge from '../assets/games/egg-drop-challenge.webp';
 import ballPointGame from '../assets/games/ball-point-game.webp';
 import energyWave from '../assets/games/energy-wave.webp';
 import coinMaze from '../assets/games/coin-maze.webp';
+import getTheCup from '../assets/games/get-the-cup.webp';
+import stackAttack from '../assets/games/stack-attack.webp';
+import cupFlipRace from '../assets/games/cup-flip-race.webp';
+import defyGravity from '../assets/games/defy-gravity.webp';
+import balloonPopCountdown from '../assets/games/balloon-pop-countdown.webp';
+import noseDive from '../assets/games/nose-dive.webp';
+import balloonWaddle from '../assets/games/balloon-waddle.webp';
+import minefield from '../assets/games/minefield.webp';
+import humanKnot from '../assets/games/human-knot.webp';
+import passIt from '../assets/games/pass-it.webp';
+import howWellDoesTheBrideKnowTheGroom from '../assets/games/how-well-does-the-bride-know-the-groom.webp';
+import dareJar from '../assets/games/dare-jar.webp';
+import photoScavengerHunt from '../assets/games/photo-scavenger-hunt.webp';
+import heliumStick from '../assets/games/helium-stick.webp';
+import marshmallowChallenge from '../assets/games/marshmallow-challenge.webp';
 
 /** The guide's chapters. Game numbers run on across categories, in page order. */
 export const gameCategories: GameCategory[] = [
@@ -129,7 +146,7 @@ export const gameCategories: GameCategory[] = [
       {
         id: 'balloon-jet-vs-the-cup',
         number: 2,
-        title: 'Balloon Jet vs. the Cup',
+        title: 'Blown Away',
         originalName: 'The best Christmas game (EN) / jogo do balão (PT)',
         players: '2 players (or 2 teams in a relay)',
         age: '6+',
@@ -342,7 +359,7 @@ export const gameCategories: GameCategory[] = [
       {
         id: 'bows-in-the-bowl',
         number: 8,
-        title: 'Bows in the Bowl',
+        title: 'Bow Scoop',
         originalName: 'Bow toss (EN)',
         players: 'Teams of 2',
         age: '6+',
@@ -996,7 +1013,7 @@ export const gameCategories: GameCategory[] = [
       {
         id: 'ball-in-the-waist-basket',
         number: 28,
-        title: 'Ball in the Waist Basket',
+        title: 'Junk in the Trunk',
         originalName: 'Despedida de solteiros (PT)',
         players: 'Teams, 1 player at a time',
         age: '12+',
@@ -1113,6 +1130,139 @@ export const gameCategories: GameCategory[] = [
         ],
         sources: [{ label: '@paulonsousa', href: 'https://www.instagram.com/reel/DX1OknrM4du/' }],
       },
+      {
+        id: 'get-the-cup',
+        number: 32,
+        title: 'Get the Cup',
+        players: '2 players at a time (or a whole circle around a table)',
+        age: '5+',
+        duration: '1 to 2 min per round',
+        setting: 'Indoors',
+        where: ['indoor'],
+        image: getTheCup,
+        materials: ['1 plastic cup (or any small object) per pair', '1 table'],
+        setup: [
+          'Players stand on opposite sides of the table, with the cup upside down in the middle.',
+          'Pick a caller who is not playing.',
+        ],
+        rules: [
+          'The caller shouts body parts ("head!", "shoulders!", "knees!") and the players touch them as fast as they can.',
+          'At any moment, the caller shouts "cup!" instead.',
+          'The first player to grab the cup wins the round.',
+          'Grabbing the cup on any other word costs a point.',
+          'Best of 5 rounds wins; the winner stays on against the next challenger.',
+        ],
+        tips: [
+          'Tricky caller: say words that sound like "cup" ("cap!", "cop!", "cupcake!").',
+          'Everyone at once: a circle of players around a table with one cup fewer than players.',
+          'Safety: use plastic cups and a light object; heads can bump over the table.',
+        ],
+        sources: [],
+      },
+      {
+        id: 'stack-attack',
+        number: 33,
+        title: 'Stack Attack',
+        players: '1 player per table (or several side by side)',
+        age: '6+',
+        duration: '1 min per player',
+        setting: 'Indoors',
+        where: ['indoor'],
+        image: stackAttack,
+        materials: ['21 or 36 plastic cups per player', 'Timer', '1 table'],
+        setup: ['Give each player a single stack of cups on the table.'],
+        rules: [
+          'On the signal, the player builds a pyramid with all the cups (6-5-4-3-2-1 for 21 cups, 8 rows for 36).',
+          'Once the pyramid is complete, they take it apart into a single stack again.',
+          'If the pyramid falls, they gather the cups and carry on building.',
+          'Whoever finishes inside 60 seconds wins; with several players, the fastest wins.',
+        ],
+        tips: [
+          'Easier: 10 cups (4-3-2-1).',
+          'Harder: only one hand, or the cups must go back into the stack in colour order.',
+          'From the TV show "Minute to Win It".',
+        ],
+        sources: [],
+      },
+      {
+        id: 'cup-flip-race',
+        number: 34,
+        title: 'Cup Flip Race',
+        players: '2 to 6 players, or teams in a relay',
+        age: '6+',
+        duration: '1 to 3 min',
+        setting: 'Indoors',
+        where: ['indoor'],
+        image: cupFlipRace,
+        materials: ['5 to 10 plastic cups per player', '1 long table'],
+        setup: [
+          "Line each player's cups up mouth up along the edge of the table, with the rim sticking out a little.",
+        ],
+        rules: [
+          'On the signal, the player flicks the rim of the first cup upwards so it flips and lands upside down.',
+          'They may only move on to the next cup once the current one has landed upside down.',
+          'If a cup falls off the table, they put it back and try again.',
+          'The first to flip all their cups wins.',
+        ],
+        tips: [
+          'Relay: each team member flips one cup and runs to tag the next.',
+          'Harder: flip them all, then flip them back mouth up.',
+          'Tip: a little water in the bottom of the cup makes the flip easier.',
+        ],
+        sources: [],
+      },
+      {
+        id: 'defy-gravity',
+        number: 35,
+        title: 'Defy Gravity',
+        players: '1 to 4 players at a time',
+        age: '5+',
+        duration: '1 min per round',
+        setting: 'Indoors (plenty of space)',
+        where: ['indoor'],
+        image: defyGravity,
+        materials: ['2 or 3 inflated balloons per player', 'Timer'],
+        setup: ['Clear the middle of the room and give each player their balloons.'],
+        rules: [
+          'The player puts one hand behind their back.',
+          'On the signal, they throw the balloons up and have to keep them all in the air for 60 seconds, tapping them with the free hand only.',
+          'If a balloon touches the floor, or they touch one with anything else, they are out.',
+          'Whoever lasts the full minute wins.',
+        ],
+        tips: [
+          'Easier: 2 balloons; harder: 3.',
+          'Everyone at once in the same space, so the balloons get mixed up.',
+        ],
+        sources: [],
+      },
+      {
+        id: 'balloon-pop-countdown',
+        number: 36,
+        title: 'Balloon Pop Countdown',
+        players: '1 player at a time (or teams in a relay)',
+        age: '6+',
+        duration: '1 min per player',
+        setting: 'Indoors',
+        where: ['indoor'],
+        image: balloonPopCountdown,
+        materials: ['10 balloons per player', 'Permanent marker', 'Timer'],
+        setup: [
+          'Write the numbers 1 to 10 on the balloons, one per balloon.',
+          'Scatter them around the room.',
+        ],
+        rules: [
+          'On the signal, the player has to pop the balloons in order, from 1 to 10.',
+          'Popping with hands, feet or by sitting on them is allowed; sharp objects are not.',
+          'Popping the wrong number costs 5 seconds.',
+          'The fastest to pop all 10 wins.',
+        ],
+        tips: [
+          'Countdown: from 10 to 1, as the name says.',
+          'For little ones: use colours instead of numbers.',
+          'Put a small prize or a dare inside some balloons.',
+        ],
+        sources: [],
+      },
     ],
   },
   {
@@ -1124,7 +1274,7 @@ export const gameCategories: GameCategory[] = [
     games: [
       {
         id: 'no-hands-cookie',
-        number: 32,
+        number: 37,
         title: 'No-Hands Cookie',
         originalName: 'No Hands Cookie Challenge (EN)',
         players: 'Pairs or 3 to 6 players',
@@ -1156,8 +1306,8 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'cookie-from-forehead-to-mouth',
-        number: 33,
-        title: 'Cookie from Forehead to Mouth',
+        number: 38,
+        title: 'Face the Cookie',
         originalName: 'Brincadeira 3 (PT-BR)',
         players: 'Everyone at once',
         age: '6+',
@@ -1183,7 +1333,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'shake-off-the-sticky-notes',
-        number: 34,
+        number: 39,
         title: 'Shake It Off',
         originalName: 'Quien se quite todos los papelitos primero, gana (ES)',
         players: '4 to 20 players',
@@ -1214,7 +1364,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'touch-the-bottle-with-one-eye',
-        number: 35,
+        number: 40,
         title: 'Touch the Bottle with One Eye',
         originalName: 'New funny game unlocked (EN)',
         players: '1 player at a time',
@@ -1245,7 +1395,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'catch-the-balloon',
-        number: 36,
+        number: 41,
         title: 'Catch the Balloon',
         originalName: 'Catch the balloon (EN)',
         players: '2 to 10 players',
@@ -1270,6 +1420,58 @@ export const gameCategories: GameCategory[] = [
         ],
         sources: [{ label: '@rodnsam', href: 'https://www.instagram.com/reel/DWiKu6igbW0/' }],
       },
+      {
+        id: 'nose-dive',
+        number: 42,
+        title: 'Nose Dive',
+        players: '1 to 4 players at a time',
+        age: '6+',
+        duration: '1 min per round',
+        setting: 'Indoors',
+        where: ['indoor'],
+        image: noseDive,
+        materials: ['Cotton balls', 'Petroleum jelly (Vaseline)', '2 bowls per player', 'Timer'],
+        setup: [
+          'Put a bowl full of cotton balls at one end of the table and an empty bowl at the other.',
+          'Each player puts a dab of petroleum jelly on the tip of their nose.',
+        ],
+        rules: [
+          'With hands behind their back, the player picks up a cotton ball with their nose.',
+          'They carry it to the empty bowl and drop it in, still without hands.',
+          'If a cotton ball falls on the way, it goes back to the start.',
+          'Whoever moves the most cotton balls in 1 minute wins.',
+        ],
+        tips: [
+          'Harder: put the bowls on chairs at different heights.',
+          'Have wet wipes ready for the noses at the end.',
+          'From the TV show "Minute to Win It".',
+        ],
+        sources: [],
+      },
+      {
+        id: 'balloon-waddle',
+        number: 43,
+        title: 'Balloon Waddle',
+        players: '2 to 8 players at once, or teams in a relay',
+        age: '4+',
+        duration: '1 to 2 min',
+        setting: 'Indoors or outdoors',
+        where: ['indoor', 'outdoor'],
+        image: balloonWaddle,
+        materials: ['1 inflated balloon per player', 'Tape or a cone to mark the finish'],
+        setup: ['Mark a starting line and a finish 5 to 10 metres away.'],
+        rules: [
+          'Each player holds a balloon between their knees, without using their hands.',
+          'On the signal, they waddle to the finish line.',
+          'If the balloon falls or pops, they go back to the start.',
+          'The first to cross the finish with the balloon wins.',
+        ],
+        tips: [
+          'Relay: at the finish, pass the balloon to the next teammate without hands.',
+          'In pairs: the balloon goes between two foreheads or two backs.',
+        ],
+        sources: [],
+      },
     ],
   },
   {
@@ -1282,7 +1484,7 @@ export const gameCategories: GameCategory[] = [
     games: [
       {
         id: 'guess-by-the-noises-duo-edition',
-        number: 37,
+        number: 44,
         title: 'Guess by the Noises (Duo Edition)',
         originalName: 'THE funniest game in history – duo edition (EN)',
         players: '6 to 20 players (2 guess)',
@@ -1315,7 +1517,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'dolphin-training',
-        number: 38,
+        number: 45,
         title: 'Dolphin Training',
         originalName: 'Dolphin training game (EN)',
         players: '8 to 40 players',
@@ -1345,7 +1547,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'find-your-herd',
-        number: 39,
+        number: 46,
         title: 'Find Your Herd',
         originalName: 'Find Your Herd – Filipino parlor game (EN)',
         players: '12 to 60 players',
@@ -1381,7 +1583,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'crossed-hands-on-the-table',
-        number: 40,
+        number: 47,
         title: 'Crossed Hands on the Table',
         originalName: 'Chi ricorda questo gioco? (IT)',
         players: '5 to 12 players',
@@ -1411,6 +1613,39 @@ export const gameCategories: GameCategory[] = [
           { label: '@eugenioflaccovio', href: 'https://www.instagram.com/reel/DEIbFFyPixp/' },
         ],
       },
+      {
+        id: 'minefield',
+        number: 48,
+        title: 'Minefield',
+        players: 'Teams of 2 (several pairs at once)',
+        age: '8+',
+        duration: '5 to 10 min',
+        setting: 'Indoors or outdoors (open space)',
+        where: ['indoor', 'outdoor'],
+        image: minefield,
+        materials: [
+          '1 blindfold per pair',
+          'Lots of "mines": cups, cones, cushions, shoes',
+          'Rope or tape to mark the field',
+        ],
+        setup: [
+          'Mark a rectangular field and scatter the mines all over it.',
+          'Blindfold one player in each pair and stand them at one end.',
+        ],
+        rules: [
+          'The guide stays outside the field and may only give instructions with their voice.',
+          'The blindfolded player has to cross the field without touching any mine.',
+          'Touching a mine sends them back to the start (or out).',
+          'Every pair plays at once, so guides have to make themselves heard over the others.',
+          'The first pair to get across wins; then they swap roles.',
+        ],
+        tips: [
+          'Harder: the guide stands with their back to the field and gets told what is happening by a third player.',
+          'Treasure version: the blindfolded player also has to pick up an object in the middle.',
+          'Safety: soft mines only, and no running.',
+        ],
+        sources: [],
+      },
     ],
   },
   {
@@ -1423,7 +1658,7 @@ export const gameCategories: GameCategory[] = [
     games: [
       {
         id: 'dont-touch-the-bin',
-        number: 41,
+        number: 49,
         title: "Don't Touch the Bin",
         originalName: "Don't Touch the Can (EN)",
         players: '3 to 6 players per round',
@@ -1456,7 +1691,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'ball-up-high-in-pairs',
-        number: 42,
+        number: 50,
         title: 'Ball Up High in Pairs',
         originalName: 'The most ruthless game to play in pairs (EN)',
         players: '10 to 40 players, in pairs',
@@ -1497,7 +1732,7 @@ export const gameCategories: GameCategory[] = [
     games: [
       {
         id: 'balloon-caterpillar',
-        number: 43,
+        number: 51,
         title: 'Balloon Caterpillar',
         originalName: 'Caterpillar relay (EN)',
         players: 'Teams of 6 to 12',
@@ -1526,7 +1761,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'giant-group-maze',
-        number: 44,
+        number: 52,
         title: 'Giant Group Maze',
         originalName: 'Giant group maze (EN)',
         players: '8 to 16 per team',
@@ -1560,7 +1795,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'ladder-in-the-air',
-        number: 45,
+        number: 53,
         title: 'Ladder in the Air',
         originalName: 'Ladder in the air challenge (EN)',
         players: 'Teams of 6 to 10',
@@ -1589,7 +1824,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'emoji-movie-challenge',
-        number: 46,
+        number: 54,
         title: 'Emoji Movie Challenge',
         originalName: 'Emoji-movie challenge (EN)',
         players: 'Teams of 3 to 10',
@@ -1618,7 +1853,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'birthday-line-up-without-talking',
-        number: 47,
+        number: 55,
         title: 'Birthday Line-Up Without Talking',
         originalName: 'Birthday order lineup, no talking (EN)',
         players: '10 to 40 per team',
@@ -1645,7 +1880,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'musical-plates',
-        number: 48,
+        number: 56,
         title: 'Musical Plates',
         originalName: 'Musical paper plates (EN)',
         players: '10 to 100 players',
@@ -1672,7 +1907,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'nukeem-throwing-volleyball',
-        number: 49,
+        number: 57,
         title: "Nuke'em (Throwing Volleyball)",
         originalName: "Nuke'em (EN)",
         players: '2 teams of 6 to 15',
@@ -1699,7 +1934,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'string-cup-pyramid',
-        number: 50,
+        number: 58,
         title: 'String Cup Pyramid',
         originalName: 'Group pyramid going up (EN)',
         players: 'Teams of 4 to 8',
@@ -1732,7 +1967,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'outward-pyramid-reach-the-bottles',
-        number: 51,
+        number: 59,
         title: 'Outward Pyramid (Reach the Bottles)',
         originalName: 'Group pyramid going out (EN)',
         players: 'Teams of 5 to 12',
@@ -1762,7 +1997,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'flip-the-sheet',
-        number: 52,
+        number: 60,
         title: 'Flip the Sheet',
         originalName: 'Flip the sheet (and popcorn) (EN)',
         players: 'Teams of 8 to 15',
@@ -1788,7 +2023,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'four-corners',
-        number: 53,
+        number: 61,
         title: 'Four Corners',
         originalName: '4 corners (EN)',
         players: '10 to 100 players',
@@ -1817,7 +2052,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'group-dances',
-        number: 54,
+        number: 62,
         title: 'Group Dances',
         originalName: 'Learn group dances (EN)',
         players: '20 to 300 players',
@@ -1844,6 +2079,57 @@ export const gameCategories: GameCategory[] = [
         ],
         sources: [{ label: '@campcutler', href: 'https://www.instagram.com/reel/DZX168fBdIs/' }],
       },
+      {
+        id: 'human-knot',
+        number: 63,
+        title: 'Human Knot',
+        players: 'Groups of 8 to 12',
+        age: '8+',
+        duration: '10 to 15 min',
+        setting: 'Indoors or outdoors',
+        where: ['indoor', 'outdoor'],
+        image: humanKnot,
+        materials: [],
+        setup: ['Each group stands in a tight circle, shoulder to shoulder.'],
+        rules: [
+          'Everyone reaches into the middle with their right hand and holds the hand of someone across the circle.',
+          'Then they do the same with their left hand, holding a different person.',
+          'Nobody may hold hands with the person right next to them.',
+          'Without letting go, the group untangles itself by stepping over, ducking under and turning around.',
+          'The knot is undone when everyone forms one big circle (some may face outwards). The first group to finish wins.',
+        ],
+        tips: [
+          'If a hand lets go, the group starts again (or loses 30 seconds).',
+          'Harder: in silence.',
+          'Sometimes the knot becomes two circles: that also counts.',
+        ],
+        sources: [],
+      },
+      {
+        id: 'pass-it',
+        number: 64,
+        title: 'Pass It!',
+        players: '2 teams of 8 to 20',
+        age: '6+',
+        duration: '10 to 15 min',
+        setting: 'Indoors or outdoors',
+        where: ['indoor', 'outdoor'],
+        image: passIt,
+        materials: ['1 small object per team (a ball, a beanbag, an orange)'],
+        setup: ['Each team forms a circle (or a line) and gets its object.'],
+        rules: [
+          'On the signal, each team passes its object all the way around the circle and back to the first player.',
+          'Every player must touch the object.',
+          'The leader announces a new way of passing each round: over the head, between the legs, elbows only, chin to chin…',
+          'If the object falls, it goes back to the first player.',
+          'The first team to complete the round wins a point.',
+        ],
+        tips: [
+          'Several objects at once, going in opposite directions.',
+          'Water version: pass a full cup over the head and see who has the most water left at the end.',
+        ],
+        sources: [],
+      },
     ],
   },
   {
@@ -1856,7 +2142,7 @@ export const gameCategories: GameCategory[] = [
     games: [
       {
         id: 'ring-hunt',
-        number: 55,
+        number: 65,
         title: 'Ring Hunt',
         originalName: 'Despedida de solteiros (PT)',
         players: 'The couple (or 2 teams)',
@@ -1883,7 +2169,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'groom-scratch-cards',
-        number: 56,
+        number: 66,
         title: 'Groom Scratch Cards',
         originalName: 'Despedida de solteiros (PT)',
         players: 'All the guests',
@@ -1913,7 +2199,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'guess-the-brides-dress',
-        number: 57,
+        number: 67,
         title: "Guess the Bride's Dress",
         originalName: 'Despedida de solteiros (PT)',
         players: 'All the guests',
@@ -1934,7 +2220,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'whose-body-part-is-this',
-        number: 58,
+        number: 68,
         title: 'Whose Body Part Is This?',
         originalName: 'Despedida de solteiros (PT)',
         players: 'The couple + audience',
@@ -1959,6 +2245,91 @@ export const gameCategories: GameCategory[] = [
         tips: ['Include smiles or eyes.', 'Tip: a projector turns any game into a "TV show".'],
         sources: [{ label: '@paulonsousa', href: 'https://www.instagram.com/reel/DX1OknrM4du/' }],
       },
+      {
+        id: 'how-well-does-the-bride-know-the-groom',
+        number: 69,
+        title: 'How Well Does the Bride Know the Groom?',
+        players: 'The bride (or the groom) and any number of guests',
+        age: 'Adults',
+        duration: '15 to 30 min',
+        setting: 'Indoors or outdoors',
+        where: ['indoor', 'outdoor'],
+        image: howWellDoesTheBrideKnowTheGroom,
+        materials: [
+          'A list of 15 to 20 questions about the groom',
+          'His answers, collected in advance',
+          'Forfeits or small prizes',
+        ],
+        setup: [
+          'Days before, send the groom the questions ("first date?", "favourite food?", "what annoys him most?") and keep his answers secret.',
+        ],
+        rules: [
+          'At the party, read each question to the bride.',
+          "She answers, then the groom's answer is revealed (on paper or in a video).",
+          'Each wrong answer earns a forfeit; each right one, a point.',
+          'At the end, count how many she got right.',
+        ],
+        tips: [
+          'Reverse it at the bachelor party: the groom answers questions about the bride.',
+          'Guests can play too: whoever knows the groom best wins.',
+          'Record the groom answering on video: his face is half the fun.',
+        ],
+        sources: [],
+      },
+      {
+        id: 'dare-jar',
+        number: 70,
+        title: 'Dare Jar',
+        players: 'The groom (or the bride) and the whole group',
+        age: 'Adults',
+        duration: 'All night',
+        setting: 'Indoors or outdoors',
+        where: ['indoor', 'outdoor'],
+        image: dareJar,
+        materials: ['1 jar or box', 'Slips of paper and pens'],
+        setup: [
+          'At the start, every guest writes 2 or 3 dares on slips of paper, folds them and puts them in the jar.',
+        ],
+        rules: [
+          'Throughout the night, the groom draws a slip whenever the group says so (every bar, every hour…).',
+          'He has to complete the dare before drawing the next one.',
+          'He has 3 "passes" for the whole night to skip a dare he will not do.',
+          'Someone films or photographs each completed dare.',
+        ],
+        tips: [
+          'Set a rule beforehand: nothing dangerous, illegal or that he would regret.',
+          'Use one colour of paper for easy dares and another for hard ones.',
+        ],
+        sources: [],
+      },
+      {
+        id: 'photo-scavenger-hunt',
+        number: 71,
+        title: 'Photo Scavenger Hunt',
+        players: '2 or more teams of 3 to 6',
+        age: 'Adults (or 12+ with an adapted list)',
+        duration: '1 to 3 hours',
+        setting: 'Outdoors (in town)',
+        where: ['outdoor'],
+        image: photoScavengerHunt,
+        materials: ['1 phone per team', 'A list of photo challenges per team'],
+        setup: [
+          'Write a list of 15 to 30 photo challenges with points ("a selfie with a police officer: 3 points", "the groom in a shop window: 2 points").',
+          'Set a time limit and a meeting point.',
+        ],
+        rules: [
+          'Each team gets the list and has to photograph as many challenges as it can.',
+          'The whole team (or at least the groom, if he is with them) has to appear in each photo.',
+          'Teams send the photos to the group chat as they go.',
+          'Back at the meeting point, the jury counts the points; late teams lose points.',
+        ],
+        tips: [
+          'Add bonus challenges announced live in the chat.',
+          'Bar crawl version: one challenge per bar.',
+          'The photos make a great slideshow at the wedding.',
+        ],
+        sources: [],
+      },
     ],
   },
   {
@@ -1970,7 +2341,7 @@ export const gameCategories: GameCategory[] = [
     games: [
       {
         id: 'learn-the-airwalk-in-20-seconds',
-        number: 59,
+        number: 72,
         title: 'Learn the Airwalk in 20 Seconds',
         originalName: 'How to learn the airwalk in 20 seconds (EN)',
         players: 'Any number',
@@ -2006,7 +2377,7 @@ export const gameCategories: GameCategory[] = [
     games: [
       {
         id: 'egg-drop-challenge',
-        number: 60,
+        number: 73,
         title: 'Egg Drop Challenge',
         players: 'Teams of 3 to 5',
         age: '8+',
@@ -2030,7 +2401,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'ball-point-game',
-        number: 61,
+        number: 74,
         title: 'Ball Point Game',
         players: 'Teams of 5 or more',
         age: '8+',
@@ -2054,7 +2425,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'energy-wave',
-        number: 62,
+        number: 75,
         title: 'Energy Wave (Movement + Rhythm)',
         players: 'Any number',
         age: '6+',
@@ -2077,7 +2448,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'coin-maze',
-        number: 63,
+        number: 76,
         title: 'The Coin Maze (Coordination and Teamwork)',
         players: 'Teams of 4',
         age: '8+',
@@ -2093,6 +2464,66 @@ export const gameCategories: GameCategory[] = [
           'The players hold the four corners of the card and must tilt it carefully to move the coin to the exit of the maze.',
         ],
         tips: [],
+        sources: [],
+      },
+      {
+        id: 'helium-stick',
+        number: 77,
+        title: 'Helium Stick',
+        players: 'Teams of 6 to 12',
+        age: '8+',
+        duration: 'About 15 min',
+        setting: 'Indoors or outdoors',
+        where: ['indoor', 'outdoor'],
+        image: heliumStick,
+        goal: 'Lower a stick to the ground together, without anyone losing contact with it.',
+        materials: ['1 long, light stick per team (a tent pole, a broom handle or a hula hoop)'],
+        setup: [
+          'The team stands in two lines facing each other.',
+          'Everyone holds out their index fingers at chest height, and the stick is laid across all the fingers.',
+        ],
+        rules: [
+          'The stick must rest on top of the fingers: no gripping, hooking or pinching.',
+          'Every finger must touch the stick at all times.',
+          'If any finger loses contact, the stick goes back up to the start.',
+          'The team wins when the stick touches the ground.',
+        ],
+        tips: [
+          'It almost always goes up first: everyone pushes to keep contact, so the stick "floats". That is the lesson.',
+          'After the first failed try, give the team 2 minutes to agree on a plan.',
+          'Harder: in silence, or with a hula hoop.',
+        ],
+        sources: [],
+      },
+      {
+        id: 'marshmallow-challenge',
+        number: 78,
+        title: 'Marshmallow Challenge',
+        players: 'Teams of 3 to 5',
+        age: '8+',
+        duration: '18 min (plus 10 min to talk about it)',
+        setting: 'Indoors (table)',
+        where: ['indoor'],
+        image: marshmallowChallenge,
+        goal: 'Build the tallest freestanding tower with a marshmallow on top.',
+        materials: [
+          'Per team: 20 sticks of uncooked spaghetti, 1 metre of tape, 1 metre of string and 1 marshmallow',
+          'Measuring tape',
+          'Timer',
+        ],
+        setup: ['Give every team the same kit on its own table.'],
+        rules: [
+          'Teams have 18 minutes to build a tower from the kit.',
+          'The whole marshmallow must be on top; it cannot be cut or eaten.',
+          'The tower must stand on its own: it cannot hang from the ceiling or be held when time is up.',
+          'The spaghetti, tape and string can be broken or cut.',
+          'The tallest tower, measured from the table to the top of the marshmallow, wins.',
+        ],
+        tips: [
+          'Many towers collapse when the marshmallow goes on at the last second: test early, test often.',
+          'Afterwards, talk about how each team planned and who took the lead.',
+          'Created by Peter Skillman and popularised by Tom Wujec.',
+        ],
         sources: [],
       },
     ],
