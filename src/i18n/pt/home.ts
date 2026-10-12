@@ -19,8 +19,8 @@ export const home: Catalog = {
     ' da KOM e de Samuel Durand que explora o futuro do trabalho nas empresas',
   'Tech, business and cultural conversations about Mindera and software engineering in general':
     'Conversas sobre tecnologia, negócio e cultura na Mindera e sobre engenharia de software em geral',
-  'Two hosts recording a Yellow Box podcast episode on a sofa':
-    'Dois anfitriões a gravar um episódio do podcast Yellow Box num sofá',
+  'Pedro Vicente at a podcast microphone, next to the title "Mobile & Mindera"':
+    'Pedro Vicente ao microfone de um podcast, junto ao título "Mobile & Mindera"',
   "Team Workshop for A'Corda": "Workshop de Equipa para A'Corda",
   "A team & feedback workshop for A'Corda, a non-profit summer camp association.":
     "Um workshop de equipa & feedback para a A'Corda, uma associação sem fins lucrativos de campos de férias.",
