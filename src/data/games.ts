@@ -1,7 +1,9 @@
 /**
  * /games — "Jogos de Grupo", 59 group games for parties, Christmas, camps and
  * bachelor parties, from Pedro Vicente's Google Doc
- * (https://docs.google.com/document/d/1OtB2EOQaHNQXJmdBBEnhErcTn1BxYwAM6JH-4ZvKUVU).
+ * (https://docs.google.com/document/d/1OtB2EOQaHNQXJmdBBEnhErcTn1BxYwAM6JH-4ZvKUVU),
+ * plus a closing chapter of team-building games added since (60 onwards),
+ * which have no source video; their drawings were made in the doc's style.
  * The doc is in Portuguese: the English here is its translation, and the
  * original wording is the `src/i18n/pt/games.ts` catalogue. Page title, lead
  * and the "how to use" prose live in `src/content/pages/games.mdx`.
@@ -73,6 +75,10 @@ import blindfoldedSwappedArmsYoghurt from '../assets/games/blindfolded-swapped-a
 import blindfoldedHoopOrienteering from '../assets/games/blindfolded-hoop-orienteering.webp';
 import whoseBodyPartIsThis from '../assets/games/whose-body-part-is-this.webp';
 import learnTheAirwalkIn20Seconds from '../assets/games/learn-the-airwalk-in-20-seconds.webp';
+import eggDropChallenge from '../assets/games/egg-drop-challenge.webp';
+import ballPointGame from '../assets/games/ball-point-game.webp';
+import energyWave from '../assets/games/energy-wave.webp';
+import coinMaze from '../assets/games/coin-maze.webp';
 
 /** The guide, in the doc's order. Game numbers run on across categories. */
 export const gameCategories: GameCategory[] = [
@@ -1058,7 +1064,7 @@ export const gameCategories: GameCategory[] = [
       {
         id: 'shake-off-the-sticky-notes',
         number: 30,
-        title: 'Shake Off the Sticky Notes',
+        title: 'Shake It Off',
         originalName: 'Quien se quite todos los papelitos primero, gana (ES)',
         players: '4 to 20 players',
         age: '6+',
@@ -1069,7 +1075,7 @@ export const gameCategories: GameCategory[] = [
         materials: ['Post-its (10 to 20 per player)', 'Upbeat music'],
         setup: ["Stick the post-its on each player's clothes (arms, back, legs, head)."],
         rules: [
-          'On the signal (and with music), everyone tries to make the post-its fall off by shaking, dancing and jumping.',
+          'On the signal (and with [music](https://www.youtube.com/watch?v=nfWlot6h_JM)), everyone tries to make the post-its fall off by shaking, dancing and jumping.',
           'No using hands or rubbing against objects or people.',
           'The first to be rid of all their notes wins.',
         ],
@@ -1080,6 +1086,10 @@ export const gameCategories: GameCategory[] = [
         ],
         sources: [
           { label: '@fernandoelitecloser', href: 'https://www.instagram.com/reel/DSX3SpED_uZ/' },
+          {
+            label: '@AbilityInnovationstherapy',
+            href: 'https://www.youtube.com/shorts/HVFIm7Psmxs',
+          },
         ],
       },
       {
@@ -1984,6 +1994,106 @@ export const gameCategories: GameCategory[] = [
         sources: [
           { label: '@lit.familylife', href: 'https://www.instagram.com/reel/DTD5cJ9j3yK/' },
         ],
+      },
+    ],
+  },
+  {
+    id: 'team-building',
+    emoji: '🤝',
+    title: 'Team-Building Games',
+    short: 'Team building',
+    intro: 'Short challenges for teams that have to plan, coordinate and trust each other.',
+    games: [
+      {
+        id: 'egg-drop-challenge',
+        number: 60,
+        title: 'Egg Drop Challenge',
+        players: 'Teams of 3 to 5',
+        age: '8+',
+        duration: '30 to 45 min',
+        setting: 'Indoors (the drop can be outdoors)',
+        where: ['indoor', 'outdoor'],
+        image: eggDropChallenge,
+        goal: 'Build a structure that keeps a raw egg from breaking when it is dropped from a high place.',
+        materials: [
+          '1 raw egg per team',
+          'Office supplies: paper, paper clips, rubber bands, etc.',
+        ],
+        setup: ['Give every team the same materials and pick a high place to drop from.'],
+        rules: [
+          'Each team builds a structure around its raw egg using only the office supplies.',
+          'When time is up, every structure is dropped from the high place.',
+          'The teams whose egg survives win.',
+        ],
+        tips: [],
+        sources: [],
+      },
+      {
+        id: 'ball-point-game',
+        number: 61,
+        title: 'Ball Point Game',
+        players: 'Teams of 5 or more',
+        age: '8+',
+        duration: 'About 20 min',
+        setting: 'Indoors or outdoors',
+        where: ['indoor', 'outdoor'],
+        image: ballPointGame,
+        goal: 'Maximise the number of balls your team can process.',
+        materials: ['Tennis balls'],
+        setup: [],
+        rules: [
+          'The team sets a goal for how many points it thinks it can score.',
+          'Every member of the team must touch the ball for it to count.',
+          'Each ball is passed between team members and must have air time: it never goes straight from hand to hand.',
+          'You cannot pass the ball to the person immediately to your right or left.',
+          'If you drop the ball, you LOSE 2 points and must start that ball again.',
+          'Each ball ends where it started. Every successful ball is 1 point.',
+        ],
+        tips: [],
+        sources: [],
+      },
+      {
+        id: 'energy-wave',
+        number: 62,
+        title: 'Energy Wave (Movement + Rhythm)',
+        players: 'Any number',
+        age: '6+',
+        duration: '10 min',
+        setting: 'Indoors or outdoors',
+        where: ['indoor', 'outdoor'],
+        image: energyWave,
+        goal: 'Create a quick and fun group dynamic.',
+        materials: [],
+        setup: [],
+        rules: [
+          'The group forms a circle.',
+          'One person makes a movement (e.g. a jump, beating their chest, swinging their arms).',
+          'The person on their right has to repeat the movement and add a new one.',
+          'And so on, building a growing sequence.',
+          'Whoever forgets the sequence or gets it wrong is out, or does a funny mini-challenge.',
+        ],
+        tips: [],
+        sources: [],
+      },
+      {
+        id: 'coin-maze',
+        number: 63,
+        title: 'The Coin Maze (Coordination and Teamwork)',
+        players: 'Teams of 4',
+        age: '8+',
+        duration: 'About 7 min',
+        setting: 'Indoors',
+        where: ['indoor'],
+        image: coinMaze,
+        goal: 'Encourage creativity and collaboration.',
+        materials: ['Card stock', 'Pens', 'A coin'],
+        setup: ['Draw a maze on a sheet of card stock for each team.'],
+        rules: [
+          'Draw a large maze on the card and put a coin at the start of the path.',
+          'The players hold the four corners of the card and must tilt it carefully to move the coin to the exit of the maze.',
+        ],
+        tips: [],
+        sources: [],
       },
     ],
   },

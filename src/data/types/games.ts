@@ -21,11 +21,11 @@ export interface GameImageUrl {
 export interface Game<Image = ImageMetadata> {
   /** Anchor id — unique across the page. */
   id: string;
-  /** The doc's running number (1–59), kept across categories. */
+  /** The guide's running number, kept across categories. */
   number: number;
   title: string;
   /** Title of the video the game was collected from, in its own language. */
-  originalName: string;
+  originalName?: string;
   /** Group size, as the doc writes it ("2 to 4 players at a time"). */
   players: string;
   age: string;
@@ -38,9 +38,14 @@ export interface Game<Image = ImageMetadata> {
   image: Image;
   /** A caveat printed above the rules ("rules reconstructed from the video"). */
   note?: string;
+  /** What the group is trying to achieve, when the sheet states it. */
+  goal?: string;
   materials: string[];
   setup: string[];
-  /** Step by step, in order. */
+  /**
+   * Step by step, in order. `[text](https://…)` renders as an external link,
+   * here and in `tips`.
+   */
   rules: string[];
   /** Variations and tips. */
   tips: string[];
