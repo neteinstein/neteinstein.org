@@ -868,10 +868,10 @@ export const games: Catalog = {
   'Teams of 3 holding hands.': 'Equipas de 3 de mãos dadas.',
   'Safety: only touch the ball, never push the person.':
     'Segurança: só tocar na bola, nunca empurrar a pessoa.',
-  'Camp: 3 Hours of Games for 250 Teenagers': 'Acampamento: 3 Horas de Jogos para 250 Adolescentes',
+  'Games for Large Groups (Camps, etc.)': 'Jogos para grupos grandes (acampamentos, etc.)',
   'From the video "we need 3 hours of games for 250 teenage girls": a circuit of stations for huge groups. Split the group into teams of 10 to 15 and rotate them through the stations.':
     'Do vídeo "we need 3 hours of games for 250 teenage girls": um circuito de estações para grupos enormes. Dividam o grupo em equipas de 10 a 15 e façam rodar as estações.',
-  Camp: 'Acampamento',
+  'Large groups (camps, etc.)': 'Jogos para grupos grandes (acampamentos, etc.)',
   'Balloon Caterpillar': 'Lagarta de Balões',
   'Teams of 6 to 12': 'Equipas de 6 a 12',
   '1 balloon per player (minus one)': '1 balão por jogador (menos um)',
@@ -1110,10 +1110,10 @@ export const games: Catalog = {
     'Dança em roda com um no meio a improvisar.',
   'Tip: choose songs everyone already knows.':
     'Dica: escolham músicas que toda a gente já conheça.',
-  'Bachelor Party Olympics': 'Olimpíadas de Despedida de Solteiros',
+  'Bachelor Parties': 'Despedidas de Solteiro',
   'From a Portuguese video of a joint bachelor party for a sister and Gabriel: a whole weekend of "Olympics" with colour teams, wristbands, scores on a board and a final prize. These games also work at birthdays and team-buildings.':
     'Do vídeo em português da despedida de solteiros da irmã e do Gabriel: um fim de semana inteiro de "olimpíadas" por equipas de cores, com pulseiras, pontuações num quadro e um prémio final. Estes jogos funcionam também em aniversários e team-buildings.',
-  'Bachelor party': 'Despedida de solteiros',
+  'Bachelor parties': 'Despedidas de Solteiro',
   'Secret Missions': 'Missões Secretas',
   '10 to 40 players': '10 a 40 jogadores',
   Adults: 'Adultos',

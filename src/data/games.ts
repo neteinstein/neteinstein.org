@@ -1490,8 +1490,8 @@ export const gameCategories: GameCategory[] = [
   {
     id: 'camp',
     emoji: '⛺',
-    title: 'Camp: 3 Hours of Games for 250 Teenagers',
-    short: 'Camp',
+    title: 'Games for Large Groups (Camps, etc.)',
+    short: 'Large groups (camps, etc.)',
     intro:
       'From the video "we need 3 hours of games for 250 teenage girls": a circuit of stations for huge groups. Split the group into teams of 10 to 15 and rotate them through the stations.',
     games: [
@@ -1849,8 +1849,8 @@ export const gameCategories: GameCategory[] = [
   {
     id: 'bachelor-olympics',
     emoji: '💍',
-    title: 'Bachelor Party Olympics',
-    short: 'Bachelor party',
+    title: 'Bachelor Parties',
+    short: 'Bachelor parties',
     intro:
       'From a Portuguese video of a joint bachelor party for a sister and Gabriel: a whole weekend of "Olympics" with colour teams, wristbands, scores on a board and a final prize. These games also work at birthdays and team-buildings.',
     games: [
