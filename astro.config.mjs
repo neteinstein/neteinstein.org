@@ -70,12 +70,15 @@ export default defineConfig({
 
   // The Google Sites original serves the first two as live duplicates. Keep
   // them resolvable so existing inbound links and bookmarks do not 404.
-  // `/tools` became `/games`; the pages under it keep their URLs.
+  // `/tools` became `/games` and `/tools/loopgain` folded into LoopGain's
+  // entry on /my-apps; /tools/summer-camp-games keeps its URL.
   redirects: {
     '/home': to('/'),
     '/visit-porto': to('/porto/visit-porto'),
     '/tools': to('/games'),
     '/pt/tools': to('/pt/games'),
+    '/tools/loopgain': to('/my-apps#loopgain'),
+    '/pt/tools/loopgain': to('/pt/my-apps#loopgain'),
   },
 
   image: {

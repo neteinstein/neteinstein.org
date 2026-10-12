@@ -1,4 +1,4 @@
-/** Shapes for the pages under /tools (/tools/loopgain, /tools/summer-camp-games). */
+/** Shapes for the page left under /tools (/tools/summer-camp-games). */
 import type { ImageMetadata } from 'astro';
 import type { LinkRef } from './shared';
 
@@ -21,7 +21,7 @@ export interface ToolsIndexEntry {
   fileName?: string;
 }
 
-/** An external site shown as a linked screenshot, as /tools/loopgain and /tools/summer-camp-games do. */
+/** An external site shown as a linked screenshot, as /tools/summer-camp-games does. */
 export interface ToolsSiteShowcase {
   /** The site, exactly as the original linked it. */
   href: string;
