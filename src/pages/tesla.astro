@@ -15,9 +15,9 @@ const { t, localize } = useI18n(Astro);
 const { categories, intro, page, thanks } = localize(tesla);
 
 /** How each category's tiles are laid out; `pair` categories share a row. */
-const LAYOUT: Record<TeslaCategory['id'], 'grid' | 'bento' | 'trio' | 'pair'> = {
+const LAYOUT: Record<TeslaCategory['id'], 'grid' | 'trio' | 'pair'> = {
   entertainment: 'grid',
-  'routing-charging': 'bento',
+  'routing-charging': 'grid',
   utils: 'trio',
   fun: 'pair',
   others: 'pair',

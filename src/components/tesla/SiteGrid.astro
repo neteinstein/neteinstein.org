@@ -7,14 +7,13 @@ import type { TeslaSite } from '../../data/types';
  * `data-reveal-stagger`) so the tile inside keeps its own hover lift — both
  * animate `translate`, and on the same element the reveal would win.
  *
- * - `grid`  — the long Entertainment list: 2 → 3 → 4 columns.
+ * - `grid`  — 2 → 3 → 4 columns of equal tiles.
  * - `trio`  — three equal tiles.
- * - `bento` — the first tile is a large feature card, the rest stack beside it.
  * - `single` — one feature tile filling its column.
  */
 interface Props {
   sites: TeslaSite[];
-  layout?: 'grid' | 'trio' | 'bento' | 'single';
+  layout?: 'grid' | 'trio' | 'single';
   class?: string;
 }
 
@@ -23,18 +22,15 @@ const { sites, layout = 'grid', class: className } = Astro.props;
 const columns = {
   grid: 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
   trio: 'sm:grid-cols-2 md:grid-cols-3',
-  bento: 'sm:grid-cols-2 lg:grid-cols-3',
   single: '',
 }[layout];
+const single = layout === 'single';
 ---
 
 <ul class:list={['grid gap-4 sm:gap-6', columns, className]} data-reveal-stagger>
-  {sites.map((site, index) => {
-    const lead = (layout === 'bento' && index === 0) || layout === 'single';
-    return (
-      <li class:list={['grid', layout === 'bento' && index === 0 && 'sm:col-span-2 lg:row-span-2']}>
-        <SiteTile site={site} variant={lead ? 'feature' : 'default'} fill={lead} />
-      </li>
-    );
-  })}
+  {sites.map((site) => (
+    <li class="grid">
+      <SiteTile site={site} variant={single ? 'feature' : 'default'} fill={single} />
+    </li>
+  ))}
 </ul>
