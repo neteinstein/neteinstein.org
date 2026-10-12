@@ -21,6 +21,7 @@ import motherFrunker from '../assets/tesla/motherfrunker.webp';
 import inCarWeb from '../assets/tesla/incarweb.webp';
 import teslaTv from '../assets/tesla/teslatv.webp';
 import aBetterRoutePlanner from '../assets/tesla/abetterrouteplanner.webp';
+import teslaNav from '../assets/tesla/teslanav.webp';
 import comparaErvilhas from '../assets/tesla/compara-ervilhas.webp';
 import mobie from '../assets/tesla/mobie.webp';
 import uveMunicipios from '../assets/tesla/uve-municipios.webp';
@@ -145,6 +146,12 @@ export const categories: TeslaCategory[] = [
         href: 'https://abetterrouteplanner.com/',
         image: aBetterRoutePlanner,
         imageAlt: 'A Better Routeplanner’s trip panel over a dark street map',
+      },
+      {
+        label: 'TeslaNav',
+        href: 'https://teslanav.com/',
+        image: teslaNav,
+        imageAlt: 'TeslaNav’s dark street map with driver-reported alerts pinned around the car',
       },
       {
         label: '(PT) Compara Ervilhas',
