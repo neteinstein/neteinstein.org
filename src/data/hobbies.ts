@@ -60,7 +60,7 @@ export const hobbies: Hobby[] = [
     kicker: 'Summer Camp movement',
     title: 'Campinácios',
     shortTitle: 'Campinácios',
-    href: 'http://www.campinacios.org',
+    href: 'https://www.campinacios.pt',
     visual: {
       kind: 'logo',
       image: campinaciosLogo,
