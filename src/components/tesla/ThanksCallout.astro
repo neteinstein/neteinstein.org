@@ -20,7 +20,9 @@ const { thanks } = Astro.props;
     data-reveal="scale"
     style="--stagger: 4"
   >
-    <span class="mr-1" aria-hidden="true">☕</span>
+    <span class="mr-1" aria-hidden="true">
+      ☕
+    </span>
     {thanks.widgetMessage}
   </p>
   <SupportCallout title={thanks.title} message={thanks.message} />

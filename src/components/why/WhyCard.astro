@@ -37,8 +37,10 @@ const { n, variant = 'default', image, imageAlt = '' } = Astro.props;
         ? '-bottom-16 text-[16rem] sm:hidden'
         : '-bottom-10 text-[10rem] sm:text-[12rem]',
     ]}
-    aria-hidden="true">?</span
+    aria-hidden="true"
   >
+    ?
+  </span>
 
   <div
     class:list={[
@@ -59,27 +61,25 @@ const { n, variant = 'default', image, imageAlt = '' } = Astro.props;
       </div>
     </div>
 
-    {
-      image && (
-        <div class="relative mx-auto mt-8 w-full max-w-[17rem] shrink-0 sm:mx-0 sm:mt-0 sm:w-64">
-          <div
-            class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-[image:var(--gradient-brand)] opacity-30 blur-2xl"
-            aria-hidden="true"
-          />
-          <div class="animate-float">
-            <div class="border-line bg-surface-raised -rotate-3 rounded-[1.75rem] border p-2 shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] group-hover:rotate-0">
-              <Image
-                src={image}
-                alt={imageAlt}
-                widths={[256, 523]}
-                sizes="(min-width: 640px) 16rem, 17rem"
-                class="why-gif aspect-[523/471] w-full rounded-[1.35rem] object-cover"
-              />
-            </div>
+    {image && (
+      <div class="relative mx-auto mt-8 w-full max-w-[17rem] shrink-0 sm:mx-0 sm:mt-0 sm:w-64">
+        <div
+          class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-[image:var(--gradient-brand)] opacity-30 blur-2xl"
+          aria-hidden="true"
+        />
+        <div class="animate-float">
+          <div class="border-line bg-surface-raised -rotate-3 rounded-[1.75rem] border p-2 shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] group-hover:rotate-0">
+            <Image
+              src={image}
+              alt={imageAlt}
+              widths={[256, 523]}
+              sizes="(min-width: 640px) 16rem, 17rem"
+              class="why-gif aspect-[523/471] w-full rounded-[1.35rem] object-cover"
+            />
           </div>
         </div>
-      )
-    }
+      </div>
+    )}
   </div>
 </article>
 

@@ -51,44 +51,44 @@ const { t, localHref } = useI18n(Astro);
       </a>
     </div>
 
-    {
-      feature && (
-        <figure
-          class="group glow-ring border-line bg-surface-raised relative rounded-[2rem] border p-2 shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] hover:-rotate-[0.6deg]"
-          data-reveal="scale"
-        >
-          <Image
-            src={feature.src}
-            alt={feature.alt}
-            widths={[640, 960, 1280]}
-            sizes="(min-width: 1024px) 40rem, 100vw"
-            class="w-full rounded-[1.6rem]"
-          />
-          <figcaption class="flex items-center gap-3 px-3 pt-3 pb-2">
-            <span
-              class="text-on-accent grid size-10 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-110"
-              aria-hidden="true"
-            >
-              <Icon name="play" class="ml-0.5 size-4" fill />
+    {feature && (
+      <figure
+        class="group glow-ring border-line bg-surface-raised relative rounded-[2rem] border p-2 shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] hover:-rotate-[0.6deg]"
+        data-reveal="scale"
+      >
+        <Image
+          src={feature.src}
+          alt={feature.alt}
+          widths={[640, 960, 1280]}
+          sizes="(min-width: 1024px) 40rem, 100vw"
+          class="w-full rounded-[1.6rem]"
+        />
+        <figcaption class="flex items-center gap-3 px-3 pt-3 pb-2">
+          <span
+            class="text-on-accent grid size-10 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)] transition-transform duration-500 ease-[var(--ease-spring)] group-hover:scale-110"
+            aria-hidden="true"
+          >
+            <Icon name="play" class="ml-0.5 size-4" fill />
+          </span>
+          <a
+            href={localHref(feature.href)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm leading-snug font-semibold after:absolute after:inset-0 after:rounded-[2rem] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"
+          >
+            <span class="text-muted block font-mono text-[0.7rem] tracking-[0.14em] uppercase">
+              {t('Watch')}
             </span>
-            <a
-              href={localHref(feature.href)}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm leading-snug font-semibold after:absolute after:inset-0 after:rounded-[2rem] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"
-            >
-              <span class="text-muted block font-mono text-[0.7rem] tracking-[0.14em] uppercase">
-                {t('Watch')}
-              </span>
-              {feature.linkLabel}
-            </a>
-          </figcaption>
-        </figure>
-      )
-    }
+            {feature.linkLabel}
+          </a>
+        </figcaption>
+      </figure>
+    )}
   </div>
 
   <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
-    {era.projects.map((project) => <ProjectCard project={project} />)}
+    {era.projects.map((project) => (
+      <ProjectCard project={project} />
+    ))}
   </div>
 </section>

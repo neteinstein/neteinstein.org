@@ -26,10 +26,12 @@ const [featuredFootprint, ...otherFootprints] = footprints;
 <BaseLayout title={title} description={description}>
   <PageHero title={title} eyebrow={eyebrow} highlight={highlight} quote={{ text: techPage.quote }}>
     <Fragment slot="actions">
-      <ButtonLink href="#portfolio" trailing="arrow-down">{t('Tech Portfolio')}</ButtonLink>
-      <ButtonLink href="#appeared" variant="secondary" trailing="arrow-down"
-        >{t('Appearances')}</ButtonLink
-      >
+      <ButtonLink href="#portfolio" trailing="arrow-down">
+        {t('Tech Portfolio')}
+      </ButtonLink>
+      <ButtonLink href="#appeared" variant="secondary" trailing="arrow-down">
+        {t('Appearances')}
+      </ButtonLink>
     </Fragment>
   </PageHero>
 
@@ -43,8 +45,10 @@ const [featuredFootprint, ...otherFootprints] = footprints;
         >
           {techPage.persona}
         </h2>
-        <div class="mt-6 h-1 w-24 rounded-full bg-[image:var(--gradient-brand)]" aria-hidden="true">
-        </div>
+        <div
+          class="mt-6 h-1 w-24 rounded-full bg-[image:var(--gradient-brand)]"
+          aria-hidden="true"
+        ></div>
       </header>
       <div
         class="border-line bg-surface-raised rounded-3xl border p-6 shadow-[var(--shadow-sm)] sm:p-10"
@@ -59,30 +63,36 @@ const [featuredFootprint, ...otherFootprints] = footprints;
 
   <Section id="appeared" eyebrow={t('Media')} title={techPage.appeared}>
     <div class="grid gap-6 md:grid-cols-2" data-reveal-stagger>
-      {appearances.map((appearance) => <AppearanceCard appearance={appearance} />)}
+      {appearances.map((appearance) => (
+        <AppearanceCard appearance={appearance} />
+      ))}
     </div>
   </Section>
 
   <Section id="footprint" eyebrow={t('Online')} title={techPage.footprint}>
     <div class="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]" data-reveal-stagger>
-      {
-        featuredFootprint && (
-          <FootprintCard footprint={featuredFootprint} featured class="lg:row-span-2" />
-        )
-      }
-      {otherFootprints.map((footprint) => <FootprintCard footprint={footprint} />)}
+      {featuredFootprint && (
+        <FootprintCard footprint={featuredFootprint} featured class="lg:row-span-2" />
+      )}
+      {otherFootprints.map((footprint) => (
+        <FootprintCard footprint={footprint} />
+      ))}
     </div>
   </Section>
 
   <Section id="teacher" eyebrow={t('Teaching')} title={techPage.teacher}>
     <div class="grid gap-5 md:grid-cols-2" data-reveal-stagger>
-      {teaching.map((item) => <TeachingCard teaching={item} />)}
+      {teaching.map((item) => (
+        <TeachingCard teaching={item} />
+      ))}
     </div>
   </Section>
 
   <Section id="portfolio" eyebrow={t('Work')} title={techPage.portfolio}>
     <div class="space-y-20 sm:space-y-24">
-      {portfolio.map((era) => <PortfolioEra era={era} />)}
+      {portfolio.map((era) => (
+        <PortfolioEra era={era} />
+      ))}
     </div>
   </Section>
 

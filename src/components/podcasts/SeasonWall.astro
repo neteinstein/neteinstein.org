@@ -45,19 +45,18 @@ const countLabel = t(episodes.length === 1 ? '{count} episode' : '{count} episod
     </div>
     <span
       class="from-line-strong mb-3 ml-2 hidden h-px flex-1 bg-gradient-to-r to-transparent sm:block"
-      aria-hidden="true"></span>
+      aria-hidden="true"
+    ></span>
   </header>
 
   <ul class:list={['grid gap-5 md:grid-cols-2', threeUp && 'xl:grid-cols-3']} data-reveal-stagger>
-    {
-      episodes.map((episode, index) => (
-        <EpisodeTile
-          episode={episode}
-          show={show}
-          wide={wideLast && index === episodes.length - 1}
-          class={wideLast && index === episodes.length - 1 ? wideClass : undefined}
-        />
-      ))
-    }
+    {episodes.map((episode, index) => (
+      <EpisodeTile
+        episode={episode}
+        show={show}
+        wide={wideLast && index === episodes.length - 1}
+        class={wideLast && index === episodes.length - 1 ? wideClass : undefined}
+      />
+    ))}
   </ul>
 </div>

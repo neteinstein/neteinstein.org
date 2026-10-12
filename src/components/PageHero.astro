@@ -38,8 +38,10 @@ const {
 ---
 
 <section class="relative isolate overflow-hidden">
-  <div class="dot-grid absolute inset-x-0 top-0 -z-10 h-[34rem] opacity-70" aria-hidden="true">
-  </div>
+  <div
+    class="dot-grid absolute inset-x-0 top-0 -z-10 h-[34rem] opacity-70"
+    aria-hidden="true"
+  ></div>
 
   <div
     class:list={[
@@ -48,79 +50,69 @@ const {
     ]}
   >
     <div class="max-w-3xl">
-      {
-        eyebrow && (
-          <p class="eyebrow inline-flex items-center gap-2" data-enter>
-            <span class="bg-accent-2 inline-block size-1.5 animate-pulse rounded-full" />
-            {eyebrow}
-          </p>
-        )
-      }
+      {eyebrow && (
+        <p class="eyebrow inline-flex items-center gap-2" data-enter>
+          <span class="bg-accent-2 inline-block size-1.5 animate-pulse rounded-full" />
+          {eyebrow}
+        </p>
+      )}
       <h1
         class="font-display mt-4 text-[clamp(2.5rem,6vw,4.75rem)] leading-[1.02] font-extrabold tracking-[-0.035em]"
         aria-label={title}
       >
         <SplitWords text={title} highlight={highlight} />
       </h1>
-      {
-        lead && (
-          <p
-            class="text-muted mt-6 max-w-2xl text-lg text-pretty sm:text-xl"
-            data-enter
-            style="--delay: 350"
-          >
-            {lead}
-          </p>
-        )
-      }
-      {
-        quote && (
-          <figure class="relative mt-8 max-w-2xl pl-12" data-enter style="--delay: 450">
-            <Icon name="quote" class="text-accent-2/70 absolute top-0 left-0 size-8" fill />
-            <blockquote class="font-display text-xl leading-snug font-medium text-pretty sm:text-2xl">
-              {quote.text}
-            </blockquote>
-            {quote.author && (
-              <figcaption class="text-muted mt-3 font-mono text-sm">— {quote.author}</figcaption>
-            )}
-          </figure>
-        )
-      }
+      {lead && (
+        <p
+          class="text-muted mt-6 max-w-2xl text-lg text-pretty sm:text-xl"
+          data-enter
+          style="--delay: 350"
+        >
+          {lead}
+        </p>
+      )}
+      {quote && (
+        <figure class="relative mt-8 max-w-2xl pl-12" data-enter style="--delay: 450">
+          <Icon name="quote" class="text-accent-2/70 absolute top-0 left-0 size-8" fill />
+          <blockquote class="font-display text-xl leading-snug font-medium text-pretty sm:text-2xl">
+            {quote.text}
+          </blockquote>
+          {quote.author && (
+            <figcaption class="text-muted mt-3 font-mono text-sm">— {quote.author}</figcaption>
+          )}
+        </figure>
+      )}
       <slot />
-      {
-        Astro.slots.has('actions') && (
-          <div class="mt-8 flex flex-wrap gap-3" data-enter style="--delay: 550">
-            <slot name="actions" />
-          </div>
-        )
-      }
+      {Astro.slots.has('actions') && (
+        <div class="mt-8 flex flex-wrap gap-3" data-enter style="--delay: 550">
+          <slot name="actions" />
+        </div>
+      )}
     </div>
 
-    {
-      image && (
-        <div class="relative mx-auto w-full max-w-xl" data-enter style="--delay: 250">
-          <div
-            class="absolute -inset-6 -z-10 rounded-[2.5rem] bg-[image:var(--gradient-brand)] opacity-25 blur-3xl"
-            aria-hidden="true"
-          />
-          <div class="animate-float">
-            <div class="glow-ring border-line bg-surface-raised rotate-[1.5deg] rounded-[2rem] border p-2 shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] [--angle:0deg] hover:rotate-0">
-              <Image
-                src={image}
-                alt={imageAlt}
-                widths={[480, 720, 960, 1200]}
-                sizes="(min-width: 1024px) 36rem, 100vw"
-                class:list={[
-                  'aspect-[4/3] w-full rounded-[1.6rem]',
-                  imageFit === 'cover' ? 'object-cover' : 'object-contain p-4',
-                ]}
-                loading="eager"
-                fetchpriority="high"
-              />
-            </div>
+    {image && (
+      <div class="relative mx-auto w-full max-w-xl" data-enter style="--delay: 250">
+        <div
+          class="absolute -inset-6 -z-10 rounded-[2.5rem] bg-[image:var(--gradient-brand)] opacity-25 blur-3xl"
+          aria-hidden="true"
+        />
+        <div class="animate-float">
+          <div class="glow-ring border-line bg-surface-raised rotate-[1.5deg] rounded-[2rem] border p-2 shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] [--angle:0deg] hover:rotate-0">
+            <Image
+              src={image}
+              alt={imageAlt}
+              widths={[480, 720, 960, 1200]}
+              sizes="(min-width: 1024px) 36rem, 100vw"
+              class:list={[
+                'aspect-[4/3] w-full rounded-[1.6rem]',
+                imageFit === 'cover' ? 'object-cover' : 'object-contain p-4',
+              ]}
+              loading="eager"
+              fetchpriority="high"
+            />
           </div>
         </div>
-      )
-    }
+      </div>
+    )}
   </div>
 </section>

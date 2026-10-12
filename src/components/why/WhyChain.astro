@@ -13,19 +13,17 @@ const { steps } = Astro.props;
 ---
 
 <div class="mt-7 flex flex-wrap items-center gap-2.5 sm:gap-3" aria-hidden="true">
-  {
-    steps.map((step, index) => (
-      <>
-        {index > 0 && <Icon name="arrow-right" class="text-muted size-4 shrink-0" />}
-        <span
-          class="chain-step border-line-strong text-fg font-display relative isolate overflow-hidden rounded-full border px-5 py-2 text-lg font-bold tracking-tight sm:text-xl"
-          style={`--i: ${index}; --n: ${steps.length}`}
-        >
-          {step}
-        </span>
-      </>
-    ))
-  }
+  {steps.map((step, index) => (
+    <>
+      {index > 0 && <Icon name="arrow-right" class="text-muted size-4 shrink-0" />}
+      <span
+        class="chain-step border-line-strong text-fg font-display relative isolate overflow-hidden rounded-full border px-5 py-2 text-lg font-bold tracking-tight sm:text-xl"
+        style={`--i: ${index}; --n: ${steps.length}`}
+      >
+        {step}
+      </span>
+    </>
+  ))}
 </div>
 
 <style>
