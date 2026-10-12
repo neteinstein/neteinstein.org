@@ -143,7 +143,8 @@ export const portoIntro: PortoIntro = {
     // The quiz photo repeats the Quiz Game card's, so it is decorative here.
     { label: 'Quiz Game', href: '#quiz-game', photo: { image: quizGame, alt: '' } },
   ],
-  supportMessage: 'Thanks for this, here are a few bucks!',
+  supportMessage:
+    'If you really appreciated, and want to support it here are some options, and thank you!',
   triviaLabel: 'Trivia:',
 };
 
