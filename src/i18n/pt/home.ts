@@ -16,8 +16,8 @@ export const home: Catalog = {
   'Mobile Lead, AI-Enabled SDLC Craftsman at Mindera':
     'Mobile Lead e artesão de SDLC potenciado por IA na Mindera',
   'My journey at ': 'O meu percurso na ',
-  ', project by project, from Android Tech Lead to Mobile Lead':
-    ', projeto a projeto, de Android Tech Lead a Mobile Lead',
+  ', project by project, from Developer to Mobile Lead & AI Coach':
+    ', projeto a projeto, de Programador a Mobile Lead & Coach de IA',
   'Tech, business and cultural conversations about Mindera and software engineering in general':
     'Conversas sobre tecnologia, negócio e cultura na Mindera e sobre engenharia de software em geral',
   'Pedro Vicente at a podcast microphone, next to the title "Mobile & Mindera"':
