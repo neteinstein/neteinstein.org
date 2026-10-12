@@ -171,9 +171,6 @@ export const porto: Catalog = {
     'Prepara-te... e pede a “Mega Francesinha”',
   'A huge francesinha on a platter, with a bowl of sauce on the side':
     'Uma francesinha enorme numa travessa, com uma taça de molho ao lado',
-  '12 🔥 hot 🔥 wings in 3 minutes': '12 asas 🔥 picantes 🔥 em 3 minutos',
-  'Poster for the “Jack Fire Challenge” showing a skillet of spicy chicken wings':
-    'Cartaz do “Jack Fire Challenge” com uma frigideira de asas de frango picantes',
 
   // Dessert or Snack
   'Dessert or Snack': 'Sobremesa ou Lanche',
@@ -320,8 +317,6 @@ export const porto: Catalog = {
 
   // Fun / Team Building
   'Fun / Team Building': 'Diversão / Team Building',
-  'Axe Throwing': 'Lançamento de Machado',
-  'A man throwing an axe at a wooden target': 'Um homem a atirar um machado a um alvo de madeira',
   'A player in a glowing vest aiming a laser tag gun in a dark neon arena':
     'Um jogador com um colete luminoso a apontar uma arma de laser tag numa arena escura de néon',
   'A driver in a racing simulator seat facing three screens':

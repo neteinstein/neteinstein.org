@@ -52,7 +52,6 @@ import letraria from '../assets/porto/visit-porto/letraria.webp';
 import rotaDoCha from '../assets/porto/visit-porto/rota-do-cha.webp';
 import catCafe from '../assets/porto/visit-porto/cat-cafe.webp';
 import megaFrancesinha from '../assets/porto/visit-porto/mega-francesinha.webp';
-import hotWingsChallenge from '../assets/porto/visit-porto/hot-wings-challenge.webp';
 import pastelDeNata from '../assets/porto/visit-porto/pastel-de-nata.webp';
 import padariaRibeiro from '../assets/porto/visit-porto/padaria-ribeiro.webp';
 import eclairs from '../assets/porto/visit-porto/eclairs.webp';
@@ -90,7 +89,6 @@ import casteloDoQueijo from '../assets/porto/visit-porto/castelo-do-queijo.webp'
 import matosinhosBeach from '../assets/porto/visit-porto/matosinhos-beach.webp';
 import piscinaDasMares from '../assets/porto/visit-porto/piscina-das-mares.webp';
 import cannedFishFactory from '../assets/porto/visit-porto/canned-fish-factory.webp';
-import axeThrowing from '../assets/porto/visit-porto/axe-throwing.webp';
 import laserTag from '../assets/porto/visit-porto/laser-tag.webp';
 import racingSimulator from '../assets/porto/visit-porto/racing-simulator.webp';
 import vrNeonRoom from '../assets/porto/visit-porto/vr-neon-room.webp';
@@ -790,17 +788,6 @@ export const portoGuide: PlaceGroup[] = [
           },
         ],
       },
-      {
-        id: 'hot-wings',
-        title: '12 🔥 hot 🔥 wings in 3 minutes',
-        venues: [{ name: 'USA Axe Club', href: 'https://usaxeclub.com/index.php?lang=po' }],
-        photos: [
-          {
-            image: hotWingsChallenge,
-            alt: 'Poster for the “Jack Fire Challenge” showing a skillet of spicy chicken wings',
-          },
-        ],
-      },
     ],
   },
   {
@@ -1319,12 +1306,6 @@ export const portoGuide: PlaceGroup[] = [
         id: 'porto-matosinhos',
         title: 'Porto & Matosinhos',
         places: [
-          {
-            id: 'axe-throwing',
-            title: 'Axe Throwing',
-            venues: [{ name: 'USA Axe Club', href: 'https://usaxeclub.com/index.php?lang=po' }],
-            photos: [{ image: axeThrowing, alt: 'A man throwing an axe at a wooden target' }],
-          },
           {
             id: 'lasertag',
             title: 'LaserTag',
