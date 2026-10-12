@@ -13,10 +13,11 @@ export const home: Catalog = {
   'Co-Founder of ': 'Co-fundador do ',
   'Used my prankster side to try to gather money for charities @ ':
     'Usei o meu lado brincalhão para tentar angariar dinheiro para instituições de solidariedade @ ',
-  ' - A ': ' - Um ',
-  Documentary: 'Documentário',
-  ' by KOM and Samuel Durand exploring the future of work within companies':
-    ' da KOM e de Samuel Durand que explora o futuro do trabalho nas empresas',
+  'Mobile Lead, AI-Enabled SDLC Craftsman at Mindera':
+    'Mobile Lead e artesão de SDLC potenciado por IA na Mindera',
+  'My journey at ': 'O meu percurso na ',
+  ', project by project, from Android Tech Lead to Mobile Lead':
+    ', projeto a projeto, de Android Tech Lead a Mobile Lead',
   'Tech, business and cultural conversations about Mindera and software engineering in general':
     'Conversas sobre tecnologia, negócio e cultura na Mindera e sobre engenharia de software em geral',
   'Pedro Vicente at a podcast microphone, next to the title "Mobile & Mindera"':
