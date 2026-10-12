@@ -38,6 +38,8 @@ export const tesla: Catalog = {
   'Routing & Charging': 'Rotas & Carregamento',
   'A Better Routeplanner’s trip panel over a dark street map':
     'O painel de viagem do A Better Routeplanner sobre um mapa de ruas escuro',
+  'TeslaNav’s dark street map with driver-reported alerts pinned around the car':
+    'O mapa de ruas escuro do TeslaNav com alertas reportados por condutores à volta do carro',
   'Light map of Portugal and western Spain': 'Mapa claro de Portugal e do oeste de Espanha',
   'Mobi.E page on how to charge an electric vehicle, with a charging cable plugged into a car':
     'Página da Mobi.E sobre como carregar um veículo elétrico, com um cabo de carregamento ligado a um carro',
