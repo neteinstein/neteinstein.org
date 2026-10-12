@@ -68,7 +68,7 @@ export const NAV: NavItem[] = [
     ],
   },
   { label: 'My Apps', href: '/my-apps' },
-  { label: 'Tools', href: '/tools' },
+  { label: 'Games', href: '/games' },
   {
     label: 'Hobbies',
     children: [

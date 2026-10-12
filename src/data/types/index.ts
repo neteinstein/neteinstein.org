@@ -16,6 +16,7 @@ export * from './improver';
 export * from './articles';
 export * from './apps';
 export * from './tools';
+export * from './games';
 export * from './hobbies';
 export * from './porto';
 export * from './kids';

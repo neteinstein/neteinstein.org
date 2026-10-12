@@ -17,7 +17,7 @@ export const ui: Catalog = {
   Articles: 'Artigos',
   'Why?': 'Porquê?',
   'My Apps': 'As Minhas Apps',
-  Tools: 'Ferramentas',
+  Games: 'Jogos',
   LoopGain: 'LoopGain',
   'Summer Camp Games': 'Jogos de Campo de Férias',
   Hobbies: 'Passatempos',

@@ -1,0 +1,114 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Icon from '../Icon.astro';
+import type { GameCategory } from '../../data/types';
+import { useI18n } from '../../i18n';
+
+/**
+ * The guide's chapters as an illustrated bento: one tile per category (its
+ * first game's drawing behind it), plus a closing tile for the summer camp
+ * book further down. Every link is a plain in-page anchor, so it works without
+ * JS.
+ *
+ * The drawings repeat a card illustration further down, so they are
+ * decorative here.
+ */
+interface Props {
+  categories: GameCategory[];
+  extra: { label: string; href: string; image?: ImageMetadata };
+}
+
+const { categories, extra } = Astro.props;
+const { t } = useI18n(Astro);
+
+/** Bento spans for a 3-column grid, by position: big, a pair, a row of three, then the extra. */
+const spans = [
+  'lg:col-span-2 lg:row-span-2 min-h-[22rem]',
+  'min-h-[13rem]',
+  'min-h-[13rem]',
+  'min-h-[15rem]',
+  'min-h-[15rem]',
+  'min-h-[15rem]',
+  'min-h-[15rem]',
+];
+
+const gradient =
+  'absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--surface-raised)_18%,color-mix(in_oklch,var(--surface-raised)_78%,transparent)_48%,transparent_85%)]';
+const tile =
+  'group glow-ring border-line relative isolate flex flex-col justify-end overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[var(--shadow-lg)]';
+const link =
+  'inline-flex items-center gap-2 after:absolute after:inset-0 after:rounded-3xl focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]';
+---
+
+<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
+  {
+    categories.map((category, index) => (
+      <li class:list={[tile, spans[index] ?? 'min-h-[13rem]']}>
+        {category.games[0] && (
+          <Image
+            src={category.games[0].image}
+            alt=""
+            widths={[480, 800]}
+            sizes="(min-width: 1024px) 40rem, (min-width: 640px) 50vw, 100vw"
+            class="absolute inset-0 -z-20 size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-110"
+          />
+        )}
+        <div class={gradient} aria-hidden="true" />
+        <div class="p-5 sm:p-6">
+          <p class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
+            <span class="text-gradient">{String(index + 1).padStart(2, '0')}</span>
+            <span aria-hidden="true"> · </span>
+            {t(category.games.length === 1 ? '{count} game' : '{count} games', {
+              count: category.games.length,
+            })}
+          </p>
+          <h3
+            class:list={[
+              'font-display mt-1.5 leading-tight font-bold tracking-tight text-balance',
+              index === 0 ? 'text-3xl sm:text-4xl' : 'text-2xl',
+            ]}
+          >
+            <a href={`#${category.id}`} class={link}>
+              <span aria-hidden="true">{category.emoji}</span>
+              {category.short}
+              <Icon
+                name="arrow-down"
+                class="text-accent size-5 shrink-0 transition-transform duration-300 group-hover:translate-y-1"
+              />
+            </a>
+          </h3>
+        </div>
+      </li>
+    ))
+  }
+  <li class:list={[tile, 'bg-surface-raised min-h-[15rem] sm:col-span-2']}>
+    {
+      extra.image && (
+        <Image
+          src={extra.image}
+          alt=""
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 1024px) 48rem, 100vw"
+          class="absolute inset-0 -z-20 size-full object-cover object-top transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-110"
+        />
+      )
+    }
+    <div class={gradient} aria-hidden="true"></div>
+    <div class="p-5 sm:p-6">
+      <p class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
+        <Icon name="sparkles" class="text-accent-2 inline size-3.5 align-[-0.15em]" />{' '}
+        {t('And also')}
+      </p>
+      <h3 class="font-display mt-1.5 text-2xl leading-tight font-bold tracking-tight">
+        <a href={extra.href} class={link}>
+          {extra.label}
+          <Icon
+            name="arrow-down"
+            class="text-accent size-5 shrink-0 transition-transform duration-300 group-hover:translate-y-1"
+          />
+        </a>
+      </h3>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,113 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import ButtonLink from '../components/ButtonLink.astro';
+import Icon from '../components/Icon.astro';
+import GameFilter from '../components/games/GameFilter.tsx';
+import CategoryTiles from '../components/games/CategoryTiles.astro';
+import ToolFeature from '../components/tools/ToolFeature.astro';
+import { resolveGuide } from '../components/games/guide';
+import { navPages } from '../config/site';
+import * as games from '../data/games';
+import { useI18n } from '../i18n';
+import { getPage } from '../i18n/content';
+
+const PATH = '/games';
+const SUMMER_CAMP_ID = 'summer-camp-games';
+
+const { t, locale, localize } = useI18n(Astro);
+const { gameCategories, gamesHero, summerCampGames } = localize(games);
+const entry = await getPage('games', locale);
+const { Content: HowToUse } = await render(entry);
+const summerCamp = (await getPage(summerCampGames.page, locale)).data;
+
+const navLabel = navPages().find((page) => page.href === PATH)?.label;
+const pageName = navLabel ? t(navLabel) : entry.data.title;
+const guide = await resolveGuide(gameCategories, (game) => t('Illustration: {game}', { game }));
+---
+
+<BaseLayout title={pageName} description={entry.data.description}>
+  <PageHero
+    title={entry.data.title}
+    eyebrow={entry.data.eyebrow}
+    highlight={entry.data.highlight}
+    lead={entry.data.lead}
+    image={gamesHero.image}
+    imageAlt={gamesHero.alt}
+  >
+    <ButtonLink slot="actions" href="#guide" size="lg" trailing="arrow-down">
+      {t('Jump to the games')}
+    </ButtonLink>
+  </PageHero>
+
+  <Section id="how-to-use" eyebrow={t('Before you start')} title={t('How to use this guide')}>
+    <div
+      class="border-line bg-surface-raised relative overflow-hidden rounded-3xl border p-6 shadow-[var(--shadow-sm)] sm:p-8"
+      data-reveal
+    >
+      <span
+        class="text-accent-3 mb-4 grid size-11 place-items-center rounded-2xl bg-[color-mix(in_oklch,var(--accent-3)_16%,transparent)]"
+        aria-hidden="true"
+      >
+        <Icon name="sparkles" class="size-5" />
+      </span>
+      <div
+        class="text-muted flex max-w-3xl flex-col gap-4 text-lg leading-relaxed text-pretty [&_p]:m-0 [&_strong]:text-[var(--text)]"
+      >
+        <HowToUse />
+      </div>
+    </div>
+  </Section>
+
+  <Section id="chapters" eyebrow={t('Jump to')} title={t('Pick a kind of game')}>
+    <CategoryTiles
+      categories={gameCategories}
+      extra={{ label: summerCamp.title, href: `#${SUMMER_CAMP_ID}`, image: summerCampGames.image }}
+    />
+  </Section>
+
+  <Section id="guide">
+    <GameFilter
+      client:visible
+      categories={guide}
+      labels={{
+        search: t('Search the games'),
+        placeholder: t('Search a game, a material, an age…'),
+        category: t('Category'),
+        setting: t('Indoor/Outdoor'),
+        all: t('All'),
+        indoor: t('Indoors'),
+        outdoor: t('Outdoors'),
+        count: t('{shown} of {total} games'),
+        empty: t('Nothing matches those filters.'),
+        clear: t('Clear the search'),
+        game: t('{count} game'),
+        games: t('{count} games'),
+        players: t('Group'),
+        age: t('Age'),
+        duration: t('Duration'),
+        where: t('Where'),
+        howToPlay: t('How to play'),
+        materials: t('Materials'),
+        setup: t('Setup'),
+        rules: t('Rules, step by step'),
+        tips: t('Variations and tips'),
+        sources: t('Original video on Instagram:'),
+        originalName: t('Original title:'),
+      }}
+    />
+  </Section>
+
+  <Section id={SUMMER_CAMP_ID} width="default" eyebrow={t('And also')}>
+    <ToolFeature
+      title={summerCamp.title}
+      href={summerCampGames.href}
+      description={summerCamp.lead}
+      links={summerCampGames.links}
+      image={summerCampGames.image}
+      imageAlt={summerCampGames.imageAlt}
+    />
+  </Section>
+</BaseLayout>
