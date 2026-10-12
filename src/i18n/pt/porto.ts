@@ -23,7 +23,8 @@ export const porto: Catalog = {
   'Let me give you a glimpse of what you can find:':
     'Deixa-me mostrar-te um pouco do que podes encontrar:',
   '(click below to jump to that section!)': '(clica abaixo para saltar para essa secção!)',
-  'Thanks for this, here are a few bucks!': 'Obrigado por isto, aqui vão uns trocos!',
+  'If you really appreciated, and want to support it here are some options, and thank you!':
+    'Se gostaste mesmo e queres apoiar, aqui ficam algumas opções. Obrigado!',
   'Trivia:': 'Curiosidades:',
 
   // Where to eat?
