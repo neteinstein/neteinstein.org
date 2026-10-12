@@ -134,7 +134,7 @@ export const portoIntro: PortoIntro = {
   history: 'This list was first published in 2023 and has been updated monthly.',
   support: [
     'If this was useful to you (and you think it makes sense), encourage me to keep updating it with a small gift, via ',
-    { label: 'Revolut', href: 'http://revolut.me/neteinstein' },
+    { label: 'Revolut', href: 'https://revolut.me/neteinstein' },
     ' or the icon below.',
   ],
   jumpTitle: 'Let me give you a glimpse of what you can find:',
@@ -1330,7 +1330,7 @@ export const portoGuide: PlaceGroup[] = [
             title: 'LaserTag',
             venues: [
               { name: 'LaserZone', href: 'https://www.instagram.com/laserzone.pt' },
-              { name: 'laserx.pt', href: 'http://laserx.pt', joiner: 'or' },
+              { name: 'laserx.pt', href: 'https://laserx.pt', joiner: 'or' },
             ],
             photos: [
               {
@@ -1580,7 +1580,7 @@ export const portoGuide: PlaceGroup[] = [
             venues: [
               {
                 name: 'Be a Band',
-                href: 'http://www.beaband.pt/?gclid=Cj0KCQiAgaGgBhC8ARIsAAAyLfFaHqWvqMXTlQxzuHmhj4-abvvcKwwj7q8MNFkibL_S9fVZKe4hcFwaAmO6EALw_wcB',
+                href: 'https://www.beaband.pt/',
               },
             ],
             photos: [

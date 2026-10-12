@@ -1,0 +1,68 @@
+name: links
+
+# Weekly check of every external link on the built site. External URLs are kept
+# out of PR CI on purpose (a third-party outage must never turn a PR red), so
+# this run reports instead of failing: it keeps one open "broken-links" issue
+# up to date, and closes it once everything resolves again.
+on:
+  schedule:
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  ASTRO_TELEMETRY_DISABLED: '1'
+
+jobs:
+  check:
+    name: Check external links
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Check links
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config lychee.toml --root-dir ${{ github.workspace }}/dist './dist/**/*.html'
+          output: lychee/report.md
+          fail: false
+
+      - name: Open or update the broken-links issue
+        if: steps.lychee.outputs.exit_code != 0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create broken-links --color d73a4a --description 'Reported by the weekly link check' --force
+          number=$(gh issue list --label broken-links --state open --json number --jq '.[0].number')
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --body-file lychee/report.md
+          else
+            gh issue create --title 'Broken external links' --label broken-links --body-file lychee/report.md
+          fi
+
+      - name: Close the issue once every link resolves
+        if: steps.lychee.outputs.exit_code == 0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          number=$(gh issue list --label broken-links --state open --json number --jq '.[0].number')
+          if [ -n "$number" ]; then
+            gh issue close "$number" --comment 'The weekly link check passed: every external link resolves again.'
+          fi

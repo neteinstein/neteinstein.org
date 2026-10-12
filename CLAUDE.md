@@ -47,6 +47,10 @@ requirement**.
   (`data-reveal`, `data-reveal-stagger`, `data-enter`, `data-spotlight`,
   `.glow-ring`, `.text-gradient`); content must stay fully visible with JS off
   and under `prefers-reduced-motion`.
+- **Social cards are generated.** BaseLayout points `og:image` at
+  `/og/<page>.jpg`, which `src/integrations/og-cards.ts` draws after the build
+  from the page's `og:title` and `og:description`. A good `description` is the
+  card; pass `ogImage` only to override it.
 - **Images** live in `src/assets/<area>/<page>/` and render through
   `astro:assets`. Import them from the crawl with `npm run import:image`.
 
@@ -56,7 +60,10 @@ requirement**.
 npm run format:check && npm run lint && npm run typecheck && npm run build && npm run check:links && npm run check:base
 ```
 
-CI runs exactly these, in this order.
+CI runs exactly these, in this order. `lighthouse.yml` runs separately on every
+PR and fails when a sampled page drops below the accessibility, SEO or
+best-practice scores in `lighthouserc.json`; external links are only checked
+weekly (`links.yml`), never on PRs.
 
 If this checkout is a git worktree nested inside another checkout of the repo
 (e.g. under `.claude/worktrees/`), Vite may resolve the outer checkout's

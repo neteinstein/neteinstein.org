@@ -9,6 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { SITE, navPages } from './src/config/site.ts';
 import { DEFAULT_LOCALE, LOCALES, LOCALE_INFO } from './src/i18n/config.ts';
 import githubPages from './src/integrations/github-pages.ts';
+import ogCards from './src/integrations/og-cards.ts';
 import rehypeBaseLinks from './src/integrations/rehype-base-links.ts';
 
 /**
@@ -43,6 +44,7 @@ export default defineConfig({
         locales: Object.fromEntries(LOCALES.map((locale) => [locale, LOCALE_INFO[locale].tag])),
       },
     }),
+    ogCards({ site: SITE.url, siteTitle: SITE.title }),
     githubPages(),
   ],
 

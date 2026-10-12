@@ -11,7 +11,7 @@ import cadernoDeJogosWebsite from '../assets/tools/summer-camp-games/caderno-de-
 
 /** /tools/loopgain: a screenshot of the LoopGain site, linked to it, then the link itself. */
 export const loopgain: ToolsSiteShowcase = {
-  href: 'http://www.loopgain.org',
+  href: 'https://www.loopgain.org',
   label: 'www.loopgain.org',
   image: loopgainWebsite,
   imageAlt:

@@ -24,7 +24,12 @@ interface Props {
   canonical?: string;
   /** Suppress the "| Pedro Vicente" suffix (used on the home page). */
   bareTitle?: boolean;
-  /** Site-absolute path to a page-specific social card under `public/`. */
+  /**
+   * Site-absolute path to the social card. Defaults to `/og/<page>.jpg`, drawn
+   * at build time from this page's title and description
+   * (`src/integrations/og-cards.ts`); the home and 404 pages use the portrait
+   * card in `public/`.
+   */
   ogImage?: string;
   /**
    * Whether this page exists in every locale. Off for the 404 page, which
@@ -40,7 +45,7 @@ const {
   description = t(SITE.description),
   canonical,
   bareTitle = false,
-  ogImage = SITE.ogImage,
+  ogImage: ogImageProp,
   translated = true,
 } = Astro.props;
 
@@ -50,6 +55,14 @@ const path = canonical ?? currentPage(Astro.url);
 // Canonical URLs always name the custom domain, even on the github.io preview,
 // so search engines never index the preview as a duplicate.
 const canonicalUrl = new URL(localizePath(path, locale), SITE.url);
+// Prefixed by hand rather than with `localizePath`, which leaves pages outside
+// the nav (the easter egg) unprefixed and would give both languages one card.
+const localePrefix = locale === DEFAULT_LOCALE ? '' : `/${locale}`;
+const ogImage =
+  ogImageProp ??
+  (path === '/' || !translated
+    ? SITE.ogImage
+    : `/og${localePrefix}${path.replace(/\/+$/, '')}.jpg`);
 const ogImageUrl = new URL(ogImage, SITE.url);
 
 const alternates = translated
@@ -94,6 +107,12 @@ const personSchema = {
     <link rel="icon" href={withBase('/favicon.png')} type="image/png" sizes="192x192" />
     <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
     <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${SITE.title} — talks & articles`}
+      href={withBase('/rss.xml')}
+    />
     <link rel="canonical" href={canonicalUrl.href} />
     {
       alternates.map((alternate) => (

@@ -1,0 +1,25 @@
+# External link check, run weekly by .github/workflows/links.yml against dist/.
+# Internal links are covered on every PR by `npm run check:links`, so the site's
+# own domains are skipped here. Run locally after a build with:
+#   lychee --config lychee.toml --root-dir "$PWD/dist" './dist/**/*.html'
+
+scheme = ["https", "http"]
+exclude = [
+  '^https?://(www\.)?pedrovicente\.pt',
+  '^https?://(www\.)?neteinstein\.org',
+  # Facebook and Instagram answer 400/login walls to anything that is not a
+  # signed-in browser, live page or not.
+  '^https?://([a-z-]+\.)?facebook\.com',
+  '^https?://(www\.)?instagram\.com',
+]
+exclude_all_private = true
+
+# 403/429 are bot walls and rate limits (Inc., Medium), and LinkedIn answers 999
+# to anything that is not a browser — none of them mean the page is gone.
+accept = ["200..=299", "403", "429", "999"]
+
+max_retries = 2
+retry_wait_time = 5
+timeout = 30
+max_concurrency = 8
+user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36"

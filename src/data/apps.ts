@@ -18,8 +18,8 @@ import allowedNamesIcon from '../assets/my-apps/allowed-names-icon.webp';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
 
-const REVOLUT = 'http://revolut.me/neteinstein';
-const LOOPGAIN = 'http://www.loopgain.org';
+const REVOLUT = 'https://revolut.me/neteinstein';
+const LOOPGAIN = 'https://www.loopgain.org';
 
 /** Second line of the intro, under "Want to help me keep publishing apps for free?". */
 export const donate: RichText = [
@@ -73,7 +73,7 @@ export const apps: AppListing[] = [
         store: 'google-play',
         href: 'https://play.google.com/store/apps/details?id=org.neteinstein.family',
       },
-      { store: 'web', href: 'http://family.loopgain.org' },
+      { store: 'web', href: 'https://family.loopgain.org' },
     ],
   },
   {
@@ -89,7 +89,7 @@ export const apps: AppListing[] = [
         store: 'google-play',
         href: 'https://play.google.com/store/apps/details?id=org.neteinstein.couples',
       },
-      { store: 'web', href: 'http://couples.loopgain.org' },
+      { store: 'web', href: 'https://couples.loopgain.org' },
     ],
   },
   {
@@ -129,7 +129,7 @@ export const apps: AppListing[] = [
         store: 'google-play',
         href: 'https://play.google.com/store/apps/details?id=org.neteinstein.pickaname',
       },
-      { store: 'web', href: 'http://nomespermitidosemportugal.neteinstein.org' },
+      { store: 'web', href: 'https://nomespermitidosemportugal.neteinstein.org' },
     ],
   },
 ];

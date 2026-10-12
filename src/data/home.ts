@@ -22,7 +22,7 @@ export const roles: Role[] = [
     emoji: '📱',
     text: [
       'Mobile Services Lead & Improver @ ',
-      { label: 'Mindera', href: 'http://www.mindera.com' },
+      { label: 'Mindera', href: 'https://www.mindera.com' },
     ],
   },
   { emoji: '🧠', text: ['AI Coach'] },
@@ -32,7 +32,7 @@ export const roles: Role[] = [
       'Helping ',
       { label: 'teams get better', href: '/what-i-do/improver' },
       ' with ',
-      { label: 'LoopGain', href: 'http://www.loopgain.org' },
+      { label: 'LoopGain', href: 'https://www.loopgain.org' },
     ],
   },
   {
@@ -42,7 +42,7 @@ export const roles: Role[] = [
   {
     emoji: '🤖',
     past: true,
-    text: ['Co-Founder of ', { label: 'GDG Porto', href: 'http://www.gdgporto.xyz' }],
+    text: ['Co-Founder of ', { label: 'GDG Porto', href: 'https://www.gdgporto.xyz' }],
   },
   {
     emoji: '🌶️',

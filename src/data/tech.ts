@@ -142,13 +142,13 @@ export const footprints: Footprint[] = [
 
 export const teaching: Teaching[] = [
   {
-    name: { label: 'Instituto Superior Politécnico Gaya', href: 'http://www.ispgaya.pt' },
+    name: { label: 'Instituto Superior Politécnico Gaya', href: 'https://www.ispgaya.pt' },
     lines: [
       [
         'Invited Lecturer of Mobile Communications — ',
         {
           label: 'Computer Science Engineering Degree',
-          href: 'http://www.ispgaya.pt/site/eng/courses/view/2',
+          href: 'https://www.ispgaya.pt/site/eng/courses/view/2',
         },
       ],
     ],
@@ -156,7 +156,7 @@ export const teaching: Teaching[] = [
     image: {
       src: ispgayaLogo,
       alt: 'ISPGAYA logo',
-      href: 'http://www.ispgaya.pt/site/eng/courses/view/2',
+      href: 'https://www.ispgaya.pt/site/eng/courses/view/2',
     },
   },
   {
@@ -185,7 +185,7 @@ export const portfolio: PortfolioEra[] = [
     label: '2016 onwards',
     employer: {
       name: 'Mindera',
-      href: 'http://www.mindera.com',
+      href: 'https://www.mindera.com',
       src: minderaLogo,
       alt: 'Mindera software craft logo',
     },
@@ -515,7 +515,7 @@ export const portfolio: PortfolioEra[] = [
     label: '2009-2016',
     employer: {
       name: 'WIT Software',
-      href: 'http://www.wit-software.com',
+      href: 'https://www.wit-software.com',
       src: witSoftwareLogo,
       alt: 'WIT Software logo',
     },
