@@ -5278,4 +5278,1372 @@ export const games: Catalog = {
     'Pedir uma página aos pais e aos avós também.',
   "Works just as well for milestone birthdays and colleagues' farewells.":
     'Funciona igualmente para aniversários redondos e despedidas de colegas.',
+  'Musical Chairs': 'Dança das Cadeiras',
+  'Chairs (one fewer than the players)': 'Cadeiras (uma a menos do que os jogadores)',
+  'Put the chairs in a row, back to back, alternating the side they face.':
+    'Pôr as cadeiras em fila, costas com costas, viradas alternadamente para cada lado.',
+  'The players stand in a circle around the chairs.':
+    'Os jogadores ficam em roda à volta das cadeiras.',
+  'While the music plays, everyone walks around the chairs.':
+    'Enquanto a música toca, todos andam à volta das cadeiras.',
+  'When it stops, each player sits on the nearest free chair.':
+    'Quando para, cada jogador senta-se na cadeira livre mais próxima.',
+  'Whoever is left standing is out.': 'Quem fica de pé sai do jogo.',
+  'Take away one chair and start the music again.': 'Tira-se uma cadeira e a música recomeça.',
+  'The last player sitting on the last chair wins.': 'Ganha quem se sentar na última cadeira.',
+  'Nobody may touch the chairs while the music plays, or sit before it stops.':
+    'Ninguém pode tocar nas cadeiras enquanto a música toca, nem sentar-se antes de ela parar.',
+  'Gentler version for small children: nobody is out, the chairs just get fewer and everyone has to fit on them.':
+    'Versão mais suave para os mais pequenos: ninguém sai, as cadeiras é que diminuem e todos têm de caber nelas.',
+  'Christmas version: Christmas songs, and a small treat for whoever goes out.':
+    'Versão de Natal: músicas de Natal e um pequeno doce para quem sai.',
+  'Hot Potato': 'Batata Quente',
+  '1 small object to pass (a ball, a beanbag or a real potato)':
+    '1 objeto pequeno para passar (uma bola, um saquinho de feijão ou uma batata a sério)',
+  'Everyone sits or stands in a circle.': 'Todos se sentam ou ficam de pé em roda.',
+  'Someone in charge of the music stands with their back to the circle.':
+    'O responsável pela música fica de costas para a roda.',
+  'While the music plays, the "potato" is passed from hand to hand as fast as possible, as if it burned.':
+    'Enquanto a música toca, a «batata» passa de mão em mão o mais depressa possível, como se queimasse.',
+  'When the music stops, whoever is holding the potato is out.':
+    'Quando a música para, quem tiver a batata na mão sai do jogo.',
+  'The game goes on until only one player is left, the winner.':
+    'O jogo continua até sobrar só um jogador, o vencedor.',
+  'Without music: set a kitchen timer for a random time and pass it with the potato.':
+    'Sem música: acertar um temporizador de cozinha para um tempo ao calhas e passá-lo com a batata.',
+  'Nobody out: whoever is caught does a small dare or answers a question, and stays in.':
+    'Ninguém sai: quem é apanhado faz um pequeno desafio ou responde a uma pergunta, e continua.',
+  'Add a second potato going the other way.':
+    'Juntar uma segunda batata a andar no sentido contrário.',
+  'Pass the Parcel': 'Passa o Embrulho',
+  '1 small present wrapped in many layers of paper (one per player)':
+    '1 presente pequeno embrulhado em muitas camadas de papel (uma por jogador)',
+  'Small treats or forfeits between the layers (optional)':
+    'Pequenos doces ou desafios entre as camadas (opcional)',
+  'Wrap the present beforehand, one layer per player, with a treat or a task between layers if you like.':
+    'Embrulhar o presente antes, uma camada por jogador, com um doce ou uma tarefa entre camadas, se se quiser.',
+  'Everyone sits in a circle.': 'Todos se sentam em roda.',
+  'While the music plays, the parcel is passed around the circle.':
+    'Enquanto a música toca, o embrulho passa à volta da roda.',
+  'When it stops, whoever holds the parcel takes off one layer, and only one.':
+    'Quando para, quem tiver o embrulho tira uma camada, e só uma.',
+  'If there is a treat or a task under it, they keep it or do it.':
+    'Se houver um doce ou uma tarefa por baixo, fica com ele ou cumpre-a.',
+  'The music starts again; whoever takes off the last layer keeps the present.':
+    'A música recomeça; quem tirar a última camada fica com o presente.',
+  'With small children, the music-stopper makes sure everyone gets a turn to unwrap.':
+    'Com crianças pequenas, quem para a música garante que todos desembrulham uma vez.',
+  'Use newspaper for the layers: it is cheap and tears easily.':
+    'Usar papel de jornal nas camadas: é barato e rasga-se bem.',
+  'Adult version: the tasks are dares or questions about the guest of honour.':
+    'Versão para adultos: as tarefas são desafios ou perguntas sobre o homenageado.',
+  'Pin the Nose on Rudolph': 'Põe o Nariz ao Rudolfo',
+  '4 to 20 players, one at a time': '4 a 20 jogadores, um de cada vez',
+  '1 big drawing of a reindeer without a nose, stuck to the wall':
+    '1 desenho grande de uma rena sem nariz, colado na parede',
+  '1 red paper circle per player, with sticky tape or Blu Tack and their name':
+    '1 círculo de papel vermelho por jogador, com fita-cola ou massa adesiva e o nome',
+  'Hang the drawing at the height of the smallest player.':
+    'Pendurar o desenho à altura do jogador mais pequeno.',
+  'The player is blindfolded, turned around three times and pointed towards the wall.':
+    'O jogador é vendado, dá três voltas sobre si próprio e é virado para a parede.',
+  'They walk up and stick their nose where they think it belongs.':
+    'Avança e cola o nariz onde acha que ele fica.',
+  'The others may only cheer, not guide.': 'Os outros só podem aplaudir, não orientar.',
+  'When everyone has played, the nose closest to the right spot wins.':
+    'Quando todos tiverem jogado, ganha o nariz mais perto do sítio certo.',
+  'The classic is pinning the tail on the donkey: any drawing works.':
+    'O clássico é pôr o rabo ao burro: qualquer desenho serve.',
+  'Team version: the team shouts directions to its blindfolded player.':
+    'Versão por equipas: a equipa grita indicações ao seu jogador vendado.',
+  'Older players: stand them a few steps further away.':
+    'Para os mais velhos: começar uns passos mais longe.',
+  'White Elephant Gift Swap': 'Troca de Presentes Roubados',
+  '1 wrapped present per player, within an agreed budget':
+    '1 presente embrulhado por jogador, dentro de um orçamento combinado',
+  'Numbered slips of paper': 'Papelinhos numerados',
+  'Put all the presents in the middle.': 'Pôr todos os presentes ao centro.',
+  'Each player draws a number: that is their turn.':
+    'Cada jogador tira um número: é a sua vez de jogar.',
+  'Player 1 opens a present from the pile.': 'O jogador 1 abre um presente da pilha.',
+  'Each next player either opens a new present or steals one already opened.':
+    'Cada jogador seguinte abre um presente novo ou rouba um que já esteja aberto.',
+  'Whoever is robbed opens a new one or steals from someone else (but not straight back).':
+    'Quem é roubado abre um novo ou rouba a outra pessoa (mas não pode roubar logo de volta).',
+  'A present can be stolen at most three times; then it is "frozen" with its owner.':
+    'Cada presente só pode ser roubado três vezes; depois fica «congelado» com o dono.',
+  'At the end, player 1 may swap with anyone, and the game is over.':
+    'No fim, o jogador 1 pode trocar com quem quiser, e o jogo acaba.',
+  'Funny or useless presents make it better: a theme helps ("something red", "something under 10 euros").':
+    'Presentes engraçados ou inúteis tornam-no melhor: um tema ajuda («algo vermelho», «algo até 10 euros»).',
+  'Also known as Yankee Swap or Dirty Santa.': 'Também conhecido como Yankee Swap ou Dirty Santa.',
+  'With children, make every present suitable for any of them.':
+    'Com crianças, todos os presentes devem servir a qualquer uma delas.',
+  'Left, Right Gift Pass': 'Esquerda, Direita',
+  '1 wrapped present per player': '1 presente embrulhado por jogador',
+  'A short story full of the words "left" and "right" (made up or found online)':
+    'Uma história curta cheia das palavras «esquerda» e «direita» (inventada ou tirada da internet)',
+  'Everyone sits in a circle holding a present.': 'Todos se sentam em roda com um presente na mão.',
+  'One person is the reader.': 'Uma pessoa é o leitor.',
+  'The reader reads the story out loud, slowly.': 'O leitor lê a história em voz alta, devagar.',
+  'Every time they say "left", everyone passes their present to the left; every time they say "right", to the right.':
+    'Sempre que diz «esquerda», todos passam o presente para a esquerda; sempre que diz «direita», para a direita.',
+  'When the story ends, each player keeps the present in their hands.':
+    'Quando a história acaba, cada jogador fica com o presente que tem nas mãos.',
+  'The faster the reader goes, the funnier it gets.':
+    'Quanto mais depressa o leitor for, mais divertido fica.',
+  'Hide traps in the story: "what was left", "right away".':
+    'Esconder armadilhas na história: «o que restou à esquerda», «direitinho para casa».',
+  'A good way to hand out the presents of a Secret Santa.':
+    'Uma boa maneira de distribuir os presentes de um amigo secreto.',
+  '3 to 12 players': '3 a 12 jogadores',
+  'Indoors (around a table)': 'Interior (à volta de uma mesa)',
+  '1 deck of cards (two for big groups)': '1 baralho de cartas (dois para grupos grandes)',
+  'Spoons: one fewer than the players': 'Colheres: uma a menos do que os jogadores',
+  "Put the spoons in the middle of the table, within everyone's reach.":
+    'Pôr as colheres no meio da mesa, ao alcance de todos.',
+  'Deal 4 cards to each player; the dealer keeps the rest of the deck.':
+    'Dar 4 cartas a cada jogador; quem dá fica com o resto do baralho.',
+  'The dealer draws a card, keeps it or passes a card face down to the left; everyone does the same, non-stop, always keeping 4 cards.':
+    'Quem dá tira uma carta, fica com ela ou passa uma carta virada para baixo à esquerda; todos fazem o mesmo, sem parar, ficando sempre com 4 cartas.',
+  'The aim is to collect four of a kind (four kings, four 7s…).':
+    'O objetivo é juntar quatro iguais (quatro reis, quatro 7…).',
+  'Whoever gets four of a kind quietly takes a spoon; as soon as anyone notices, they grab one too.':
+    'Quem consegue quatro iguais tira discretamente uma colher; assim que alguém repara, tira uma também.',
+  'Whoever is left without a spoon loses a life (or gets a letter of S-P-O-O-N).':
+    'Quem fica sem colher perde uma vida (ou ganha uma letra de C-O-L-H-E-R).',
+  'Take one spoon away each round; the last player left wins.':
+    'Tira-se uma colher por ronda; ganha o último a ficar.',
+  'The trick is to watch the spoons, not only the cards.':
+    'O truque é vigiar as colheres, não só as cartas.',
+  'Use soft objects instead of spoons with small children (sweets, corks).':
+    'Com crianças pequenas, usar objetos macios em vez de colheres (rebuçados, rolhas).',
+  'Bluff: fake a grab to see who flinches.':
+    'Fazer bluff: fingir que se vai à colher para ver quem se denuncia.',
+  'The Chocolate Game': 'O Jogo do Chocolate',
+  '1 big bar of chocolate, still in its wrapper': '1 tablete grande de chocolate, ainda embrulhada',
+  '1 hat, 1 scarf and 1 pair of gloves (oven gloves are best)':
+    '1 chapéu, 1 cachecol e 1 par de luvas (de forno é melhor)',
+  '1 knife and 1 fork': '1 faca e 1 garfo',
+  'Put the chocolate, the clothes, the knife and the fork in the middle of the table.':
+    'Pôr o chocolate, a roupa, a faca e o garfo no meio da mesa.',
+  'Players take turns rolling the die.': 'Os jogadores lançam o dado à vez.',
+  'Whoever rolls a 6 puts on the hat, the scarf and the gloves as fast as they can.':
+    'Quem tira um 6 põe o chapéu, o cachecol e as luvas o mais depressa que conseguir.',
+  'Dressed, they unwrap the chocolate and eat it one square at a time, only with the knife and fork.':
+    'Já vestido, desembrulha o chocolate e come-o um quadrado de cada vez, só com a faca e o garfo.',
+  'Meanwhile the others keep rolling; as soon as someone else rolls a 6, they take the clothes and it is their turn to eat.':
+    'Entretanto os outros continuam a lançar; assim que outro tira um 6, fica com a roupa e passa a ser a sua vez de comer.',
+  'The game ends when the chocolate is gone.': 'O jogo acaba quando o chocolate acabar.',
+  'Wrap the bar in several layers of paper and tape to make it harder.':
+    'Embrulhar a tablete em várias camadas de papel e fita-cola para dificultar.',
+  'Big groups: two dice going around at once.':
+    'Grupos grandes: dois dados a circular ao mesmo tempo.',
+  'Use a thin bar or break it in squares beforehand for small children.':
+    'Para crianças pequenas, usar uma tablete fina ou parti-la em quadrados antes.',
+  'Candy Cane Hunt': 'Caça às Bengalas de Natal',
+  'Candy canes or other small treats (about 5 per player)':
+    'Bengalas de açúcar ou outros pequenos doces (cerca de 5 por jogador)',
+  '1 bag or basket per player': '1 saco ou cesto por jogador',
+  'Hide the treats around the house or garden while the players wait in another room.':
+    'Esconder os doces pela casa ou pelo jardim enquanto os jogadores esperam noutra divisão.',
+  'Count how many you hid.': 'Contar quantos se esconderam.',
+  'On the signal, everyone searches for the treats.': 'Ao sinal, todos procuram os doces.',
+  'Each player keeps what they find in their bag.': 'Cada jogador guarda no saco o que encontrar.',
+  'When all have been found (or time is up), whoever found the most wins.':
+    'Quando se encontrarem todos (ou acabar o tempo), ganha quem encontrou mais.',
+  'Hide some low for the little ones and some high for the older ones.':
+    'Esconder uns em baixo para os pequenos e outros em cima para os mais velhos.',
+  'One golden candy cane is worth a special prize.': 'Uma bengala dourada vale um prémio especial.',
+  'At the end, share them out so nobody goes home empty-handed.':
+    'No fim, dividir os doces para ninguém ir para casa de mãos vazias.',
+  'Bobbing for Apples': 'Apanha a Maçã na Água',
+  'Outdoors, or indoors on a tarp': 'Exterior, ou interior sobre um oleado',
+  '1 large basin of water': '1 alguidar grande com água',
+  'Apples (more than the players)': 'Maçãs (mais do que os jogadores)',
+  Towels: 'Toalhas',
+  'Fill the basin and float the apples in it.': 'Encher o alguidar e pôr as maçãs a flutuar.',
+  'Players tie their hair back and put their hands behind their backs.':
+    'Os jogadores prendem o cabelo e põem as mãos atrás das costas.',
+  'On the signal, the players try to catch an apple with their teeth, without using their hands.':
+    'Ao sinal, os jogadores tentam apanhar uma maçã com os dentes, sem usar as mãos.',
+  'Whoever lifts an apple out of the water first wins.':
+    'Ganha quem tirar primeiro uma maçã da água.',
+  'Timed version: who catches the most apples in 1 minute?':
+    'Versão contra o relógio: quem apanha mais maçãs em 1 minuto?',
+  'Apples with the stalk are easier: good for the little ones.':
+    'As maçãs com pé são mais fáceis: boas para os mais pequenos.',
+  'Dry version: apples hanging from a string, and you eat them without hands.':
+    'Versão seca: maçãs penduradas num fio, para comer sem mãos.',
+  'Hygiene: change the water between players, or one apple and basin each.':
+    'Higiene: mudar a água entre jogadores, ou uma maçã e um alguidar por pessoa.',
+  'Pass the Orange': 'Passa a Laranja',
+  'Teams of 5 to 10': 'Equipas de 5 a 10',
+  '1 orange per team': '1 laranja por equipa',
+  'Each team stands in a line.': 'Cada equipa fica em fila.',
+  'The first player holds the orange between their chin and their neck.':
+    'O primeiro jogador segura a laranja entre o queixo e o pescoço.',
+  'They pass it to the next player, who has to take it the same way: no hands.':
+    'Passa-a ao seguinte, que tem de a apanhar da mesma maneira: sem mãos.',
+  'If the orange falls, it goes back to the start of the line.':
+    'Se a laranja cair, volta ao início da fila.',
+  'The first team to get the orange to the end of the line wins.':
+    'Ganha a primeira equipa a levar a laranja até ao fim da fila.',
+  'Mix tall and short players: it gets much harder.':
+    'Misturar altos e baixos: fica muito mais difícil.',
+  'Try a balloon or a tennis ball instead.': 'Experimentar com um balão ou uma bola de ténis.',
+  'Hands stay behind backs the whole time.': 'As mãos ficam atrás das costas o tempo todo.',
+  'Cereal Box Challenge': 'Desafio da Caixa de Cereais',
+  '3 to 15 players, one at a time': '3 a 15 jogadores, um de cada vez',
+  '1 empty cereal box': '1 caixa de cereais vazia',
+  'Stand the box upright on the floor.': 'Pôr a caixa de pé no chão.',
+  'Each player in turn picks up the box with their mouth, standing on one or two feet; only the feet may touch the floor.':
+    'Cada jogador, à vez, apanha a caixa com a boca, apoiado num ou nos dois pés; só os pés podem tocar no chão.',
+  'After everyone has played, cut 3 to 5 cm off the top of the box.':
+    'Depois de todos jogarem, corta-se 3 a 5 cm ao cimo da caixa.',
+  'Whoever fails (touches the floor with a hand or knee, or falls) is out.':
+    'Quem falhar (tocar no chão com a mão ou o joelho, ou cair) sai.',
+  'Keep cutting until only one player is left: the champion of flexibility.':
+    'Continua-se a cortar até sobrar só um jogador: o campeão da flexibilidade.',
+  'When the box is too low, flatten it into a plain sheet of cardboard.':
+    'Quando a caixa estiver demasiado baixa, espalmá-la numa folha de cartão.',
+  'A soft floor or a mat avoids bumps.': 'Um chão macio ou um tapete evita mazelas.',
+  'Children against adults: the little ones are often better.':
+    'Crianças contra adultos: os pequenos costumam ser melhores.',
+  'Toothpick Mint Relay': 'Estafeta da Pastilha no Palito',
+  '1 toothpick per player': '1 palito por jogador',
+  'Ring-shaped mints or ring sweets (3 per team)':
+    'Rebuçados ou pastilhas em forma de anel (3 por equipa)',
+  'Everyone holds a toothpick in their teeth.': 'Todos seguram um palito com os dentes.',
+  'The first player of each team has a mint hooked on their toothpick.':
+    'O primeiro jogador de cada equipa tem um rebuçado enfiado no palito.',
+  'The mint is passed from toothpick to toothpick down the line, without hands.':
+    'O rebuçado passa de palito em palito ao longo da fila, sem mãos.',
+  'If it falls, it goes back to the first player.': 'Se cair, volta ao primeiro jogador.',
+  'When it reaches the end, the next mint starts; the first team to pass all three wins.':
+    'Quando chega ao fim, começa o rebuçado seguinte; ganha a primeira equipa a passar os três.',
+  'Hands behind backs.': 'Mãos atrás das costas.',
+  'Use straws and a paper ring with small children: toothpicks are sharp.':
+    'Com crianças pequenas, usar palhinhas e um anel de papel: os palitos picam.',
+  'Hygiene: a new toothpick for each player.': 'Higiene: um palito novo para cada jogador.',
+  'Ice Cube Race': 'Corrida do Cubo de Gelo',
+  '2 to 10 players at once': '2 a 10 jogadores ao mesmo tempo',
+  '3 to 10 min': '3 a 10 min',
+  '1 ice cube per player, all the same size': '1 cubo de gelo por jogador, todos do mesmo tamanho',
+  'Towels or kitchen paper': 'Toalhas ou papel de cozinha',
+  'Hand out the ice cubes at the same moment.': 'Distribuir os cubos de gelo ao mesmo tempo.',
+  'On the signal, each player tries to melt their ice cube as fast as possible.':
+    'Ao sinal, cada jogador tenta derreter o seu cubo de gelo o mais depressa possível.',
+  'They may use their hands, breath and body heat, but not their mouth, tools or hot water.':
+    'Podem usar as mãos, o bafo e o calor do corpo, mas não a boca, ferramentas nem água quente.',
+  'Whoever melts it completely first wins.': 'Ganha quem o derreter por completo primeiro.',
+  'Freeze a small toy inside each cube for children: whoever frees it first wins.':
+    'Para crianças, congelar um brinquedo pequeno dentro de cada cubo: ganha quem o libertar primeiro.',
+  'Great for a hot day outside.': 'Ótimo para um dia quente lá fora.',
+  'Gloves allowed on cold hands after a while.':
+    'Ao fim de um tempo, luvas permitidas para as mãos geladas.',
+  'Thumb Wrestling Tournament': 'Torneio de Luta de Polegares',
+  'A sheet to draw the tournament bracket': 'Uma folha para desenhar o quadro do torneio',
+  'The two players face each other and lock the fingers of their right hands, thumbs up.':
+    'Os dois jogadores ficam frente a frente e entrelaçam os dedos da mão direita, com os polegares para cima.',
+  'Together they chant: "One, two, three, four, I declare a thumb war!", tapping thumbs side to side.':
+    'Em conjunto dizem: «Um, dois, três, quatro, declaro a guerra dos polegares!», a bater os polegares de um lado para o outro.',
+  "Then each tries to pin the other's thumb down for a count of three.":
+    'Depois cada um tenta prender o polegar do outro durante uma contagem até três.',
+  'The fingers must stay locked; only the thumb moves.':
+    'Os dedos ficam sempre entrelaçados; só o polegar se mexe.',
+  'Best of three; the winner goes through to the next round.':
+    'À melhor de três; o vencedor passa à ronda seguinte.',
+  'Final with the other hand.': 'A final joga-se com a outra mão.',
+  'Draw faces on the thumbs with a pen: they become wrestlers.':
+    'Desenhar caras nos polegares com uma caneta: passam a ser lutadores.',
+  'A medal made of a bottle cap for the champion.':
+    'Uma medalha feita com uma carica para o campeão.',
+  'Hot Hands': 'Mãos Quentes',
+  'The players face each other: one holds their hands out palms up, the other rests their hands on top, palms down.':
+    'Os jogadores ficam frente a frente: um estende as mãos com as palmas para cima, o outro pousa as suas por cima, com as palmas para baixo.',
+  "The player underneath tries to slap the back of the other's hands.":
+    'O jogador de baixo tenta dar uma palmada nas costas das mãos do outro.',
+  'The player on top tries to pull away in time.': 'O de cima tenta fugir a tempo.',
+  'A hit: the attacker goes again. A miss: they swap roles.':
+    'Se acertar, o atacante continua. Se falhar, trocam de papéis.',
+  'A flinch with no slap counts as a free slap for the attacker.':
+    'Fugir sem haver palmada dá uma palmada grátis ao atacante.',
+  'First to 10 hits wins.': 'Ganha quem chegar primeiro a 10 acertos.',
+  'Gentle slaps: speed counts, not strength.': 'Palmadas leves: conta a velocidade, não a força.',
+  'Fake attacks are part of the fun.': 'Os ataques fingidos fazem parte da graça.',
+  'Also known as Red Hands.': 'Também conhecido como Mãos Vermelhas.',
+  'Sock Wrestling': 'Luta das Meias',
+  'Pairs, or 4 to 10 players at once': 'Pares, ou 4 a 10 jogadores ao mesmo tempo',
+  '1 to 3 min per round': '1 a 3 min por ronda',
+  'Indoors (on a mat or carpet)': 'Interior (num tapete ou colchão)',
+  'Socks: everyone wears a pair': 'Meias: cada um calça um par',
+  'A soft area (mats, carpet, mattress)': 'Uma zona macia (colchões, tapete, colchão)',
+  'The players kneel inside the soft area, wearing only their socks on their feet.':
+    'Os jogadores ficam de joelhos dentro da zona macia, só com as meias nos pés.',
+  'On the signal, each player tries to pull the socks off the others while protecting their own.':
+    'Ao sinal, cada jogador tenta tirar as meias aos outros enquanto protege as suas.',
+  'Everyone stays on their knees: no standing up.': 'Todos ficam de joelhos: não se pode levantar.',
+  'Whoever loses both socks is out.': 'Quem perder as duas meias sai.',
+  'The last player with a sock on wins.': 'Ganha o último a ter uma meia calçada.',
+  'Rules of honour: no hitting, scratching or pulling hair.':
+    'Regras de honra: nada de bater, arranhar ou puxar cabelos.',
+  'Odd socks make the photos better.': 'Meias desirmanadas dão melhores fotografias.',
+  'Team version: two teams, last team with a sock on wins.':
+    'Versão por equipas: duas equipas, ganha a última com uma meia calçada.',
+  'Broom Balance': 'Vassoura em Equilíbrio',
+  'Indoors (high ceiling) or outdoors': 'Interior (teto alto) ou exterior',
+  '1 broom (or long stick) per player': '1 vassoura (ou pau comprido) por jogador',
+  'Leave plenty of space between the players.': 'Deixar bastante espaço entre os jogadores.',
+  'Each player balances the broom upright on the palm of one hand, bristles up.':
+    'Cada jogador equilibra a vassoura na vertical na palma de uma mão, com as cerdas para cima.',
+  'They may walk to keep it up, but may not grab it.':
+    'Pode andar para a manter de pé, mas não a pode agarrar.',
+  'Whoever lets it fall or grabs it is out.': 'Quem a deixar cair ou a agarrar sai.',
+  'The last one balancing wins.': 'Ganha o último a mantê-la em equilíbrio.',
+  'Tip: look at the top of the broom, not at your hand.':
+    'Dica: olhar para o topo da vassoura, não para a mão.',
+  'Harder: balance it on one finger, or on the other hand.':
+    'Mais difícil: equilibrá-la num dedo, ou na outra mão.',
+  'Keep away from lamps and windows.': 'Afastar de candeeiros e janelas.',
+  'Keepy-Uppy': 'Toques na Bola',
+  '1 to 10 players at once': '1 a 10 jogadores ao mesmo tempo',
+  'Outdoors, or a sports hall': 'Exterior, ou um pavilhão',
+  '1 football (soccer ball) per player': '1 bola de futebol por jogador',
+  'Each player takes a ball and a bit of space.': 'Cada jogador fica com uma bola e algum espaço.',
+  'On the signal, each player keeps the ball in the air with their feet, knees, chest or head.':
+    'Ao sinal, cada jogador mantém a bola no ar com os pés, os joelhos, o peito ou a cabeça.',
+  'Hands and arms are not allowed.': 'Não se pode usar as mãos nem os braços.',
+  'Count the touches until the ball falls.': 'Contam-se os toques até a bola cair.',
+  'Whoever makes the most touches in a row wins.': 'Ganha quem der mais toques seguidos.',
+  'Beginners may let the ball bounce once between touches.':
+    'Os principiantes podem deixar a bola saltar uma vez entre toques.',
+  'Pairs: pass the ball between the two without it touching the ground.':
+    'Em pares: passar a bola entre os dois sem tocar no chão.',
+  'A balloon instead of a ball for small children.':
+    'Um balão em vez da bola para os mais pequenos.',
+  'Elbow Coin Catch': 'Moedas no Cotovelo',
+  'A pile of coins (or bottle caps)': 'Um monte de moedas (ou caricas)',
+  'The player bends one arm back so that the hand is by the shoulder and the elbow points forward, forearm flat.':
+    'O jogador dobra um braço para trás, com a mão junto ao ombro e o cotovelo para a frente, com o antebraço plano.',
+  'Stack coins on the flat of the forearm, near the elbow.':
+    'Empilhar moedas na parte plana do antebraço, perto do cotovelo.',
+  'In one quick move, the player drops the elbow and catches the coins in the same hand, in the air.':
+    'Num movimento rápido, o jogador baixa o cotovelo e apanha as moedas com a mesma mão, no ar.',
+  'Only the coins caught count.': 'Só contam as moedas apanhadas.',
+  'Each round, add more coins; whoever catches the biggest stack wins.':
+    'Em cada ronda, juntam-se mais moedas; ganha quem apanhar a maior pilha.',
+  'Start with 3 coins to learn the move.': 'Começar com 3 moedas para aprender o movimento.',
+  'Try it with both arms.': 'Experimentar com os dois braços.',
+  'Record: the world record is over 300 coins.': 'Recorde: o recorde mundial passa das 300 moedas.',
+  'Paper Football': 'Futebol de Papel',
+  '5 to 10 min per match': '5 a 10 min por jogo',
+  '1 sheet of paper folded into a small, tight triangle':
+    '1 folha de papel dobrada num triângulo pequeno e firme',
+  'The players sit at opposite ends of the table.':
+    'Os jogadores sentam-se em pontas opostas da mesa.',
+  'In turn, each player flicks the triangle with a finger towards the other end, in up to three flicks.':
+    'À vez, cada jogador dá piparotes no triângulo em direção à ponta contrária, até três piparotes.',
+  "If the triangle stops hanging over the edge of the opponent's side, without falling: touchdown, 6 points.":
+    'Se o triângulo parar a sair pela borda do lado do adversário, sem cair: ensaio, 6 pontos.',
+  'After a touchdown, the player tries a goal kick: the opponent makes posts with their fingers and the player flicks the triangle between them for 1 point.':
+    'Depois de um ensaio, o jogador tenta um pontapé: o adversário faz uma baliza com os dedos e o jogador lança o triângulo por entre eles para 1 ponto.',
+  "If it falls off the table, it is the other player's turn.":
+    'Se cair da mesa, passa a vez ao outro jogador.',
+  'First to 30 points wins.': 'Ganha quem chegar primeiro aos 30 pontos.',
+  'To fold it: a strip of paper folded into triangles, like a flag, with the end tucked in.':
+    'Para o dobrar: uma tira de papel dobrada em triângulos, como uma bandeira, com a ponta enfiada.',
+  'Shorter version: a fixed time of 5 minutes per match.':
+    'Versão mais curta: um tempo fixo de 5 minutos por jogo.',
+  'A classic for school breaks.': 'Um clássico dos intervalos da escola.',
+  'Broken Telephone': 'Telefone Estragado',
+  'Everyone sits or stands in a line or a circle.':
+    'Todos se sentam ou ficam de pé em fila ou em roda.',
+  'The first player thinks of a sentence and whispers it, only once, into the ear of the next one.':
+    'O primeiro jogador pensa numa frase e segreda-a, uma só vez, ao ouvido do seguinte.',
+  'Each player whispers what they understood to the next, with no repeats.':
+    'Cada jogador segreda ao seguinte o que percebeu, sem repetir.',
+  'The last player says the sentence out loud, and the first says the original.':
+    'O último diz a frase em voz alta, e o primeiro diz a original.',
+  'The fun is in how much it changed along the way.':
+    'A graça está no quanto ela mudou pelo caminho.',
+  'Long sentences with names and numbers get the funniest results.':
+    'Frases compridas com nomes e números dão os resultados mais engraçados.',
+  'Two lines at once, with the same sentence: which one gets it closer?':
+    'Duas filas ao mesmo tempo, com a mesma frase: qual chega mais perto?',
+  'Mime version: pass a short mime instead of a sentence.':
+    'Versão de mímica: passar uma pequena mímica em vez de uma frase.',
+  'Draw and Pass': 'Desenha e Passa',
+  '1 small notebook (or stack of stapled sheets) per player':
+    '1 bloco pequeno (ou folhas agrafadas) por jogador',
+  '1 pen per player': '1 caneta por jogador',
+  'Everyone sits in a circle with their notebook.': 'Todos se sentam em roda com o seu bloco.',
+  'Each player writes a sentence on the first page (a film, a proverb, a made-up situation) and passes the notebook to the left.':
+    'Cada jogador escreve uma frase na primeira página (um filme, um provérbio, uma situação inventada) e passa o bloco para a esquerda.',
+  'The next player reads it, turns the page and draws it, in 1 minute.':
+    'O seguinte lê, vira a página e desenha-a, em 1 minuto.',
+  'The next one sees only the drawing, turns the page and writes what they think it is.':
+    'O seguinte vê só o desenho, vira a página e escreve o que acha que é.',
+  'Keep alternating drawing and writing until each notebook comes back to its owner.':
+    'Vai-se alternando entre desenhar e escrever até cada bloco voltar ao dono.',
+  'Each owner shows their notebook page by page, from start to finish.':
+    'Cada dono mostra o seu bloco página a página, do princípio ao fim.',
+  'No letters or numbers in the drawings.': 'Nada de letras ou números nos desenhos.',
+  'There is no winner, but you can vote for the best transformation.':
+    'Não há vencedor, mas pode votar-se a melhor transformação.',
+  'Also known as Telestrations or Eat Poop You Cat.':
+    'Também conhecido como Telestrations ou Gartic Phone, na versão online.',
+  'Who Am I?': 'Quem Sou Eu?',
+  'Sticky notes and pens': 'Post-its e canetas',
+  'Each player writes a famous person (or character) on a sticky note and sticks it on the forehead of the player to their right, without them seeing it.':
+    'Cada jogador escreve uma pessoa famosa (ou personagem) num post-it e cola-o na testa do jogador da direita, sem ele ver.',
+  'In turn, each player asks a yes-or-no question about who they are ("Am I a woman?", "Am I alive?").':
+    'À vez, cada jogador faz uma pergunta de sim ou não sobre quem é («Sou mulher?», «Estou vivo?»).',
+  'If the answer is yes, they ask another; if it is no, the turn passes.':
+    'Se a resposta for sim, faz outra; se for não, passa a vez.',
+  'Whoever guesses who they are takes off the sticky note and keeps helping the others.':
+    'Quem adivinhar quem é tira o post-it e continua a ajudar os outros.',
+  'The last to guess loses (or does a forfeit).':
+    'O último a adivinhar perde (ou cumpre um castigo).',
+  'Themes make it easier: Disney characters, footballers, animals.':
+    'Temas facilitam: personagens da Disney, futebolistas, animais.',
+  'Families: pick names everyone knows, grandparents included.':
+    'Em família: escolher nomes que todos conheçam, avós incluídos.',
+  'Also known as the Headband Game, or Heads Up.':
+    'Também conhecido como o jogo do post-it na testa.',
+  '20 Questions': '20 Perguntas',
+  '2 to 15 players': '2 a 15 jogadores',
+  'Anywhere (perfect for car trips)': 'Em qualquer lado (perfeito para viagens de carro)',
+  'One player thinks of a thing, an animal or a person, and says only which kind it is.':
+    'Um jogador pensa numa coisa, num animal ou numa pessoa, e diz apenas de que tipo é.',
+  'The others take turns asking yes-or-no questions to find out what it is.':
+    'Os outros fazem perguntas de sim ou não, à vez, para descobrir o que é.',
+  'Count the questions out loud: there are only 20.':
+    'Contam-se as perguntas em voz alta: são só 20.',
+  'Whoever guesses thinks of the next one; if nobody guesses in 20, the same player goes again.':
+    'Quem adivinhar pensa no seguinte; se ninguém adivinhar em 20, o mesmo jogador volta a pensar.',
+  'Smart questions cut the options in half: "Is it bigger than a shoebox?"':
+    'As perguntas espertas cortam as hipóteses ao meio: «É maior do que uma caixa de sapatos?»',
+  'A wrong guess counts as a question.': 'Um palpite errado conta como pergunta.',
+  'For small children: 30 questions and only animals.':
+    'Para os mais pequenos: 30 perguntas e só animais.',
+  'Would You Rather': 'O Que Preferias',
+  '3 to 40 players': '3 a 40 jogadores',
+  'A list of dilemmas (made up or printed)': 'Uma lista de dilemas (inventados ou impressos)',
+  'For big groups, mark one side of the room for each option.':
+    'Para grupos grandes, marcar um lado da sala para cada opção.',
+  'The leader reads a dilemma: "Would you rather be able to fly or be invisible?"':
+    'O líder lê um dilema: «Preferias voar ou ser invisível?»',
+  'Everyone picks one option, with no "neither" or "both"; in big groups, they move to that side of the room.':
+    'Cada um escolhe uma opção, sem «nenhuma» nem «as duas»; em grupos grandes, passa para esse lado da sala.',
+  'One or two players from each side explain their choice.':
+    'Um ou dois jogadores de cada lado explicam a escolha.',
+  'Then comes the next dilemma.': 'Depois passa-se ao dilema seguinte.',
+  'There are no right answers: it is a great icebreaker.':
+    'Não há respostas certas: é um ótimo quebra-gelo.',
+  'Let the players make up dilemmas too.': 'Deixar os jogadores inventar dilemas também.',
+  'Team version: guess which option the majority will pick.':
+    'Versão por equipas: adivinhar que opção a maioria vai escolher.',
+  Fishbowl: 'Aquário',
+  '2 teams of 3 to 10': '2 equipas de 3 a 10',
+  'Each player writes 3 to 5 names (famous people, characters, objects) on slips, folds them and puts them in the bowl.':
+    'Cada jogador escreve 3 a 5 nomes (famosos, personagens, objetos) em papelinhos, dobra-os e põe-nos na taça.',
+  'Form two teams.': 'Formar duas equipas.',
+  'The game has three rounds with the same slips. Round 1: describe the name with any words except the name itself.':
+    'O jogo tem três rondas com os mesmos papelinhos. Ronda 1: descrever o nome com quaisquer palavras, menos o próprio nome.',
+  'Round 2: say only one word per slip.': 'Ronda 2: dizer só uma palavra por papelinho.',
+  'Round 3: mime only, no sound.': 'Ronda 3: só mímica, sem som.',
+  'In each turn, a player has 1 minute to get their team to guess as many slips as possible; the teams alternate.':
+    'Em cada vez, um jogador tem 1 minuto para pôr a sua equipa a adivinhar o máximo de papelinhos; as equipas alternam.',
+  'A round ends when the bowl is empty; put all the slips back for the next one. The team with the most slips at the end wins.':
+    'A ronda acaba quando a taça fica vazia; voltam a pôr-se todos os papelinhos para a seguinte. Ganha a equipa com mais papelinhos no fim.',
+  'The magic is that by round 3 everyone remembers the names, and the clues from earlier rounds become jokes.':
+    'A magia é que na ronda 3 todos já conhecem os nomes, e as pistas das rondas anteriores passam a piadas.',
+  'A pass costs 1 point.': 'Passar custa 1 ponto.',
+  'Also known as Celebrity or Salad Bowl.': 'Também conhecido como Celebridades.',
+  'Forbidden Words': 'Palavras Proibidas',
+  '2 teams of 2 to 8': '2 equipas de 2 a 8',
+  'Cards with a word to guess and 4 or 5 forbidden words under it (made up beforehand)':
+    'Cartões com uma palavra a adivinhar e 4 ou 5 palavras proibidas por baixo (feitos antes)',
+  'Form two teams and shuffle the cards.': 'Formar duas equipas e baralhar os cartões.',
+  'A player has 1 minute to get their team to guess as many words as possible.':
+    'Um jogador tem 1 minuto para pôr a sua equipa a adivinhar o máximo de palavras.',
+  'They may not say the word itself, nor any of the forbidden words on the card, nor use gestures.':
+    'Não pode dizer a própria palavra, nem nenhuma das palavras proibidas do cartão, nem fazer gestos.',
+  'A player from the other team watches the card: if a forbidden word slips out, they shout "Buzz!" and the card is lost.':
+    'Um jogador da outra equipa vigia o cartão: se escapar uma palavra proibida, grita «Bip!» e o cartão perde-se.',
+  'Each guessed word is worth 1 point; the teams alternate, and the first to 30 wins.':
+    'Cada palavra adivinhada vale 1 ponto; as equipas alternam, e ganha a primeira a chegar aos 30.',
+  'Example: "Beach" with the forbidden words sand, sea, sun, summer, towel.':
+    'Exemplo: «Praia» com as palavras proibidas areia, mar, sol, verão, toalha.',
+  'Make the cards together at the start: half the fun is choosing the forbidden words.':
+    'Fazer os cartões em conjunto no início: metade da graça é escolher as palavras proibidas.',
+  'Inspired by the board game Taboo.': 'Inspirado no jogo de tabuleiro Taboo.',
+  Mafia: 'Máfia',
+  '7 to 20 players, plus a narrator': '7 a 20 jogadores, mais um narrador',
+  'Indoors (in a circle)': 'Interior (em roda)',
+  'The townspeople must find the mafia before the mafia outnumbers them.':
+    'Os aldeões têm de descobrir a máfia antes que ela fique em maioria.',
+  'Role cards: playing cards work (e.g. black aces for the mafia, the queen of hearts for the doctor, the jack for the detective)':
+    'Cartas de papéis: servem cartas de jogar (por exemplo, ases pretos para a máfia, a dama de copas para o médico, o valete para o detetive)',
+  'The narrator hands out the cards in secret: about 1 mafia per 4 players, 1 doctor, 1 detective; everyone else is a townsperson.':
+    'O narrador distribui as cartas em segredo: cerca de 1 mafioso por cada 4 jogadores, 1 médico, 1 detetive; todos os outros são aldeões.',
+  'Night: everyone closes their eyes. The narrator wakes the mafia, who silently choose a victim; then the doctor, who points at someone to save; then the detective, who points at a suspect and is told by a nod whether they are mafia.':
+    'Noite: todos fecham os olhos. O narrador acorda a máfia, que escolhe uma vítima em silêncio; depois o médico, que aponta alguém para salvar; depois o detetive, que aponta um suspeito e fica a saber, por um aceno, se é da máfia.',
+  'Day: everyone opens their eyes and the narrator tells, as a story, who was killed (unless the doctor saved them). The victim is out and does not talk any more.':
+    'Dia: todos abrem os olhos e o narrador conta, como uma história, quem foi morto (a menos que o médico o tenha salvo). A vítima sai e já não fala.',
+  'The survivors discuss and vote on someone to eliminate; that player reveals their card.':
+    'Os sobreviventes discutem e votam em alguém para eliminar; esse jogador revela a sua carta.',
+  'Night and day alternate until all the mafia are out (the town wins) or the mafia equal the townspeople (the mafia wins).':
+    'Alternam-se noites e dias até a máfia ser toda eliminada (ganha a aldeia) ou igualar os aldeões (ganha a máfia).',
+  'A good narrator with dramatic stories makes the game.':
+    'Um bom narrador, com histórias dramáticas, faz o jogo.',
+  'Music in the background covers the noises of the night.':
+    'Música de fundo disfarça os barulhos da noite.',
+  'Also known as Werewolf, with werewolves and villagers.':
+    'Também conhecido como Lobisomem, com lobisomens e aldeões.',
+  'The Imposter': 'O Impostor',
+  'Slips of paper: all with the same word, except one marked "imposter"':
+    'Papelinhos: todos com a mesma palavra, menos um marcado «impostor»',
+  'Someone prepares the slips with a secret word (a place, a food, an animal) and hands them out face down.':
+    'Alguém prepara os papelinhos com uma palavra secreta (um sítio, uma comida, um animal) e distribui-os virados para baixo.',
+  'Each player reads theirs in secret.': 'Cada jogador lê o seu em segredo.',
+  'In turn, each player says one word related to the secret word, without making it too obvious.':
+    'À vez, cada jogador diz uma palavra relacionada com a palavra secreta, sem a tornar demasiado óbvia.',
+  'The imposter, who does not know the word, has to bluff from what they hear.':
+    'O impostor, que não sabe a palavra, tem de fazer bluff a partir do que ouve.',
+  'After two rounds of words, everyone points at the suspect at the same time.':
+    'Depois de duas voltas de palavras, todos apontam o suspeito ao mesmo tempo.',
+  'If the imposter is caught, they can still win by guessing the secret word; otherwise the group wins. If they are not caught, the imposter wins.':
+    'Se o impostor for apanhado, ainda pode ganhar se adivinhar a palavra secreta; senão ganha o grupo. Se não for apanhado, ganha o impostor.',
+  'Too vague and the group suspects you; too clear and the imposter guesses the word.':
+    'Demasiado vago e o grupo desconfia; demasiado claro e o impostor adivinha a palavra.',
+  'With a phone, a free "imposter" app hands out the words.':
+    'Com um telemóvel, uma aplicação gratuita de «impostor» distribui as palavras.',
+  'Big groups: two imposters.': 'Grupos grandes: dois impostores.',
+  "Kim's Game": 'Jogo da Memória do Tabuleiro',
+  '2 to 30 players': '2 a 30 jogadores',
+  '1 tray with 15 to 25 small everyday objects':
+    '1 tabuleiro com 15 a 25 objetos pequenos do dia a dia',
+  '1 cloth to cover it': '1 pano para o tapar',
+  'Arrange the objects on the tray and cover them.': 'Arrumar os objetos no tabuleiro e tapá-los.',
+  'Uncover the tray for 1 minute: everyone looks without touching.':
+    'Destapa-se o tabuleiro durante 1 minuto: todos olham sem tocar.',
+  'Cover it again; each player writes down every object they remember.':
+    'Volta a tapar-se; cada jogador escreve todos os objetos de que se lembra.',
+  'Whoever remembers the most objects wins.': 'Ganha quem se lembrar de mais objetos.',
+  'Variation: secretly take one object away and ask what is missing.':
+    'Variante: tirar um objeto às escondidas e perguntar o que falta.',
+  'Christmas version: Christmas ornaments and small presents on the tray.':
+    'Versão de Natal: enfeites e pequenos presentes no tabuleiro.',
+  'Small children draw instead of writing, or answer out loud.':
+    'Os mais pequenos desenham em vez de escrever, ou respondem em voz alta.',
+  'Mystery Bag': 'Saco Mistério',
+  '2 to 20 players': '2 a 20 jogadores',
+  '1 cloth bag (or a box with a hole for the hand)':
+    '1 saco de pano (ou uma caixa com um buraco para a mão)',
+  '10 to 15 objects with interesting textures (a sponge, a key, a peeled grape, a toothbrush…)':
+    '10 a 15 objetos com texturas interessantes (uma esponja, uma chave, uma uva descascada, uma escova de dentes…)',
+  'Put one object in the bag without anyone seeing it.': 'Pôr um objeto no saco sem ninguém ver.',
+  'In turn, each player puts a hand in the bag, without looking, and feels the object.':
+    'À vez, cada jogador mete a mão no saco, sem espreitar, e apalpa o objeto.',
+  'They have 15 seconds to say what it is.': 'Tem 15 segundos para dizer o que é.',
+  'A right answer earns 1 point; then a new object goes in for the next player.':
+    'Uma resposta certa vale 1 ponto; depois põe-se um objeto novo para o jogador seguinte.',
+  'Halloween version: cold spaghetti "worms", peeled grape "eyes".':
+    'Versão de Halloween: «minhocas» de esparguete frio, «olhos» de uvas descascadas.',
+  'Several objects at once: name as many as you can in 30 seconds.':
+    'Vários objetos ao mesmo tempo: nomear o máximo em 30 segundos.',
+  'Nothing sharp or prickly in the bag.': 'Nada cortante nem picante no saco.',
+  'Guess the Smell': 'Adivinha o Cheiro',
+  '8 to 12 opaque, numbered pots or cups, each with something that smells (coffee, cinnamon, lemon, garlic, vanilla, mint…)':
+    '8 a 12 potes ou copos opacos e numerados, cada um com uma coisa com cheiro (café, canela, limão, alho, baunilha, hortelã…)',
+  'Kitchen foil with holes to cover them': 'Papel de alumínio com furos para os tapar',
+  '1 blindfold (optional)': '1 venda (opcional)',
+  'Fill and cover the pots in secret.': 'Encher e tapar os potes em segredo.',
+  'The pots go round the group; each player smells them through the holes, without looking.':
+    'Os potes dão a volta ao grupo; cada jogador cheira-os pelos furos, sem espreitar.',
+  'Each writes down what they think is in each one.':
+    'Cada um escreve o que acha que está em cada um.',
+  'At the end, uncover them: each right answer is worth 1 point.':
+    'No fim, destapam-se: cada resposta certa vale 1 ponto.',
+  'Christmas version: orange, clove, pine, cinnamon, chocolate.':
+    'Versão de Natal: laranja, cravinho, pinheiro, canela, chocolate.',
+  'Coffee beans between pots "reset" the nose.': 'Grãos de café entre potes «reiniciam» o nariz.',
+  'Avoid strong spices like pepper and chilli.':
+    'Evitar especiarias fortes como pimenta e piripíri.',
+  "What's Changed?": 'O Que Mudou?',
+  'Pairs, or a whole group around one player': 'Pares, ou um grupo à volta de um jogador',
+  'The players face each other in pairs and look at each other carefully for 30 seconds.':
+    'Os jogadores ficam em pares frente a frente e olham um para o outro com atenção durante 30 segundos.',
+  'They turn their backs to each other.': 'Viram-se de costas um para o outro.',
+  'Each player changes 3 things about their appearance (unties a shoelace, takes off a watch, rolls up a sleeve).':
+    'Cada jogador muda 3 coisas no seu aspeto (desaperta um atacador, tira o relógio, arregaça uma manga).',
+  "They turn round and try to spot the other's changes.":
+    'Voltam-se e tentam descobrir as mudanças do outro.',
+  'Each change found is worth 1 point; the next round, 5 changes.':
+    'Cada mudança descoberta vale 1 ponto; na ronda seguinte, 5 mudanças.',
+  'Group version: one player leaves the room and the group changes places or swaps objects.':
+    'Versão de grupo: um jogador sai da sala e o grupo troca de lugares ou de objetos.',
+  'A good warm-up for observation games.': 'Um bom aquecimento para jogos de observação.',
+  'Nobody takes off more than they would on a beach.':
+    'Ninguém tira mais do que tiraria numa praia.',
+  'Stop! (Categories)': 'Stop! (Adedonha)',
+  '2 to 12 players': '2 a 12 jogadores',
+  'Each player draws a table with columns: name, country or city, animal, fruit or vegetable, object, colour, brand (choose 5 to 8).':
+    'Cada jogador desenha uma tabela com colunas: nome, país ou cidade, animal, fruto ou legume, objeto, cor, marca (escolher 5 a 8).',
+  'A letter is chosen (one player says the alphabet in their head until another says "stop").':
+    'Escolhe-se uma letra (um jogador diz o abecedário mentalmente até outro dizer «stop»).',
+  'Everyone fills in one word per column starting with that letter, as fast as possible.':
+    'Todos preenchem uma palavra por coluna começada por essa letra, o mais depressa possível.',
+  'The first to fill every column shouts "Stop!" and everyone puts their pen down.':
+    'O primeiro a preencher todas as colunas grita «Stop!» e todos pousam a caneta.',
+  'Scoring: 10 points for a word nobody else has, 5 for a repeated word, 0 for a blank.':
+    'Pontuação: 10 pontos por uma palavra que mais ninguém tem, 5 por uma repetida, 0 por um espaço em branco.',
+  'After 5 to 10 letters, the highest score wins.':
+    'Ao fim de 5 a 10 letras, ganha a pontuação mais alta.',
+  'Make up columns to suit the group: footballers, songs, things in a fridge.':
+    'Inventar colunas à medida do grupo: futebolistas, canções, coisas do frigorífico.',
+  'The group decides on doubtful answers by vote.':
+    'O grupo decide as respostas duvidosas por votação.',
+  'Skip hard letters (K, W, Y) with children.': 'Com crianças, saltar letras difíceis (K, W, Y).',
+  "Who's the Leader?": 'Quem É o Chefe?',
+  '8 to 30 players': '8 a 30 jogadores',
+  'Indoors or outdoors (in a circle)': 'Interior ou exterior (em roda)',
+  'Everyone stands or sits in a circle.': 'Todos ficam de pé ou sentados em roda.',
+  'One player (the detective) leaves the room; the group secretly chooses a leader.':
+    'Um jogador (o detetive) sai da sala; o grupo escolhe em segredo um chefe.',
+  'The leader starts a movement (clapping, tapping knees, nodding) and the whole group copies it.':
+    'O chefe começa um movimento (bater palmas, bater nos joelhos, acenar com a cabeça) e todo o grupo o imita.',
+  'The detective comes back and stands in the middle; the leader changes the movement every so often, without being seen.':
+    'O detetive volta e fica ao centro; o chefe vai mudando de movimento, sem ser visto.',
+  'The detective has three guesses to find the leader.':
+    'O detetive tem três palpites para descobrir o chefe.',
+  'If they find them, the leader becomes the next detective.':
+    'Se o descobrir, o chefe passa a ser o próximo detetive.',
+  'The group should not all stare at the leader: it gives them away.':
+    'O grupo não deve olhar todo para o chefe: denuncia-o.',
+  'Play music and make the movements dance moves.':
+    'Pôr música e fazer dos movimentos passos de dança.',
+  'A classic of scout camps.': 'Um clássico dos acampamentos de escuteiros.',
+  'Musical Statues': 'Estátuas',
+  '5 to 40 players': '5 a 40 jogadores',
+  'Clear a space to dance.': 'Arranjar espaço para dançar.',
+  'While the music plays, everyone dances.': 'Enquanto a música toca, todos dançam.',
+  'When it stops, everyone freezes like a statue, in whatever pose they are in.':
+    'Quando para, todos ficam imóveis como estátuas, na pose em que estiverem.',
+  'Whoever moves, wobbles or laughs is out (and helps spot the others).':
+    'Quem se mexer, oscilar ou rir sai (e ajuda a apanhar os outros).',
+  'The last statue standing wins.': 'Ganha a última estátua.',
+  'Themes: freeze as an animal, a superhero, a Christmas tree.':
+    'Temas: ficar parado como um animal, um super-herói, uma árvore de Natal.',
+  'The judges can try to make the statues laugh, without touching them.':
+    'Os juízes podem tentar fazer rir as estátuas, sem lhes tocar.',
+  'Musical bumps: sit on the floor when the music stops; the last one down is out.':
+    'Versão sentados: sentar no chão quando a música para; o último a sentar-se sai.',
+  'Simon Says': 'O Rei Manda',
+  'One player is Simon and stands facing the group.':
+    'Um jogador é o rei e fica de frente para o grupo.',
+  'Simon gives orders: "Simon says touch your nose", "Simon says jump on one leg".':
+    'O rei dá ordens: «O rei manda tocar no nariz», «O rei manda saltar ao pé-coxinho».',
+  'The players only obey orders that start with "Simon says".':
+    'Os jogadores só obedecem às ordens que começam por «O rei manda».',
+  'Whoever obeys an order without "Simon says", or does the wrong thing, is out.':
+    'Quem obedecer a uma ordem sem «O rei manda», ou fizer outra coisa, sai.',
+  'The last player in becomes the next Simon.': 'O último a ficar passa a ser o rei seguinte.',
+  'Speed up the orders as the game goes on.': 'Acelerar as ordens à medida que o jogo avança.',
+  'Simon can do one move and say another to catch them out.':
+    'O rei pode fazer um gesto e dizer outro, para apanhar os distraídos.',
+  'Nobody out with small children: whoever gets it wrong just does a spin.':
+    'Com os mais pequenos ninguém sai: quem erra só dá uma volta.',
+  'Red Light, Green Light': 'Macaquinho do Chinês',
+  'Outdoors, or a long room': 'Exterior, ou uma sala comprida',
+  'One player stands at a wall, with their back to the others.':
+    'Um jogador fica encostado a uma parede, de costas para os outros.',
+  'The rest line up 10 to 20 metres away.': 'Os outros alinham-se a 10 a 20 metros.',
+  'The player at the wall says "Green light!" (or "One, two, three, monkey!") with their back turned, and the others move forward.':
+    'O jogador da parede diz, de costas, «Um, dois, três, macaquinho do chinês!», e os outros avançam.',
+  'At "Red light!" they turn round: everyone must freeze.':
+    'Ao acabar a frase, vira-se: todos têm de ficar imóveis.',
+  'Whoever is caught moving goes back to the start.':
+    'Quem for apanhado a mexer-se volta ao início.',
+  'The first to touch the wall wins and takes their place.':
+    'O primeiro a tocar na parede ganha e fica no lugar dele.',
+  'Saying the phrase fast or slow is the whole trick.':
+    'Dizer a frase depressa ou devagar é o truque todo.',
+  "Also known as Grandmother's Footsteps; it is the doll game from Squid Game, without the consequences.":
+    'Em inglês, Red Light, Green Light; é o jogo da boneca do «Squid Game», sem as consequências.',
+  'Add "yellow light": move in slow motion.': 'Acrescentar «luz amarela»: andar em câmara lenta.',
+  "What's the Time, Mr Wolf?": 'Que Horas São, Senhor Lobo?',
+  'One player is the wolf and stands at one end, with their back to the others.':
+    'Um jogador é o lobo e fica numa ponta, de costas para os outros.',
+  'The rest stand in a line at the other end (their home).':
+    'Os outros ficam em linha na outra ponta (a casa deles).',
+  'The players call out together: "What\'s the time, Mr Wolf?"':
+    'Os jogadores perguntam em coro: «Que horas são, senhor lobo?»',
+  'The wolf answers a time ("Three o\'clock!") and the players take that many steps forward.':
+    'O lobo responde uma hora («Três horas!») e os jogadores dão esse número de passos em frente.',
+  'When the wolf answers "Dinner time!", they turn and chase the players back home.':
+    'Quando o lobo responde «Hora do jantar!», vira-se e persegue os jogadores até casa.',
+  'Whoever is caught becomes the next wolf.': 'Quem for apanhado passa a ser o lobo.',
+  'The wolf can turn round at any moment.': 'O lobo pode virar-se a qualquer momento.',
+  'Mark "home" clearly with cones or a line.': 'Marcar bem a «casa» com cones ou uma linha.',
+  'Every player caught joins the wolf pack.': 'Cada jogador apanhado junta-se à alcateia.',
+  'Duck, Duck, Goose': 'Lenço da Bruxa',
+  'Outdoors (grass) or a sports hall': 'Exterior (relva) ou um pavilhão',
+  '1 handkerchief (optional)': '1 lenço (opcional)',
+  'Everyone sits in a circle, facing in.': 'Todos se sentam em roda, virados para dentro.',
+  'One player walks around the outside.': 'Um jogador anda à volta, por fora.',
+  'The walker taps each head saying "duck", and at some point says "goose" (or drops the handkerchief behind someone).':
+    'Quem anda toca em cada cabeça a dizer «pato» e, a certa altura, diz «ganso» (ou deixa cair o lenço atrás de alguém).',
+  'The "goose" gets up and chases the walker around the circle.':
+    'O «ganso» levanta-se e persegue quem andava, à volta da roda.',
+  "The walker tries to sit in the goose's place before being caught.":
+    'Quem andava tenta sentar-se no lugar do ganso antes de ser apanhado.',
+  'If they make it, the goose walks next; if they are caught, they go round again.':
+    'Se conseguir, o ganso passa a andar; se for apanhado, volta a dar a volta.',
+  'Running in the same direction only.': 'Correr sempre no mesmo sentido.',
+  'Make sure everyone gets to be the goose at least once.':
+    'Garantir que todos são ganso pelo menos uma vez.',
+  'Hot weather version: a wet sponge instead of the "goose".':
+    'Versão para dias de calor: uma esponja molhada em vez do «ganso».',
+  'Sack Race': 'Corrida de Sacos',
+  '2 to 5 min per heat': '2 a 5 min por corrida',
+  '1 big sack per player (potato sacks or strong bin bags)':
+    '1 saco grande por jogador (sacos de batatas ou sacos do lixo resistentes)',
+  'A start and a finish line': 'Uma linha de partida e uma de chegada',
+  'Mark the lines 10 to 20 metres apart.': 'Marcar as linhas a 10 a 20 metros uma da outra.',
+  'Each player steps into their sack and holds it at the waist.':
+    'Cada jogador mete-se no seu saco e segura-o pela cintura.',
+  'On the signal, everyone jumps towards the finish line.':
+    'Ao sinal, todos saltam em direção à meta.',
+  'Whoever falls gets up and carries on from there.': 'Quem cair levanta-se e continua dali.',
+  'The first to cross the finish line wins.': 'Ganha o primeiro a cortar a meta.',
+  'Relay version: teams pass the sack to the next player.':
+    'Versão de estafeta: as equipas passam o saco ao jogador seguinte.',
+  'Soft grass only: falls are part of the game.':
+    'Só em relva macia: as quedas fazem parte do jogo.',
+  'Pillowcases work for small children.': 'Para os mais pequenos, servem fronhas.',
+  'Three-Legged Race': 'Corrida a Três Pernas',
+  'Pairs, 2 to 8 pairs at once': 'Pares, 2 a 8 pares ao mesmo tempo',
+  '1 scarf or soft strap per pair': '1 lenço ou fita macia por par',
+  'The partners stand side by side and tie the inside leg of one to the inside leg of the other, at the ankle.':
+    'Os parceiros ficam lado a lado e atam a perna de dentro de um à perna de dentro do outro, pelo tornozelo.',
+  'On the signal, the pairs run to the finish line.': 'Ao sinal, os pares correm até à meta.',
+  'If the strap comes off, they stop and tie it again.':
+    'Se a fita se soltar, param e voltam a atá-la.',
+  'The first pair to cross the finish line wins.': 'Ganha o primeiro par a cortar a meta.',
+  'Tip: count "inside, outside" out loud to keep in step.':
+    'Dica: contar «dentro, fora» em voz alta para acertar o passo.',
+  'Mix pairs of very different heights.': 'Misturar pares de alturas muito diferentes.',
+  'Harder: groups of three or four tied in a row.':
+    'Mais difícil: grupos de três ou quatro atados em fila.',
+  'Wheelbarrow Race': 'Corrida dos Carrinhos de Mão',
+  'In each pair, one player puts their hands on the ground and the other holds their legs by the ankles or knees: the wheelbarrow.':
+    'Em cada par, um jogador põe as mãos no chão e o outro segura-lhe as pernas pelos tornozelos ou joelhos: é o carrinho de mão.',
+  'On the signal, the wheelbarrow walks on its hands while the partner pushes.':
+    'Ao sinal, o carrinho anda com as mãos enquanto o parceiro empurra.',
+  'Halfway (or at a cone), they swap places.': 'A meio caminho (ou num cone), trocam de lugar.',
+  "The pusher follows the wheelbarrow's pace, never the other way round.":
+    'Quem empurra segue o ritmo do carrinho, nunca ao contrário.',
+  'Short distances: arms tire quickly.': 'Distâncias curtas: os braços cansam-se depressa.',
+  'Soft grass, and no pushing too hard.': 'Relva macia, e nada de empurrar com força.',
+  'Tug of War': 'Jogo da Corda',
+  '2 teams of 4 to 15': '2 equipas de 4 a 15',
+  '1 to 3 min per pull': '1 a 3 min por puxão',
+  '1 long, thick rope': '1 corda comprida e grossa',
+  '1 ribbon to mark the middle of the rope': '1 fita para marcar o meio da corda',
+  'Mark a centre line on the ground and two lines 2 metres either side of it.':
+    'Marcar uma linha central no chão e duas linhas a 2 metros de cada lado.',
+  'The teams hold the rope on either side, with the ribbon over the centre line.':
+    'As equipas agarram a corda de cada lado, com a fita por cima da linha central.',
+  'On the signal, both teams pull.': 'Ao sinal, as duas equipas puxam.',
+  'The team that pulls the ribbon past its own line wins the pull.':
+    'Ganha o puxão a equipa que levar a fita até à sua linha.',
+  'Best of three pulls.': 'À melhor de três puxões.',
+  'Never wrap the rope around hands or wrists.':
+    'Nunca enrolar a corda à volta das mãos ou dos pulsos.',
+  'Balance the teams by weight, not just by number.':
+    'Equilibrar as equipas pelo peso, não só pelo número.',
+  'Gloves, and soft ground for the falls.': 'Luvas, e chão macio para as quedas.',
+  Limbo: 'Limbo',
+  '1 broom, pole or rope': '1 vassoura, pau ou corda',
+  'Two people to hold it': 'Duas pessoas para a segurar',
+  'Music (calypso is traditional)': 'Música (o tradicional é calipso)',
+  'The holders start with the pole at chest height.':
+    'Quem segura começa com o pau à altura do peito.',
+  'One at a time, each player goes under the pole leaning backwards, face up.':
+    'Um de cada vez, cada jogador passa por baixo do pau inclinado para trás, de cara para cima.',
+  'Only the feet may touch the floor; touching the pole or falling is out.':
+    'Só os pés podem tocar no chão; tocar no pau ou cair é sair.',
+  'After each round, the pole goes down a few centimetres.':
+    'Depois de cada volta, o pau desce uns centímetros.',
+  'The last player to get under wins.': 'Ganha o último a conseguir passar.',
+  'Warm up first: backs suffer.': 'Aquecer primeiro: as costas sofrem.',
+  'A soft pole (a pool noodle) is safer.': 'Um pau macio (um esparguete de piscina) é mais seguro.',
+  'Team version: everyone in a conga line.': 'Versão de equipa: todos em comboio.',
+  'Egg Toss': 'Lançamento do Ovo',
+  'Pairs, 2 to 15 pairs at once': 'Pares, 2 a 15 pares ao mesmo tempo',
+  '1 raw egg per pair': '1 ovo cru por par',
+  'Old clothes or aprons': 'Roupa velha ou aventais',
+  'The pairs line up facing each other, 1 metre apart, in two rows.':
+    'Os pares alinham-se frente a frente, a 1 metro, em duas filas.',
+  'On the signal, everyone throws their egg to their partner.':
+    'Ao sinal, todos lançam o ovo ao parceiro.',
+  'Pairs whose egg breaks (or falls) are out.': 'Os pares cujo ovo partir (ou cair) saem.',
+  'After each throw, everyone takes a step back.':
+    'Depois de cada lançamento, todos dão um passo atrás.',
+  'The last pair with a whole egg wins.': 'Ganha o último par com o ovo inteiro.',
+  'Catch with soft hands, pulling back as the egg arrives.':
+    'Apanhar com as mãos moles, recuando quando o ovo chega.',
+  'Summer version: water balloons.': 'Versão de verão: balões de água.',
+  'Hard-boiled eggs for small children.': 'Ovos cozidos para os mais pequenos.',
+  'Balloon Stomp': 'Pisa o Balão',
+  String: 'Fio',
+  'Each player ties a blown-up balloon to one ankle with a 30 cm string.':
+    'Cada jogador ata um balão cheio a um tornozelo com um fio de 30 cm.',
+  'Mark the playing area.': 'Marcar a área de jogo.',
+  "On the signal, everyone tries to stomp on the others' balloons and pop them, while protecting their own.":
+    'Ao sinal, todos tentam pisar e rebentar os balões dos outros, enquanto protegem o seu.',
+  'Whoever loses their balloon is out.': 'Quem perder o balão sai.',
+  'Hands may not be used.': 'Não se pode usar as mãos.',
+  'The last player with a whole balloon wins.': 'Ganha o último jogador com o balão inteiro.',
+  'Team version: one balloon colour per team.': 'Versão por equipas: uma cor de balão por equipa.',
+  'Trainers on, no pushing.': 'Ténis calçados e nada de empurrões.',
+  'Have spare balloons for a second round.': 'Ter balões de reserva para uma segunda ronda.',
+  'Stuck in the Mud': 'Apanhada Congelada',
+  'Bibs or ribbons for the catchers': 'Coletes ou fitas para os apanhadores',
+  'Choose 1 or 2 catchers (one per 8 players).':
+    'Escolher 1 ou 2 apanhadores (um por cada 8 jogadores).',
+  'The catchers chase the others; whoever is tagged is "stuck in the mud" and freezes with their legs apart and arms out.':
+    'Os apanhadores perseguem os outros; quem for apanhado fica «congelado», parado com as pernas abertas e os braços esticados.',
+  'A free player unsticks them by crawling between their legs.':
+    'Um jogador livre descongela-o passando por baixo das pernas dele.',
+  'The catchers win if everyone is stuck at once; otherwise, swap catchers after 3 minutes.':
+    'Os apanhadores ganham se todos ficarem congelados ao mesmo tempo; senão, trocam-se ao fim de 3 minutos.',
+  'Easier unsticking for younger players: a high five.':
+    'Para os mais novos, descongelar com um «mais cinco».',
+  'Add catchers if the game drags on.': 'Juntar apanhadores se o jogo se arrastar.',
+  'A classic of school playgrounds.': 'Um clássico dos recreios.',
+  'Obstacle Course': 'Pista de Obstáculos',
+  '2 to 30 players, one or two at a time': '2 a 30 jogadores, um ou dois de cada vez',
+  'Whatever you have: cones, hoops, chairs, ropes, a table to crawl under, a mat to roll on':
+    'O que houver: cones, arcos, cadeiras, cordas, uma mesa para passar por baixo, um colchão para rebolar',
+  'Set out 6 to 10 stations in a loop: zigzag the cones, jump in the hoops, crawl under the table, walk along a rope on the ground…':
+    'Montar 6 a 10 postos em circuito: ziguezague nos cones, saltar nos arcos, rastejar por baixo da mesa, andar sobre uma corda no chão…',
+  'Walk everyone through it once.': 'Mostrar o percurso a todos uma vez.',
+  'One at a time, each player does the course against the clock.':
+    'Um de cada vez, cada jogador faz o percurso contra o relógio.',
+  'A skipped or failed station costs 5 seconds (or going back to it).':
+    'Um posto saltado ou falhado custa 5 segundos (ou voltar a ele).',
+  'The fastest time wins.': 'Ganha o tempo mais rápido.',
+  'Two identical courses side by side make it a race.':
+    'Dois percursos iguais lado a lado tornam-no uma corrida.',
+  'Add a task: carry an egg on a spoon the whole way.':
+    'Juntar uma tarefa: levar um ovo numa colher o caminho todo.',
+  'Let the children design the next course.': 'Deixar as crianças desenhar o percurso seguinte.',
+  Sardines: 'Sardinhas em Lata',
+  'Indoors (a big house) or a garden': 'Interior (uma casa grande) ou um jardim',
+  'One player hides while the others count to 60 with their eyes closed.':
+    'Um jogador esconde-se enquanto os outros contam até 60 de olhos fechados.',
+  'Everyone looks for the hidden player, each on their own.':
+    'Todos procuram o jogador escondido, cada um por si.',
+  'Whoever finds them hides with them, in silence, squeezed in like sardines.':
+    'Quem o encontrar esconde-se com ele, em silêncio, apertados como sardinhas.',
+  'The hiding place fills up until only one searcher is left.':
+    'O esconderijo vai enchendo até sobrar só um a procurar.',
+  'The last to find the group hides first in the next round.':
+    'O último a encontrar o grupo é o primeiro a esconder-se na ronda seguinte.',
+  'Choose a hiding place with room for several people.':
+    'Escolher um esconderijo com espaço para várias pessoas.',
+  'Even better at dusk, with the lights off.': 'Ainda melhor ao anoitecer, de luzes apagadas.',
+  'Agree beforehand which rooms are out of bounds.':
+    'Combinar antes que divisões ficam fora do jogo.',
+  'Capture the Flag': 'Captura da Bandeira',
+  '2 teams of 6 to 30': '2 equipas de 6 a 30',
+  'Outdoors (a big field or woods)': 'Exterior (um campo grande ou um bosque)',
+  "Bring the other team's flag back to your half without being caught.":
+    'Levar a bandeira da outra equipa para o nosso meio-campo sem ser apanhado.',
+  '2 flags (or scarves) of different colours': '2 bandeiras (ou lenços) de cores diferentes',
+  'Bibs or ribbons to tell the teams apart': 'Coletes ou fitas para distinguir as equipas',
+  'Cones or a rope for the centre line': 'Cones ou uma corda para a linha do meio',
+  'Split the field in two halves, one per team.':
+    'Dividir o campo em duas metades, uma por equipa.',
+  'Each team plants its flag in its half, visible, and marks a "jail" near it.':
+    'Cada equipa põe a sua bandeira no seu meio-campo, à vista, e marca uma «prisão» perto dela.',
+  'Players cross into the enemy half to steal the flag; there, they can be tagged.':
+    'Os jogadores entram no meio-campo inimigo para roubar a bandeira; lá, podem ser apanhados.',
+  "Whoever is tagged goes to the other team's jail.":
+    'Quem for apanhado vai para a prisão da outra equipa.',
+  'A teammate can free them by reaching the jail without being tagged; both walk back to their half.':
+    'Um colega pode libertá-lo chegando à prisão sem ser apanhado; os dois voltam a pé para o seu meio-campo.',
+  'The first team to bring the enemy flag back to its half wins.':
+    'Ganha a primeira equipa a trazer a bandeira inimiga para o seu meio-campo.',
+  'Divide each team into attackers and defenders.':
+    'Dividir cada equipa em atacantes e defensores.',
+  'Defenders may not stand closer than 5 metres to their own flag.':
+    'Os defensores não podem ficar a menos de 5 metros da sua bandeira.',
+  'At night, with glow sticks on the flags.': 'À noite, com pulseiras luminosas nas bandeiras.',
+  'Sharks and Minnows': 'Tubarões e Peixinhos',
+  '10 to 50 players': '10 a 50 jogadores',
+  'Outdoors (a field), a sports hall or a pool': 'Exterior (um campo), um pavilhão ou uma piscina',
+  'Cones to mark the two safe ends': 'Cones para marcar as duas pontas seguras',
+  'One or two players are the sharks and stand in the middle.':
+    'Um ou dois jogadores são os tubarões e ficam no meio.',
+  'The minnows line up at one end.': 'Os peixinhos alinham-se numa das pontas.',
+  'The sharks shout "Fishy, fishy, cross my ocean!"':
+    'Os tubarões gritam: «Peixinhos, peixinhos, atravessem o meu mar!»',
+  'The minnows run to the other end; the sharks try to tag them.':
+    'Os peixinhos correm para a outra ponta; os tubarões tentam apanhá-los.',
+  'Whoever is tagged becomes a shark too.': 'Quem for apanhado passa também a tubarão.',
+  'The last minnow left wins and is the first shark next time.':
+    'O último peixinho ganha e é o primeiro tubarão na vez seguinte.',
+  'Variation: tagged minnows become "seaweed", who stand still and tag with their arms.':
+    'Variante: os peixinhos apanhados viram «algas», que ficam paradas e apanham com os braços.',
+  'In a pool: shallow end only, and a lifeguard watching.':
+    'Na piscina: só na parte rasa, e com um nadador-salvador a ver.',
+  'Close to British Bulldog, but without the tackling.':
+    'Parecido com o British Bulldog inglês, mas sem placagens.',
+  'Steal the Bacon': 'Rouba o Lenço',
+  '2 teams of 5 to 20': '2 equipas de 5 a 20',
+  '1 handkerchief or soft object (the "bacon")': '1 lenço ou objeto macio (o «toucinho»)',
+  'The teams line up facing each other, 10 metres apart; each player gets a number, the same numbers on both sides.':
+    'As equipas alinham-se frente a frente, a 10 metros; cada jogador recebe um número, os mesmos números dos dois lados.',
+  'Put the handkerchief in the middle.': 'Pôr o lenço no meio.',
+  'The leader calls a number.': 'O líder diz um número.',
+  'The two players with that number run to the middle and try to grab the handkerchief and get it back to their line.':
+    'Os dois jogadores com esse número correm para o meio e tentam agarrar o lenço e levá-lo para a sua linha.',
+  'If the one with the handkerchief is tagged by the other before getting back, the point goes to the tagger.':
+    'Se quem tem o lenço for tocado pelo outro antes de chegar, o ponto é de quem tocou.',
+  'First team to 10 points wins.': 'Ganha a primeira equipa a chegar aos 10 pontos.',
+  'Call two or three numbers at once for chaos.':
+    'Chamar dois ou três números de uma vez, para o caos.',
+  'Call numbers as sums ("3 plus 4!") for school groups.':
+    'Chamar os números como contas («3 mais 4!») para grupos escolares.',
+  'Feints in the middle are the real game.': 'As fintas no meio são o verdadeiro jogo.',
+  'Kick the Can': 'Chuta a Lata',
+  'Outdoors (with places to hide)': 'Exterior (com sítios para esconder)',
+  '1 empty can (or plastic bottle)': '1 lata vazia (ou garrafa de plástico)',
+  'Put the can in an open spot; draw a circle around it as the jail.':
+    'Pôr a lata num sítio aberto; desenhar um círculo à volta como prisão.',
+  'One player is the seeker; the others hide while they count to 50.':
+    'Um jogador procura; os outros escondem-se enquanto ele conta até 50.',
+  'The seeker looks for the others; when they spot someone, they run back, touch the can and shout the name: that player goes to jail.':
+    'Quem procura vai à procura dos outros; quando vê alguém, corre, toca na lata e grita o nome: esse jogador vai para a prisão.',
+  'A free player can sneak up and kick the can: everyone in jail is freed and hides again.':
+    'Um jogador livre pode aproximar-se às escondidas e chutar a lata: todos os presos ficam livres e voltam a esconder-se.',
+  'The seeker has to put the can back before catching anyone else.':
+    'Quem procura tem de pôr a lata no lugar antes de apanhar mais alguém.',
+  'The seeker wins when everyone is in jail; the first one caught seeks next.':
+    'Quem procura ganha quando todos estiverem presos; o primeiro apanhado procura a seguir.',
+  'Better at dusk.': 'Melhor ao anoitecer.',
+  'Agree on boundaries before hiding.': 'Combinar os limites antes de se esconderem.',
+  'Big groups: two seekers.': 'Grupos grandes: dois a procurar.',
+  'Rock-Paper-Scissors Tournament': 'Torneio de Pedra, Papel, Tesoura',
+  '10 to 200 players': '10 a 200 jogadores',
+  'Everyone pairs up with someone nearby.': 'Cada um junta-se a alguém que esteja perto.',
+  'Each pair plays rock-paper-scissors, best of three.':
+    'Cada par joga pedra, papel, tesoura, à melhor de três.',
+  "The loser becomes the winner's cheerleader: they follow them, shouting their name.":
+    'Quem perde passa a claque de quem ganhou: segue-o a gritar o nome dele.',
+  'The winner finds another winner and plays again; the losing winner and their whole cheering squad join the new winner.':
+    'O vencedor procura outro vencedor e volta a jogar; quem perde junta-se, com toda a sua claque, à claque do novo vencedor.',
+  'In the end, two players face off with half the room cheering for each: the champion takes it all.':
+    'No fim, dois jogadores defrontam-se com meia sala a apoiar cada um: o campeão leva tudo.',
+  'Wonderful for waking up a big group in 5 minutes.':
+    'Ótimo para acordar um grupo grande em 5 minutos.',
+  'Evolution variant: everyone starts as an egg, and each win goes chicken, dinosaur, human, with the matching moves.':
+    'Variante evolução: todos começam como ovo, e cada vitória passa a galinha, dinossauro, humano, com os gestos a condizer.',
+  'The final on a stage, with a commentator.': 'A final num palco, com um comentador.',
+  'Giants, Wizards and Elves': 'Gigantes, Feiticeiros e Duendes',
+  '2 teams of 6 to 40': '2 equipas de 6 a 40',
+  'Cones to mark a centre line and two safe zones':
+    'Cones para marcar uma linha central e duas zonas seguras',
+  'Teach the three characters: the giant (arms up high, "Ho, ho!"), the wizard (casting a spell, "Zap!") and the elf (crouching, ears with fingers, "Hee, hee!").':
+    'Ensinar as três personagens: o gigante (braços no ar, «Oh, oh!»), o feiticeiro (a lançar um feitiço, «Zás!») e o duende (agachado, orelhas com os dedos, «Hi, hi!»).',
+  'Giants beat elves, elves beat wizards, wizards beat giants.':
+    'Os gigantes ganham aos duendes, os duendes aos feiticeiros e os feiticeiros aos gigantes.',
+  'Each team huddles in its safe zone and secretly agrees on a character.':
+    'Cada equipa junta-se na sua zona segura e combina em segredo uma personagem.',
+  'The teams face each other at the centre line; on "3", everyone acts out their team\'s character.':
+    'As equipas ficam frente a frente na linha central; ao «3», todos fazem a personagem da sua equipa.',
+  "The winning team chases the other back to its safe zone; whoever is tagged joins the chasers' team.":
+    'A equipa que ganha persegue a outra até à sua zona segura; quem for apanhado passa para a equipa que perseguia.',
+  'If both teams pick the same, they go again.': 'Se as duas escolherem a mesma, repete-se.',
+  'The game ends when one team has everyone.': 'O jogo acaba quando uma equipa ficar com todos.',
+  'It is rock-paper-scissors with the whole body.': 'É pedra, papel, tesoura com o corpo todo.',
+  'The more dramatic the characters, the better.': 'Quanto mais teatrais as personagens, melhor.',
+  'Short chase distances keep it safe.': 'Distâncias curtas de perseguição tornam-no seguro.',
+  Ninja: 'Ninja',
+  'Everyone stands in a circle, bows and shouts "Ninja!", jumping into a ninja pose.':
+    'Todos ficam em roda, fazem uma vénia e gritam «Ninja!», saltando para uma pose de ninja.',
+  "In turn, each player makes one quick move to try to hit another player's hand.":
+    'À vez, cada jogador faz um movimento rápido para tentar tocar na mão de outro jogador.',
+  'The attacked player may make one move to dodge; then both freeze in their final position.':
+    'O atacado pode fazer um movimento para se desviar; depois os dois ficam parados na posição final.',
+  'Whoever is hit on the hand loses that hand (puts it behind their back).':
+    'Quem for tocado na mão perde essa mão (põe-na atrás das costas).',
+  'Losing both hands is out; the last ninja wins.':
+    'Perder as duas mãos é sair; ganha o último ninja.',
+  'Only one move per turn, in one smooth motion.': 'Só um movimento por vez, num só gesto.',
+  'Freeze between turns: no shuffling.': 'Parados entre vezes: nada de ajeitar os pés.',
+  'Hits are touches, never slaps.': 'Os toques são toques, nunca palmadas.',
+  'Zip Zap Zop': 'Zip Zap Zop',
+  'Everyone stands in a circle.': 'Todos ficam de pé em roda.',
+  'The first player claps their hands pointing at someone and says "Zip!"':
+    'O primeiro jogador bate as palmas a apontar para alguém e diz «Zip!»',
+  'That player passes it on to anyone else with "Zap!", the next with "Zop!", then "Zip!" again, and so on.':
+    'Esse jogador passa a outro qualquer com «Zap!», o seguinte com «Zop!», depois outra vez «Zip!», e assim por diante.',
+  'Whoever hesitates or says the wrong word is out (or sits down).':
+    'Quem hesitar ou disser a palavra errada sai (ou senta-se).',
+  'Speed up until only two or three are left.': 'Acelerar até sobrarem só dois ou três.',
+  'Eye contact is everything: look at who you are passing to.':
+    'O contacto visual é tudo: olhar para quem se passa.',
+  'A great warm-up for theatre and improv groups.':
+    'Um ótimo aquecimento para grupos de teatro e improviso.',
+  'Nobody out: just restart from whoever got it wrong.': 'Ninguém sai: recomeça-se em quem errou.',
+  "Captain's Coming": 'Vem Aí o Capitão',
+  '10 to 60 players': '10 a 60 jogadores',
+  'One player is the captain; teach the commands and the parts of the "ship" (bow, stern, port and starboard sides of the area).':
+    'Um jogador é o capitão; ensinar as ordens e as partes do «navio» (proa, popa, bombordo e estibordo da área).',
+  'The captain shouts commands: "Bow!" (everyone runs to the front), "Stern!" (back), "Port!", "Starboard!" (the sides), "Captain\'s coming!" (salute and freeze), "Man overboard!" (lie down), "Lifeboats!" (sit in groups of three, rowing).':
+    'O capitão grita ordens: «Proa!» (todos correm para a frente), «Popa!» (para trás), «Bombordo!», «Estibordo!» (os lados), «Vem aí o capitão!» (fazer continência e ficar parado), «Homem ao mar!» (deitar no chão), «Botes salva-vidas!» (sentar em grupos de três, a remar).',
+  'The last to obey, or whoever does the wrong thing or is left without a group, is out.':
+    'O último a obedecer, ou quem fizer outra coisa ou ficar sem grupo, sai.',
+  'The last sailor on board wins.': 'Ganha o último marinheiro a bordo.',
+  'Start with three commands and add more each round.':
+    'Começar com três ordens e juntar mais em cada ronda.',
+  'Players who are out help the captain judge.': 'Os que saem ajudam o capitão a julgar.',
+  'Make up commands: "Scrub the deck!", "Shark attack!"':
+    'Inventar ordens: «Esfregar o convés!», «Ataque de tubarão!»',
+  'Human Bingo': 'Bingo Humano',
+  '15 to 25 min': '15 a 25 min',
+  '1 bingo card per player, each square with a description ("has been to Japan", "plays an instrument", "was born in August")':
+    '1 cartão de bingo por jogador, com uma descrição em cada quadrado («já foi ao Japão», «toca um instrumento», «nasceu em agosto»)',
+  'Hand out the cards and pens.': 'Distribuir os cartões e as canetas.',
+  'Everyone walks around asking the others questions to find someone who fits each square.':
+    'Todos andam pela sala a fazer perguntas aos outros para encontrar alguém que encaixe em cada quadrado.',
+  'Whoever fits signs the square; each person may sign only once per card.':
+    'Quem encaixar assina o quadrado; cada pessoa só pode assinar uma vez por cartão.',
+  'The first to complete a line shouts "Bingo!"; the game can carry on to a full card.':
+    'O primeiro a completar uma linha grita «Bingo!»; o jogo pode continuar até ao cartão cheio.',
+  'Check the card by asking the signers out loud.':
+    'Confirma-se o cartão perguntando aos que assinaram, em voz alta.',
+  'Mix easy and rare squares.': 'Misturar quadrados fáceis e raros.',
+  'Ask about something true of the guests: the organiser can collect facts beforehand.':
+    'Perguntar coisas verdadeiras dos convidados: o organizador pode recolher curiosidades antes.',
+  'A great first-day icebreaker at camps and conferences.':
+    'Um ótimo quebra-gelo para o primeiro dia de campos de férias e conferências.',
+  'Flashlight Tag': 'Apanhada de Lanterna',
+  'Outdoors, at night': 'Exterior, à noite',
+  '1 or 2 torches': '1 ou 2 lanternas',
+  'Mark the boundaries and a "base" before dark.':
+    'Marcar os limites e uma «base» antes de escurecer.',
+  'One player is "it" and holds the torch.': 'Um jogador é o apanhador e segura a lanterna.',
+  'The others hide while "it" counts to 30.':
+    'Os outros escondem-se enquanto o apanhador conta até 30.',
+  '"It" looks for them with the torch; whoever is lit up and named is caught and goes to base.':
+    'O apanhador procura-os com a lanterna; quem for iluminado e chamado pelo nome é apanhado e vai para a base.',
+  'The others try to reach base without being lit: whoever makes it is safe.':
+    'Os outros tentam chegar à base sem ser iluminados: quem conseguir está salvo.',
+  'The first one caught is "it" next round.':
+    'O primeiro apanhado é o apanhador na ronda seguinte.',
+  'Walking only: no running in the dark.': 'Só a andar: nada de correr no escuro.',
+  'Know the terrain in daylight first.': 'Conhecer o terreno de dia primeiro.',
+  'Glow sticks for whoever is safe.': 'Pulseiras luminosas para quem já está salvo.',
+  'Toilet Paper Wedding Dress': 'Vestido de Noiva de Papel Higiénico',
+  '4 to 6 rolls of toilet paper per team': '4 a 6 rolos de papel higiénico por equipa',
+  'Sticky tape': 'Fita-cola',
+  'Each team chooses a model; the bride is the judge.':
+    'Cada equipa escolhe um modelo; a noiva é o júri.',
+  'The teams have 15 minutes to make a wedding dress (veil and bouquet included) on their model, using only toilet paper and tape.':
+    'As equipas têm 15 minutos para fazer um vestido de noiva (com véu e ramo) no seu modelo, só com papel higiénico e fita-cola.',
+  'When time is up, each model parades down a "catwalk".':
+    'No fim do tempo, cada modelo desfila numa «passerelle».',
+  'The bride chooses the winning dress.': 'A noiva escolhe o vestido vencedor.',
+  'Put on music for the parade.': 'Pôr música para o desfile.',
+  "Bachelor party version: the groom's suit and bow tie.":
+    'Versão de despedida de solteiro: o fato e o laço do noivo.',
+  'Take photos: they end up at the wedding.':
+    'Tirar fotografias: acabam por aparecer no casamento.',
+  'The Shoe Game': 'O Jogo dos Sapatos',
+  'The couple (or the bride and her best friend), plus the audience':
+    'O casal (ou a noiva e a melhor amiga), mais o público',
+  '2 chairs': '2 cadeiras',
+  'A list of 15 to 25 questions': 'Uma lista de 15 a 25 perguntas',
+  "The two sit back to back; each takes off their shoes and holds one of their own and one of the other's.":
+    'Os dois sentam-se costas com costas; cada um descalça-se e segura um sapato seu e um do outro.',
+  'The host reads questions like "Who is the better cook?" or "Who said \'I love you\' first?"':
+    'O apresentador lê perguntas como «Quem cozinha melhor?» ou «Quem disse "amo-te" primeiro?»',
+  'Without looking, each raises the shoe of the person who fits the answer.':
+    'Sem olhar, cada um levanta o sapato da pessoa que corresponde à resposta.',
+  'Each question where they agree earns a point; disagreements are laughed at and explained.':
+    'Cada pergunta em que concordam vale um ponto; as discordâncias dão gargalhadas e explicações.',
+  'Mix sweet and embarrassing questions.': 'Misturar perguntas ternas e embaraçosas.',
+  'A favourite at wedding receptions too.': 'Também é dos favoritos nas festas de casamento.',
+  'If the couple is not there, the bride plays with whoever knows her best.':
+    'Se o casal não estiver junto, a noiva joga com quem a conhece melhor.',
+  'Most Likely To': 'Quem É Mais Provável',
+  'A list of "Who is most likely to…" questions': 'Uma lista de perguntas «Quem é mais provável…»',
+  'Someone reads a question: "Who is most likely to get lost on their way home?"':
+    'Alguém lê uma pergunta: «Quem é mais provável perder-se a caminho de casa?»',
+  'On "3", everyone points at someone.': 'Ao «3», todos apontam para alguém.',
+  'Whoever gets the most fingers explains themselves (or does a forfeit, or takes a sip).':
+    'Quem tiver mais dedos apontados explica-se (ou cumpre um castigo, ou bebe um gole).',
+  'Questions about the bride or groom: "…to cry at the altar?"':
+    'Perguntas sobre a noiva ou o noivo: «…chorar no altar?»',
+  'Keep it friendly: nothing that really hurts.': 'Manter o tom amigável: nada que magoe a sério.',
+  'Alcohol-free version: forfeits instead of sips.': 'Versão sem álcool: castigos em vez de goles.',
+  'Don\'t Say "Wedding"': 'Não Digas «Casamento»',
+  'The whole party': 'A festa inteira',
+  '3 clothes pegs (or bracelets) per guest': '3 molas da roupa (ou pulseiras) por convidado',
+  'At the start, each guest pins 3 pegs to their clothes, and a forbidden word is announced: "wedding" (or "bride", "groom").':
+    'No início, cada convidado prende 3 molas na roupa e anuncia-se a palavra proibida: «casamento» (ou «noiva», «noivo»).',
+  'Whenever someone says the forbidden word, whoever catches them takes one of their pegs.':
+    'Sempre que alguém disser a palavra proibida, quem o apanhar fica com uma das suas molas.',
+  'A guest with no pegs left can still catch others.':
+    'Um convidado sem molas pode continuar a apanhar os outros.',
+  'At the end of the party, whoever has the most pegs wins.':
+    'No fim da festa, ganha quem tiver mais molas.',
+  'Lead conversations towards the subject: that is the strategy.':
+    'Puxar a conversa para o tema: é essa a estratégia.',
+  'Baby shower version: "baby".': 'Versão de chá de bebé: «bebé».',
+  'Little prize for the winner.': 'Um pequeno prémio para o vencedor.',
+  'Lip Sync Battle': 'Batalha de Playback',
+  '4 to 20 players, solo or in pairs': '4 a 20 jogadores, a solo ou em pares',
+  'A speaker and a playlist': 'Uma coluna e uma lista de músicas',
+  'A fake microphone (a hairbrush is fine)': 'Um microfone a fingir (uma escova de cabelo serve)',
+  'Costumes and props (optional)': 'Fatos e adereços (opcional)',
+  'Each player (or pair) chooses or draws a song.':
+    'Cada jogador (ou par) escolhe ou sorteia uma música.',
+  'Give them 10 minutes to prepare with the props.':
+    'Dar-lhes 10 minutos para se prepararem com os adereços.',
+  'In turn, each performs their song miming the lyrics, without singing: only the original voice is heard.':
+    'À vez, cada um atua na sua música a fazer playback, sem cantar: só se ouve a voz original.',
+  'The audience cheers; the bride (or a jury) gives marks.':
+    'O público aplaude; a noiva (ou um júri) dá notas.',
+  'The best performance wins.': 'Ganha a melhor atuação.',
+  "Songs from the couple's story are a winner.":
+    'Músicas da história do casal são uma aposta ganha.',
+  'Drawing songs at random gives the funniest mismatches.':
+    'Sortear as músicas dá os desencontros mais engraçados.',
+  'Film it for the wedding video.': 'Filmar para o vídeo do casamento.',
+  'Cocktail Competition': 'Concurso de Cocktails',
+  'Teams of 2 or 3': 'Equipas de 2 ou 3',
+  'Indoors (kitchen or bar)': 'Interior (cozinha ou bar)',
+  'Drinks, juices, fruit, ice and decorations to share':
+    'Bebidas, sumos, fruta, gelo e decorações para partilhar',
+  'Glasses, shakers or jars with lids': 'Copos, cocktaileiras ou frascos com tampa',
+  'Lay out the ingredients on a table that everyone can reach.':
+    'Pôr os ingredientes numa mesa a que todos cheguem.',
+  'Each team has 15 minutes to invent a cocktail, give it a name inspired by the couple and decorate it.':
+    'Cada equipa tem 15 minutos para inventar um cocktail, dar-lhe um nome inspirado no casal e decorá-lo.',
+  'They present it to the bride (or groom), who tastes it and gives marks for taste, look and name.':
+    'Apresentam-no à noiva (ou ao noivo), que prova e dá notas ao sabor, ao aspeto e ao nome.',
+  'The highest score wins: that cocktail may even go on the wedding menu.':
+    'Ganha a pontuação mais alta: esse cocktail pode até entrar no menu do casamento.',
+  'Mocktail version: no alcohol, the same fun.':
+    'Versão sem álcool: sem álcool e com a mesma graça.',
+  'Small tasting portions.': 'Porções pequenas para provar.',
+  'A secret ingredient drawn at the start for each team.':
+    'Um ingrediente secreto sorteado no início para cada equipa.',
+  'Who Said It?': 'Quem Disse?',
+  'The group, plus a host': 'O grupo, mais um apresentador',
+  'A list of 15 to 20 answers the bride and the groom gave separately, beforehand, to the same questions':
+    'Uma lista de 15 a 20 respostas que a noiva e o noivo deram em separado, antes, às mesmas perguntas',
+  'Paper and pen per guest': 'Papel e caneta por convidado',
+  'Well before the party, the host asks the bride and the groom the same questions in private ("What was your first impression?", "Who apologises first?").':
+    'Bem antes da festa, o apresentador faz à noiva e ao noivo as mesmas perguntas, em privado («Qual foi a tua primeira impressão?», «Quem pede desculpa primeiro?»).',
+  'The host reads out one answer at a time.': 'O apresentador lê uma resposta de cada vez.',
+  'The guests write down who they think said it: the bride or the groom.':
+    'Os convidados escrevem quem acham que a disse: a noiva ou o noivo.',
+  'After each answer, reveal who said it; whoever gets the most right wins.':
+    'Depois de cada resposta, revela-se quem a disse; ganha quem acertar mais.',
+  'Choose questions where both answers are funny.':
+    'Escolher perguntas em que as duas respostas tenham graça.',
+  'Read them in a neutral voice to avoid giving clues.': 'Ler numa voz neutra para não dar pistas.',
+  'If the couple is present, they react to every reveal.':
+    'Se o casal estiver presente, reage a cada revelação.',
+  'Lost at Sea': 'Perdidos no Mar',
+  'Teams of 4 to 6': 'Equipas de 4 a 6',
+  'Agree as a team on what matters most to survive, and compare with the experts.':
+    'Chegar a acordo em equipa sobre o que é mais importante para sobreviver, e comparar com os especialistas.',
+  'A list of 15 items saved from a sinking yacht (a mirror, a can of petrol, water, chocolate, a map, a fishing kit, a radio…)':
+    'Uma lista de 15 objetos salvos de um iate a afundar (um espelho, uma lata de gasolina, água, chocolate, um mapa, um kit de pesca, um rádio…)',
+  'The "expert" ranking (easy to find online)':
+    'A classificação dos «especialistas» (fácil de encontrar na internet)',
+  'Tell the story: the group is adrift in a life raft, far from land, with only these items.':
+    'Contar a história: o grupo está à deriva num bote salva-vidas, longe de terra, só com estes objetos.',
+  'Each person first ranks the items alone, from most to least useful (5 min).':
+    'Cada pessoa ordena primeiro os objetos sozinha, do mais ao menos útil (5 min).',
+  'Then each team agrees on a single ranking (20 min).':
+    'Depois cada equipa chega a acordo numa só ordem (20 min).',
+  "Compare both with the experts' ranking: add up the difference in positions for each item.":
+    'Compara-se com a ordem dos especialistas: soma-se a diferença de posições de cada objeto.',
+  'The lowest score wins; usually the team ranking beats most individual ones.':
+    'Ganha a pontuação mais baixa; normalmente a ordem da equipa bate a maioria das individuais.',
+  'The surprise: the mirror and the petrol (for signalling) beat the map and the radio.':
+    'A surpresa: o espelho e a gasolina (para sinalizar) batem o mapa e o rádio.',
+  'Debrief: how did the team decide? Who was heard?':
+    'No fim, conversar: como é que a equipa decidiu? Quem foi ouvido?',
+  'Other scenarios: lost in the desert, on the Moon.':
+    'Outros cenários: perdidos no deserto, na Lua.',
+  "Spider's Web": 'Teia de Aranha',
+  'Outdoors (between two trees or posts)': 'Exterior (entre duas árvores ou postes)',
+  'Rope or elastic to weave a web between two trees':
+    'Corda ou elástico para tecer uma teia entre duas árvores',
+  'Weave a web with as many holes as players, at different heights, some only reachable by lifting someone.':
+    'Tecer uma teia com tantos buracos quantos os jogadores, a alturas diferentes, alguns só alcançáveis levantando alguém.',
+  'The whole team has to pass from one side to the other through the holes.':
+    'A equipa toda tem de passar de um lado para o outro pelos buracos.',
+  'Each hole may be used only once.': 'Cada buraco só pode ser usado uma vez.',
+  'If anyone touches the web, the whole team starts again (or that player goes back).':
+    'Se alguém tocar na teia, a equipa toda recomeça (ou esse jogador volta atrás).',
+  'The team must plan the order: who goes first and who goes last.':
+    'A equipa tem de planear a ordem: quem passa primeiro e quem passa por último.',
+  'Safety first: lifting with care, nobody dives.':
+    'Segurança em primeiro lugar: levantar com cuidado, ninguém mergulha.',
+  'Bells on the web make every touch heard.': 'Guizos na teia fazem ouvir cada toque.',
+  'A planning time with no touching helps.': 'Um tempo de planeamento sem tocar ajuda.',
+  'Toxic Waste': 'Resíduo Tóxico',
+  '1 bucket full of balls (the "toxic waste")': '1 balde cheio de bolas (o «resíduo tóxico»)',
+  '1 empty bucket': '1 balde vazio',
+  '1 bicycle inner tube or elastic band': '1 câmara de ar de bicicleta ou um elástico',
+  '8 ropes, about 3 metres each': '8 cordas, de cerca de 3 metros cada',
+  'A rope to mark a 3-metre circle': 'Uma corda para marcar um círculo de 3 metros',
+  'Put the full bucket in the middle of the circle: nobody may enter it.':
+    'Pôr o balde cheio no meio do círculo: ninguém pode entrar.',
+  'Put the empty bucket 10 metres away.': 'Pôr o balde vazio a 10 metros.',
+  'Using only the inner tube and the ropes, the team must lift the bucket out of the circle and pour the waste into the empty bucket.':
+    'Só com a câmara de ar e as cordas, a equipa tem de tirar o balde do círculo e despejar o resíduo no balde vazio.',
+  'Nobody may cross into the circle or touch the buckets with their hands.':
+    'Ninguém pode entrar no círculo nem tocar nos baldes com as mãos.',
+  'A spill means starting again.': 'Um derrame obriga a recomeçar.',
+  'The trick: tie the ropes to the inner tube and stretch it over the bucket.':
+    'O truque: atar as cordas à câmara de ar e esticá-la por cima do balde.',
+  'Water instead of balls for a hot day.': 'Água em vez de bolas para um dia de calor.',
+  'Debrief on how the leader emerged.': 'No fim, conversar sobre como surgiu o líder.',
+  Pipeline: 'Pipeline',
+  'Teams of 5 to 15': 'Equipas de 5 a 15',
+  '1 half-pipe per player (a gutter piece, or a kitchen roll tube cut lengthwise)':
+    '1 meia-cana por jogador (um pedaço de caleira, ou um rolo de papel de cozinha cortado ao comprido)',
+  '1 marble or ping-pong ball': '1 berlinde ou bola de pingue-pongue',
+  '1 cup at the finish': '1 copo na meta',
+  'Put the cup 10 to 20 metres from the start.': 'Pôr o copo a 10 a 20 metros da partida.',
+  'The team carries the ball to the cup by rolling it along the half-pipes, from one to the next.':
+    'A equipa leva a bola até ao copo fazendo-a rolar pelas meias-canas, de uma para a seguinte.',
+  'The ball may not stop, go backwards or be touched; whoever has it may not walk.':
+    'A bola não pode parar, andar para trás nem ser tocada; quem a tem não pode andar.',
+  'Whoever has passed the ball runs to the front of the line to keep the pipeline going.':
+    'Quem já passou a bola corre para a frente da fila para manter o pipeline.',
+  'If the ball falls, it goes back to the start; the first team to land it in the cup wins.':
+    'Se a bola cair, volta ao início; ganha a primeira equipa a pô-la no copo.',
+  'Add a turn or stairs for experienced teams.':
+    'Juntar uma curva ou escadas para equipas experientes.',
+  'Several balls of different speeds: marble, ping-pong, egg.':
+    'Várias bolas de velocidades diferentes: berlinde, pingue-pongue, ovo.',
+  'Communication is everything: who calls "go"?': 'A comunicação é tudo: quem dá o «já»?',
+  'Lava River': 'Rio de Lava',
+  'Paper plates, cardboard squares or carpet tiles (the "stones"): fewer than the players':
+    'Pratos de papel, quadrados de cartão ou tapetes (as «pedras»): menos do que os jogadores',
+  '2 ropes to mark the banks': '2 cordas para marcar as margens',
+  'Mark two banks 8 to 10 metres apart: the space between them is lava.':
+    'Marcar duas margens a 8 a 10 metros uma da outra: o espaço entre elas é lava.',
+  'The team must cross the river using only the stones, which they place and move themselves.':
+    'A equipa tem de atravessar o rio só pelas pedras, que ela própria vai pondo e mudando.',
+  'A stone with nobody touching it is swept away by the lava (the organiser takes it).':
+    'Uma pedra em que ninguém esteja a tocar é levada pela lava (o organizador tira-a).',
+  'Whoever touches the lava goes back to the start (or the team does).':
+    'Quem tocar na lava volta ao início (ou volta a equipa toda).',
+  'The whole team must reach the other bank.': 'A equipa toda tem de chegar à outra margem.',
+  'Fewer stones make it a lot harder.': 'Menos pedras tornam-no muito mais difícil.',
+  'A "mute" player or a blindfolded one adds a challenge.':
+    'Um jogador «mudo» ou um vendado acrescentam desafio.',
+  'Also known as Peanut Butter River.': 'Também conhecido como Rio de Manteiga de Amendoim.',
+  'All Aboard': 'Todos a Bordo',
+  'Teams of 6 to 15': 'Equipas de 6 a 15',
+  '1 tarp, blanket or rope circle per team': '1 oleado, manta ou círculo de corda por equipa',
+  'Lay the tarp flat: it is the boat, and the floor around it is sea.':
+    'Estender o oleado: é o barco, e o chão à volta é mar.',
+  'The whole team must fit on the tarp, nobody touching the sea, for 10 seconds.':
+    'A equipa toda tem de caber no oleado, sem ninguém tocar no mar, durante 10 segundos.',
+  'Then fold the tarp in half and try again.':
+    'Depois dobra-se o oleado ao meio e tenta-se outra vez.',
+  'Keep folding until it is impossible.': 'Continua-se a dobrar até ser impossível.',
+  'The team that fits on the smallest boat wins.':
+    'Ganha a equipa que couber no barco mais pequeno.',
+  'Piggybacks are allowed, but carefully.': 'Cavalitas são permitidas, mas com cuidado.',
+  'Agree on a safety word to stop at any time.':
+    'Combinar uma palavra de segurança para parar a qualquer momento.',
+  'Debrief: who had the winning idea?': 'No fim, conversar: quem teve a ideia vencedora?',
+  'Back-to-Back Drawing': 'Desenho Costas com Costas',
+  'Simple pictures (shapes, a house, a robot), one per pair':
+    'Imagens simples (formas, uma casa, um robô), uma por par',
+  'Paper and pencil': 'Papel e lápis',
+  'The partners sit back to back: one has the picture, the other the paper and pencil.':
+    'Os parceiros sentam-se costas com costas: um tem a imagem, o outro o papel e o lápis.',
+  'The one with the picture describes it without saying what it is ("draw a big circle; under it, a square…").':
+    'Quem tem a imagem descreve-a sem dizer o que é («desenha um círculo grande; por baixo, um quadrado…»).',
+  'The drawer may not ask questions (or only yes-or-no ones in round 2).':
+    'Quem desenha não pode fazer perguntas (ou só de sim ou não na ronda 2).',
+  'After 3 minutes, compare the drawing with the picture.':
+    'Ao fim de 3 minutos, compara-se o desenho com a imagem.',
+  'Swap roles; the most faithful drawing wins.': 'Trocam de papéis; ganha o desenho mais fiel.',
+  'The point is to see how hard clear instructions are.':
+    'O objetivo é perceber como é difícil dar instruções claras.',
+  'For children: animals made of simple shapes.':
+    'Para crianças: animais feitos de formas simples.',
+  'Hang the results side by side: always a laugh.':
+    'Pendurar os resultados lado a lado: riso garantido.',
+  'Blind Square': 'Quadrado às Cegas',
+  'Indoors or outdoors (an open space)': 'Interior ou exterior (um espaço aberto)',
+  '1 long rope tied in a loop (15 to 20 metres)': '1 corda comprida atada em anel (15 a 20 metros)',
+  'Everyone is blindfolded; drop the rope in a tangle near them.':
+    'Todos são vendados; deixar a corda embrulhada perto deles.',
+  'The team has to find the rope and make a perfect square with it.':
+    'A equipa tem de encontrar a corda e fazer com ela um quadrado perfeito.',
+  'Everyone must be holding the rope at the end.': 'No fim, todos têm de estar a segurar a corda.',
+  'When they think it is done, they put the rope on the floor and take off the blindfolds.':
+    'Quando acharem que está feito, pousam a corda no chão e tiram as vendas.',
+  'Then a triangle, a star, a heart.': 'Depois, um triângulo, uma estrela, um coração.',
+  'Harder: only some players may speak.': 'Mais difícil: só alguns jogadores podem falar.',
+  'Debrief: how did leaders and roles appear?':
+    'No fim, conversar: como surgiram os líderes e os papéis?',
+  'Group Juggle': 'Malabarismo de Grupo',
+  '8 to 20 players': '8 a 20 jogadores',
+  '4 to 8 soft balls (or scrunched socks)': '4 a 8 bolas macias (ou meias enroladas)',
+  'In a circle, the first ball is thrown across, always to someone who has not had it yet, saying their name, until it gets back to the first player: that is the pattern.':
+    'Em roda, a primeira bola é lançada a alguém que ainda não a tenha recebido, dizendo o nome dele, até voltar ao primeiro jogador: é a sequência.',
+  'Repeat the same pattern, always to the same person.':
+    'Repete-se a mesma sequência, sempre para a mesma pessoa.',
+  'Once it flows, the leader adds a second ball, then a third…':
+    'Quando correr bem, o líder junta uma segunda bola, depois uma terceira…',
+  'The aim is to keep as many balls going as possible without dropping them.':
+    'O objetivo é manter o maior número de bolas a circular sem as deixar cair.',
+  'Challenge: time how long the team takes to pass every ball round once, then beat it.':
+    'Desafio: cronometrar quanto tempo a equipa demora a passar todas as bolas uma vez, e depois bater o tempo.',
+  'Great for learning names on day one.': 'Ótimo para aprender os nomes no primeiro dia.',
+  'Add a rubber chicken going backwards.': 'Juntar uma galinha de borracha a andar ao contrário.',
+  'Underarm throws only.': 'Só lançamentos por baixo.',
+  'Paper Bridge': 'Ponte de Papel',
+  '20 sheets of A4 paper per team': '20 folhas A4 por equipa',
+  '1 roll of sticky tape per team': '1 rolo de fita-cola por equipa',
+  '2 equal stacks of books (the banks), 30 cm apart':
+    '2 pilhas de livros iguais (as margens), a 30 cm uma da outra',
+  'Coins or small weights': 'Moedas ou pequenos pesos',
+  'Each team gets its materials and its two stacks of books.':
+    'Cada equipa recebe os materiais e as suas duas pilhas de livros.',
+  'The teams have 20 minutes to build a bridge between the two stacks, using only the paper and the tape.':
+    'As equipas têm 20 minutos para construir uma ponte entre as duas pilhas, só com o papel e a fita-cola.',
+  'The bridge may rest on the books, but may not be taped to them.':
+    'A ponte pode estar apoiada nos livros, mas não colada a eles.',
+  'Then load coins in the middle, one at a time, until it collapses.':
+    'Depois põem-se moedas no meio, uma de cada vez, até ela ceder.',
+  'The bridge that holds the most coins wins.': 'Ganha a ponte que aguentar mais moedas.',
+  'Rolled tubes and folded beams hold far more than a flat sheet.':
+    'Tubos enrolados e vigas dobradas aguentam muito mais do que uma folha plana.',
+  'Give each team a "budget": tape costs money.':
+    'Dar um «orçamento» a cada equipa: a fita-cola custa dinheiro.',
+  'Planning for 5 minutes without touching the material helps.':
+    'Planear 5 minutos sem tocar no material ajuda.',
 };
