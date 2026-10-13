@@ -5,10 +5,10 @@
 import type { Glimpse, Role, Useful } from './types';
 
 import yellowBox from '../assets/home/yellow-box-podcast.webp';
-import acorda from '../assets/home/acorda-workshop.webp';
 import portoGuide from '../assets/home/porto-guide.webp';
 import myApps from '../assets/home/my-apps.webp';
 import teslaUtils from '../assets/home/tesla-utils.webp';
+import acorda from '../assets/what-i-do/improver/workshop-classroom.webp';
 import minderaJourneyMap from '../assets/what-i-do/tech-engineer/mindera-journey-map.webp';
 
 export const welcome = {
@@ -85,7 +85,8 @@ export const glimpses: Glimpse[] = [
     description: ["A team & feedback workshop for A'Corda, a non-profit summer camp association."],
     cta: { label: 'Coach', href: '/what-i-do/improver' },
     image: acorda,
-    imageAlt: "A team workshop with A'Corda volunteers gathered around a table",
+    imageAlt:
+      'A facilitator stands by a screen while participants seated around classroom tables listen, smiling',
   },
   {
     title: 'Is this real life or just fantasy...',
