@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { SyntheticEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { Game, GameImageUrl, GameSetting, GuideCategory } from '../../data/types';
+import type { PrintBrand, PrintLabels } from './print-pdf';
 
 type GuideGame = Game<GameImageUrl>;
 
@@ -40,11 +41,24 @@ export interface GameFilterLabels {
   video: string;
   /** Screen-reader lead of the player's play button. */
   playVideo: string;
+  /** The print mode's controls. */
+  selectForPrint: string;
+  backToView: string;
+  savePdf: string;
+  saving: string;
+  /** Shown in print mode while nothing is ticked. */
+  selectHint: string;
+  /** With a `{count}` placeholder. */
+  selected: string;
+  /** A card's checkbox, before the game's name. */
+  select: string;
 }
 
 interface Props {
   categories: GuideCategory[];
   labels: GameFilterLabels;
+  /** What the "Save PDF" booklet needs: its copy, the site's brand and the date's language. */
+  print: { labels: PrintLabels; brand: PrintBrand; locale: string };
 }
 
 /**
@@ -58,12 +72,46 @@ interface Props {
  * keep their targets and the scroll-reveal state that `motion.ts` put on each
  * card survives. Following a jump link while a filter hides its target clears
  * the filters first.
+ *
+ * "Select for print" (JS only, so it appears once hydrated) puts a checkbox on
+ * every card; "Save PDF" then draws the ticked games as a booklet
+ * (`print-pdf.ts`, loaded on demand with its PDF library).
  */
-export default function GameFilter({ categories, labels }: Props) {
+export default function GameFilter({ categories, labels, print }: Props) {
   const [query, setQuery] = useState('');
   const [categoryId, setCategoryId] = useState('all');
   const [setting, setSetting] = useState<'all' | GameSetting>('all');
+  const [hydrated, setHydrated] = useState(false);
+  const [selecting, setSelecting] = useState(false);
+  const [selected, setSelected] = useState<ReadonlySet<string>>(new Set());
+  const [saving, setSaving] = useState(false);
   const pendingScroll = useRef<string | null>(null);
+
+  useEffect(() => setHydrated(true), []);
+
+  const toggle = (id: string) =>
+    setSelected((current) => {
+      const next = new Set(current);
+      if (!next.delete(id)) next.add(id);
+      return next;
+    });
+
+  const save = async () => {
+    setSaving(true);
+    try {
+      const { savePdf } = await import('./print-pdf');
+      const items = categories.flatMap((category) =>
+        category.games
+          .filter((game) => selected.has(game.id))
+          .map((game) => ({ game, category: category.title })),
+      );
+      await savePdf(items, print.labels, print.brand, print.locale);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const index = useMemo(() => buildIndex(categories), [categories]);
   const total = index.size;
@@ -162,18 +210,58 @@ export default function GameFilter({ categories, labels }: Props) {
           allCount={total}
           onChange={setCategoryId}
         />
-        <ChipRow
-          label={labels.setting}
-          allLabel={labels.all}
-          small
-          value={setting}
-          options={[
-            { value: 'indoor', label: labels.indoor, count: countOf('indoor') },
-            { value: 'outdoor', label: labels.outdoor, count: countOf('outdoor') },
-          ]}
-          allCount={total}
-          onChange={(value) => setSetting(value as 'all' | GameSetting)}
-        />
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+          <ChipRow
+            label={labels.setting}
+            allLabel={labels.all}
+            small
+            value={setting}
+            options={[
+              { value: 'indoor', label: labels.indoor, count: countOf('indoor') },
+              { value: 'outdoor', label: labels.outdoor, count: countOf('outdoor') },
+            ]}
+            allCount={total}
+            onChange={(value) => setSetting(value as 'all' | GameSetting)}
+            className="min-w-0"
+          />
+          {hydrated && (
+            <div className="flex flex-wrap items-center gap-2">
+              {selecting && (
+                <p
+                  aria-live="polite"
+                  className="text-muted sr-only font-mono text-xs sm:not-sr-only"
+                >
+                  {selected.size === 0
+                    ? labels.selectHint
+                    : labels.selected.replace('{count}', String(selected.size))}
+                </p>
+              )}
+              <button
+                type="button"
+                onClick={() => setSelecting(!selecting)}
+                aria-pressed={selecting}
+                className="border-line-strong bg-surface-raised text-fg hover:border-accent inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm font-semibold transition-colors"
+              >
+                <ToolIcon path={selecting ? ICONS.back : ICONS.print} />
+                {selecting ? labels.backToView : labels.selectForPrint}
+              </button>
+              {selecting && (
+                <button
+                  type="button"
+                  onClick={save}
+                  disabled={selected.size === 0 || saving}
+                  className="text-on-accent inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-brand)] bg-[length:200%_auto] px-3.5 py-1.5 text-sm font-semibold shadow-[0_6px_18px_-8px_color-mix(in_oklch,var(--accent)_80%,transparent)] transition-[opacity,background-position] duration-500 hover:bg-[position:100%_0] disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <ToolIcon path={ICONS.download} />
+                  {saving ? labels.saving : labels.savePdf}
+                  {selected.size > 0 && !saving && (
+                    <span className="font-mono text-[0.7rem] opacity-80">{selected.size}</span>
+                  )}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
         <p aria-live="polite" className="text-muted mt-2 font-mono text-xs sm:hidden">
           {labels.count.replace('{shown}', String(shown)).replace('{total}', String(total))}
         </p>
@@ -227,6 +315,9 @@ export default function GameFilter({ categories, labels }: Props) {
                   hidden={!isVisible(game, category.id)}
                   label={filtering ? `${category.emoji} ${category.short}` : undefined}
                   stagger={index % 3}
+                  selecting={selecting}
+                  checked={selected.has(game.id)}
+                  onSelect={toggle}
                 />
               ))}
             </div>
@@ -258,9 +349,22 @@ interface GameCardProps {
   label?: string;
   /** Position in its row, for the scroll-reveal cascade. */
   stagger: number;
+  /** Print mode: the card carries a checkbox. */
+  selecting: boolean;
+  checked: boolean;
+  onSelect: (id: string) => void;
 }
 
-function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
+function GameCard({
+  game,
+  labels,
+  hidden,
+  label,
+  stagger,
+  selecting,
+  checked,
+  onSelect,
+}: GameCardProps) {
   const facts = [
     { icon: '👥', name: labels.players, value: game.players },
     { icon: '🎂', name: labels.age, value: game.age },
@@ -295,7 +399,10 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
       data-reveal
       data-spotlight
       style={{ '--stagger': stagger } as CSSProperties}
-      className="group glow-ring border-line bg-surface-raised relative flex scroll-mt-[8rem] flex-col overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)] has-[details[open]]:col-span-full has-[details[open]]:hover:translate-y-0 md:has-[details[open]]:grid md:has-[details[open]]:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] md:has-[details[open]]:items-start"
+      className={[
+        selecting && checked ? 'outline-accent outline-3 outline-offset-2' : '',
+        'group glow-ring border-line bg-surface-raised relative flex scroll-mt-[8rem] flex-col overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)] has-[details[open]]:col-span-full has-[details[open]]:hover:translate-y-0 md:has-[details[open]]:grid md:has-[details[open]]:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] md:has-[details[open]]:items-start',
+      ].join(' ')}
     >
       <div className="border-line bg-surface-sunken relative aspect-[18/13] overflow-hidden border-b group-has-[details[open]]:md:m-6 group-has-[details[open]]:md:mr-0 group-has-[details[open]]:md:rounded-2xl group-has-[details[open]]:md:border">
         <img
@@ -313,6 +420,27 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
           <span className="glass text-fg border-line absolute top-3 left-3 rounded-full border px-2.5 py-1 font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase">
             {label}
           </span>
+        )}
+        {selecting && (
+          <label className="absolute inset-0 z-10 cursor-pointer">
+            <span
+              className={[
+                'absolute bottom-3 left-3 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-semibold shadow-[var(--shadow-md)]',
+                checked
+                  ? 'text-on-accent border-transparent bg-[image:var(--gradient-brand)]'
+                  : 'glass text-fg border-line',
+              ].join(' ')}
+            >
+              <input
+                type="checkbox"
+                checked={checked}
+                onChange={() => onSelect(game.id)}
+                className="accent-accent size-4"
+              />
+              {labels.select}
+              <span className="sr-only">{game.title}</span>
+            </span>
+          </label>
         )}
         <span
           className="text-on-accent absolute top-3 right-3 grid min-w-9 place-items-center rounded-full bg-[image:var(--gradient-brand)] px-2 py-1 font-mono text-xs font-bold shadow-[var(--shadow-md)]"
@@ -552,6 +680,31 @@ function VideoPlayer({ src, instagram, href, title, poster, labels }: VideoPlaye
   );
 }
 
+/** Lucide-style 24px stroke icons for the print controls. */
+const ICONS = {
+  print:
+    'M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z',
+  back: 'M19 12H5M12 19l-7-7 7-7',
+  download: 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3',
+};
+
+function ToolIcon({ path }: { path: string }) {
+  return (
+    <svg
+      className="size-4 shrink-0"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d={path} />
+    </svg>
+  );
+}
+
 /** `[text](https://…)` inside a sheet line. */
 const INLINE_LINK = /\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g;
 
@@ -625,6 +778,8 @@ interface ChipRowProps {
   allCount: number;
   onChange: (value: string) => void;
   small?: boolean;
+  /** Replaces the default top margin, for rows that share a line. */
+  className?: string;
 }
 
 function ChipRow({
@@ -635,9 +790,10 @@ function ChipRow({
   allCount,
   onChange,
   small = false,
+  className = 'mt-3 min-w-0',
 }: ChipRowProps) {
   return (
-    <fieldset className="mt-3 min-w-0">
+    <fieldset className={className}>
       <legend className="sr-only">{label}</legend>
       <div className="-mx-1 flex [scrollbar-width:none] gap-2 overflow-x-auto px-1 pb-1">
         {[{ value: 'all', label: allLabel, count: allCount }, ...options].map((option) => {

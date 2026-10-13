@@ -1860,4 +1860,21 @@ export const games: Catalog = {
     'Versão sem álcool: o copo do rei é uma mistura de sumos estranha.',
   'Agree on the card rules before you start: there are many variants.':
     'Combinar as regras das cartas antes de começar: há muitas variantes.',
+  // The print mode and its PDF booklet
+  'Select for print': 'Selecionar para imprimir',
+  'Back to view': 'Voltar à vista',
+  'Save PDF': 'Guardar PDF',
+  'Preparing…': 'A preparar…',
+  'Tick the games to print': 'Marca os jogos a imprimir',
+  '{count} selected': '{count} selecionados',
+  Select: 'Selecionar',
+  'A printable selection of {count} games': 'Uma seleção de {count} jogos para imprimir',
+  Reference: 'Referência',
+  'Online version': 'Versão online',
+  'Printed on {date}': 'Impresso a {date}',
+  'Games in this booklet': 'Jogos neste caderno',
+  Page: 'Página',
+  'What to bring': 'O que levar',
+  'No materials needed': 'Não é preciso material',
+  'group-games': 'jogos-de-grupo',
 };
