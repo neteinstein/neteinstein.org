@@ -167,7 +167,10 @@ export default function GameFilter({ categories, labels, print }: Props) {
 
   return (
     <div data-game-guide>
-      <div className="glass border-line sticky top-[5.25rem] z-30 -mx-2 mb-10 rounded-3xl border p-3 shadow-[var(--shadow-md)] sm:mx-0 sm:p-4">
+      <div
+        data-scroll-hide
+        className="bg-surface-raised border-line sticky top-[5.25rem] z-30 -mx-2 mb-10 rounded-3xl border p-3 shadow-[var(--shadow-md)] [--scroll-hide-offset:6.5rem] sm:mx-0 sm:p-4"
+      >
         <div className="flex items-center gap-3">
           <label className="relative block flex-1">
             <span className="sr-only">{labels.search}</span>
@@ -380,12 +383,13 @@ function GameCard({
     .find((source) => source.embed);
 
   // The card jumps to a new row as it widens (or narrows back): bring its top
-  // back into view, just below the sticky filter bar.
+  // back into view, just below where the sticky filter bar sits when shown
+  // (it may be tucked away by `scroll-hide.ts` right now).
   const onToggle = (event: SyntheticEvent<HTMLDetailsElement>) => {
     const card = event.currentTarget.closest('article');
-    const bar = card?.closest('[data-game-guide]')?.firstElementChild;
+    const bar = card?.closest('[data-game-guide]')?.firstElementChild as HTMLElement | null;
     if (!card) return;
-    const below = (bar?.getBoundingClientRect().bottom ?? 0) + 16;
+    const below = bar ? parseFloat(getComputedStyle(bar).top) + bar.offsetHeight + 16 : 16;
     const top = card.getBoundingClientRect().top;
     if (!event.currentTarget.open && top >= below) return;
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -498,16 +502,6 @@ function GameCard({
               video ? 'lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-8' : '',
             ].join(' ')}
           >
-            {video?.embed && (
-              <VideoPlayer
-                src={video.embed.src}
-                instagram={video.embed.instagram}
-                href={video.href}
-                title={video.label}
-                poster={game.image.src}
-                labels={labels}
-              />
-            )}
             <div className="flex flex-col gap-5 text-[0.95rem] leading-relaxed lg:col-start-1 lg:row-start-1">
               {game.note && (
                 <p className="text-muted rounded-2xl border border-dashed border-[var(--border-strong)] px-3 py-2 text-sm italic">
@@ -565,6 +559,16 @@ function GameCard({
                 </p>
               )}
             </div>
+            {video?.embed && (
+              <VideoPlayer
+                src={video.embed.src}
+                instagram={video.embed.instagram}
+                href={video.href}
+                title={video.label}
+                poster={game.image.src}
+                labels={labels}
+              />
+            )}
           </div>
         </details>
       </div>
