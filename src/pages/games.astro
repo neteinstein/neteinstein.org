@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import { getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
@@ -9,9 +10,10 @@ import GameFilter from '../components/games/GameFilter.tsx';
 import CategoryTiles from '../components/games/CategoryTiles.astro';
 import ToolFeature from '../components/tools/ToolFeature.astro';
 import { resolveGuide } from '../components/games/guide';
-import { navPages } from '../config/site';
+import { SITE, navPages } from '../config/site';
 import * as games from '../data/games';
-import { useI18n } from '../i18n';
+import { localizePath, useI18n } from '../i18n';
+import avatar from '../assets/brand/avatar.webp';
 import { getPage } from '../i18n/content';
 
 const PATH = '/games';
@@ -26,6 +28,7 @@ const summerCamp = (await getPage(summerCampGames.page, locale)).data;
 const navLabel = navPages().find((page) => page.href === PATH)?.label;
 const pageName = navLabel ? t(navLabel) : entry.data.title;
 const guide = await resolveGuide(gameCategories, (game) => t('Illustration: {game}', { game }));
+const brandAvatar = await getImage({ src: avatar, width: 256, format: 'png' });
 ---
 
 <BaseLayout title={pageName} description={entry.data.description}>
@@ -97,6 +100,43 @@ const guide = await resolveGuide(gameCategories, (game) => t('Illustration: {gam
         originalName: t('Original title:'),
         video: t('The original video'),
         playVideo: t('Play video:'),
+        selectForPrint: t('Select for print'),
+        backToView: t('Back to view'),
+        savePdf: t('Save PDF'),
+        saving: t('Preparing…'),
+        selectHint: t('Tick the games to print'),
+        selected: t('{count} selected'),
+        select: t('Select'),
+      }}
+      print={{
+        locale,
+        brand: {
+          name: SITE.author,
+          host: new URL(SITE.url).host.replace(/^www\./, ''),
+          url: new URL(localizePath(PATH, locale), SITE.url).href,
+          avatar: brandAvatar.src,
+        },
+        labels: {
+          title: entry.data.title,
+          lead: t('A printable selection of {count} games'),
+          reference: t('Reference'),
+          online: t('Online version'),
+          printed: t('Printed on {date}'),
+          contents: t('Games in this booklet'),
+          page: t('Page'),
+          materialsNeeded: t('What to bring'),
+          noMaterials: t('No materials needed'),
+          players: t('Group'),
+          age: t('Age'),
+          duration: t('Duration'),
+          where: t('Where'),
+          materials: t('Materials'),
+          setup: t('Setup'),
+          goal: t('Goal'),
+          rules: t('Rules, step by step'),
+          tips: t('Variations and tips'),
+          file: t('group-games'),
+        },
       }}
     />
   </Section>
