@@ -53,6 +53,9 @@ requirement**.
   card; pass `ogImage` only to override it.
 - **Images** live in `src/assets/<area>/<page>/` and render through
   `astro:assets`. Import them from the crawl with `npm run import:image`.
+  The /games drawings for the "More Web Games" games are drawn in code:
+  scenes in `scripts/game-art/scenes/`, a small SVG kit in
+  `scripts/game-art/kit.mjs`, rendered with `npm run draw:games [id…]`.
 
 ## Before pushing
 

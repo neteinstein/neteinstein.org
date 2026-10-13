@@ -23,6 +23,7 @@
     "check:base": "BASE_PATH=/__base-check__ astro build --outDir dist-base && BASE_PATH=/__base-check__ DIST=dist-base node scripts/check-links.mjs",
     "import:image": "node scripts/import-image.mjs",
     "brand": "node scripts/generate-brand-assets.mjs",
+    "draw:games": "node scripts/game-art/render.mjs",
     "check:parity": "node scripts/check-parity.mjs"
   },
   "dependencies": {
