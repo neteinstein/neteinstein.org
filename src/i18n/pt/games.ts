@@ -29,6 +29,7 @@ export const games: Catalog = {
   'Rules, step by step': 'Regras, passo a passo',
   'Variations and tips': 'Variações e dicas',
   'Original video:': 'Vídeo original:',
+  'The original video': 'O vídeo original',
   Goal: 'Objetivo',
   'Original title:': 'Nome original:',
   'Family Games (Christmas or Other Occasions)': 'Jogos de Família (Natal ou outras ocasiões)',

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import type { SyntheticEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { Game, GameImageUrl, GameSetting, GuideCategory } from '../../data/types';
 
@@ -35,6 +36,10 @@ export interface GameFilterLabels {
   sources: string;
   /** Leads the title of the video a game was collected from. */
   originalName: string;
+  /** Caption of the click-to-load player next to an open sheet. */
+  video: string;
+  /** Screen-reader lead of the player's play button. */
+  playVideo: string;
 }
 
 interface Props {
@@ -46,7 +51,8 @@ interface Props {
  * Search + category + indoor/outdoor filter over the group games guide.
  * Hydrated with `client:visible`: every category and card renders
  * server-side, and each card's how-to-play sheet is a native `<details>`, so
- * the whole guide reads with JS disabled.
+ * the whole guide reads with JS disabled. An open sheet widens its card to the
+ * whole row (pure CSS, via `:has()`), with the game's video beside the rules.
  *
  * Filtering toggles the `hidden` attribute rather than unmounting, so anchors
  * keep their targets and the scroll-reveal state that `motion.ts` put on each
@@ -212,7 +218,7 @@ export default function GameFilter({ categories, labels }: Props) {
               </div>
             </header>
 
-            <div className="grid items-start gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+            <div className="grid grid-flow-row-dense items-start gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
               {category.games.map((game, index) => (
                 <GameCard
                   key={game.id}
@@ -265,6 +271,22 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
     { title: labels.materials, items: game.materials },
     { title: labels.setup, items: game.setup },
   ];
+  const video = game.sources
+    .map((source) => ({ ...source, embed: embedOf(source.href) }))
+    .find((source) => source.embed);
+
+  // The card jumps to a new row as it widens (or narrows back): bring its top
+  // back into view, just below the sticky filter bar.
+  const onToggle = (event: SyntheticEvent<HTMLDetailsElement>) => {
+    const card = event.currentTarget.closest('article');
+    const bar = card?.closest('[data-game-guide]')?.firstElementChild;
+    if (!card) return;
+    const below = (bar?.getBoundingClientRect().bottom ?? 0) + 16;
+    const top = card.getBoundingClientRect().top;
+    if (!event.currentTarget.open && top >= below) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: scrollY + top - below, behavior: reduced ? 'auto' : 'smooth' });
+  };
 
   return (
     <article
@@ -273,9 +295,9 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
       data-reveal
       data-spotlight
       style={{ '--stagger': stagger } as CSSProperties}
-      className="group glow-ring border-line bg-surface-raised relative flex scroll-mt-[8rem] flex-col overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)]"
+      className="group glow-ring border-line bg-surface-raised relative flex scroll-mt-[8rem] flex-col overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)] has-[details[open]]:col-span-full has-[details[open]]:hover:translate-y-0 md:has-[details[open]]:grid md:has-[details[open]]:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] md:has-[details[open]]:items-start"
     >
-      <div className="border-line bg-surface-sunken relative aspect-[18/13] overflow-hidden border-b">
+      <div className="border-line bg-surface-sunken relative aspect-[18/13] overflow-hidden border-b group-has-[details[open]]:md:m-6 group-has-[details[open]]:md:mr-0 group-has-[details[open]]:md:rounded-2xl group-has-[details[open]]:md:border">
         <img
           src={game.image.src}
           srcSet={game.image.srcSet || undefined}
@@ -325,7 +347,7 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
           ))}
         </dl>
 
-        <details className="group/sheet border-line mt-5 border-t pt-4">
+        <details className="group/sheet border-line mt-5 border-t pt-4" onToggle={onToggle}>
           <summary className="text-link flex cursor-pointer list-none items-center justify-between gap-3 font-semibold [&::-webkit-details-marker]:hidden">
             {labels.howToPlay}
             <svg
@@ -342,66 +364,191 @@ function GameCard({ game, labels, hidden, label, stagger }: GameCardProps) {
             </svg>
           </summary>
 
-          <div className="mt-4 flex flex-col gap-5 text-[0.95rem] leading-relaxed">
-            {game.note && (
-              <p className="text-muted rounded-2xl border border-dashed border-[var(--border-strong)] px-3 py-2 text-sm italic">
-                {game.note}
-              </p>
+          <div
+            className={[
+              'mt-4 grid items-start gap-6',
+              video ? 'lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-8' : '',
+            ].join(' ')}
+          >
+            {video?.embed && (
+              <VideoPlayer
+                src={video.embed.src}
+                instagram={video.embed.instagram}
+                href={video.href}
+                title={video.label}
+                poster={game.image.src}
+                labels={labels}
+              />
             )}
-            {game.goal && (
+            <div className="flex flex-col gap-5 text-[0.95rem] leading-relaxed lg:col-start-1 lg:row-start-1">
+              {game.note && (
+                <p className="text-muted rounded-2xl border border-dashed border-[var(--border-strong)] px-3 py-2 text-sm italic">
+                  {game.note}
+                </p>
+              )}
+              {game.goal && (
+                <div>
+                  <SheetTitle>{labels.goal}</SheetTitle>
+                  <p className="text-pretty">{game.goal}</p>
+                </div>
+              )}
+              {lists.map((list) => (
+                <SheetList key={list.title} title={list.title} items={list.items} />
+              ))}
               <div>
-                <SheetTitle>{labels.goal}</SheetTitle>
-                <p className="text-pretty">{game.goal}</p>
+                <SheetTitle>{labels.rules}</SheetTitle>
+                <ol className="flex flex-col gap-2">
+                  {game.rules.map((rule, step) => (
+                    <li key={rule} className="flex gap-3">
+                      <span
+                        className="text-on-accent mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)] font-mono text-xs font-bold"
+                        aria-hidden="true"
+                      >
+                        {step + 1}
+                      </span>
+                      <span className="min-w-0 text-pretty">
+                        <Inline text={rule} />
+                      </span>
+                    </li>
+                  ))}
+                </ol>
               </div>
-            )}
-            {lists.map((list) => (
-              <SheetList key={list.title} title={list.title} items={list.items} />
-            ))}
-            <div>
-              <SheetTitle>{labels.rules}</SheetTitle>
-              <ol className="flex flex-col gap-2">
-                {game.rules.map((rule, step) => (
-                  <li key={rule} className="flex gap-3">
-                    <span
-                      className="text-on-accent mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)] font-mono text-xs font-bold"
-                      aria-hidden="true"
-                    >
-                      {step + 1}
+              {game.questions?.map((round) => (
+                <SheetList key={round.title} title={round.title} items={round.questions} />
+              ))}
+              <SheetList title={labels.tips} items={game.tips} />
+              {game.sources.length > 0 && (
+                <p className="text-muted border-line border-t pt-4 text-sm">
+                  <span aria-hidden="true">🎬 </span>
+                  {labels.sources}{' '}
+                  {game.sources.map((source, position) => (
+                    <span key={source.href}>
+                      {position > 0 && <span aria-hidden="true"> · </span>}
+                      <a
+                        href={source.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-link link-underline font-semibold"
+                      >
+                        {source.label}
+                      </a>
                     </span>
-                    <span className="min-w-0 text-pretty">
-                      <Inline text={rule} />
-                    </span>
-                  </li>
-                ))}
-              </ol>
+                  ))}
+                </p>
+              )}
             </div>
-            {game.questions?.map((round) => (
-              <SheetList key={round.title} title={round.title} items={round.questions} />
-            ))}
-            <SheetList title={labels.tips} items={game.tips} />
-            {game.sources.length > 0 && (
-              <p className="text-muted border-line border-t pt-4 text-sm">
-                <span aria-hidden="true">🎬 </span>
-                {labels.sources}{' '}
-                {game.sources.map((source, position) => (
-                  <span key={source.href}>
-                    {position > 0 && <span aria-hidden="true"> · </span>}
-                    <a
-                      href={source.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-link link-underline font-semibold"
-                    >
-                      {source.label}
-                    </a>
-                  </span>
-                ))}
-              </p>
-            )}
           </div>
         </details>
       </div>
     </article>
+  );
+}
+
+/**
+ * The player URL for a source video, when it is one we can embed: YouTube
+ * (privacy-enhanced) and Instagram reels.
+ */
+function embedOf(href: string): { src: string; instagram: boolean } | undefined {
+  const url = new URL(href);
+  const host = url.hostname.replace(/^www\./, '');
+  if (host === 'instagram.com') {
+    const [, kind, id] = url.pathname.split('/');
+    if (id && (kind === 'reel' || kind === 'p'))
+      return { src: `https://www.instagram.com/${kind}/${id}/embed/`, instagram: true };
+  }
+  const youtube =
+    host === 'youtu.be'
+      ? url.pathname.slice(1)
+      : host === 'youtube.com'
+        ? (url.searchParams.get('v') ?? url.pathname.match(/^\/shorts\/([\w-]+)/)?.[1])
+        : undefined;
+  if (!youtube) return undefined;
+  return { src: `https://www.youtube-nocookie.com/embed/${youtube}?autoplay=1`, instagram: false };
+}
+
+interface VideoPlayerProps {
+  src: string;
+  /** Instagram's player adds a header and footer around the reel. */
+  instagram: boolean;
+  /** The video's own page — the player's fallback with JS off. */
+  href: string;
+  title: string;
+  /** The game's drawing, standing in for the video until it is asked for. */
+  poster: string;
+  labels: GameFilterLabels;
+}
+
+/**
+ * Click-to-load player, like `VideoEmbed`: no third-party frame (or cookie)
+ * until the visitor asks for the video. Before hydration the button is a
+ * plain link to the video's page.
+ */
+function VideoPlayer({ src, instagram, href, title, poster, labels }: VideoPlayerProps) {
+  const [playing, setPlaying] = useState(false);
+  const frame = useRef<HTMLIFrameElement>(null);
+  useEffect(() => {
+    if (playing) frame.current?.focus();
+  }, [playing]);
+
+  return (
+    <figure className="mx-auto w-full max-w-[18rem] lg:col-start-2 lg:row-start-1">
+      <div
+        className={[
+          'border-line bg-surface-sunken relative overflow-hidden rounded-2xl border shadow-[var(--shadow-md)]',
+          instagram ? 'aspect-[9/17.5]' : 'aspect-[9/16]',
+        ].join(' ')}
+      >
+        {playing ? (
+          <iframe
+            ref={frame}
+            src={src}
+            title={title}
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            allowFullScreen
+            className="absolute inset-0 size-full border-0 bg-white"
+          />
+        ) : (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(event) => {
+              if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+              event.preventDefault();
+              setPlaying(true);
+            }}
+            className="group/play absolute inset-0 grid place-items-center text-white"
+          >
+            <img
+              src={poster}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 size-full scale-110 object-cover blur-[2px] transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover/play:scale-125"
+            />
+            <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/10" />
+            <span className="relative grid size-16 place-items-center rounded-full bg-white/95 text-black shadow-2xl transition-transform duration-500 ease-[var(--ease-spring)] group-hover/play:scale-110">
+              <svg
+                className="ml-1 size-7"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M8 5.14v13.72a1 1 0 0 0 1.52.85l10.6-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14Z" />
+              </svg>
+            </span>
+            <span className="font-display absolute inset-x-4 bottom-4 line-clamp-3 text-left text-sm font-semibold">
+              <span className="sr-only">{labels.playVideo} </span>
+              {title}
+            </span>
+          </a>
+        )}
+      </div>
+      <figcaption className="text-muted mt-2 text-center text-xs">
+        <span aria-hidden="true">🎬 </span>
+        {labels.video}
+      </figcaption>
+    </figure>
   );
 }
 
