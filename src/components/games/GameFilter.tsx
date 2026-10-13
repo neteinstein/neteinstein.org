@@ -4,6 +4,7 @@ import type { CSSProperties } from 'react';
 import type { Game, GameImageUrl, GameSetting, GuideCategory } from '../../data/types';
 import SectionToggle from '../SectionToggle';
 import type { PrintBrand, PrintLabels } from './print-pdf';
+import { countPdf } from './pdf-event';
 
 type GuideGame = Game<GameImageUrl>;
 
@@ -133,6 +134,7 @@ export default function GameFilter({ categories, labels, print }: Props) {
           .map((game) => ({ game, category: category.title })),
       );
       await savePdf(items, print.labels, print.brand, print.locale);
+      countPdf(items.length);
     } catch (error) {
       console.error(error);
     } finally {

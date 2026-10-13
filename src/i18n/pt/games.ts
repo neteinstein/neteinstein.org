@@ -5,8 +5,8 @@ import type { Catalog } from '..';
  * wording of the "Jogos de Grupo" Google Doc the English was translated from.
  */
 export const games: Catalog = {
-  'Illustration: three people play Musical Candy Canes around a table, under a garland of Christmas lights':
-    'Ilustração: três pessoas jogam às Bengalas Musicais à volta de uma mesa, por baixo de uma grinalda de luzes de Natal',
+  "Video: a tour of the guide, from the plastic cups, balloons and music most games need to searching by material and opening a game's rules.":
+    'Vídeo: uma visita ao guia, dos copos de plástico, balões e música de que a maioria dos jogos precisa até à pesquisa por material e às regras de um jogo.',
   'Illustration: {game}': 'Ilustração: {game}',
   'Jump to the games': 'Saltar para os jogos',
   'Before you start': 'Antes de começar',
@@ -1878,6 +1878,10 @@ export const games: Catalog = {
   'No materials needed': 'Não é preciso material',
   'group-games': 'jogos-de-grupo',
   'Select all': 'Selecionar todos',
+  'This page has generated {count} PDF with games.': 'Esta página já gerou {count} PDF com jogos.',
+  'This page has generated {count} PDFs with games.':
+    'Esta página já gerou {count} PDFs com jogos.',
+  "Happy we're all having fun!": 'Ainda bem que estamos todos a divertir-nos!',
   'Unselect all': 'Desmarcar todos',
   'Score table': 'Tabela de pontuação',
   'Write a team or a player on each line, then their points under each game.':

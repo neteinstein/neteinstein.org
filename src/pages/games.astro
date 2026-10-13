@@ -8,6 +8,7 @@ import ButtonLink from '../components/ButtonLink.astro';
 import Icon from '../components/Icon.astro';
 import GameFilter from '../components/games/GameFilter.tsx';
 import CategoryTiles from '../components/games/CategoryTiles.astro';
+import PdfCount from '../components/games/PdfCount.astro';
 import ToolFeature from '../components/tools/ToolFeature.astro';
 import { resolveGuide } from '../components/games/guide';
 import { SITE, navPages } from '../config/site';
@@ -37,8 +38,7 @@ const brandAvatar = await getImage({ src: avatar, width: 256, format: 'png' });
     eyebrow={entry.data.eyebrow}
     highlight={entry.data.highlight}
     lead={entry.data.lead}
-    image={gamesHero.image}
-    imageAlt={gamesHero.alt}
+    video={{ sources: gamesHero.sources, poster: gamesHero.poster, label: gamesHero.label }}
   >
     <ButtonLink slot="actions" href="#guide" size="lg" trailing="arrow-down">
       {t('Jump to the games')}
@@ -159,4 +159,6 @@ const brandAvatar = await getImage({ src: avatar, width: 256, format: 'png' });
       imageAlt={summerCampGames.imageAlt}
     />
   </Section>
+
+  <PdfCount />
 </BaseLayout>
