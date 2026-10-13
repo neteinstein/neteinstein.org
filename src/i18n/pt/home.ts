@@ -26,8 +26,6 @@ export const home: Catalog = {
   "A team & feedback workshop for A'Corda, a non-profit summer camp association.":
     "Um workshop de equipa & feedback para a A'Corda, uma associação sem fins lucrativos de campos de férias.",
   Coach: 'Coach',
-  "A team workshop with A'Corda volunteers gathered around a table":
-    "Um workshop de equipa com voluntários da A'Corda reunidos à volta de uma mesa",
   Talks: 'Palestras',
   'Why do I say we treat people like adults at Mindera? And what is all that self-organization about?':
     'Porque digo que na Mindera tratamos as pessoas como adultos? E o que é isso da auto-organização?',
