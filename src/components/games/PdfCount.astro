@@ -1,0 +1,70 @@
+---
+import { SITE } from '../../config/site';
+import { PDF_EVENT } from './pdf-event';
+import { useI18n } from '../../i18n';
+
+/**
+ * "This page has generated X PDFs": the total of GoatCounter's download event,
+ * read from its public counter. Hidden until the number arrives, so it never
+ * shows with JS off, while blocked, or with analytics disabled.
+ */
+const { t, locale } = useI18n(Astro);
+const endpoint = SITE.goatcounter
+  ? `https://${SITE.goatcounter}.goatcounter.com/counter/${encodeURIComponent(PDF_EVENT)}.json`
+  : '';
+---
+
+{endpoint && (
+  <section class="container-page pt-4 pb-14 sm:pb-20">
+    <p
+      data-pdf-count
+      data-endpoint={endpoint}
+      data-locale={locale}
+      data-one={t('This page has generated {count} PDF with games.')}
+      data-many={t('This page has generated {count} PDFs with games.')}
+      hidden
+      class="border-line bg-surface-raised text-muted mx-auto max-w-3xl rounded-3xl border px-6 py-5 text-center text-lg text-pretty"
+    >
+      <span data-pdf-count-text />{' '}
+      <span class="text-fg font-semibold">{t("Happy we're all having fun!")}</span>
+    </p>
+  </section>
+)}
+
+<script>
+  import { PDF_SAVED } from './pdf-event';
+
+  const element = document.querySelector<HTMLElement>('[data-pdf-count]');
+  const text = element?.querySelector('[data-pdf-count-text]');
+  let total = -1;
+
+  const render = () => {
+    if (!element || !text || total < 0) return;
+    const template = (total === 1 ? element.dataset.one : element.dataset.many) ?? '';
+    const count = total.toLocaleString(element.dataset.locale);
+    text.textContent = template.replace('{count}', count);
+    element.hidden = false;
+  };
+
+  if (element?.dataset.endpoint) {
+    fetch(element.dataset.endpoint, { cache: 'no-cache' })
+      .then((response) => {
+        // No download recorded yet: GoatCounter answers 404.
+        if (response.status === 404) return { count: '0' };
+        if (!response.ok) throw new Error(`GoatCounter: ${response.status}`);
+        return response.json() as Promise<{ count: string }>;
+      })
+      .then(({ count }) => {
+        // Formatted per the site's settings ("1,234", "1 234"): keep the digits.
+        total = Number(String(count).replace(/\D/g, '')) || 0;
+        render();
+      })
+      .catch(() => {});
+  }
+
+  document.addEventListener(PDF_SAVED, () => {
+    if (total < 0) return;
+    total += 1;
+    render();
+  });
+</script>

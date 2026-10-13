@@ -73,10 +73,14 @@ export interface GameCategory<Image = ImageMetadata> {
   games: Game<Image>[];
 }
 
-/** The hero illustration. */
+/** The hero video: a short tour of the guide. */
 export interface GamesHero {
-  image: ImageMetadata;
-  alt: string;
+  /** The video's files, best first, as Vite emits them (`?url` imports). */
+  sources: { src: string; type: string }[];
+  /** Its first frame, shown until it plays (and instead of it with reduced motion). */
+  poster: ImageMetadata;
+  /** Screen-reader description of the video. */
+  label: string;
 }
 
 /** A category as the `GameFilter` island receives it: illustrations as URLs. */

@@ -19,7 +19,9 @@
 import type { GameCategory, GamesHero, ToolsIndexEntry } from './types';
 import { cadernoDeJogos } from './tools';
 
-import hero from '../assets/games/hero.webp';
+import heroMp4 from '../assets/games/hero.mp4?url';
+import heroWebm from '../assets/games/hero.webm?url';
+import heroPoster from '../assets/games/hero-poster.jpg';
 import sweaterWithoutDroppingTheBalloon from '../assets/games/sweater-without-dropping-the-balloon.webp';
 import balloonJetVsTheCup from '../assets/games/balloon-jet-vs-the-cup.webp';
 import blindfoldedSpatulaCashGrab from '../assets/games/blindfolded-spatula-cash-grab.webp';
@@ -8436,8 +8438,14 @@ export const gameCategories: GameCategory[] = [
 
 /** The doc's cover drawing. */
 export const gamesHero: GamesHero = {
-  image: hero,
-  alt: 'Illustration: three people play Musical Candy Canes around a table, under a garland of Christmas lights',
+  // VP9 for most browsers, H.264 for Safari.
+  sources: [
+    { src: heroWebm, type: 'video/webm' },
+    { src: heroMp4, type: 'video/mp4' },
+  ],
+  poster: heroPoster,
+  label:
+    "Video: a tour of the guide, from the plastic cups, balloons and music most games need to searching by material and opening a game's rules.",
 };
 
 /**
