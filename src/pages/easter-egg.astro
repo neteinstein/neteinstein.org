@@ -2,6 +2,17 @@
 // Not in `NAV` — this route is a deliberate easter egg, found by digging
 // through the source rather than the site's navigation.
 import ProsePage from '../layouts/ProsePage.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+import { easterEggVideo } from '../data/easter-egg';
 ---
 
-<ProsePage slug="easter-egg" />
+<ProsePage slug="easter-egg">
+  <div class="container-page pb-16" data-reveal>
+    <VideoEmbed
+      provider={easterEggVideo.provider}
+      id={easterEggVideo.id}
+      title={easterEggVideo.title}
+      class="max-w-3xl"
+    />
+  </div>
+</ProsePage>
