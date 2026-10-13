@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import type { GuideGroup, Place, PlacePhotoUrl, Venue } from '../data/types';
+import SectionToggle from './SectionToggle';
 
 type GuidePlace = Place<PlacePhotoUrl>;
 
@@ -20,6 +21,9 @@ export interface PlaceFilterLabels {
   places: string;
   /** Names a group's subsection jump links, with a `{group}` placeholder. */
   sections: string;
+  /** A group's collapse button. */
+  collapse: string;
+  expand: string;
 }
 
 interface Props {
@@ -34,13 +38,17 @@ interface Props {
  *
  * Filtering toggles the `hidden` attribute rather than unmounting, so anchors
  * keep their targets and the scroll-reveal state that `motion.ts` put on each
- * card survives. Following a jump link while a filter hides its target clears
- * the filters first.
+ * card survives. Following a jump link while a filter or a collapsed group
+ * hides its target clears the filters and opens the group first.
  */
 export default function PlaceFilter({ groups, labels }: Props) {
   const [query, setQuery] = useState('');
   const [groupId, setGroupId] = useState('all');
   const [subgroupId, setSubgroupId] = useState('all');
+  const [collapsed, setCollapsed] = useState<ReadonlySet<string>>(new Set());
+  // The collapse buttons only work once hydrated, so they appear then.
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => setHydrated(true), []);
   const pendingScroll = useRef<string | null>(null);
 
   const index = useMemo(() => buildIndex(groups), [groups]);
@@ -66,10 +74,17 @@ export default function PlaceFilter({ groups, labels }: Props) {
     setSubgroupId('all');
   };
 
+  const toggleGroup = (id: string) =>
+    setCollapsed((current) => {
+      const next = new Set(current);
+      if (!next.delete(id)) next.add(id);
+      return next;
+    });
+
   // A jump link (in the page's jump list or a group header) whose target is
-  // filtered out: clear the filters, then scroll once it is shown again.
+  // filtered out or in a collapsed group: clear the filters and open its
+  // group, then scroll once it is shown again.
   useEffect(() => {
-    if (!filtering) return;
     const onClick = (event: MouseEvent) => {
       const link = (event.target as Element | null)?.closest?.('a[href^="#"]');
       const id = decodeURIComponent(link?.getAttribute('href')?.slice(1) ?? '');
@@ -79,10 +94,13 @@ export default function PlaceFilter({ groups, labels }: Props) {
       pendingScroll.current = id;
       history.pushState(null, '', `#${id}`);
       reset();
+      const group = target.closest('section')?.id;
+      if (group)
+        setCollapsed((current) => new Set([...current].filter((value) => value !== group)));
     };
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);
-  }, [filtering]);
+  }, []);
 
   useEffect(() => {
     if (!pendingScroll.current) return;
@@ -164,13 +182,17 @@ export default function PlaceFilter({ groups, labels }: Props) {
       {groups.map((group, groupIndex) => {
         const entries = placesOf(group);
         const groupShown = entries.filter(({ place, sid }) => isVisible(place, group.id, sid));
+        const closed = collapsed.has(group.id);
         return (
           <section
             key={group.id}
             id={group.id}
             aria-labelledby={`${group.id}-title`}
             hidden={groupShown.length === 0}
-            className="mb-16 scroll-mt-[8rem] last:mb-0 sm:mb-24"
+            className={[
+              'scroll-mt-[8rem] last:mb-0',
+              closed ? 'mb-10 sm:mb-12' : 'mb-16 sm:mb-24',
+            ].join(' ')}
           >
             <header className="border-line mb-8 flex flex-wrap items-end gap-x-6 gap-y-3 border-b pb-6">
               <span
@@ -193,6 +215,15 @@ export default function PlaceFilter({ groups, labels }: Props) {
                   {group.title}
                 </h2>
               </div>
+              {hydrated && (
+                <SectionToggle
+                  collapsed={closed}
+                  controls={`${group.id}-body`}
+                  title={group.title}
+                  labels={labels}
+                  onToggle={() => toggleGroup(group.id)}
+                />
+              )}
               {group.subgroups && group.subgroups.length > 1 && (
                 <nav
                   aria-label={labels.sections.replace('{group}', group.title)}
@@ -217,46 +248,48 @@ export default function PlaceFilter({ groups, labels }: Props) {
               )}
             </header>
 
-            {group.places && (
-              <PlaceGrid
-                places={group.places}
-                visible={(place) => isVisible(place, group.id)}
-                headingLevel={3}
-                label={filtering ? (group.short ?? group.title) : undefined}
-              />
-            )}
+            <div id={`${group.id}-body`} hidden={closed}>
+              {group.places && (
+                <PlaceGrid
+                  places={group.places}
+                  visible={(place) => isVisible(place, group.id)}
+                  headingLevel={3}
+                  label={filtering ? (group.short ?? group.title) : undefined}
+                />
+              )}
 
-            {group.subgroups?.map((subgroup) => {
-              const subShown = subgroup.places.filter((place) =>
-                isVisible(place, group.id, subgroup.id),
-              ).length;
-              return (
-                <div
-                  key={subgroup.id}
-                  id={subgroup.id}
-                  hidden={subShown === 0}
-                  className="mb-14 scroll-mt-[8rem] last:mb-0"
-                >
-                  <h3 className="font-display mb-6 flex items-center gap-3 text-2xl font-bold tracking-tight sm:text-3xl">
-                    <span
-                      className="bg-accent-2 inline-block size-2.5 shrink-0 rounded-full"
-                      aria-hidden="true"
+              {group.subgroups?.map((subgroup) => {
+                const subShown = subgroup.places.filter((place) =>
+                  isVisible(place, group.id, subgroup.id),
+                ).length;
+                return (
+                  <div
+                    key={subgroup.id}
+                    id={subgroup.id}
+                    hidden={subShown === 0}
+                    className="mb-14 scroll-mt-[8rem] last:mb-0"
+                  >
+                    <h3 className="font-display mb-6 flex items-center gap-3 text-2xl font-bold tracking-tight sm:text-3xl">
+                      <span
+                        className="bg-accent-2 inline-block size-2.5 shrink-0 rounded-full"
+                        aria-hidden="true"
+                      />
+                      {subgroup.title}
+                      <span
+                        className="h-px flex-1 bg-[linear-gradient(to_right,var(--border-strong),transparent)]"
+                        aria-hidden="true"
+                      />
+                    </h3>
+                    <PlaceGrid
+                      places={subgroup.places}
+                      visible={(place) => isVisible(place, group.id, subgroup.id)}
+                      headingLevel={4}
+                      label={filtering ? subgroup.title : undefined}
                     />
-                    {subgroup.title}
-                    <span
-                      className="h-px flex-1 bg-[linear-gradient(to_right,var(--border-strong),transparent)]"
-                      aria-hidden="true"
-                    />
-                  </h3>
-                  <PlaceGrid
-                    places={subgroup.places}
-                    visible={(place) => isVisible(place, group.id, subgroup.id)}
-                    headingLevel={4}
-                    label={filtering ? subgroup.title : undefined}
-                  />
-                </div>
-              );
-            })}
+                  </div>
+                );
+              })}
+            </div>
           </section>
         );
       })}

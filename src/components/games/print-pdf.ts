@@ -32,6 +32,12 @@ export interface PrintLabels {
   goal: string;
   rules: string;
   tips: string;
+  scoreTable: string;
+  /** Printed under the score table's heading. */
+  scoreLead: string;
+  /** Heads the score table's first column. */
+  name: string;
+  total: string;
   /** File name, without the extension. */
   file: string;
 }
@@ -66,7 +72,8 @@ const BOTTOM = H - 20;
 /**
  * Draws the selected games as an A4 booklet and downloads it: a branded
  * cover, a contents page with each game's page and everything to bring,
- * then one sheet per game. Loaded only when the visitor asks for the PDF.
+ * then one sheet per game and a blank score table for every team or player.
+ * Loaded only when the visitor asks for the PDF.
  */
 export async function savePdf(
   items: PrintGame[],
@@ -106,6 +113,18 @@ export async function savePdf(
     slots.push({ page: doc.getNumberOfPages(), y });
     y += 11;
   });
+  if (y > BOTTOM - 8) {
+    doc.addPage();
+    y = M + 6;
+  }
+  doc
+    .setFont('helvetica', 'bold')
+    .setFontSize(11)
+    .setTextColor(...INK);
+  doc.text(clean(labels.scoreTable), M + 10, y);
+  dots(doc, M + 12 + doc.getTextWidth(clean(labels.scoreTable)), W - M - 14, y);
+  const scoreSlot = { page: doc.getNumberOfPages(), y };
+  y += 11;
 
   // Everything to bring, game by game, as a checklist.
   y = heading(doc, labels.materialsNeeded, y + 8);
@@ -150,6 +169,9 @@ export async function savePdf(
     return page;
   });
 
+  const scoreStart = doc.getNumberOfPages() + 1;
+  scoreTable(doc, items, labels);
+
   slots.forEach(({ page, y: slotY }, index) => {
     doc.setPage(page);
     doc
@@ -159,21 +181,31 @@ export async function savePdf(
     doc.text(String(starts[index]), W - M, slotY, { align: 'right' });
     doc.link(M, slotY - 5, W - 2 * M, 10, { pageNumber: starts[index] });
   });
+  doc.setPage(scoreSlot.page);
+  doc
+    .setFont('helvetica', 'bold')
+    .setFontSize(11)
+    .setTextColor(...INK);
+  doc.text(String(scoreStart), W - M, scoreSlot.y, { align: 'right' });
+  doc.link(M, scoreSlot.y - 5, W - 2 * M, 10, { pageNumber: scoreStart });
 
   // Footer on every page but the cover.
   const total = doc.getNumberOfPages();
   for (let page = 2; page <= total; page++) {
     doc.setPage(page);
+    // The score table is landscape.
+    const width = doc.internal.pageSize.getWidth();
+    const height = doc.internal.pageSize.getHeight();
     doc
       .setDrawColor(...LINE)
       .setLineWidth(0.3)
-      .line(M, H - 13, W - M, H - 13);
+      .line(M, height - 13, width - M, height - 13);
     doc
       .setFont('helvetica', 'normal')
       .setFontSize(8)
       .setTextColor(...MUTED);
-    doc.text(`${brand.name} · ${brand.host} · ${clean(labels.title)}`, M, H - 8.5);
-    doc.text(`${labels.page} ${page} / ${total}`, W - M, H - 8.5, { align: 'right' });
+    doc.text(`${brand.name} · ${brand.host} · ${clean(labels.title)}`, M, height - 8.5);
+    doc.text(`${labels.page} ${page} / ${total}`, width - M, height - 8.5, { align: 'right' });
   }
 
   doc.save(`${labels.file}.pdf`);
@@ -405,6 +437,103 @@ function sheet(
   if (game.tips.length) {
     section(labels.tips);
     bullets(game.tips);
+  }
+}
+
+/**
+ * A blank score table on landscape pages: a line per team or player (whatever
+ * the group plays as), a column per game, and the total. Too many games for one
+ * page carry on over the next, with the total on the last.
+ */
+function scoreTable(doc: jsPDF, items: PrintGame[], labels: PrintLabels) {
+  const width = H;
+  const bottom = W - 20;
+  const nameW = 56;
+  const totalW = 24;
+  const minCol = 12;
+  const perPage = Math.floor((width - 2 * M - nameW - totalW) / minCol);
+  const pages = Math.ceil(items.length / perPage);
+  const headerH = 44;
+  const rowH = 10;
+
+  for (let part = 0; part < pages; part++) {
+    const first = part * perPage;
+    const games = items.slice(first, first + perPage);
+    const last = part === pages - 1;
+    doc.addPage('a4', 'landscape');
+    doc.setFillColor(...ACCENT).rect(0, 0, width, 3, 'F');
+    const title = pages > 1 ? `${labels.scoreTable} (${part + 1}/${pages})` : labels.scoreTable;
+    let y = heading(doc, title, M + 6) - 4;
+    doc
+      .setFont('helvetica', 'normal')
+      .setFontSize(10)
+      .setTextColor(...MUTED);
+    doc.text(clean(labels.scoreLead), M, y);
+    y += 6;
+
+    const colW = Math.min(18, (width - 2 * M - nameW - (last ? totalW : 0)) / games.length);
+    const tableW = nameW + colW * games.length + (last ? totalW : 0);
+    const rows = Math.floor((bottom - y - headerH) / rowH);
+    const tableH = headerH + rows * rowH;
+
+    // Zebra rows, then the total column's tint over them.
+    for (let row = 0; row < rows; row++) {
+      if (row % 2) continue;
+      doc.setFillColor(247, 251, 252).rect(M, y + headerH + row * rowH, tableW, rowH, 'F');
+    }
+    if (last) {
+      doc.setFillColor(...PAPER).rect(M + tableW - totalW, y, totalW, tableH, 'F');
+    }
+
+    // Header: the column names, each game's number and its title read upwards.
+    doc
+      .setFont('helvetica', 'bold')
+      .setFontSize(8)
+      .setTextColor(...MUTED);
+    doc.text(clean(labels.name).toUpperCase(), M + 3, y + headerH - 4, { charSpace: 0.4 });
+    games.forEach(({ game }, index) => {
+      const x = M + nameW + index * colW;
+      doc
+        .setFont('helvetica', 'bold')
+        .setFontSize(9)
+        .setTextColor(...ACCENT);
+      doc.text(String(first + index + 1).padStart(2, '0'), x + colW / 2, y + headerH - 4, {
+        align: 'center',
+      });
+      doc
+        .setFont('helvetica', 'normal')
+        .setFontSize(8)
+        .setTextColor(...INK);
+      const full = clean(game.title);
+      const fits = doc.getTextWidth(full) <= headerH - 12;
+      const name = fits
+        ? full
+        : `${(doc.splitTextToSize(full, headerH - 16)[0] as string).trimEnd()}...`;
+      doc.text(name, x + colW / 2 + 1.2, y + headerH - 10, { angle: 90 });
+    });
+    if (last) {
+      doc
+        .setFont('helvetica', 'bold')
+        .setFontSize(9)
+        .setTextColor(...DEEP);
+      doc.text(clean(labels.total).toUpperCase(), M + tableW - totalW / 2, y + headerH - 4, {
+        align: 'center',
+        charSpace: 0.4,
+      });
+    }
+
+    // Grid.
+    doc.setDrawColor(...LINE).setLineWidth(0.3);
+    for (let row = 0; row <= rows; row++) {
+      const lineY = y + headerH + row * rowH;
+      doc.line(M, lineY, M + tableW, lineY);
+    }
+    const columns = [0, nameW, ...games.map((_, index) => nameW + (index + 1) * colW)];
+    for (const column of columns) doc.line(M + column, y, M + column, y + tableH);
+    if (last) doc.line(M + tableW, y, M + tableW, y + tableH);
+    doc.setDrawColor(...ACCENT).setLineWidth(0.6);
+    doc.line(M, y + headerH, M + tableW, y + headerH);
+    doc.rect(M, y, tableW, tableH);
   }
 }
 
