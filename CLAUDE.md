@@ -12,8 +12,9 @@ requirement**.
   the three search-and-filter guides, `PlaceFilter`, `KidsFilter` and
   `GameFilter` (all `client:visible`). Everything else is zero-JS `.astro`, plus
   small vanilla `<script>`s for pure DOM effects (`src/scripts/motion.ts`,
-  `src/scripts/video-embed.ts` for `VideoEmbed` and the app banners, the home
-  page's cookie button). Do not reach for a React component because it feels
+  `src/scripts/scroll-hide.ts` for the header and search bars that tuck away
+  on scroll down, `src/scripts/video-embed.ts` for `VideoEmbed` and the app
+  banners, the home page's cookie button). Do not reach for a React component because it feels
   familiar; check whether an `.astro` component does the job first.
 - **Content is data, not markup.** Prose goes in `src/content/pages/*.mdx`
   (schema in `src/content.config.ts`); structured lists go in `src/data/*.ts`

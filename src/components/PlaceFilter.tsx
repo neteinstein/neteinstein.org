@@ -92,7 +92,10 @@ export default function PlaceFilter({ groups, labels }: Props) {
 
   return (
     <div data-place-guide>
-      <div className="glass border-line sticky top-[5.25rem] z-30 -mx-2 mb-10 rounded-3xl border p-3 shadow-[var(--shadow-md)] sm:mx-0 sm:p-4">
+      <div
+        data-scroll-hide
+        className="bg-surface-raised border-line sticky top-[5.25rem] z-30 -mx-2 mb-10 rounded-3xl border p-3 shadow-[var(--shadow-md)] [--scroll-hide-offset:6.5rem] sm:mx-0 sm:p-4"
+      >
         <div className="flex items-center gap-3">
           <label className="relative block flex-1">
             <span className="sr-only">{labels.search}</span>

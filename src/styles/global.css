@@ -407,6 +407,24 @@
   }
 }
 
+/*
+ * Hide-on-scroll: `src/scripts/scroll-hide.ts` marks <html> while the page
+ * scrolls down, and the header and the guides' search bars slide up out of
+ * view; scrolling up brings them back. `--scroll-hide-offset` covers a bar's
+ * sticky `top` and shadow, so it clears the viewport completely.
+ */
+[data-scroll-hide] {
+  transition: translate 0.45s var(--ease-out-expo);
+}
+html[data-scroll='down'] [data-scroll-hide] {
+  translate: 0 calc(-100% - var(--scroll-hide-offset, 0px));
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scroll-hide] {
+    transition: none;
+  }
+}
+
 /* Header tightens as the page scrolls (scroll-driven, progressive). */
 @supports (animation-timeline: scroll()) {
   .motion-ok .site-header-bar {
