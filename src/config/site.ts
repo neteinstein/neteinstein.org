@@ -47,11 +47,12 @@ export const SITE = {
   /** OpenGraph fallback image. Relative to `public/`. */
   ogImage: '/og-default.jpg',
   /**
-   * GoatCounter site code (the `<code>` in `<code>.goatcounter.com`). Empty
-   * disables analytics. Pageviews are only sent from the `url` host above, so
-   * local builds and the github.io preview never count.
+   * GoatCounter endpoint: the custom domain CNAMEd to `neteinstein.goatcounter.com`
+   * (https://www.goatcounter.com/help/faq#custom-domain). Empty disables
+   * analytics. Pageviews are only sent from the `url` host above, so local
+   * builds and the github.io preview never count.
    */
-  goatcounter: 'neteinstein',
+  goatcounter: 'https://stats.pedrovicente.pt',
 } as const;
 
 export const NAV: NavItem[] = [

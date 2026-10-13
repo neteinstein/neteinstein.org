@@ -10,7 +10,7 @@ import { useI18n } from '../../i18n';
  */
 const { t, locale } = useI18n(Astro);
 const endpoint = SITE.goatcounter
-  ? `https://${SITE.goatcounter}.goatcounter.com/counter/${encodeURIComponent(PDF_EVENT)}.json`
+  ? `${SITE.goatcounter}/counter/${encodeURIComponent(PDF_EVENT)}.json`
   : '';
 ---
 
