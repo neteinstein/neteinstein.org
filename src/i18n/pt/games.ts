@@ -1726,4 +1726,138 @@ export const games: Catalog = {
   'Created by Peter Skillman and popularised by Tom Wujec.':
     'Criado por Peter Skillman e popularizado por Tom Wujec.',
   '10 to 15 min': '10 a 15 min',
+  // Games from the doc's Web Games tab
+  "Movin' on Up": 'Sobe e Desce dos Copos',
+  '20 plastic cups in two colours (10 of each)': '20 copos de plástico em duas cores (10 de cada)',
+  'Make a stack of 20 cups, alternating the colours (or with just one colour at the bottom).':
+    'Fazer uma pilha de 20 copos, alternando as cores (ou com uma cor só no fundo).',
+  'On the signal, the player takes the top cup off the stack and moves it to the bottom.':
+    'Ao sinal, o jogador tira o copo de cima da pilha e passa-o para o fundo.',
+  'They must alternate hands: one cup with the right, the next with the left.':
+    'Tem de alternar as mãos: um copo com a direita, o seguinte com a esquerda.',
+  'They carry on until the colour that started at the bottom is back underneath the whole stack.':
+    'Continua até a cor que estava no fundo voltar a ficar por baixo de toda a pilha.',
+  'If the stack falls, they gather the cups and carry on.':
+    'Se a pilha cair, junta os copos e continua.',
+  'Whoever finishes inside 60 seconds wins; with several players, the fastest.':
+    'Ganha quem acabar em menos de 60 segundos; com vários jogadores, o mais rápido.',
+  'Easier: 10 cups.': 'Mais fácil: 10 copos.',
+  'Relay: each team member moves 5 cups and hands the stack to the next.':
+    'Estafeta: cada elemento da equipa passa 5 copos e entrega a pilha ao seguinte.',
+  'Sitting Pop': 'Rebentar Balões Sentado',
+  '2 to 4 players at once': '2 a 4 jogadores ao mesmo tempo',
+  '10 inflated balloons per player': '10 balões cheios por jogador',
+  '1 chair (or cushion) per player': '1 cadeira (ou almofada) por jogador',
+  "Put each player's pile of balloons about 3 metres from their chair.":
+    'Pôr cada pilha de balões a uns 3 metros da cadeira do respetivo jogador.',
+  'On the signal, the player runs, grabs a balloon, carries it to the chair and pops it by sitting on it.':
+    'Ao sinal, o jogador corre, apanha um balão, leva-o até à cadeira e rebenta-o sentando-se em cima.',
+  'Only one balloon at a time.': 'Só pode levar um balão de cada vez.',
+  'No hands, nails or objects to pop it: body weight only.':
+    'Não pode usar as mãos, unhas ou objetos para o rebentar, só o peso do corpo.',
+  'Whoever pops the most balloons in a minute wins.': 'Ganha quem rebentar mais balões num minuto.',
+  'With little ones: less inflated balloons pop more easily.':
+    'Com crianças pequenas: balões menos cheios rebentam mais facilmente.',
+  'Put a slip of paper with a dare or a prize inside some balloons.':
+    'Pôr um papelinho com um desafio ou prémio dentro de alguns balões.',
+  'Safety: sturdy chairs, without wheels.': 'Segurança: cadeiras estáveis, sem rodas.',
+  'Balloon Balance': 'Balão na Cabeça',
+  'Indoors or outdoors (no wind)': 'Interior ou exterior (sem vento)',
+  'Tape to mark the start and finish lines': 'Fita-cola para marcar a partida e a meta',
+  'Mark a start line and a finish line 5 metres apart.':
+    'Marcar uma linha de partida e uma meta a 5 metros.',
+  'Each player balances a balloon on top of their head, without holding it.':
+    'Cada jogador equilibra um balão em cima da cabeça, sem o segurar.',
+  'On the signal, they walk to the finish with their hands behind their back.':
+    'Ao sinal, caminha até à meta com as mãos atrás das costas.',
+  'If the balloon falls, they go back to the start.': 'Se o balão cair, volta à partida.',
+  'The first to reach the finish with the balloon on their head wins.':
+    'Ganha o primeiro a chegar à meta com o balão na cabeça.',
+  'Harder: there and back, or weave around chairs on the way.':
+    'Mais difícil: ida e volta, ou contornar cadeiras pelo caminho.',
+  "Relay: at the finish, pass the balloon onto the next teammate's head without using hands.":
+    'Estafeta: na meta, passar o balão para a cabeça do colega seguinte sem usar as mãos.',
+  Charades: 'Mímica',
+  '2 teams of 3 or more': '2 equipas de 3 ou mais',
+  '20 to 40 min': '20 a 40 min',
+  'Slips of paper with films, books, songs, animals or jobs':
+    'Papelinhos com filmes, livros, músicas, animais ou profissões',
+  '1 bowl or hat': '1 taça ou chapéu',
+  'Each team writes 10 to 20 slips for the other team and puts them in the bowl.':
+    'Cada equipa escreve 10 a 20 papelinhos para a outra equipa e põe-nos na taça.',
+  'In turn, a player draws a slip and has 1 minute to get their team to guess it with gestures only.':
+    'À vez, um jogador tira um papelinho e tem 1 minuto para fazer a sua equipa adivinhar só com gestos.',
+  'No talking, no sounds and no pointing at objects that give the answer away.':
+    'Não pode falar, fazer sons nem apontar para objetos que tenham a resposta.',
+  'Agreed signs help: the number of words on your fingers, "film" by cranking an old camera, "book" by opening your hands.':
+    'Gestos combinados ajudam: número de palavras com os dedos, «filme» a rodar a manivela, «livro» a abrir as mãos.',
+  'Each word guessed is worth 1 point; if the team misses, the other team can try to steal the point.':
+    'Cada palavra adivinhada vale 1 ponto; se a equipa não acertar, a outra equipa pode tentar roubar o ponto.',
+  'The team with the most points at the end of the rounds wins.':
+    'Ganha a equipa com mais pontos no fim das rondas.',
+  'For big groups: several circles playing at once.':
+    'Para grupos grandes: várias rodas de mímica ao mesmo tempo.',
+  'Quick version: as many slips as the team can guess in 1 minute.':
+    'Variante rápida: o máximo de papelinhos que a equipa adivinhar em 1 minuto.',
+  'For children: only animals and jobs.': 'Para crianças: só animais e profissões.',
+  'I Packed My Suitcase': 'Vou de Viagem e Levo na Mala',
+  '15 to 30 min': '15 a 30 min',
+  'The group sits or stands in a circle.': 'O grupo senta-se ou fica de pé em roda.',
+  'The first player says "I\'m going on a trip and in my suitcase I\'m packing…", adds an object and mimes putting it in the suitcase.':
+    'O primeiro jogador diz «Vou de viagem e levo na mala…» e acrescenta um objeto, fazendo o gesto de o pôr na mala.',
+  'The next player repeats the sentence and every object so far, in order (with the mimes), then adds a new one.':
+    'O seguinte repete a frase, todos os objetos anteriores pela ordem (com os gestos) e acrescenta um novo.',
+  'Whoever forgets an object, mixes up the order or misses a mime leaves the circle (or does a small forfeit).':
+    'Quem se esquecer de um objeto, trocar a ordem ou falhar um gesto sai da roda (ou faz um pequeno castigo).',
+  'The last one still in the game wins.': 'Ganha o último a ficar em jogo.',
+  'Easier: no mimes.': 'Mais fácil: sem gestos.',
+  'Alphabet: each object starts with the next letter (apple, ball, cap…).':
+    'Alfabeto: cada objeto começa pela letra seguinte (abacaxi, bola, chapéu…).',
+  'Works well as a memory game on a car or coach trip.':
+    'Funciona bem como jogo de memória numa viagem de carro ou autocarro.',
+  "The Groom's Bell": 'Sino do Noivo',
+  '1 small bell, horn or whistle': '1 sino pequeno, buzina ou apito',
+  'Drinks (with and without alcohol)': 'Bebidas (com e sem álcool)',
+  'Give the groom the bell at the start of the night and agree on the rules.':
+    'Dar o sino ao noivo no início da noite e combinar as regras.',
+  'Whenever the groom rings the bell, the whole group has to take a sip.':
+    'Sempre que o noivo tocar o sino, todo o grupo tem de beber um gole.',
+  'The groom can ring it at most once every 15 minutes.':
+    'O noivo pode tocar no máximo uma vez a cada 15 minutos.',
+  "Whoever doesn't drink when the bell rings buys the next round (or does a dare).":
+    'Quem não beber quando o sino toca paga a próxima ronda (ou faz um desafio).',
+  'The group can "steal" the bell once during the night: for that quarter of an hour, the groom is the one who drinks.':
+    'O grupo pode «roubar» o sino uma vez durante a noite: nesse quarto de hora, quem bebe é o noivo.',
+  'Alcohol-free version: instead of drinking, everyone strikes a pose, sings a line or dances for 10 seconds.':
+    'Versão sem álcool: em vez de beber, todos fazem uma pose, cantam um verso ou dançam 10 segundos.',
+  'Whoever is driving always drinks juice.': 'Quem estiver a conduzir bebe sempre sumo.',
+  'Agree on a limit for the night beforehand.': 'Combinar antes um limite para a noite.',
+  Kings: 'Reis',
+  '4 to 10 players': '4 a 10 jogadores',
+  '30 to 60 min': '30 a 60 min',
+  '1 deck of cards': '1 baralho de cartas',
+  '1 big cup in the middle of the table (the "king\'s cup")':
+    '1 copo grande no meio da mesa (o «copo do rei»)',
+  "Each player's drink (with or without alcohol)": 'Bebidas de cada jogador (com ou sem álcool)',
+  "Put the king's cup in the middle of the table and spread the cards face down in a circle around it.":
+    'Pôr o copo do rei no meio da mesa e espalhar as cartas viradas para baixo em círculo à volta dele.',
+  "In turn, each player draws a card and follows that card's rule.":
+    'À vez, cada jogador tira uma carta e cumpre a regra dessa carta.',
+  'Ace: waterfall, everyone drinks and only stops when the player on their right stops. 2: you pick who drinks. 3: you drink.':
+    'Ás: cascata, todos bebem e só param quando o jogador à sua direita parar. 2: escolhes quem bebe. 3: bebes tu.',
+  '4: the girls drink. 5: the boys drink. 6: everyone puts a hand up, the last one drinks. 7: everyone touches their nose, the last one drinks.':
+    '4: bebem as raparigas. 5: bebem os rapazes. 6: todos põem a mão no ar, o último bebe. 7: todos tocam no nariz, o último bebe.',
+  '8: pick a mate, who drinks every time you do. 9: say a word and everyone in turn says one that rhymes; whoever fails drinks. 10: pick a category (beer brands, footballers…) and everyone names one; whoever fails drinks.':
+    '8: escolhes um parceiro, que bebe sempre que tu beberes. 9: dizes uma palavra e cada um diz uma que rime; quem falhar bebe. 10: escolhes uma categoria (marcas de cerveja, jogadores de futebol…) e cada um diz um exemplo; quem falhar bebe.',
+  'Jack: make up a rule that lasts until the end of the game. Queen: you are the question master; whoever answers one of your questions drinks.':
+    'Valete: inventas uma regra que vale até ao fim do jogo. Dama: és o mestre das perguntas; quem responder a uma pergunta tua bebe.',
+  "King: pour a little of your drink into the king's cup. Whoever draws the fourth king drinks the king's cup and the game ends.":
+    'Rei: deitas um pouco da tua bebida no copo do rei. Quem tirar o quarto rei bebe o copo do rei e o jogo acaba.',
+  'Whoever breaks the circle of cards drinks too.': 'Quem partir o círculo de cartas também bebe.',
+  'For the groom: every time a king comes up, the groom answers a question about the bride.':
+    'Para o noivo: cada vez que sair um rei, o noivo responde a uma pergunta sobre a noiva.',
+  "Alcohol-free version: the king's cup is a strange mix of juices.":
+    'Versão sem álcool: o copo do rei é uma mistura de sumos estranha.',
+  'Agree on the card rules before you start: there are many variants.':
+    'Combinar as regras das cartas antes de começar: há muitas variantes.',
 };
