@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { SyntheticEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { Game, GameImageUrl, GameSetting, GuideCategory } from '../../data/types';
+import SectionToggle from '../SectionToggle';
 import type { PrintBrand, PrintLabels } from './print-pdf';
 
 type GuideGame = Game<GameImageUrl>;
@@ -52,6 +53,12 @@ export interface GameFilterLabels {
   selected: string;
   /** A card's checkbox, before the game's name. */
   select: string;
+  /** A chapter's buttons in print mode: tick or untick every game it shows. */
+  selectSection: string;
+  unselectSection: string;
+  /** A chapter's collapse button. */
+  collapse: string;
+  expand: string;
 }
 
 interface Props {
@@ -70,8 +77,8 @@ interface Props {
  *
  * Filtering toggles the `hidden` attribute rather than unmounting, so anchors
  * keep their targets and the scroll-reveal state that `motion.ts` put on each
- * card survives. Following a jump link while a filter hides its target clears
- * the filters first.
+ * card survives. Following a jump link while a filter or a collapsed chapter
+ * hides its target clears the filters and opens the chapter first.
  *
  * "Select for print" (JS only, so it appears once hydrated) puts a checkbox on
  * every card; "Save PDF" then draws the ticked games as a booklet
@@ -85,6 +92,7 @@ export default function GameFilter({ categories, labels, print }: Props) {
   const [selecting, setSelecting] = useState(false);
   const [selected, setSelected] = useState<ReadonlySet<string>>(new Set());
   const [saving, setSaving] = useState(false);
+  const [collapsed, setCollapsed] = useState<ReadonlySet<string>>(new Set());
   const pendingScroll = useRef<string | null>(null);
 
   useEffect(() => setHydrated(true), []);
@@ -93,6 +101,25 @@ export default function GameFilter({ categories, labels, print }: Props) {
     setSelected((current) => {
       const next = new Set(current);
       if (!next.delete(id)) next.add(id);
+      return next;
+    });
+
+  const toggleCategory = (id: string) =>
+    setCollapsed((current) => {
+      const next = new Set(current);
+      if (!next.delete(id)) next.add(id);
+      return next;
+    });
+
+  /** Ticks every given game, or unticks them all when they already are. */
+  const toggleAll = (ids: string[]) =>
+    setSelected((current) => {
+      const next = new Set(current);
+      const all = ids.every((id) => next.has(id));
+      for (const id of ids) {
+        if (all) next.delete(id);
+        else next.add(id);
+      }
       return next;
     });
 
@@ -135,10 +162,9 @@ export default function GameFilter({ categories, labels, print }: Props) {
     setSetting('all');
   };
 
-  // A jump link whose target is filtered out: clear the filters, then scroll
-  // once it is shown again.
+  // A jump link whose target is filtered out or in a collapsed chapter: clear
+  // the filters and open its chapter, then scroll once it is shown again.
   useEffect(() => {
-    if (!filtering) return;
     const onClick = (event: MouseEvent) => {
       const link = (event.target as Element | null)?.closest?.('a[href^="#"]');
       const id = decodeURIComponent(link?.getAttribute('href')?.slice(1) ?? '');
@@ -148,10 +174,13 @@ export default function GameFilter({ categories, labels, print }: Props) {
       pendingScroll.current = id;
       history.pushState(null, '', `#${id}`);
       reset();
+      const chapter = target.closest('section')?.id;
+      if (chapter)
+        setCollapsed((current) => new Set([...current].filter((value) => value !== chapter)));
     };
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);
-  }, [filtering]);
+  }, []);
 
   useEffect(() => {
     if (!pendingScroll.current) return;
@@ -272,13 +301,18 @@ export default function GameFilter({ categories, labels, print }: Props) {
 
       {categories.map((category, categoryIndex) => {
         const categoryShown = category.games.filter((game) => isVisible(game, category.id));
+        const allTicked = categoryShown.every((game) => selected.has(game.id));
+        const closed = collapsed.has(category.id);
         return (
           <section
             key={category.id}
             id={category.id}
             aria-labelledby={`${category.id}-title`}
             hidden={categoryShown.length === 0}
-            className="mb-16 scroll-mt-[8rem] last:mb-0 sm:mb-24"
+            className={[
+              'scroll-mt-[8rem] last:mb-0',
+              closed ? 'mb-10 sm:mb-12' : 'mb-16 sm:mb-24',
+            ].join(' ')}
           >
             <header className="border-line mb-8 flex flex-wrap items-end gap-x-6 gap-y-3 border-b pb-6">
               <span
@@ -302,6 +336,28 @@ export default function GameFilter({ categories, labels, print }: Props) {
                   {category.title}
                 </h2>
               </div>
+              {selecting && categoryShown.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => toggleAll(categoryShown.map((game) => game.id))}
+                  aria-pressed={allTicked}
+                  aria-label={`${allTicked ? labels.unselectSection : labels.selectSection}: ${category.title}`}
+                  className="border-line-strong bg-surface-raised text-fg hover:border-accent aria-pressed:border-accent aria-pressed:text-accent inline-flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm font-semibold transition-colors"
+                >
+                  <ToolIcon path={allTicked ? ICONS.untick : ICONS.tick} />
+                  {allTicked ? labels.unselectSection : labels.selectSection}
+                  <span className="font-mono text-[0.7rem] opacity-70">{categoryShown.length}</span>
+                </button>
+              )}
+              {hydrated && (
+                <SectionToggle
+                  collapsed={closed}
+                  controls={`${category.id}-body`}
+                  title={category.title}
+                  labels={labels}
+                  onToggle={() => toggleCategory(category.id)}
+                />
+              )}
               <div className="w-full">
                 <p className="text-muted max-w-3xl text-lg leading-relaxed text-pretty">
                   {category.intro}
@@ -309,7 +365,11 @@ export default function GameFilter({ categories, labels, print }: Props) {
               </div>
             </header>
 
-            <div className="grid grid-flow-row-dense items-start gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+            <div
+              id={`${category.id}-body`}
+              hidden={closed}
+              className="grid grid-flow-row-dense items-start gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3"
+            >
               {category.games.map((game, index) => (
                 <GameCard
                   key={game.id}
@@ -690,6 +750,8 @@ const ICONS = {
     'M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z',
   back: 'M19 12H5M12 19l-7-7 7-7',
   download: 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3',
+  tick: 'M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2ZM8 12l3 3 5-6',
+  untick: 'M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2ZM8 12h8',
 };
 
 function ToolIcon({ path }: { path: string }) {

@@ -165,6 +165,8 @@ export const ui: Catalog = {
   'Nothing matches those filters.': 'Nada corresponde a esses filtros.',
   'Clear the search': 'Limpar a pesquisa',
   '{group} sections': 'Secções de {group}',
+  Collapse: 'Recolher',
+  Expand: 'Expandir',
   'Places for kids': 'Sítios para crianças',
   'Jump to the list': 'Saltar para a lista',
   'Play & parties': 'Brincadeira & festas',

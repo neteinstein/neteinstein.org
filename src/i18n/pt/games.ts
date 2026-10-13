@@ -1877,6 +1877,12 @@ export const games: Catalog = {
   'What to bring': 'O que levar',
   'No materials needed': 'Não é preciso material',
   'group-games': 'jogos-de-grupo',
+  'Select all': 'Selecionar todos',
+  'Unselect all': 'Desmarcar todos',
+  'Score table': 'Tabela de pontuação',
+  'Write a team or a player on each line, then their points under each game.':
+    'Escreve uma equipa ou um jogador em cada linha e os pontos por baixo de cada jogo.',
+  'Team / player': 'Equipa / jogador',
   // Games from the doc's More Web Games tab
   'Cereal Scramble': 'Puzzle da Caixa de Cereais',
   '2 to 6 players at once': '2 a 6 jogadores ao mesmo tempo',

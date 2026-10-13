@@ -107,6 +107,10 @@ const brandAvatar = await getImage({ src: avatar, width: 256, format: 'png' });
         selectHint: t('Tick the games to print'),
         selected: t('{count} selected'),
         select: t('Select'),
+        selectSection: t('Select all'),
+        unselectSection: t('Unselect all'),
+        collapse: t('Collapse'),
+        expand: t('Expand'),
       }}
       print={{
         locale,
@@ -135,6 +139,10 @@ const brandAvatar = await getImage({ src: avatar, width: 256, format: 'png' });
           goal: t('Goal'),
           rules: t('Rules, step by step'),
           tips: t('Variations and tips'),
+          scoreTable: t('Score table'),
+          scoreLead: t('Write a team or a player on each line, then their points under each game.'),
+          name: t('Team / player'),
+          total: t('Total'),
           file: t('group-games'),
         },
       }}

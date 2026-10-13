@@ -7862,42 +7862,6 @@ export const gameCategories: GameCategory[] = [
     ],
   },
   {
-    id: 'bonus',
-    emoji: '⭐',
-    title: 'Bonus: Skill Challenge',
-    short: 'Bonus',
-    intro: 'Not quite a game, but it makes a good challenge station.',
-    games: [
-      {
-        id: 'learn-the-airwalk-in-20-seconds',
-        number: 266,
-        title: 'Learn the Airwalk in 20 Seconds',
-        originalName: 'How to learn the airwalk in 20 seconds (EN)',
-        players: 'Any number',
-        age: '6+',
-        duration: '5 to 10 min',
-        setting: 'Outdoors',
-        where: ['outdoor'],
-        image: learnTheAirwalkIn20Seconds,
-        materials: ['1 wooden plank laid on the ground (a reference for the feet)'],
-        setup: ['Lay the plank on the ground as a reference line.'],
-        rules: [
-          'First practise the moves on the spot: one foot slides back while the other lifts slightly.',
-          'Repeat until it flows, to the beat of a song.',
-          'Once it is smooth, add walking forward.',
-          'Contest: who does the most convincing airwalk over 5 metres?',
-        ],
-        tips: [
-          'A jury giving marks from 1 to 10.',
-          'Tip: it is easier on smooth surfaces (socks on a wooden floor).',
-        ],
-        sources: [
-          { label: '@lit.familylife', href: 'https://www.instagram.com/reel/DTD5cJ9j3yK/' },
-        ],
-      },
-    ],
-  },
-  {
     id: 'team-building',
     emoji: '🤝',
     title: 'Team-Building Games',
@@ -7906,7 +7870,7 @@ export const gameCategories: GameCategory[] = [
     games: [
       {
         id: 'egg-drop-challenge',
-        number: 267,
+        number: 266,
         title: 'Egg Drop Challenge',
         players: 'Teams of 3 to 5',
         age: '8+',
@@ -7930,7 +7894,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'ball-point-game',
-        number: 268,
+        number: 267,
         title: 'Ball Point Game',
         players: 'Teams of 5 or more',
         age: '8+',
@@ -7954,7 +7918,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'energy-wave',
-        number: 269,
+        number: 268,
         title: 'Energy Wave (Movement + Rhythm)',
         players: 'Any number',
         age: '6+',
@@ -7977,7 +7941,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'coin-maze',
-        number: 270,
+        number: 269,
         title: 'The Coin Maze (Coordination and Teamwork)',
         players: 'Teams of 4',
         age: '8+',
@@ -7997,7 +7961,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'helium-stick',
-        number: 271,
+        number: 270,
         title: 'Helium Stick',
         players: 'Teams of 6 to 12',
         age: '8+',
@@ -8026,7 +7990,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'marshmallow-challenge',
-        number: 272,
+        number: 271,
         title: 'Marshmallow Challenge',
         players: 'Teams of 3 to 5',
         age: '8+',
@@ -8057,7 +8021,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'interview-time',
-        number: 273,
+        number: 272,
         title: 'Interview Time',
         players: 'Pairs (groups of any size)',
         age: '10+',
@@ -8081,7 +8045,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'back-to-back-stand',
-        number: 274,
+        number: 273,
         title: 'Back-to-Back Stand',
         players: 'Pairs (2 to 10 pairs at once)',
         age: '6+',
@@ -8105,7 +8069,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'count-to-20',
-        number: 275,
+        number: 274,
         title: 'Count to 20',
         players: '6 to 20 players',
         age: '8+',
@@ -8131,7 +8095,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'trust-fall',
-        number: 276,
+        number: 275,
         title: 'Trust Fall',
         players: 'Groups of 3 to 8',
         age: '12+',
@@ -8159,7 +8123,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'rapid-icebreakers',
-        number: 277,
+        number: 276,
         title: 'Rapid Icebreakers',
         players: '5 to 30 players',
         age: '8+',
@@ -8187,7 +8151,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'virtual-group-map',
-        number: 278,
+        number: 277,
         title: 'Virtual Group Map',
         players: '5 to 50 players',
         age: '10+',
@@ -8217,7 +8181,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'show-and-tell',
-        number: 279,
+        number: 278,
         title: 'Show and Tell',
         players: '4 to 20 players',
         age: '5+',
@@ -8242,7 +8206,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'what-would-you-do',
-        number: 280,
+        number: 279,
         title: 'What Would You Do?',
         players: 'Teams of 3 to 6',
         age: '12+',
@@ -8270,7 +8234,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'virtual-bingo',
-        number: 281,
+        number: 280,
         title: 'Virtual Bingo',
         players: '5 to 50 players',
         age: '8+',
@@ -8298,7 +8262,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'speed-networking',
-        number: 282,
+        number: 281,
         title: 'Speed Networking',
         players: '8 to 60 players (an even number)',
         age: '14+',
@@ -8325,7 +8289,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'virtual-talent-show',
-        number: 283,
+        number: 282,
         title: 'Virtual Talent Show',
         players: '5 to 40 participants',
         age: '6+',
@@ -8353,7 +8317,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'late-for-work',
-        number: 284,
+        number: 283,
         title: 'Late for Work',
         players: '6 to 30 players',
         age: '10+',
@@ -8379,7 +8343,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'my-superhero-story',
-        number: 285,
+        number: 284,
         title: 'My Superhero Story',
         players: '4 to 20 players',
         age: '12+',
@@ -8404,7 +8368,7 @@ export const gameCategories: GameCategory[] = [
       },
       {
         id: 'business-pitch',
-        number: 286,
+        number: 285,
         title: 'Business Pitch',
         players: 'Teams of 3 or 4, plus a jury of 1 to 3',
         age: '12+',
@@ -8429,6 +8393,42 @@ export const gameCategories: GameCategory[] = [
           'For children: invent a new toy.',
         ],
         sources: [],
+      },
+    ],
+  },
+  {
+    id: 'bonus',
+    emoji: '⭐',
+    title: 'Bonus: Skill Challenge',
+    short: 'Bonus',
+    intro: 'Not quite a game, but it makes a good challenge station.',
+    games: [
+      {
+        id: 'learn-the-airwalk-in-20-seconds',
+        number: 286,
+        title: 'Learn the Airwalk in 20 Seconds',
+        originalName: 'How to learn the airwalk in 20 seconds (EN)',
+        players: 'Any number',
+        age: '6+',
+        duration: '5 to 10 min',
+        setting: 'Outdoors',
+        where: ['outdoor'],
+        image: learnTheAirwalkIn20Seconds,
+        materials: ['1 wooden plank laid on the ground (a reference for the feet)'],
+        setup: ['Lay the plank on the ground as a reference line.'],
+        rules: [
+          'First practise the moves on the spot: one foot slides back while the other lifts slightly.',
+          'Repeat until it flows, to the beat of a song.',
+          'Once it is smooth, add walking forward.',
+          'Contest: who does the most convincing airwalk over 5 metres?',
+        ],
+        tips: [
+          'A jury giving marks from 1 to 10.',
+          'Tip: it is easier on smooth surfaces (socks on a wooden floor).',
+        ],
+        sources: [
+          { label: '@lit.familylife', href: 'https://www.instagram.com/reel/DTD5cJ9j3yK/' },
+        ],
       },
     ],
   },
