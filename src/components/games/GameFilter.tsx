@@ -399,10 +399,10 @@ function GameCard({
       data-reveal
       data-spotlight
       style={{ '--stagger': stagger } as CSSProperties}
-      className={[
-        selecting && checked ? 'outline-accent outline-3 outline-offset-2' : '',
-        'group glow-ring border-line bg-surface-raised relative flex scroll-mt-[8rem] flex-col overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)] has-[details[open]]:col-span-full has-[details[open]]:hover:translate-y-0 md:has-[details[open]]:grid md:has-[details[open]]:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] md:has-[details[open]]:items-start',
-      ].join(' ')}
+      // An attribute, not a class: `motion.ts` adds `is-visible` to the class
+      // list, and a changing className would wipe it and hide the card again.
+      data-selected={selecting && checked ? '' : undefined}
+      className="data-selected:outline-accent group glow-ring border-line bg-surface-raised relative flex scroll-mt-[8rem] flex-col overflow-hidden rounded-3xl border shadow-[var(--shadow-sm)] transition-[translate,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)] has-[details[open]]:col-span-full has-[details[open]]:hover:translate-y-0 data-selected:outline-3 data-selected:outline-offset-2 md:has-[details[open]]:grid md:has-[details[open]]:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] md:has-[details[open]]:items-start"
     >
       <div className="border-line bg-surface-sunken relative aspect-[18/13] overflow-hidden border-b group-has-[details[open]]:md:m-6 group-has-[details[open]]:md:mr-0 group-has-[details[open]]:md:rounded-2xl group-has-[details[open]]:md:border">
         <img
