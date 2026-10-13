@@ -498,16 +498,6 @@ function GameCard({
               video ? 'lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-8' : '',
             ].join(' ')}
           >
-            {video?.embed && (
-              <VideoPlayer
-                src={video.embed.src}
-                instagram={video.embed.instagram}
-                href={video.href}
-                title={video.label}
-                poster={game.image.src}
-                labels={labels}
-              />
-            )}
             <div className="flex flex-col gap-5 text-[0.95rem] leading-relaxed lg:col-start-1 lg:row-start-1">
               {game.note && (
                 <p className="text-muted rounded-2xl border border-dashed border-[var(--border-strong)] px-3 py-2 text-sm italic">
@@ -565,6 +555,16 @@ function GameCard({
                 </p>
               )}
             </div>
+            {video?.embed && (
+              <VideoPlayer
+                src={video.embed.src}
+                instagram={video.embed.instagram}
+                href={video.href}
+                title={video.label}
+                poster={game.image.src}
+                labels={labels}
+              />
+            )}
           </div>
         </details>
       </div>
