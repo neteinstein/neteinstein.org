@@ -11,7 +11,8 @@ export interface PodcastEpisode {
   /** The episode's YouTube title, without the show name and episode-number suffix. */
   title: string;
   season: number;
-  episode: number;
+  /** Absent for a bonus video outside the numbered run. */
+  episode?: number;
   /** Format note carried in the YouTube title — "Short", "Special Episode". */
   format?: string;
 }
@@ -28,6 +29,8 @@ export interface PodcastShow {
   logoAlt: string;
   /** In the original page order. */
   episodes: PodcastEpisode[];
+  /** "Best of" cuts released after each episode, shown in their own wall below the seasons. */
+  afterBurns?: PodcastEpisode[];
 }
 
 /** Page-level metadata: `<title>`, meta description and hero labels. */
