@@ -273,4 +273,16 @@ export default {
       person({ ...CAST[5], x: 830, left: [600, 360], right: 'down', mouth: 'open' }),
       label('how many coins?', 512, 160),
     ),
+  tibitar: () =>
+    k.scene(
+      person({ ...CAST[4], x: 512, left: 'head', right: 'down', mouth: 'smile' }),
+      k.raw(
+        `<ellipse cx="512" cy="150" rx="130" ry="56" fill="${C.white}" stroke="${C.grey}" stroke-width="3"/><circle cx="512" cy="232" r="12" fill="${C.white}" stroke="${C.grey}" stroke-width="3"/><circle cx="512" cy="262" r="7" fill="${C.white}" stroke="${C.grey}" stroke-width="3"/>`,
+      ),
+      label('to swim', 512, 164),
+      person({ ...CAST[2], x: 190, left: 'down', right: [330, 400], mouth: 'open' }),
+      k.chatBubble(230, 290, 'Do you tibitar outdoors?', { w: 340, h: 62, size: 24 }),
+      person({ ...CAST[6], x: 834, left: [694, 400], right: 'down', mouth: 'open' }),
+      k.chatBubble(800, 290, 'Every day?', { w: 190, h: 62, size: 26 }),
+    ),
 };
