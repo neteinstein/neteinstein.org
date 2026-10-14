@@ -5,7 +5,8 @@
  * plus games added since that have no source video: the bachelor-party
  * quiz, a closing chapter of team-building games, and a few classics
  * (many from the TV show "Minute to Win It") at the end of the other
- * chapters. Their drawings were made in the doc's style. The games from the
+ * chapters, and a last chapter of games that need no materials. Their
+ * drawings were made in the doc's style. The games from the
  * doc's "More Web Games" tab close each chapter; their drawings are drawn in
  * code (`scripts/game-art/`, `npm run draw:games`), and so are the drawings of
  * the 79 well-known classics after them (musical chairs, capture the flag,
@@ -83,7 +84,6 @@ import blindfoldedSwappedArmsYoghurt from '../assets/games/blindfolded-swapped-a
 import blindfoldedHoopOrienteering from '../assets/games/blindfolded-hoop-orienteering.webp';
 import whoseBodyPartIsThis from '../assets/games/whose-body-part-is-this.webp';
 import howWellDoYouKnowYourPartner from '../assets/games/how-well-do-you-know-your-partner.webp';
-import learnTheAirwalkIn20Seconds from '../assets/games/learn-the-airwalk-in-20-seconds.webp';
 import eggDropChallenge from '../assets/games/egg-drop-challenge.webp';
 import ballPointGame from '../assets/games/ball-point-game.webp';
 import energyWave from '../assets/games/energy-wave.webp';
@@ -389,6 +389,7 @@ import backToBackDrawing from '../assets/games/back-to-back-drawing.webp';
 import blindSquare from '../assets/games/blind-square.webp';
 import groupJuggle from '../assets/games/group-juggle.webp';
 import paperBridge from '../assets/games/paper-bridge.webp';
+import tibitar from '../assets/games/tibitar.webp';
 
 /** The guide's chapters. Game numbers run on across categories, in page order. */
 export const gameCategories: GameCategory[] = [
@@ -10650,37 +10651,44 @@ export const gameCategories: GameCategory[] = [
     ],
   },
   {
-    id: 'bonus',
-    emoji: '⭐',
-    title: 'Bonus: Skill Challenge',
-    short: 'Bonus',
-    intro: 'Not quite a game, but it makes a good challenge station.',
+    id: 'no-materials',
+    emoji: '🗣️',
+    title: 'No Materials Needed',
+    short: 'No materials',
+    intro:
+      'Nothing to buy or set up: just the players and their voices, for the car, a queue or the table after dinner.',
     games: [
       {
-        id: 'learn-the-airwalk-in-20-seconds',
+        id: 'tibitar',
         number: 365,
-        title: 'Learn the Airwalk in 20 Seconds',
-        originalName: 'How to learn the airwalk in 20 seconds (EN)',
-        players: 'Any number',
-        age: '6+',
-        duration: '5 to 10 min',
-        setting: 'Outdoors',
-        where: ['outdoor'],
-        image: learnTheAirwalkIn20Seconds,
-        materials: ['1 wooden plank laid on the ground (a reference for the feet)'],
-        setup: ['Lay the plank on the ground as a reference line.'],
+        title: 'Tibitar',
+        originalName: 'Eu tibito, tu tibitas, ele tibita...',
+        players: '3 or more',
+        age: '7+',
+        duration: '10 to 20 min',
+        setting: 'Anywhere',
+        where: ['indoor', 'outdoor'],
+        image: tibitar,
+        materials: ['None'],
+        setup: [
+          'One player secretly thinks of a verb, an action ("to swim", "to cook", "to sleep").',
+        ],
         rules: [
-          'First practise the moves on the spot: one foot slides back while the other lifts slightly.',
-          'Repeat until it flows, to the beat of a song.',
-          'Once it is smooth, add walking forward.',
-          'Contest: who does the most convincing airwalk over 5 metres?',
+          'The others ask questions to find out which verb it is, saying "tibitar" in its place: "Do you tibitar every day?", "Can you tibitar on your own?", "Do you tibitar outdoors?".',
+          'The player who chose the verb answers each question honestly, with yes or no (or "sometimes").',
+          'Anyone can guess the verb at any time.',
+          'Whoever guesses it right thinks of the next verb.',
         ],
         tips: [
-          'A jury giving marks from 1 to 10.',
-          'Tip: it is easier on smooth surfaces (socks on a wooden floor).',
+          'Conjugate it for fun: "I tibito, you tibitas, he tibita…".',
+          'Limit it to 20 questions to make it harder.',
+          'Younger players can use only simple, everyday actions.',
         ],
         sources: [
-          { label: '@lit.familylife', href: 'https://www.instagram.com/reel/DTD5cJ9j3yK/' },
+          {
+            label: '@pautafria',
+            href: 'https://www.tiktok.com/@pautafria/video/7389371917536414981',
+          },
         ],
       },
     ],

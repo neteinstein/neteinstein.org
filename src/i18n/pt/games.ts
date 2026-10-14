@@ -1355,27 +1355,6 @@ export const games: Catalog = {
     'Qual é o sítio onde a noiva sempre quis fazer "aquilo", mas tu tiveste medo de ser apanhado?',
   "Which part of the bride's body do you love, but she hates you touching?":
     'Qual é a parte do corpo da noiva que tu adoras, mas que ela odeia que lhe toques?',
-  'Bonus: Skill Challenge': 'Bónus: Desafio de Habilidade',
-  'Not quite a game, but it makes a good challenge station.':
-    'Não é bem um jogo, mas dá uma boa estação de desafio.',
-  Bonus: 'Bónus',
-  'Learn the Airwalk in 20 Seconds': 'Aprender o Airwalk em 20 Segundos',
-  'Any number': 'Qualquer número',
-  '1 wooden plank laid on the ground (a reference for the feet)':
-    '1 tábua de madeira pousada no chão (referência para os pés)',
-  'Lay the plank on the ground as a reference line.':
-    'Pousar a tábua no chão como linha de referência.',
-  'First practise the moves on the spot: one foot slides back while the other lifts slightly.':
-    'Primeiro praticar os movimentos parado no mesmo sítio: um pé desliza para trás enquanto o outro sobe ligeiramente.',
-  'Repeat until it flows, to the beat of a song.':
-    'Repetir até sair fluido, ao ritmo de uma música.',
-  'Once it is smooth, add walking forward.': 'Quando estiver suave, juntar o andar para a frente.',
-  'Contest: who does the most convincing airwalk over 5 metres?':
-    'Concurso: quem faz o airwalk mais convincente durante 5 metros?',
-  'A jury giving marks from 1 to 10.': 'Júri a dar notas de 1 a 10.',
-  'Tip: it is easier on smooth surfaces (socks on a wooden floor).':
-    'Dica: em superfícies lisas (meias em chão de madeira) é mais fácil.',
-
   // Team-Building Games
   'Team-Building Games': 'Jogos de Team Building',
   'Team building': 'Team building',
@@ -6646,4 +6625,28 @@ export const games: Catalog = {
     'Dar um «orçamento» a cada equipa: a fita-cola custa dinheiro.',
   'Planning for 5 minutes without touching the material helps.':
     'Planear 5 minutos sem tocar no material ajuda.',
+
+  // No Materials Needed
+  'No Materials Needed': 'Sem Materiais',
+  'No materials': 'Sem materiais',
+  'Nothing to buy or set up: just the players and their voices, for the car, a queue or the table after dinner.':
+    'Nada para comprar nem preparar: só os jogadores e a voz, para o carro, uma fila ou a mesa depois do jantar.',
+  'Any number': 'Qualquer número',
+  '3 or more': '3 ou mais',
+  Anywhere: 'Em qualquer lado',
+  None: 'Nenhum',
+  'One player secretly thinks of a verb, an action ("to swim", "to cook", "to sleep").':
+    'Um jogador pensa em segredo num verbo, uma ação ("nadar", "cozinhar", "dormir").',
+  'The others ask questions to find out which verb it is, saying "tibitar" in its place: "Do you tibitar every day?", "Can you tibitar on your own?", "Do you tibitar outdoors?".':
+    'Os outros fazem perguntas para descobrir qual é o verbo, dizendo "tibitar" no lugar dele: "Tibitas todos os dias?", "Consegues tibitar sozinho?", "Tibitas ao ar livre?".',
+  'The player who chose the verb answers each question honestly, with yes or no (or "sometimes").':
+    'Quem escolheu o verbo responde a cada pergunta com verdade, com sim ou não (ou "às vezes").',
+  'Anyone can guess the verb at any time.':
+    'Qualquer um pode tentar adivinhar o verbo a qualquer momento.',
+  'Whoever guesses it right thinks of the next verb.': 'Quem acertar pensa no verbo seguinte.',
+  'Conjugate it for fun: "I tibito, you tibitas, he tibita…".':
+    'Conjugar por piada: "Eu tibito, tu tibitas, ele tibita…".',
+  'Limit it to 20 questions to make it harder.': 'Limitar a 20 perguntas para ficar mais difícil.',
+  'Younger players can use only simple, everyday actions.':
+    'Com os mais novos, usar só ações simples do dia a dia.',
 };
