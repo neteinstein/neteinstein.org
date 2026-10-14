@@ -8,7 +8,8 @@ import { useI18n } from '../../i18n';
 
 /**
  * An app, framed like a phone: a bezel with a notch around the app's banner,
- * then a store-listing block — icon, name, description and store badges.
+ * then a store-listing block — icon, name, description and store badges. An
+ * unreleased app's `status` shows as a pill over the banner.
  * `featured` lays the banner and the listing side by side on wide screens.
  *
  * Hover lifts the device, zooms the banner and tilts the icon. Decoration only.
@@ -56,6 +57,12 @@ const watchUrl = app.video && `https://www.youtube.com/watch?v=${app.video}`;
     >
       <span class="bg-line-strong size-1.5 rounded-full"></span>
     </span>
+    {app.status && (
+      <p class="glass border-line text-fg absolute top-6 right-4 z-10 inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs font-semibold tracking-[0.14em] uppercase shadow-[var(--shadow-sm)]">
+        <span class="bg-accent-3 size-2 animate-pulse rounded-full" aria-hidden="true"></span>
+        {app.status}
+      </p>
+    )}
     {watchUrl ? (
       <div
         class="video-embed relative aspect-video"
@@ -134,7 +141,7 @@ const watchUrl = app.video && `https://www.youtube.com/watch?v=${app.video}`;
     <p class:list={['text-muted mt-2.5 leading-relaxed text-pretty', featured && 'lg:text-lg']}>
       <RichText text={app.description} />
     </p>
-    <StoreBadges app={app.title} links={app.links} class="mt-auto pt-6" />
+    {app.links.length > 0 && <StoreBadges app={app.title} links={app.links} class="mt-auto pt-6" />}
   </div>
 </article>
 
