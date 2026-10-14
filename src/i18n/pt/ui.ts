@@ -128,6 +128,10 @@ export const ui: Catalog = {
   '{count} episode': '{count} episódio',
   '{count} episodes': '{count} episódios',
   '{show}, season {season}, episode {episode}': '{show}, temporada {season}, episódio {episode}',
+  '{show}, season {season}, bonus': '{show}, temporada {season}, extra',
+  Bonus: 'Extra',
+  '{count} best-of cut': '{count} best of',
+  '{count} best-of cuts': '{count} best of',
 
   // Improver
   'Photos from Improve Teams workshops': 'Fotografias dos workshops Improve Teams',
