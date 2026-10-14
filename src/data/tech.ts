@@ -4,7 +4,7 @@
  * `.crawl/report.json`). The intro prose lives in
  * `src/content/pages/tech-engineer.mdx`.
  */
-import type { Appearance, Footprint, PortfolioEra, TechLink, Teaching } from './types';
+import type { Appearance, Footprint, PortfolioEra, TechLink, TechShort, Teaching } from './types';
 
 import whyDoWeEvenWork from '../assets/what-i-do/tech-engineer/why-do-we-even-work.webp';
 import yellowBoxPodcast from '../assets/what-i-do/tech-engineer/yellow-box-podcast.webp';
@@ -50,6 +50,7 @@ export const techPage = {
   quote:
     '"There are two types of programmers: good programmers, and those that are not Jon Skeet."',
   persona: 'My "tech persona" over the last 16 years...',
+  thoughtLeadership: 'Thought leadership:',
   appeared: 'Appeared at:',
   footprint: 'Online footprint',
   teacher: 'I have taught at:',
@@ -61,6 +62,15 @@ export const talksLink: TechLink = {
   label: 'I\'ve also done my fair share of "tech talks"',
   href: '/what-i-do/talks-workshops',
 };
+
+/** Clips from Mindera's Yellow Box podcast (S2E11), shown before "Appeared at:". */
+export const shorts: TechShort[] = [
+  { id: 'Y2vfPYbWUJU', title: 'A tech principle or hill I would die on...' },
+  { id: 'ohF-RUwawK0', title: 'The Future of "Phygital" and Omni-channel Retail' },
+  { id: '9HI2MBEkgKk', title: '"Tech is just a tool"' },
+  { id: 'EOI8EvYlFFM', title: 'Common Mobile Tech Misunderstandings' },
+  { id: 'CeEirLWZ7K4', title: 'Mobile Apps vs. Web Apps' },
+];
 
 export const appearances: Appearance[] = [
   {

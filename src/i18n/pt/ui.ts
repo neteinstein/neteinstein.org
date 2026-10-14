@@ -102,6 +102,7 @@ export const ui: Catalog = {
   Appearances: 'Aparições',
   About: 'Sobre',
   Media: 'Media',
+  Videos: 'Vídeos',
   Online: 'Online',
   Teaching: 'Ensino',
   Work: 'Trabalho',

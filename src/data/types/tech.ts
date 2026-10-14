@@ -30,6 +30,13 @@ export interface Appearance {
   image: TechImage;
 }
 
+/** A "Thought leadership" clip: a YouTube Short. */
+export interface TechShort {
+  /** YouTube video id. */
+  id: string;
+  title: string;
+}
+
 /** An "Online footprint" profile. */
 export interface Footprint {
   name: TechLink;

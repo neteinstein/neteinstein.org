@@ -5,6 +5,7 @@ import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import Prose from '../../components/Prose.astro';
 import ButtonLink from '../../components/ButtonLink.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import AppearanceCard from '../../components/tech/AppearanceCard.astro';
 import FootprintCard from '../../components/tech/FootprintCard.astro';
 import TeachingCard from '../../components/tech/TeachingCard.astro';
@@ -15,7 +16,8 @@ import { useI18n } from '../../i18n';
 import { getPage } from '../../i18n/content';
 
 const { t, locale, localize } = useI18n(Astro);
-const { appearances, footprints, portfolio, talksLink, teaching, techPage } = localize(tech);
+const { appearances, footprints, portfolio, shorts, talksLink, teaching, techPage } =
+  localize(tech);
 const entry = await getPage('tech-engineer', locale);
 const { Content } = await render(entry);
 const { title, description, eyebrow, highlight } = entry.data;
@@ -60,6 +62,14 @@ const [featuredFootprint, ...otherFootprints] = footprints;
       </div>
     </div>
   </section>
+
+  <Section id="thought-leadership" eyebrow={t('Videos')} title={techPage.thoughtLeadership}>
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5" data-reveal-stagger>
+      {shorts.map((short) => (
+        <VideoEmbed id={short.id} title={short.title} shape="short" />
+      ))}
+    </div>
+  </Section>
 
   <Section id="appeared" eyebrow={t('Media')} title={techPage.appeared}>
     <div class="grid gap-6 md:grid-cols-2" data-reveal-stagger>

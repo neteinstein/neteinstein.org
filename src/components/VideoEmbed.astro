@@ -19,10 +19,20 @@ interface Props {
   hash?: string;
   /** Start offset in seconds. */
   start?: number;
+  /** `short` frames a vertical YouTube Short at 9:16 instead of 16:9. */
+  shape?: 'wide' | 'short';
   class?: string;
 }
 
-const { provider = 'youtube', id, title, hash, start, class: className } = Astro.props;
+const {
+  provider = 'youtube',
+  id,
+  title,
+  hash,
+  start,
+  shape = 'wide',
+  class: className,
+} = Astro.props;
 const { t } = useI18n(Astro);
 
 const youtube = provider === 'youtube';
@@ -44,7 +54,8 @@ const poster = youtube ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : undefine
 
 <div
   class:list={[
-    'video-embed group border-line bg-surface-sunken relative aspect-video overflow-hidden rounded-3xl border shadow-[var(--shadow-md)]',
+    'video-embed group border-line bg-surface-sunken relative overflow-hidden rounded-3xl border shadow-[var(--shadow-md)]',
+    shape === 'short' ? 'aspect-[9/16]' : 'aspect-video',
     className,
   ]}
   data-embed-src={embedUrl}
