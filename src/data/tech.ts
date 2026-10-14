@@ -49,7 +49,7 @@ import vodacom from '../assets/what-i-do/tech-engineer/vodacom.webp';
 export const techPage = {
   quote:
     '"There are two types of programmers: good programmers, and those that are not Jon Skeet."',
-  persona: 'My "tech persona" over the last 16 years...',
+  persona: 'My "tech persona" over the last 17 years...',
   thoughtLeadership: 'Thought leadership:',
   appeared: 'Appeared at:',
   footprint: 'Online footprint',

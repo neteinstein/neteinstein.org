@@ -70,6 +70,12 @@ export const shows: PodcastShow[] = [
         episode: 6,
       },
       {
+        youtubeId: 'UdWkB1iR_eI',
+        title: 'Putting the QA to the test with Aires Oliveira',
+        season: 2,
+        episode: 8,
+      },
+      {
         youtubeId: 'nvevAFssVwE',
         title: 'The fun and challenge of building games at Mindera Gaming with João Jacob',
         season: 2,

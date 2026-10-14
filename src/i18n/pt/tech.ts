@@ -7,7 +7,7 @@ import type { Catalog } from '..';
 export const tech: Catalog = {
   '"There are two types of programmers: good programmers, and those that are not Jon Skeet."':
     '"Há dois tipos de programadores: os bons programadores e os que não são o Jon Skeet."',
-  'My "tech persona" over the last 16 years...': 'A minha "persona tech" nos últimos 16 anos...',
+  'My "tech persona" over the last 17 years...': 'A minha "persona tech" nos últimos 17 anos...',
   'Thought leadership:': 'Thought leadership:',
   'A tech principle or hill I would die on...': 'Um princípio tech pelo qual daria a vida...',
   'The Future of "Phygital" and Omni-channel Retail': 'O futuro do retalho "phygital" e omnicanal',

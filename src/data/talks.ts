@@ -653,7 +653,6 @@ const entries = talkLog.flatMap((year) => year.entries);
 
 /** Big numbers for the hero — counted from the list, never typed by hand. */
 export const talkStats: TalkStat[] = [
-  { value: talkLog.at(-1)?.year ?? '', label: 'the oldest year on the list' },
   { value: String(entries.length), label: 'talks & workshops on the list' },
   {
     value: String(new Set(entries.flatMap((entry) => entry.tags)).size),

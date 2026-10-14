@@ -39,7 +39,6 @@ export const talks: Catalog = {
     'Um orador sozinho no palco do TEDxCoimbra, com as letras vermelhas TEDx Coimbra atrás de si, perante um auditório cheio',
   'Palcos politikos (Invited speaker)': 'Palcos politikos (Orador convidado)',
   ' (Invited lecturer)': ' (Professor convidado)',
-  'the oldest year on the list': 'o ano mais antigo da lista',
   'talks & workshops on the list': 'palestras & workshops na lista',
   'different #tags': '#etiquetas diferentes',
 
