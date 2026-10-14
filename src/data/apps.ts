@@ -15,6 +15,8 @@ import smsRedirect from '../assets/my-apps/sms-redirect-feature.webp';
 import smsRedirectIcon from '../assets/my-apps/sms-redirect-icon.webp';
 import allowedNames from '../assets/my-apps/allowed-names-feature.webp';
 import allowedNamesIcon from '../assets/my-apps/allowed-names-icon.webp';
+import invoice2gdrive from '../assets/my-apps/invoice2gdrive-feature.webp';
+import invoice2gdriveIcon from '../assets/my-apps/invoice2gdrive-icon.webp';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
 
@@ -135,5 +137,18 @@ export const apps: AppListing[] = [
       },
       { store: 'web', href: 'https://nomespermitidosemportugal.neteinstein.org' },
     ],
+  },
+  {
+    id: 'invoice2gdrive',
+    title: 'Invoice2GDrive',
+    description: [
+      'Scan the QR code on a Portuguese invoice and snap a photo: the invoice becomes a row in your Google Sheet and the photo lands in your Google Drive. No typing required.',
+    ],
+    image: invoice2gdrive,
+    imageAlt:
+      'Invoice2GDrive banner: a four-square app icon, the title "Invoices → Google Drive", the tagline "Scan the QR code. Snap the invoice. It lands in your Sheet." and a receipt with a QR code flowing into a Drive folder and a new spreadsheet row',
+    icon: invoice2gdriveIcon,
+    status: 'Alpha Testing',
+    links: [{ store: 'web', href: 'https://neteinstein.github.io/Invoice2GDrive/' }],
   },
 ];

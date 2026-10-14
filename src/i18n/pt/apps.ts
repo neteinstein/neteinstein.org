@@ -31,4 +31,9 @@ export const apps: Catalog = {
   ', but easy to filter and search.': ', mas fácil de filtrar e pesquisar.',
   'Allowed Names in Portugal banner: a checked-list app icon and the tagline "Officially approved Portuguese first names"':
     'Banner do Nomes Permitidos em Portugal: um ícone de lista com vistos e o slogan "Officially approved Portuguese first names"',
+  'Scan the QR code on a Portuguese invoice and snap a photo: the invoice becomes a row in your Google Sheet and the photo lands in your Google Drive. No typing required.':
+    'Lê o código QR de uma fatura portuguesa e tira uma fotografia: a fatura passa a ser uma linha na tua Google Sheet e a fotografia vai para o teu Google Drive. Sem escrever nada.',
+  'Invoice2GDrive banner: a four-square app icon, the title "Invoices → Google Drive", the tagline "Scan the QR code. Snap the invoice. It lands in your Sheet." and a receipt with a QR code flowing into a Drive folder and a new spreadsheet row':
+    'Banner do Invoice2GDrive: um ícone de quatro quadrados, o título "Invoices → Google Drive", o slogan "Scan the QR code. Snap the invoice. It lands in your Sheet." e um talão com código QR a seguir para uma pasta do Drive e uma nova linha de folha de cálculo',
+  'Alpha Testing': 'Em testes alfa',
 };
