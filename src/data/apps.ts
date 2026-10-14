@@ -17,6 +17,8 @@ import allowedNames from '../assets/my-apps/allowed-names-feature.webp';
 import allowedNamesIcon from '../assets/my-apps/allowed-names-icon.webp';
 import invoice2gdrive from '../assets/my-apps/invoice2gdrive-feature.webp';
 import invoice2gdriveIcon from '../assets/my-apps/invoice2gdrive-icon.webp';
+import moralHazard from '../assets/my-apps/moral-hazard-feature.webp';
+import moralHazardIcon from '../assets/my-apps/moral-hazard-icon.webp';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
 
@@ -150,5 +152,18 @@ export const apps: AppListing[] = [
     icon: invoice2gdriveIcon,
     status: 'Alpha Testing',
     links: [{ store: 'web', href: 'https://neteinstein.github.io/Invoice2GDrive/' }],
+  },
+  {
+    id: 'moral-hazard',
+    title: 'Moral Hazard',
+    description: [
+      'Dark-humour games about poor choices: pick the lesser of two evils, trade slices of your soul with the devil, or pre-write your own tombstone.',
+    ],
+    image: moralHazard,
+    imageAlt:
+      'Moral Hazard banner: a halo over a pair of devil horns, the tagline "Dark-humour games about poor choices." and cards for The Lesser Evil, Deal With the Devil and Epitaph Engraver',
+    icon: moralHazardIcon,
+    status: 'Conceptual Phase',
+    links: [],
   },
 ];

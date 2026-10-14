@@ -36,4 +36,9 @@ export const apps: Catalog = {
   'Invoice2GDrive banner: a four-square app icon, the title "Invoices → Google Drive", the tagline "Scan the QR code. Snap the invoice. It lands in your Sheet." and a receipt with a QR code flowing into a Drive folder and a new spreadsheet row':
     'Banner do Invoice2GDrive: um ícone de quatro quadrados, o título "Invoices → Google Drive", o slogan "Scan the QR code. Snap the invoice. It lands in your Sheet." e um talão com código QR a seguir para uma pasta do Drive e uma nova linha de folha de cálculo',
   'Alpha Testing': 'Em testes alfa',
+  'Dark-humour games about poor choices: pick the lesser of two evils, trade slices of your soul with the devil, or pre-write your own tombstone.':
+    'Jogos de humor negro sobre más escolhas: escolhe o mal menor, troca fatias da tua alma com o diabo ou escreve já o teu próprio epitáfio.',
+  'Moral Hazard banner: a halo over a pair of devil horns, the tagline "Dark-humour games about poor choices." and cards for The Lesser Evil, Deal With the Devil and Epitaph Engraver':
+    'Banner do Moral Hazard: uma auréola sobre um par de cornos de diabo, o slogan "Dark-humour games about poor choices." e cartas de The Lesser Evil, Deal With the Devil e Epitaph Engraver',
+  'Conceptual Phase': 'Em fase concetual',
 };

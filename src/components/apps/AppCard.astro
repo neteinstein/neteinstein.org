@@ -141,7 +141,7 @@ const watchUrl = app.video && `https://www.youtube.com/watch?v=${app.video}`;
     <p class:list={['text-muted mt-2.5 leading-relaxed text-pretty', featured && 'lg:text-lg']}>
       <RichText text={app.description} />
     </p>
-    <StoreBadges app={app.title} links={app.links} class="mt-auto pt-6" />
+    {app.links.length > 0 && <StoreBadges app={app.title} links={app.links} class="mt-auto pt-6" />}
   </div>
 </article>
 

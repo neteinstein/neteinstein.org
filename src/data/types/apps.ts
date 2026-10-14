@@ -28,6 +28,7 @@ export interface AppListing {
   imageAlt: string;
   /** The app icon, cropped from that banner. Decorative next to the title. */
   icon: ImageMetadata;
+  /** Empty while the app has no public build yet. */
   links: AppStoreLink[];
   /** Release stage shown as a pill over the banner ("Alpha Testing"); omit once it is public. */
   status?: string;
