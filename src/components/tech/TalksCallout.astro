@@ -3,7 +3,11 @@ import type { TechLink } from '../../data/types';
 import Icon from '../Icon.astro';
 import { useI18n } from '../../i18n';
 
-/** The page's closing link to the talks page, as a large gradient banner. */
+/**
+ * The page's closing link to the talks page, as a large gradient banner. The
+ * link's `::after` covers the whole card (the heading must not be positioned),
+ * so the label, the arrow and the empty space all follow it.
+ */
 interface Props {
   link: TechLink;
 }
@@ -30,10 +34,10 @@ const { t, localHref } = useI18n(Astro);
     <Icon name="presentation" class="size-4" />
     {t('Talks & workshops')}
   </p>
-  <h2 class="font-display relative mt-3 max-w-3xl text-3xl leading-tight font-bold tracking-tight text-balance sm:text-5xl">
+  <h2 class="font-display mt-3 max-w-3xl text-3xl leading-tight font-bold tracking-tight text-balance sm:text-5xl">
     <a
       href={localHref(link.href)}
-      class="after:absolute after:inset-0 after:rounded-[2rem] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"
+      class="after:absolute after:inset-0 after:z-10 after:rounded-[2rem] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--link)]"
     >
       {link.label}
     </a>

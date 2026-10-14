@@ -71,6 +71,22 @@ const [featuredFootprint, ...otherFootprints] = footprints;
     </div>
   </Section>
 
+  <Section id="teacher" eyebrow={t('Teaching')} title={techPage.teacher}>
+    <div class="grid gap-5 md:grid-cols-2" data-reveal-stagger>
+      {teaching.map((item) => (
+        <TeachingCard teaching={item} />
+      ))}
+    </div>
+  </Section>
+
+  <Section id="portfolio" eyebrow={t('Work')} title={techPage.portfolio}>
+    <div class="space-y-20 sm:space-y-24">
+      {portfolio.map((era) => (
+        <PortfolioEra era={era} />
+      ))}
+    </div>
+  </Section>
+
   <Section id="appeared" eyebrow={t('Media')} title={techPage.appeared}>
     <div class="grid gap-6 md:grid-cols-2" data-reveal-stagger>
       {appearances.map((appearance) => (
@@ -86,22 +102,6 @@ const [featuredFootprint, ...otherFootprints] = footprints;
       )}
       {otherFootprints.map((footprint) => (
         <FootprintCard footprint={footprint} />
-      ))}
-    </div>
-  </Section>
-
-  <Section id="teacher" eyebrow={t('Teaching')} title={techPage.teacher}>
-    <div class="grid gap-5 md:grid-cols-2" data-reveal-stagger>
-      {teaching.map((item) => (
-        <TeachingCard teaching={item} />
-      ))}
-    </div>
-  </Section>
-
-  <Section id="portfolio" eyebrow={t('Work')} title={techPage.portfolio}>
-    <div class="space-y-20 sm:space-y-24">
-      {portfolio.map((era) => (
-        <PortfolioEra era={era} />
       ))}
     </div>
   </Section>
