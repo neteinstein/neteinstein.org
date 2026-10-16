@@ -186,6 +186,16 @@ export const highlights: ArticleHighlightGroup[] = [
     title: 'Utils',
     years: [
       {
+        year: '2026',
+        articles: [
+          {
+            label:
+              'Trigger an Alert when Internet or Electricity goes down at home (via Google Home)',
+            href: 'https://medium.com/code-procedure-and-rants/trigger-an-alert-when-internet-or-electricity-goes-down-at-home-via-google-home-46fde38a4989',
+          },
+        ],
+      },
+      {
         year: '2023',
         articles: [
           {
