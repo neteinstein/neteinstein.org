@@ -79,8 +79,6 @@ const brandAvatar = await getImage({ src: avatar, width: 256, format: 'png' });
         category: t('Category'),
         setting: t('Indoor/Outdoor'),
         all: t('All'),
-        indoor: t('Indoors'),
-        outdoor: t('Outdoors'),
         count: t('{shown} of {total} games'),
         empty: t('Nothing matches those filters.'),
         clear: t('Clear the search'),
@@ -112,6 +110,10 @@ const brandAvatar = await getImage({ src: avatar, width: 256, format: 'png' });
         collapse: t('Collapse'),
         expand: t('Expand'),
       }}
+      settings={[
+        { value: 'indoor', label: t('Indoors') },
+        { value: 'outdoor', label: t('Outdoors') },
+      ]}
       print={{
         locale,
         brand: {

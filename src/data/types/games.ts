@@ -2,8 +2,11 @@
 import type { ImageMetadata } from 'astro';
 import type { LinkRef } from './shared';
 
-/** Where a game can be played; drives the indoor/outdoor filter. */
-export type GameSetting = 'indoor' | 'outdoor';
+/**
+ * Where a game can be played; drives the guide's second filter row —
+ * indoor/outdoor on /games, remote/in person on /teams/icebreakers.
+ */
+export type GameSetting = 'indoor' | 'outdoor' | 'remote' | 'in-person';
 
 /**
  * A game's illustration resolved to plain URLs by the route (`getImage()`),
