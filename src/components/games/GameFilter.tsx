@@ -15,8 +15,6 @@ export interface GameFilterLabels {
   category: string;
   setting: string;
   all: string;
-  indoor: string;
-  outdoor: string;
   /** With `{shown}` and `{total}` placeholders. */
   count: string;
   empty: string;
@@ -65,12 +63,19 @@ export interface GameFilterLabels {
 interface Props {
   categories: GuideCategory[];
   labels: GameFilterLabels;
-  /** What the "Save PDF" booklet needs: its copy, the site's brand and the date's language. */
-  print: { labels: PrintLabels; brand: PrintBrand; locale: string };
+  /** The second filter row's chips, in order ("Indoors", "Outdoors"). */
+  settings: { value: GameSetting; label: string }[];
+  /**
+   * What the "Save PDF" booklet needs: its copy, the site's brand and the
+   * date's language. `event` names the GoatCounter download event (the games
+   * one by default).
+   */
+  print: { labels: PrintLabels; brand: PrintBrand; locale: string; event?: string };
 }
 
 /**
- * Search + category + indoor/outdoor filter over the group games guide.
+ * Search + category + setting (indoor/outdoor, remote/in person) filter over
+ * a guide of game cards: the group games and the team icebreakers.
  * Hydrated with `client:visible`: every category and card renders
  * server-side, and each card's how-to-play sheet is a native `<details>`, so
  * the whole guide reads with JS disabled. An open sheet widens its card to the
@@ -85,7 +90,7 @@ interface Props {
  * every card; "Save PDF" then draws the ticked games as a booklet
  * (`print-pdf.ts`, loaded on demand with its PDF library).
  */
-export default function GameFilter({ categories, labels, print }: Props) {
+export default function GameFilter({ categories, labels, settings, print }: Props) {
   const [query, setQuery] = useState('');
   const [categoryId, setCategoryId] = useState('all');
   const [setting, setSetting] = useState<'all' | GameSetting>('all');
@@ -134,7 +139,7 @@ export default function GameFilter({ categories, labels, print }: Props) {
           .map((game) => ({ game, category: category.title })),
       );
       await savePdf(items, print.labels, print.brand, print.locale);
-      countPdf(items.length);
+      countPdf(items.length, print.event);
     } catch (error) {
       console.error(error);
     } finally {
@@ -250,10 +255,7 @@ export default function GameFilter({ categories, labels, print }: Props) {
             allLabel={labels.all}
             small
             value={setting}
-            options={[
-              { value: 'indoor', label: labels.indoor, count: countOf('indoor') },
-              { value: 'outdoor', label: labels.outdoor, count: countOf('outdoor') },
-            ]}
+            options={settings.map((option) => ({ ...option, count: countOf(option.value) }))}
             allCount={total}
             onChange={(value) => setSetting(value as 'all' | GameSetting)}
             className="min-w-0"

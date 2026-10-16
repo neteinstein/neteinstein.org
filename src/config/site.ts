@@ -14,7 +14,7 @@
 export interface NavItem {
   label: string;
   /**
-   * Omitted for pure groups ("What I do", "Hobbies", "Porto") — the Google
+   * Omitted for pure groups ("What I do", "Teams", "Hobbies", "Porto") — the Google
    * Sites original had no page at those paths, so neither do we.
    */
   href?: string;
@@ -63,9 +63,16 @@ export const NAV: NavItem[] = [
       { label: 'Tech Engineer', href: '/what-i-do/tech-engineer' },
       { label: 'Talks & Workshops', href: '/what-i-do/talks-workshops' },
       { label: 'Podcasts', href: '/what-i-do/podcasts' },
-      { label: 'Improver', href: '/what-i-do/improver' },
       { label: 'Articles', href: '/what-i-do/articles' },
       { label: 'Why?', href: '/what-i-do/why' },
+    ],
+  },
+  {
+    label: 'Teams',
+    children: [
+      // Kept at its original URL: it moved in the menu, not on the site.
+      { label: 'Improver', href: '/what-i-do/improver' },
+      { label: 'Team Icebreakers', href: '/teams/icebreakers' },
     ],
   },
   { label: 'My Apps', href: '/my-apps' },

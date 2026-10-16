@@ -169,6 +169,14 @@ export const highlights: ArticleHighlightGroup[] = [
             label: 'O melhor de todos nós',
             href: 'https://pontosj.pt/opiniao/o-melhor-de-todos-nos/',
           },
+          {
+            label: 'Com que educação sonhamos?',
+            href: 'https://medium.com/improver/o-melhor-de-todos-n%C3%B3s-2ae469f5ad5',
+          },
+          {
+            label: 'Educação de Placebos?',
+            href: 'https://medium.com/improver/educa%C3%A7%C3%A3o-de-placebos-4c8157bd59ab',
+          },
         ],
       },
       {
@@ -185,6 +193,16 @@ export const highlights: ArticleHighlightGroup[] = [
   {
     title: 'Utils',
     years: [
+      {
+        year: '2026',
+        articles: [
+          {
+            label:
+              'Trigger an Alert when Internet or Electricity goes down at home (via Google Home)',
+            href: 'https://medium.com/code-procedure-and-rants/trigger-an-alert-when-internet-or-electricity-goes-down-at-home-via-google-home-46fde38a4989',
+          },
+        ],
+      },
       {
         year: '2023',
         articles: [

@@ -24,6 +24,7 @@
     "import:image": "node scripts/import-image.mjs",
     "brand": "node scripts/generate-brand-assets.mjs",
     "draw:games": "node scripts/game-art/render.mjs",
+    "draw:icebreakers": "node scripts/game-art/render.mjs --set icebreakers",
     "check:parity": "node scripts/check-parity.mjs"
   },
   "dependencies": {
