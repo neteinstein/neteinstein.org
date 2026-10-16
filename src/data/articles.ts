@@ -169,6 +169,14 @@ export const highlights: ArticleHighlightGroup[] = [
             label: 'O melhor de todos nós',
             href: 'https://pontosj.pt/opiniao/o-melhor-de-todos-nos/',
           },
+          {
+            label: 'Com que educação sonhamos?',
+            href: 'https://medium.com/improver/o-melhor-de-todos-n%C3%B3s-2ae469f5ad5',
+          },
+          {
+            label: 'Educação de Placebos?',
+            href: 'https://medium.com/improver/educa%C3%A7%C3%A3o-de-placebos-4c8157bd59ab',
+          },
         ],
       },
       {
