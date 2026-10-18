@@ -36,6 +36,18 @@ export interface AppListing {
   video?: string;
 }
 
+/** The hero video: a demo of one of the apps. */
+export interface AppsHero {
+  /** The video's files, best first, as Vite emits them (`?url` imports). */
+  sources: { src: string; type: string }[];
+  /** Its first frame, shown until it plays (and instead of it with reduced motion). */
+  poster: ImageMetadata;
+  /** Screen-reader description of the video. */
+  label: string;
+  /** The file has no audio track, so the hero shows no sound button. */
+  silent?: boolean;
+}
+
 /** A titled section of /my-apps, grouping related apps. */
 export interface AppGroup {
   /** In-page anchor for the section (`/my-apps#utils`). */

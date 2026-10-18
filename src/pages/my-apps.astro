@@ -13,7 +13,7 @@ import { getPage } from '../i18n/content';
 import { PERSON_ID, imageUrl, plainText } from '../lib/schema';
 
 const { t, locale, localize } = useI18n(Astro);
-const { apps, appGroups, donate, support } = localize(appsData);
+const { apps, appGroups, appsHero, donate, support } = localize(appsData);
 // Cards are numbered across the whole page, not per section.
 const offsets = appGroups.map((_, i) =>
   appGroups.slice(0, i).reduce((count, group) => count + group.apps.length, 0),
@@ -55,7 +55,13 @@ const schema = [
 ---
 
 <BaseLayout title={page.title} description={page.description} schema={schema}>
-  <PageHero title={page.title} eyebrow={page.eyebrow} highlight={page.highlight} lead={page.lead}>
+  <PageHero
+    title={page.title}
+    eyebrow={page.eyebrow}
+    highlight={page.highlight}
+    lead={page.lead}
+    video={appsHero}
+  >
     <p
       class="text-muted mt-3 max-w-2xl text-lg text-pretty sm:text-xl"
       data-enter

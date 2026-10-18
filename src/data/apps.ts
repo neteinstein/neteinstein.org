@@ -3,7 +3,15 @@
  * (https://www.neteinstein.org/my-apps — crawl snapshot in `.crawl/report.json`).
  * Hero copy and the FAQ are prose and live in `src/content/pages/my-apps.mdx`.
  */
-import type { AppGroup, AppListing, AppStore, AppStoreBadge, AppsSupport, RichText } from './types';
+import type {
+  AppGroup,
+  AppListing,
+  AppStore,
+  AppStoreBadge,
+  AppsHero,
+  AppsSupport,
+  RichText,
+} from './types';
 
 import loopgain from '../assets/my-apps/loopgain-feature.webp';
 import loopgainIcon from '../assets/my-apps/loopgain-icon.webp';
@@ -21,6 +29,9 @@ import netWorth from '../assets/my-apps/net-worth-feature.webp';
 import netWorthIcon from '../assets/my-apps/net-worth-icon.webp';
 import moralHazard from '../assets/my-apps/moral-hazard-feature.webp';
 import moralHazardIcon from '../assets/my-apps/moral-hazard-icon.webp';
+import invoice2sheetDemoMp4 from '../assets/my-apps/invoice2sheet-demo.mp4?url';
+import invoice2sheetDemoWebm from '../assets/my-apps/invoice2sheet-demo.webm?url';
+import invoice2sheetDemoPoster from '../assets/my-apps/invoice2sheet-demo-poster.jpg';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
 
@@ -33,6 +44,19 @@ export const donate: RichText = [
   { label: 'Revolut', href: REVOLUT },
   ' or via the button below.',
 ];
+
+/** Invoice2Sheet's walkthrough, which has no audio track. */
+export const appsHero: AppsHero = {
+  // H.264 first (smaller for this screen recording), VP9 for browsers without it.
+  sources: [
+    { src: invoice2sheetDemoMp4, type: 'video/mp4' },
+    { src: invoice2sheetDemoWebm, type: 'video/webm' },
+  ],
+  poster: invoice2sheetDemoPoster,
+  label:
+    'Video: an Invoice2Sheet demo, from connecting a Google account and choosing a spreadsheet and a Drive folder to scanning an invoice, checking its details and saving it as a new row.',
+  silent: true,
+};
 
 export const support: AppsSupport = {
   title: 'Support me on Buy Me a Coffee!',
