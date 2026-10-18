@@ -27,12 +27,12 @@ export const kidsHero: KidsPhoto = {
 export const kidsColumns: KidsColumn[] = [
   { key: 'where', label: 'Where?' },
   { key: 'name', label: 'Name' },
-  { key: 'setting', label: 'Indoor/Outdoor' },
   { key: 'cost', label: 'Estimated cost per child', footnote: '*' },
   { key: 'ages', label: 'Ages' },
+  { key: 'notes', label: 'Notes' },
+  { key: 'setting', label: 'Indoor/Outdoor' },
   { key: 'children', label: 'Min/Max children' },
   { key: 'duration', label: 'Duration' },
-  { key: 'notes', label: 'Notes' },
 ];
 
 export const kidsPlaces: KidsPlace[] = [
