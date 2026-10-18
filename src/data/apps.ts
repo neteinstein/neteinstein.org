@@ -148,15 +148,15 @@ const allowedNamesApp: AppListing = {
 
 const invoice2gdriveApp: AppListing = {
   id: 'invoice2gdrive',
-  title: 'Invoice2GDrive',
+  title: 'Invoice2Sheet',
   description: [
     'Scan the QR code on a Portuguese invoice and snap a photo: the invoice becomes a row in your Google Sheet and the photo lands in your Google Drive. No typing required.',
   ],
   image: invoice2gdrive,
   imageAlt:
-    'Invoice2GDrive banner: a four-square app icon, the title "Invoices → Google Drive", the tagline "Scan the QR code. Snap the invoice. It lands in your Sheet." and a receipt with a QR code flowing into a Drive folder and a new spreadsheet row',
+    'Invoice2Sheet banner: a four-square app icon, the title "Invoices → Google Drive", the tagline "Scan the QR code. Snap the invoice. It lands in your Sheet." and a receipt with a QR code flowing into a Drive folder and a new spreadsheet row',
   icon: invoice2gdriveIcon,
-  links: [{ store: 'web', href: 'https://neteinstein.github.io/Invoice2GDrive/' }],
+  links: [{ store: 'web', href: 'https://invoice2sheet.pedrovicente.pt/' }],
 };
 
 const netWorthApp: AppListing = {
@@ -170,7 +170,7 @@ const netWorthApp: AppListing = {
     'Net Worth banner: a rising-bar-chart app icon, the tagline "Family finances, together.", the points Import your bank statements, Catch spending spikes early and Look years ahead, and a phone showing the month\'s savings and a spending-spike alert',
   icon: netWorthIcon,
   status: 'Beta Testing',
-  links: [{ store: 'web', href: 'https://neteinstein.github.io/Net-Worth/' }],
+  links: [{ store: 'web', href: 'https://networth.pedrovicente.pt/' }],
 };
 
 const moralHazardApp: AppListing = {
