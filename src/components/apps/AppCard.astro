@@ -130,14 +130,14 @@ const watchUrl = app.video && `https://www.youtube.com/watch?v=${app.video}`;
         featured && 'lg:mt-0 lg:size-24',
       ]}
     />
-    <h2
+    <h3
       class:list={[
         'font-display mt-4 leading-tight font-bold tracking-tight text-balance',
         featured ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-2xl',
       ]}
     >
       {app.title}
-    </h2>
+    </h3>
     <p class:list={['text-muted mt-2.5 leading-relaxed text-pretty', featured && 'lg:text-lg']}>
       <RichText text={app.description} />
     </p>

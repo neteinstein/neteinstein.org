@@ -36,6 +36,14 @@ export interface AppListing {
   video?: string;
 }
 
+/** A titled section of /my-apps, grouping related apps. */
+export interface AppGroup {
+  /** In-page anchor for the section (`/my-apps#utils`). */
+  id: string;
+  title: string;
+  apps: AppListing[];
+}
+
 /** Copy from the Buy Me a Coffee widget the original embedded on this page. */
 export interface AppsSupport {
   /** The widget's `data-description`. */
