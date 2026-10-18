@@ -38,7 +38,7 @@ export const page: TeslaPage = {
   highlight: ['Utils'],
   description:
     'Useful websites to open in a Tesla browser — entertainment, routing & charging, utilities and fun — ' +
-    'gathered on one page, so you only need to bookmark this one.',
+    'on one page, so you only need to bookmark this one.',
 };
 
 export const intro: TeslaIntro = {

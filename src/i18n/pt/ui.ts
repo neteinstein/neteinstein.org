@@ -4,8 +4,9 @@ import type { Catalog } from '..';
 export const ui: Catalog = {
   // Site metadata (`src/config/site.ts`, JSON-LD)
   'Pedro Vicente (neteinstein) — husband & father, Mobile Services Lead & Improver at Mindera, podcast host, speaker and creator of the LoopGain feedback game.':
-    'Pedro Vicente (neteinstein) — marido e pai, Mobile Services Lead & Improver na Mindera, anfitrião de podcasts, orador e criador do LoopGain, um jogo de feedback.',
+    'Pedro Vicente (neteinstein) — marido e pai, Mobile Services Lead & Improver na Mindera, podcaster, orador e criador do jogo de feedback LoopGain.',
   'Mobile Services Lead & Improver': 'Mobile Services Lead & Improver',
+  'Mobile Lead, Speaker & Improver': 'Mobile Lead, Orador e Improver',
 
   // Navigation (`NAV` labels)
   Home: 'Início',

@@ -14,7 +14,7 @@ const entry = await getPage('myths', locale);
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description}>
+<BaseLayout title={entry.data.metaTitle ?? entry.data.title} description={entry.data.description}>
   <PageHero
     title={entry.data.title}
     eyebrow={entry.data.eyebrow}

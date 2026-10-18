@@ -53,6 +53,11 @@ requirement**.
   `/og/<page>.jpg`, which `src/integrations/og-cards.ts` draws after the build
   from the page's `og:title` and `og:description`. A good `description` is the
   card; pass `ogImage` only to override it.
+- **SEO metadata stays search-sized.** Keep a page's `description` under 155
+  characters and its title under 45 (the layout adds " | Pedro Vicente"); when a
+  heading is longer, set `metaTitle` in the MDX frontmatter. `BaseLayout` emits
+  one JSON-LD graph (person, site, page, breadcrumb); pages add their own nodes
+  through its `schema` prop, built with the helpers in `src/lib/schema.ts`.
 - **Images** live in `src/assets/<area>/<page>/` and render through
   `astro:assets`. Import them from the crawl with `npm run import:image`.
   The /games drawings for the "More Web Games" games are drawn in code:

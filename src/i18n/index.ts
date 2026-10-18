@@ -107,7 +107,7 @@ export function translate(
  * Keys whose values are identifiers, never copy. (`tags` on talks are filter
  * keys; the component translates the label it shows.)
  */
-const CODE_KEYS = new Set(['id', 'group', 'src', 'provider', 'hash', 'icon', 'tags']);
+const CODE_KEYS = new Set(['id', 'group', 'src', 'provider', 'hash', 'icon', 'tags', 'category']);
 
 /** `astro:assets` image metadata — passed through untouched. */
 function isImage(value: object): boolean {

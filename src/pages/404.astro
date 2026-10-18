@@ -26,7 +26,7 @@ const tags = Object.fromEntries(LOCALES.map((locale) => [locale, LOCALE_INFO[loc
 const base = withBase('/').replace(/\/+$/, '');
 ---
 
-<BaseLayout title={title} description="That page doesn't exist." translated={false}>
+<BaseLayout title={title} description="That page doesn't exist." translated={false} noindex>
   <section class="container-page grid min-h-[70svh] place-items-center py-16 text-center">
     <div>
       <p
