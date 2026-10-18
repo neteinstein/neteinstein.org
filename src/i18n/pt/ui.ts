@@ -155,7 +155,6 @@ export const ui: Catalog = {
   '{topics} topics · {links} links': '{topics} temas · {links} links',
 
   // My apps
-  'The apps': 'As apps',
   FAQ: 'Perguntas frequentes',
   'Apps on this page': 'Apps nesta página',
 

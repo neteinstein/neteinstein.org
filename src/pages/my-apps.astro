@@ -12,7 +12,11 @@ import { useI18n } from '../i18n';
 import { getPage } from '../i18n/content';
 
 const { t, locale, localize } = useI18n(Astro);
-const { apps, donate, support } = localize(appsData);
+const { apps, appGroups, donate, support } = localize(appsData);
+// Cards are numbered across the whole page, not per section.
+const offsets = appGroups.map((_, i) =>
+  appGroups.slice(0, i).reduce((count, group) => count + group.apps.length, 0),
+);
 
 // Hero copy and the FAQ live in MDX; the FAQ renders after the apps, so the
 // entry is rendered here rather than through ProsePage (which puts prose first).
@@ -33,18 +37,23 @@ const page = entry.data;
     <AppDock apps={apps} delay={520} class="mt-10" />
   </PageHero>
 
-  <Section id="apps" eyebrow={t('The apps')}>
-    <div class="grid gap-6 md:grid-cols-2 lg:gap-8" data-reveal-stagger>
-      {apps.map((app, index) => (
-        <AppCard
-          app={app}
-          index={index}
-          featured={index === 0}
-          class:list={[index === 0 && 'md:col-span-2']}
-        />
-      ))}
-    </div>
-  </Section>
+  {appGroups.map((group, groupIndex) => (
+    <Section id={group.id} title={group.title}>
+      <div class="grid gap-6 md:grid-cols-2 lg:gap-8" data-reveal-stagger>
+        {group.apps.map((app, index) => {
+          const featured = groupIndex === 0 && index === 0;
+          return (
+            <AppCard
+              app={app}
+              index={offsets[groupIndex]! + index}
+              featured={featured}
+              class:list={[featured && 'md:col-span-2']}
+            />
+          );
+        })}
+      </div>
+    </Section>
+  ))}
 
   <Section id="faq" eyebrow={t('FAQ')}>
     <div class="grid items-start gap-6 lg:grid-cols-2">
