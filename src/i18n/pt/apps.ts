@@ -4,6 +4,8 @@ import type { Catalog } from '..';
 export const apps: Catalog = {
   'Donate on ': 'Faz um donativo no ',
   ' or via the button below.': ' ou através do botão abaixo.',
+  'Video: an Invoice2Sheet demo, from connecting a Google account and choosing a spreadsheet and a Drive folder to scanning an invoice, checking its details and saving it as a new row.':
+    'Vídeo: uma demonstração do Invoice2Sheet, desde ligar uma conta Google e escolher uma folha de cálculo e uma pasta do Drive até digitalizar uma fatura, rever os detalhes e guardá-la numa nova linha.',
   'Support me on Buy Me a Coffee!': 'Apoia-me no Buy Me a Coffee!',
   'If you want to encourage me to keep developing for free :-)':
     'Se me quiseres incentivar a continuar a desenvolver de graça :-)',
