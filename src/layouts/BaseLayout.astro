@@ -3,10 +3,13 @@ import '@fontsource-variable/inter';
 import '@fontsource-variable/bricolage-grotesque';
 import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import avatar from '../assets/brand/avatar.webp';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE, SOCIALS } from '../config/site';
+import { SITE, SOCIALS, navPages } from '../config/site';
 import { withBase } from '../lib/url';
+import { PERSON_ID as personId } from '../lib/schema';
 import {
   DEFAULT_LOCALE,
   LOCALES,
@@ -36,6 +39,14 @@ interface Props {
    * GitHub Pages serves at any missing URL.
    */
   translated?: boolean;
+  /** Keep the page out of search results (the 404 page). */
+  noindex?: boolean;
+  /**
+   * Extra schema.org nodes for this page (apps, talks, …), added to the
+   * JSON-LD graph next to the site, page and person nodes. `pageId`,
+   * `personId` and `websiteId` below are the `@id`s to link them to.
+   */
+  schema?: Record<string, unknown>[];
 }
 
 const { locale, t } = useI18n(Astro);
@@ -47,6 +58,8 @@ const {
   bareTitle = false,
   ogImage: ogImageProp,
   translated = true,
+  noindex = false,
+  schema = [],
 } = Astro.props;
 
 const pageTitle = bareTitle ? title : `${title} | ${SITE.title}`;
@@ -83,16 +96,72 @@ const redirects =
       )
     : {};
 
-const personSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: SITE.author,
-  alternateName: SITE.handle,
-  url: SITE.url,
-  jobTitle: t('Mobile Services Lead & Improver'),
-  worksFor: { '@type': 'Organization', name: 'Mindera', url: 'https://www.mindera.com' },
-  sameAs: SOCIALS.map((social) => social.href),
-};
+// One linked JSON-LD graph per page: who the site is about, the site, this
+// page and its place in the nav. Pages add their own nodes through `schema`.
+const websiteId = `${SITE.url}/#website`;
+const pageId = `${canonicalUrl.href}#webpage`;
+const portrait = await getImage({ src: avatar, width: 400, format: 'jpeg' });
+const homeUrl = new URL(localizePath('/', locale), SITE.url).href;
+const navLabel = navPages().find((page) => page.href === path)?.label;
+const isHome = path === '/';
+// The 404 page sits outside the nav, so it gets no breadcrumb trail.
+const hasBreadcrumb = !isHome && translated;
+const graph = [
+  {
+    '@type': 'Person',
+    '@id': personId,
+    name: SITE.author,
+    alternateName: SITE.handle,
+    url: SITE.url,
+    image: new URL(portrait.src, SITE.url).href,
+    description: t(SITE.description),
+    jobTitle: t('Mobile Services Lead & Improver'),
+    worksFor: { '@type': 'Organization', name: 'Mindera', url: 'https://www.mindera.com' },
+    knowsLanguage: LOCALES.map((alternate) => LOCALE_INFO[alternate].tag),
+    sameAs: SOCIALS.map((social) => social.href),
+  },
+  {
+    '@type': 'WebSite',
+    '@id': websiteId,
+    url: `${SITE.url}/`,
+    name: SITE.title,
+    alternateName: SITE.handle,
+    description: t(SITE.description),
+    inLanguage: LOCALES.map((alternate) => LOCALE_INFO[alternate].tag),
+    publisher: { '@id': personId },
+  },
+  {
+    '@type': isHome ? 'ProfilePage' : 'WebPage',
+    '@id': pageId,
+    url: canonicalUrl.href,
+    name: pageTitle,
+    description,
+    inLanguage: LOCALE_INFO[locale].tag,
+    isPartOf: { '@id': websiteId },
+    primaryImageOfPage: { '@type': 'ImageObject', url: ogImageUrl.href },
+    ...(isHome ? { mainEntity: { '@id': personId } } : { author: { '@id': personId } }),
+    ...(hasBreadcrumb && { breadcrumb: { '@id': `${canonicalUrl.href}#breadcrumb` } }),
+  },
+  ...(!hasBreadcrumb
+    ? []
+    : [
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${canonicalUrl.href}#breadcrumb`,
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: t('Home'), item: homeUrl },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: navLabel ? t(navLabel) : title,
+              item: canonicalUrl.href,
+            },
+          ],
+        },
+      ]),
+  ...schema,
+];
+const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 ---
 
 <!doctype html>
@@ -126,6 +195,14 @@ const personSchema = {
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={SITE.author} />
+    <meta
+      name="robots"
+      content={
+        noindex
+          ? 'noindex, follow'
+          : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+      }
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.title} />
@@ -141,14 +218,16 @@ const personSchema = {
     <meta property="og:image" content={ogImageUrl.href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={pageTitle} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content={`@${SITE.handle}`} />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl.href} />
+    <meta name="twitter:image:alt" content={pageTitle} />
 
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     {/*
       Sends a first-time visitor whose browser prefers another language to this
       page's translation, before anything paints. A language picked in the

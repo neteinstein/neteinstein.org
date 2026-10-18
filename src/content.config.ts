@@ -10,6 +10,8 @@ const pages = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/pages' }),
   schema: z.object({
     title: z.string(),
+    /** The <title> and social-card title, when `title` is too long for a search result. */
+    metaTitle: z.string().optional(),
     description: z.string(),
     /** Small uppercase label above the title — usually the nav group. */
     eyebrow: z.string().optional(),

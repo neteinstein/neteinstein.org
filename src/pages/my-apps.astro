@@ -10,6 +10,7 @@ import AppCard from '../components/apps/AppCard.astro';
 import * as appsData from '../data/apps';
 import { useI18n } from '../i18n';
 import { getPage } from '../i18n/content';
+import { PERSON_ID, imageUrl, plainText } from '../lib/schema';
 
 const { t, locale, localize } = useI18n(Astro);
 const { apps, appGroups, donate, support } = localize(appsData);
@@ -23,9 +24,37 @@ const offsets = appGroups.map((_, i) =>
 const entry = await getPage('my-apps', locale);
 const { Content } = await render(entry);
 const page = entry.data;
+
+// Every app as a SoftwareApplication, so search engines can show them as apps.
+const operatingSystems = { 'google-play': 'Android', web: 'Web' } as const;
+const schema = [
+  {
+    '@type': 'ItemList',
+    name: page.title,
+    itemListElement: await Promise.all(
+      appGroups.flatMap((group) =>
+        group.apps.map(async (app) => ({
+          '@type': 'SoftwareApplication',
+          name: app.title,
+          description: plainText(app.description),
+          applicationCategory: group.category,
+          ...(app.links.length > 0 && {
+            url: app.links[0]!.href,
+            operatingSystem: app.links.map((link) => operatingSystems[link.store]).join(', '),
+            offers: { '@type': 'Offer', price: 0, priceCurrency: 'EUR' },
+          }),
+          image: await imageUrl(app.image),
+          author: { '@id': PERSON_ID },
+        })),
+      ),
+    ).then((apps) =>
+      apps.map((item, index) => ({ '@type': 'ListItem', position: index + 1, item })),
+    ),
+  },
+];
 ---
 
-<BaseLayout title={page.title} description={page.description}>
+<BaseLayout title={page.title} description={page.description} schema={schema}>
   <PageHero title={page.title} eyebrow={page.eyebrow} highlight={page.highlight} lead={page.lead}>
     <p
       class="text-muted mt-3 max-w-2xl text-lg text-pretty sm:text-xl"

@@ -5,11 +5,23 @@ import ShowJumpLinks from '../../components/podcasts/ShowJumpLinks.astro';
 import ShowSection from '../../components/podcasts/ShowSection.astro';
 import * as podcasts from '../../data/podcasts';
 import { useI18n } from '../../i18n';
+import { PERSON_ID, imageUrl, plainText } from '../../lib/schema';
 
 const { podcastsPage, shows } = useI18n(Astro).localize(podcasts);
+
+const schema = await Promise.all(
+  shows.map(async (show) => ({
+    '@type': 'PodcastSeries',
+    name: show.name,
+    description: plainText(show.tagline),
+    url: show.href,
+    image: await imageUrl(show.logo, 600),
+    actor: { '@id': PERSON_ID },
+  })),
+);
 ---
 
-<BaseLayout title={podcastsPage.title} description={podcastsPage.description}>
+<BaseLayout title={podcastsPage.title} description={podcastsPage.description} schema={schema}>
   <PageHero
     title={podcastsPage.title}
     eyebrow={podcastsPage.eyebrow}

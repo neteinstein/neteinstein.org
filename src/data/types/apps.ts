@@ -41,6 +41,8 @@ export interface AppGroup {
   /** In-page anchor for the section (`/my-apps#utils`). */
   id: string;
   title: string;
+  /** schema.org `applicationCategory` of its apps, for search engines. */
+  category: string;
   apps: AppListing[];
 }
 

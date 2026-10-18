@@ -16,7 +16,7 @@ export const talksPage: TalkPageCopy = {
   eyebrow: 'What I do',
   highlight: ['Talks'],
   description:
-    "Pedro Vicente's talks and workshops, from a Google Wave talk in 2009 to a KMP workshop in 2025: company culture, Android and mobile tech, feedback and teams, Walkabout at TEDxCoimbra, and a year-by-year list.",
+    "Pedro Vicente's talks and workshops since 2009: company culture, Android and mobile tech, feedback and teams, TEDxCoimbra, and a year-by-year list.",
   quote: "I've been speaking for so long... I still had hair when I started!",
   intro:
     'Tech is life, but life is much more than tech... and so are my talks. Scroll down to see some examples!',

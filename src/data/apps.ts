@@ -154,7 +154,7 @@ const invoice2gdriveApp: AppListing = {
   ],
   image: invoice2gdrive,
   imageAlt:
-    'Invoice2Sheet banner: a four-square app icon, the title "Invoices → Google Drive", the tagline "Scan the QR code. Snap the invoice. It lands in your Sheet." and a receipt with a QR code flowing into a Drive folder and a new spreadsheet row',
+    'Invoice2Sheet banner: a receipt-with-a-checkmark app icon, the tagline "Scan the QR code. Snap the invoice. It lands in your Sheet.", the points Portuguese invoice QR codes, A row in your Google Sheet and The photo in your Google Drive, and a receipt with a QR code next to a spreadsheet with a new row',
   icon: invoice2gdriveIcon,
   links: [{ store: 'web', href: 'https://invoice2sheet.pedrovicente.pt/' }],
 };
@@ -192,11 +192,17 @@ export const appGroups: AppGroup[] = [
   {
     id: 'loopgain-toolbox',
     title: 'LoopGain Toolbox Apps',
+    category: 'LifestyleApplication',
     apps: [loopgainTeams, loopgainFamily, loopgainCouples],
   },
-  { id: 'utils', title: 'Utils', apps: [smsToolbox, invoice2gdriveApp, netWorthApp] },
-  { id: 'trivia', title: 'Trivia', apps: [allowedNamesApp] },
-  { id: 'games', title: 'Games', apps: [moralHazardApp] },
+  {
+    id: 'utils',
+    title: 'Utils',
+    category: 'UtilitiesApplication',
+    apps: [smsToolbox, invoice2gdriveApp, netWorthApp],
+  },
+  { id: 'trivia', title: 'Trivia', category: 'ReferenceApplication', apps: [allowedNamesApp] },
+  { id: 'games', title: 'Games', category: 'GameApplication', apps: [moralHazardApp] },
 ];
 
 /** Every app, in page order — the hero's icon dock lists them all. */
