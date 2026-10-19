@@ -27,13 +27,16 @@ import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
 
 const REVOLUT = 'https://revolut.me/neteinstein';
+const BUY_ME_A_COFFEE = 'https://www.buymeacoffee.com/neteinstein';
 const LOOPGAIN = 'https://www.loopgain.org';
 
 /** Second line of the intro, under "Want to help me keep publishing apps for free?". */
 export const donate: RichText = [
   'Donate on ',
   { label: 'Revolut', href: REVOLUT },
-  ' or via the button below.',
+  ' or via ',
+  { label: 'Buy Me A Coffee', href: BUY_ME_A_COFFEE },
+  '.',
 ];
 
 export const support: AppsSupport = {
