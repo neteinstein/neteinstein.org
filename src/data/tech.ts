@@ -459,7 +459,6 @@ export const portfolio: PortfolioEra[] = [
         image: {
           src: minderaPeople,
           alt: 'Mindera People app on Google Play',
-          href: 'https://play.google.com/store/apps/details?id=org.mindera.peopleandroid&hl=en',
         },
       },
       {
@@ -659,11 +658,7 @@ export const portfolio: PortfolioEra[] = [
                   'My Vodafone',
                 ),
                 ' & ',
-                store(
-                  'Blackberry',
-                  'https://appworld.blackberry.com/webstore/content/40499942/?lang=en&countrycode=pt',
-                  'My Vodafone',
-                ),
+                'Blackberry',
                 ' App also Lead Front End Dev',
               ],
             ],
@@ -680,24 +675,13 @@ export const portfolio: PortfolioEra[] = [
         name: ['MBPhone Android App'],
         stints: [
           {
-            lines: [
-              [
-                'Lead ',
-                store(
-                  'Android App',
-                  'https://play.google.com/store/apps/details?id=wit.matm&hl=en',
-                  'MBPhone',
-                ),
-                ' Dev',
-              ],
-            ],
+            lines: [['Lead ', 'Android App', ' Dev']],
             years: '2010',
           },
         ],
         image: {
           src: mbphone,
           alt: 'MB Phone app menu on a phone: top-ups, payments, balance and transactions',
-          href: 'https://play.google.com/store/apps/details?id=wit.matm&hl=en',
         },
       },
       {

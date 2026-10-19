@@ -770,8 +770,8 @@ export const readingGroups: ReadingGroup[] = [
           ],
           [
             {
-              label: 'Annual Review: Why you should separate performance and pay',
-              href: 'https://www.middlemarketcenter.org/expert-perspectives/annual-reviews-why-you-should-separate-performance-and-pay',
+              label: 'Stop Basing Pay on Performance Reviews',
+              href: 'https://hbr.org/2014/01/stop-basing-pay-on-performance-reviews',
             },
           ],
         ],

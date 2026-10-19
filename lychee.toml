@@ -16,6 +16,8 @@ exclude = [
   # resets the HTTP/2 stream for anything that is not a real browser.
   '^https?://(www\.)?teslatap\.com',
   '^https?://(www\.)?waitrose\.com',
+  # SMS Redirect is not published on Google Play yet; drop this once it is.
+  '^https://play\.google\.com/store/apps/details\?id=com\.neteinstein\.smsredirect',
 ]
 exclude_all_private = true
 
