@@ -160,7 +160,7 @@ export const ui: Catalog = {
   // My apps
   FAQ: 'Perguntas frequentes',
   'Apps on this page': 'Apps nesta página',
-  'By {name}': 'Por {name}',
+  By: 'Por',
 
   // Porto
   'Jump to': 'Saltar para',

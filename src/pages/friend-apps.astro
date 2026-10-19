@@ -33,7 +33,13 @@ const schema = [
             offers: { '@type': 'Offer', price: 0, priceCurrency: 'EUR' },
           }),
           image: await imageUrl(app.image),
-          ...(app.author && { author: { '@type': 'Person', name: app.author } }),
+          ...(app.author && {
+            author: {
+              '@type': 'Person',
+              name: app.author,
+              ...(app.authorHref && { url: app.authorHref }),
+            },
+          }),
         },
       })),
     ),

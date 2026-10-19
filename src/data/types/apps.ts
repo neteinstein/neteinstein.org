@@ -24,6 +24,8 @@ export interface AppListing {
   title: string;
   /** Who made it, for apps that aren't mine (/friend-apps). Shown as "By …" under the title. */
   author?: string;
+  /** The author's own site, linked from their name. */
+  authorHref?: string;
   description: RichText;
   /** The banner the original showed next to each app. */
   image: ImageMetadata;

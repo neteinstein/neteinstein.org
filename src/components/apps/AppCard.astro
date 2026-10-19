@@ -158,7 +158,21 @@ const watchUrl = app.video
       {app.title}
     </h3>
     {app.author && (
-      <p class="text-accent mt-1 text-sm font-semibold">{t('By {name}', { name: app.author })}</p>
+      <p class="text-accent mt-1 text-sm font-semibold">
+        {t('By')}{' '}
+        {app.authorHref ? (
+          <a
+            href={app.authorHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="decoration-current/40 underline underline-offset-4 transition-colors hover:decoration-current"
+          >
+            {app.author}
+          </a>
+        ) : (
+          app.author
+        )}
+      </p>
     )}
     <p class:list={['text-muted mt-2.5 leading-relaxed text-pretty', featured && 'lg:text-lg']}>
       <RichText text={app.description} />
