@@ -11,6 +11,13 @@ exclude = [
   # signed-in browser, live page or not.
   '^https?://([a-z-]+\.)?facebook\.com',
   '^https?://(www\.)?instagram\.com',
+  # Live pages that lychee cannot fetch: TeslaTap serves an incomplete
+  # certificate chain (browsers repair it, lychee does not), and Waitrose
+  # resets the HTTP/2 stream for anything that is not a real browser.
+  '^https?://(www\.)?teslatap\.com',
+  '^https?://(www\.)?waitrose\.com',
+  # SMS Redirect is not published on Google Play yet; drop this once it is.
+  '^https://play\.google\.com/store/apps/details\?id=com\.neteinstein\.smsredirect',
 ]
 exclude_all_private = true
 

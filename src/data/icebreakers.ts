@@ -283,7 +283,7 @@ export const onlineGames: (LinkRef & { description: string })[] = [
   },
   {
     label: 'Survive: Escape from Atlantis!',
-    href: 'https://tabletopia.com/games/survive-escape-from-atlantis',
+    href: 'https://tabletopia.com/news/survive-escape',
     description: 'The board game, played online on Tabletopia.',
   },
   {

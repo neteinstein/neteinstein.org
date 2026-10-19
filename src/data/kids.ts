@@ -363,7 +363,10 @@ export const kidsPlaces: KidsPlace[] = [
   },
   {
     where: { label: 'Porto', href: maps('Rua do Campo Alegre 1191, 4150-181 Porto') },
-    name: { label: 'Museu da Biodiversidade', href: 'https://mhnc.up.pt/aniversarios-tematicos/' },
+    name: {
+      label: 'Museu da Biodiversidade',
+      href: 'https://mhnc.up.pt/pt/servico-educativo/aniversarios-no-mhnc-up/',
+    },
     setting: 'Indoor',
     cost: '15€',
     ages: '6-12',

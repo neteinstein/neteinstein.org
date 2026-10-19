@@ -20,7 +20,7 @@ export const hobbies: Hobby[] = [
     kicker: 'Host @ O Que Arde Cura - Charity & Comedy',
     title: 'O Que Arde Cura',
     shortTitle: 'O Que Arde Cura',
-    href: 'http://www.oqueardecura.pt',
+    href: 'https://oqueardecura.pedrovicente.pt/',
     visual: {
       kind: 'logo',
       fit: 'cover',

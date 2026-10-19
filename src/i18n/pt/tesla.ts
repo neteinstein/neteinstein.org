@@ -33,8 +33,6 @@ export const tesla: Catalog = {
     'Página “MF’s Web App” com os ícones redondos Calculator, Stickies e View All Apps',
   'Dark launcher with icons for Reminders, Notes, Mail, Calculator, Microsoft 365, Gmail, Google Drive and Keep':
     'Lançador escuro com ícones de Reminders, Notes, Mail, Calculator, Microsoft 365, Gmail, Google Drive e Keep',
-  'White tiles with the iPlayer, ITV, Netflix, Plex, Apple TV+, UKTV Play, Disney+ and Virgin TV logos':
-    'Mosaicos brancos com os logótipos de iPlayer, ITV, Netflix, Plex, Apple TV+, UKTV Play, Disney+ e Virgin TV',
   'Routing & Charging': 'Rotas & Carregamento',
   'A Better Routeplanner’s trip panel over a dark street map':
     'O painel de viagem do A Better Routeplanner sobre um mapa de ruas escuro',

@@ -19,7 +19,6 @@ import technologyBloggers from '../assets/tesla/technologybloggers.webp';
 import teslaWebApps from '../assets/tesla/teslawebapps.webp';
 import motherFrunker from '../assets/tesla/motherfrunker.webp';
 import inCarWeb from '../assets/tesla/incarweb.webp';
-import teslaTv from '../assets/tesla/teslatv.webp';
 import aBetterRoutePlanner from '../assets/tesla/abetterrouteplanner.webp';
 import teslaNav from '../assets/tesla/teslanav.webp';
 import comparaErvilhas from '../assets/tesla/compara-ervilhas.webp';
@@ -127,13 +126,6 @@ export const categories: TeslaCategory[] = [
         image: inCarWeb,
         imageAlt:
           'Dark launcher with icons for Reminders, Notes, Mail, Calculator, Microsoft 365, Gmail, Google Drive and Keep',
-      },
-      {
-        label: 'app.teslatv.uk',
-        href: 'https://app.teslatv.uk/',
-        image: teslaTv,
-        imageAlt:
-          'White tiles with the iPlayer, ITV, Netflix, Plex, Apple TV+, UKTV Play, Disney+ and Virgin TV logos',
       },
     ],
   },
