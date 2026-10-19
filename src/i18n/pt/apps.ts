@@ -3,7 +3,7 @@ import type { Catalog } from '..';
 /** `src/data/apps.ts` */
 export const apps: Catalog = {
   'Donate on ': 'Faz um donativo no ',
-  ' or via the button below.': ' ou através do botão abaixo.',
+  ' or via ': ' ou através do ',
   'Support me on Buy Me a Coffee!': 'Apoia-me no Buy Me a Coffee!',
   'If you want to encourage me to keep developing for free :-)':
     'Se me quiseres incentivar a continuar a desenvolver de graça :-)',
