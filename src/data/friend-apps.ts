@@ -25,6 +25,7 @@ const weeklyFamilyLogApp: AppListing = {
   id: 'weekly-family-log',
   title: 'Weekly Family Log',
   author: 'Mário Pedro Carvalho',
+  authorHref: 'https://marioc.eu/',
   description: [
     'Five minutes a week for a closer family: what went well, what was hard and a question to talk about at the table, kept over time for everyone.',
   ],
