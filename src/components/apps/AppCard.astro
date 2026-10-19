@@ -16,7 +16,8 @@ import { useI18n } from '../../i18n';
  *
  * When the app has a `video`, the banner becomes a play button that loads the
  * YouTube player in its place (same click-to-load as `VideoEmbed`; with JS off
- * it links to the video).
+ * it links to the video). A `videoFile` works the same way with a `<video>`
+ * kept in a `<template>` until the click.
  */
 interface Props {
   app: AppListing;
@@ -33,7 +34,9 @@ const bannerSizes = featured
   ? '(min-width: 1024px) 42rem, (min-width: 768px) 90vw, 100vw'
   : '(min-width: 1024px) 36rem, (min-width: 768px) 45vw, 100vw';
 const embedUrl = app.video && `https://www.youtube-nocookie.com/embed/${app.video}?autoplay=1`;
-const watchUrl = app.video && `https://www.youtube.com/watch?v=${app.video}`;
+const watchUrl = app.video
+  ? `https://www.youtube.com/watch?v=${app.video}`
+  : app.videoFile?.[0]?.src;
 ---
 
 <article
@@ -69,6 +72,22 @@ const watchUrl = app.video && `https://www.youtube.com/watch?v=${app.video}`;
         data-embed-src={embedUrl}
         data-embed-title={app.title}
       >
+        {app.videoFile && (
+          <template>
+            <video
+              controls
+              autoplay
+              muted
+              playsinline
+              aria-label={app.title}
+              class="absolute inset-0 size-full bg-black object-contain"
+            >
+              {app.videoFile.map((source) => (
+                <source src={source.src} type={source.type} />
+              ))}
+            </video>
+          </template>
+        )}
         <a
           href={watchUrl}
           target="_blank"

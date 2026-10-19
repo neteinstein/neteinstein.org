@@ -3,15 +3,7 @@
  * (https://www.neteinstein.org/my-apps — crawl snapshot in `.crawl/report.json`).
  * Hero copy and the FAQ are prose and live in `src/content/pages/my-apps.mdx`.
  */
-import type {
-  AppGroup,
-  AppListing,
-  AppStore,
-  AppStoreBadge,
-  AppsHero,
-  AppsSupport,
-  RichText,
-} from './types';
+import type { AppGroup, AppListing, AppStore, AppStoreBadge, AppsSupport, RichText } from './types';
 
 import loopgain from '../assets/my-apps/loopgain-feature.webp';
 import loopgainIcon from '../assets/my-apps/loopgain-icon.webp';
@@ -31,7 +23,6 @@ import moralHazard from '../assets/my-apps/moral-hazard-feature.webp';
 import moralHazardIcon from '../assets/my-apps/moral-hazard-icon.webp';
 import invoice2sheetDemoMp4 from '../assets/my-apps/invoice2sheet-demo.mp4?url';
 import invoice2sheetDemoWebm from '../assets/my-apps/invoice2sheet-demo.webm?url';
-import invoice2sheetDemoPoster from '../assets/my-apps/invoice2sheet-demo-poster.jpg';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
 
@@ -44,19 +35,6 @@ export const donate: RichText = [
   { label: 'Revolut', href: REVOLUT },
   ' or via the button below.',
 ];
-
-/** Invoice2Sheet's walkthrough, which has no audio track. */
-export const appsHero: AppsHero = {
-  // H.264 first (smaller for this screen recording), VP9 for browsers without it.
-  sources: [
-    { src: invoice2sheetDemoMp4, type: 'video/mp4' },
-    { src: invoice2sheetDemoWebm, type: 'video/webm' },
-  ],
-  poster: invoice2sheetDemoPoster,
-  label:
-    'Video: an Invoice2Sheet demo, from connecting a Google account and choosing a spreadsheet and a Drive folder to scanning an invoice, checking its details and saving it as a new row.',
-  silent: true,
-};
 
 export const support: AppsSupport = {
   title: 'Support me on Buy Me a Coffee!',
@@ -181,6 +159,11 @@ const invoice2gdriveApp: AppListing = {
     'Invoice2Sheet banner: a receipt-with-a-checkmark app icon, the tagline "Scan the QR code. Snap the invoice. It lands in your Sheet.", the points Portuguese invoice QR codes, A row in your Google Sheet and The photo in your Google Drive, and a receipt with a QR code next to a spreadsheet with a new row',
   icon: invoice2gdriveIcon,
   links: [{ store: 'web', href: 'https://invoice2sheet.pedrovicente.pt/' }],
+  // A silent walkthrough. H.264 first (smaller for this screen recording), VP9 for browsers without it.
+  videoFile: [
+    { src: invoice2sheetDemoMp4, type: 'video/mp4' },
+    { src: invoice2sheetDemoWebm, type: 'video/webm' },
+  ],
 };
 
 const netWorthApp: AppListing = {
