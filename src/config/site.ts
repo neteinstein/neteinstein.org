@@ -14,7 +14,7 @@
 export interface NavItem {
   label: string;
   /**
-   * Omitted for pure groups ("What I do", "Teams", "Hobbies", "Porto") — the Google
+   * Omitted for pure groups ("What I do", "Teams", "Apps", "Hobbies", "Porto") — the Google
    * Sites original had no page at those paths, so neither do we.
    */
   href?: string;
@@ -75,7 +75,13 @@ export const NAV: NavItem[] = [
       { label: 'Team Icebreakers', href: '/teams/icebreakers' },
     ],
   },
-  { label: 'My Apps', href: '/my-apps' },
+  {
+    label: 'Apps',
+    children: [
+      { label: 'My Apps', href: '/my-apps' },
+      { label: "Friend's Apps", href: '/friend-apps' },
+    ],
+  },
   { label: 'Games', href: '/games' },
   {
     label: 'Hobbies',

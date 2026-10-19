@@ -8,9 +8,9 @@ import { useI18n } from '../../i18n';
 
 /**
  * An app, framed like a phone: a bezel with a notch around the app's banner,
- * then a store-listing block — icon, name, description and store badges. An
- * unreleased app's `status` shows as a pill over the banner.
- * `featured` lays the banner and the listing side by side on wide screens.
+ * then a store-listing block — icon, name, author (when it isn't mine),
+ * description and store badges. An unreleased app's `status` shows as a pill
+ * over the banner. `featured` lays the banner and the listing side by side on wide screens.
  *
  * Hover lifts the device, zooms the banner and tilts the icon. Decoration only.
  *
@@ -157,6 +157,9 @@ const watchUrl = app.video
     >
       {app.title}
     </h3>
+    {app.author && (
+      <p class="text-accent mt-1 text-sm font-semibold">{t('By {name}', { name: app.author })}</p>
+    )}
     <p class:list={['text-muted mt-2.5 leading-relaxed text-pretty', featured && 'lg:text-lg']}>
       <RichText text={app.description} />
     </p>

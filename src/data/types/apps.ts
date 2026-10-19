@@ -1,4 +1,4 @@
-/** Shapes for /my-apps. */
+/** Shapes for /my-apps and /friend-apps. */
 import type { ImageMetadata } from 'astro';
 import type { RichText } from './home';
 
@@ -22,6 +22,8 @@ export interface AppListing {
   /** In-page anchor, so the hero's icon dock can jump to it (`/my-apps#loopgain`). */
   id: string;
   title: string;
+  /** Who made it, for apps that aren't mine (/friend-apps). Shown as "By …" under the title. */
+  author?: string;
   description: RichText;
   /** The banner the original showed next to each app. */
   image: ImageMetadata;
