@@ -41,9 +41,9 @@
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.8",
     "jspdf": "4.2.1",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
-    "satori": "^0.47.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "satori": "^0.62.0",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
     "zod": "^4.6.7"
@@ -63,7 +63,7 @@
     "prettier-plugin-astro": "^1.1.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.71.1"
+    "typescript-eslint": "^8.71.2"
   },
   "overrides": {
     "eslint-plugin-jsx-a11y": {
