@@ -92,7 +92,7 @@ which always wins.
 ## URL changes
 
 Every route under `src/pages/` maps to a URL that exists on the Google Sites
-original, except `/games`, which replaced `/tools` (now a redirect; its twin
+original, except `/friend-apps` (new, no original) and `/games`, which replaced `/tools` (now a redirect; its twin
 `tools/index.html` is written at build time so GitHub Pages serves it next to
 the `tools/` directory; `/tools/loopgain` redirects to `/my-apps#loopgain`). If a route must move, add
 an entry to `redirects` in `astro.config.mjs` in the same change.

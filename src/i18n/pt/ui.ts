@@ -19,7 +19,9 @@ export const ui: Catalog = {
   Teams: 'Equipas',
   Improver: 'Improver',
   'Team Icebreakers': 'Quebra-gelos de Equipa',
+  Apps: 'Apps',
   'My Apps': 'As Minhas Apps',
+  "Friend's Apps": 'Apps de Amigos',
   Games: 'Jogos',
   LoopGain: 'LoopGain',
   'Summer Camp Games': 'Jogos de Campo de Férias',
@@ -158,6 +160,7 @@ export const ui: Catalog = {
   // My apps
   FAQ: 'Perguntas frequentes',
   'Apps on this page': 'Apps nesta página',
+  'By {name}': 'Por {name}',
 
   // Porto
   'Jump to': 'Saltar para',
