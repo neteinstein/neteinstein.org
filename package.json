@@ -28,9 +28,9 @@
     "check:parity": "node scripts/check-parity.mjs"
   },
   "dependencies": {
-    "@astrojs/markdown-remark": "7.3.2",
-    "@astrojs/mdx": "^8.0.3",
-    "@astrojs/react": "^7.0.1",
+    "@astrojs/markdown-remark": "7.3.3",
+    "@astrojs/mdx": "^8.1.0",
+    "@astrojs/react": "^7.1.0",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",
@@ -39,7 +39,7 @@
     "@fontsource/bricolage-grotesque": "^5.3.0",
     "@fontsource/inter": "^5.3.0",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.3.8",
+    "astro": "^7.4.0",
     "jspdf": "4.2.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
