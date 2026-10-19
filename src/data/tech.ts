@@ -317,7 +317,7 @@ export const portfolio: PortfolioEra[] = [
           'Waitrose - ',
           {
             label: 'Scan Pay Go',
-            href: 'https://www.waitrose.com/ecom/help-information/shopping-with-waitrose/shopping-instore/scanpaygo?srsltid=AfmBOooc-7rqea0t5EDUbuDkQ3aiNVIlRDdjNALe7Xv3eUm6Z_HOnzBc',
+            href: 'https://www.waitrose.com/ecom/help-information/shopping-with-waitrose/shopping-instore/scanpaygo',
           },
           ' Admin App (Internal App)',
         ],

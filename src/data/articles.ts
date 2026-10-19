@@ -245,7 +245,7 @@ export const books: AuthoredBook[] = [
   },
   {
     title: 'Uma Escola de Todos, Com Todos, Para Todos',
-    href: 'https://issuu.com/apecatolica/docs/livro_escola_de__todos',
+    href: 'https://apecatolica.pt/lancamento-de-escola-de-todos-para-todos-e-com-todos/',
     description: [
       'I was invited to contribute to this book. You can read my contribution and find the link to the book ',
       {
@@ -434,7 +434,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'How Shared Hatred Helps You Make Friends',
-              href: 'https://read.medium.com/NNkBnvF',
+              href: 'https://medium.com/forge/how-shared-hatred-helps-you-make-friends-40f5c988c76a',
             },
           ],
           [
@@ -586,7 +586,7 @@ export const readingGroups: ReadingGroup[] = [
             ' — A ',
             {
               label: 'movie',
-              href: 'https://teddintersmith.com/mltsfilm/#1519880513403-7f75283c-d61a',
+              href: 'https://www.teddintersmith.com/most-likely-to-succeed',
             },
             ' that will revolutionize how you see education, childhood, and learning',
           ],
@@ -611,7 +611,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: '[Portuguese] Não há casamentos estáveis',
-              href: 'https://rr.sapo.pt/artigo/115360/nao-ha-casamentos-estaveis',
+              href: 'https://rr.pt/artigo/henrique-raposo/2018/06/08/nao-ha-casamentos-estaveis/115360/',
             },
           ],
         ],
@@ -664,7 +664,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'Decision making',
-              href: 'https://www.reinventingorganizationswiki.com/Decision_Making',
+              href: 'https://reinventingorganizationswiki.com/en/theory/decision-making/',
             },
           ],
           [
@@ -950,7 +950,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'Why you should know how much your coworkers get paid - David Burkus',
-              href: 'https://www.youtube.com/watch?v=Bjy9oUh66FA',
+              href: 'https://www.youtube.com/watch?v=TvcNw4F0Y4Y',
             },
           ],
           [
@@ -984,7 +984,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'How to answer the dreaded salary question',
-              href: 'https://www.seek.com.au/career-advice/how-to-answer-the-dreaded-salary-question',
+              href: 'https://careerhub.adelaide.edu.au/students/news/detail/468/how-to-answer-dreaded-salary-q',
             },
           ],
           [
@@ -1061,7 +1061,7 @@ export const readingGroups: ReadingGroup[] = [
             {
               label:
                 'Larry Page has a reputation for pushing people at Google. Here’s how he pushed a young Sundar Pichai to make Google Chrome the top web browser in the world',
-              href: 'https://amp.businessinsider.com/larry-page-google-chrome-sundar-pichai-goals-2018-6',
+              href: 'https://www.businessinsider.com/larry-page-google-chrome-sundar-pichai-goals-2018-6',
             },
           ],
           [

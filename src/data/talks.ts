@@ -279,7 +279,7 @@ export const talkLog: TalkLogYear[] = [
         event: [
           {
             label: 'Droidcon Lisbon',
-            href: 'https://www.droidcon.com/events/droidcon-lisbon-2023/',
+            href: 'https://www.lisbon.droidcon.com/',
           },
         ],
         talk: [

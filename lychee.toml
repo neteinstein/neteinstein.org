@@ -11,6 +11,11 @@ exclude = [
   # signed-in browser, live page or not.
   '^https?://([a-z-]+\.)?facebook\.com',
   '^https?://(www\.)?instagram\.com',
+  # Live pages that lychee cannot fetch: TeslaTap serves an incomplete
+  # certificate chain (browsers repair it, lychee does not), and Waitrose
+  # resets the HTTP/2 stream for anything that is not a real browser.
+  '^https?://(www\.)?teslatap\.com',
+  '^https?://(www\.)?waitrose\.com',
 ]
 exclude_all_private = true
 
