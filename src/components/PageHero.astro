@@ -25,16 +25,8 @@ interface Props {
   imageAlt?: string;
   /** `cover` crops photos to the frame; `contain` suits logos and cut-outs. */
   imageFit?: 'cover' | 'contain';
-  /**
-   * Takes the image's place. `sources` are URLs, best first; the poster shows until it plays.
-   * `silent` drops the sound button, for files with no audio track.
-   */
-  video?: {
-    sources: { src: string; type: string }[];
-    poster: ImageMetadata;
-    label: string;
-    silent?: boolean;
-  };
+  /** Takes the image's place. `sources` are URLs, best first; the poster shows until it plays. */
+  video?: { sources: { src: string; type: string }[]; poster: ImageMetadata; label: string };
 }
 
 const {
@@ -175,34 +167,32 @@ const media = image || video;
                   <path data-icon-play d="M8 5v14l11-7z" class="hidden" />
                 </svg>
               </button>
-              {!video.silent && (
-                <button
-                  type="button"
-                  data-video-sound
-                  aria-pressed="false"
-                  aria-label={t('Sound')}
-                  class="glass text-fg border-line hover:border-accent grid size-10 place-items-center rounded-full border transition-colors"
+              <button
+                type="button"
+                data-video-sound
+                aria-pressed="false"
+                aria-label={t('Sound')}
+                class="glass text-fg border-line hover:border-accent grid size-10 place-items-center rounded-full border transition-colors"
+              >
+                <svg
+                  class="size-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
                 >
-                  <svg
-                    class="size-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M11 5 6 9H2v6h4l5 4z" />
-                    <path data-icon-muted d="m22 9-6 6M16 9l6 6" />
-                    <path
-                      data-icon-sound
-                      d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"
-                      class="hidden"
-                    />
-                  </svg>
-                </button>
-              )}
+                  <path d="M11 5 6 9H2v6h4l5 4z" />
+                  <path data-icon-muted d="m22 9-6 6M16 9l6 6" />
+                  <path
+                    data-icon-sound
+                    d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"
+                    class="hidden"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -218,7 +208,7 @@ const media = image || video;
     const controls = frame.querySelector<HTMLElement>('[data-video-controls]');
     const play = frame.querySelector<HTMLButtonElement>('[data-video-play]');
     const sound = frame.querySelector<HTMLButtonElement>('[data-video-sound]');
-    if (!video || !controls || !play) continue;
+    if (!video || !controls || !play || !sound) continue;
 
     const sync = () => {
       const paused = video.paused;
@@ -229,9 +219,9 @@ const media = image || video;
       );
       play.querySelector('[data-icon-pause]')?.classList.toggle('hidden', paused);
       play.querySelector('[data-icon-play]')?.classList.toggle('hidden', !paused);
-      sound?.setAttribute('aria-pressed', String(!video.muted));
-      sound?.querySelector('[data-icon-muted]')?.classList.toggle('hidden', !video.muted);
-      sound?.querySelector('[data-icon-sound]')?.classList.toggle('hidden', video.muted);
+      sound.setAttribute('aria-pressed', String(!video.muted));
+      sound.querySelector('[data-icon-muted]')?.classList.toggle('hidden', !video.muted);
+      sound.querySelector('[data-icon-sound]')?.classList.toggle('hidden', video.muted);
     };
 
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -239,7 +229,7 @@ const media = image || video;
       video.currentTime = 0;
     }
     play.addEventListener('click', () => (video.paused ? void video.play() : video.pause()));
-    sound?.addEventListener('click', () => {
+    sound.addEventListener('click', () => {
       video.muted = !video.muted;
       if (!video.muted && video.paused) void video.play();
     });
