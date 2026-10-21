@@ -52,6 +52,10 @@ export const tesla: Catalog = {
   'Myinstants (for horn sounds)': 'Myinstants (para sons de buzina)',
   'Myinstants trending page: a grid of big, glossy, coloured sound buttons':
     'Página de tendências do Myinstants: uma grelha de grandes botões de som coloridos e brilhantes',
+  'Ghost Engine (engine sounds that follow your speed)':
+    'Ghost Engine (sons de motor que acompanham a velocidade)',
+  'Ghost Engine start screen: a white ghost inside a rev gauge, “Add sound to your EV” and a red “Tap to ignite” button':
+    'Ecrã inicial do Ghost Engine: um fantasma branco dentro de um conta-rotações, “Add sound to your EV” e um botão vermelho “Tap to ignite”',
   Others: 'Outros',
   'The awesome-tesla GitHub repository README: “A curated list of awesome resources for Tesla vehicles”':
     'O README do repositório awesome-tesla no GitHub: “A curated list of awesome resources for Tesla vehicles”',

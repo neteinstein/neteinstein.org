@@ -27,6 +27,7 @@ import uveMunicipios from '../assets/tesla/uve-municipios.webp';
 import teslaClubPortugal from '../assets/tesla/tesla-club-portugal.webp';
 import teslaTap from '../assets/tesla/teslatap-fluids-identifier.webp';
 import myInstants from '../assets/tesla/myinstants.webp';
+import ghostEngine from '../assets/tesla/ghost-engine.webp';
 import awesomeTesla from '../assets/tesla/awesome-tesla.webp';
 
 export const page: TeslaPage = {
@@ -195,6 +196,13 @@ export const categories: TeslaCategory[] = [
         href: 'https://www.myinstants.com/en/trending/us/',
         image: myInstants,
         imageAlt: 'Myinstants trending page: a grid of big, glossy, coloured sound buttons',
+      },
+      {
+        label: 'Ghost Engine (engine sounds that follow your speed)',
+        href: 'https://ghost-engine.frederikroemming.com/',
+        image: ghostEngine,
+        imageAlt:
+          'Ghost Engine start screen: a white ghost inside a rev gauge, “Add sound to your EV” and a red “Tap to ignite” button',
       },
     ],
   },
