@@ -233,7 +233,12 @@ export const talkLog: TalkLogYear[] = [
       {
         month: 'Set',
         event: ['Mindera AI Insights Event'],
-        talk: ['Pending Approvals: An AI Story'],
+        talk: [
+          {
+            label: 'Pending Approvals: An AI Story',
+            href: 'https://mindera.com/blog/ai-insights:-approval-still-pending-learning-by-our-ai-mistakes',
+          },
+        ],
         tags: ['Tech'],
       },
     ],
