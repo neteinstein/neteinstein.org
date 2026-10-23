@@ -36,3 +36,32 @@ export interface WorkshopTheme extends ImproverChapter {
   activities: WorkshopActivity[];
   link?: WorkshopLink;
 }
+
+/** A game or experiment from the wider toolbox. */
+export interface WorkshopTool {
+  name: string;
+  /** What it is for. Left out when the group's `intro` already says it. */
+  purpose?: string;
+}
+
+/** Toolbox entries that explore the same thing ("Trust & cooperation", "Energisers"…). */
+export interface WorkshopToolGroup {
+  emoji: string;
+  title: string;
+  /** What the whole group is for. */
+  intro: string;
+  tools: WorkshopTool[];
+}
+
+/** One kind of toolbox entry: social experiments, shorter games. */
+export interface WorkshopToolSet {
+  title: string;
+  intro: string;
+  groups: WorkshopToolGroup[];
+}
+
+/** The games and experiments a day can draw on beyond the three themes. */
+export interface WorkshopToolbox extends ImproverChapter {
+  intro: string[];
+  sets: WorkshopToolSet[];
+}

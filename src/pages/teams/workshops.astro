@@ -5,9 +5,11 @@ import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
 import Prose from '../../components/Prose.astro';
 import ButtonLink from '../../components/ButtonLink.astro';
+import Chapter from '../../components/improver/Chapter.astro';
 import ChapterIndex from '../../components/improver/ChapterIndex.astro';
 import WorkshopContact from '../../components/improver/WorkshopContact.astro';
 import ThemeChapter from '../../components/workshops/ThemeChapter.astro';
+import ToolboxSet from '../../components/workshops/ToolboxSet.astro';
 import * as workshops from '../../data/workshops';
 import * as improver from '../../data/improver';
 import { useI18n } from '../../i18n';
@@ -16,21 +18,24 @@ import { getPage } from '../../i18n/content';
 /**
  * /teams/workshops — the full-day team workshop: the day in a few lines,
  * then its three themes (leadership, best practices, feedback) as numbered
- * chapters, each with a few of its games and what they are for. It closes
- * on the Improver page's workshop form, so a team can ask for one here.
+ * chapters, each with a few of its games and what they are for, and the
+ * wider toolbox of games and experiments as a fourth. It closes on the
+ * Improver page's workshop form, so a team can ask for one here.
  */
 const { t, locale, localize } = useI18n(Astro);
-const { photo, themes } = localize(workshops);
+const { photo, themes, toolbox } = localize(workshops);
 const { workshops: contact } = localize(improver);
 const entry = await getPage('workshops', locale);
 const { Content } = await render(entry);
 const page = entry.data;
 
-const activities = themes.reduce((count, theme) => count + theme.activities.length, 0);
+const activities =
+  themes.reduce((count, theme) => count + theme.activities.length, 0) +
+  toolbox.sets.flatMap((set) => set.groups).reduce((count, group) => count + group.tools.length, 0);
 const facts = [
   { value: '1', label: t('full day') },
   { value: String(themes.length), label: t('themes') },
-  { value: String(activities), label: t('games and stories') },
+  { value: String(activities), label: t('games and stories to pick from') },
 ];
 ---
 
@@ -43,7 +48,7 @@ const facts = [
     image={photo.image}
     imageAlt={photo.alt}
   >
-    <ChapterIndex chapters={themes} />
+    <ChapterIndex chapters={[...themes, toolbox]} />
     <ButtonLink slot="actions" href="#book" size="lg" trailing="arrow-down">
       {t('Bring it to your team')}
     </ButtonLink>
@@ -77,6 +82,19 @@ const facts = [
   {themes.map((theme, index) => (
     <ThemeChapter theme={theme} index={index + 1} />
   ))}
+
+  <Chapter chapter={toolbox} index={themes.length + 1}>
+    <div class="text-muted max-w-3xl space-y-5 text-lg leading-relaxed text-pretty" data-reveal>
+      {toolbox.intro.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+    <Fragment slot="wide">
+      {toolbox.sets.map((set) => (
+        <ToolboxSet set={set} />
+      ))}
+    </Fragment>
+  </Chapter>
 
   <Section
     id="book"
