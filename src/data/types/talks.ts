@@ -74,7 +74,7 @@ export interface TalkShowcase {
   caption?: TalkRichText[];
 }
 
-/** "Company Culture", "Tech", "Other Talks". */
+/** "Tech", "Company Culture", "Other Talks". */
 export interface TalkCategory {
   /** Anchor id. */
   id: string;

@@ -5,8 +5,8 @@ import type { Catalog } from '..';
  * presented. The #tags are translated for display only (see `TalkLog.astro`).
  */
 export const talks: Catalog = {
-  "Pedro Vicente's talks and workshops since 2009: company culture, Android and mobile tech, feedback and teams, TEDxCoimbra, and a year-by-year list.":
-    'As palestras e workshops do Pedro Vicente desde 2009: cultura de empresa, Android e mobile, feedback e equipas, TEDxCoimbra e uma lista ano a ano.',
+  "Pedro Vicente's talks and workshops since 2009: AI and mobile tech, company culture, feedback and teams, TEDxCoimbra, and a year-by-year list.":
+    'As palestras e workshops do Pedro Vicente desde 2009: IA e mobile, cultura de empresa, feedback e equipas, TEDxCoimbra e uma lista ano a ano.',
   "I've been speaking for so long... I still had hair when I started!":
     'Faço palestras há tanto tempo... ainda tinha cabelo quando comecei!',
   'Tech is life, but life is much more than tech... and so are my talks. Scroll down to see some examples!':

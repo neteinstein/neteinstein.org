@@ -16,7 +16,7 @@ export const talksPage: TalkPageCopy = {
   eyebrow: 'What I do',
   highlight: ['Talks'],
   description:
-    "Pedro Vicente's talks and workshops since 2009: company culture, Android and mobile tech, feedback and teams, TEDxCoimbra, and a year-by-year list.",
+    "Pedro Vicente's talks and workshops since 2009: AI and mobile tech, company culture, feedback and teams, TEDxCoimbra, and a year-by-year list.",
   quote: "I've been speaking for so long... I still had hair when I started!",
   intro:
     'Tech is life, but life is much more than tech... and so are my talks. Scroll down to see some examples!',
@@ -32,58 +32,22 @@ const ACORDA: TalkLink = { label: "A'Corda", href: 'https://www.instagram.com/_a
 
 export const talkCategories: TalkCategory[] = [
   {
-    id: 'company-culture',
-    title: 'Company Culture',
-    icon: 'users',
-    rows: [
-      [
-        {
-          title: 'Why Do We Even Work?',
-          subtitle:
-            'Work In Progress 2 - A documentary by KOM and Samuel Durand exploring the future of work within companies',
-          photo: {
-            src: wip2Still,
-            alt: 'Documentary still: Pedro Vicente, captioned “Software Craftsman @Mindera”, talking on a rooftop above a hazy city',
-          },
-        },
-      ],
-      [
-        {
-          title: 'Is this real life, or just fantasy… open your eyes..',
-          video: {
-            provider: 'youtube',
-            id: 'Szq-Yrad74g',
-            title:
-              'Mindera | Is this real life, or just fantasy… open your eyes (…) by Pedro Vicente | Open Day 2022',
-          },
-          caption: [['Open Day - Mindera 2022']],
-        },
-        {
-          title: 'Why do we use technology to build products we are proud of, with people we love?',
-          video: {
-            provider: 'youtube',
-            id: 'wP-8550161c',
-            title: 'Why do we use technology to build products? ~ Pedro Vicente at #TJF21 Portugal',
-          },
-          caption: [['Tech Jobs Fair 2021']],
-        },
-        {
-          title: 'Employer Branding',
-          video: {
-            provider: 'youtube',
-            id: '2hRjQUqbxmg',
-            title: 'EMPLOYER BRANDING for IT Talent - [BEST PRACTICES]',
-          },
-          caption: [['IT Talent by Toni Gimeno Solans 2020']],
-        },
-      ],
-    ],
-  },
-  {
     id: 'tech',
     title: 'Tech',
     icon: 'code',
     rows: [
+      [
+        {
+          title: 'Approvals Still Pending – Learning From Our AI Mistakes',
+          video: {
+            provider: 'youtube',
+            id: '8tqpijwZ7ao',
+            title:
+              'AI Insights 2026: Approvals Still Pending – Learning From Our AI Mistakes with Pedro Vicente',
+          },
+          caption: [['Mindera AI Insights Event 2026']],
+        },
+      ],
       [
         {
           title: 'How to Develop a Mobile App in 2025',
@@ -139,6 +103,54 @@ export const talkCategories: TalkCategory[] = [
               ')',
             ],
           ],
+        },
+      ],
+    ],
+  },
+  {
+    id: 'company-culture',
+    title: 'Company Culture',
+    icon: 'users',
+    rows: [
+      [
+        {
+          title: 'Why Do We Even Work?',
+          subtitle:
+            'Work In Progress 2 - A documentary by KOM and Samuel Durand exploring the future of work within companies',
+          photo: {
+            src: wip2Still,
+            alt: 'Documentary still: Pedro Vicente, captioned “Software Craftsman @Mindera”, talking on a rooftop above a hazy city',
+          },
+        },
+      ],
+      [
+        {
+          title: 'Is this real life, or just fantasy… open your eyes..',
+          video: {
+            provider: 'youtube',
+            id: 'Szq-Yrad74g',
+            title:
+              'Mindera | Is this real life, or just fantasy… open your eyes (…) by Pedro Vicente | Open Day 2022',
+          },
+          caption: [['Open Day - Mindera 2022']],
+        },
+        {
+          title: 'Why do we use technology to build products we are proud of, with people we love?',
+          video: {
+            provider: 'youtube',
+            id: 'wP-8550161c',
+            title: 'Why do we use technology to build products? ~ Pedro Vicente at #TJF21 Portugal',
+          },
+          caption: [['Tech Jobs Fair 2021']],
+        },
+        {
+          title: 'Employer Branding',
+          video: {
+            provider: 'youtube',
+            id: '2hRjQUqbxmg',
+            title: 'EMPLOYER BRANDING for IT Talent - [BEST PRACTICES]',
+          },
+          caption: [['IT Talent by Toni Gimeno Solans 2020']],
         },
       ],
     ],

@@ -4,8 +4,8 @@ import type { Catalog } from '..';
 export const tesla: Catalog = {
   'Tesla Utils': 'Utilitários Tesla',
   Utils: 'Utilitários',
-  'Useful websites to open in a Tesla browser — entertainment, routing & charging, utilities and fun — on one page, so you only need to bookmark this one.':
-    'Sites úteis para abrir no browser de um Tesla — entretenimento, rotas & carregamento, utilitários e diversão — numa só página, para guardares só esta.',
+  'Useful websites to open in a Tesla browser — routing & charging, fun, entertainment and utilities — on one page, so you only need to bookmark this one.':
+    'Sites úteis para abrir no browser de um Tesla — rotas & carregamento, diversão, entretenimento e utilitários — numa só página, para guardares só esta.',
   'A little page I created to keep track of useful websites to open in a Tesla browser.':
     'Uma pequena página que criei para guardar sites úteis para abrir no browser de um Tesla.',
   'Instead of typing in and bookmarking each of these URLs... just bookmark this one! 😉':
