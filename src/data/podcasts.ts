@@ -130,6 +130,12 @@ export const shows: PodcastShow[] = [
         season: 3,
         episode: 5,
       },
+      {
+        youtubeId: 'a0PflwdC_W4',
+        title: 'Building the Right Team Culture with Joana Alves',
+        season: 3,
+        episode: 6,
+      },
     ],
   },
   {
