@@ -20,6 +20,7 @@ import { tech } from './tech';
 import { tesla } from './tesla';
 import { tools } from './tools';
 import { ui } from './ui';
+import { workshops } from './workshops';
 
 export const pt: Catalog = {
   ...ui,
@@ -29,6 +30,7 @@ export const pt: Catalog = {
   ...podcasts,
   ...improver,
   ...icebreakers,
+  ...workshops,
   ...articles,
   ...apps,
   ...friendApps,

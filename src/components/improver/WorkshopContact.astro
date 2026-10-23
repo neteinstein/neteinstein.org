@@ -12,12 +12,14 @@ interface Props {
   cta: string;
   note: string;
   form: ImproverWorkshops['form'];
+  /** Replaces the top margin, which suits the Improver chapter it closes. */
+  class?: string;
 }
 
-const { cta, note, form } = Astro.props;
+const { cta, note, form, class: className = 'mt-14 sm:mt-20' } = Astro.props;
 ---
 
-<div class="mt-14 sm:mt-20">
+<div class={className}>
   <div
     class="glow-ring border-line bg-surface-raised relative overflow-hidden rounded-3xl border p-7 shadow-[var(--shadow-md)] sm:p-10"
     data-spotlight

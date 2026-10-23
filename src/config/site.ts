@@ -73,6 +73,7 @@ export const NAV: NavItem[] = [
       // Kept at its original URL: it moved in the menu, not on the site.
       { label: 'Improver', href: '/what-i-do/improver' },
       { label: 'Team Icebreakers', href: '/teams/icebreakers' },
+      { label: 'Workshops', href: '/teams/workshops' },
     ],
   },
   {

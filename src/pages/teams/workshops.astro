@@ -1,0 +1,91 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import Prose from '../../components/Prose.astro';
+import ButtonLink from '../../components/ButtonLink.astro';
+import ChapterIndex from '../../components/improver/ChapterIndex.astro';
+import WorkshopContact from '../../components/improver/WorkshopContact.astro';
+import ThemeChapter from '../../components/workshops/ThemeChapter.astro';
+import * as workshops from '../../data/workshops';
+import * as improver from '../../data/improver';
+import { useI18n } from '../../i18n';
+import { getPage } from '../../i18n/content';
+
+/**
+ * /teams/workshops — the full-day team workshop: the day in a few lines,
+ * then its three themes (leadership, best practices, feedback) as numbered
+ * chapters, each with a few of its games and what they are for. It closes
+ * on the Improver page's workshop form, so a team can ask for one here.
+ */
+const { t, locale, localize } = useI18n(Astro);
+const { photo, themes } = localize(workshops);
+const { workshops: contact } = localize(improver);
+const entry = await getPage('workshops', locale);
+const { Content } = await render(entry);
+const page = entry.data;
+
+const activities = themes.reduce((count, theme) => count + theme.activities.length, 0);
+const facts = [
+  { value: '1', label: t('full day') },
+  { value: String(themes.length), label: t('themes') },
+  { value: String(activities), label: t('games and stories') },
+];
+---
+
+<BaseLayout title={page.metaTitle ?? page.title} description={page.description}>
+  <PageHero
+    title={page.title}
+    eyebrow={page.eyebrow}
+    highlight={page.highlight}
+    lead={page.lead}
+    image={photo.image}
+    imageAlt={photo.alt}
+  >
+    <ChapterIndex chapters={themes} />
+    <ButtonLink slot="actions" href="#book" size="lg" trailing="arrow-down">
+      {t('Bring it to your team')}
+    </ButtonLink>
+  </PageHero>
+
+  <Section id="the-day" eyebrow={t('One full day')} title={t('Three themes, one day')}>
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,18rem)] lg:gap-16">
+      <div data-reveal>
+        <Prose class="text-muted [&_strong]:text-[var(--text)]">
+          <Content />
+        </Prose>
+      </div>
+      <ul
+        class="border-line bg-surface-raised grid grid-cols-3 gap-4 self-start rounded-3xl border p-6 shadow-[var(--shadow-sm)] lg:grid-cols-1 lg:gap-6 lg:p-8"
+        data-reveal
+      >
+        {facts.map((fact) => (
+          <li class="flex flex-col gap-1">
+            <span class="font-display text-gradient text-4xl font-extrabold tracking-tight sm:text-5xl">
+              {fact.value}
+            </span>
+            <span class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
+              {fact.label}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Section>
+
+  {themes.map((theme, index) => (
+    <ThemeChapter theme={theme} index={index + 1} />
+  ))}
+
+  <Section
+    id="book"
+    eyebrow={t('Your team')}
+    title={t('Bring it to your team')}
+    intro={t(
+      'Each day is shaped around the team in it: its size, its moment and what it needs most. Tell me a bit about yours.',
+    )}
+  >
+    <WorkshopContact cta={contact.cta} note={contact.note} form={contact.form} class="" />
+  </Section>
+</BaseLayout>
