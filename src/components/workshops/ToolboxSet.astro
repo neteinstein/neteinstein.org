@@ -1,0 +1,60 @@
+---
+import type { WorkshopToolSet } from '../../data/types';
+
+/**
+ * One kind of toolbox entry (social experiments, shorter games) as a heading
+ * and its groups in masonry columns: a card per group with what it is for,
+ * then each game's name and, when the group's line doesn't say it all, its
+ * own purpose. Compact on purpose, since the toolbox is long.
+ */
+interface Props {
+  set: WorkshopToolSet;
+}
+
+const { set } = Astro.props;
+const tones = ['--accent', '--accent-2', '--accent-4', '--accent-3'];
+---
+
+<div class="mt-12 first:mt-0 sm:mt-16">
+  <header class="mb-6 max-w-3xl" data-reveal>
+    <h3 class="font-display text-2xl font-bold tracking-tight sm:text-3xl">{set.title}</h3>
+    <p class="text-muted mt-2 text-lg text-pretty">{set.intro}</p>
+  </header>
+
+  <div class="columns-1 gap-5 md:columns-2 xl:columns-3" data-reveal-stagger>
+    {set.groups.map((group, index) => (
+      <section
+        class="group glow-ring border-line bg-surface-raised relative mb-5 break-inside-avoid overflow-hidden rounded-3xl border p-6 shadow-[var(--shadow-sm)] sm:p-7"
+        style={`--tone: var(${tones[index % tones.length]})`}
+        data-spotlight
+      >
+        <div
+          class="pointer-events-none absolute -top-20 -right-20 size-44 rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklch,var(--tone)_22%,transparent),transparent)]"
+          aria-hidden="true"
+        />
+        <h4 class="font-display relative flex items-center gap-3 text-xl font-bold tracking-tight">
+          <span
+            class="border-line bg-surface-sunken grid size-10 shrink-0 place-items-center rounded-xl border text-lg transition-transform duration-500 ease-[var(--ease-spring)] group-hover:-rotate-6"
+            aria-hidden="true"
+          >
+            {group.emoji}
+          </span>
+          {group.title}
+        </h4>
+        <p class="text-muted relative mt-3 leading-relaxed text-pretty">{group.intro}</p>
+        <ul class="border-line relative mt-4 divide-line divide-y border-t">
+          {group.tools.map((tool) => (
+            <li class="py-2.5">
+              <span class="block leading-snug font-semibold">{tool.name}</span>
+              {tool.purpose && (
+                <span class="text-muted mt-0.5 block text-sm leading-relaxed text-pretty">
+                  {tool.purpose}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</div>

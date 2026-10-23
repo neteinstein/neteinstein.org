@@ -13,6 +13,7 @@ export * from './tech';
 export * from './talks';
 export * from './podcasts';
 export * from './improver';
+export * from './workshops';
 export * from './articles';
 export * from './apps';
 export * from './tools';
