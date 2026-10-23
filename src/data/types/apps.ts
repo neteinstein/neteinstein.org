@@ -2,8 +2,8 @@
 import type { ImageMetadata } from 'astro';
 import type { RichText } from './home';
 
-/** Where an app can be installed or opened — one store badge each on the original. */
-export type AppStore = 'google-play' | 'web';
+/** Where an app can be installed or opened — one store badge each on the original, plus GitHub for apps shipped as source. */
+export type AppStore = 'google-play' | 'web' | 'github';
 
 export interface AppStoreLink {
   store: AppStore;
@@ -34,6 +34,8 @@ export interface AppListing {
   icon: ImageMetadata;
   /** Empty while the app has no public build yet. */
   links: AppStoreLink[];
+  /** Where it runs, for search engines, when the links don't say (a GitHub link could be anything). */
+  platform?: string;
   /** Release stage shown as a pill over the banner ("Alpha Testing"); omit once it is public. */
   status?: string;
   /** YouTube video id. When set, clicking the banner plays the video in its place. */

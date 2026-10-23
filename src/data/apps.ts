@@ -21,10 +21,19 @@ import netWorth from '../assets/my-apps/net-worth-feature.webp';
 import netWorthIcon from '../assets/my-apps/net-worth-icon.webp';
 import moralHazard from '../assets/my-apps/moral-hazard-feature.webp';
 import moralHazardIcon from '../assets/my-apps/moral-hazard-icon.webp';
+import podcastShorts from '../assets/my-apps/podcast-shorts-feature.webp';
+import podcastShortsIcon from '../assets/my-apps/podcast-shorts-icon.webp';
+import calendarSync from '../assets/my-apps/calendar-sync-feature.webp';
+import calendarSyncIcon from '../assets/my-apps/calendar-sync-icon.webp';
 import invoice2sheetDemoMp4 from '../assets/my-apps/invoice2sheet-demo.mp4?url';
 import invoice2sheetDemoWebm from '../assets/my-apps/invoice2sheet-demo.webm?url';
+import podcastShortsDemoMp4 from '../assets/my-apps/podcast-shorts-demo.mp4?url';
+import podcastShortsDemoWebm from '../assets/my-apps/podcast-shorts-demo.webm?url';
+import calendarSyncDemoMp4 from '../assets/my-apps/calendar-sync-demo.mp4?url';
+import calendarSyncDemoWebm from '../assets/my-apps/calendar-sync-demo.webm?url';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
+import githubBadge from '../assets/my-apps/badge-github.webp';
 
 const REVOLUT = 'https://revolut.me/neteinstein';
 const BUY_ME_A_COFFEE = 'https://www.buymeacoffee.com/neteinstein';
@@ -47,6 +56,7 @@ export const support: AppsSupport = {
 export const storeBadges: Record<AppStore, AppStoreBadge> = {
   'google-play': { image: googlePlayBadge, alt: 'Get it on Google Play' },
   web: { image: webBadge, alt: 'Open it on Web' },
+  github: { image: githubBadge, alt: 'View it on GitHub' },
 };
 
 const loopgainTeams: AppListing = {
@@ -197,6 +207,44 @@ const moralHazardApp: AppListing = {
   links: [],
 };
 
+const podcastShortsApp: AppListing = {
+  id: 'podcast-shorts',
+  title: 'AI Podcast Short Editor',
+  description: [
+    'One command turns a full podcast episode into ready-to-post vertical shorts: Claude picks the moments that stand on their own, the crop follows whoever is talking and the captions light up word by word. Built at ',
+    { label: 'Mindera', href: 'https://www.mindera.com' },
+    '.',
+  ],
+  image: podcastShorts,
+  imageAlt:
+    'AI Podcast Short Editor demo: a two-person podcast frame with a yellow box around the speaker, turned into a vertical short captioned "So who decides what ships?", under the heading "Frames whoever\'s talking. Captions, word by word."',
+  icon: podcastShortsIcon,
+  platform: 'macOS',
+  links: [{ store: 'github', href: 'https://github.com/Mindera/AI-Podcast-Short-Editor' }],
+  videoFile: [
+    { src: podcastShortsDemoMp4, type: 'video/mp4' },
+    { src: podcastShortsDemoWebm, type: 'video/webm' },
+  ],
+};
+
+const calendarSyncApp: AppListing = {
+  id: 'calendar-sync',
+  title: 'Calendar Sync',
+  description: [
+    'A tiny macOS menu bar app that copies your client meetings into your main calendar, meeting link included, so colleagues stop booking you over your client standup.',
+  ],
+  image: calendarSync,
+  imageAlt:
+    'Calendar Sync demo: a client calendar next to the main calendar, where each meeting is copied as "[Calendar A] meeting name" with a Teams Join button, under the heading "Named by its calendar."',
+  icon: calendarSyncIcon,
+  platform: 'macOS',
+  links: [{ store: 'github', href: 'https://github.com/neteinstein/Calendar-Sync' }],
+  videoFile: [
+    { src: calendarSyncDemoMp4, type: 'video/mp4' },
+    { src: calendarSyncDemoWebm, type: 'video/webm' },
+  ],
+};
+
 /** The page's sections, in order. */
 export const appGroups: AppGroup[] = [
   {
@@ -210,6 +258,12 @@ export const appGroups: AppGroup[] = [
     title: 'Utils',
     category: 'UtilitiesApplication',
     apps: [smsToolbox, invoice2gdriveApp, netWorthApp],
+  },
+  {
+    id: 'work',
+    title: 'Work Tools',
+    category: 'BusinessApplication',
+    apps: [calendarSyncApp, podcastShortsApp],
   },
   { id: 'trivia', title: 'Trivia', category: 'ReferenceApplication', apps: [allowedNamesApp] },
   { id: 'games', title: 'Games', category: 'GameApplication', apps: [moralHazardApp] },
