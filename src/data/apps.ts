@@ -28,9 +28,7 @@ import calendarSyncIcon from '../assets/my-apps/calendar-sync-icon.webp';
 import invoice2sheetDemoMp4 from '../assets/my-apps/invoice2sheet-demo.mp4?url';
 import invoice2sheetDemoWebm from '../assets/my-apps/invoice2sheet-demo.webm?url';
 import podcastShortsDemoMp4 from '../assets/my-apps/podcast-shorts-demo.mp4?url';
-import podcastShortsDemoWebm from '../assets/my-apps/podcast-shorts-demo.webm?url';
 import calendarSyncDemoMp4 from '../assets/my-apps/calendar-sync-demo.mp4?url';
-import calendarSyncDemoWebm from '../assets/my-apps/calendar-sync-demo.webm?url';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
 import githubBadge from '../assets/my-apps/badge-github.webp';
@@ -221,10 +219,8 @@ const podcastShortsApp: AppListing = {
   icon: podcastShortsIcon,
   platform: 'macOS',
   links: [{ store: 'github', href: 'https://github.com/Mindera/AI-Podcast-Short-Editor' }],
-  videoFile: [
-    { src: podcastShortsDemoMp4, type: 'video/mp4' },
-    { src: podcastShortsDemoWebm, type: 'video/webm' },
-  ],
+  // The demo from the repo's README, as published there.
+  videoFile: [{ src: podcastShortsDemoMp4, type: 'video/mp4' }],
 };
 
 const calendarSyncApp: AppListing = {
@@ -239,10 +235,8 @@ const calendarSyncApp: AppListing = {
   icon: calendarSyncIcon,
   platform: 'macOS',
   links: [{ store: 'github', href: 'https://github.com/neteinstein/Calendar-Sync' }],
-  videoFile: [
-    { src: calendarSyncDemoMp4, type: 'video/mp4' },
-    { src: calendarSyncDemoWebm, type: 'video/webm' },
-  ],
+  // The demo from the repo's README, as published there.
+  videoFile: [{ src: calendarSyncDemoMp4, type: 'video/mp4' }],
 };
 
 /** The page's sections, in order. */
