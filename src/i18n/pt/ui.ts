@@ -88,8 +88,8 @@ export const ui: Catalog = {
   '📱 AI & Mobile @ Mindera': '📱 IA & Mobile @ Mindera',
   'Glimpses of what I do': 'Um pouco do que faço',
   'Porto guide': 'Guia do Porto',
-  '{name} mid-talk, gesturing with both hands':
-    '{name} a meio de uma palestra, a gesticular com as duas mãos',
+  '{name} on stage mid-talk, holding a slide clicker':
+    '{name} em palco a meio de uma palestra, com o comando dos slides na mão',
   'Scroll to Who am I?': 'Deslizar até Quem sou eu?',
   Scroll: 'Deslizar',
   "Only the edible kind — this site doesn't track you.":
