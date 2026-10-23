@@ -37,7 +37,7 @@ export const page: TeslaPage = {
   heading: 'Tesla Utils',
   highlight: ['Utils'],
   description:
-    'Useful websites to open in a Tesla browser — entertainment, routing & charging, utilities and fun — ' +
+    'Useful websites to open in a Tesla browser — routing & charging, fun, entertainment and utilities — ' +
     'on one page, so you only need to bookmark this one.',
 };
 
@@ -49,6 +49,56 @@ export const intro: TeslaIntro = {
 };
 
 export const categories: TeslaCategory[] = [
+  {
+    id: 'routing-charging',
+    title: 'Routing & Charging',
+    sites: [
+      {
+        label: 'A Better Route Planner',
+        href: 'https://abetterrouteplanner.com/',
+        image: aBetterRoutePlanner,
+        imageAlt: 'A Better Routeplanner’s trip panel over a dark street map',
+      },
+      {
+        label: 'TeslaNav',
+        href: 'https://teslanav.com/',
+        image: teslaNav,
+        imageAlt: 'TeslaNav’s dark street map with driver-reported alerts pinned around the car',
+      },
+      {
+        label: '(PT) Compara Ervilhas',
+        href: 'https://comparaervilhas.pt/',
+        image: comparaErvilhas,
+        imageAlt: 'Light map of Portugal and western Spain',
+      },
+      {
+        label: '(PT) Mobi.e',
+        href: 'https://www.mobie.pt/utilizar-a-rede',
+        image: mobie,
+        imageAlt:
+          'Mobi.E page on how to charge an electric vehicle, with a charging cable plugged into a car',
+      },
+    ],
+  },
+  {
+    id: 'fun',
+    title: 'Fun',
+    sites: [
+      {
+        label: 'Myinstants (for horn sounds)',
+        href: 'https://www.myinstants.com/en/trending/us/',
+        image: myInstants,
+        imageAlt: 'Myinstants trending page: a grid of big, glossy, coloured sound buttons',
+      },
+      {
+        label: 'Ghost Engine (engine sounds that follow your speed)',
+        href: 'https://ghost-engine.frederikroemming.com/',
+        image: ghostEngine,
+        imageAlt:
+          'Ghost Engine start screen: a white ghost inside a rev gauge, “Add sound to your EV” and a red “Tap to ignite” button',
+      },
+    ],
+  },
   {
     id: 'entertainment',
     title: 'Entertainment',
@@ -131,37 +181,6 @@ export const categories: TeslaCategory[] = [
     ],
   },
   {
-    id: 'routing-charging',
-    title: 'Routing & Charging',
-    sites: [
-      {
-        label: 'A Better Route Planner',
-        href: 'https://abetterrouteplanner.com/',
-        image: aBetterRoutePlanner,
-        imageAlt: 'A Better Routeplanner’s trip panel over a dark street map',
-      },
-      {
-        label: 'TeslaNav',
-        href: 'https://teslanav.com/',
-        image: teslaNav,
-        imageAlt: 'TeslaNav’s dark street map with driver-reported alerts pinned around the car',
-      },
-      {
-        label: '(PT) Compara Ervilhas',
-        href: 'https://comparaervilhas.pt/',
-        image: comparaErvilhas,
-        imageAlt: 'Light map of Portugal and western Spain',
-      },
-      {
-        label: '(PT) Mobi.e',
-        href: 'https://www.mobie.pt/utilizar-a-rede',
-        image: mobie,
-        imageAlt:
-          'Mobi.E page on how to charge an electric vehicle, with a charging cable plugged into a car',
-      },
-    ],
-  },
-  {
     id: 'utils',
     title: 'Utils',
     sites: [
@@ -184,25 +203,6 @@ export const categories: TeslaCategory[] = [
         image: teslaTap,
         imageAlt:
           'TeslaTap’s “Tesla Fluid Leak Identifier” article, showing a puddle beside a parked Tesla',
-      },
-    ],
-  },
-  {
-    id: 'fun',
-    title: 'Fun',
-    sites: [
-      {
-        label: 'Myinstants (for horn sounds)',
-        href: 'https://www.myinstants.com/en/trending/us/',
-        image: myInstants,
-        imageAlt: 'Myinstants trending page: a grid of big, glossy, coloured sound buttons',
-      },
-      {
-        label: 'Ghost Engine (engine sounds that follow your speed)',
-        href: 'https://ghost-engine.frederikroemming.com/',
-        image: ghostEngine,
-        imageAlt:
-          'Ghost Engine start screen: a white ghost inside a rev gauge, “Add sound to your EV” and a red “Tap to ignite” button',
       },
     ],
   },

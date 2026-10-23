@@ -5,7 +5,6 @@ import Section from '../components/Section.astro';
 import BookmarkBar from '../components/tesla/BookmarkBar.astro';
 import CategoryDock from '../components/tesla/CategoryDock.astro';
 import SiteGrid from '../components/tesla/SiteGrid.astro';
-import CategoryColumn from '../components/tesla/CategoryColumn.astro';
 import ThanksCallout from '../components/tesla/ThanksCallout.astro';
 import type { TeslaCategory } from '../data/types';
 import * as tesla from '../data/tesla';
@@ -14,13 +13,13 @@ import { useI18n } from '../i18n';
 const { t, localize } = useI18n(Astro);
 const { categories, intro, page, thanks } = localize(tesla);
 
-/** How each category's tiles are laid out; `pair` categories share a row. */
-const LAYOUT: Record<TeslaCategory['id'], 'grid' | 'trio' | 'pair'> = {
-  entertainment: 'grid',
+/** How each category's tiles are laid out. Sections render in data order. */
+const LAYOUT: Record<TeslaCategory['id'], 'grid' | 'trio'> = {
   'routing-charging': 'grid',
+  fun: 'grid',
+  entertainment: 'grid',
   utils: 'trio',
-  fun: 'pair',
-  others: 'pair',
+  others: 'grid',
 };
 
 /** "01 · 12 links" — the category's position and size. */
@@ -29,9 +28,6 @@ const eyebrow = (category: TeslaCategory) => {
   const count = category.sites.length;
   return `${index} · ${t(count === 1 ? '{count} link' : '{count} links', { count })}`;
 };
-
-const full = categories.filter((category) => LAYOUT[category.id] !== 'pair');
-const paired = categories.filter((category) => LAYOUT[category.id] === 'pair');
 ---
 
 <BaseLayout title={page.title} description={page.description}>
@@ -47,20 +43,11 @@ const paired = categories.filter((category) => LAYOUT[category.id] === 'pair');
     </div>
   </PageHero>
 
-  {full.map((category) => {
-    const layout = LAYOUT[category.id];
-    return (
-      <Section id={category.id} eyebrow={eyebrow(category)} title={category.title}>
-        <SiteGrid sites={category.sites} layout={layout === 'pair' ? 'single' : layout} />
-      </Section>
-    );
-  })}
-
-  <div class="container-page grid gap-x-6 md:grid-cols-2">
-    {paired.map((category) => (
-      <CategoryColumn category={category} eyebrow={eyebrow(category)} />
-    ))}
-  </div>
+  {categories.map((category) => (
+    <Section id={category.id} eyebrow={eyebrow(category)} title={category.title}>
+      <SiteGrid sites={category.sites} layout={LAYOUT[category.id]} />
+    </Section>
+  ))}
 
   <Section width="default" align="center" class="pt-16 sm:pt-20">
     <ThanksCallout thanks={thanks} />
