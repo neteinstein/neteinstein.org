@@ -46,4 +46,14 @@ export const apps: Catalog = {
     'Banner do Moral Hazard: uma auréola sobre um par de cornos de diabo, o slogan "Dark-humour games about poor choices." e cartas de The Lesser Evil, Deal With the Devil e Epitaph Engraver',
   'Conceptual Phase': 'Em fase concetual',
   'LoopGain Toolbox Apps': 'Apps da LoopGain Toolbox',
+  'View it on GitHub': 'Ver no GitHub',
+  'Work Tools': 'Ferramentas de trabalho',
+  'One command turns a full podcast episode into ready-to-post vertical shorts: Claude picks the moments that stand on their own, the crop follows whoever is talking and the captions light up word by word. Built at ':
+    'Um só comando transforma um episódio inteiro de podcast em shorts verticais prontos a publicar: o Claude escolhe os momentos que se aguentam sozinhos, o enquadramento segue quem está a falar e as legendas acendem palavra a palavra. Feito na ',
+  'AI Podcast Short Editor demo: a two-person podcast frame with a yellow box around the speaker, turned into a vertical short captioned "So who decides what ships?", under the heading "Frames whoever\'s talking. Captions, word by word."':
+    'Demo do AI Podcast Short Editor: um plano de podcast com duas pessoas e uma caixa amarela à volta de quem fala, transformado num short vertical com a legenda "So who decides what ships?", sob o título "Frames whoever\'s talking. Captions, word by word."',
+  'A tiny macOS menu bar app that copies your client meetings into your main calendar, meeting link included, so colleagues stop booking you over your client standup.':
+    'Uma pequena app de barra de menus para macOS que copia as reuniões do cliente para o teu calendário principal, com o link da reunião, para os colegas deixarem de marcar reuniões por cima do teu standup no cliente.',
+  'Calendar Sync demo: a client calendar next to the main calendar, where each meeting is copied as "[Calendar A] meeting name" with a Teams Join button, under the heading "Named by its calendar."':
+    'Demo do Calendar Sync: o calendário de um cliente ao lado do calendário principal, onde cada reunião é copiada como "[Calendar A] nome da reunião" com um botão Join do Teams, sob o título "Named by its calendar."',
 };

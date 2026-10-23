@@ -8,6 +8,7 @@ import SupportCallout from '../components/SupportCallout.astro';
 import AppDock from '../components/apps/AppDock.astro';
 import AppCard from '../components/apps/AppCard.astro';
 import * as appsData from '../data/apps';
+import type { AppStore } from '../data/types';
 import { useI18n } from '../i18n';
 import { getPage } from '../i18n/content';
 import { PERSON_ID, imageUrl, plainText } from '../lib/schema';
@@ -26,7 +27,11 @@ const { Content } = await render(entry);
 const page = entry.data;
 
 // Every app as a SoftwareApplication, so search engines can show them as apps.
-const operatingSystems = { 'google-play': 'Android', web: 'Web' } as const;
+const operatingSystems: Record<AppStore, string | undefined> = {
+  'google-play': 'Android',
+  web: 'Web',
+  github: undefined,
+};
 const schema = [
   {
     '@type': 'ItemList',
@@ -40,7 +45,9 @@ const schema = [
           applicationCategory: group.category,
           ...(app.links.length > 0 && {
             url: app.links[0]!.href,
-            operatingSystem: app.links.map((link) => operatingSystems[link.store]).join(', '),
+            operatingSystem:
+              app.platform ??
+              app.links.flatMap((link) => operatingSystems[link.store] ?? []).join(', '),
             offers: { '@type': 'Offer', price: 0, priceCurrency: 'EUR' },
           }),
           image: await imageUrl(app.image),

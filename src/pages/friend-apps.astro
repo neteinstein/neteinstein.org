@@ -5,6 +5,7 @@ import Section from '../components/Section.astro';
 import AppDock from '../components/apps/AppDock.astro';
 import AppCard from '../components/apps/AppCard.astro';
 import * as friendAppsData from '../data/friend-apps';
+import type { AppStore } from '../data/types';
 import { useI18n } from '../i18n';
 import { getPage } from '../i18n/content';
 import { imageUrl, plainText } from '../lib/schema';
@@ -14,7 +15,11 @@ const { friendApps } = localize(friendAppsData);
 const page = (await getPage('friend-apps', locale)).data;
 
 // Every app as a SoftwareApplication, credited to the friend who made it.
-const operatingSystems = { 'google-play': 'Android', web: 'Web' } as const;
+const operatingSystems: Record<AppStore, string | undefined> = {
+  'google-play': 'Android',
+  web: 'Web',
+  github: undefined,
+};
 const schema = [
   {
     '@type': 'ItemList',
@@ -29,7 +34,9 @@ const schema = [
           description: plainText(app.description),
           ...(app.links.length > 0 && {
             url: app.links[0]!.href,
-            operatingSystem: app.links.map((link) => operatingSystems[link.store]).join(', '),
+            operatingSystem:
+              app.platform ??
+              app.links.flatMap((link) => operatingSystems[link.store] ?? []).join(', '),
             offers: { '@type': 'Offer', price: 0, priceCurrency: 'EUR' },
           }),
           image: await imageUrl(app.image),
