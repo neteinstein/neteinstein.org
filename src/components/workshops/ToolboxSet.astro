@@ -34,7 +34,7 @@ const tones = ['--accent', '--accent-2', '--accent-4', '--accent-3'];
         />
         <h4 class="font-display relative flex items-center gap-3 text-xl font-bold tracking-tight">
           <span
-            class="border-line bg-surface-sunken grid size-10 shrink-0 place-items-center rounded-xl border text-lg transition-transform duration-500 ease-[var(--ease-spring)] group-hover:-rotate-6"
+            class="border-line bg-surface-sunken grid size-10 shrink-0 place-items-center rounded-xl border text-lg transition-transform duration-500 ease-[var(--ease-spring)] group-hover:-rotate-6 group-hover:scale-110"
             aria-hidden="true"
           >
             {group.emoji}
@@ -44,8 +44,14 @@ const tones = ['--accent', '--accent-2', '--accent-4', '--accent-3'];
         <p class="text-muted relative mt-3 leading-relaxed text-pretty">{group.intro}</p>
         <ul class="border-line relative mt-4 divide-line divide-y border-t">
           {group.tools.map((tool) => (
-            <li class="py-2.5">
-              <span class="block leading-snug font-semibold">{tool.name}</span>
+            <li class="group/tool relative py-2.5 transition-[padding-left] duration-300 ease-[var(--ease-out-expo)] hover:pl-3.5">
+              <span
+                class="absolute top-1/2 left-0 h-[1.1em] w-1 -translate-y-1/2 rounded-full bg-[var(--tone)] opacity-0 transition-opacity duration-300 group-hover/tool:opacity-100"
+                aria-hidden="true"
+              />
+              <span class="block leading-snug font-semibold transition-colors duration-300 group-hover/tool:text-[color-mix(in_oklch,var(--tone)_70%,var(--text))]">
+                {tool.name}
+              </span>
               {tool.purpose && (
                 <span class="text-muted mt-0.5 block text-sm leading-relaxed text-pretty">
                   {tool.purpose}

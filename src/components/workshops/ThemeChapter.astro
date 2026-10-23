@@ -31,11 +31,13 @@ const tones = ['--accent', '--accent-2', '--accent-4'];
       ))}
     </div>
 
-    <div class="mt-8" data-reveal>
-      <h3 class="eyebrow">{t('On the table')}</h3>
-      <ul class="mt-3 flex flex-wrap gap-2">
+    <div class="mt-8">
+      <h3 class="eyebrow" data-reveal>
+        {t('On the table')}
+      </h3>
+      <ul class="mt-3 flex flex-wrap gap-2" data-reveal-stagger>
         {theme.topics.map((topic) => (
-          <li class="text-fg rounded-full border border-[color-mix(in_oklch,var(--tone)_30%,transparent)] bg-[color-mix(in_oklch,var(--tone)_10%,transparent)] px-3.5 py-1.5 text-sm font-medium">
+          <li class="text-fg rounded-full border border-[color-mix(in_oklch,var(--tone)_30%,transparent)] bg-[color-mix(in_oklch,var(--tone)_10%,transparent)] px-3.5 py-1.5 text-sm font-medium transition-[translate,border-color,background-color] duration-300 ease-[var(--ease-spring)] hover:-translate-y-0.5 hover:border-[color-mix(in_oklch,var(--tone)_55%,transparent)] hover:bg-[color-mix(in_oklch,var(--tone)_18%,transparent)]">
             {topic}
           </li>
         ))}

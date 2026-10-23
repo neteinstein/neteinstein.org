@@ -8,8 +8,9 @@ import { useI18n } from '../i18n';
 /**
  * The top of every inner page: eyebrow, word-by-word headline, lead and an
  * optional image (the Google Sites original opened most pages with a banner
- * photo and a quote — both have a slot here), or a short muted, looping video
- * in the same floating frame, with pause and sound buttons.
+ * photo and a quote — both have a slot here), a set of photos the frame slowly
+ * cross-fades through, or a short muted, looping video in the same floating
+ * frame, with pause and sound buttons.
  *
  * Extra calls to action go in the `actions` slot; anything else in the
  * default slot renders under the lead.
@@ -23,6 +24,8 @@ interface Props {
   quote?: { text: string; author?: string };
   image?: ImageMetadata;
   imageAlt?: string;
+  /** Takes `image`'s place: the frame cross-fades through these, the first showing with JS off or reduced motion. */
+  images?: { image: ImageMetadata; alt: string }[];
   /** `cover` crops photos to the frame; `contain` suits logos and cut-outs. */
   imageFit?: 'cover' | 'contain';
   /** Takes the image's place. `sources` are URLs, best first; the poster shows until it plays. */
@@ -37,13 +40,15 @@ const {
   quote,
   image,
   imageAlt = '',
+  images,
   imageFit = 'cover',
   video,
 } = Astro.props;
 
 const { t } = useI18n(Astro);
 const poster = video && (await getImage({ src: video.poster, width: 1280, format: 'webp' }));
-const media = image || video;
+const photos = images ?? (image ? [{ image, alt: imageAlt }] : []);
+const media = photos.length > 0 || video;
 ---
 
 <section class="relative isolate overflow-hidden">
@@ -99,26 +104,35 @@ const media = image || video;
       )}
     </div>
 
-    {image && (
+    {photos.length > 0 && (
       <div class="relative mx-auto w-full max-w-xl" data-enter style="--delay: 250">
         <div
           class="absolute -inset-6 -z-10 rounded-[2.5rem] bg-[image:var(--gradient-brand)] opacity-25 blur-3xl"
           aria-hidden="true"
         />
         <div class="animate-float">
-          <div class="glow-ring border-line bg-surface-raised rotate-[1.5deg] rounded-[2rem] border p-2 shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] [--angle:0deg] hover:rotate-0">
-            <Image
-              src={image}
-              alt={imageAlt}
-              widths={[480, 720, 960, 1200]}
-              sizes="(min-width: 1024px) 36rem, 100vw"
-              class:list={[
-                'aspect-[4/3] w-full rounded-[1.6rem]',
-                imageFit === 'cover' ? 'object-cover' : 'object-contain p-4',
-              ]}
-              loading="eager"
-              fetchpriority="high"
-            />
+          <div
+            class="glow-ring border-line bg-surface-raised rotate-[1.5deg] rounded-[2rem] border p-2 shadow-[var(--shadow-lg)] transition-transform duration-700 ease-[var(--ease-spring)] [--angle:0deg] hover:rotate-0"
+            data-hero-photos={photos.length > 1 ? '' : undefined}
+          >
+            <div class="relative aspect-[4/3] w-full overflow-hidden rounded-[1.6rem]">
+              {photos.map((photo, index) => (
+                <Image
+                  src={photo.image}
+                  alt={photo.alt}
+                  widths={[480, 720, 960, 1200]}
+                  sizes="(min-width: 1024px) 36rem, 100vw"
+                  class:list={[
+                    'absolute inset-0 size-full transition-opacity duration-1000 ease-[var(--ease-out-expo)]',
+                    imageFit === 'cover' ? 'object-cover' : 'object-contain p-4',
+                    index > 0 && 'opacity-0',
+                  ]}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={index === 0 ? 'high' : undefined}
+                  aria-hidden={index > 0 ? 'true' : undefined}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -202,6 +216,29 @@ const media = image || video;
 </section>
 
 <script>
+  // The hero's photo set: slowly cross-fade through it. The first photo is
+  // the only one visible with JS off, and the fade stays off under reduced
+  // motion, so this is pure enhancement.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    for (const frame of document.querySelectorAll<HTMLElement>('[data-hero-photos]')) {
+      const photos = [...frame.querySelectorAll('img')];
+      if (photos.length < 2) continue;
+      let current = 0;
+      setInterval(() => {
+        if (document.hidden) return;
+        const next = (current + 1) % photos.length;
+        const leaving = photos[current];
+        const entering = photos[next];
+        if (!leaving || !entering) return;
+        leaving.classList.add('opacity-0');
+        leaving.setAttribute('aria-hidden', 'true');
+        entering.classList.remove('opacity-0');
+        entering.removeAttribute('aria-hidden');
+        current = next;
+      }, 5000);
+    }
+  }
+
   // The hero video's buttons: they only appear with JS, since they need it.
   for (const frame of document.querySelectorAll<HTMLElement>('[data-hero-video]')) {
     const video = frame.querySelector('video');

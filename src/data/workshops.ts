@@ -11,14 +11,40 @@
 import type { ImproverImage, WorkshopTheme, WorkshopToolbox } from './types';
 
 import circle from '../assets/what-i-do/improver/workshop-circle.webp';
+import classroom from '../assets/what-i-do/improver/workshop-classroom.webp';
+import legoBuild from '../assets/what-i-do/improver/workshop-lego-build.webp';
+import stickTower from '../assets/what-i-do/improver/workshop-stick-tower.webp';
+import cardGame from '../assets/what-i-do/improver/workshop-card-game.webp';
 
 /** The Improver page's LoopGain chapter, with the app, the deck and the video. */
 const LOOPGAIN = '/what-i-do/improver#feedback';
 
-export const photo: ImproverImage = {
-  image: circle,
-  alt: 'Participants sitting in a circle in a stone-walled room, laughing, while a standing facilitator talks',
-};
+/**
+ * The hero cycles through these; the first shows with JS off. Same photos
+ * (and alts) as the Improver page's gallery, so Portuguese already has them.
+ */
+export const photos: ImproverImage[] = [
+  {
+    image: circle,
+    alt: 'Participants sitting in a circle in a stone-walled room, laughing, while a standing facilitator talks',
+  },
+  {
+    image: stickTower,
+    alt: 'A group standing around a table, building a structure out of thin sticks together',
+  },
+  {
+    image: classroom,
+    alt: 'A facilitator stands by a screen while participants seated around classroom tables listen, smiling',
+  },
+  {
+    image: legoBuild,
+    alt: 'A participant’s hands beside a small, multicoloured LEGO build on a sheet of notes',
+  },
+  {
+    image: cardGame,
+    alt: 'A facilitator lays cards on a table while a group of young people seated around it watch',
+  },
+];
 
 export const leadership: WorkshopTheme = {
   id: 'leadership',
@@ -74,10 +100,10 @@ export const leadership: WorkshopTheme = {
   ],
 };
 
-export const bestPractices: WorkshopTheme = {
-  id: 'best-practices',
+export const highPerformingTeams: WorkshopTheme = {
+  id: 'high-performing-teams',
   eyebrow: 'What works?',
-  title: 'Best practices',
+  title: 'High-performing teams',
   subtitle: 'Trust is built one coffee break at a time.',
   intro: [
     'What does a team need to work? Everyone in the room has an answer, and they rarely match. We start there, then look at communication, perception and the habits that turn a group of talented people into a team.',
@@ -192,11 +218,11 @@ export const feedback: WorkshopTheme = {
   },
 };
 
-export const themes: WorkshopTheme[] = [leadership, bestPractices, feedback];
+export const themes: WorkshopTheme[] = [leadership, highPerformingTeams, feedback];
 
 /**
  * The games and experiments still being tried out for the day. The Human
- * Knot is left out: it is Untie the Knot, already under Best practices.
+ * Knot is left out: it is Untie the Knot, already under High-performing teams.
  */
 export const toolbox: WorkshopToolbox = {
   id: 'toolbox',

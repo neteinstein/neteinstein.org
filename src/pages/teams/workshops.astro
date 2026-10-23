@@ -17,13 +17,13 @@ import { getPage } from '../../i18n/content';
 
 /**
  * /teams/workshops — the full-day team workshop: the day in a few lines,
- * then its three themes (leadership, best practices, feedback) as numbered
- * chapters, each with a few of its games and what they are for, and the
- * wider toolbox of games and experiments as a fourth. It closes on the
+ * then its three themes (leadership, high-performing teams, feedback) as
+ * numbered chapters, each with a few of its games and what they are for, and
+ * the wider toolbox of games and experiments as a fourth. It closes on the
  * Improver page's workshop form, so a team can ask for one here.
  */
 const { t, locale, localize } = useI18n(Astro);
-const { photo, themes, toolbox } = localize(workshops);
+const { photos, themes, toolbox } = localize(workshops);
 const { workshops: contact } = localize(improver);
 const entry = await getPage('workshops', locale);
 const { Content } = await render(entry);
@@ -45,8 +45,7 @@ const facts = [
     eyebrow={page.eyebrow}
     highlight={page.highlight}
     lead={page.lead}
-    image={photo.image}
-    imageAlt={photo.alt}
+    images={photos}
   >
     <ChapterIndex chapters={[...themes, toolbox]} />
     <ButtonLink slot="actions" href="#book" size="lg" trailing="arrow-down">
@@ -62,12 +61,16 @@ const facts = [
         </Prose>
       </div>
       <ul
-        class="border-line bg-surface-raised grid grid-cols-3 gap-4 self-start rounded-3xl border p-6 shadow-[var(--shadow-sm)] lg:grid-cols-1 lg:gap-6 lg:p-8"
+        class="glow-ring border-line bg-surface-raised grid grid-cols-3 gap-4 self-start rounded-3xl border p-6 shadow-[var(--shadow-sm)] lg:grid-cols-1 lg:gap-6 lg:p-8"
         data-reveal
+        data-spotlight
       >
         {facts.map((fact) => (
           <li class="flex flex-col gap-1">
-            <span class="font-display text-gradient text-4xl font-extrabold tracking-tight sm:text-5xl">
+            <span
+              class="font-display text-gradient text-4xl font-extrabold tracking-tight sm:text-5xl"
+              data-count={fact.value}
+            >
               {fact.value}
             </span>
             <span class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
@@ -107,3 +110,34 @@ const facts = [
     <WorkshopContact cta={contact.cta} note={contact.note} form={contact.form} class="" />
   </Section>
 </BaseLayout>
+
+<script>
+  // The fact numbers count up as they scroll in — only when the site-wide
+  // motion runtime is on, so reduced motion (and JS off) keeps the plain
+  // numbers.
+  if (document.documentElement.classList.contains('motion-ok')) {
+    const counters = document.querySelectorAll<HTMLElement>('[data-count]');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          observer.unobserve(entry.target);
+          const element = entry.target as HTMLElement;
+          const target = Number(element.dataset.count);
+          if (!Number.isFinite(target)) continue;
+          const start = performance.now();
+          const duration = 1200;
+          const tick = (now: number) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 4);
+            element.textContent = String(Math.round(target * eased));
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0.4 },
+    );
+    counters.forEach((counter) => observer.observe(counter));
+  }
+</script>

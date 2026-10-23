@@ -52,9 +52,9 @@ export const workshops: Catalog = {
   'Why the best teams pick trust over raw performance, while most companies only ever measure performance.':
     'Porque é que as melhores equipas preferem a confiança ao desempenho puro, enquanto a maioria das empresas só mede o desempenho.',
 
-  // Best practices
+  // High-performing teams
   'What works?': 'O que funciona?',
-  'Best practices': 'Boas práticas',
+  'High-performing teams': 'Equipas de alto desempenho',
   'Trust is built one coffee break at a time.':
     'A confiança constrói-se uma pausa para café de cada vez.',
   'What does a team need to work? Everyone in the room has an answer, and they rarely match. We start there, then look at communication, perception and the habits that turn a group of talented people into a team.':
