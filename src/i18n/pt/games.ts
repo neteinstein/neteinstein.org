@@ -9,6 +9,10 @@ export const games: Catalog = {
     'Vídeo: uma visita ao guia, dos copos de plástico, balões e música de que a maioria dos jogos precisa até à pesquisa por material e às regras de um jogo.',
   'Illustration: {game}': 'Ilustração: {game}',
   'Jump to the games': 'Saltar para os jogos',
+  'Want to encourage me to keep publishing free content?':
+    'Queres incentivar-me a continuar a publicar conteúdo grátis?',
+  // 'Donate on ' is in apps.ts.
+  ' or ': ' ou ',
   'Before you start': 'Antes de começar',
   'How to use this guide': 'Como usar este guia',
   'Pick a kind of game': 'Escolhe um tipo de jogo',

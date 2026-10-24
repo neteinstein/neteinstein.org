@@ -89,13 +89,13 @@ export const glimpses: Glimpse[] = [
       'A facilitator stands by a screen while participants seated around classroom tables listen, smiling',
   },
   {
-    title: 'Is this real life or just fantasy...',
+    title: 'Approvals Still Pending – Learning From Our AI Mistakes',
     href: '/what-i-do/talks-workshops',
     description: [
-      'Why do I say we treat people like adults at Mindera? And what is all that self-organization about?',
+      'My talk at the Mindera AI Insights Event 2026: what our AI mistakes taught us about building software.',
     ],
     cta: { label: 'Talks', href: '/what-i-do/talks-workshops' },
-    video: { provider: 'youtube', id: 'Szq-Yrad74g' },
+    video: { provider: 'youtube', id: '8tqpijwZ7ao' },
   },
 ];
 

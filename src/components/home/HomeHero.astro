@@ -96,11 +96,12 @@ const CHIPS = [
         ></div>
         <Image
           src={portrait}
-          alt={t('{name} mid-talk, gesturing with both hands', { name: SITE.author })}
-          class="absolute inset-x-0 bottom-[6%] mx-auto w-[92%] [mask-image:linear-gradient(to_bottom,#000_78%,transparent_99%)]"
+          alt={t('{name} on stage mid-talk, holding a slide clicker', { name: SITE.author })}
+          class="absolute inset-x-0 bottom-[6%] mx-auto w-[92%] [mask-image:linear-gradient(to_bottom,#000_88%,transparent_99%)]"
           loading="eager"
           fetchpriority="high"
-          widths={[394]}
+          widths={[460, 920]}
+          sizes="(min-width: 30rem) 27.6rem, 92vw"
         />
         {CHIPS.map((chip) => (
           <span

@@ -40,6 +40,9 @@ requirement**.
   strings as props. Prose translations live in `src/content/pages/pt/*.mdx`
   and are loaded with `getPage()` (`src/i18n/content.ts`). A string with no
   entry falls back to English, so names and external titles simply get none.
+  The fallback is silent, so `npm run check:i18n` (part of `npm test`) fails
+  on any catalogue key whose English source text no longer exists; strings
+  assembled at runtime are allowlisted in `tests/i18n/catalogue.test.ts`.
 - **Styling is token-based.** Semantic CSS variables (`--surface`, `--text`,
   `--accent`, …) are defined in `src/styles/global.css` and exposed to Tailwind
   as `bg-surface`, `text-muted`, `border-line`, `text-accent`, …; dark mode
@@ -53,6 +56,11 @@ requirement**.
   `/og/<page>.jpg`, which `src/integrations/og-cards.ts` draws after the build
   from the page's `og:title` and `og:description`. A good `description` is the
   card; pass `ogImage` only to override it.
+- **SEO metadata stays search-sized.** Keep a page's `description` under 155
+  characters and its title under 45 (the layout adds " | Pedro Vicente"); when a
+  heading is longer, set `metaTitle` in the MDX frontmatter. `BaseLayout` emits
+  one JSON-LD graph (person, site, page, breadcrumb); pages add their own nodes
+  through its `schema` prop, built with the helpers in `src/lib/schema.ts`.
 - **Images** live in `src/assets/<area>/<page>/` and render through
   `astro:assets`. Import them from the crawl with `npm run import:image`.
   The /games drawings for the "More Web Games" games are drawn in code:
@@ -62,13 +70,21 @@ requirement**.
 ## Before pushing
 
 ```bash
-npm run format:check && npm run lint && npm run typecheck && npm run build && npm run check:links && npm run check:base
+npm run format:check && npm run lint && npm run typecheck && npm test && npm run build && npm run check:links && npm run check:base && npm run test:e2e
 ```
 
-CI runs exactly these, in this order. `lighthouse.yml` runs separately on every
-PR and fails when a sampled page drops below the accessibility, SEO or
-best-practice scores in `lighthouserc.json`; external links are only checked
-weekly (`links.yml`), never on PRs.
+CI (`ci.yml`) runs exactly these, split into parallel jobs (static checks,
+unit tests, build + link check, base-path build, browser smoke tests) summed
+up by the required `Validate` job. Unit tests are Vitest (`tests/unit/`,
+plus `tests/i18n/` — the catalogue drift check, also exposed as
+`npm run check:i18n`); the pure logic they cover lives out of the islands in
+`src/lib/` and the `search.ts` module next to each island, so keep it there.
+`npm run test:e2e` is Playwright over the built `dist/` (`tests/e2e/`).
+`lighthouse.yml` runs separately on every PR and fails when a sampled page
+drops below the accessibility, SEO, best-practice or performance scores in
+`lighthouserc.json`; external links are only checked weekly (`links.yml`),
+never on PRs. Dependabot patch/minor PRs auto-merge on green
+(`automerge.yml`).
 
 If this checkout is a git worktree nested inside another checkout of the repo
 (e.g. under `.claude/worktrees/`), Vite may resolve the outer checkout's
@@ -87,7 +103,8 @@ which always wins.
 ## URL changes
 
 Every route under `src/pages/` maps to a URL that exists on the Google Sites
-original, except `/games`, which replaced `/tools` (now a redirect; its twin
+original, except `/friend-apps`, `/teams/icebreakers` and `/teams/workshops` (new, no
+original) and `/games`, which replaced `/tools` (now a redirect; its twin
 `tools/index.html` is written at build time so GitHub Pages serves it next to
 the `tools/` directory; `/tools/loopgain` redirects to `/my-apps#loopgain`). If a route must move, add
 an entry to `redirects` in `astro.config.mjs` in the same change.

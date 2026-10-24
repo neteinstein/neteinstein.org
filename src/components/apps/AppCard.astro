@@ -8,15 +8,16 @@ import { useI18n } from '../../i18n';
 
 /**
  * An app, framed like a phone: a bezel with a notch around the app's banner,
- * then a store-listing block — icon, name, description and store badges. An
- * unreleased app's `status` shows as a pill over the banner.
- * `featured` lays the banner and the listing side by side on wide screens.
+ * then a store-listing block — icon, name, author (when it isn't mine),
+ * description and store badges. An unreleased app's `status` shows as a pill
+ * over the banner. `featured` lays the banner and the listing side by side on wide screens.
  *
  * Hover lifts the device, zooms the banner and tilts the icon. Decoration only.
  *
  * When the app has a `video`, the banner becomes a play button that loads the
  * YouTube player in its place (same click-to-load as `VideoEmbed`; with JS off
- * it links to the video).
+ * it links to the video). A `videoFile` works the same way with a `<video>`
+ * kept in a `<template>` until the click.
  */
 interface Props {
   app: AppListing;
@@ -33,7 +34,9 @@ const bannerSizes = featured
   ? '(min-width: 1024px) 42rem, (min-width: 768px) 90vw, 100vw'
   : '(min-width: 1024px) 36rem, (min-width: 768px) 45vw, 100vw';
 const embedUrl = app.video && `https://www.youtube-nocookie.com/embed/${app.video}?autoplay=1`;
-const watchUrl = app.video && `https://www.youtube.com/watch?v=${app.video}`;
+const watchUrl = app.video
+  ? `https://www.youtube.com/watch?v=${app.video}`
+  : app.videoFile?.[0]?.src;
 ---
 
 <article
@@ -69,6 +72,22 @@ const watchUrl = app.video && `https://www.youtube.com/watch?v=${app.video}`;
         data-embed-src={embedUrl}
         data-embed-title={app.title}
       >
+        {app.videoFile && (
+          <template>
+            <video
+              controls
+              autoplay
+              muted
+              playsinline
+              aria-label={app.title}
+              class="absolute inset-0 size-full bg-black object-contain"
+            >
+              {app.videoFile.map((source) => (
+                <source src={source.src} type={source.type} />
+              ))}
+            </video>
+          </template>
+        )}
         <a
           href={watchUrl}
           target="_blank"
@@ -130,14 +149,31 @@ const watchUrl = app.video && `https://www.youtube.com/watch?v=${app.video}`;
         featured && 'lg:mt-0 lg:size-24',
       ]}
     />
-    <h2
+    <h3
       class:list={[
         'font-display mt-4 leading-tight font-bold tracking-tight text-balance',
         featured ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-2xl',
       ]}
     >
       {app.title}
-    </h2>
+    </h3>
+    {app.author && (
+      <p class="text-accent mt-1 text-sm font-semibold">
+        {t('By')}{' '}
+        {app.authorHref ? (
+          <a
+            href={app.authorHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="decoration-current/40 underline underline-offset-4 transition-colors hover:decoration-current"
+          >
+            {app.author}
+          </a>
+        ) : (
+          app.author
+        )}
+      </p>
+    )}
     <p class:list={['text-muted mt-2.5 leading-relaxed text-pretty', featured && 'lg:text-lg']}>
       <RichText text={app.description} />
     </p>

@@ -7,6 +7,9 @@ export const podcasts: Catalog = {
   'Mindera Yellow Box podcast logo: a yellow hexagonal box inside a thin circle, overlapped by “Podcast” and the show’s name in bold black capitals':
     'Logótipo do podcast Mindera Yellow Box: uma caixa hexagonal amarela dentro de um círculo fino, sobreposta por “Podcast” e pelo nome do programa em maiúsculas pretas a negrito',
   Short: 'Curto',
+  'Christmas Special': 'Especial de Natal',
+  'Welcome to Season 2': 'Bem-vindos à 2ª Temporada',
+  'With Marco Horácio': 'Com Marco Horácio',
   'Special Episode': 'Episódio Especial',
   ' meets ': ' encontra ',
   ", if Live Aid were done by amateurs and Hot Ones with fake chicken, and both happened at the same time in someone's living room.":

@@ -1,0 +1,38 @@
+---
+import type { WorkshopPath } from '../../data/types';
+
+/**
+ * Numbered steps that build on each other, two by two from `sm` up. The last
+ * one is the outcome, so it gets the brand gradient.
+ */
+interface Props {
+  path: WorkshopPath;
+}
+
+const { path } = Astro.props;
+const last = path.steps.length - 1;
+---
+
+<figure class="mt-10" data-reveal>
+  <figcaption class="eyebrow">{path.label}</figcaption>
+  <ol class="mt-4 grid gap-3 sm:grid-cols-2">
+    {path.steps.map((step, index) => (
+      <li
+        class:list={[
+          'border-line bg-surface-raised flex items-center gap-4 rounded-2xl border p-4 shadow-[var(--shadow-sm)]',
+          index === last && 'glow-ring',
+        ]}
+      >
+        <span
+          class="text-on-accent grid size-8 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)] font-mono text-xs font-bold"
+          aria-hidden="true"
+        >
+          {index + 1}
+        </span>
+        <span class:list={['leading-snug font-semibold', index === last && 'text-gradient']}>
+          {step}
+        </span>
+      </li>
+    ))}
+  </ol>
+</figure>

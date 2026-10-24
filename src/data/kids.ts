@@ -27,12 +27,12 @@ export const kidsHero: KidsPhoto = {
 export const kidsColumns: KidsColumn[] = [
   { key: 'where', label: 'Where?' },
   { key: 'name', label: 'Name' },
-  { key: 'setting', label: 'Indoor/Outdoor' },
   { key: 'cost', label: 'Estimated cost per child', footnote: '*' },
   { key: 'ages', label: 'Ages' },
+  { key: 'notes', label: 'Notes' },
+  { key: 'setting', label: 'Indoor/Outdoor' },
   { key: 'children', label: 'Min/Max children' },
   { key: 'duration', label: 'Duration' },
-  { key: 'notes', label: 'Notes' },
 ];
 
 export const kidsPlaces: KidsPlace[] = [
@@ -363,7 +363,10 @@ export const kidsPlaces: KidsPlace[] = [
   },
   {
     where: { label: 'Porto', href: maps('Rua do Campo Alegre 1191, 4150-181 Porto') },
-    name: { label: 'Museu da Biodiversidade', href: 'https://mhnc.up.pt/aniversarios-tematicos/' },
+    name: {
+      label: 'Museu da Biodiversidade',
+      href: 'https://mhnc.up.pt/pt/servico-educativo/aniversarios-no-mhnc-up/',
+    },
     setting: 'Indoor',
     cost: '15€',
     ages: '6-12',

@@ -6,6 +6,7 @@ import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
 import ButtonLink from '../components/ButtonLink.astro';
 import Icon from '../components/Icon.astro';
+import RichText from '../components/RichText.astro';
 import GameFilter from '../components/games/GameFilter.tsx';
 import CategoryTiles from '../components/games/CategoryTiles.astro';
 import PdfCount from '../components/games/PdfCount.astro';
@@ -21,7 +22,7 @@ const PATH = '/games';
 const SUMMER_CAMP_ID = 'summer-camp-games';
 
 const { t, locale, localize } = useI18n(Astro);
-const { gameCategories, gamesHero, summerCampGames } = localize(games);
+const { gameCategories, gamesDonate, gamesHero, summerCampGames } = localize(games);
 const entry = await getPage('games', locale);
 const { Content: HowToUse } = await render(entry);
 const summerCamp = (await getPage(summerCampGames.page, locale)).data;
@@ -40,6 +41,15 @@ const brandAvatar = await getImage({ src: avatar, width: 256, format: 'png' });
     lead={entry.data.lead}
     video={{ sources: gamesHero.sources, poster: gamesHero.poster, label: gamesHero.label }}
   >
+    <p
+      class="text-muted mt-3 max-w-2xl text-lg text-pretty sm:text-xl"
+      data-enter
+      style="--delay: 420"
+    >
+      {gamesDonate.question}
+      <br />
+      <RichText text={gamesDonate.text} />
+    </p>
     <ButtonLink slot="actions" href="#guide" size="lg" trailing="arrow-down">
       {t('Jump to the games')}
     </ButtonLink>
@@ -79,8 +89,6 @@ const brandAvatar = await getImage({ src: avatar, width: 256, format: 'png' });
         category: t('Category'),
         setting: t('Indoor/Outdoor'),
         all: t('All'),
-        indoor: t('Indoors'),
-        outdoor: t('Outdoors'),
         count: t('{shown} of {total} games'),
         empty: t('Nothing matches those filters.'),
         clear: t('Clear the search'),
@@ -112,6 +120,10 @@ const brandAvatar = await getImage({ src: avatar, width: 256, format: 'png' });
         collapse: t('Collapse'),
         expand: t('Expand'),
       }}
+      settings={[
+        { value: 'indoor', label: t('Indoors') },
+        { value: 'outdoor', label: t('Outdoors') },
+      ]}
       print={{
         locale,
         brand: {

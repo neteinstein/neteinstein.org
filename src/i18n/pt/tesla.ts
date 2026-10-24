@@ -4,8 +4,8 @@ import type { Catalog } from '..';
 export const tesla: Catalog = {
   'Tesla Utils': 'Utilitários Tesla',
   Utils: 'Utilitários',
-  'Useful websites to open in a Tesla browser — entertainment, routing & charging, utilities and fun — gathered on one page, so you only need to bookmark this one.':
-    'Sites úteis para abrir no browser de um Tesla — entretenimento, rotas & carregamento, utilitários e diversão — reunidos numa página, para só precisares de guardar esta nos favoritos.',
+  'Useful websites to open in a Tesla browser — routing & charging, fun, entertainment and utilities — on one page, so you only need to bookmark this one.':
+    'Sites úteis para abrir no browser de um Tesla — rotas & carregamento, diversão, entretenimento e utilitários — numa só página, para guardares só esta.',
   'A little page I created to keep track of useful websites to open in a Tesla browser.':
     'Uma pequena página que criei para guardar sites úteis para abrir no browser de um Tesla.',
   'Instead of typing in and bookmarking each of these URLs... just bookmark this one! 😉':
@@ -33,8 +33,6 @@ export const tesla: Catalog = {
     'Página “MF’s Web App” com os ícones redondos Calculator, Stickies e View All Apps',
   'Dark launcher with icons for Reminders, Notes, Mail, Calculator, Microsoft 365, Gmail, Google Drive and Keep':
     'Lançador escuro com ícones de Reminders, Notes, Mail, Calculator, Microsoft 365, Gmail, Google Drive e Keep',
-  'White tiles with the iPlayer, ITV, Netflix, Plex, Apple TV+, UKTV Play, Disney+ and Virgin TV logos':
-    'Mosaicos brancos com os logótipos de iPlayer, ITV, Netflix, Plex, Apple TV+, UKTV Play, Disney+ e Virgin TV',
   'Routing & Charging': 'Rotas & Carregamento',
   'A Better Routeplanner’s trip panel over a dark street map':
     'O painel de viagem do A Better Routeplanner sobre um mapa de ruas escuro',
@@ -54,12 +52,10 @@ export const tesla: Catalog = {
   'Myinstants (for horn sounds)': 'Myinstants (para sons de buzina)',
   'Myinstants trending page: a grid of big, glossy, coloured sound buttons':
     'Página de tendências do Myinstants: uma grelha de grandes botões de som coloridos e brilhantes',
-  'Ghost Engine (engine sounds for your EV)': 'Ghost Engine (sons de motor para o teu elétrico)',
-  'Ghost Engine start screen: a white ghost inside a dial, “Add sound to your EV” and a glowing red Tap to Ignite button':
-    'Ecrã inicial do Ghost Engine: um fantasma branco dentro de um mostrador, “Add sound to your EV” e um botão vermelho iluminado Tap to Ignite',
-  'JOWUA free Tesla owner tools': 'Ferramentas gratuitas da JOWUA para donos de Tesla',
-  'JOWUA “Free Tesla Owners Tools” page: battery health, VIN decoding, market prices and adapters, over faint circuit and battery icons':
-    'Página “Free Tesla Owners Tools” da JOWUA: saúde da bateria, descodificação do VIN, preços de mercado e adaptadores, sobre ícones ténues de circuitos e baterias',
+  'Ghost Engine (engine sounds that follow your speed)':
+    'Ghost Engine (sons de motor que acompanham a velocidade)',
+  'Ghost Engine start screen: a white ghost inside a rev gauge, “Add sound to your EV” and a red “Tap to ignite” button':
+    'Ecrã inicial do Ghost Engine: um fantasma branco dentro de um conta-rotações, “Add sound to your EV” e um botão vermelho “Tap to ignite”',
   'EV·ENGINE (GPS-driven engine sounds)': 'EV·ENGINE (sons de motor guiados por GPS)',
   'EV·ENGINE start screen: a glowing orange Ignition button above three steps for using it in the car’s browser':
     'Ecrã inicial do EV·ENGINE: um botão laranja iluminado Ignition por cima de três passos para o usar no browser do carro',
@@ -69,6 +65,9 @@ export const tesla: Catalog = {
   'teslalocksound.com (more lock sounds)': 'teslalocksound.com (mais sons de trancar)',
   'Tesla Lock Sound home page: a featured chime in huge white letters over a waveform, with Get this sound and Browse the library buttons':
     'Página inicial do Tesla Lock Sound: um som em destaque em grandes letras brancas sobre uma onda sonora, com os botões Get this sound e Browse the library',
+  'JOWUA free Tesla owner tools': 'Ferramentas gratuitas da JOWUA para donos de Tesla',
+  'JOWUA “Free Tesla Owners Tools” page: battery health, VIN decoding, market prices and adapters, over faint circuit and battery icons':
+    'Página “Free Tesla Owners Tools” da JOWUA: saúde da bateria, descodificação do VIN, preços de mercado e adaptadores, sobre ícones ténues de circuitos e baterias',
   Others: 'Outros',
   'The awesome-tesla GitHub repository README: “A curated list of awesome resources for Tesla vehicles”':
     'O README do repositório awesome-tesla no GitHub: “A curated list of awesome resources for Tesla vehicles”',

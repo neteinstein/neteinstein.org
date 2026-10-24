@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
+import ButtonLink from '../../components/ButtonLink.astro';
 import RichText from '../../components/RichText.astro';
 import Icon from '../../components/Icon.astro';
 import PhotoRibbon from '../../components/articles/PhotoRibbon.astro';
@@ -14,6 +15,7 @@ import ReadingGroupBlock from '../../components/articles/ReadingGroupBlock.astro
 import * as articles from '../../data/articles';
 import { useI18n } from '../../i18n';
 import { getPage } from '../../i18n/content';
+import { PERSON_ID, imageUrl, plainText } from '../../lib/schema';
 import pageCloseup from '../../assets/what-i-do/articles/book-page-closeup.webp';
 
 const { t, locale, localize } = useI18n(Astro);
@@ -25,6 +27,8 @@ const {
   highlights,
   mustRead,
   outlets,
+  readLateDoc,
+  readLateIntro,
   readingGroups,
   shorterIntro,
   shorterOrigin,
@@ -49,6 +53,33 @@ const readingLinks = readingGroups
   .flatMap((group) => group.topics.flatMap((topic) => topic.entries.flat()))
   .filter((part) => typeof part !== 'string').length;
 
+// The highlighted articles and the books, for search engines.
+const author = { '@id': PERSON_ID };
+const schema = [
+  ...highlights.flatMap((group) =>
+    group.years.flatMap((year) =>
+      year.articles.map((article) => ({
+        '@type': 'Article',
+        headline: article.label,
+        url: article.href,
+        ...(/^\d{4}$/.test(year.year) && { datePublished: year.year }),
+        author,
+      })),
+    ),
+  ),
+  ...(await Promise.all(
+    books.map(async (book, index) => ({
+      '@type': 'Book',
+      name: book.title,
+      description: plainText(book.description),
+      ...(book.href && { url: book.href }),
+      image: await imageUrl(book.image, 600),
+      // Same order as `bookBadges`: his own book, then one he contributed to.
+      [index === 0 ? 'author' : 'contributor']: author,
+    })),
+  )),
+];
+
 const stats = [
   { value: articleCount, label: t('Highlighted articles'), href: '#articles' },
   { value: books.length, label: headings.books, href: '#books' },
@@ -57,7 +88,7 @@ const stats = [
 ];
 ---
 
-<BaseLayout title={headings.articles} description={entry.data.description}>
+<BaseLayout title={headings.articles} description={entry.data.description} schema={schema}>
   <PageHero
     title={entry.data.title}
     eyebrow={entry.data.eyebrow}
@@ -149,5 +180,19 @@ const stats = [
     <p class="text-muted border-line mt-10 border-t pt-6 text-sm" data-reveal>
       <RichText text={shorterOrigin} />
     </p>
+  </Section>
+
+  <Section
+    id="read-late"
+    eyebrow={t('Queue')}
+    title={headings.readLate}
+    intro={readLateIntro}
+    width="narrow"
+  >
+    <div data-reveal>
+      <ButtonLink href={readLateDoc.href} variant="secondary" icon="book">
+        {readLateDoc.label}
+      </ButtonLink>
+    </div>
   </Section>
 </BaseLayout>

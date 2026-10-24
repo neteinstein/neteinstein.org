@@ -1,0 +1,192 @@
+---
+import { render } from 'astro:content';
+import { getImage } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import ButtonLink from '../../components/ButtonLink.astro';
+import Card from '../../components/Card.astro';
+import CardGrid from '../../components/CardGrid.astro';
+import Icon from '../../components/Icon.astro';
+import GameFilter from '../../components/games/GameFilter.tsx';
+import CategoryTiles from '../../components/games/CategoryTiles.astro';
+import { resolveGuide } from '../../components/games/guide';
+import { SITE, navPages } from '../../config/site';
+import * as icebreakers from '../../data/icebreakers';
+import { localizePath, useI18n } from '../../i18n';
+import avatar from '../../assets/brand/avatar.webp';
+import { getPage } from '../../i18n/content';
+
+/**
+ * /teams/icebreakers — the "Team icebreakers" article as a guide in the
+ * /games pattern: jump tiles, then the searchable, filterable, printable
+ * cards (`GameFilter`), then online games to play together.
+ */
+const PATH = '/teams/icebreakers';
+const GAMES_ID = 'play-some-games';
+
+const { t, locale, localize } = useI18n(Astro);
+const { article, icebreakerCategories, onlineGames } = localize(icebreakers);
+const entry = await getPage('icebreakers', locale);
+const { Content: Intro } = await render(entry);
+
+const navLabel = navPages().find((page) => page.href === PATH)?.label;
+const pageName = navLabel ? t(navLabel) : entry.data.title;
+const guide = await resolveGuide(icebreakerCategories, (game) =>
+  t('Illustration: {game}', { game }),
+);
+const brandAvatar = await getImage({ src: avatar, width: 256, format: 'png' });
+const hostOf = (href: string) => new URL(href).hostname.replace(/^(www|try)\./, '');
+---
+
+<BaseLayout title={pageName} description={entry.data.description}>
+  <PageHero
+    title={entry.data.title}
+    eyebrow={entry.data.eyebrow}
+    highlight={entry.data.highlight}
+    lead={entry.data.lead}
+  >
+    <ButtonLink slot="actions" href="#guide" size="lg" trailing="arrow-down">
+      {t('Jump to the icebreakers')}
+    </ButtonLink>
+    <ButtonLink slot="actions" href={article.href} size="lg" variant="secondary">
+      {t('Read the original article')}
+    </ButtonLink>
+  </PageHero>
+
+  <Section id="how-to-use" eyebrow={t('Before you start')} title={t('How to use this guide')}>
+    <div
+      class="border-line bg-surface-raised relative overflow-hidden rounded-3xl border p-6 shadow-[var(--shadow-sm)] sm:p-8"
+      data-reveal
+    >
+      <span
+        class="text-accent-3 mb-4 grid size-11 place-items-center rounded-2xl bg-[color-mix(in_oklch,var(--accent-3)_16%,transparent)]"
+        aria-hidden="true"
+      >
+        <Icon name="users" class="size-5" />
+      </span>
+      <div class="text-muted flex max-w-3xl flex-col gap-4 text-lg leading-relaxed text-pretty [&_p]:m-0 [&_strong]:text-[var(--text)]">
+        <Intro />
+      </div>
+    </div>
+  </Section>
+
+  <Section id="chapters" eyebrow={t('Jump to')} title={t('Pick a kind of icebreaker')}>
+    <CategoryTiles
+      categories={icebreakerCategories}
+      extra={{ label: t('Play some games'), href: `#${GAMES_ID}` }}
+      count={{ one: '{count} icebreaker', many: '{count} icebreakers' }}
+    />
+  </Section>
+
+  <Section id="guide">
+    <GameFilter
+      client:visible
+      categories={guide}
+      settings={[
+        { value: 'remote', label: t('Remote') },
+        { value: 'in-person', label: t('In person') },
+      ]}
+      labels={{
+        search: t('Search the icebreakers'),
+        placeholder: t('Search an icebreaker, a tool, a duration…'),
+        category: t('Category'),
+        setting: t('Remote/In person'),
+        all: t('All'),
+        count: t('{shown} of {total} icebreakers'),
+        empty: t('Nothing matches those filters.'),
+        clear: t('Clear the search'),
+        game: t('{count} icebreaker'),
+        games: t('{count} icebreakers'),
+        players: t('Group'),
+        age: t('Age'),
+        duration: t('Duration'),
+        where: t('Where'),
+        howToPlay: t('How it works'),
+        materials: t('What you need'),
+        setup: t('Before the meeting'),
+        goal: t('When to use it'),
+        rules: t('Step by step'),
+        tips: t('Tips'),
+        sources: t('Try it online:'),
+        originalName: t('Original title:'),
+        video: t('The original video'),
+        playVideo: t('Play video:'),
+        selectForPrint: t('Select for print'),
+        backToView: t('Back to view'),
+        savePdf: t('Save PDF'),
+        saving: t('Preparing…'),
+        selectHint: t('Tick the icebreakers to print'),
+        selected: t('{count} selected'),
+        select: t('Select'),
+        selectSection: t('Select all'),
+        unselectSection: t('Unselect all'),
+        collapse: t('Collapse'),
+        expand: t('Expand'),
+      }}
+      print={{
+        locale,
+        event: 'icebreakers-pdf',
+        brand: {
+          name: SITE.author,
+          host: new URL(SITE.url).host.replace(/^www\./, ''),
+          url: new URL(localizePath(PATH, locale), SITE.url).href,
+          avatar: brandAvatar.src,
+        },
+        labels: {
+          title: entry.data.title,
+          lead: t('A printable selection of {count} icebreakers'),
+          reference: t('Reference'),
+          online: t('Online version'),
+          printed: t('Printed on {date}'),
+          contents: t('Icebreakers in this booklet'),
+          page: t('Page'),
+          materialsNeeded: t('What to bring'),
+          noMaterials: t('No materials needed'),
+          players: t('Group'),
+          age: t('Age'),
+          duration: t('Duration'),
+          where: t('Where'),
+          materials: t('What you need'),
+          setup: t('Before the meeting'),
+          goal: t('When to use it'),
+          rules: t('Step by step'),
+          tips: t('Tips'),
+          scoreTable: t('Score table'),
+          scoreLead: t('Write a team or a player on each line, then their points under each game.'),
+          name: t('Team / player'),
+          total: t('Total'),
+          file: t('team-icebreakers'),
+        },
+      }}
+    />
+  </Section>
+
+  <Section
+    id={GAMES_ID}
+    eyebrow={t('And also')}
+    title={t('Play some games')}
+    intro={t('Ready-made games to play together online, for when a team has a little longer.')}
+  >
+    <CardGrid>
+      {onlineGames.map((game) => (
+        <Card
+          title={game.label}
+          href={game.href}
+          eyebrow={hostOf(game.href)}
+          description={game.description}
+          icon="zap"
+          headingLevel={3}
+        />
+      ))}
+      <Card
+        title={t('Group Games')}
+        href="/games"
+        eyebrow={new URL(SITE.url).host.replace(/^www\./, '')}
+        description={t('365 more group games, for parties, camps and team building.')}
+        icon="sparkles"
+        headingLevel={3}
+      />
+    </CardGrid>
+  </Section>
+</BaseLayout>

@@ -27,8 +27,8 @@ export const home: Catalog = {
     "Um workshop de equipa & feedback para a A'Corda, uma associação sem fins lucrativos de campos de férias.",
   Coach: 'Coach',
   Talks: 'Palestras',
-  'Why do I say we treat people like adults at Mindera? And what is all that self-organization about?':
-    'Porque digo que na Mindera tratamos as pessoas como adultos? E o que é isso da auto-organização?',
+  'My talk at the Mindera AI Insights Event 2026: what our AI mistakes taught us about building software.':
+    'A minha palestra no Mindera AI Insights Event 2026: o que os nossos erros com IA nos ensinaram sobre construir software.',
   'Porto Guide': 'Guia do Porto',
   'A quick guide on places to visit, eat and have fun!':
     'Um guia rápido de sítios para visitar, comer e divertir-se!',

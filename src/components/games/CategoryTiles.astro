@@ -17,9 +17,11 @@ import { useI18n } from '../../i18n';
 interface Props {
   categories: GameCategory[];
   extra: { label: string; href: string; image?: ImageMetadata };
+  /** Catalogue keys for a tile's count, with a `{count}` placeholder. */
+  count?: { one: string; many: string };
 }
 
-const { categories, extra } = Astro.props;
+const { categories, extra, count = { one: '{count} game', many: '{count} games' } } = Astro.props;
 const { t } = useI18n(Astro);
 
 /**
@@ -54,7 +56,7 @@ const link =
         <p class="text-muted font-mono text-xs font-semibold tracking-[0.14em] uppercase">
           <span class="text-gradient">{String(index + 1).padStart(2, '0')}</span>
           <span aria-hidden="true"> · </span>
-          {t(category.games.length === 1 ? '{count} game' : '{count} games', {
+          {t(category.games.length === 1 ? count.one : count.many, {
             count: category.games.length,
           })}
         </p>

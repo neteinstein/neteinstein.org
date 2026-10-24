@@ -6,9 +6,11 @@
 import type { Catalog } from '..';
 import { apps } from './apps';
 import { articles } from './articles';
+import { friendApps } from './friend-apps';
 import { games } from './games';
 import { hobbies } from './hobbies';
 import { home } from './home';
+import { icebreakers } from './icebreakers';
 import { improver } from './improver';
 import { podcasts } from './podcasts';
 import { porto } from './porto';
@@ -18,6 +20,7 @@ import { tech } from './tech';
 import { tesla } from './tesla';
 import { tools } from './tools';
 import { ui } from './ui';
+import { workshops } from './workshops';
 
 export const pt: Catalog = {
   ...ui,
@@ -26,8 +29,11 @@ export const pt: Catalog = {
   ...talks,
   ...podcasts,
   ...improver,
+  ...icebreakers,
+  ...workshops,
   ...articles,
   ...apps,
+  ...friendApps,
   ...tools,
   ...games,
   ...hobbies,

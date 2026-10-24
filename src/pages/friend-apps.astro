@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import AppDock from '../components/apps/AppDock.astro';
+import AppCard from '../components/apps/AppCard.astro';
+import * as friendAppsData from '../data/friend-apps';
+import type { AppStore } from '../data/types';
+import { useI18n } from '../i18n';
+import { getPage } from '../i18n/content';
+import { imageUrl, plainText } from '../lib/schema';
+
+const { localize, locale } = useI18n(Astro);
+const { friendApps } = localize(friendAppsData);
+const page = (await getPage('friend-apps', locale)).data;
+
+// Every app as a SoftwareApplication, credited to the friend who made it.
+const operatingSystems: Record<AppStore, string | undefined> = {
+  'google-play': 'Android',
+  web: 'Web',
+  github: undefined,
+};
+const schema = [
+  {
+    '@type': 'ItemList',
+    name: page.title,
+    itemListElement: await Promise.all(
+      friendApps.map(async (app, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'SoftwareApplication',
+          name: app.title,
+          description: plainText(app.description),
+          ...(app.links.length > 0 && {
+            url: app.links[0]!.href,
+            operatingSystem:
+              app.platform ??
+              app.links.flatMap((link) => operatingSystems[link.store] ?? []).join(', '),
+            offers: { '@type': 'Offer', price: 0, priceCurrency: 'EUR' },
+          }),
+          image: await imageUrl(app.image),
+          ...(app.author && {
+            author: {
+              '@type': 'Person',
+              name: app.author,
+              ...(app.authorHref && { url: app.authorHref }),
+            },
+          }),
+        },
+      })),
+    ),
+  },
+];
+---
+
+<BaseLayout title={page.title} description={page.description} schema={schema}>
+  <PageHero title={page.title} eyebrow={page.eyebrow} highlight={page.highlight} lead={page.lead}>
+    <AppDock apps={friendApps} delay={420} class="mt-10" />
+  </PageHero>
+
+  <Section id="apps">
+    <div class="grid gap-6 md:grid-cols-2 lg:gap-8" data-reveal-stagger>
+      {friendApps.map((app, index) => (
+        <AppCard app={app} index={index} />
+      ))}
+    </div>
+  </Section>
+</BaseLayout>

@@ -19,7 +19,6 @@ import technologyBloggers from '../assets/tesla/technologybloggers.webp';
 import teslaWebApps from '../assets/tesla/teslawebapps.webp';
 import motherFrunker from '../assets/tesla/motherfrunker.webp';
 import inCarWeb from '../assets/tesla/incarweb.webp';
-import teslaTv from '../assets/tesla/teslatv.webp';
 import aBetterRoutePlanner from '../assets/tesla/abetterrouteplanner.webp';
 import teslaNav from '../assets/tesla/teslanav.webp';
 import comparaErvilhas from '../assets/tesla/compara-ervilhas.webp';
@@ -42,8 +41,8 @@ export const page: TeslaPage = {
   heading: 'Tesla Utils',
   highlight: ['Utils'],
   description:
-    'Useful websites to open in a Tesla browser — entertainment, routing & charging, utilities and fun — ' +
-    'gathered on one page, so you only need to bookmark this one.',
+    'Useful websites to open in a Tesla browser — routing & charging, fun, entertainment and utilities — ' +
+    'on one page, so you only need to bookmark this one.',
 };
 
 export const intro: TeslaIntro = {
@@ -54,6 +53,77 @@ export const intro: TeslaIntro = {
 };
 
 export const categories: TeslaCategory[] = [
+  {
+    id: 'routing-charging',
+    title: 'Routing & Charging',
+    sites: [
+      {
+        label: 'A Better Route Planner',
+        href: 'https://abetterrouteplanner.com/',
+        image: aBetterRoutePlanner,
+        imageAlt: 'A Better Routeplanner’s trip panel over a dark street map',
+      },
+      {
+        label: 'TeslaNav',
+        href: 'https://teslanav.com/',
+        image: teslaNav,
+        imageAlt: 'TeslaNav’s dark street map with driver-reported alerts pinned around the car',
+      },
+      {
+        label: '(PT) Compara Ervilhas',
+        href: 'https://comparaervilhas.pt/',
+        image: comparaErvilhas,
+        imageAlt: 'Light map of Portugal and western Spain',
+      },
+      {
+        label: '(PT) Mobi.e',
+        href: 'https://www.mobie.pt/utilizar-a-rede',
+        image: mobie,
+        imageAlt:
+          'Mobi.E page on how to charge an electric vehicle, with a charging cable plugged into a car',
+      },
+    ],
+  },
+  {
+    id: 'fun',
+    title: 'Fun',
+    sites: [
+      {
+        label: 'EV·ENGINE (GPS-driven engine sounds)',
+        href: 'https://ev-engine.com/',
+        image: evEngine,
+        imageAlt:
+          'EV·ENGINE start screen: a glowing orange Ignition button above three steps for using it in the car’s browser',
+      },
+      {
+        label: 'Ghost Engine (engine sounds that follow your speed)',
+        href: 'https://ghost-engine.frederikroemming.com/',
+        image: ghostEngine,
+        imageAlt:
+          'Ghost Engine start screen: a white ghost inside a rev gauge, “Add sound to your EV” and a red “Tap to ignite” button',
+      },
+      {
+        label: 'Myinstants (for horn sounds)',
+        href: 'https://www.myinstants.com/en/trending/us/',
+        image: myInstants,
+        imageAlt: 'Myinstants trending page: a grid of big, glossy, coloured sound buttons',
+      },
+      {
+        label: 'Not a Tesla App (custom lock sounds)',
+        href: 'https://www.notateslaapp.com/tesla-custom-lock-sounds/',
+        image: teslaLockSounds,
+        imageAlt:
+          'Not a Tesla App lock sounds page: a search box over featured collections of chimes to play and download',
+      },
+      {
+        label: 'teslalocksound.com (more lock sounds)',
+        href: 'https://teslalocksound.com/',
+        image: teslaLockSound,
+        imageAlt:
+          'Tesla Lock Sound home page: a featured chime in huge white letters over a waveform, with Get this sound and Browse the library buttons',
+      },
+    ],
+  },
   {
     id: 'entertainment',
     title: 'Entertainment',
@@ -133,44 +203,6 @@ export const categories: TeslaCategory[] = [
         imageAlt:
           'Dark launcher with icons for Reminders, Notes, Mail, Calculator, Microsoft 365, Gmail, Google Drive and Keep',
       },
-      {
-        label: 'app.teslatv.uk',
-        href: 'https://app.teslatv.uk/',
-        image: teslaTv,
-        imageAlt:
-          'White tiles with the iPlayer, ITV, Netflix, Plex, Apple TV+, UKTV Play, Disney+ and Virgin TV logos',
-      },
-    ],
-  },
-  {
-    id: 'routing-charging',
-    title: 'Routing & Charging',
-    sites: [
-      {
-        label: 'A Better Route Planner',
-        href: 'https://abetterrouteplanner.com/',
-        image: aBetterRoutePlanner,
-        imageAlt: 'A Better Routeplanner’s trip panel over a dark street map',
-      },
-      {
-        label: 'TeslaNav',
-        href: 'https://teslanav.com/',
-        image: teslaNav,
-        imageAlt: 'TeslaNav’s dark street map with driver-reported alerts pinned around the car',
-      },
-      {
-        label: '(PT) Compara Ervilhas',
-        href: 'https://comparaervilhas.pt/',
-        image: comparaErvilhas,
-        imageAlt: 'Light map of Portugal and western Spain',
-      },
-      {
-        label: '(PT) Mobi.e',
-        href: 'https://www.mobie.pt/utilizar-a-rede',
-        image: mobie,
-        imageAlt:
-          'Mobi.E page on how to charge an electric vehicle, with a charging cable plugged into a car',
-      },
     ],
   },
   {
@@ -203,46 +235,6 @@ export const categories: TeslaCategory[] = [
         image: jowuaTools,
         imageAlt:
           'JOWUA “Free Tesla Owners Tools” page: battery health, VIN decoding, market prices and adapters, over faint circuit and battery icons',
-      },
-    ],
-  },
-  {
-    id: 'fun',
-    title: 'Fun',
-    sites: [
-      {
-        label: 'EV·ENGINE (GPS-driven engine sounds)',
-        href: 'https://ev-engine.com/',
-        image: evEngine,
-        imageAlt:
-          'EV·ENGINE start screen: a glowing orange Ignition button above three steps for using it in the car’s browser',
-      },
-      {
-        label: 'Ghost Engine (engine sounds for your EV)',
-        href: 'https://ghost-engine.frederikroemming.com/',
-        image: ghostEngine,
-        imageAlt:
-          'Ghost Engine start screen: a white ghost inside a dial, “Add sound to your EV” and a glowing red Tap to Ignite button',
-      },
-      {
-        label: 'Myinstants (for horn sounds)',
-        href: 'https://www.myinstants.com/en/trending/us/',
-        image: myInstants,
-        imageAlt: 'Myinstants trending page: a grid of big, glossy, coloured sound buttons',
-      },
-      {
-        label: 'Not a Tesla App (custom lock sounds)',
-        href: 'https://www.notateslaapp.com/tesla-custom-lock-sounds/',
-        image: teslaLockSounds,
-        imageAlt:
-          'Not a Tesla App lock sounds page: a search box over featured collections of chimes to play and download',
-      },
-      {
-        label: 'teslalocksound.com (more lock sounds)',
-        href: 'https://teslalocksound.com/',
-        image: teslaLockSound,
-        imageAlt:
-          'Tesla Lock Sound home page: a featured chime in huge white letters over a waveform, with Get this sound and Browse the library buttons',
       },
     ],
   },

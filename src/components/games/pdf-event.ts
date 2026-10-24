@@ -12,11 +12,12 @@ interface GoatCounter {
 }
 
 /**
- * Records one download. GoatCounter's script only loads on the production
+ * Records one download, under the games event unless the page names its own. GoatCounter's script only loads on the production
  * host (see `BaseLayout`), so elsewhere this just updates the page.
  */
-export function countPdf(games: number) {
+export function countPdf(games: number, event = PDF_EVENT) {
   const goatcounter = (window as { goatcounter?: GoatCounter }).goatcounter;
-  goatcounter?.count?.({ path: PDF_EVENT, title: `Games PDF (${games})`, event: true });
+  const title = event === PDF_EVENT ? 'Games PDF' : `PDF ${event}`;
+  goatcounter?.count?.({ path: event, title: `${title} (${games})`, event: true });
   document.dispatchEvent(new CustomEvent(PDF_SAVED));
 }

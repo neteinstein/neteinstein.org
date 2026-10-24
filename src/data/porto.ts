@@ -1152,9 +1152,7 @@ export const portoGuide: PlaceGroup[] = [
           {
             id: 'porto-tram',
             title: 'Tram tour',
-            venues: [
-              { name: 'Porto Tram', href: 'https://www.stcp.pt/pt/turismo/porto-tram-city-tour/' },
-            ],
+            venues: [{ name: 'Porto Tram', href: 'https://stcp.pt/pt/porto-tram-city-tour' }],
             photos: [{ image: portoTram, alt: 'A vintage wooden tram on a cobbled street' }],
           },
           {
@@ -1549,7 +1547,7 @@ export const portoGuide: PlaceGroup[] = [
             venues: [
               {
                 name: 'BBdouro',
-                href: 'https://www.bbdouro.com/servicos-empresariais/team-building-regata-porto/',
+                href: 'https://bbdouro.com/nautical-experiences/servicos-empresariais/team-building-regata-corporativa/',
               },
             ],
             photos: [

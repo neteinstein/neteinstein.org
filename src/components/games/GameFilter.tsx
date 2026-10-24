@@ -2,9 +2,11 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { SyntheticEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { Game, GameImageUrl, GameSetting, GuideCategory } from '../../data/types';
+import { normalise } from '../../lib/search';
 import SectionToggle from '../SectionToggle';
 import type { PrintBrand, PrintLabels } from './print-pdf';
 import { countPdf } from './pdf-event';
+import { INLINE_LINK, buildIndex } from './search';
 
 type GuideGame = Game<GameImageUrl>;
 
@@ -15,8 +17,6 @@ export interface GameFilterLabels {
   category: string;
   setting: string;
   all: string;
-  indoor: string;
-  outdoor: string;
   /** With `{shown}` and `{total}` placeholders. */
   count: string;
   empty: string;
@@ -65,12 +65,19 @@ export interface GameFilterLabels {
 interface Props {
   categories: GuideCategory[];
   labels: GameFilterLabels;
-  /** What the "Save PDF" booklet needs: its copy, the site's brand and the date's language. */
-  print: { labels: PrintLabels; brand: PrintBrand; locale: string };
+  /** The second filter row's chips, in order ("Indoors", "Outdoors"). */
+  settings: { value: GameSetting; label: string }[];
+  /**
+   * What the "Save PDF" booklet needs: its copy, the site's brand and the
+   * date's language. `event` names the GoatCounter download event (the games
+   * one by default).
+   */
+  print: { labels: PrintLabels; brand: PrintBrand; locale: string; event?: string };
 }
 
 /**
- * Search + category + indoor/outdoor filter over the group games guide.
+ * Search + category + setting (indoor/outdoor, remote/in person) filter over
+ * a guide of game cards: the group games and the team icebreakers.
  * Hydrated with `client:visible`: every category and card renders
  * server-side, and each card's how-to-play sheet is a native `<details>`, so
  * the whole guide reads with JS disabled. An open sheet widens its card to the
@@ -85,7 +92,7 @@ interface Props {
  * every card; "Save PDF" then draws the ticked games as a booklet
  * (`print-pdf.ts`, loaded on demand with its PDF library).
  */
-export default function GameFilter({ categories, labels, print }: Props) {
+export default function GameFilter({ categories, labels, settings, print }: Props) {
   const [query, setQuery] = useState('');
   const [categoryId, setCategoryId] = useState('all');
   const [setting, setSetting] = useState<'all' | GameSetting>('all');
@@ -134,7 +141,7 @@ export default function GameFilter({ categories, labels, print }: Props) {
           .map((game) => ({ game, category: category.title })),
       );
       await savePdf(items, print.labels, print.brand, print.locale);
-      countPdf(items.length);
+      countPdf(items.length, print.event);
     } catch (error) {
       console.error(error);
     } finally {
@@ -250,10 +257,7 @@ export default function GameFilter({ categories, labels, print }: Props) {
             allLabel={labels.all}
             small
             value={setting}
-            options={[
-              { value: 'indoor', label: labels.indoor, count: countOf('indoor') },
-              { value: 'outdoor', label: labels.outdoor, count: countOf('outdoor') },
-            ]}
+            options={settings.map((option) => ({ ...option, count: countOf(option.value) }))}
             allCount={total}
             onChange={(value) => setSetting(value as 'all' | GameSetting)}
             className="min-w-0"
@@ -773,9 +777,6 @@ function ToolIcon({ path }: { path: string }) {
   );
 }
 
-/** `[text](https://…)` inside a sheet line. */
-const INLINE_LINK = /\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g;
-
 /** A sheet line with its `[text](https://…)` links drawn as external links. */
 function Inline({ text }: { text: string }) {
   const parts: (string | { label: string; href: string })[] = [];
@@ -801,11 +802,6 @@ function Inline({ text }: { text: string }) {
       </a>
     ),
   );
-}
-
-/** A sheet line as it reads, links reduced to their text. */
-function plainText(text: string): string {
-  return text.replace(INLINE_LINK, '$1');
 }
 
 function SheetTitle({ children }: { children: string }) {
@@ -894,40 +890,4 @@ function ChipRow({
       </div>
     </fieldset>
   );
-}
-
-/** Lower-case and strip accents, so "balao" finds "balão". */
-function normalise(text: string): string {
-  return text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
-}
-
-/** Game id → everything searchable about it, normalised. */
-function buildIndex(categories: GuideCategory[]): Map<string, string> {
-  const index = new Map<string, string>();
-  for (const category of categories) {
-    for (const game of category.games) {
-      const text = [
-        category.title,
-        category.short,
-        game.title,
-        game.originalName,
-        game.players,
-        game.age,
-        game.duration,
-        game.setting,
-        game.note,
-        ...game.materials,
-        ...game.setup,
-        game.goal,
-        ...game.rules.map(plainText),
-        ...game.tips.map(plainText),
-        ...(game.questions ?? []).flatMap((round) => [round.title, ...round.questions]),
-        ...game.sources.map((source) => source.label),
-      ]
-        .filter(Boolean)
-        .join(' ');
-      index.set(game.id, normalise(text));
-    }
-  }
-  return index;
 }

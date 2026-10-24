@@ -4,8 +4,9 @@ import type { Catalog } from '..';
 export const ui: Catalog = {
   // Site metadata (`src/config/site.ts`, JSON-LD)
   'Pedro Vicente (neteinstein) — husband & father, Mobile Services Lead & Improver at Mindera, podcast host, speaker and creator of the LoopGain feedback game.':
-    'Pedro Vicente (neteinstein) — marido e pai, Mobile Services Lead & Improver na Mindera, anfitrião de podcasts, orador e criador do LoopGain, um jogo de feedback.',
+    'Pedro Vicente (neteinstein) — marido e pai, Mobile Services Lead & Improver na Mindera, podcaster, orador e criador do jogo de feedback LoopGain.',
   'Mobile Services Lead & Improver': 'Mobile Services Lead & Improver',
+  'Mobile Lead, Speaker & Improver': 'Mobile Lead, Orador e Improver',
 
   // Navigation (`NAV` labels)
   Home: 'Início',
@@ -13,10 +14,14 @@ export const ui: Catalog = {
   'Tech Engineer': 'Engenheiro de Software',
   'Talks & Workshops': 'Palestras & Workshops',
   Podcasts: 'Podcasts',
-  Improver: 'Improver',
   Articles: 'Artigos',
   'Why?': 'Porquê?',
+  Teams: 'Equipas',
+  Improver: 'Improver',
+  'Team Icebreakers': 'Quebra-gelos de Equipa',
+  Apps: 'Apps',
   'My Apps': 'As Minhas Apps',
+  "Friend's Apps": 'Apps de Amigos',
   Games: 'Jogos',
   LoopGain: 'LoopGain',
   'Summer Camp Games': 'Jogos de Campo de Férias',
@@ -83,8 +88,8 @@ export const ui: Catalog = {
   '📱 AI & Mobile @ Mindera': '📱 IA & Mobile @ Mindera',
   'Glimpses of what I do': 'Um pouco do que faço',
   'Porto guide': 'Guia do Porto',
-  '{name} mid-talk, gesturing with both hands':
-    '{name} a meio de uma palestra, a gesticular com as duas mãos',
+  '{name} on stage mid-talk, holding a slide clicker':
+    '{name} em palco a meio de uma palestra, com o comando dos slides na mão',
   'Scroll to Who am I?': 'Deslizar até Quem sou eu?',
   Scroll: 'Deslizar',
   "Only the edible kind — this site doesn't track you.":
@@ -128,6 +133,10 @@ export const ui: Catalog = {
   '{count} episode': '{count} episódio',
   '{count} episodes': '{count} episódios',
   '{show}, season {season}, episode {episode}': '{show}, temporada {season}, episódio {episode}',
+  '{show}, season {season}, bonus': '{show}, temporada {season}, extra',
+  Bonus: 'Extra',
+  '{count} best-of cut': '{count} best of',
+  '{count} best-of cuts': '{count} best of',
 
   // Improver
   'Photos from Improve Teams workshops': 'Fotografias dos workshops Improve Teams',
@@ -149,9 +158,9 @@ export const ui: Catalog = {
   '{topics} topics · {links} links': '{topics} temas · {links} links',
 
   // My apps
-  'The apps': 'As apps',
   FAQ: 'Perguntas frequentes',
   'Apps on this page': 'Apps nesta página',
+  By: 'Por',
 
   // Porto
   'Jump to': 'Saltar para',

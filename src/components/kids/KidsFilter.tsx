@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import type { KidsColumn, KidsColumnKey, KidsNoteList, KidsPlace } from '../../data/types';
+import { normalise } from '../../lib/search';
+import { buildIndex, distinctSettings } from './search';
 
 /** The island's own copy, translated by the route. */
 export interface KidsFilterLabels {
@@ -565,43 +567,4 @@ function UsersIcon({ className }: { className?: string }) {
       <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
     </svg>
   );
-}
-
-/** Every distinct `setting` value, in the order it first appears. */
-function distinctSettings(places: KidsPlace[]): string[] {
-  const seen = new Set<string>();
-  const result: string[] = [];
-  for (const place of places) {
-    if (!seen.has(place.setting)) {
-      seen.add(place.setting);
-      result.push(place.setting);
-    }
-  }
-  return result;
-}
-
-/** Lower-case and strip accents, so "sao bento" finds "São Bento". */
-function normalise(text: string): string {
-  return text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
-}
-
-/** Place → everything searchable about it, normalised. */
-function buildIndex(places: KidsPlace[]): Map<KidsPlace, string> {
-  const index = new Map<KidsPlace, string>();
-  for (const place of places) {
-    const text = [
-      place.where.label,
-      place.name.label,
-      place.setting,
-      place.cost,
-      place.ages,
-      place.children,
-      place.duration,
-      ...place.notes.flatMap((list) => [list.label, ...list.items]),
-    ]
-      .filter(Boolean)
-      .join(' ');
-    index.set(place, normalise(text));
-  }
-  return index;
 }

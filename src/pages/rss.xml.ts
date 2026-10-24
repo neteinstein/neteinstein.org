@@ -3,7 +3,7 @@ import type { APIRoute } from 'astro';
 import { SITE } from '../config/site';
 import { highlights } from '../data/articles';
 import { talkLog } from '../data/talks';
-import type { TalkRichText } from '../data/types';
+import { firstHref, monthIndex, plain } from '../lib/feed';
 import { withBase } from '../lib/url';
 
 /**
@@ -14,40 +14,12 @@ import { withBase } from '../lib/url';
 
 const TALKS_PAGE = '/what-i-do/talks-workshops';
 
-/** Month names as the talk log writes them, including the Portuguese "Set". */
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const MONTH_ALIASES: Record<string, string> = { Set: 'Sep' };
-
 const absolute = (href: string) => new URL(withBase(href), SITE.url).href;
-
-function plain(text: TalkRichText): string {
-  return text
-    .map((part) =>
-      typeof part === 'string'
-        ? part
-        : 'em' in part
-          ? part.em.map((inner) => (typeof inner === 'string' ? inner : inner.label)).join('')
-          : part.label,
-    )
-    .join('')
-    .trim();
-}
-
-/** The first link in a run of text, so a talk's item points at its slides or video. */
-function firstHref(text: TalkRichText = []): string | undefined {
-  for (const part of text) {
-    if (typeof part === 'string') continue;
-    if ('href' in part) return part.href;
-    const inner = part.em.find((run) => typeof run !== 'string');
-    if (inner) return inner.href;
-  }
-  return undefined;
-}
 
 function talkItems(): RSSFeedItem[] {
   return talkLog.flatMap(({ year, entries }) =>
     entries.map((entry, index) => {
-      const month = Math.max(0, MONTHS.indexOf(MONTH_ALIASES[entry.month] ?? entry.month));
+      const month = monthIndex(entry.month);
       const event = plain(entry.event);
       const talk = entry.talk ? plain(entry.talk) : '';
       const href = firstHref(entry.talk) ?? firstHref(entry.event) ?? `${TALKS_PAGE}#talks-${year}`;

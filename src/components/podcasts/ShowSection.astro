@@ -3,14 +3,20 @@ import Section from '../Section.astro';
 import ShowPanel from './ShowPanel.astro';
 import SeasonWall from './SeasonWall.astro';
 import type { PodcastEpisode, PodcastShow } from '../../data/types';
+import { useI18n } from '../../i18n';
 
-/** One show: its header panel, then its episodes grouped by season (page order kept). */
+/**
+ * One show: its header panel, then its episodes grouped by season (page order
+ * kept), then its After-Burns, if it has any.
+ */
 interface Props {
   show: PodcastShow;
   index: number;
 }
 
 const { show, index } = Astro.props;
+const { t } = useI18n(Astro);
+const afterBurns = show.afterBurns ?? [];
 
 const seasons = new Map<number, PodcastEpisode[]>();
 for (const episode of show.episodes) {
@@ -21,11 +27,20 @@ for (const episode of show.episodes) {
 <Section id={show.slug}>
   <ShowPanel show={show} index={index} />
 
-  {seasons.size > 0 && (
+  {(seasons.size > 0 || afterBurns.length > 0) && (
     <div class="mt-14 space-y-16 sm:mt-16 sm:space-y-20">
       {[...seasons].map(([season, episodes]) => (
         <SeasonWall show={show.name} season={season} episodes={episodes} />
       ))}
+      {afterBurns.length > 0 && (
+        <SeasonWall
+          id={`${show.slug}-after-burn`}
+          show={t('{show} After-Burn', { show: show.name })}
+          heading={t('After-Burn')}
+          mark="AB"
+          episodes={afterBurns}
+        />
+      )}
     </div>
   )}
 </Section>

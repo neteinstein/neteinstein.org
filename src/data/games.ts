@@ -19,7 +19,7 @@
  * `originalName` is the title of the video the game was collected from, kept
  * in its own language; `sources` are those videos.
  */
-import type { GameCategory, GamesHero, ToolsIndexEntry } from './types';
+import type { GameCategory, GamesHero, RichText, ToolsIndexEntry } from './types';
 import { cadernoDeJogos } from './tools';
 
 import heroMp4 from '../assets/games/hero.mp4?url';
@@ -10705,6 +10705,17 @@ export const gamesHero: GamesHero = {
   poster: heroPoster,
   label:
     "Video: a tour of the guide, from the plastic cups, balloons and music most games need to searching by material and opening a game's rules.",
+};
+
+/** Under the hero's lead: a question, then where to donate. */
+export const gamesDonate: { question: string; text: RichText } = {
+  question: 'Want to encourage me to keep publishing free content?',
+  text: [
+    'Donate on ',
+    { label: 'Revolut', href: 'https://revolut.me/neteinstein' },
+    ' or ',
+    { label: 'Buy Me A Coffee', href: 'https://www.buymeacoffee.com/neteinstein' },
+  ],
 };
 
 /**

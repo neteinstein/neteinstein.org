@@ -26,6 +26,9 @@ npm run dev        # http://localhost:4321
 | `npm run typecheck`    | `astro check` — TypeScript plus `.astro` templates              |
 | `npm run lint`         | ESLint over `.ts`, `.tsx` and `.astro`                          |
 | `npm run format`       | Prettier write                                                  |
+| `npm test`             | Vitest — pure logic plus the i18n drift check (`tests/`)        |
+| `npm run test:e2e`     | Playwright smoke tests over `dist/` (build first)               |
+| `npm run check:i18n`   | Just the catalogue drift check (see Translations)               |
 | `npm run check:links`  | Verify every internal link in `dist/` resolves                  |
 | `npm run check:base`   | Rebuild under a dummy base path and link-check it (see below)   |
 | `npm run check:parity` | Compare `dist/` with the Google Sites snapshot (see below)      |
@@ -92,7 +95,9 @@ first visit; the `EN`/`PT` switch in the header overrides that and is remembered
   English MDX is used.
 
 When you change English copy, update (or add) its catalogue entry — the old key simply stops
-matching and the page falls back to English.
+matching and the page falls back to English. That fallback is silent, so `npm run check:i18n`
+(part of `npm test`, run by CI) fails on any catalogue key whose English text no longer exists
+in the source, and on the same English text translated two different ways in two modules.
 
 ### Navigation
 
@@ -119,6 +124,10 @@ Videos use a click-to-load facade (`VideoEmbed.astro`): no YouTube or Vimeo requ
 cookies — until the visitor presses play.
 
 ## Restoring content from the original
+
+Historical note: with DNS cut over to this site, the committed `.crawl/report.json` is the
+snapshot of record — `npm run crawl` only works while the Google Sites original is still
+reachable at its sites.google.com address.
 
 `npm run crawl` snapshots the Google Sites original into `.crawl/`:
 
@@ -151,41 +160,41 @@ calls this out.
 
 **GitHub Pages**, built and deployed by GitHub Actions. There is no server: Pages serves `dist/`.
 
-| Workflow         | Trigger                  | Does                                                                 |
-| ---------------- | ------------------------ | -------------------------------------------------------------------- |
-| `ci.yml`         | every PR, push to `main` | format, lint, typecheck, build, link checks                          |
-| `lighthouse.yml` | every PR, push to `main` | Lighthouse on sample pages (`lighthouserc.json`); a11y/SEO must pass |
-| `links.yml`      | Mondays, manual          | checks external links (`lychee.toml`), keeps a `broken-links` issue  |
-| `deploy.yml`     | push to `main`, manual   | builds with the Pages base path and deploys to Pages                 |
+| Workflow         | Trigger                  | Does                                                                                                                                            |
+| ---------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ci.yml`         | every PR, push to `main` | parallel jobs — static checks, unit tests, build + link checks, base-path build, browser smoke tests — summed up by the required `Validate` job |
+| `lighthouse.yml` | every PR, push to `main` | Lighthouse on sample pages (`lighthouserc.json`); a11y/SEO/perf must pass                                                                       |
+| `links.yml`      | Mondays, manual          | checks external links (`lychee.toml`), keeps a `broken-links` issue                                                                             |
+| `deploy.yml`     | push to `main`, manual   | builds with the Pages base path and deploys to Pages                                                                                            |
+| `automerge.yml`  | Dependabot PRs           | enables auto-merge for patch/minor updates once checks pass                                                                                     |
 
-Dependabot (`.github/dependabot.yml`) opens grouped weekly updates for npm and Actions.
+Dependabot (`.github/dependabot.yml`) opens grouped weekly updates for npm and Actions;
+`automerge.yml` lets the patch/minor ones merge themselves when CI is green (majors stay
+manual). Auto-merge waits on the ruleset's required checks — keep `Validate` required on
+`main`, or Dependabot PRs would merge unchecked.
 
 ### Base path
 
-Until a custom domain is attached, Pages serves the site from
-`https://neteinstein.github.io/neteinstein.org/`. The deploy workflow reads that base path from
-`actions/configure-pages` and builds with `BASE_PATH` set, so the preview works as-is. Internal
-links therefore always go through `withBase()` (`src/lib/url.ts`) in components; links in MDX are
-rewritten automatically. CI's `check:base` step fails any link that skips it. Canonical URLs always
-point at `https://www.pedrovicente.pt`.
+With the custom domain attached, deploys build without a base path. The machinery stays,
+because the site must keep working if it is ever served from
+`https://neteinstein.github.io/neteinstein.org/` again: the deploy workflow reads the base path
+from `actions/configure-pages` and builds with `BASE_PATH` set. Internal links therefore always
+go through `withBase()` (`src/lib/url.ts`) in components; links in MDX are rewritten
+automatically. CI's `check:base` job fails any link that skips it. Canonical URLs always point
+at `https://www.pedrovicente.pt`.
 
-### One-time setup
+### Domains (setup done)
 
-1. **Settings → Pages → Build and deployment → Source: GitHub Actions** (already enabled).
-2. **Settings → Environments → `github-pages` → Deployment branches**: add `main`. Pages created
-   the environment allowing only the repository's default branch; deploys from `main` are rejected
-   until it is listed. (Alternatively make `main` the default branch.)
-3. Merge to `main` (or run `deploy` manually) and check the site at
-   `https://neteinstein.github.io/neteinstein.org/`.
-4. Cut DNS over, keeping Google Sites live until this point:
-   - `www.pedrovicente.pt` → `CNAME` to `neteinstein.github.io`
-   - `pedrovicente.pt` → `A` records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`,
-     `185.199.111.153` (and optionally `AAAA` `2606:50c0:8000::153` … `8003::153`)
-5. **Settings → Pages → Custom domain**: `www.pedrovicente.pt`, then tick **Enforce HTTPS** once
-   the certificate is issued. GitHub redirects the apex to `www` automatically. The next deploy
-   builds without a base path.
-6. `www.neteinstein.org` / `neteinstein.org`: a Pages site has one custom domain, so point this
-   domain at the site with a URL redirect (301) at the registrar/DNS provider, to
-   `https://www.pedrovicente.pt` — paths are identical, so path-preserving forwarding keeps deep
-   links working.
-7. Make `ci` a required status check on `main` under **Settings → Rules → Rulesets**.
+The one-time setup is complete: Pages deploys from Actions on `main`, and
+`www.pedrovicente.pt` is the custom domain (HTTPS enforced). For reference, the DNS that makes
+it work:
+
+- `www.pedrovicente.pt` → `CNAME` to `neteinstein.github.io`
+- `pedrovicente.pt` → `A` records `185.199.108.153` … `185.199.111.153` (GitHub redirects the
+  apex to `www`)
+- `www.neteinstein.org` / `neteinstein.org` → 301 redirect at the registrar to
+  `https://www.pedrovicente.pt`, path-preserving, since a Pages site has a single custom domain
+
+Branch protection: keep `Validate` (the summary job of `ci.yml`) a required status check on
+`main` under **Settings → Rules → Rulesets** — deploys and Dependabot auto-merge both lean on
+it.

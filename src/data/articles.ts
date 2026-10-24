@@ -25,6 +25,7 @@ export const headings = {
   books: 'Books',
   mustRead: 'Must read',
   shorter: 'Shorter but also incredible',
+  readLate: 'Read Late',
 };
 
 export const outlets: ArticleOutlet[] = [
@@ -169,6 +170,14 @@ export const highlights: ArticleHighlightGroup[] = [
             label: 'O melhor de todos nós',
             href: 'https://pontosj.pt/opiniao/o-melhor-de-todos-nos/',
           },
+          {
+            label: 'Com que educação sonhamos?',
+            href: 'https://medium.com/improver/o-melhor-de-todos-n%C3%B3s-2ae469f5ad5',
+          },
+          {
+            label: 'Educação de Placebos?',
+            href: 'https://medium.com/improver/educa%C3%A7%C3%A3o-de-placebos-4c8157bd59ab',
+          },
         ],
       },
       {
@@ -185,6 +194,16 @@ export const highlights: ArticleHighlightGroup[] = [
   {
     title: 'Utils',
     years: [
+      {
+        year: '2026',
+        articles: [
+          {
+            label:
+              'Trigger an Alert when Internet or Electricity goes down at home (via Google Home)',
+            href: 'https://medium.com/code-procedure-and-rants/trigger-an-alert-when-internet-or-electricity-goes-down-at-home-via-google-home-46fde38a4989',
+          },
+        ],
+      },
       {
         year: '2023',
         articles: [
@@ -227,7 +246,7 @@ export const books: AuthoredBook[] = [
   },
   {
     title: 'Uma Escola de Todos, Com Todos, Para Todos',
-    href: 'https://issuu.com/apecatolica/docs/livro_escola_de__todos',
+    href: 'https://apecatolica.pt/lancamento-de-escola-de-todos-para-todos-e-com-todos/',
     description: [
       'I was invited to contribute to this book. You can read my contribution and find the link to the book ',
       {
@@ -338,6 +357,15 @@ export const shorterOrigin: RichText = [
   '.',
 ];
 
+/** The original's closing "Read Late" section: the raw to-read doc. */
+export const readLateIntro =
+  'An unfiltered list of links I still have to read (some will move here afterwards).';
+
+export const readLateDoc: LinkRef = {
+  label: 'Pedro Vicente’s To Read List',
+  href: 'https://docs.google.com/document/d/14SD3mdfjCkdIRN3ePVMKLXc0JxVYZGPJwYTGe8VYtDU/edit',
+};
+
 export const readingGroups: ReadingGroup[] = [
   {
     id: 'people',
@@ -416,7 +444,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'How Shared Hatred Helps You Make Friends',
-              href: 'https://read.medium.com/NNkBnvF',
+              href: 'https://medium.com/forge/how-shared-hatred-helps-you-make-friends-40f5c988c76a',
             },
           ],
           [
@@ -568,7 +596,7 @@ export const readingGroups: ReadingGroup[] = [
             ' — A ',
             {
               label: 'movie',
-              href: 'https://teddintersmith.com/mltsfilm/#1519880513403-7f75283c-d61a',
+              href: 'https://www.teddintersmith.com/most-likely-to-succeed',
             },
             ' that will revolutionize how you see education, childhood, and learning',
           ],
@@ -593,7 +621,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: '[Portuguese] Não há casamentos estáveis',
-              href: 'https://rr.sapo.pt/artigo/115360/nao-ha-casamentos-estaveis',
+              href: 'https://rr.pt/artigo/henrique-raposo/2018/06/08/nao-ha-casamentos-estaveis/115360/',
             },
           ],
         ],
@@ -646,7 +674,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'Decision making',
-              href: 'https://www.reinventingorganizationswiki.com/Decision_Making',
+              href: 'https://reinventingorganizationswiki.com/en/theory/decision-making/',
             },
           ],
           [
@@ -752,8 +780,8 @@ export const readingGroups: ReadingGroup[] = [
           ],
           [
             {
-              label: 'Annual Review: Why you should separate performance and pay',
-              href: 'https://www.middlemarketcenter.org/expert-perspectives/annual-reviews-why-you-should-separate-performance-and-pay',
+              label: 'Stop Basing Pay on Performance Reviews',
+              href: 'https://hbr.org/2014/01/stop-basing-pay-on-performance-reviews',
             },
           ],
         ],
@@ -932,7 +960,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'Why you should know how much your coworkers get paid - David Burkus',
-              href: 'https://www.youtube.com/watch?v=Bjy9oUh66FA',
+              href: 'https://www.youtube.com/watch?v=TvcNw4F0Y4Y',
             },
           ],
           [
@@ -966,7 +994,7 @@ export const readingGroups: ReadingGroup[] = [
           [
             {
               label: 'How to answer the dreaded salary question',
-              href: 'https://www.seek.com.au/career-advice/how-to-answer-the-dreaded-salary-question',
+              href: 'https://careerhub.adelaide.edu.au/students/news/detail/468/how-to-answer-dreaded-salary-q',
             },
           ],
           [
@@ -1043,7 +1071,7 @@ export const readingGroups: ReadingGroup[] = [
             {
               label:
                 'Larry Page has a reputation for pushing people at Google. Here’s how he pushed a young Sundar Pichai to make Google Chrome the top web browser in the world',
-              href: 'https://amp.businessinsider.com/larry-page-google-chrome-sundar-pichai-goals-2018-6',
+              href: 'https://www.businessinsider.com/larry-page-google-chrome-sundar-pichai-goals-2018-6',
             },
           ],
           [

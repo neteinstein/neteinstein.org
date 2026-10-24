@@ -22,7 +22,7 @@ const previously = roles.filter((role) => role.past);
 const sections = navPages().filter((page) => page.href !== '/');
 ---
 
-<BaseLayout title={SITE.title} bareTitle>
+<BaseLayout title={`${SITE.title} — ${t('Mobile Lead, Speaker & Improver')}`} bareTitle>
   <HomeHero />
 
   <Section id="who" eyebrow={t('About me')} title={t('Who am I?')}>

@@ -1,0 +1,65 @@
+---
+import type { WorkshopTheme } from '../../data/types';
+import Chapter from '../improver/Chapter.astro';
+import ButtonLink from '../ButtonLink.astro';
+import ActivityGrid from './ActivityGrid.astro';
+import ActionPath from './ActionPath.astro';
+import { useI18n } from '../../i18n';
+
+/**
+ * One theme of /teams/workshops as a numbered chapter, in the
+ * /what-i-do/improver layout: what it covers and the topics on the table next
+ * to the sticky header, then a few of its games and stories at full width.
+ * Each theme gets its own accent (`--tone`), as the Improver modules do.
+ */
+interface Props {
+  theme: WorkshopTheme;
+  /** 1-based position, shown as the chapter's big number. */
+  index: number;
+}
+
+const { theme, index } = Astro.props;
+const { t } = useI18n(Astro);
+const tones = ['--accent', '--accent-2', '--accent-4'];
+---
+
+<div style={`--tone: var(${tones[(index - 1) % tones.length]})`}>
+  <Chapter chapter={theme} index={index}>
+    <div class="text-muted max-w-3xl space-y-5 text-lg leading-relaxed text-pretty" data-reveal>
+      {theme.intro.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+
+    <div class="mt-8" data-reveal>
+      <h3 class="eyebrow">{t('On the table')}</h3>
+      <ul class="mt-3 flex flex-wrap gap-2">
+        {theme.topics.map((topic) => (
+          <li class="text-fg rounded-full border border-[color-mix(in_oklch,var(--tone)_30%,transparent)] bg-[color-mix(in_oklch,var(--tone)_10%,transparent)] px-3.5 py-1.5 text-sm font-medium">
+            {topic}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {theme.path && <ActionPath path={theme.path} />}
+
+    <Fragment slot="wide">
+      <h3 class="font-display mb-6 text-2xl font-bold tracking-tight sm:text-3xl" data-reveal>
+        {t('A few of the games and stories')}
+      </h3>
+      <ActivityGrid activities={theme.activities} />
+      {theme.link && (
+        <div
+          class="border-line-strong bg-surface/60 mt-8 flex flex-col items-start gap-4 rounded-3xl border border-dashed p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7"
+          data-reveal
+        >
+          <p class="text-muted max-w-2xl leading-relaxed text-pretty">{theme.link.text}</p>
+          <ButtonLink href={theme.link.href} variant="secondary" class="shrink-0">
+            {theme.link.label}
+          </ButtonLink>
+        </div>
+      )}
+    </Fragment>
+  </Chapter>
+</div>
