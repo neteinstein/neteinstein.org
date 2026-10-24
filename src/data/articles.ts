@@ -25,6 +25,7 @@ export const headings = {
   books: 'Books',
   mustRead: 'Must read',
   shorter: 'Shorter but also incredible',
+  readLate: 'Read Late',
 };
 
 export const outlets: ArticleOutlet[] = [
@@ -355,6 +356,15 @@ export const shorterOrigin: RichText = [
   { label: 'here', href: 'https://medium.com/improver/reading-list-fd282bf12654' },
   '.',
 ];
+
+/** The original's closing "Read Late" section: the raw to-read doc. */
+export const readLateIntro =
+  'An unfiltered list of links I still have to read (some will move here afterwards).';
+
+export const readLateDoc: LinkRef = {
+  label: 'Pedro Vicente’s To Read List',
+  href: 'https://docs.google.com/document/d/14SD3mdfjCkdIRN3ePVMKLXc0JxVYZGPJwYTGe8VYtDU/edit',
+};
 
 export const readingGroups: ReadingGroup[] = [
   {
