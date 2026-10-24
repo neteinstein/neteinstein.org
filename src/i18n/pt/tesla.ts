@@ -54,6 +54,21 @@ export const tesla: Catalog = {
   'Myinstants (for horn sounds)': 'Myinstants (para sons de buzina)',
   'Myinstants trending page: a grid of big, glossy, coloured sound buttons':
     'Página de tendências do Myinstants: uma grelha de grandes botões de som coloridos e brilhantes',
+  'Ghost Engine (engine sounds for your EV)': 'Ghost Engine (sons de motor para o teu elétrico)',
+  'Ghost Engine start screen: a white ghost inside a dial, “Add sound to your EV” and a glowing red Tap to Ignite button':
+    'Ecrã inicial do Ghost Engine: um fantasma branco dentro de um mostrador, “Add sound to your EV” e um botão vermelho iluminado Tap to Ignite',
+  'JOWUA free Tesla owner tools': 'Ferramentas gratuitas da JOWUA para donos de Tesla',
+  'JOWUA “Free Tesla Owners Tools” page: battery health, VIN decoding, market prices and adapters, over faint circuit and battery icons':
+    'Página “Free Tesla Owners Tools” da JOWUA: saúde da bateria, descodificação do VIN, preços de mercado e adaptadores, sobre ícones ténues de circuitos e baterias',
+  'EV·ENGINE (GPS-driven engine sounds)': 'EV·ENGINE (sons de motor guiados por GPS)',
+  'EV·ENGINE start screen: a glowing orange Ignition button above three steps for using it in the car’s browser':
+    'Ecrã inicial do EV·ENGINE: um botão laranja iluminado Ignition por cima de três passos para o usar no browser do carro',
+  'Not a Tesla App (custom lock sounds)': 'Not a Tesla App (sons de trancar personalizados)',
+  'Not a Tesla App lock sounds page: a search box over featured collections of chimes to play and download':
+    'Página de sons de trancar do Not a Tesla App: uma caixa de pesquisa sobre coleções em destaque de sons para ouvir e descarregar',
+  'teslalocksound.com (more lock sounds)': 'teslalocksound.com (mais sons de trancar)',
+  'Tesla Lock Sound home page: a featured chime in huge white letters over a waveform, with Get this sound and Browse the library buttons':
+    'Página inicial do Tesla Lock Sound: um som em destaque em grandes letras brancas sobre uma onda sonora, com os botões Get this sound e Browse the library',
   Others: 'Outros',
   'The awesome-tesla GitHub repository README: “A curated list of awesome resources for Tesla vehicles”':
     'O README do repositório awesome-tesla no GitHub: “A curated list of awesome resources for Tesla vehicles”',
