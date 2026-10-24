@@ -2,9 +2,11 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { SyntheticEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { Game, GameImageUrl, GameSetting, GuideCategory } from '../../data/types';
+import { normalise } from '../../lib/search';
 import SectionToggle from '../SectionToggle';
 import type { PrintBrand, PrintLabels } from './print-pdf';
 import { countPdf } from './pdf-event';
+import { INLINE_LINK, buildIndex } from './search';
 
 type GuideGame = Game<GameImageUrl>;
 
@@ -775,9 +777,6 @@ function ToolIcon({ path }: { path: string }) {
   );
 }
 
-/** `[text](https://…)` inside a sheet line. */
-const INLINE_LINK = /\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g;
-
 /** A sheet line with its `[text](https://…)` links drawn as external links. */
 function Inline({ text }: { text: string }) {
   const parts: (string | { label: string; href: string })[] = [];
@@ -803,11 +802,6 @@ function Inline({ text }: { text: string }) {
       </a>
     ),
   );
-}
-
-/** A sheet line as it reads, links reduced to their text. */
-function plainText(text: string): string {
-  return text.replace(INLINE_LINK, '$1');
 }
 
 function SheetTitle({ children }: { children: string }) {
@@ -896,40 +890,4 @@ function ChipRow({
       </div>
     </fieldset>
   );
-}
-
-/** Lower-case and strip accents, so "balao" finds "balão". */
-function normalise(text: string): string {
-  return text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
-}
-
-/** Game id → everything searchable about it, normalised. */
-function buildIndex(categories: GuideCategory[]): Map<string, string> {
-  const index = new Map<string, string>();
-  for (const category of categories) {
-    for (const game of category.games) {
-      const text = [
-        category.title,
-        category.short,
-        game.title,
-        game.originalName,
-        game.players,
-        game.age,
-        game.duration,
-        game.setting,
-        game.note,
-        ...game.materials,
-        ...game.setup,
-        game.goal,
-        ...game.rules.map(plainText),
-        ...game.tips.map(plainText),
-        ...(game.questions ?? []).flatMap((round) => [round.title, ...round.questions]),
-        ...game.sources.map((source) => source.label),
-      ]
-        .filter(Boolean)
-        .join(' ');
-      index.set(game.id, normalise(text));
-    }
-  }
-  return index;
 }
