@@ -154,6 +154,7 @@ export const ui: Catalog = {
   Reading: 'Leitura',
   'Must read': 'Leitura obrigatória',
   'Reading list topics': 'Temas da lista de leituras',
+  Queue: 'Na fila',
   '{topics} topics · {links} links': '{topics} temas · {links} links',
 
   // My apps

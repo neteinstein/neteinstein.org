@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Section from '../../components/Section.astro';
+import ButtonLink from '../../components/ButtonLink.astro';
 import RichText from '../../components/RichText.astro';
 import Icon from '../../components/Icon.astro';
 import PhotoRibbon from '../../components/articles/PhotoRibbon.astro';
@@ -26,6 +27,8 @@ const {
   highlights,
   mustRead,
   outlets,
+  readLateDoc,
+  readLateIntro,
   readingGroups,
   shorterIntro,
   shorterOrigin,
@@ -177,5 +180,19 @@ const stats = [
     <p class="text-muted border-line mt-10 border-t pt-6 text-sm" data-reveal>
       <RichText text={shorterOrigin} />
     </p>
+  </Section>
+
+  <Section
+    id="read-late"
+    eyebrow={t('Queue')}
+    title={headings.readLate}
+    intro={readLateIntro}
+    width="narrow"
+  >
+    <div data-reveal>
+      <ButtonLink href={readLateDoc.href} variant="secondary" icon="book">
+        {readLateDoc.label}
+      </ButtonLink>
+    </div>
   </Section>
 </BaseLayout>
