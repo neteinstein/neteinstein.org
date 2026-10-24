@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
-import type { GuideGroup, Place, PlacePhotoUrl, Venue } from '../data/types';
+import type { GuideGroup, Venue } from '../data/types';
+import { normalise } from '../lib/search';
 import SectionToggle from './SectionToggle';
-
-type GuidePlace = Place<PlacePhotoUrl>;
+import { buildIndex, countOf, placesOf } from './porto/search';
+import type { GuidePlace } from './porto/search';
 
 /** The island's own copy, translated by the route. */
 export interface PlaceFilterLabels {
@@ -532,45 +533,4 @@ function ChipRow({
       </div>
     </fieldset>
   );
-}
-
-/** Every place of a group with the id of the subgroup it sits in (if any). */
-function placesOf(group: GuideGroup): { place: GuidePlace; sid?: string }[] {
-  return [
-    ...(group.places ?? []).map((place) => ({ place })),
-    ...(group.subgroups ?? []).flatMap((subgroup) =>
-      subgroup.places.map((place) => ({ place, sid: subgroup.id })),
-    ),
-  ];
-}
-
-function countOf(group: GuideGroup): number {
-  return placesOf(group).length;
-}
-
-/** Lower-case and strip accents, so "sao bento" finds "São Bento". */
-function normalise(text: string): string {
-  return text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
-}
-
-/** Place id → everything searchable about it, normalised. */
-function buildIndex(groups: GuideGroup[]): Map<string, string> {
-  const index = new Map<string, string>();
-  for (const group of groups) {
-    for (const { place, sid } of placesOf(group)) {
-      const subgroup = group.subgroups?.find((candidate) => candidate.id === sid);
-      const text = [
-        group.title,
-        subgroup?.title,
-        place.title,
-        place.subtitle,
-        ...(place.notes ?? []),
-        ...place.venues.flatMap((venue) => [venue.name, venue.note]),
-      ]
-        .filter(Boolean)
-        .join(' ');
-      index.set(place.id, normalise(text));
-    }
-  }
-  return index;
 }

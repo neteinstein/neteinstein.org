@@ -8,7 +8,6 @@ import type { Catalog } from '..';
 export const articles: Catalog = {
   Books: 'Livros',
   'Shorter but also incredible': 'Mais curtos mas também incríveis',
-  'Read Late': 'Ler Mais Tarde',
   'Whatever I feel like writing at the time': 'O que me apetecer escrever no momento',
   'Contributor @ Education section': 'Colaborador @ secção de Educação',
   '2020 - 2022': '2020 - 2022',
@@ -32,9 +31,6 @@ export const articles: Catalog = {
   'Books are life, but there are shorter formats that I highly recommend:':
     'Os livros são vida, mas há formatos mais curtos que recomendo vivamente:',
   'This was originally ': 'Isto estava originalmente ',
-  'An unfiltered list of links I still have to read (some will move here afterwards).':
-    'Uma lista sem filtros de links que ainda tenho de ler (alguns passarão para aqui depois).',
-  'Pedro Vicente’s To Read List': 'A lista de leituras pendentes do Pedro Vicente',
 
   // Reading-list groups and topics
   People: 'Pessoas',

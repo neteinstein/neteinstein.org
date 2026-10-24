@@ -1,0 +1,33 @@
+# Lets Dependabot's weekly patch/minor updates merge themselves once CI is
+# green. Majors stay manual. This only *enables* GitHub's auto-merge, which
+# waits for the required status checks on `main` (Settings → Rules →
+# Rulesets, requiring `Validate`) — without a required check the PR would
+# merge immediately, so keep that ruleset in place.
+name: dependabot-automerge
+
+on: pull_request
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  automerge:
+    name: Enable auto-merge
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'neteinstein/neteinstein.org'
+
+    steps:
+      - name: Read update metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable auto-merge for patch and minor updates
+        if: steps.metadata.outputs.update-type != 'version-update:semver-major'
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

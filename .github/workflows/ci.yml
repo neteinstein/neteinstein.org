@@ -12,9 +12,11 @@ concurrency:
 env:
   ASTRO_TELEMETRY_DISABLED: '1'
 
+# The jobs run in parallel; `Validate` sums them up and is the one status to
+# require on `main` (Settings → Rules → Rulesets).
 jobs:
-  validate:
-    name: Validate
+  checks:
+    name: Static checks
     runs-on: ubuntu-24.04
     timeout-minutes: 10
 
@@ -38,16 +40,47 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+  test:
+    name: Unit tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Vitest: pure logic plus the i18n catalogue drift check (`check:i18n`).
+      - name: Run unit tests
+        run: npm test
+
+  build:
+    name: Build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Build
         run: npm run build
 
       - name: Check internal links
         run: npm run check:links
-
-      # Rebuilds under a dummy base path, as the github.io preview is served,
-      # and fails on any internal link that skipped `withBase()`.
-      - name: Check links under a base path
-        run: npm run check:base
 
       - name: Upload build output
         uses: actions/upload-artifact@v7
@@ -55,3 +88,70 @@ jobs:
           name: dist
           path: dist/
           retention-days: 7
+
+  base:
+    name: Base-path build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Rebuilds under a dummy base path, as the github.io preview is served,
+      # and fails on any internal link that skipped `withBase()`.
+      - name: Check links under a base path
+        run: npm run check:base
+
+  e2e:
+    name: Browser smoke tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Build
+        run: npm run build
+
+      - name: Run smoke tests
+        run: npm run test:e2e
+
+      - name: Upload test traces
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-traces
+          path: test-results/
+          retention-days: 7
+
+  # One required status for branch protection, whatever jobs come and go.
+  validate:
+    name: Validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    needs: [checks, test, build, base, e2e]
+    if: always()
+
+    steps:
+      - name: Fail if any job did not succeed
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'skipped')
+        run: exit 1
