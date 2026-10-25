@@ -29,6 +29,7 @@ import teslaTap from '../assets/tesla/teslatap-fluids-identifier.webp';
 import myInstants from '../assets/tesla/myinstants.webp';
 import ghostEngine from '../assets/tesla/ghost-engine.webp';
 import evEngine from '../assets/tesla/ev-engine.webp';
+import teslaSound from '../assets/tesla/teslasound.webp';
 import teslaLockSounds from '../assets/tesla/tesla-lock-sounds.webp';
 import teslaLockSound from '../assets/tesla/teslalocksound.webp';
 import jowuaTools from '../assets/tesla/jowua-tools.webp';
@@ -101,6 +102,13 @@ export const categories: TeslaCategory[] = [
         image: ghostEngine,
         imageAlt:
           'Ghost Engine start screen: a white ghost inside a rev gauge, “Add sound to your EV” and a red “Tap to ignite” button',
+      },
+      {
+        label: 'TeslaSound (gas engine & V8 sounds)',
+        href: 'https://teslasound.io/',
+        image: teslaSound,
+        imageAlt:
+          'TeslaSound: a big rev counter at 0 km/h beside an orange Start Engine button and a green Model Y',
       },
       {
         label: 'Myinstants (for horn sounds)',
