@@ -6,6 +6,7 @@ import type { Glimpse, Role, Useful } from './types';
 
 import yellowBox from '../assets/home/yellow-box-podcast.webp';
 import portoGuide from '../assets/home/porto-guide.webp';
+import games from '../assets/home/games.webp';
 import myApps from '../assets/home/my-apps.webp';
 import teslaUtils from '../assets/home/tesla-utils.webp';
 import acorda from '../assets/what-i-do/improver/workshop-classroom.webp';
@@ -113,6 +114,14 @@ export const useful: Useful[] = [
     description: "I've been developing a number of free apps.",
     image: myApps,
     imageAlt: 'Illustration of the same app running in a browser window and on a phone',
+  },
+  {
+    title: 'Group Games',
+    href: '/games',
+    description: '365 group games for parties, camps and team building, ready to play and print.',
+    image: games,
+    imageAlt:
+      'Illustration of two people tossing a balloon to each other, framed like a card with a dice, a smiley and a star',
   },
   {
     title: 'Tesla Utils',
