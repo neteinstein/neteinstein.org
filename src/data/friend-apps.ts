@@ -25,6 +25,7 @@ const tempusRemediumApp: AppListing = {
     'Tempus Remedium: the "Hoje" screen with the doses for the morning, midday, evening and bedtime, above the jars of the medicines running out',
   icon: tempusRemediumIcon,
   videoFile: [{ src: tempusRemediumDemoMp4, type: 'video/mp4' }],
+  status: 'Approval pending',
   links: [
     {
       store: 'google-play',

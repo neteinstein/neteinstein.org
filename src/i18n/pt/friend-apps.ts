@@ -3,6 +3,7 @@ import type { Catalog } from '..';
 /** `src/data/friend-apps.ts` */
 export const friendApps: Catalog = {
   Friends: 'Amigos',
+  'Approval pending': 'Aprovação pendente',
   "Today's medicines and doses, kept on track: what to take and when, what is running out and a history of the doses taken. No account, no server.":
     'Os seus medicamentos e doses de hoje, em dia: o que tomar e quando, o que está a acabar e o histórico das tomas. Sem conta, sem servidor.',
   'Tempus Remedium: the "Hoje" screen with the doses for the morning, midday, evening and bedtime, above the jars of the medicines running out':
