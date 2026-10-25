@@ -54,6 +54,14 @@ export interface AppGroup {
   apps: AppListing[];
 }
 
+/** A titled section of /friend-apps ("Family", "Friends"). */
+export interface AppSection {
+  /** In-page anchor for the section (`/friend-apps#family`). */
+  id: string;
+  title: string;
+  apps: AppListing[];
+}
+
 /** Copy from the Buy Me a Coffee widget the original embedded on this page. */
 export interface AppsSupport {
   /** The widget's `data-description`. */

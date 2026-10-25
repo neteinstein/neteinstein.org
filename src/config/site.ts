@@ -80,7 +80,7 @@ export const NAV: NavItem[] = [
     label: 'Apps',
     children: [
       { label: 'My Apps', href: '/my-apps' },
-      { label: "Friend's Apps", href: '/friend-apps' },
+      { label: 'Other Apps', href: '/friend-apps' },
     ],
   },
   { label: 'Games', href: '/games' },
