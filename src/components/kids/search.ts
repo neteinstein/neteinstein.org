@@ -38,3 +38,40 @@ export function buildIndex(places: KidsPlace[]): Map<KidsPlace, string> {
   }
   return index;
 }
+
+export type KidsSort = 'name' | 'price-asc' | 'price-desc';
+
+/** The lowest price in a free-text cost ("9€ to 12.50€", "From 9€"), or undefined when blank. */
+export function parseCost(cost?: string): number | undefined {
+  const match = cost?.match(/\d+(?:[.,]\d+)?/);
+  return match ? Number(match[0].replace(',', '.')) : undefined;
+}
+
+/** The age range in a free-text ages cell ("2-12", "6+", "8-18 (CosmoTot: 1-4)"); the note in brackets is ignored. */
+export function parseAges(ages?: string): { min: number; max: number } | undefined {
+  const range = ages?.split('(')[0]?.match(/(\d+)\s*(?:[-–]\s*(\d+)|(\+))?/);
+  if (!range) return undefined;
+  const min = Number(range[1]);
+  return { min, max: range[3] ? Infinity : range[2] ? Number(range[2]) : min };
+}
+
+/** Whether a place takes a child of this age. Places that list no ages stay in. */
+export function acceptsAge(place: KidsPlace, age: number): boolean {
+  const range = parseAges(place.ages);
+  return !range || (age >= range.min && age <= range.max);
+}
+
+/** A sorted copy: A–Z by name, or by lowest price (places without a price go last). */
+export function sortPlaces(places: KidsPlace[], sort: KidsSort): KidsPlace[] {
+  const byName = (a: KidsPlace, b: KidsPlace) =>
+    normalise(a.name.label).localeCompare(normalise(b.name.label));
+  if (sort === 'name') return [...places].sort(byName);
+  const direction = sort === 'price-asc' ? 1 : -1;
+  return [...places].sort((a, b) => {
+    const [pa, pb] = [parseCost(a.cost), parseCost(b.cost)];
+    if (pa === undefined || pb === undefined) {
+      return pa === pb ? byName(a, b) : pa === undefined ? 1 : -1;
+    }
+    return pa === pb ? byName(a, b) : (pa - pb) * direction;
+  });
+}
