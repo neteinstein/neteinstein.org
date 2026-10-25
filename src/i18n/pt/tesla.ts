@@ -59,6 +59,9 @@ export const tesla: Catalog = {
   'EV·ENGINE (GPS-driven engine sounds)': 'EV·ENGINE (sons de motor guiados por GPS)',
   'EV·ENGINE start screen: a glowing orange Ignition button above three steps for using it in the car’s browser':
     'Ecrã inicial do EV·ENGINE: um botão laranja iluminado Ignition por cima de três passos para o usar no browser do carro',
+  'TeslaSound (gas engine & V8 sounds)': 'TeslaSound (sons de motor a combustão e V8)',
+  'TeslaSound: a big rev counter at 0 km/h beside an orange Start Engine button and a green Model Y':
+    'TeslaSound: um grande conta-rotações a 0 km/h ao lado de um botão laranja Start Engine e de um Model Y verde',
   'Not a Tesla App (custom lock sounds)': 'Not a Tesla App (sons de trancar personalizados)',
   'Not a Tesla App lock sounds page: a search box over featured collections of chimes to play and download':
     'Página de sons de trancar do Not a Tesla App: uma caixa de pesquisa sobre coleções em destaque de sons para ouvir e descarregar',
