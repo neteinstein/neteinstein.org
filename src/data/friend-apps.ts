@@ -8,6 +8,7 @@ import quites from '../assets/friend-apps/quites-feature.webp';
 import quitesIcon from '../assets/friend-apps/quites-icon.webp';
 import tempusRemedium from '../assets/friend-apps/tempus-remedium-feature.webp';
 import tempusRemediumIcon from '../assets/friend-apps/tempus-remedium-icon.webp';
+import tempusRemediumDemoMp4 from '../assets/friend-apps/tempus-remedium-demo.mp4?url';
 import weeklyFamilyLog from '../assets/friend-apps/weekly-family-log-feature.webp';
 import weeklyFamilyLogIcon from '../assets/friend-apps/weekly-family-log-icon.webp';
 
@@ -23,6 +24,7 @@ const tempusRemediumApp: AppListing = {
   imageAlt:
     'Tempus Remedium: the "Hoje" screen with the doses for the morning, midday, evening and bedtime, above the jars of the medicines running out',
   icon: tempusRemediumIcon,
+  videoFile: [{ src: tempusRemediumDemoMp4, type: 'video/mp4' }],
   links: [
     {
       store: 'google-play',
