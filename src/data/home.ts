@@ -79,7 +79,7 @@ export const glimpses: Glimpse[] = [
     video: { provider: 'youtube', id: '8tqpijwZ7ao' },
   },
   {
-    title: "Team Workshop for A'Corda",
+    title: 'Leadership, Team Performance and Feedback Workshops',
     href: '/what-i-do/improver',
     description: ["A team & feedback workshop for A'Corda, a non-profit summer camp association."],
     cta: { label: 'Coach', href: '/what-i-do/improver' },

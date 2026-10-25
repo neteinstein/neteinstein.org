@@ -22,7 +22,8 @@ export const home: Catalog = {
     'Conversas sobre tecnologia, negócio e cultura na Mindera e sobre engenharia de software em geral',
   'Pedro Vicente at a podcast microphone, next to the title "Mobile & Mindera"':
     'Pedro Vicente ao microfone de um podcast, junto ao título "Mobile & Mindera"',
-  "Team Workshop for A'Corda": "Workshop de Equipa para A'Corda",
+  'Leadership, Team Performance and Feedback Workshops':
+    'Workshops de Liderança, Desempenho de Equipa e Feedback',
   "A team & feedback workshop for A'Corda, a non-profit summer camp association.":
     "Um workshop de equipa & feedback para a A'Corda, uma associação sem fins lucrativos de campos de férias.",
   Coach: 'Coach',
