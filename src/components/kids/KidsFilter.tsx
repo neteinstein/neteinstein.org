@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import type { KidsColumn, KidsColumnKey, KidsNoteList, KidsPlace } from '../../data/types';
 import { normalise } from '../../lib/search';
-import { buildIndex, distinctSettings } from './search';
+import { acceptsAge, buildIndex, distinctSettings, sortPlaces } from './search';
+import type { KidsSort } from './search';
 
 /** The island's own copy, translated by the route. */
 export interface KidsFilterLabels {
@@ -14,6 +15,14 @@ export interface KidsFilterLabels {
   count: string;
   empty: string;
   clear: string;
+  sort: string;
+  sortName: string;
+  sortPriceAsc: string;
+  sortPriceDesc: string;
+  age: string;
+  anyAge: string;
+  /** With an `{age}` placeholder. */
+  ageOption: string;
   seeNoteTable: string;
   seeNoteList: string;
 }
@@ -43,14 +52,18 @@ const isText = (key: KidsColumnKey): key is TextKey =>
 export default function KidsFilter({ places, columns, caption, noteId, labels }: Props) {
   const [query, setQuery] = useState('');
   const [settingId, setSettingId] = useState('all');
+  const [sort, setSort] = useState<KidsSort>('name');
+  const [age, setAge] = useState('any');
 
   const index = useMemo(() => buildIndex(places), [places]);
+  const sorted = useMemo(() => sortPlaces(places, sort), [places, sort]);
   const settings = useMemo(() => distinctSettings(places), [places]);
   const total = places.length;
 
   const needle = normalise(query.trim());
   const isVisible = (place: KidsPlace) => {
     if (settingId !== 'all' && place.setting !== settingId) return false;
+    if (age !== 'any' && !acceptsAge(place, Number(age))) return false;
     return !needle || (index.get(place) ?? '').includes(needle);
   };
 
@@ -59,6 +72,7 @@ export default function KidsFilter({ places, columns, caption, noteId, labels }:
   const reset = () => {
     setQuery('');
     setSettingId('all');
+    setAge('any');
   };
 
   const tiles = columns.filter((column) => isText(column.key));
@@ -105,6 +119,35 @@ export default function KidsFilter({ places, columns, caption, noteId, labels }:
           allCount={total}
           onChange={setSettingId}
         />
+        <div className="mt-3 grid grid-cols-2 gap-2.5 sm:flex sm:flex-wrap sm:gap-3">
+          <label className="text-muted flex min-w-0 flex-col gap-1 text-xs sm:flex-row sm:items-center sm:gap-2 sm:text-sm">
+            {labels.age}
+            <select
+              value={age}
+              onChange={(event) => setAge(event.target.value)}
+              className="border-line-strong bg-surface-raised text-fg w-full min-w-0 rounded-xl border py-2 pr-2 pl-3 text-base sm:w-auto sm:py-1.5 sm:text-sm"
+            >
+              <option value="any">{labels.anyAge}</option>
+              {Array.from({ length: 19 }, (_, years) => (
+                <option key={years} value={years}>
+                  {labels.ageOption.replace('{age}', String(years))}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="text-muted flex min-w-0 flex-col gap-1 text-xs sm:flex-row sm:items-center sm:gap-2 sm:text-sm">
+            {labels.sort}
+            <select
+              value={sort}
+              onChange={(event) => setSort(event.target.value as KidsSort)}
+              className="border-line-strong bg-surface-raised text-fg w-full min-w-0 rounded-xl border py-2 pr-2 pl-3 text-base sm:w-auto sm:py-1.5 sm:text-sm"
+            >
+              <option value="name">{labels.sortName}</option>
+              <option value="price-asc">{labels.sortPriceAsc}</option>
+              <option value="price-desc">{labels.sortPriceDesc}</option>
+            </select>
+          </label>
+        </div>
         <p aria-live="polite" className="text-muted mt-2 font-mono text-xs sm:hidden">
           {labels.count.replace('{shown}', String(shown)).replace('{total}', String(total))}
         </p>
@@ -146,7 +189,7 @@ export default function KidsFilter({ places, columns, caption, noteId, labels }:
               </tr>
             </thead>
             <tbody>
-              {places.map((place) => (
+              {sorted.map((place) => (
                 <tr
                   key={place.name.label}
                   hidden={!isVisible(place)}
@@ -228,8 +271,8 @@ export default function KidsFilter({ places, columns, caption, noteId, labels }:
       </div>
 
       {/* ───────────── Narrow screens: one card per place ───────────── */}
-      <ul className="grid gap-5 xl:hidden" data-reveal-stagger>
-        {places.map((place) => (
+      <ul className="grid grid-cols-[minmax(0,1fr)] gap-5 xl:hidden" data-reveal-stagger>
+        {sorted.map((place) => (
           <li key={place.name.label} hidden={!isVisible(place)}>
             <article
               className="glow-ring border-line bg-surface-raised relative overflow-hidden rounded-3xl border shadow-[var(--shadow-md)]"
@@ -244,7 +287,7 @@ export default function KidsFilter({ places, columns, caption, noteId, labels }:
               </span>
 
               <div className="grid gap-6 p-4 sm:p-7 md:grid-cols-[1.15fr_1fr] md:gap-8">
-                <div>
+                <div className="min-w-0">
                   <a
                     href={place.where.href}
                     target="_blank"
@@ -269,7 +312,7 @@ export default function KidsFilter({ places, columns, caption, noteId, labels }:
                     </a>
                   </h3>
 
-                  <dl className="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+                  <dl className="mt-5 grid grid-cols-[repeat(2,minmax(0,1fr))] gap-2.5 sm:grid-cols-[repeat(3,minmax(0,1fr))]">
                     {tiles.map((column) => {
                       const value = isText(column.key) ? place[column.key] : undefined;
                       return (
@@ -287,7 +330,7 @@ export default function KidsFilter({ places, columns, caption, noteId, labels }:
                               column={column.key}
                               className="text-accent mt-px size-3.5 shrink-0"
                             />
-                            <span>
+                            <span className="min-w-0 break-words">
                               {column.label}
                               {column.footnote && (
                                 <a
@@ -302,7 +345,7 @@ export default function KidsFilter({ places, columns, caption, noteId, labels }:
                           </dt>
                           <dd
                             className={[
-                              'mt-1.5 whitespace-nowrap',
+                              'mt-1.5 text-sm break-words sm:text-base sm:whitespace-nowrap',
                               column.key === 'cost'
                                 ? 'font-display text-lg font-extrabold tracking-tight'
                                 : 'font-semibold',
