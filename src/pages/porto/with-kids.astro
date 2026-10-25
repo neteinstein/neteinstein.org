@@ -13,6 +13,8 @@ import { getPage } from '../../i18n/content';
 
 const PATH = '/porto/with-kids';
 const NOTE_ID = 'cost-note';
+const INTRO =
+  'The information below is meant for birthday parties. For a single visit, please check each place’s website: the conditions and prices are likely different.';
 
 const { t, locale, localize } = useI18n(Astro);
 const { kidsColumns, kidsHero, kidsPlaces } = localize(kids);
@@ -38,7 +40,7 @@ const listTitle = t('Places for kids');
     </ButtonLink>
   </PageHero>
 
-  <Section id="places" eyebrow={t('Play & parties')} title={listTitle}>
+  <Section id="places" eyebrow={t('Play & parties')} title={listTitle} intro={t(INTRO)}>
     <KidsFilter
       client:visible
       places={kidsPlaces}
