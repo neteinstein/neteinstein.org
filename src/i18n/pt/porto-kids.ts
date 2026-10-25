@@ -7,6 +7,8 @@ export const portoKids: Catalog = {
   'Where?': 'Onde?',
   Name: 'Nome',
   'Indoor/Outdoor': 'Interior/Exterior',
+  'The information below is meant for birthday parties. For a single visit, please check each place’s website: the conditions and prices are likely different.':
+    'A informação abaixo é para festas de aniversário. Para uma visita avulsa, consulta o site de cada sítio: as condições e os preços provavelmente são diferentes.',
   'Sort by': 'Ordenar por',
   'Name (A–Z)': 'Nome (A–Z)',
   'Price: low to high': 'Preço: do mais baixo ao mais alto',
