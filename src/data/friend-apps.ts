@@ -1,13 +1,35 @@
 /**
- * /friend-apps: apps made by friends, shown the same way as /my-apps.
- * Hero copy lives in `src/content/pages/friend-apps.mdx`.
+ * /friend-apps ("Other Apps"): apps made by family and friends, shown the same
+ * way as /my-apps. Hero copy lives in `src/content/pages/friend-apps.mdx`.
  */
-import type { AppListing } from './types';
+import type { AppListing, AppSection } from './types';
 
 import quites from '../assets/friend-apps/quites-feature.webp';
 import quitesIcon from '../assets/friend-apps/quites-icon.webp';
+import tempusRemedium from '../assets/friend-apps/tempus-remedium-feature.webp';
+import tempusRemediumIcon from '../assets/friend-apps/tempus-remedium-icon.webp';
 import weeklyFamilyLog from '../assets/friend-apps/weekly-family-log-feature.webp';
 import weeklyFamilyLogIcon from '../assets/friend-apps/weekly-family-log-icon.webp';
+
+const tempusRemediumApp: AppListing = {
+  id: 'tempus-remedium',
+  title: 'Tempus Remedium',
+  author: 'Maria Cortês Ferreira',
+  authorHref: 'https://mariacf.pt/',
+  description: [
+    "Today's medicines and doses, kept on track: what to take and when, what is running out and a history of the doses taken. No account, no server.",
+  ],
+  image: tempusRemedium,
+  imageAlt:
+    'Tempus Remedium: the "Hoje" screen with the doses for the morning, midday, evening and bedtime, above the jars of the medicines running out',
+  icon: tempusRemediumIcon,
+  links: [
+    {
+      store: 'google-play',
+      href: 'https://play.google.com/store/apps/details?id=org.mariacf.tempusremedium',
+    },
+  ],
+};
 
 const quitesApp: AppListing = {
   id: 'quites',
@@ -36,5 +58,11 @@ const weeklyFamilyLogApp: AppListing = {
   links: [{ store: 'web', href: 'https://weeklyfamilylog.marioc.eu/' }],
 };
 
-/** Every friend's app, in page order. */
-export const friendApps: AppListing[] = [quitesApp, weeklyFamilyLogApp];
+/** The page's sections, in order. */
+export const appSections: AppSection[] = [
+  { id: 'family', title: 'Family', apps: [tempusRemediumApp] },
+  { id: 'friends', title: 'Friends', apps: [quitesApp, weeklyFamilyLogApp] },
+];
+
+/** Every app, in page order (the hero's icon dock). */
+export const friendApps: AppListing[] = appSections.flatMap((section) => section.apps);

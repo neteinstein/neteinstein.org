@@ -2,6 +2,11 @@ import type { Catalog } from '..';
 
 /** `src/data/friend-apps.ts` */
 export const friendApps: Catalog = {
+  Friends: 'Amigos',
+  "Today's medicines and doses, kept on track: what to take and when, what is running out and a history of the doses taken. No account, no server.":
+    'Os seus medicamentos e doses de hoje, em dia: o que tomar e quando, o que está a acabar e o histórico das tomas. Sem conta, sem servidor.',
+  'Tempus Remedium: the "Hoje" screen with the doses for the morning, midday, evening and bedtime, above the jars of the medicines running out':
+    'Tempus Remedium: o ecrã "Hoje" com as doses da manhã, meio-dia, noite e deitar, por cima dos frascos dos medicamentos que estão a acabar',
   'Be wise when splitting bills.': 'Divide as contas com cabeça.',
   'Quites: the app\'s header with the tagline "Paga o que deves. Ficamos quites." and two overlapping circles with a check mark, above an example group of five people':
     'Quites: o cabeçalho da app com o slogan "Paga o que deves. Ficamos quites." e dois círculos sobrepostos com um visto, por cima de um grupo de exemplo com cinco pessoas',
