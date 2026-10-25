@@ -70,14 +70,13 @@ export const glimpses: Glimpse[] = [
       'Hand-drawn map titled "Pedro Vicente" tracing a path from "Arrived Mindera" through flags for NAP 2016, TUI 2016, Waitrose 2016, Smartbox 2019, Rows 2020, New Look 2020, Waitrose 2021 and Kingfisher 2022, with a legend for TL (Tech Lead), BE (Back End) and DL (Delivery Lead)',
   },
   {
-    title: 'Yellow Box Podcast',
-    href: '/what-i-do/podcasts',
+    title: 'Approvals Still Pending – Learning From Our AI Mistakes',
+    href: '/what-i-do/talks-workshops',
     description: [
-      'Tech, business and cultural conversations about Mindera and software engineering in general',
+      'My talk at the Mindera AI Insights Event 2026: what our AI mistakes taught us about building software.',
     ],
-    cta: { label: 'Podcasts', href: '/what-i-do/podcasts' },
-    image: yellowBox,
-    imageAlt: 'Pedro Vicente at a podcast microphone, next to the title "Mobile & Mindera"',
+    cta: { label: 'Talks', href: '/what-i-do/talks-workshops' },
+    video: { provider: 'youtube', id: '8tqpijwZ7ao' },
   },
   {
     title: "Team Workshop for A'Corda",
@@ -89,13 +88,14 @@ export const glimpses: Glimpse[] = [
       'A facilitator stands by a screen while participants seated around classroom tables listen, smiling',
   },
   {
-    title: 'Approvals Still Pending – Learning From Our AI Mistakes',
-    href: '/what-i-do/talks-workshops',
+    title: 'Yellow Box Podcast',
+    href: '/what-i-do/podcasts',
     description: [
-      'My talk at the Mindera AI Insights Event 2026: what our AI mistakes taught us about building software.',
+      'Tech, business and cultural conversations about Mindera and software engineering in general',
     ],
-    cta: { label: 'Talks', href: '/what-i-do/talks-workshops' },
-    video: { provider: 'youtube', id: '8tqpijwZ7ao' },
+    cta: { label: 'Podcasts', href: '/what-i-do/podcasts' },
+    image: yellowBox,
+    imageAlt: 'Pedro Vicente at a podcast microphone, next to the title "Mobile & Mindera"',
   },
 ];
 
