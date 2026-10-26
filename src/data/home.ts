@@ -6,6 +6,7 @@ import type { Glimpse, Role, Useful } from './types';
 
 import yellowBox from '../assets/home/yellow-box-podcast.webp';
 import portoGuide from '../assets/home/porto-guide.webp';
+import games from '../assets/home/games.webp';
 import myApps from '../assets/home/my-apps.webp';
 import teslaUtils from '../assets/home/tesla-utils.webp';
 import acorda from '../assets/what-i-do/improver/workshop-classroom.webp';
@@ -70,17 +71,16 @@ export const glimpses: Glimpse[] = [
       'Hand-drawn map titled "Pedro Vicente" tracing a path from "Arrived Mindera" through flags for NAP 2016, TUI 2016, Waitrose 2016, Smartbox 2019, Rows 2020, New Look 2020, Waitrose 2021 and Kingfisher 2022, with a legend for TL (Tech Lead), BE (Back End) and DL (Delivery Lead)',
   },
   {
-    title: 'Yellow Box Podcast',
-    href: '/what-i-do/podcasts',
+    title: 'Approvals Still Pending – Learning From Our AI Mistakes',
+    href: '/what-i-do/talks-workshops',
     description: [
-      'Tech, business and cultural conversations about Mindera and software engineering in general',
+      'My talk at the Mindera AI Insights Event 2026: what our AI mistakes taught us about building software.',
     ],
-    cta: { label: 'Podcasts', href: '/what-i-do/podcasts' },
-    image: yellowBox,
-    imageAlt: 'Pedro Vicente at a podcast microphone, next to the title "Mobile & Mindera"',
+    cta: { label: 'Talks', href: '/what-i-do/talks-workshops' },
+    video: { provider: 'youtube', id: '8tqpijwZ7ao' },
   },
   {
-    title: "Team Workshop for A'Corda",
+    title: 'Leadership, Team Performance and Feedback Workshops',
     href: '/what-i-do/improver',
     description: ["A team & feedback workshop for A'Corda, a non-profit summer camp association."],
     cta: { label: 'Coach', href: '/what-i-do/improver' },
@@ -89,13 +89,14 @@ export const glimpses: Glimpse[] = [
       'A facilitator stands by a screen while participants seated around classroom tables listen, smiling',
   },
   {
-    title: 'Approvals Still Pending – Learning From Our AI Mistakes',
-    href: '/what-i-do/talks-workshops',
+    title: 'Yellow Box Podcast',
+    href: '/what-i-do/podcasts',
     description: [
-      'My talk at the Mindera AI Insights Event 2026: what our AI mistakes taught us about building software.',
+      'Tech, business and cultural conversations about Mindera and software engineering in general',
     ],
-    cta: { label: 'Talks', href: '/what-i-do/talks-workshops' },
-    video: { provider: 'youtube', id: '8tqpijwZ7ao' },
+    cta: { label: 'Podcasts', href: '/what-i-do/podcasts' },
+    image: yellowBox,
+    imageAlt: 'Pedro Vicente at a podcast microphone, next to the title "Mobile & Mindera"',
   },
 ];
 
@@ -113,6 +114,14 @@ export const useful: Useful[] = [
     description: "I've been developing a number of free apps.",
     image: myApps,
     imageAlt: 'Illustration of the same app running in a browser window and on a phone',
+  },
+  {
+    title: 'Group Games',
+    href: '/games',
+    description: '365 group games for parties, camps and team building, ready to play and print.',
+    image: games,
+    imageAlt:
+      'Illustration of two people tossing a balloon to each other, framed like a card with a dice, a smiley and a star',
   },
   {
     title: 'Tesla Utils',

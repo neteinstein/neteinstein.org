@@ -28,6 +28,11 @@ import teslaClubPortugal from '../assets/tesla/tesla-club-portugal.webp';
 import teslaTap from '../assets/tesla/teslatap-fluids-identifier.webp';
 import myInstants from '../assets/tesla/myinstants.webp';
 import ghostEngine from '../assets/tesla/ghost-engine.webp';
+import evEngine from '../assets/tesla/ev-engine.webp';
+import teslaSound from '../assets/tesla/teslasound.webp';
+import teslaLockSounds from '../assets/tesla/tesla-lock-sounds.webp';
+import teslaLockSound from '../assets/tesla/teslalocksound.webp';
+import jowuaTools from '../assets/tesla/jowua-tools.webp';
 import awesomeTesla from '../assets/tesla/awesome-tesla.webp';
 
 export const page: TeslaPage = {
@@ -85,10 +90,11 @@ export const categories: TeslaCategory[] = [
     title: 'Fun',
     sites: [
       {
-        label: 'Myinstants (for horn sounds)',
-        href: 'https://www.myinstants.com/en/trending/us/',
-        image: myInstants,
-        imageAlt: 'Myinstants trending page: a grid of big, glossy, coloured sound buttons',
+        label: 'EV·ENGINE (GPS-driven engine sounds)',
+        href: 'https://ev-engine.com/',
+        image: evEngine,
+        imageAlt:
+          'EV·ENGINE start screen: a glowing orange Ignition button above three steps for using it in the car’s browser',
       },
       {
         label: 'Ghost Engine (engine sounds that follow your speed)',
@@ -96,6 +102,33 @@ export const categories: TeslaCategory[] = [
         image: ghostEngine,
         imageAlt:
           'Ghost Engine start screen: a white ghost inside a rev gauge, “Add sound to your EV” and a red “Tap to ignite” button',
+      },
+      {
+        label: 'TeslaSound (gas engine & V8 sounds)',
+        href: 'https://teslasound.io/',
+        image: teslaSound,
+        imageAlt:
+          'TeslaSound: a big rev counter at 0 km/h beside an orange Start Engine button and a green Model Y',
+      },
+      {
+        label: 'Myinstants (for horn sounds)',
+        href: 'https://www.myinstants.com/en/trending/us/',
+        image: myInstants,
+        imageAlt: 'Myinstants trending page: a grid of big, glossy, coloured sound buttons',
+      },
+      {
+        label: 'Not a Tesla App (custom lock sounds)',
+        href: 'https://www.notateslaapp.com/tesla-custom-lock-sounds/',
+        image: teslaLockSounds,
+        imageAlt:
+          'Not a Tesla App lock sounds page: a search box over featured collections of chimes to play and download',
+      },
+      {
+        label: 'teslalocksound.com (more lock sounds)',
+        href: 'https://teslalocksound.com/',
+        image: teslaLockSound,
+        imageAlt:
+          'Tesla Lock Sound home page: a featured chime in huge white letters over a waveform, with Get this sound and Browse the library buttons',
       },
     ],
   },
@@ -203,6 +236,13 @@ export const categories: TeslaCategory[] = [
         image: teslaTap,
         imageAlt:
           'TeslaTap’s “Tesla Fluid Leak Identifier” article, showing a puddle beside a parked Tesla',
+      },
+      {
+        label: 'JOWUA free Tesla owner tools',
+        href: 'https://www.jowua-life.com/en-eu/pages/tesla-owner-resources-free-tools',
+        image: jowuaTools,
+        imageAlt:
+          'JOWUA “Free Tesla Owners Tools” page: battery health, VIN decoding, market prices and adapters, over faint circuit and battery icons',
       },
     ],
   },

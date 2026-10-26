@@ -11,10 +11,14 @@ import { getPage } from '../i18n/content';
 import { imageUrl, plainText } from '../lib/schema';
 
 const { localize, locale } = useI18n(Astro);
-const { friendApps } = localize(friendAppsData);
+const { appSections, friendApps } = localize(friendAppsData);
 const page = (await getPage('friend-apps', locale)).data;
+// Cards are numbered across the whole page, not per section.
+const offsets = appSections.map((_, i) =>
+  appSections.slice(0, i).reduce((count, section) => count + section.apps.length, 0),
+);
 
-// Every app as a SoftwareApplication, credited to the friend who made it.
+// Every app as a SoftwareApplication, credited to whoever made it.
 const operatingSystems: Record<AppStore, string | undefined> = {
   'google-play': 'Android',
   web: 'Web',
@@ -59,11 +63,13 @@ const schema = [
     <AppDock apps={friendApps} delay={420} class="mt-10" />
   </PageHero>
 
-  <Section id="apps">
-    <div class="grid gap-6 md:grid-cols-2 lg:gap-8" data-reveal-stagger>
-      {friendApps.map((app, index) => (
-        <AppCard app={app} index={index} />
-      ))}
-    </div>
-  </Section>
+  {appSections.map((section, sectionIndex) => (
+    <Section id={section.id} title={section.title}>
+      <div class="grid gap-6 md:grid-cols-2 lg:gap-8" data-reveal-stagger>
+        {section.apps.map((app, index) => (
+          <AppCard app={app} index={offsets[sectionIndex]! + index} />
+        ))}
+      </div>
+    </Section>
+  ))}
 </BaseLayout>

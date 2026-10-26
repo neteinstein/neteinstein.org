@@ -2,7 +2,14 @@ import { describe, expect, it } from 'vitest';
 import type { GuideCategory, GuideGroup, KidsPlace } from '../../src/data/types';
 import { normalise } from '../../src/lib/search';
 import { buildIndex as buildGameIndex, plainText } from '../../src/components/games/search';
-import { buildIndex as buildKidsIndex, distinctSettings } from '../../src/components/kids/search';
+import {
+  acceptsAge,
+  buildIndex as buildKidsIndex,
+  distinctSettings,
+  parseAges,
+  parseCost,
+  sortPlaces,
+} from '../../src/components/kids/search';
 import {
   buildIndex as buildPlaceIndex,
   countOf,
@@ -100,6 +107,64 @@ describe('kids guide search', () => {
     expect(index.get(kidsPlaces[0]!)).toContain('world of discoveries');
     expect(index.get(kidsPlaces[0]!)).toContain('weekdays are quieter');
     expect(index.get(kidsPlaces[1]!)).toContain('teleferico');
+  });
+});
+
+describe('kids guide sorting and age filter', () => {
+  const place = (name: string, cost?: string, ages?: string): KidsPlace => ({
+    where: { label: 'Porto', href: '#' },
+    name: { label: name, href: '#' },
+    setting: 'Indoor',
+    cost,
+    ages,
+    notes: [],
+  });
+  const list = [
+    place('Zebra', '15€'),
+    place('Ágata', 'From 9€', '6+'),
+    place('Bola', '9€ to 12€', '2-12'),
+    place('Cubo'),
+  ];
+
+  it('parses the lowest price and the age range', () => {
+    expect(parseCost('13.50€ to 17€')).toBe(13.5);
+    expect(parseCost(undefined)).toBeUndefined();
+    expect(parseAges('8-18 (CosmoTot: 1-4)')).toEqual({ min: 8, max: 18 });
+    expect(parseAges('6+')).toEqual({ min: 6, max: Infinity });
+    expect(parseAges(undefined)).toBeUndefined();
+  });
+
+  it('sorts by name, ignoring accents', () => {
+    expect(sortPlaces(list, 'name').map((p) => p.name.label)).toEqual([
+      'Ágata',
+      'Bola',
+      'Cubo',
+      'Zebra',
+    ]);
+  });
+
+  it('sorts by price with unpriced places last', () => {
+    expect(sortPlaces(list, 'price-asc').map((p) => p.name.label)).toEqual([
+      'Ágata',
+      'Bola',
+      'Zebra',
+      'Cubo',
+    ]);
+    expect(sortPlaces(list, 'price-desc').map((p) => p.name.label)).toEqual([
+      'Zebra',
+      'Ágata',
+      'Bola',
+      'Cubo',
+    ]);
+  });
+
+  it('keeps places that take the age or list none', () => {
+    expect(list.filter((p) => acceptsAge(p, 3)).map((p) => p.name.label)).toEqual([
+      'Zebra',
+      'Bola',
+      'Cubo',
+    ]);
+    expect(acceptsAge(list[1]!, 10)).toBe(true);
   });
 });
 
