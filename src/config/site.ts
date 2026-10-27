@@ -82,8 +82,9 @@ export const NAV: NavItem[] = [
   {
     label: 'Apps',
     children: [
-      // The three tabs of /my-apps; the last one is its own page.
+      // The tabs of /my-apps; the last one is its own page.
       { label: 'My Mobile Apps', href: '/my-apps#mobile', page: 'My Apps' },
+      { label: 'My Mobile Games', href: '/my-apps#mobile-games', page: 'My Apps' },
       { label: 'My macOS Apps', href: '/my-apps#macos', page: 'My Apps' },
       { label: 'Other Apps', href: '/friend-apps' },
     ],

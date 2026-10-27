@@ -248,7 +248,7 @@ const calendarSyncApp: AppListing = {
   videoFile: [{ src: calendarSyncDemoMp4, type: 'video/mp4' }],
 };
 
-/** The page's tabs — the phone apps first, then the Mac tools — each split into sections. */
+/** The page's tabs — phone apps, phone games, then Mac tools — each split into sections. */
 export const appPlatforms: AppPlatform[] = [
   {
     id: 'mobile',
@@ -267,8 +267,12 @@ export const appPlatforms: AppPlatform[] = [
         apps: [smsToolbox, invoice2gdriveApp, netWorthApp],
       },
       { id: 'trivia', title: 'Trivia', category: 'ReferenceApplication', apps: [allowedNamesApp] },
-      { id: 'games', title: 'Games', category: 'GameApplication', apps: [moralHazardApp] },
     ],
+  },
+  {
+    id: 'mobile-games',
+    title: 'My Mobile Games',
+    groups: [{ id: 'games', title: 'Games', category: 'GameApplication', apps: [moralHazardApp] }],
   },
   {
     id: 'macos',
