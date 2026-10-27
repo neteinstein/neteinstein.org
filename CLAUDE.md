@@ -6,7 +6,7 @@ requirement**.
 
 ## Conventions
 
-- **Node 22.12+.** Astro 7 will not run on older versions.
+- **Node 22.23.4+.** Astro 7 will not run on older versions.
 - **Astro first, React only where state is genuinely needed.** There are exactly
   five islands — `ThemeToggle` (`client:load`), `MobileNav` (`client:idle`) and
   the three search-and-filter guides, `PlaceFilter`, `KidsFilter` and

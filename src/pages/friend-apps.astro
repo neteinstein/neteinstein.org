@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
 import AppDock from '../components/apps/AppDock.astro';
 import AppCard from '../components/apps/AppCard.astro';
+import AppTabs from '../components/apps/AppTabs.astro';
 import * as friendAppsData from '../data/friend-apps';
 import type { AppStore } from '../data/types';
 import { useI18n } from '../i18n';
@@ -62,6 +63,8 @@ const schema = [
   <PageHero title={page.title} eyebrow={page.eyebrow} highlight={page.highlight} lead={page.lead}>
     <AppDock apps={friendApps} delay={420} class="mt-10" />
   </PageHero>
+
+  <AppTabs page="friend-apps" class="mt-4" />
 
   {appSections.map((section, sectionIndex) => (
     <Section id={section.id} title={section.title}>
