@@ -48,6 +48,7 @@ export const apps: Catalog = {
   'LoopGain Toolbox Apps': 'Apps da LoopGain Toolbox',
   'View it on GitHub': 'Ver no GitHub',
   'Work Tools': 'Ferramentas de trabalho',
+  'Podcast Tools': 'Ferramentas de podcast',
   'My Mobile Apps': 'As minhas apps móveis',
   'My macOS Apps': 'As minhas apps para macOS',
   'One command turns a full podcast episode into ready-to-post vertical shorts: Claude picks the moments that stand on their own, the crop follows whoever is talking and the captions light up word by word. Built at ':
