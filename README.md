@@ -9,7 +9,7 @@ It replaces the original Google Sites site (served at both `www.neteinstein.org`
 
 ## Requirements
 
-Node **22.12+** (see `.nvmrc`). Astro 7 does not run on older versions.
+Node **22.23.4+** (see `.nvmrc`). Astro 7 does not run on older versions.
 
 ## Local development
 
