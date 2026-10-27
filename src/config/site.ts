@@ -23,10 +23,7 @@ export interface NavItem {
 
 export interface NavLeaf {
   label: string;
-  /** May point into a page (`/my-apps#macos`) when the menu lists its tabs. */
   href: string;
-  /** The page's own name, when `label` names only a tab of it ("My Apps" for "My Mobile Apps"). */
-  page?: string;
 }
 
 export interface SocialLink {
@@ -82,10 +79,7 @@ export const NAV: NavItem[] = [
   {
     label: 'Apps',
     children: [
-      // The tabs of /my-apps; the last one is its own page.
-      { label: 'My Mobile Apps', href: '/my-apps#mobile', page: 'My Apps' },
-      { label: 'My Mobile Games', href: '/my-apps#mobile-games', page: 'My Apps' },
-      { label: 'My macOS Apps', href: '/my-apps#macos', page: 'My Apps' },
+      { label: 'My Apps', href: '/my-apps' },
       { label: 'Other Apps', href: '/friend-apps' },
     ],
   },
@@ -126,20 +120,12 @@ export const SOCIALS: SocialLink[] = [
   },
 ];
 
-/**
- * Every leaf page in the nav, in menu order, once each: entries that point into
- * a page collapse to that page, under its own name. Used by the sitemap and 404 page.
- */
+/** Every leaf page in the nav, in menu order. Used by the sitemap and 404 page. */
 export function navPages(): NavLeaf[] {
-  const pages = new Map<string, NavLeaf>();
-  for (const leaf of NAV.flatMap((item) => [
+  return NAV.flatMap((item) => [
     ...(item.href ? [{ label: item.label, href: item.href }] : []),
     ...(item.children ?? []),
-  ])) {
-    const href = leaf.href.split('#')[0]!;
-    if (!pages.has(href)) pages.set(href, { label: leaf.page ?? leaf.label, href });
-  }
-  return [...pages.values()];
+  ]);
 }
 
 /**
@@ -164,6 +150,6 @@ export function isGroupActive(item: NavItem, pathname: string): boolean {
 }
 
 function normalize(path: string): string {
-  const stripped = path.split('#')[0]!.replace(/\/+$/, '');
+  const stripped = path.replace(/\/+$/, '');
   return stripped === '' ? '/' : stripped;
 }
