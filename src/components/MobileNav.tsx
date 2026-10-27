@@ -147,5 +147,5 @@ function NavLink({
 }
 
 function trim(path: string): string {
-  return path.replace(/\/+$/, '') || '/';
+  return path.split('#')[0]!.replace(/\/+$/, '') || '/';
 }
