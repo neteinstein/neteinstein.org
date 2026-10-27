@@ -1,0 +1,51 @@
+---
+/**
+ * The tab bar over /my-apps and /friend-apps: my mobile apps, my macOS apps,
+ * and everyone else's. On /my-apps the first two switch panels in place
+ * (`src/scripts/app-tabs.ts`); with JS off they are plain in-page anchors and
+ * both panels stay on the page. "Other Apps" is always a link to /friend-apps.
+ */
+import { appPlatforms, otherAppsTab } from '../../data/apps';
+import type { AppTab } from '../../data/types';
+import { useI18n } from '../../i18n';
+
+interface Props {
+  /** The page showing the bar: its own tabs switch in place, the others link across. */
+  page: 'my-apps' | 'friend-apps';
+  class?: string;
+}
+
+const { page, class: className } = Astro.props;
+const { t, localHref } = useI18n(Astro);
+
+const tabs: AppTab[] = [
+  ...appPlatforms.map(({ id, title }) => ({ id, title, href: `/my-apps#${id}` })),
+  otherAppsTab,
+];
+const onMyApps = page === 'my-apps';
+---
+
+<nav aria-label={t('Apps')} class:list={['container-page', className]} data-app-tabs>
+  <ul class="border-line flex gap-1 overflow-x-auto border-b">
+    {tabs.map((tab, index) => {
+      const inPage = onMyApps && tab.id !== otherAppsTab.id;
+      const active = onMyApps ? index === 0 : tab.id === otherAppsTab.id;
+      return (
+        <li class="shrink-0">
+          <a
+            href={inPage ? `#${tab.id}` : localHref(tab.href)}
+            data-tab={inPage ? tab.id : undefined}
+            aria-current={active ? (inPage ? 'true' : 'page') : undefined}
+            class="text-muted hover:text-fg aria-[current]:border-accent aria-[current]:text-fg -mb-px inline-block border-b-2 border-transparent px-4 py-3 text-sm font-semibold whitespace-nowrap transition-colors duration-300 sm:text-base"
+          >
+            {t(tab.title)}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>
+
+{onMyApps && <script>
+  import '../../scripts/app-tabs';
+</script>}

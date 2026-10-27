@@ -3,7 +3,16 @@
  * (https://www.neteinstein.org/my-apps — crawl snapshot in `.crawl/report.json`).
  * Hero copy and the FAQ are prose and live in `src/content/pages/my-apps.mdx`.
  */
-import type { AppGroup, AppListing, AppStore, AppStoreBadge, AppsSupport, RichText } from './types';
+import type {
+  AppGroup,
+  AppListing,
+  AppPlatform,
+  AppStore,
+  AppTab,
+  AppStoreBadge,
+  AppsSupport,
+  RichText,
+} from './types';
 
 import loopgain from '../assets/my-apps/loopgain-feature.webp';
 import loopgainIcon from '../assets/my-apps/loopgain-icon.webp';
@@ -239,29 +248,47 @@ const calendarSyncApp: AppListing = {
   videoFile: [{ src: calendarSyncDemoMp4, type: 'video/mp4' }],
 };
 
-/** The page's sections, in order. */
-export const appGroups: AppGroup[] = [
+/** The page's tabs — the phone apps first, then the Mac tools — each split into sections. */
+export const appPlatforms: AppPlatform[] = [
   {
-    id: 'loopgain-toolbox',
-    title: 'LoopGain Toolbox Apps',
-    category: 'LifestyleApplication',
-    apps: [loopgainTeams, loopgainFamily, loopgainCouples],
+    id: 'mobile',
+    title: 'My Mobile Apps',
+    groups: [
+      {
+        id: 'loopgain-toolbox',
+        title: 'LoopGain Toolbox Apps',
+        category: 'LifestyleApplication',
+        apps: [loopgainTeams, loopgainFamily, loopgainCouples],
+      },
+      {
+        id: 'utils',
+        title: 'Utils',
+        category: 'UtilitiesApplication',
+        apps: [smsToolbox, invoice2gdriveApp, netWorthApp],
+      },
+      { id: 'trivia', title: 'Trivia', category: 'ReferenceApplication', apps: [allowedNamesApp] },
+      { id: 'games', title: 'Games', category: 'GameApplication', apps: [moralHazardApp] },
+    ],
   },
   {
-    id: 'utils',
-    title: 'Utils',
-    category: 'UtilitiesApplication',
-    apps: [smsToolbox, invoice2gdriveApp, netWorthApp],
+    id: 'macos',
+    title: 'My macOS Apps',
+    groups: [
+      {
+        id: 'work',
+        title: 'Work Tools',
+        category: 'BusinessApplication',
+        apps: [calendarSyncApp, podcastShortsApp],
+      },
+    ],
   },
-  {
-    id: 'work',
-    title: 'Work Tools',
-    category: 'BusinessApplication',
-    apps: [calendarSyncApp, podcastShortsApp],
-  },
-  { id: 'trivia', title: 'Trivia', category: 'ReferenceApplication', apps: [allowedNamesApp] },
-  { id: 'games', title: 'Games', category: 'GameApplication', apps: [moralHazardApp] },
 ];
+
+/** The last tab, which leaves for /friend-apps: apps made by family and friends. */
+export const otherAppsTab: AppTab = { id: 'other', title: 'Other Apps', href: '/friend-apps' };
+
+/** Every section, in page order. */
+export const appGroups: AppGroup[] = appPlatforms.flatMap((platform) => platform.groups);
 
 /** Every app, in page order — the hero's icon dock lists them all. */
 export const apps: AppListing[] = appGroups.flatMap((group) => group.apps);

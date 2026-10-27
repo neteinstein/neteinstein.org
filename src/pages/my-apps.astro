@@ -7,6 +7,7 @@ import RichText from '../components/RichText.astro';
 import SupportCallout from '../components/SupportCallout.astro';
 import AppDock from '../components/apps/AppDock.astro';
 import AppCard from '../components/apps/AppCard.astro';
+import AppTabs from '../components/apps/AppTabs.astro';
 import * as appsData from '../data/apps';
 import type { AppStore } from '../data/types';
 import { useI18n } from '../i18n';
@@ -14,7 +15,7 @@ import { getPage } from '../i18n/content';
 import { PERSON_ID, imageUrl, plainText } from '../lib/schema';
 
 const { t, locale, localize } = useI18n(Astro);
-const { apps, appGroups, donate, support } = localize(appsData);
+const { apps, appGroups, appPlatforms, donate, support } = localize(appsData);
 // Cards are numbered across the whole page, not per section.
 const offsets = appGroups.map((_, i) =>
   appGroups.slice(0, i).reduce((count, group) => count + group.apps.length, 0),
@@ -73,22 +74,31 @@ const schema = [
     <AppDock apps={apps} delay={520} class="mt-10" />
   </PageHero>
 
-  {appGroups.map((group, groupIndex) => (
-    <Section id={group.id} title={group.title}>
-      <div class="grid gap-6 md:grid-cols-2 lg:gap-8" data-reveal-stagger>
-        {group.apps.map((app, index) => {
-          const featured = groupIndex === 0 && index === 0;
-          return (
-            <AppCard
-              app={app}
-              index={offsets[groupIndex]! + index}
-              featured={featured}
-              class:list={[featured && 'md:col-span-2']}
-            />
-          );
-        })}
-      </div>
-    </Section>
+  <AppTabs page="my-apps" class="mt-4" />
+
+  {appPlatforms.map((platform) => (
+    <div id={platform.id} class="scroll-mt-24" data-tab-panel>
+      {platform.groups.map((group) => {
+        const groupIndex = appGroups.findIndex(({ id }) => id === group.id);
+        return (
+          <Section id={group.id} title={group.title}>
+            <div class="grid gap-6 md:grid-cols-2 lg:gap-8" data-reveal-stagger>
+              {group.apps.map((app, index) => {
+                const featured = groupIndex === 0 && index === 0;
+                return (
+                  <AppCard
+                    app={app}
+                    index={offsets[groupIndex]! + index}
+                    featured={featured}
+                    class:list={[featured && 'md:col-span-2']}
+                  />
+                );
+              })}
+            </div>
+          </Section>
+        );
+      })}
+    </div>
   ))}
 
   <Section id="faq" eyebrow={t('FAQ')}>

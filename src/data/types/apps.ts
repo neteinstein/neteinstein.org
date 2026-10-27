@@ -54,6 +54,22 @@ export interface AppGroup {
   apps: AppListing[];
 }
 
+/** One tab of /my-apps — the platform its apps run on ("My Mobile Apps", "My macOS Apps"). */
+export interface AppPlatform {
+  /** In-page anchor for the tab's panel (`/my-apps#macos`). */
+  id: string;
+  title: string;
+  groups: AppGroup[];
+}
+
+/** A tab in the bar shared by /my-apps and /friend-apps. */
+export interface AppTab {
+  id: string;
+  title: string;
+  /** Where the tab leads (`/friend-apps`, `/my-apps#macos`). */
+  href: string;
+}
+
 /** A titled section of /friend-apps ("Family", "Friends"). */
 export interface AppSection {
   /** In-page anchor for the section (`/friend-apps#family`). */
