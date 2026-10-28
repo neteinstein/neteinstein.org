@@ -52,6 +52,7 @@ export const apps: Catalog = {
   'My Mobile Apps': 'As minhas apps móveis',
   'My Mobile Games': 'Os meus jogos móveis',
   'My macOS Apps': 'As minhas apps para macOS',
+  'My AI Apps': 'As minhas apps de IA',
   'Mobile Apps I have installed': 'Apps móveis que tenho instaladas',
   'macOS Apps I have installed': 'Apps para macOS que tenho instaladas',
   'One command turns a full podcast episode into ready-to-post vertical shorts: Claude picks the moments that stand on their own, the crop follows whoever is talking and the captions light up word by word. Built at ':
