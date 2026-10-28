@@ -52,6 +52,8 @@ export const apps: Catalog = {
   'My Mobile Apps': 'As minhas apps móveis',
   'My Mobile Games': 'Os meus jogos móveis',
   'My macOS Apps': 'As minhas apps para macOS',
+  'Mobile Apps I have installed': 'Apps móveis que tenho instaladas',
+  'macOS Apps I have installed': 'Apps para macOS que tenho instaladas',
   'One command turns a full podcast episode into ready-to-post vertical shorts: Claude picks the moments that stand on their own, the crop follows whoever is talking and the captions light up word by word. Built at ':
     'Um só comando transforma um episódio inteiro de podcast em shorts verticais prontos a publicar: o Claude escolhe os momentos que se aguentam sozinhos, o enquadramento segue quem está a falar e as legendas acendem palavra a palavra. Feito na ',
   'AI Podcast Short Editor demo: a two-person podcast frame with a yellow box around the speaker, turned into a vertical short captioned "So who decides what ships?", under the heading "Frames whoever\'s talking. Captions, word by word."':
