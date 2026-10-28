@@ -248,7 +248,7 @@ const calendarSyncApp: AppListing = {
   videoFile: [{ src: calendarSyncDemoMp4, type: 'video/mp4' }],
 };
 
-/** The page's tabs — phone apps, phone games, then Mac tools — each split into sections. */
+/** The page's tabs — phone apps, phone games, Mac tools, then AI tools — each split into sections. */
 export const appPlatforms: AppPlatform[] = [
   {
     id: 'mobile',
@@ -288,6 +288,16 @@ export const appPlatforms: AppPlatform[] = [
         category: 'BusinessApplication',
         apps: [calendarSyncApp],
       },
+    ],
+    installed: {
+      label: 'macOS Apps I have installed',
+      href: 'https://medium.com/code-procedure-and-rants/my-software-tool-kit-94e07b731486',
+    },
+  },
+  {
+    id: 'ai',
+    title: 'My AI Apps',
+    groups: [
       {
         id: 'podcast-tools',
         title: 'Podcast Tools',
@@ -295,10 +305,6 @@ export const appPlatforms: AppPlatform[] = [
         apps: [podcastShortsApp],
       },
     ],
-    installed: {
-      label: 'macOS Apps I have installed',
-      href: 'https://medium.com/code-procedure-and-rants/my-software-tool-kit-94e07b731486',
-    },
   },
 ];
 
