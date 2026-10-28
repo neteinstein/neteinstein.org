@@ -268,6 +268,10 @@ export const appPlatforms: AppPlatform[] = [
       },
       { id: 'trivia', title: 'Trivia', category: 'ReferenceApplication', apps: [allowedNamesApp] },
     ],
+    installed: {
+      label: 'Mobile Apps I have installed',
+      href: 'https://medium.com/@neteinstein/my-android-apps-396cd2266040',
+    },
   },
   {
     id: 'mobile-games',
@@ -291,6 +295,10 @@ export const appPlatforms: AppPlatform[] = [
         apps: [podcastShortsApp],
       },
     ],
+    installed: {
+      label: 'macOS Apps I have installed',
+      href: 'https://medium.com/code-procedure-and-rants/my-software-tool-kit-94e07b731486',
+    },
   },
 ];
 

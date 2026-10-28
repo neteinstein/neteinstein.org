@@ -60,6 +60,8 @@ export interface AppPlatform {
   id: string;
   title: string;
   groups: AppGroup[];
+  /** A link under the tab's last section, to the apps I use on that platform. */
+  installed?: { label: string; href: string };
 }
 
 /** A tab in the bar shared by /my-apps and /friend-apps. */
