@@ -4,7 +4,8 @@ import type { Catalog } from '..';
 export const home: Catalog = {
   'Welcome to my little virtual home': 'Bem-vindo à minha pequena casa virtual',
   'Do you want some cookies?': 'Queres umas cookies?',
-  'Husband & Father of 👱🏻‍♂️👨🏽👨🏼‍🦲': 'Marido & Pai de 👱🏻‍♂️👨🏽👨🏼‍🦲',
+  'Husband & Father of ': 'Marido & Pai de ',
+  'three boys': 'três rapazes',
   'AI Coach': 'Coach de IA',
   'Helping ': 'A ajudar ',
   'teams get better': 'equipas a melhorar',
