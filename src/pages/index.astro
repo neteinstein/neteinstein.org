@@ -9,6 +9,7 @@ import Marquee from '../components/Marquee.astro';
 import RichText from '../components/RichText.astro';
 import VideoEmbed from '../components/VideoEmbed.astro';
 import Icon from '../components/Icon.astro';
+import Portraits from '../components/home/Portraits.astro';
 import { SITE, navPages } from '../config/site';
 import * as home from '../data/home';
 import { isExternal } from '../lib/url';
@@ -51,6 +52,7 @@ const sections = navPages().filter((page) => page.href !== '/');
             ]}
           >
             <RichText text={role.text} />
+            {role.portraits && <Portraits {...role.portraits} />}
           </p>
         </div>
       ))}

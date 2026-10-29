@@ -9,6 +9,9 @@ import portoGuide from '../assets/home/porto-guide.webp';
 import games from '../assets/home/games.webp';
 import myApps from '../assets/home/my-apps.webp';
 import teslaUtils from '../assets/home/tesla-utils.webp';
+import kid1 from '../assets/home/kids/kid-1.svg';
+import kid2 from '../assets/home/kids/kid-2.svg';
+import kid3 from '../assets/home/kids/kid-3.svg';
 import acorda from '../assets/what-i-do/improver/workshop-classroom.webp';
 import minderaJourneyMap from '../assets/what-i-do/tech-engineer/mindera-journey-map.webp';
 
@@ -19,7 +22,12 @@ export const welcome = {
 };
 
 export const roles: Role[] = [
-  { emoji: '👨‍👩‍👦‍👦', text: ['Husband & Father of 👱🏻‍♂️👨🏽👨🏼‍🦲'] },
+  {
+    emoji: '👨‍👩‍👦‍👦',
+    text: ['Husband & Father of '],
+    // Drawn from a photo of the boys, in the order the original's 👱🏻‍♂️👨🏽👨🏼‍🦲 listed them.
+    portraits: { drawings: [kid1, kid2, kid3], label: 'three boys' },
+  },
   {
     emoji: '📱',
     text: [

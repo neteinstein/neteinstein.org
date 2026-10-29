@@ -1,13 +1,19 @@
 import type { ImageMetadata } from 'astro';
+import type { SvgComponent } from 'astro/types';
 import type { LinkRef } from './shared';
 
 /** Text with inline links, rendered by `RichText.astro`: `['Helping ', { label, href }, ' with…']`. */
 export type RichText = (string | LinkRef)[];
 
+/** An imported `.svg`, rendered inline as a component. */
+export type Drawing = SvgComponent & ImageMetadata;
+
 /** One line of the "Who am I?" block. */
 export interface Role {
   emoji: string;
   text: RichText;
+  /** Round drawings after the text, read together as `label` (they stand in for emoji). */
+  portraits?: { drawings: Drawing[]; label: string };
   /** Listed under "Previously:" on the original. */
   past?: boolean;
 }

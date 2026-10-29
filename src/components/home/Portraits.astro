@@ -1,0 +1,23 @@
+---
+import type { Drawing } from '../../data/types';
+
+/**
+ * Overlapping round drawings at the end of a line of text, where emoji used to
+ * be, read by screen readers as one image called `label`. Sized in `em`, so
+ * they grow with the text; they hop in turn while the card is hovered.
+ */
+interface Props {
+  drawings: Drawing[];
+  label: string;
+}
+
+const { drawings, label } = Astro.props;
+---
+
+<span role="img" aria-label={label} class="-my-[0.3em] inline-flex align-middle">
+  {drawings.map((Drawing) => (
+    <span class="ring-surface-raised size-[1.75em] overflow-hidden rounded-full ring-[0.1em] transition-transform duration-500 ease-[var(--ease-spring)] not-first:-ml-[0.45em] group-hover:-translate-y-[0.2em] nth-2:delay-75 nth-3:delay-150">
+      <Drawing class="size-full" aria-hidden="true" />
+    </span>
+  ))}
+</span>
