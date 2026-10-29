@@ -98,18 +98,6 @@ const schema = [
           </Section>
         );
       })}
-      {platform.installed && (
-        <div class="container-page pb-10 sm:pb-14" data-reveal>
-          <a
-            href={platform.installed.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-link link-underline font-semibold"
-          >
-            {platform.installed.label}
-          </a>
-        </div>
-      )}
     </div>
   ))}
 
