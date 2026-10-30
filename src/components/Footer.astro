@@ -109,6 +109,15 @@ const secondary = SOCIALS.filter((social) => !social.footer);
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href={localHref(SITE.feed)}
+                type="application/rss+xml"
+                class="link-underline text-fg"
+              >
+                {t('RSS feed')}
+              </a>
+            </li>
           </ul>
         </div>
       </nav>

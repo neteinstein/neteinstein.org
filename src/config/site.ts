@@ -46,6 +46,8 @@ export const SITE = {
   author: 'Pedro Vicente',
   /** OpenGraph fallback image. Relative to `public/`. */
   ogImage: '/og-default.jpg',
+  /** Talks and article highlights, built by `src/pages/rss.xml.ts`. */
+  feed: '/rss.xml',
   /**
    * GoatCounter endpoint: the custom domain CNAMEd to `neteinstein.goatcounter.com`
    * (https://www.goatcounter.com/help/faq#custom-domain). Empty disables

@@ -180,7 +180,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
       rel="alternate"
       type="application/rss+xml"
       title={`${SITE.title} — talks & articles`}
-      href={withBase('/rss.xml')}
+      href={withBase(SITE.feed)}
     />
     <link rel="canonical" href={canonicalUrl.href} />
     {alternates.map((alternate) => (

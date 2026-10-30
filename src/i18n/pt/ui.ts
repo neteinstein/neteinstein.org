@@ -48,6 +48,7 @@ export const ui: Catalog = {
   'Drop a': 'Deixa um',
   Footer: 'Rodapé',
   Elsewhere: 'Noutros sítios',
+  'RSS feed': 'Feed RSS',
   '{author} asserts the moral right to be identified as the author of this website and will challenge to a food challenge anyone that says otherwise.':
     '{author} reivindica o direito moral de ser identificado como autor deste site e desafiará para um desafio gastronómico quem disser o contrário.',
 
