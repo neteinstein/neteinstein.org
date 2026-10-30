@@ -13,12 +13,15 @@ import VerbMarquee from '../../components/improver/VerbMarquee.astro';
 import PhotoMosaic from '../../components/improver/PhotoMosaic.astro';
 import WorkshopContact from '../../components/improver/WorkshopContact.astro';
 import FamilyPanel from '../../components/improver/FamilyPanel.astro';
+import FeedbackTalk from '../../components/improver/FeedbackTalk.astro';
 import * as improver from '../../data/improver';
+import { feedbackTalk } from '../../data/feedback-talk';
 import { useI18n } from '../../i18n';
 import { getPage } from '../../i18n/content';
 
 const { t, locale, localize } = useI18n(Astro);
 const { family, feedback, intro, quote, workshops } = localize(improver);
+const talk = localize(feedbackTalk);
 const entry = await getPage('improver', locale);
 const { Content } = await render(entry);
 const page = entry.data;
@@ -60,7 +63,12 @@ const page = entry.data;
 
   <Chapter chapter={feedback} index={3}>
     <FeedbackStory feedback={feedback} />
-    <FeedbackMedia slot="wide" video={feedback.video} deck={feedback.deck} />
+    <Fragment slot="wide">
+      <FeedbackMedia video={feedback.video} deck={feedback.deck} />
+      <div class="mt-14 sm:mt-20">
+        <FeedbackTalk talk={talk} />
+      </div>
+    </Fragment>
   </Chapter>
 
   <Chapter chapter={family} index={4}>

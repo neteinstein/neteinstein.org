@@ -6,6 +6,7 @@
 import type { Catalog } from '..';
 import { apps } from './apps';
 import { articles } from './articles';
+import { feedbackTalk } from './feedback-talk';
 import { friendApps } from './friend-apps';
 import { games } from './games';
 import { hobbies } from './hobbies';
@@ -29,6 +30,7 @@ export const pt: Catalog = {
   ...talks,
   ...podcasts,
   ...improver,
+  ...feedbackTalk,
   ...icebreakers,
   ...workshops,
   ...articles,

@@ -57,3 +57,63 @@ test('the Porto guide search filters the places', async ({ page }) => {
   await search.fill('');
   await expect(count).toContainText(`${total} / ${total}`);
 });
+
+test.describe('the feedback talk deck on /what-i-do/improver', () => {
+  test('steps through its slides, opening reveals before moving on', async ({ page }) => {
+    await page.goto('/what-i-do/improver');
+    const deck = page.locator('[data-deck]');
+    const slides = deck.locator('[data-deck-slide]');
+    const counter = deck.locator('[data-deck-current]');
+    const next = deck.locator('[data-deck-next]');
+    const total = await slides.count();
+    expect(total).toBeGreaterThan(1);
+
+    // The controls only show up once the script has wired them.
+    await expect(next).toBeVisible();
+    await expect(counter).toHaveText('1');
+
+    await deck.locator('[data-deck-track]').focus();
+    await page.keyboard.press('End');
+    await expect(counter).toHaveText(String(total));
+    await page.keyboard.press('Home');
+    await expect(counter).toHaveText('1');
+
+    const tab = deck.locator('[data-deck-go]').last();
+    await tab.click();
+    await expect(counter).toHaveText(String(Number(await tab.getAttribute('data-deck-go')) + 1));
+    await expect(tab).toHaveAttribute('aria-current', 'true');
+
+    const revealing = await slides.evaluateAll((all) =>
+      all.findIndex((slide) => slide.querySelector('details[data-deck-reveal]')),
+    );
+    expect(revealing).toBeGreaterThanOrEqual(0);
+    await deck
+      .locator('[data-deck-track]')
+      .evaluate(
+        (track, i) => track.scrollTo({ left: i * track.clientWidth, behavior: 'instant' }),
+        revealing,
+      );
+    await expect(counter).toHaveText(String(revealing + 1));
+
+    const reveals = slides.nth(revealing).locator('details[data-deck-reveal]');
+    const pending = await reveals.count();
+    for (let i = 0; i < pending; i++) await next.click();
+    await expect(reveals.and(page.locator('[open]'))).toHaveCount(pending);
+    await expect(counter).toHaveText(String(revealing + 1));
+
+    await next.click();
+    await expect(counter).toHaveText(String(revealing + 2));
+  });
+
+  test('recomputes the session length for the team size', async ({ page }) => {
+    await page.goto('/what-i-do/improver');
+    const timer = page.locator('[data-deck-timer]');
+    const total = timer.locator('[data-deck-total]');
+    const slider = timer.locator('input[type="range"]');
+
+    await timer.evaluate((node) => node.closest('[data-deck-slide]')?.scrollIntoView());
+    const before = await total.innerText();
+    await slider.fill((await slider.getAttribute('max')) ?? '');
+    await expect(total).not.toHaveText(before);
+  });
+});

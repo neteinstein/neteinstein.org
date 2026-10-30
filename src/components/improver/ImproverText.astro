@@ -5,7 +5,8 @@ import { useI18n } from '../../i18n';
 
 /**
  * Renders an `ImproverText` paragraph: plain strings plus runs carrying the
- * original's bold/italic, an optional gradient accent and inline links.
+ * original's bold/italic, an optional gradient accent, struck-out runs and
+ * inline links.
  * Emits phrasing content only — the caller supplies the block element.
  */
 interface Props {
@@ -21,7 +22,9 @@ const { localHref } = useI18n(Astro);
   if (typeof part === 'string') return part;
 
   const inner = part.em ? <em>{part.text}</em> : part.text;
-  const styled = part.strong ? (
+  const styled = part.del ? (
+    <del class="decoration-accent-3 decoration-2">{inner}</del>
+  ) : part.strong ? (
     <strong class:list={['font-bold', part.mark ? 'text-gradient' : 'text-fg']}>{inner}</strong>
   ) : part.mark ? (
     <span class="text-gradient">{inner}</span>

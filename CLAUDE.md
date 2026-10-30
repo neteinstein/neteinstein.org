@@ -15,7 +15,8 @@ requirement**.
   `src/scripts/scroll-hide.ts` for the header and search bars that tuck away
   on scroll down, `src/scripts/video-embed.ts` for `VideoEmbed` and the app
   banners, the home page's cookie button, the hero video's buttons in
-  `PageHero.astro`, the /games PDF counter in `PdfCount.astro`). Do not reach for a React component because it feels
+  `PageHero.astro`, the /games PDF counter in `PdfCount.astro`, `src/scripts/slide-deck.ts` for
+  the feedback talk deck on /what-i-do/improver). Do not reach for a React component because it feels
   familiar; check whether an `.astro` component does the job first.
 - **Content is data, not markup.** Prose goes in `src/content/pages/*.mdx`
   (schema in `src/content.config.ts`); structured lists go in `src/data/*.ts`

@@ -6,12 +6,14 @@ import type { LinkRef } from './shared';
  * A formatted run inside a paragraph. The original page set parts of its copy
  * in bold and/or italic; `mark` additionally paints a run with the brand
  * gradient (a design accent, only ever layered on runs that were bold).
+ * `del` strikes a run out, for copy that corrects itself on the slide.
  */
 export interface ImproverSpan {
   text: string;
   strong?: boolean;
   em?: boolean;
   mark?: boolean;
+  del?: boolean;
   /** Site-absolute (`/tesla`), external (`https://…`) or `mailto:`. */
   href?: string;
 }
