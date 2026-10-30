@@ -1,0 +1,181 @@
+---
+import type { FeedbackTalk } from '../../data/types';
+import { useI18n } from '../../i18n';
+import Icon from '../Icon.astro';
+import TalkSlide from './TalkSlide.astro';
+
+/**
+ * The feedback talk as an in-page slide deck, closing the "Feedback" chapter.
+ * The slides sit in one scroll-snapping strip, so with JS off they still
+ * swipe and scroll, and the chapter tabs are plain anchors to their first
+ * slide. `src/scripts/slide-deck.ts` adds the controls bar (hidden until
+ * then), arrow keys and presenter-remote keys, full screen and the session
+ * length calculator.
+ */
+interface Props {
+  talk: FeedbackTalk;
+}
+
+const { talk } = Astro.props;
+const { t } = useI18n(Astro);
+
+const slides = talk.chapters.flatMap((chapter, c) =>
+  chapter.slides.map((slide) => ({ slide, chapter: c })),
+);
+const firsts = talk.chapters.map((_, c) => slides.findIndex((entry) => entry.chapter === c));
+const count = slides.length;
+const slideId = (i: number) => `${talk.id}-${i + 1}`;
+---
+
+<div id={talk.id} class="scroll-mt-24" data-deck>
+  <header class="max-w-3xl" data-reveal>
+    <p class="eyebrow">{talk.eyebrow}</p>
+    <h3 class="font-display mt-2 text-2xl font-bold tracking-tight text-balance sm:text-3xl">
+      {talk.title}
+    </h3>
+    <p class="text-muted mt-3 text-lg leading-relaxed text-pretty">{talk.intro}</p>
+  </header>
+
+  <div
+    class="deck-stage mt-8"
+    role="region"
+    aria-roledescription={t('carousel')}
+    aria-label={talk.title}
+    data-deck-stage
+    data-reveal
+  >
+    <nav aria-label={t('Chapters')}>
+      <ul class="relative -mx-1 flex gap-2 overflow-x-auto px-1 pb-3" data-deck-chapters>
+        {talk.chapters.map((chapter, c) => (
+          <li class="shrink-0">
+            <a
+              href={`#${slideId(firsts[c] ?? 0)}`}
+              class="border-line text-muted hover:text-fg hover:border-line-strong aria-[current]:border-fg aria-[current]:bg-fg aria-[current]:text-surface inline-block rounded-full border px-3.5 py-1.5 text-sm font-semibold whitespace-nowrap transition-colors"
+              aria-current={c === 0 ? 'true' : undefined}
+              data-deck-go={firsts[c]}
+              data-deck-chapter={c}
+            >
+              {chapter.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="deck-frame border-line bg-surface-raised overflow-hidden rounded-3xl border shadow-[var(--shadow-md)]">
+      {/*
+        A scrolling region has to take focus so keyboards can scroll it, with or
+        without the controls.
+      */}
+      {/* eslint-disable astro/jsx-a11y/no-noninteractive-tabindex */}
+      <div
+        class="deck-track focus-visible:outline-accent flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain focus-visible:outline-2 focus-visible:-outline-offset-2"
+        tabindex="0"
+        role="group"
+        aria-label={t('Slides')}
+        data-deck-track
+      >
+        {/* eslint-enable astro/jsx-a11y/no-noninteractive-tabindex */}
+        {slides.map(({ slide, chapter }, i) => (
+          <article
+            id={slideId(i)}
+            class="@container flex min-h-[30rem] w-full shrink-0 snap-start snap-always flex-col p-6 sm:p-10 lg:min-h-[36rem] lg:p-12"
+            aria-roledescription={t('slide')}
+            aria-label={t('{n} of {count}', { n: i + 1, count })}
+            data-deck-slide
+            data-chapter={chapter}
+          >
+            <TalkSlide
+              slide={slide}
+              chapter={talk.chapters[chapter]?.title ?? ''}
+              seats={talk.seats}
+              uid={slideId(i)}
+            />
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-4 flex items-center gap-2 sm:gap-3" data-deck-controls hidden>
+      <button
+        type="button"
+        class="border-line-strong hover:border-accent hover:text-accent grid size-11 shrink-0 place-items-center rounded-full border transition-colors disabled:pointer-events-none disabled:opacity-40"
+        aria-label={t('Previous slide')}
+        data-deck-prev
+      >
+        <Icon name="arrow-left" />
+      </button>
+      <button
+        type="button"
+        class="text-on-accent grid size-11 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)] bg-[length:200%_auto] shadow-[var(--shadow-sm)] transition-[background-position] duration-500 hover:bg-right disabled:pointer-events-none disabled:opacity-40"
+        aria-label={t('Next slide')}
+        data-deck-next
+      >
+        <Icon name="arrow-right" />
+      </button>
+      <p class="text-muted min-w-[4.5rem] text-center text-sm tabular-nums" aria-live="polite">
+        <span data-deck-current>1</span> / {count}
+      </p>
+      <div class="bg-surface-sunken h-1.5 flex-1 overflow-hidden rounded-full" aria-hidden="true">
+        <div
+          class="h-full rounded-full bg-[image:var(--gradient-brand)] transition-[width] duration-500 ease-[var(--ease-out-expo)]"
+          style={`width: ${100 / count}%`}
+          data-deck-bar
+        ></div>
+      </div>
+      <button
+        type="button"
+        class="group border-line-strong text-muted hover:text-fg hover:border-accent flex h-11 shrink-0 items-center gap-2 rounded-full border px-3 text-sm font-semibold transition-colors sm:px-4"
+        aria-pressed="false"
+        data-deck-full
+        hidden
+      >
+        <Icon name="maximize" class="size-5 group-aria-pressed:hidden" />
+        <Icon name="minimize" class="hidden size-5 group-aria-pressed:block" />
+        <span class="sr-only sm:not-sr-only">{t('Full screen')}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Scrolling is the fallback; once the controls work the bar is noise. */
+  [data-deck][data-ready] .deck-track {
+    scrollbar-width: none;
+  }
+  [data-deck][data-ready] .deck-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Full screen: the stage fills the screen and the slides take what is left. */
+  .deck-stage:fullscreen {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1rem, 3vw, 2.5rem);
+    background: var(--surface);
+  }
+  .deck-stage:fullscreen .deck-frame {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+  .deck-stage:fullscreen .deck-track {
+    flex: 1;
+  }
+
+  /* Items play in as their slide becomes the current one. */
+  :global(.motion-ok) [data-deck-slide][data-active] :global([data-deck-pop]) {
+    animation: deck-pop 0.7s var(--ease-out-expo) both;
+    animation-delay: calc(var(--i, 0) * 110ms + 150ms);
+  }
+  @keyframes deck-pop {
+    from {
+      opacity: 0;
+      translate: 0 0.75rem;
+    }
+  }
+</style>
+
+<script>
+  import '../../scripts/slide-deck';
+</script>

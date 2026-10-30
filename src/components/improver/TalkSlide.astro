@@ -1,0 +1,546 @@
+---
+import type { ImproverText as Text, TalkSlide } from '../../data/types';
+import { formatMinutes, partMinutes, sessionMinutes } from '../../lib/slide-deck';
+import { useI18n } from '../../i18n';
+import ButtonLink from '../ButtonLink.astro';
+import Icon from '../Icon.astro';
+import ImproverText from './ImproverText.astro';
+import RoundTable from './RoundTable.astro';
+
+/**
+ * One slide of the feedback talk (`FeedbackTalk.astro` supplies the frame).
+ * Type is sized by the slide's own width (`@container`), so it grows with the
+ * deck — in full screen too. Items marked `data-deck-pop` play in when the
+ * slide becomes the current one; `details[data-deck-reveal]` are the
+ * original's click-by-click builds, which the deck's "next" opens first.
+ */
+interface Props {
+  slide: TalkSlide;
+  /** Title of the chapter the slide belongs to. */
+  chapter: string;
+  seats: string[];
+  /** Unique per slide, for form controls. */
+  uid: string;
+}
+
+const { slide, chapter, seats, uid } = Astro.props;
+const { t } = useI18n(Astro);
+
+/** Characters of copy in a run of text, to tone down type for long lines. */
+const length = (text: Text) =>
+  text.reduce((sum, part) => sum + (typeof part === 'string' ? part : part.text).length, 0);
+const long = (texts: Text[]) => texts.reduce((sum, text) => sum + length(text), 0) > 140;
+
+/** Card colours, in the deck's type order: motto, positive, improvements, personal. */
+const CARD_STRIPES = ['bg-accent-2', 'bg-accent', 'bg-accent-3', 'bg-accent-4'];
+const CARD_TILT = ['-rotate-2', 'rotate-1', '-rotate-1', 'rotate-2'];
+
+const people = slide.kind === 'timer' ? slide.people.value : 0;
+---
+
+<div class="flex flex-1 flex-col">
+  {slide.kind !== 'cover' && slide.kind !== 'end' && (
+    <div class="flex items-start justify-between gap-3">
+      <p class="eyebrow">{chapter}</p>
+      {slide.badge && (
+        <p class="bg-fg text-surface shrink-0 rounded-full px-3 py-1 text-xs font-bold tracking-wide uppercase">
+          {slide.badge}
+        </p>
+      )}
+    </div>
+  )}
+
+  <div class="flex flex-1 flex-col justify-center py-6 @2xl:py-8">
+    {slide.kind === 'cover' && (
+      <div class="text-center">
+        <p class="text-5xl @2xl:text-7xl" aria-hidden="true">
+          🌪️
+        </p>
+        <p class="font-display mt-6 text-4xl leading-[1.05] font-extrabold tracking-tight text-balance @2xl:text-7xl">
+          <ImproverText text={slide.title} />
+        </p>
+        <p class="font-display text-muted mt-3 text-2xl text-balance @2xl:text-4xl">
+          {slide.subtitle}
+        </p>
+        <p class="eyebrow mt-8 @2xl:mt-12">{slide.byline}</p>
+      </div>
+    )}
+
+    {slide.kind === 'statement' && (
+      <div>
+        {slide.band ? (
+          <div class="bg-fg text-surface -mx-6 flex items-center gap-5 px-6 py-6 sm:-mx-10 sm:px-10 lg:-mx-12 lg:px-12 @2xl:py-8">
+            <div class="min-w-0 flex-1">
+              {slide.lead && (
+                <p class="font-display text-lg opacity-80 @2xl:text-2xl">{slide.lead}</p>
+              )}
+              <p class="font-display mt-1 text-3xl leading-tight font-bold text-balance @2xl:text-5xl">
+                <ImproverText text={slide.text} />
+              </p>
+            </div>
+            {slide.emoji && (
+              <span class="shrink-0 text-5xl @2xl:text-7xl" aria-hidden="true">
+                {slide.emoji}
+              </span>
+            )}
+          </div>
+        ) : (
+          <div class="flex items-start gap-5 @2xl:gap-10">
+            <div class="min-w-0 flex-1">
+              {slide.lead && (
+                <p class="font-display text-muted text-lg @2xl:text-2xl">{slide.lead}</p>
+              )}
+              <p
+                class:list={[
+                  'font-display mt-1 leading-tight font-bold text-balance',
+                  long([slide.text])
+                    ? 'text-2xl @2xl:text-4xl'
+                    : 'text-3xl @2xl:text-5xl @5xl:text-6xl',
+                ]}
+              >
+                <ImproverText text={slide.text} />
+              </p>
+              {slide.cite && <p class="text-muted mt-4 text-lg @2xl:text-xl">— {slide.cite}</p>}
+            </div>
+            {slide.emoji && (
+              <span class="shrink-0 text-5xl @2xl:text-8xl" aria-hidden="true" data-deck-pop>
+                {slide.emoji}
+              </span>
+            )}
+          </div>
+        )}
+
+        {slide.body && (
+          <div class="text-muted mt-5 max-w-3xl space-y-3 text-lg leading-relaxed text-pretty @2xl:text-xl">
+            {slide.body.map((paragraph) => (
+              <p>
+                <ImproverText text={paragraph} />
+              </p>
+            ))}
+          </div>
+        )}
+
+        {slide.reveal && (
+          <details class="group mt-6" data-deck-reveal>
+            <summary class="border-line-strong text-muted hover:text-fg hover:border-accent inline-flex cursor-pointer list-none items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-colors [&::-webkit-details-marker]:hidden">
+              <Icon name="sparkles" class="size-4" />
+              <span class="group-open:hidden">{t('Reveal')}</span>
+              <span class="hidden group-open:inline">{t('Hide')}</span>
+            </summary>
+            <div
+              class:list={[
+                'mt-5 max-w-4xl space-y-3 text-pretty',
+                long(slide.reveal)
+                  ? 'text-lg leading-relaxed @2xl:text-xl'
+                  : 'font-display text-2xl leading-snug font-semibold @2xl:text-4xl',
+              ]}
+              data-deck-pop
+            >
+              {slide.reveal.map((paragraph) => (
+                <p>
+                  <ImproverText text={paragraph} />
+                </p>
+              ))}
+            </div>
+          </details>
+        )}
+
+        {slide.action && (
+          <div class="mt-6">
+            <ButtonLink href={slide.action.href}>{slide.action.label}</ButtonLink>
+          </div>
+        )}
+      </div>
+    )}
+
+    {slide.kind === 'compare' && (
+      <div>
+        {slide.lead && (
+          <p class="font-display mb-6 text-xl leading-snug font-semibold text-balance @2xl:text-3xl">
+            {slide.lead}
+          </p>
+        )}
+        <div class="grid gap-4 @2xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] @2xl:gap-6">
+          {slide.sides.map((side, i) => (
+            <>
+              {i === 1 && (
+                <p class="font-display text-accent-3 self-center text-center text-2xl font-extrabold @2xl:text-4xl">
+                  {slide.joiner}
+                </p>
+              )}
+              <div
+                class="border-line bg-surface rounded-2xl border p-4 @lg:p-5 @2xl:p-7"
+                style={`--i: ${i}`}
+                data-deck-pop
+              >
+                <p
+                  class:list={[
+                    'font-display flex items-center gap-3 text-2xl font-bold @2xl:text-4xl',
+                    side.items.length === 0 && 'flex-col py-4 text-center @2xl:py-8',
+                  ]}
+                >
+                  {side.emoji && (
+                    <span
+                      class:list={[side.items.length === 0 && 'text-7xl @2xl:text-9xl']}
+                      aria-hidden="true"
+                    >
+                      {side.emoji}
+                    </span>
+                  )}
+                  {side.title}
+                </p>
+                {side.items.length > 0 &&
+                  (slide.reveal ? (
+                    <details class="group mt-4" data-deck-reveal>
+                      <summary class="text-muted hover:text-fg inline-flex cursor-pointer list-none items-center gap-2 text-sm font-semibold transition-colors [&::-webkit-details-marker]:hidden">
+                        <Icon
+                          name="arrow-right"
+                          class="size-4 transition-transform group-open:rotate-90"
+                        />
+                        {t('Reveal')}
+                      </summary>
+                      <p class="text-muted mt-3 leading-relaxed @lg:text-lg @2xl:text-xl">
+                        <ImproverText text={side.items[0] ?? []} />
+                      </p>
+                    </details>
+                  ) : side.items.length === 1 ? (
+                    <p class="text-muted mt-3 leading-relaxed @lg:text-lg @2xl:mt-4 @2xl:text-xl">
+                      <ImproverText text={side.items[0] ?? []} />
+                    </p>
+                  ) : (
+                    <ul class="text-muted marker:text-accent mt-3 list-disc space-y-1.5 pl-5 leading-snug @lg:text-lg @2xl:mt-4 @2xl:space-y-2 @2xl:text-xl @2xl:leading-relaxed">
+                      {side.items.map((item) => (
+                        <li>
+                          <ImproverText text={item} />
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
+              </div>
+            </>
+          ))}
+        </div>
+        {slide.outro && (
+          <p class="font-display mt-6 text-center text-3xl font-bold @2xl:text-5xl">
+            {slide.outro}
+          </p>
+        )}
+      </div>
+    )}
+
+    {slide.kind === 'list' && (
+      <div>
+        <p class="font-display text-3xl leading-tight font-bold text-balance @2xl:text-5xl">
+          <ImproverText text={slide.title} />
+        </p>
+        {slide.lead && (
+          <p class="text-muted mt-3 max-w-3xl text-lg leading-relaxed @2xl:text-xl">{slide.lead}</p>
+        )}
+
+        {slide.style === 'flow' ? (
+          <ol class="mt-6 flex flex-col gap-2 @4xl:flex-row @4xl:items-center @4xl:gap-3">
+            {slide.items.map((item, i) => (
+              <>
+                {i > 0 && (
+                  <li class="text-accent flex justify-center" aria-hidden="true">
+                    <Icon name="arrow-down" class="size-6 @4xl:-rotate-90" />
+                  </li>
+                )}
+                <li
+                  class="border-line bg-surface flex-1 rounded-2xl border px-5 py-4 text-lg leading-snug @2xl:text-xl"
+                  style={`--i: ${i}`}
+                  data-deck-pop
+                >
+                  <ImproverText text={item} />
+                </li>
+              </>
+            ))}
+          </ol>
+        ) : (
+          <ul class="mt-6 space-y-3 @2xl:space-y-4">
+            {slide.items.map((item, i) => (
+              <li
+                class="flex items-start gap-3 text-lg leading-snug @2xl:text-2xl"
+                style={`--i: ${i}`}
+                data-deck-pop
+              >
+                {slide.style === 'check' ? (
+                  <span
+                    class="text-on-accent mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-brand)] @2xl:mt-1"
+                    aria-hidden="true"
+                  >
+                    <Icon name="check" class="size-4" stroke-width={3} />
+                  </span>
+                ) : (
+                  <span
+                    class="bg-accent mt-2.5 size-2.5 shrink-0 rounded-full @2xl:mt-3.5"
+                    aria-hidden="true"
+                  />
+                )}
+                <span>
+                  <ImproverText text={item} />
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    )}
+
+    {slide.kind === 'rules' && (
+      <div>
+        <p class="font-display text-3xl font-bold @2xl:text-5xl">{slide.title}</p>
+        <p class="text-muted mt-3 text-lg @2xl:text-2xl">{slide.lead}</p>
+        <ul class="mt-6 space-y-3 @2xl:space-y-4">
+          {slide.examples.map((example, i) => (
+            <li
+              class="grid grid-cols-2 gap-2 @2xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] @2xl:items-center @2xl:gap-4"
+              style={`--i: ${i}`}
+              data-deck-pop
+            >
+              <p class="border-line bg-surface rounded-2xl border px-4 py-3 @2xl:px-5 @2xl:py-4">
+                <span class="eyebrow block">{t('Bad example')}</span>
+                <span class="text-muted decoration-accent-3/70 mt-1 block line-through decoration-2 @lg:text-lg @2xl:text-xl">
+                  {example.bad}
+                </span>
+              </p>
+              <Icon name="arrow-right" class="text-accent mx-auto hidden size-6 @2xl:block" />
+              <p class="border-accent bg-surface-raised rounded-2xl border-2 px-4 py-3 @2xl:px-5 @2xl:py-4">
+                <span class="eyebrow block">{t('Better example')}</span>
+                <span class="mt-1 block font-semibold @lg:text-lg @2xl:text-xl">
+                  {example.better}
+                </span>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {slide.kind === 'table' && (
+      <div class="grid items-center gap-6 @3xl:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] @3xl:gap-10">
+        <RoundTable
+          seats={seats}
+          speaker={slide.speaker}
+          about={slide.about}
+          class="mx-auto max-w-lg"
+        />
+        <div>
+          {slide.lead && (
+            <p
+              class:list={[
+                'font-display leading-tight font-bold text-balance',
+                slide.says ? 'text-muted text-xl @2xl:text-2xl' : 'text-3xl @2xl:text-5xl',
+              ]}
+            >
+              {slide.lead}
+            </p>
+          )}
+          {slide.says && (
+            <p
+              class="border-line bg-surface relative mt-4 rounded-2xl rounded-tl-sm border px-5 py-4 text-lg leading-snug @2xl:text-2xl"
+              data-deck-pop
+            >
+              <ImproverText text={slide.says} />
+            </p>
+          )}
+          {slide.about !== undefined && (
+            <p class="text-muted mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm">
+              <span class="flex items-center gap-2">
+                <span class="bg-accent size-3 rounded-full" aria-hidden="true" />
+                {t('Giving feedback')}
+              </span>
+              <span class="flex items-center gap-2">
+                <span class="bg-accent-3 size-3 rounded-full" aria-hidden="true" />
+                {t('Receiving it')}
+              </span>
+            </p>
+          )}
+        </div>
+      </div>
+    )}
+
+    {slide.kind === 'cards' && (
+      <div>
+        <p class="font-display text-3xl font-bold text-balance @2xl:text-5xl">{slide.title}</p>
+        {slide.lead && <p class="text-muted mt-3 text-lg @2xl:text-xl">{slide.lead}</p>}
+        <ul class="mt-6 grid grid-cols-2 gap-2.5 @lg:gap-3 @4xl:grid-cols-4 @4xl:gap-4">
+          {slide.cards.map((card, i) => (
+            <li
+              class:list={[
+                'border-line bg-surface-raised flex flex-col rounded-2xl border p-3 shadow-[var(--shadow-md)] transition-transform duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:rotate-0 @lg:p-4 @4xl:min-h-56 @4xl:p-5',
+                CARD_TILT[i % CARD_TILT.length],
+              ]}
+              style={`--i: ${i}`}
+              data-deck-pop
+            >
+              <span
+                class:list={['h-1.5 w-10 rounded-full', CARD_STRIPES[i % CARD_STRIPES.length]]}
+                aria-hidden="true"
+              />
+              <span class="eyebrow mt-2.5 block @lg:mt-3">{card.type}</span>
+              <span class="mt-2 block text-sm leading-snug @lg:text-base @4xl:text-lg">
+                {card.text}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {slide.kind === 'dialogue' && (
+      <div>
+        <p class="font-display text-3xl leading-tight font-bold text-balance @2xl:text-5xl">
+          {slide.title}
+        </p>
+        <ul class="mt-8 space-y-5">
+          {slide.lines.map((line, i) => (
+            <li
+              class:list={[
+                'flex items-end gap-3 @2xl:gap-4',
+                i % 2 === 1 && 'flex-row-reverse text-right',
+              ]}
+              style={`--i: ${i * 3}`}
+              data-deck-pop
+            >
+              <span class="text-4xl @2xl:text-6xl" aria-hidden="true">
+                {line.emoji}
+              </span>
+              <span
+                class:list={[
+                  'border-line max-w-xl rounded-3xl border px-5 py-3 text-lg leading-snug @2xl:text-2xl',
+                  i % 2 === 0 ? 'bg-surface rounded-bl-md' : 'bg-surface-sunken rounded-br-md',
+                ]}
+              >
+                {line.text}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {slide.kind === 'timer' && (
+      <div data-deck-timer>
+        <p class="font-display text-3xl font-bold text-balance @2xl:text-5xl">{slide.title}</p>
+        <p class="text-muted mt-3 max-w-3xl text-lg leading-relaxed @2xl:text-xl">{slide.lead}</p>
+        <div class="mt-6 grid items-center gap-6 @3xl:grid-cols-2 @3xl:gap-10">
+          <div>
+            <label for={`${uid}-people`} class="font-display text-xl font-semibold @2xl:text-2xl">
+              {slide.people.label}:{' '}
+              <output for={`${uid}-people`} class="text-accent tabular-nums" data-deck-people>
+                {people}
+              </output>
+            </label>
+            <input
+              id={`${uid}-people`}
+              type="range"
+              min={slide.people.min}
+              max={slide.people.max}
+              value={people}
+              class="mt-4 w-full touch-pan-y accent-[var(--accent)]"
+              hidden
+            />
+          </div>
+          <dl class="border-line bg-surface space-y-3 rounded-2xl border p-5 text-lg @2xl:p-6">
+            {slide.parts.map((part) => (
+              <div
+                class="flex items-baseline justify-between gap-4"
+                data-deck-part
+                data-minutes={part.minutes}
+                data-per-person={part.perPerson ? '' : undefined}
+              >
+                <dt>
+                  {part.label}
+                  {part.perPerson && (
+                    <span class="text-muted block text-sm">
+                      {t('{minutes} min per person', { minutes: part.minutes })}
+                    </span>
+                  )}
+                </dt>
+                <dd class="font-semibold whitespace-nowrap tabular-nums" data-deck-part-value>
+                  {formatMinutes(partMinutes(part, people))}
+                </dd>
+              </div>
+            ))}
+            <div class="border-line flex items-baseline justify-between gap-4 border-t pt-3">
+              <dt class="font-display text-xl font-bold">{slide.total}</dt>
+              <dd
+                class="font-display text-gradient text-2xl font-extrabold whitespace-nowrap tabular-nums @lg:text-3xl @2xl:text-4xl"
+                data-deck-total
+              >
+                {formatMinutes(sessionMinutes(slide.parts, people))}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    )}
+
+    {slide.kind === 'links' && (
+      <div>
+        <p class="font-display text-3xl font-bold text-balance @2xl:text-5xl">{slide.title}</p>
+        <ul class="mt-6 grid gap-3 @4xl:grid-cols-3 @4xl:gap-4">
+          {slide.links.map((link, i) => (
+            <li style={`--i: ${i}`} data-deck-pop>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group border-line bg-surface hover:border-accent flex h-full flex-col rounded-2xl border p-4 transition-colors @2xl:p-5"
+              >
+                <span class="eyebrow">{link.type}</span>
+                <span class="font-display mt-1.5 text-lg leading-snug font-bold @2xl:mt-2 @2xl:text-2xl">
+                  {link.title}
+                </span>
+                <span class="text-muted mt-auto flex items-center justify-between gap-3 pt-3 text-sm @2xl:pt-4">
+                  {link.source}
+                  <Icon
+                    name="arrow-up-right"
+                    class="text-accent size-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {slide.kind === 'end' && (
+      <div class="text-center">
+        <p class="font-display mx-auto max-w-4xl text-3xl leading-tight font-extrabold text-balance @2xl:text-6xl">
+          <ImproverText text={slide.title} />
+        </p>
+        <p class="font-display text-muted mt-4 text-xl text-balance @2xl:text-3xl">
+          {slide.tagline}
+        </p>
+        <dl class="mt-8 flex flex-wrap justify-center gap-x-12 gap-y-4">
+          {slide.credits.map((credit) => (
+            <div>
+              <dt class="eyebrow">{credit.role}</dt>
+              {credit.names.map((name) => (
+                <dd class="mt-1 font-semibold">{name}</dd>
+              ))}
+            </div>
+          ))}
+        </dl>
+        <div class="mt-8">
+          <ButtonLink href={slide.action.href}>{slide.action.label}</ButtonLink>
+        </div>
+      </div>
+    )}
+  </div>
+
+  {slide.aside && (
+    <p class="text-muted text-sm leading-relaxed @2xl:text-base">
+      <ImproverText text={slide.aside} />
+    </p>
+  )}
+  {slide.note && (
+    <p class="text-muted mt-2 text-sm leading-relaxed">
+      <span class="eyebrow mr-2">{t('Speaker note')}</span>
+      <em>{slide.note}</em>
+    </p>
+  )}
+</div>

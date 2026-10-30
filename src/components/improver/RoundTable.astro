@@ -1,0 +1,145 @@
+---
+/**
+ * The round table from the feedback talk: the team seated around a table
+ * with the four cards and a timer on it. `speaker` is drawn in the accent
+ * colour, `about` (whoever the feedback is for) in amber, with an arrow from
+ * one to the other. Decorative — the slide says the same thing in words.
+ */
+interface Props {
+  /** Names, clockwise from the top. */
+  seats: string[];
+  speaker?: number | undefined;
+  about?: number | undefined;
+  class?: string;
+}
+
+const { seats, speaker, about, class: className } = Astro.props;
+
+const CENTER = { x: 240, y: 172 };
+const RING = { rx: 192, ry: 112 };
+const TABLE = { rx: 122, ry: 60 };
+const round = (n: number) => Math.round(n * 10) / 10;
+
+const people = seats.map((name, i) => {
+  const angle = ((-90 + (360 / seats.length) * i) * Math.PI) / 180;
+  const x = round(CENTER.x + RING.rx * Math.cos(angle));
+  const y = round(CENTER.y + RING.ry * Math.sin(angle));
+  const role = i === speaker ? 'speaker' : i === about ? 'about' : 'seat';
+  // Names go on the far side of each person, away from the table.
+  const labelY = Math.sin(angle) < -0.01 ? y - 30 : y + 40;
+  return { name, x, y, role, labelY };
+});
+
+/** Dashed arrow from the speaker to whoever they talk about, clear of both. */
+function arrow(from: { x: number; y: number }, to: { x: number; y: number }) {
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const length = Math.hypot(dx, dy);
+  const ux = dx / length;
+  const uy = dy / length;
+  const gap = 34;
+  const start = { x: round(from.x + ux * gap), y: round(from.y + uy * gap) };
+  const end = { x: round(to.x - ux * gap), y: round(to.y - uy * gap) };
+  const head = [
+    `${end.x},${end.y}`,
+    `${round(end.x - ux * 12 - uy * 6)},${round(end.y - uy * 12 + ux * 6)}`,
+    `${round(end.x - ux * 12 + uy * 6)},${round(end.y - uy * 12 - ux * 6)}`,
+  ].join(' ');
+  return { start, end, head };
+}
+
+const talking = speaker === undefined ? undefined : people[speaker];
+const listening = about === undefined ? undefined : people[about];
+const pointer = talking && listening ? arrow(talking, listening) : undefined;
+
+/** The four card types, in the deck's order: motto, positive, improvements, personal. */
+const cards = ['fill-accent-2', 'fill-accent', 'fill-accent-3', 'fill-accent-4'];
+const TIMER_MINUTES = 20;
+const sweep = (TIMER_MINUTES / 60) * 2 * Math.PI;
+const timerEnd = {
+  x: round(CENTER.x + 46 + 18 * Math.sin(sweep)),
+  y: round(CENTER.y - 18 * Math.cos(sweep)),
+};
+---
+
+<svg
+  viewBox="0 0 480 340"
+  class:list={['h-auto w-full', className]}
+  aria-hidden="true"
+  focusable="false"
+>
+  <ellipse
+    cx={CENTER.x}
+    cy={CENTER.y}
+    rx={TABLE.rx}
+    ry={TABLE.ry}
+    class="fill-surface-sunken stroke-line-strong"
+    stroke-width="2"
+  ></ellipse>
+
+  {cards.map((fill, i) => (
+    <rect
+      x={CENTER.x - 70 + i * 14}
+      y={CENTER.y - 14}
+      width="20"
+      height="28"
+      rx="3"
+      class:list={[fill, 'stroke-surface-raised']}
+      stroke-width="1.5"
+      transform={`rotate(${-18 + i * 12} ${CENTER.x - 60 + i * 14} ${CENTER.y + 14})`}
+    />
+  ))}
+
+  <circle
+    cx={CENTER.x + 46}
+    cy={CENTER.y}
+    r="18"
+    class="fill-surface-raised stroke-line-strong"
+    stroke-width="2"
+  ></circle>
+  <path
+    d={`M${CENTER.x + 46} ${CENTER.y}V${CENTER.y - 18}A18 18 0 0 1 ${timerEnd.x} ${timerEnd.y}Z`}
+    class="fill-accent-3"
+  ></path>
+
+  {pointer && (
+    <g class="fill-accent stroke-accent">
+      <line
+        x1={pointer.start.x}
+        y1={pointer.start.y}
+        x2={pointer.end.x}
+        y2={pointer.end.y}
+        stroke-width="2.5"
+        stroke-dasharray="6 6"
+        stroke-linecap="round"
+      />
+      <polygon points={pointer.head} stroke-width="1" stroke-linejoin="round" />
+    </g>
+  )}
+
+  {people.map(({ name, x, y, role, labelY }) => (
+    <g
+      class:list={[
+        role === 'speaker' && 'fill-accent stroke-accent',
+        role === 'about' && 'fill-accent-3 stroke-accent-3',
+        role === 'seat' && 'fill-surface-raised stroke-line-strong',
+      ]}
+      stroke-width="2"
+    >
+      <circle cx={x} cy={y - 10} r="11" />
+      <path d={`M${x - 17} ${y + 20}v-4a17 14 0 0 1 34 0v4Z`} stroke-linejoin="round" />
+      <text
+        x={x}
+        y={labelY}
+        text-anchor="middle"
+        stroke="none"
+        class:list={[
+          'font-display text-[15px] font-semibold',
+          role === 'seat' ? 'fill-muted' : 'fill-fg',
+        ]}
+      >
+        {name}
+      </text>
+    </g>
+  ))}
+</svg>
