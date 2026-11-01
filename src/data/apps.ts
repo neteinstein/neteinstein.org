@@ -241,7 +241,7 @@ const memoryClashApp: AppListing = {
   id: 'memory-clash',
   title: 'Memory Clash',
   description: [
-    'A memory game for two players at the same time: repeat the sequences and conquer the board.',
+    'A memory game for 2 to 4 players at the same time: repeat the sequences and conquer the board. Two on a phone, three (on a triangle board) or four on a tablet.',
   ],
   image: memoryClash,
   imageAlt:

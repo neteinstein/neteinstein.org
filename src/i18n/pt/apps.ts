@@ -49,8 +49,8 @@ export const apps: Catalog = {
   'In Concept': 'Em conceito',
   'A two-player maths game on one screen: answer the sums right and paint the board in your colour.':
     'Um jogo de matemática para dois jogadores no mesmo ecrã: acerta nas contas e pinta o tabuleiro com a tua cor.',
-  'A memory game for two players at the same time: repeat the sequences and conquer the board.':
-    'Um jogo de memória para dois jogadores em simultâneo: repete as sequências e conquista o tabuleiro.',
+  'A memory game for 2 to 4 players at the same time: repeat the sequences and conquer the board. Two on a phone, three (on a triangle board) or four on a tablet.':
+    'Um jogo de memória para 2 a 4 jogadores em simultâneo: repete as sequências e conquista o tabuleiro. Dois num telemóvel, três (num tabuleiro em triângulo) ou quatro num tablet.',
   'A spooky, silly maze game: shoot eyeballs at zombies, witches and pumpkins, grab the IT bits and survive 100 levels. Made with love at ':
     'Um jogo de labirinto assustador e parvo: dispara globos oculares a zombies, bruxas e abóboras, apanha os bits de TI e sobrevive a 100 níveis. Feito com carinho na ',
   'MathClash banner: the app icon, a blue and red square split by a diagonal with a plus and a times sign, next to the title and the tagline "Two players, one screen"':
