@@ -42,6 +42,9 @@ import calendarSync from '../assets/my-apps/calendar-sync-feature.webp';
 import calendarSyncIcon from '../assets/my-apps/calendar-sync-icon.webp';
 import invoice2sheetDemoMp4 from '../assets/my-apps/invoice2sheet-demo.mp4?url';
 import invoice2sheetDemoWebm from '../assets/my-apps/invoice2sheet-demo.webm?url';
+import mathClashDemoMp4 from '../assets/my-apps/math-clash-demo.mp4?url';
+import memoryClashDemoMp4 from '../assets/my-apps/memory-clash-demo.mp4?url';
+import halloweenMinderDemoMp4 from '../assets/my-apps/halloween-minder-demo.mp4?url';
 import podcastShortsDemoMp4 from '../assets/my-apps/podcast-shorts-demo.mp4?url';
 import calendarSyncDemoMp4 from '../assets/my-apps/calendar-sync-demo.mp4?url';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
@@ -231,6 +234,8 @@ const mathClashApp: AppListing = {
     'MathClash banner: the app icon, a blue and red square split by a diagonal with a plus and a times sign, next to the title and the tagline "Two players, one screen"',
   icon: mathClashIcon,
   links: [{ store: 'web', href: 'https://neteinstein.github.io/MathClash/' }],
+  // A launch video made with /brag (latent-spaces/brag) from real gameplay.
+  videoFile: [{ src: mathClashDemoMp4, type: 'video/mp4' }],
 };
 
 const memoryClashApp: AppListing = {
@@ -244,6 +249,8 @@ const memoryClashApp: AppListing = {
     'Memory Clash banner: the app icon next to the title and the tagline "Two players, one board"',
   icon: memoryClashIcon,
   links: [{ store: 'web', href: 'https://neteinstein.github.io/MemoryClash/' }],
+  // A launch video made with /brag (latent-spaces/brag) from real gameplay.
+  videoFile: [{ src: memoryClashDemoMp4, type: 'video/mp4' }],
 };
 
 const halloweenMinderApp: AppListing = {
@@ -258,6 +265,8 @@ const halloweenMinderApp: AppListing = {
   imageAlt: 'Halloween Minder banner: a spooky maze with monsters and the title "Halloween Minder"',
   icon: halloweenMinderIcon,
   links: [{ store: 'web', href: 'https://mindera.github.io/Halloween-Minder/' }],
+  // A launch video made with /brag (latent-spaces/brag) from real gameplay.
+  videoFile: [{ src: halloweenMinderDemoMp4, type: 'video/mp4' }],
 };
 
 const podcastShortsApp: AppListing = {
