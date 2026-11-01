@@ -2,6 +2,24 @@ import type { Catalog } from '..';
 
 /** `src/data/apps.ts` */
 export const apps: Catalog = {
+  'Add them to your home screen': 'Adiciona-os ao ecrã principal',
+  'The web versions work like apps: open one in your browser and add a shortcut to your home screen.':
+    'As versões web funcionam como apps: abre uma no browser e adiciona um atalho ao ecrã principal.',
+  'Android (Chrome)': 'Android (Chrome)',
+  'Open the page in Chrome.': 'Abre a página no Chrome.',
+  'Tap the ⋮ menu at the top right.': 'Toca no menu ⋮ no canto superior direito.',
+  'Choose "Install app" or "Add to Home screen".':
+    'Escolhe "Instalar app" ou "Adicionar ao ecrã principal".',
+  'Confirm, and the icon appears with your other apps.':
+    'Confirma, e o ícone aparece junto das tuas outras apps.',
+  'iPhone and iPad (Safari)': 'iPhone e iPad (Safari)',
+  'Open the page in Safari.': 'Abre a página no Safari.',
+  'Tap the Share button (the square with an arrow).':
+    'Toca no botão Partilhar (o quadrado com uma seta).',
+  'Scroll down and choose "Add to Home Screen".':
+    'Desliza para baixo e escolhe "Adicionar ao Ecrã Principal".',
+  'Tap Add, and the icon appears on your home screen.':
+    'Toca em Adicionar, e o ícone aparece no teu ecrã principal.',
   'Donate on ': 'Faz um donativo no ',
   ' or via ': ' ou através do ',
   'Support me on Buy Me a Coffee!': 'Apoia-me no Buy Me a Coffee!',
