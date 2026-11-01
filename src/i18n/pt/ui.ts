@@ -21,6 +21,7 @@ export const ui: Catalog = {
   'Team Icebreakers': 'Quebra-gelos de Equipa',
   Apps: 'Apps',
   'My Apps': 'As Minhas Apps',
+  'My Games': 'Os Meus Jogos',
   'Other Apps': 'Outras Apps',
   Games: 'Jogos',
   LoopGain: 'LoopGain',

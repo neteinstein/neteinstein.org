@@ -8,7 +8,6 @@ import type {
   AppListing,
   AppPlatform,
   AppStore,
-  AppTab,
   AppStoreBadge,
   AppsSupport,
   RichText,
@@ -303,7 +302,7 @@ const calendarSyncApp: AppListing = {
   videoFile: [{ src: calendarSyncDemoMp4, type: 'video/mp4' }],
 };
 
-/** The page's tabs — phone apps, phone games, Mac tools, then AI tools — each split into sections. */
+/** /my-apps's tabs — phone apps, Mac tools, then AI tools — each split into sections. */
 export const appPlatforms: AppPlatform[] = [
   {
     id: 'mobile',
@@ -322,30 +321,6 @@ export const appPlatforms: AppPlatform[] = [
         apps: [smsToolbox, invoice2gdriveApp, netWorthApp],
       },
       { id: 'trivia', title: 'Trivia', category: 'ReferenceApplication', apps: [allowedNamesApp] },
-    ],
-  },
-  {
-    id: 'mobile-games',
-    title: 'My Games',
-    groups: [
-      {
-        id: 'educational-games',
-        title: 'Educational Games',
-        category: 'GameApplication',
-        apps: [mathClashApp, memoryClashApp],
-      },
-      {
-        id: 'festivity-games',
-        title: 'Festivity Games',
-        category: 'GameApplication',
-        apps: [halloweenMinderApp],
-      },
-      {
-        id: 'concept-games',
-        title: 'In Concept',
-        category: 'GameApplication',
-        apps: [moralHazardApp],
-      },
     ],
   },
   {
@@ -374,11 +349,33 @@ export const appPlatforms: AppPlatform[] = [
   },
 ];
 
-/** The last tab, which leaves for /friend-apps: apps made by family and friends. */
-export const otherAppsTab: AppTab = { id: 'other', title: 'Other Apps', href: '/friend-apps' };
+/** The sections of /my-games, which has no tabs: educational, festivity, then concept games. */
+export const gameGroups: AppGroup[] = [
+  {
+    id: 'educational-games',
+    title: 'Educational Games',
+    category: 'GameApplication',
+    apps: [mathClashApp, memoryClashApp],
+  },
+  {
+    id: 'festivity-games',
+    title: 'Festivity Games',
+    category: 'GameApplication',
+    apps: [halloweenMinderApp],
+  },
+  {
+    id: 'concept-games',
+    title: 'In Concept',
+    category: 'GameApplication',
+    apps: [moralHazardApp],
+  },
+];
+
+/** Every game, in page order — /my-games's icon dock lists them all. */
+export const games: AppListing[] = gameGroups.flatMap((group) => group.apps);
 
 /** Every section, in page order. */
 export const appGroups: AppGroup[] = appPlatforms.flatMap((platform) => platform.groups);
 
-/** Every app, in page order — the hero's icon dock lists them all. */
+/** Every app on /my-apps, in page order — the hero's icon dock lists them all. */
 export const apps: AppListing[] = appGroups.flatMap((group) => group.apps);
