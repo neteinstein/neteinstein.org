@@ -104,7 +104,7 @@ which always wins.
 ## URL changes
 
 Every route under `src/pages/` maps to a URL that exists on the Google Sites
-original, except `/friend-apps`, `/teams/icebreakers` and `/teams/workshops` (new, no
+original, except `/friend-apps`, `/my-games`, `/teams/icebreakers` and `/teams/workshops` (new, no
 original) and `/games`, which replaced `/tools` (now a redirect; its twin
 `tools/index.html` is written at build time so GitHub Pages serves it next to
 the `tools/` directory; `/tools/loopgain` redirects to `/my-apps#loopgain`). If a route must move, add

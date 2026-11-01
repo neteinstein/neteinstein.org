@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SupportCallout from '../components/SupportCallout.astro';
+import RichText from '../components/RichText.astro';
+import AppDock from '../components/apps/AppDock.astro';
+import AppCard from '../components/apps/AppCard.astro';
+import * as appsData from '../data/apps';
+import type { AppStore } from '../data/types';
+import { useI18n } from '../i18n';
+import { getPage } from '../i18n/content';
+import { PERSON_ID, imageUrl, plainText } from '../lib/schema';
+
+const { locale, localize } = useI18n(Astro);
+const { games, gameGroups, donate, support } = localize(appsData);
+// Cards are numbered across the whole page, not per section.
+const offsets = gameGroups.map((_, i) =>
+  gameGroups.slice(0, i).reduce((count, group) => count + group.apps.length, 0),
+);
+
+const page = (await getPage('my-games', locale)).data;
+
+// Every game as a SoftwareApplication, so search engines can show them as apps.
+const operatingSystems: Record<AppStore, string | undefined> = {
+  'google-play': 'Android',
+  web: 'Web',
+  github: undefined,
+};
+const schema = [
+  {
+    '@type': 'ItemList',
+    name: page.title,
+    itemListElement: await Promise.all(
+      gameGroups.flatMap((group) =>
+        group.apps.map(async (app) => ({
+          '@type': 'SoftwareApplication',
+          name: app.title,
+          description: plainText(app.description),
+          applicationCategory: group.category,
+          ...(app.links.length > 0 && {
+            url: app.links[0]!.href,
+            operatingSystem:
+              app.platform ??
+              app.links.flatMap((link) => operatingSystems[link.store] ?? []).join(', '),
+            offers: { '@type': 'Offer', price: 0, priceCurrency: 'EUR' },
+          }),
+          image: await imageUrl(app.image),
+          author: { '@id': PERSON_ID },
+        })),
+      ),
+    ).then((apps) =>
+      apps.map((item, index) => ({ '@type': 'ListItem', position: index + 1, item })),
+    ),
+  },
+];
+---
+
+<BaseLayout title={page.title} description={page.description} schema={schema}>
+  <PageHero title={page.title} eyebrow={page.eyebrow} highlight={page.highlight} lead={page.lead}>
+    <p
+      class="text-muted mt-3 max-w-2xl text-lg text-pretty sm:text-xl"
+      data-enter
+      style="--delay: 420"
+    >
+      <RichText text={donate} />
+    </p>
+    <AppDock apps={games} delay={520} class="mt-10" />
+  </PageHero>
+
+  {gameGroups.map((group, groupIndex) => (
+    <Section id={group.id} title={group.title}>
+      <div class="grid gap-6 md:grid-cols-2 lg:gap-8" data-reveal-stagger>
+        {group.apps.map((app, index) => (
+          <AppCard app={app} index={offsets[groupIndex]! + index} />
+        ))}
+      </div>
+    </Section>
+  ))}
+
+  <div id="support" class="container-page scroll-mt-24 pt-4 pb-16 sm:pb-20">
+    <SupportCallout title={support.title} message={support.message} class="mx-auto max-w-5xl" />
+  </div>
+</BaseLayout>

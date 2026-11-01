@@ -1,4 +1,4 @@
-/** Shapes for /my-apps and /friend-apps. */
+/** Shapes for /my-apps, /my-games and /friend-apps. */
 import type { ImageMetadata } from 'astro';
 import type { RichText } from './home';
 
@@ -60,14 +60,6 @@ export interface AppPlatform {
   id: string;
   title: string;
   groups: AppGroup[];
-}
-
-/** A tab in the bar shared by /my-apps and /friend-apps. */
-export interface AppTab {
-  id: string;
-  title: string;
-  /** Where the tab leads (`/friend-apps`, `/my-apps#macos`). */
-  href: string;
 }
 
 /** A titled section of /friend-apps ("Family", "Friends"). */
