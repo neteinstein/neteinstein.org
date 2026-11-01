@@ -226,7 +226,7 @@ const mathClashApp: AppListing = {
   id: 'math-clash',
   title: 'MathClash',
   description: [
-    'A two-player maths game on one screen: answer the sums right and paint the board in your colour.',
+    'A maths game for 2 to 4 players at the same time: answer the sums right and paint the board in your colour. Two on a phone, three (on a triangle board) or four on a tablet.',
   ],
   image: mathClash,
   imageAlt:
