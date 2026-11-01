@@ -30,6 +30,12 @@ import netWorth from '../assets/my-apps/net-worth-feature.webp';
 import netWorthIcon from '../assets/my-apps/net-worth-icon.webp';
 import moralHazard from '../assets/my-apps/moral-hazard-feature.webp';
 import moralHazardIcon from '../assets/my-apps/moral-hazard-icon.webp';
+import mathClash from '../assets/my-apps/math-clash-feature.webp';
+import mathClashIcon from '../assets/my-apps/math-clash-icon.webp';
+import memoryClash from '../assets/my-apps/memory-clash-feature.webp';
+import memoryClashIcon from '../assets/my-apps/memory-clash-icon.webp';
+import halloweenMinder from '../assets/my-apps/halloween-minder-feature.webp';
+import halloweenMinderIcon from '../assets/my-apps/halloween-minder-icon.webp';
 import podcastShorts from '../assets/my-apps/podcast-shorts-feature.webp';
 import podcastShortsIcon from '../assets/my-apps/podcast-shorts-icon.webp';
 import calendarSync from '../assets/my-apps/calendar-sync-feature.webp';
@@ -214,6 +220,46 @@ const moralHazardApp: AppListing = {
   links: [],
 };
 
+const mathClashApp: AppListing = {
+  id: 'math-clash',
+  title: 'MathClash',
+  description: [
+    'A two-player maths game on one screen: answer the sums right and paint the board in your colour.',
+  ],
+  image: mathClash,
+  imageAlt:
+    'MathClash banner: the app icon, a blue and red square split by a diagonal with a plus and a times sign, next to the title and the tagline "Two players, one screen"',
+  icon: mathClashIcon,
+  links: [{ store: 'web', href: 'https://neteinstein.github.io/MathClash/' }],
+};
+
+const memoryClashApp: AppListing = {
+  id: 'memory-clash',
+  title: 'Memory Clash',
+  description: [
+    'A memory game for two players at the same time: repeat the sequences and conquer the board.',
+  ],
+  image: memoryClash,
+  imageAlt:
+    'Memory Clash banner: the app icon next to the title and the tagline "Two players, one board"',
+  icon: memoryClashIcon,
+  links: [{ store: 'web', href: 'https://neteinstein.github.io/MemoryClash/' }],
+};
+
+const halloweenMinderApp: AppListing = {
+  id: 'halloween-minder',
+  title: 'Halloween Minder',
+  description: [
+    'A spooky, silly maze game: shoot eyeballs at zombies, witches and pumpkins, grab the IT bits and survive 100 levels. Made with love at ',
+    { label: 'Mindera', href: 'https://www.mindera.com' },
+    '.',
+  ],
+  image: halloweenMinder,
+  imageAlt: 'Halloween Minder banner: a spooky maze with monsters and the title "Halloween Minder"',
+  icon: halloweenMinderIcon,
+  links: [{ store: 'web', href: 'https://mindera.github.io/Halloween-Minder/' }],
+};
+
 const podcastShortsApp: AppListing = {
   id: 'podcast-shorts',
   title: 'AI Podcast Short Editor',
@@ -272,7 +318,26 @@ export const appPlatforms: AppPlatform[] = [
   {
     id: 'mobile-games',
     title: 'My Mobile Games',
-    groups: [{ id: 'games', title: 'Games', category: 'GameApplication', apps: [moralHazardApp] }],
+    groups: [
+      {
+        id: 'educational-games',
+        title: 'Educational Games',
+        category: 'GameApplication',
+        apps: [mathClashApp, memoryClashApp],
+      },
+      {
+        id: 'festivity-games',
+        title: 'Festivity Games',
+        category: 'GameApplication',
+        apps: [halloweenMinderApp],
+      },
+      {
+        id: 'concept-games',
+        title: 'In Concept',
+        category: 'GameApplication',
+        apps: [moralHazardApp],
+      },
+    ],
   },
   {
     id: 'macos',
