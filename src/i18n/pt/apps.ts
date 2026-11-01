@@ -65,8 +65,8 @@ export const apps: Catalog = {
   'Educational Games': 'Jogos educativos',
   'Festivity Games': 'Jogos festivos',
   'In Concept': 'Em conceito',
-  'A two-player maths game on one screen: answer the sums right and paint the board in your colour.':
-    'Um jogo de matemática para dois jogadores no mesmo ecrã: acerta nas contas e pinta o tabuleiro com a tua cor.',
+  'A maths game for 2 to 4 players at the same time: answer the sums right and paint the board in your colour. Two on a phone, three (on a triangle board) or four on a tablet.':
+    'Um jogo de matemática para 2 a 4 jogadores em simultâneo: acerta nas contas e pinta o tabuleiro com a tua cor. Dois num telemóvel, três (num tabuleiro em triângulo) ou quatro num tablet.',
   'A memory game for 2 to 4 players at the same time: repeat the sequences and conquer the board. Two on a phone, three (on a triangle board) or four on a tablet.':
     'Um jogo de memória para 2 a 4 jogadores em simultâneo: repete as sequências e conquista o tabuleiro. Dois num telemóvel, três (num tabuleiro em triângulo) ou quatro num tablet.',
   'A spooky, silly maze game: shoot eyeballs at zombies, witches and pumpkins, grab the IT bits and survive 100 levels. Made with love at ':
