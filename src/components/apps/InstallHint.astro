@@ -1,0 +1,35 @@
+---
+/** How to add a web app to the phone's home screen — shared by /my-apps and /my-games. */
+import Section from '../Section.astro';
+import { useI18n } from '../../i18n';
+
+const { t } = useI18n(Astro);
+---
+
+<Section id="install" title={t('Add them to your home screen')} width="default">
+  <p class="text-muted mb-6 text-lg text-pretty">
+    {t(
+      'The web versions work like apps: open one in your browser and add a shortcut to your home screen.',
+    )}
+  </p>
+  <div class="grid gap-6 md:grid-cols-2" data-reveal-stagger>
+    <div class="border-line bg-surface rounded-2xl border p-6">
+      <h3 class="font-display text-xl font-bold">{t('Android (Chrome)')}</h3>
+      <ol class="text-muted mt-3 list-decimal space-y-1 ps-5">
+        <li>{t('Open the page in Chrome.')}</li>
+        <li>{t('Tap the ⋮ menu at the top right.')}</li>
+        <li>{t('Choose "Install app" or "Add to Home screen".')}</li>
+        <li>{t('Confirm, and the icon appears with your other apps.')}</li>
+      </ol>
+    </div>
+    <div class="border-line bg-surface rounded-2xl border p-6">
+      <h3 class="font-display text-xl font-bold">{t('iPhone and iPad (Safari)')}</h3>
+      <ol class="text-muted mt-3 list-decimal space-y-1 ps-5">
+        <li>{t('Open the page in Safari.')}</li>
+        <li>{t('Tap the Share button (the square with an arrow).')}</li>
+        <li>{t('Scroll down and choose "Add to Home Screen".')}</li>
+        <li>{t('Tap Add, and the icon appears on your home screen.')}</li>
+      </ol>
+    </div>
+  </div>
+</Section>
