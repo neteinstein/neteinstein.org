@@ -65,7 +65,7 @@ export const apps: Catalog = {
   'Work Tools': 'Ferramentas de trabalho',
   'Podcast Tools': 'Ferramentas de podcast',
   'My Mobile Apps': 'As minhas apps móveis',
-  'My Mobile Games': 'Os meus jogos móveis',
+  'My Games': 'Os meus jogos',
   'My macOS Apps': 'As minhas apps para macOS',
   'My AI Apps': 'As minhas apps de IA',
   'One command turns a full podcast episode into ready-to-post vertical shorts: Claude picks the moments that stand on their own, the crop follows whoever is talking and the captions light up word by word. Built at ':

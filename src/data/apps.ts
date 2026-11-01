@@ -326,7 +326,7 @@ export const appPlatforms: AppPlatform[] = [
   },
   {
     id: 'mobile-games',
-    title: 'My Mobile Games',
+    title: 'My Games',
     groups: [
       {
         id: 'educational-games',
