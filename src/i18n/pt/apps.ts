@@ -44,13 +44,28 @@ export const apps: Catalog = {
     'Jogos de humor negro sobre más escolhas: escolhe o mal menor, troca fatias da tua alma com o diabo ou escreve já o teu próprio epitáfio.',
   'Moral Hazard banner: a halo over a pair of devil horns, the tagline "Dark-humour games about poor choices." and cards for The Lesser Evil, Deal With the Devil and Epitaph Engraver':
     'Banner do Moral Hazard: uma auréola sobre um par de cornos de diabo, o slogan "Dark-humour games about poor choices." e cartas de The Lesser Evil, Deal With the Devil e Epitaph Engraver',
+  'Educational Games': 'Jogos educativos',
+  'Festivity Games': 'Jogos festivos',
+  'In Concept': 'Em conceito',
+  'A two-player maths game on one screen: answer the sums right and paint the board in your colour.':
+    'Um jogo de matemática para dois jogadores no mesmo ecrã: acerta nas contas e pinta o tabuleiro com a tua cor.',
+  'A memory game for two players at the same time: repeat the sequences and conquer the board.':
+    'Um jogo de memória para dois jogadores em simultâneo: repete as sequências e conquista o tabuleiro.',
+  'A spooky, silly maze game: shoot eyeballs at zombies, witches and pumpkins, grab the IT bits and survive 100 levels. Made with love at ':
+    'Um jogo de labirinto assustador e parvo: dispara globos oculares a zombies, bruxas e abóboras, apanha os bits de TI e sobrevive a 100 níveis. Feito com carinho na ',
+  'MathClash banner: the app icon, a blue and red square split by a diagonal with a plus and a times sign, next to the title and the tagline "Two players, one screen"':
+    'Banner do MathClash: o ícone da app, um quadrado azul e vermelho dividido na diagonal com um sinal de mais e um de vezes, junto ao título e ao slogan "Two players, one screen"',
+  'Memory Clash banner: the app icon next to the title and the tagline "Two players, one board"':
+    'Banner do Memory Clash: o ícone da app junto ao título e ao slogan "Two players, one board"',
+  'Halloween Minder banner: a spooky maze with monsters and the title "Halloween Minder"':
+    'Banner do Halloween Minder: um labirinto assustador com monstros e o título "Halloween Minder"',
   'Conceptual Phase': 'Em fase concetual',
   'LoopGain Toolbox Apps': 'Apps da LoopGain Toolbox',
   'View it on GitHub': 'Ver no GitHub',
   'Work Tools': 'Ferramentas de trabalho',
   'Podcast Tools': 'Ferramentas de podcast',
   'My Mobile Apps': 'As minhas apps móveis',
-  'My Mobile Games': 'Os meus jogos móveis',
+  'My Games': 'Os meus jogos',
   'My macOS Apps': 'As minhas apps para macOS',
   'My AI Apps': 'As minhas apps de IA',
   'One command turns a full podcast episode into ready-to-post vertical shorts: Claude picks the moments that stand on their own, the crop follows whoever is talking and the captions light up word by word. Built at ':
