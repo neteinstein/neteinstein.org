@@ -313,7 +313,7 @@ const calendarSyncApp: AppListing = {
   id: 'calendar-sync',
   title: 'Calendar Sync',
   description: [
-    'A tiny macOS menu bar app that copies your client meetings into your main calendar, meeting link included, so colleagues stop booking you over your client standup.',
+    "A tiny macOS menu bar app that copies meetings from your secondary calendars into your main calendar, so colleagues stop booking you over meetings they can't see. Also provides full screen meeting reminder and more.",
   ],
   image: calendarSync,
   imageAlt:
