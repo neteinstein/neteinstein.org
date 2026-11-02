@@ -161,7 +161,7 @@ export const teaching: Teaching[] = [
         'Invited Lecturer of Mobile Communications — ',
         {
           label: 'Computer Science Engineering Degree',
-          href: 'https://www.ispgaya.pt/site/eng/courses/view/2',
+          href: 'https://ispgaya.pt/pt/ensino/oferta-formativa/licenciaturas/engenharia-informatica',
         },
       ],
     ],
@@ -169,7 +169,7 @@ export const teaching: Teaching[] = [
     image: {
       src: ispgayaLogo,
       alt: 'ISPGAYA logo',
-      href: 'https://www.ispgaya.pt/site/eng/courses/view/2',
+      href: 'https://ispgaya.pt/pt/ensino/oferta-formativa/licenciaturas/engenharia-informatica',
     },
   },
   {

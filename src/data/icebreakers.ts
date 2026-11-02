@@ -293,17 +293,17 @@ export const onlineGames: (LinkRef & { description: string })[] = [
   },
   {
     label: 'Virtual Clue murder mystery',
-    href: 'https://try.outbackteambuilding.com/ap-virtual-clue-murder-mystery/',
+    href: 'https://www.outbackteambuilding.com/team-building/virtual-clue-murder-mystery/',
     description: 'Solve a murder mystery together, over video.',
   },
   {
     label: 'Virtual escape room',
-    href: 'https://try.outbackteambuilding.com/virtual-escape-room-game/',
+    href: 'https://www.outbackteambuilding.com/team-building/virtual-escape-room-jewel-heist/',
     description: 'Puzzle your way out of an online escape room as a team.',
   },
   {
     label: 'Virtual trivia time machine',
-    href: 'https://try.outbackteambuilding.com/ap-virtual-trivia-time-machine/',
+    href: 'https://www.outbackteambuilding.com/team-building/virtual-pop-culture-trivia-time-machine/',
     description: 'Trivia across the decades, hosted live.',
   },
 ];
