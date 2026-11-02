@@ -85,6 +85,7 @@ export const apps: Catalog = {
   'LoopGain Toolbox Apps': 'Apps da LoopGain Toolbox',
   'View it on GitHub': 'Ver no GitHub',
   'Work Tools': 'Ferramentas de trabalho',
+  Finance: 'Finanças',
   'Podcast Tools': 'Ferramentas de podcast',
   'My Mobile Apps': 'As minhas apps móveis',
   'My macOS Apps': 'As minhas apps para macOS',
