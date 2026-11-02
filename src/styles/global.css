@@ -427,6 +427,28 @@ html[data-scroll='down'] [data-scroll-hide][data-stuck] {
   }
 }
 
+/*
+ * A sticky tab bar (`data-sticky-tabs`, /my-apps) never hides: it sits under
+ * the header and takes the header's place while the header is tucked away.
+ * `top` only moves an element once sticky has pinned it, so the bar never
+ * shifts while it is still in the page flow. Pages with one leave room for it
+ * when jumping to an anchor.
+ */
+[data-sticky-tabs] {
+  transition: top 0.45s var(--ease-out-expo);
+}
+html[data-scroll='down'] [data-sticky-tabs] {
+  top: 0.75rem;
+}
+html:has([data-sticky-tabs]) {
+  scroll-padding-top: 9.5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-sticky-tabs] {
+    transition: none;
+  }
+}
+
 /* Header tightens as the page scrolls (scroll-driven, progressive). */
 @supports (animation-timeline: scroll()) {
   .motion-ok .site-header-bar {

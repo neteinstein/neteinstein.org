@@ -2,12 +2,21 @@
  * Panel switching for the /my-apps tab bar (`AppTabs.astro`). Each in-page tab
  * (`data-tab="<id>"`) shows the `data-tab-panel` with that id and hides the
  * rest. A link to anything inside a hidden panel — the hero's icon dock, a
- * shared `/my-apps#calendar-sync` — opens its tab first. With JS off every
- * panel stays visible and the tabs are ordinary anchors.
+ * shared `/my-apps#calendar-sync` — opens its tab first. Switching tabs while
+ * the sticky bar is pinned scrolls back to the top of the new panel. With JS
+ * off every panel stays visible and the tabs are ordinary anchors.
  */
 
 const panels = [...document.querySelectorAll<HTMLElement>('[data-tab-panel]')];
 const tabs = [...document.querySelectorAll<HTMLAnchorElement>('[data-tab]')];
+const bar = document.querySelector<HTMLElement>('[data-app-tabs]');
+
+/** True once the sticky tab bar is pinned, i.e. the page is scrolled into a panel. */
+function barPinned() {
+  if (!bar) return false;
+  const top = parseFloat(getComputedStyle(bar).top) || 0;
+  return bar.getBoundingClientRect().top <= top + 1;
+}
 
 function show(id: string) {
   for (const panel of panels) panel.hidden = panel.id !== id;
@@ -40,8 +49,12 @@ if (panels.length > 0) {
   for (const tab of tabs) {
     tab.addEventListener('click', (event) => {
       event.preventDefault();
+      // Switching from deep inside a long panel would land mid-way down the
+      // new one, so start it from its top.
+      const pinned = barPinned();
       show(tab.dataset.tab!);
       history.replaceState(null, '', `#${tab.dataset.tab}`);
+      if (pinned) document.getElementById(tab.dataset.tab!)?.scrollIntoView();
     });
   }
 }

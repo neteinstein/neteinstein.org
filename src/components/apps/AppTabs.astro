@@ -4,6 +4,10 @@
  * tabs switch panels in place (`src/scripts/app-tabs.ts`); with JS off they are
  * plain in-page anchors and every panel stays on the page. Games and other
  * people's apps have their own pages, in the menu.
+ *
+ * The bar sticks under the header, so the other tabs stay in sight however far
+ * down a panel someone scrolls; when the header tucks away (`data-sticky-tabs`
+ * in `global.css`) it slides up into the header's place.
  */
 import { appPlatforms } from '../../data/apps';
 import { useI18n } from '../../i18n';
@@ -16,8 +20,13 @@ const { class: className } = Astro.props;
 const { t } = useI18n(Astro);
 ---
 
-<nav aria-label={t('Apps')} class:list={['container-page', className]} data-app-tabs>
-  <ul class="border-line flex gap-1 overflow-x-auto border-b">
+<nav
+  aria-label={t('Apps')}
+  class:list={['container-page sticky top-[5.25rem] z-30', className]}
+  data-app-tabs
+  data-sticky-tabs
+>
+  <ul class="glass border-line flex gap-1 overflow-x-auto rounded-2xl border px-2 shadow-[var(--shadow-sm)]">
     {appPlatforms.map(({ id, title }, index) => (
       <li class="shrink-0">
         <a
