@@ -49,6 +49,10 @@ export const apps: Catalog = {
   ', but easy to filter and search.': ', mas fácil de filtrar e pesquisar.',
   'Allowed Names in Portugal banner: a checked-list app icon and the tagline "Officially approved Portuguese first names"':
     'Banner do Nomes Permitidos em Portugal: um ícone de lista com vistos e o slogan "Officially approved Portuguese first names"',
+  "One-tap on/off for Android's Private DNS, set to the provider you choose: Cloudflare, Google, Quad9, AdGuard, Mullvad or your own hostname. Use the home screen widget, the Quick Settings tile or the in-app switch.":
+    'Liga e desliga o DNS Privado do Android com um toque, no fornecedor que escolheres: Cloudflare, Google, Quad9, AdGuard, Mullvad ou o teu próprio hostname. Usa o widget do ecrã principal, o mosaico das Definições rápidas ou o interruptor na app.',
+  'Private DNS Changer banner: a shield app icon, the tagline "Private DNS, one tap." and the app showing Private DNS on with a list of providers':
+    'Banner do Private DNS Changer: um ícone de escudo, o slogan "Private DNS, one tap." e a app com o DNS Privado ligado e uma lista de fornecedores',
   'Scan the QR code on a Portuguese invoice and snap a photo: the invoice becomes a row in your Google Sheet and the photo lands in your Google Drive. No typing required.':
     'Lê o código QR de uma fatura portuguesa e tira uma fotografia: a fatura passa a ser uma linha na tua Google Sheet e a fotografia vai para o teu Google Drive. Sem escrever nada.',
   'Invoice2Sheet banner: a receipt-with-a-checkmark app icon, the tagline "Scan the QR code. Snap the invoice. It lands in your Sheet.", the points Portuguese invoice QR codes, A row in your Google Sheet and The photo in your Google Drive, and a receipt with a QR code next to a spreadsheet with a new row':
