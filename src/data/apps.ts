@@ -23,6 +23,8 @@ import smsRedirect from '../assets/my-apps/sms-redirect-feature.webp';
 import smsRedirectIcon from '../assets/my-apps/sms-redirect-icon.webp';
 import allowedNames from '../assets/my-apps/allowed-names-feature.webp';
 import allowedNamesIcon from '../assets/my-apps/allowed-names-icon.webp';
+import privateDns from '../assets/my-apps/private-dns-changer-feature.webp';
+import privateDnsIcon from '../assets/my-apps/private-dns-changer-icon.webp';
 import invoice2gdrive from '../assets/my-apps/invoice2gdrive-feature.webp';
 import invoice2gdriveIcon from '../assets/my-apps/invoice2gdrive-icon.webp';
 import netWorth from '../assets/my-apps/net-worth-feature.webp';
@@ -41,6 +43,7 @@ import calendarSync from '../assets/my-apps/calendar-sync-feature.webp';
 import calendarSyncIcon from '../assets/my-apps/calendar-sync-icon.webp';
 import invoice2sheetDemoMp4 from '../assets/my-apps/invoice2sheet-demo.mp4?url';
 import invoice2sheetDemoWebm from '../assets/my-apps/invoice2sheet-demo.webm?url';
+import privateDnsDemoMp4 from '../assets/my-apps/private-dns-changer-demo.mp4?url';
 import mathClashDemoMp4 from '../assets/my-apps/math-clash-demo.mp4?url';
 import memoryClashDemoMp4 from '../assets/my-apps/memory-clash-demo.mp4?url';
 import halloweenMinderDemoMp4 from '../assets/my-apps/halloween-minder-demo.mp4?url';
@@ -174,6 +177,21 @@ const allowedNamesApp: AppListing = {
     },
     { store: 'web', href: 'https://nomespermitidosemportugal.neteinstein.org' },
   ],
+};
+
+const privateDnsApp: AppListing = {
+  id: 'private-dns-changer',
+  title: 'Private DNS Changer',
+  description: [
+    "One-tap on/off for Android's Private DNS, set to the provider you choose: Cloudflare, Google, Quad9, AdGuard, Mullvad or your own hostname. Use the home screen widget, the Quick Settings tile or the in-app switch.",
+  ],
+  image: privateDns,
+  imageAlt:
+    'Private DNS Changer banner: a shield app icon, the tagline "Private DNS, one tap." and the app showing Private DNS on with a list of providers',
+  icon: privateDnsIcon,
+  links: [{ store: 'github', href: 'https://github.com/neteinstein/Private-DNS-Changer' }],
+  // A launch video made with /brag (latent-spaces/brag), including the one-time ADB command that makes the app work.
+  videoFile: [{ src: privateDnsDemoMp4, type: 'video/mp4' }],
 };
 
 const invoice2gdriveApp: AppListing = {
@@ -318,7 +336,7 @@ export const appPlatforms: AppPlatform[] = [
         id: 'utils',
         title: 'Utils',
         category: 'UtilitiesApplication',
-        apps: [smsToolbox, invoice2gdriveApp, netWorthApp],
+        apps: [smsToolbox, privateDnsApp, invoice2gdriveApp, netWorthApp],
       },
       { id: 'trivia', title: 'Trivia', category: 'ReferenceApplication', apps: [allowedNamesApp] },
     ],
