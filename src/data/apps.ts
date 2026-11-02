@@ -189,7 +189,12 @@ const privateDnsApp: AppListing = {
   imageAlt:
     'Private DNS Changer banner: a shield app icon, the tagline "Private DNS, one tap." and the app showing Private DNS on with a list of providers',
   icon: privateDnsIcon,
-  links: [{ store: 'github', href: 'https://github.com/neteinstein/Private-DNS-Changer' }],
+  links: [
+    {
+      store: 'google-play',
+      href: 'https://play.google.com/store/apps/details?id=org.neteinstein.privatednschanger',
+    },
+  ],
   // A launch video made with /brag (latent-spaces/brag), including the one-time ADB command that makes the app work.
   videoFile: [{ src: privateDnsDemoMp4, type: 'video/mp4' }],
 };
