@@ -103,9 +103,10 @@ export interface ImproverWorkshopField {
 }
 
 /**
- * The workshops contact form: posts straight to the Google Form's
- * `formResponse` endpoint (via a hidden iframe target, so it works without
- * JS) instead of embedding the Google Forms iframe.
+ * The workshops contact form: posts to the Google Form's `formResponse`
+ * endpoint from script, once its bot checks pass (with JS off it opens the
+ * pre-filled `viewform` page instead), rather than embedding the Google
+ * Forms iframe.
  */
 export interface ImproverWorkshopForm {
   /** `.../formResponse` endpoint of the underlying Google Form. */
@@ -113,7 +114,10 @@ export interface ImproverWorkshopForm {
   fields: ImproverWorkshopField[];
   submitLabel: string;
   successMessage: string;
-  /** Link to the original Google Form, for people who'd rather use that. */
+  /**
+   * Link to the original Google Form, for people who'd rather use that; also
+   * where the form goes, pre-filled, when JS is off.
+   */
   fallbackHref: string;
   fallbackLabel: string;
 }

@@ -3,12 +3,17 @@ import type { ImproverWorkshopForm } from '../../data/types';
 import { useI18n } from '../../i18n';
 
 /**
- * Native-styled contact form that posts straight to the underlying Google
- * Form's `formResponse` endpoint (same spreadsheet the original embed wrote
- * to), instead of embedding the Google Forms iframe. Submission targets a
- * hidden iframe, so it works with JS off too; the inline `<script>` just
- * swaps in an optimistic success message instead of leaving the visitor
- * staring at Google's own confirmation page inside the hidden frame.
+ * Native-styled contact form for the underlying Google Form (same
+ * spreadsheet the original embed wrote to), instead of embedding the Google
+ * Forms iframe.
+ *
+ * The markup only knows the Google Form's `viewform` page: with JS off,
+ * submitting opens it in a new tab pre-filled with the answers, and the
+ * visitor sends it from there. The inline `<script>` is what posts to
+ * `formResponse` (via a hidden iframe), and only after two bot checks pass:
+ * a honeypot field people never see, and a minimum time on the page. Bots
+ * that fail them get the same success message and nothing is sent, so the
+ * scraped HTML never carries the endpoint that writes to the spreadsheet.
  */
 interface Props {
   form: ImproverWorkshopForm;
@@ -17,17 +22,26 @@ interface Props {
 const { form } = Astro.props;
 const { t } = useI18n(Astro);
 const frameName = 'workshop-form-target';
+const honeypotClass =
+  'pointer-events-none absolute -left-[9999px] size-px overflow-hidden opacity-0';
 ---
 
 <div class="border-line bg-surface-sunken rounded-3xl border p-6 shadow-[var(--shadow-md)] sm:p-8">
   <form
-    action={form.action}
-    method="POST"
-    target={frameName}
-    class="grid gap-4 sm:grid-cols-2"
+    action={form.fallbackHref}
+    method="GET"
+    target="_blank"
+    class="relative grid gap-4 sm:grid-cols-2"
     data-workshop-form
+    data-endpoint={form.action}
+    data-frame={frameName}
     data-success-message={form.successMessage}
   >
+    <label class={honeypotClass} aria-hidden="true">
+      {t('Leave this field empty')}
+      <input type="text" tabindex="-1" autocomplete="off" data-workshop-honeypot />
+    </label>
+
     {form.fields.map((field) => {
       const isWide = field.type === 'textarea';
       const inputClass =
@@ -85,14 +99,28 @@ const frameName = 'workshop-form-target';
 </div>
 
 <script>
+  // No person reads the form and fills it in faster than this.
+  const MIN_FILL_MS = 3000;
+  const loadedAt = performance.now();
+
   const forms = document.querySelectorAll<HTMLFormElement>('[data-workshop-form]');
   forms.forEach((form) => {
     const status = form.parentElement?.querySelector<HTMLElement>('[data-workshop-form-status]');
-    const successMessage = form.dataset.successMessage ?? '';
-    form.addEventListener('submit', () => {
-      if (!status) return;
+    const honeypot = form.querySelector<HTMLInputElement>('[data-workshop-honeypot]');
+    const { endpoint, frame, successMessage = '' } = form.dataset;
+    if (!endpoint || !frame) return;
+
+    form.addEventListener('submit', (event) => {
+      const looksLikeBot = Boolean(honeypot?.value) || performance.now() - loadedAt < MIN_FILL_MS;
+      if (looksLikeBot) {
+        event.preventDefault();
+      } else {
+        form.action = endpoint;
+        form.method = 'POST';
+        form.target = frame;
+      }
       window.setTimeout(() => {
-        status.textContent = successMessage;
+        if (status) status.textContent = successMessage;
         form.reset();
       }, 400);
     });

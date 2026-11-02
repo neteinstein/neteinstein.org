@@ -94,6 +94,7 @@ export const improver: Catalog = {
   "Thanks! I'll reach out soon.": 'Obrigado! Entro em contacto em breve.',
   'Prefer the original Google Form?': 'Prefere o formulário original do Google?',
   'Form submission target': 'Destino do envio do formulário',
+  'Leave this field empty': 'Deixe este campo vazio',
   'Family & Couple': 'Família & Casal',
   'LoopGain Family & Couple': 'LoopGain Family & Couple',
   'After teams...': 'Depois das equipas...',
