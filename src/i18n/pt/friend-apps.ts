@@ -16,4 +16,8 @@ export const friendApps: Catalog = {
     'Cinco minutos por semana para uma família mais próxima: o que correu bem, o que foi difícil e uma pergunta para conversarem à mesa, guardado ao longo do tempo para todos.',
   'Weekly FamilyLog: the headline "Cinco minutos por semana, uma família mais próxima." next to cards for the weekly ceremony, the history and the emotional evolution chart':
     'Weekly FamilyLog: o título "Cinco minutos por semana, uma família mais próxima." ao lado de cartões da cerimónia semanal, do histórico e do gráfico de evolução emocional',
+  'An "honest" platformer in ten levels. Each one makes you a promise, and every single promise is a lie. Plays in the browser, on a phone or a computer.':
+    'Um jogo de plataformas "honesto" em dez níveis. Cada um faz-te uma promessa, e todas as promessas são mentira. Joga-se no browser, no telemóvel ou no computador.',
+  'Level Liar: the title "LEVEL LIAR" over a field of "TRUST ME" text, with the line "Every single promise is a lie."':
+    'Level Liar: o título "LEVEL LIAR" sobre um fundo de texto "TRUST ME", com a frase "Every single promise is a lie."',
 };

@@ -4,6 +4,9 @@
  */
 import type { AppListing, AppSection } from './types';
 
+import levelLiar from '../assets/friend-apps/level-liar-feature.webp';
+import levelLiarIcon from '../assets/friend-apps/level-liar-icon.webp';
+import levelLiarTrailerMp4 from '../assets/friend-apps/level-liar-trailer.mp4?url';
 import quites from '../assets/friend-apps/quites-feature.webp';
 import quitesIcon from '../assets/friend-apps/quites-icon.webp';
 import tempusRemedium from '../assets/friend-apps/tempus-remedium-feature.webp';
@@ -60,10 +63,26 @@ const weeklyFamilyLogApp: AppListing = {
   links: [{ store: 'web', href: 'https://weeklyfamilylog.marioc.eu/' }],
 };
 
+const levelLiarApp: AppListing = {
+  id: 'level-liar',
+  title: 'Level Liar',
+  author: 'Jorge Sousa',
+  authorHref: 'https://github.com/jorgesousa',
+  description: [
+    'An "honest" platformer in ten levels. Each one makes you a promise, and every single promise is a lie. Plays in the browser, on a phone or a computer.',
+  ],
+  image: levelLiar,
+  imageAlt:
+    'Level Liar: the title "LEVEL LIAR" over a field of "TRUST ME" text, with the line "Every single promise is a lie."',
+  icon: levelLiarIcon,
+  videoFile: [{ src: levelLiarTrailerMp4, type: 'video/mp4' }],
+  links: [{ store: 'web', href: 'https://jorgesousa.github.io/level-liar/' }],
+};
+
 /** The page's sections, in order. */
 export const appSections: AppSection[] = [
   { id: 'family', title: 'Family', apps: [tempusRemediumApp] },
-  { id: 'friends', title: 'Friends', apps: [quitesApp, weeklyFamilyLogApp] },
+  { id: 'friends', title: 'Friends', apps: [quitesApp, weeklyFamilyLogApp, levelLiarApp] },
 ];
 
 /** Every app, in page order (the hero's icon dock). */
