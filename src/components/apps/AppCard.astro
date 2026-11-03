@@ -14,6 +14,10 @@ import { useI18n } from '../../i18n';
  *
  * Hover lifts the device, zooms the banner and tilts the icon. Decoration only.
  *
+ * The name links to the card itself (`#<app id>`), with a link glyph on hover
+ * and focus, so anyone can copy a URL that lands on one app. On /my-apps the
+ * tab script opens the right tab for it.
+ *
  * When the app has a `video`, the banner becomes a play button that loads the
  * YouTube player in its place (same click-to-load as `VideoEmbed`; with JS off
  * it links to the video). A `videoFile` works the same way with a `<video>`
@@ -155,7 +159,17 @@ const watchUrl = app.video
         featured ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-2xl',
       ]}
     >
-      {app.title}
+      <a
+        href={`#${app.id}`}
+        title={t('Link to this app')}
+        class="group/anchor hover:text-accent focus-visible:text-accent inline-flex items-center gap-2 transition-colors"
+      >
+        {app.title}
+        <Icon
+          name="link"
+          class="text-accent size-[0.6em] shrink-0 opacity-0 transition-opacity group-hover/anchor:opacity-100 group-focus-visible/anchor:opacity-100"
+        />
+      </a>
     </h3>
     {app.author && (
       <p class="text-accent mt-1 text-sm font-semibold">

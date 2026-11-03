@@ -86,6 +86,7 @@ export const apps: Catalog = {
   'View it on GitHub': 'Ver no GitHub',
   'Work Tools': 'Ferramentas de trabalho',
   Finance: 'Finanças',
+  'Link to this app': 'Ligação para esta app',
   'Podcast Tools': 'Ferramentas de podcast',
   'My Mobile Apps': 'As minhas apps móveis',
   'My macOS Apps': 'As minhas apps para macOS',
