@@ -4,6 +4,9 @@
  */
 import type { AppListing, AppSection } from './types';
 
+import flipsideIcon from '../assets/friend-apps/flipside-icon.webp';
+import flipside from '../assets/friend-apps/flipside-feature.webp';
+import flipsideTrailerMp4 from '../assets/friend-apps/flipside-trailer.mp4?url';
 import levelLiar from '../assets/friend-apps/level-liar-feature.webp';
 import levelLiarIcon from '../assets/friend-apps/level-liar-icon.webp';
 import levelLiarTrailerMp4 from '../assets/friend-apps/level-liar-trailer.mp4?url';
@@ -79,10 +82,30 @@ const levelLiarApp: AppListing = {
   links: [{ store: 'web', href: 'https://jorgesousa.github.io/level-liar/' }],
 };
 
+const flipsideApp: AppListing = {
+  id: 'flipside',
+  title: 'Flipside',
+  author: 'Jorge Sousa',
+  authorHref: 'https://github.com/jorgesousa',
+  description: [
+    'Classic arcade games, played from the wrong side: you are the apple, the brick or the ghost, and the famous hero is the computer. Plays in the browser, on a phone or a computer.',
+  ],
+  image: flipside,
+  imageAlt:
+    'Flipside: the title "FLIPSIDE" above eight game cards, Apple, Brick, Haunt, Stomped, Last One, Duck, Mole and The Ball',
+  icon: flipsideIcon,
+  videoFile: [{ src: flipsideTrailerMp4, type: 'video/mp4' }],
+  links: [{ store: 'web', href: 'https://jorgesousa.github.io/flipside/' }],
+};
+
 /** The page's sections, in order. */
 export const appSections: AppSection[] = [
   { id: 'family', title: 'Family', apps: [tempusRemediumApp] },
-  { id: 'friends', title: 'Friends', apps: [quitesApp, weeklyFamilyLogApp, levelLiarApp] },
+  {
+    id: 'friends',
+    title: 'Friends',
+    apps: [quitesApp, weeklyFamilyLogApp, levelLiarApp, flipsideApp],
+  },
 ];
 
 /** Every app, in page order (the hero's icon dock). */

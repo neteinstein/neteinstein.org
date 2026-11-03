@@ -20,4 +20,8 @@ export const friendApps: Catalog = {
     'Um jogo de plataformas "honesto" em dez níveis. Cada um faz-te uma promessa, e todas as promessas são mentira. Joga-se no browser, no telemóvel ou no computador.',
   'Level Liar: the title "LEVEL LIAR" over a field of "TRUST ME" text, with the line "Every single promise is a lie."':
     'Level Liar: o título "LEVEL LIAR" sobre um fundo de texto "TRUST ME", com a frase "Every single promise is a lie."',
+  'Classic arcade games, played from the wrong side: you are the apple, the brick or the ghost, and the famous hero is the computer. Plays in the browser, on a phone or a computer.':
+    'Jogos de arcade clássicos, jogados do lado errado: és a maçã, o tijolo ou o fantasma, e o herói famoso é o computador. Joga-se no browser, no telemóvel ou no computador.',
+  'Flipside: the title "FLIPSIDE" above eight game cards, Apple, Brick, Haunt, Stomped, Last One, Duck, Mole and The Ball':
+    'Flipside: o título "FLIPSIDE" por cima de oito cartões de jogos, Apple, Brick, Haunt, Stomped, Last One, Duck, Mole e The Ball',
 };
