@@ -41,6 +41,7 @@ import podcastShorts from '../assets/my-apps/podcast-shorts-feature.webp';
 import podcastShortsIcon from '../assets/my-apps/podcast-shorts-icon.webp';
 import calendarSync from '../assets/my-apps/calendar-sync-feature.webp';
 import calendarSyncIcon from '../assets/my-apps/calendar-sync-icon.webp';
+import smsToolboxLaunchMp4 from '../assets/my-apps/sms-toolbox-launch.mp4?url';
 import invoice2sheetDemoMp4 from '../assets/my-apps/invoice2sheet-demo.mp4?url';
 import invoice2sheetDemoWebm from '../assets/my-apps/invoice2sheet-demo.webm?url';
 import privateDnsDemoMp4 from '../assets/my-apps/private-dns-changer-demo.mp4?url';
@@ -144,7 +145,7 @@ const smsToolbox: AppListing = {
   ],
   image: smsRedirect,
   imageAlt:
-    'SMS Redirect & Schedule banner: a speech-bubble app icon and the tagline "Forward SMS & RCS by rule. Schedule texts for later."',
+    'SMS Toolbox banner: a speech-bubble app icon, the tagline "Back up & restore your texts with your own Gmail. Plus forwarding rules and scheduled SMS." and two phones showing the redirect rules and the Backup to Gmail screen',
   icon: smsRedirectIcon,
   links: [
     {
@@ -152,6 +153,8 @@ const smsToolbox: AppListing = {
       href: 'https://play.google.com/store/apps/details?id=com.neteinstein.smsredirect',
     },
   ],
+  // The launch video from the app's repo (store-listing/video).
+  videoFile: [{ src: smsToolboxLaunchMp4, type: 'video/mp4' }],
 };
 
 const allowedNamesApp: AppListing = {
