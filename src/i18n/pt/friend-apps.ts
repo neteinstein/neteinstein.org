@@ -3,6 +3,11 @@ import type { Catalog } from '..';
 /** `src/data/friend-apps.ts` */
 export const friendApps: Catalog = {
   Friends: 'Amigos',
+  'Health Toolbox': 'Caixa de Ferramentas de Saúde',
+  'Simple, reliable medical calculators and clinical scales for families and doctors: doses by weight, vaccines, growth charts, risk scores and more.':
+    'Calculadoras médicas e escalas clínicas simples e fiáveis, para famílias e médicos: doses por peso, vacinas, curvas de crescimento, scores de risco e muito mais.',
+  'Health Toolbox: the headline "Cuidar com clareza, uma ferramenta de cada vez." next to an MCF ring with badges for doses by weight, families and doctors, above the tool categories':
+    'Caixa de Ferramentas de Saúde: o título "Cuidar com clareza, uma ferramenta de cada vez." ao lado de um anel MCF com etiquetas de doses por peso, famílias e médicos, por cima das categorias de ferramentas',
   /** Tempus Remedium's demo video, recorded in Portuguese. */
   P1bkwbA3uXU: 'gQva1Q-qt84',
   "Today's medicines and doses, kept on track: what to take and when, what is running out and a history of the doses taken. No account, no server.":

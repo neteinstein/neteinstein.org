@@ -4,12 +4,29 @@
  */
 import type { AppListing, AppSection } from './types';
 
+import ferramentas from '../assets/friend-apps/ferramentas-feature.webp';
+import ferramentasIcon from '../assets/friend-apps/ferramentas-icon.webp';
 import quites from '../assets/friend-apps/quites-feature.webp';
 import quitesIcon from '../assets/friend-apps/quites-icon.webp';
 import tempusRemedium from '../assets/friend-apps/tempus-remedium-feature.webp';
 import tempusRemediumIcon from '../assets/friend-apps/tempus-remedium-icon.webp';
 import weeklyFamilyLog from '../assets/friend-apps/weekly-family-log-feature.webp';
 import weeklyFamilyLogIcon from '../assets/friend-apps/weekly-family-log-icon.webp';
+
+const ferramentasApp: AppListing = {
+  id: 'ferramentas',
+  title: 'Health Toolbox',
+  author: 'Maria Cortês Ferreira',
+  authorHref: 'https://mariacf.pt/',
+  description: [
+    'Simple, reliable medical calculators and clinical scales for families and doctors: doses by weight, vaccines, growth charts, risk scores and more.',
+  ],
+  image: ferramentas,
+  imageAlt:
+    'Health Toolbox: the headline "Cuidar com clareza, uma ferramenta de cada vez." next to an MCF ring with badges for doses by weight, families and doctors, above the tool categories',
+  icon: ferramentasIcon,
+  links: [{ store: 'web', href: 'https://mariacf.pt/ferramentas/' }],
+};
 
 const tempusRemediumApp: AppListing = {
   id: 'tempus-remedium',
@@ -62,7 +79,7 @@ const weeklyFamilyLogApp: AppListing = {
 
 /** The page's sections, in order. */
 export const appSections: AppSection[] = [
-  { id: 'family', title: 'Family', apps: [tempusRemediumApp] },
+  { id: 'family', title: 'Family', apps: [ferramentasApp, tempusRemediumApp] },
   { id: 'friends', title: 'Friends', apps: [quitesApp, weeklyFamilyLogApp] },
 ];
 
