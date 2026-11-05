@@ -53,6 +53,7 @@ const tempusRemediumApp: AppListing = {
       store: 'google-play',
       href: 'https://play.google.com/store/apps/details?id=org.mariacf.tempusremedium',
     },
+    { store: 'web', href: 'https://app.mariacf.pt/' },
   ],
 };
 
