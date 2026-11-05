@@ -41,8 +41,8 @@ export const apps: Catalog = {
     'Banner do Couple Moments: o ícone da app, o slogan "Swipe your way to deeper conversations", os selos 100% private, 5 languages e 600+ prompts, e duas cartas de perguntas',
   'Ever wanted to automatically forward your package delivery texts to your partner? Or anything else? Here you have it.':
     'Alguma vez quiseste reencaminhar automaticamente as SMS das entregas de encomendas para a tua cara-metade? Ou qualquer outra coisa? Aqui tens.',
-  'SMS Redirect & Schedule banner: a speech-bubble app icon and the tagline "Forward SMS & RCS by rule. Schedule texts for later."':
-    'Banner do SMS Redirect & Schedule: um ícone de balão de fala e o slogan "Forward SMS & RCS by rule. Schedule texts for later."',
+  'SMS Toolbox banner: a speech-bubble app icon, the tagline "Back up & restore your texts with your own Gmail. Plus forwarding rules and scheduled SMS." and two phones showing the redirect rules and the Backup to Gmail screen':
+    'Banner do SMS Toolbox: um ícone de balão de fala, o slogan "Back up & restore your texts with your own Gmail. Plus forwarding rules and scheduled SMS." e dois telemóveis a mostrar as regras de redirecionamento e o ecrã de cópia de segurança para o Gmail',
   'Allowed Names in Portugal': 'Nomes Permitidos em Portugal',
   'The official list of allowed names in Portugal, extracted directly from ':
     'A lista oficial de nomes próprios permitidos em Portugal, extraída diretamente do ',
