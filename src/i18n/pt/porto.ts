@@ -375,4 +375,7 @@ export const porto: Catalog = {
     'Uma equipa a velejar num veleiro de regata com velas vermelhas e amarelas',
   'A man conducting a group playing instruments on stage in front of a large screen':
     'Um homem a dirigir um grupo a tocar instrumentos num palco em frente a um grande ecrã',
+  'Guided hikes': 'Caminhadas guiadas',
+  'An illustration of a trail leading towards layered mountain ridges':
+    'Uma ilustração de um trilho em direção a várias cordilheiras de montanhas',
 };

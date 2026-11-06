@@ -112,6 +112,7 @@ import kartsOutdoor from '../assets/porto/visit-porto/karts-outdoor.webp';
 import dinnerWithTheAssassin from '../assets/porto/visit-porto/dinner-with-the-assassin.webp';
 import regatta from '../assets/porto/visit-porto/regatta.webp';
 import beABand from '../assets/porto/visit-porto/be-a-band.webp';
+import guidedHikes from '../assets/porto/visit-porto/guided-hikes.webp';
 
 export const portoIntro: PortoIntro = {
   heroCaption: "Here is a wonderful view of what you'll see (from Mindera's Office).",
@@ -1567,6 +1568,17 @@ export const portoGuide: PlaceGroup[] = [
               {
                 image: beABand,
                 alt: 'A man conducting a group playing instruments on stage in front of a large screen',
+              },
+            ],
+          },
+          {
+            id: 'guided-hikes',
+            title: 'Guided hikes',
+            venues: [{ name: 'Montanhas Dentro', href: 'https://montanhasdentro.pt/' }],
+            photos: [
+              {
+                image: guidedHikes,
+                alt: 'An illustration of a trail leading towards layered mountain ridges',
               },
             ],
           },
