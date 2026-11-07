@@ -99,4 +99,15 @@ export const apps: Catalog = {
     'Uma pequena app de barra de menus para macOS que copia as reuniões dos teus calendários secundários para o teu calendário principal, para os colegas deixarem de te marcar reuniões por cima de reuniões que não conseguem ver. Também tem lembretes de reuniões em ecrã inteiro e mais.',
   'Calendar Sync demo: a client calendar next to the main calendar, where each meeting is copied as "[Calendar A] meeting name" with a Teams Join button, under the heading "Named by its calendar."':
     'Demo do Calendar Sync: o calendário de um cliente ao lado do calendário principal, onde cada reunião é copiada como "[Calendar A] nome da reunião" com um botão Join do Teams, sob o título "Named by its calendar."',
+  'My Chrome Extensions': 'As minhas extensões para Chrome',
+  Security: 'Segurança',
+  Prompts: 'Prompts',
+  'A Chrome extension that warns you when a website looks like a scam: brand-new domains, look-alike brands, phishing forms, money-fraud wording and marketplace chat scams. Everything runs in your browser, in English, Portuguese, Spanish and French.':
+    'Uma extensão para Chrome que te avisa quando um site parece uma burla: domínios acabados de registar, marcas imitadas, formulários de phishing, linguagem de fraude financeira e burlas em chats de marketplaces. Tudo corre no teu browser, em inglês, português, espanhol e francês.',
+  'Scam Detector banner: a red shield with an exclamation mark, the title and the tagline "Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money."':
+    'Banner do Scam Detector: um escudo vermelho com um ponto de exclamação, o título e o slogan "Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money."',
+  'Real-world AI prompts and scheduled routines that automate everyday life, ready to copy: a weekly email with seasonal meals and recipes, and a grocery list learned from your supermarket invoices. In English and Portuguese.':
+    'Prompts de IA e rotinas agendadas do mundo real que automatizam o dia a dia, prontos a copiar: um email semanal com refeições da época e receitas, e uma lista de compras aprendida a partir das faturas do supermercado. Em inglês e português.',
+  'Prompts Collection banner: a speech bubble with a command prompt, the title, the tagline "Real-world AI prompts and routines that automate everyday life." and cards for Weekly Meals and Weekly Groceries':
+    'Banner do Prompts Collection: um balão de fala com uma linha de comandos, o título, o slogan "Real-world AI prompts and routines that automate everyday life." e cartões para Weekly Meals e Weekly Groceries',
 };

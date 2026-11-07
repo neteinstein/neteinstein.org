@@ -50,6 +50,10 @@ import memoryClashDemoMp4 from '../assets/my-apps/memory-clash-demo.mp4?url';
 import halloweenMinderDemoMp4 from '../assets/my-apps/halloween-minder-demo.mp4?url';
 import podcastShortsDemoMp4 from '../assets/my-apps/podcast-shorts-demo.mp4?url';
 import calendarSyncDemoMp4 from '../assets/my-apps/calendar-sync-demo.mp4?url';
+import scamDetector from '../assets/my-apps/scam-detector-feature.webp';
+import scamDetectorIcon from '../assets/my-apps/scam-detector-icon.webp';
+import promptsCollection from '../assets/my-apps/prompts-collection-feature.webp';
+import promptsCollectionIcon from '../assets/my-apps/prompts-collection-icon.webp';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
 import githubBadge from '../assets/my-apps/badge-github.webp';
@@ -328,7 +332,34 @@ const calendarSyncApp: AppListing = {
   videoFile: [{ src: calendarSyncDemoMp4, type: 'video/mp4' }],
 };
 
-/** /my-apps's tabs — phone apps, Mac tools, then AI tools — each split into sections. */
+const scamDetectorApp: AppListing = {
+  id: 'scam-detector',
+  title: 'Scam Detector',
+  description: [
+    'A Chrome extension that warns you when a website looks like a scam: brand-new domains, look-alike brands, phishing forms, money-fraud wording and marketplace chat scams. Everything runs in your browser, in English, Portuguese, Spanish and French.',
+  ],
+  image: scamDetector,
+  imageAlt:
+    'Scam Detector banner: a red shield with an exclamation mark, the title and the tagline "Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money."',
+  icon: scamDetectorIcon,
+  platform: 'Chrome',
+  links: [{ store: 'github', href: 'https://github.com/neteinstein/Scam-Detector' }],
+};
+
+const promptsCollectionApp: AppListing = {
+  id: 'prompts-collection',
+  title: 'Prompts Collection',
+  description: [
+    'Real-world AI prompts and scheduled routines that automate everyday life, ready to copy: a weekly email with seasonal meals and recipes, and a grocery list learned from your supermarket invoices. In English and Portuguese.',
+  ],
+  image: promptsCollection,
+  imageAlt:
+    'Prompts Collection banner: a speech bubble with a command prompt, the title, the tagline "Real-world AI prompts and routines that automate everyday life." and cards for Weekly Meals and Weekly Groceries',
+  icon: promptsCollectionIcon,
+  links: [{ store: 'github', href: 'https://github.com/neteinstein/prompts-collection' }],
+};
+
+/** /my-apps's tabs — phone apps, Mac tools, browser extensions, then AI tools — each split into sections. */
 export const appPlatforms: AppPlatform[] = [
   {
     id: 'mobile',
@@ -368,6 +399,18 @@ export const appPlatforms: AppPlatform[] = [
     ],
   },
   {
+    id: 'chrome',
+    title: 'My Chrome Extensions',
+    groups: [
+      {
+        id: 'security',
+        title: 'Security',
+        category: 'SecurityApplication',
+        apps: [scamDetectorApp],
+      },
+    ],
+  },
+  {
     id: 'ai',
     title: 'My AI Apps',
     groups: [
@@ -376,6 +419,12 @@ export const appPlatforms: AppPlatform[] = [
         title: 'Podcast Tools',
         category: 'MultimediaApplication',
         apps: [podcastShortsApp],
+      },
+      {
+        id: 'prompts',
+        title: 'Prompts',
+        category: 'LifestyleApplication',
+        apps: [promptsCollectionApp],
       },
     ],
   },
