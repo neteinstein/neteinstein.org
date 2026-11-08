@@ -38,9 +38,18 @@ export interface Glimpse {
   video?: VideoRef;
 }
 
-/** A "Things that can be useful" tile. */
-export interface Useful {
+/**
+ * A "Recently" tile on the home page: something new on the site — an app, a
+ * game, a talk, a page. The page shows the newest four (`latest()` in
+ * `src/lib/recent.ts`).
+ */
+export interface Recent {
+  /** What it is, shown above the title ("New app", "Talk"). */
+  kind: string;
+  /** When it was added, as `YYYY-MM`. */
+  date: string;
   title: string;
+  /** Where it lives on the site (or off it). */
   href: string;
   description: string;
   image: ImageMetadata;

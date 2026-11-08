@@ -38,7 +38,7 @@ import awesomeTesla from '../assets/tesla/awesome-tesla.webp';
 export const page: TeslaPage = {
   title: 'Tesla',
   eyebrow: 'Tesla',
-  /** What the home page's "Things that can be useful" card calls this page. */
+  /** The page's own name for itself, on the hero. */
   heading: 'Tesla Utils',
   highlight: ['Utils'],
   description:

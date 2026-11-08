@@ -5,26 +5,43 @@ import HomeHero from '../components/home/HomeHero.astro';
 import Section from '../components/Section.astro';
 import CardGrid from '../components/CardGrid.astro';
 import Card from '../components/Card.astro';
-import Marquee from '../components/Marquee.astro';
 import RichText from '../components/RichText.astro';
 import VideoEmbed from '../components/VideoEmbed.astro';
 import Icon from '../components/Icon.astro';
 import Portraits from '../components/home/Portraits.astro';
-import { SITE, navPages } from '../config/site';
+import { SITE } from '../config/site';
 import * as home from '../data/home';
 import { isExternal } from '../lib/url';
+import { formatMonth, latest } from '../lib/recent';
 import { useI18n } from '../i18n';
+import { LOCALE_INFO } from '../i18n/config';
 
-const { t, localize, localHref } = useI18n(Astro);
-const { glimpses, roles, useful } = localize(home);
+const { t, locale, localize, localHref } = useI18n(Astro);
+const { glimpses, roles, recent } = localize(home);
 
 const current = roles.filter((role) => !role.past);
 const previously = roles.filter((role) => role.past);
-const sections = navPages().filter((page) => page.href !== '/');
 ---
 
 <BaseLayout title={`${SITE.title} — ${t('Mobile Lead, Speaker & Improver')}`} bareTitle>
   <HomeHero />
+
+  <Section id="recently" eyebrow={t("What's new")} title={t('Recently')}>
+    <CardGrid cols={4}>
+      {latest(recent).map((item) => (
+        <Card
+          title={item.title}
+          href={item.href}
+          eyebrow={item.kind}
+          meta={formatMonth(item.date, LOCALE_INFO[locale].tag)}
+          description={item.description}
+          image={item.image}
+          imageAlt={item.imageAlt}
+          imageFit={item.imageFit}
+        />
+      ))}
+    </CardGrid>
+  </Section>
 
   <Section id="who" eyebrow={t('About me')} title={t('Who am I?')}>
     <div class="grid gap-5 lg:grid-cols-3" data-reveal-stagger>
@@ -132,36 +149,5 @@ const sections = navPages().filter((page) => page.href !== '/');
         );
       })}
     </div>
-  </Section>
-
-  <div class="py-6" aria-label={t('Sections of this site')} role="region">
-    <Marquee duration={45}>
-      {sections.map((page) => (
-        <a
-          href={localHref(page.href)}
-          class="group font-display text-muted hover:text-fg inline-flex items-center gap-4 text-3xl font-bold tracking-tight whitespace-nowrap transition-colors sm:text-5xl"
-        >
-          {t(page.label)}
-          <span class="text-gradient text-2xl sm:text-3xl" aria-hidden="true">
-            ✦
-          </span>
-        </a>
-      ))}
-    </Marquee>
-  </div>
-
-  <Section eyebrow={t('Free stuff')} title={t('Things that can be useful:')}>
-    <CardGrid cols={3}>
-      {useful.map((item) => (
-        <Card
-          title={item.title}
-          href={item.href}
-          description={item.description}
-          image={item.image}
-          imageAlt={item.imageAlt}
-          imageFit={item.imageFit}
-        />
-      ))}
-    </CardGrid>
   </Section>
 </BaseLayout>

@@ -68,6 +68,21 @@ requirement**.
   scenes in `scripts/game-art/scenes/`, a small SVG kit in
   `scripts/game-art/kit.mjs`, rendered with `npm run draw:games [id…]`.
 
+## Recently on the home page
+
+The home page opens with a "Recently" section: up to four new things on the
+site (an app, a game, a talk, a page…), from `recent` in `src/data/home.ts`.
+`latest()` (`src/lib/recent.ts`) shows the newest four by `date`.
+
+- **Every time something new is added to the site, ask the user whether it
+  should go into "Recently"** before finishing the change. Don't add it
+  unasked, and don't skip the question.
+- If they say yes, add an entry at the top of `recent` (kind, `YYYY-MM` date,
+  title, href, short description, image + alt — reuse the item's own banner
+  and alt text so the translations carry over), add Portuguese catalogue
+  entries for any new strings in `src/i18n/pt/home.ts`, and delete whichever
+  entry falls off the four so the list stays at most four long.
+
 ## Before pushing
 
 ```bash
