@@ -19,6 +19,8 @@ import familyMoments from '../assets/my-apps/family-moments-feature.webp';
 import familyMomentsIcon from '../assets/my-apps/family-moments-icon.webp';
 import coupleMoments from '../assets/my-apps/couple-moments-feature.webp';
 import coupleMomentsIcon from '../assets/my-apps/couple-moments-icon.webp';
+import goodCompany from '../assets/my-apps/good-company-feature.webp';
+import goodCompanyIcon from '../assets/my-apps/good-company-icon.webp';
 import smsRedirect from '../assets/my-apps/sms-redirect-feature.webp';
 import smsRedirectIcon from '../assets/my-apps/sms-redirect-icon.webp';
 import allowedNames from '../assets/my-apps/allowed-names-feature.webp';
@@ -139,6 +141,21 @@ const loopgainCouples: AppListing = {
     },
     { store: 'web', href: 'https://couples.loopgain.org' },
   ],
+};
+
+const goodCompanyApp: AppListing = {
+  id: 'good-company',
+  title: 'Good Company',
+  description: [
+    "A little CRM for friendship: remember what your friends love, their kids' birthdays and the last time you saw each other, and get a gentle nudge before it's been too long.",
+  ],
+  image: goodCompany,
+  imageAlt:
+    "Good Company banner: five phones showing the home screen, a friend's page, the I'm with… check-in, the Coming up agenda in dark mode and AI ideas",
+  icon: goodCompanyIcon,
+  platform: 'Android, iOS, Web',
+  status: 'Alpha Testing',
+  links: [{ store: 'github', href: 'https://github.com/neteinstein/Good-Company' }],
 };
 
 const smsToolbox: AppListing = {
@@ -375,7 +392,7 @@ export const appPlatforms: AppPlatform[] = [
         id: 'utils',
         title: 'Utils',
         category: 'UtilitiesApplication',
-        apps: [smsToolbox, privateDnsApp],
+        apps: [goodCompanyApp, smsToolbox, privateDnsApp],
       },
       {
         id: 'finance',
