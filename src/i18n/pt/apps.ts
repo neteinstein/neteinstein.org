@@ -39,6 +39,11 @@ export const apps: Catalog = {
   ' Toolbox - For Couples': ' Toolbox - Para Casais',
   'Couple Moments banner: the app icon, the tagline "Swipe your way to deeper conversations", the badges 100% private, 5 languages and 600+ prompts, and two question cards':
     'Banner do Couple Moments: o ícone da app, o slogan "Swipe your way to deeper conversations", os selos 100% private, 5 languages e 600+ prompts, e duas cartas de perguntas',
+  "A little CRM for friendship: remember what your friends love, their kids' birthdays and the last time you saw each other, and get a gentle nudge before it's been too long.":
+    'Um pequeno CRM para a amizade: lembra-te do que os teus amigos adoram, dos aniversários dos filhos deles e da última vez que estiveram juntos, e recebe um lembrete simpático antes que passe demasiado tempo.',
+  "Good Company banner: five phones showing the home screen, a friend's page, the I'm with… check-in, the Coming up agenda in dark mode and AI ideas":
+    'Banner do Good Company: cinco telemóveis a mostrar o ecrã inicial, a página de um amigo, o registo "I’m with…", a agenda "Coming up" em modo escuro e ideias geradas por IA',
+  'Alpha Testing': 'Em testes alfa',
   'Ever wanted to automatically forward your package delivery texts to your partner? Or anything else? Here you have it.':
     'Alguma vez quiseste reencaminhar automaticamente as SMS das entregas de encomendas para a tua cara-metade? Ou qualquer outra coisa? Aqui tens.',
   'SMS Toolbox banner: a speech-bubble app icon, the tagline "Back up & restore your texts with your own Gmail. Plus forwarding rules and scheduled SMS." and two phones showing the redirect rules and the Backup to Gmail screen':
