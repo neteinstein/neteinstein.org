@@ -65,17 +65,11 @@ const CHIPS = [
       </p>
 
       <div class="mt-9 flex flex-wrap items-center gap-3" data-enter style="--delay: 650">
-        <ButtonLink href="#glimpses" size="lg" trailing="arrow-down">
-          {t('Glimpses of what I do')}
+        <ButtonLink href="#recently" size="lg" trailing="arrow-down">
+          {t('Recently')}
         </ButtonLink>
-        <ButtonLink
-          href="/porto/visit-porto"
-          variant="secondary"
-          size="lg"
-          icon="map-pin"
-          trailing={false}
-        >
-          {t('Porto guide')}
+        <ButtonLink href="#glimpses" variant="secondary" size="lg" trailing="arrow-down">
+          {t('Glimpses of what I do')}
         </ButtonLink>
       </div>
 
@@ -120,9 +114,9 @@ const CHIPS = [
   </div>
 
   <a
-    href="#who"
+    href="#recently"
     class="text-muted absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-mono text-[0.7rem] tracking-[0.2em] uppercase lg:flex"
-    aria-label={t('Scroll to Who am I?')}
+    aria-label={t('Scroll to Recently')}
   >
     {t('Scroll')}
     <span class="border-line-strong flex h-9 w-5 justify-center rounded-full border-2 pt-1.5">

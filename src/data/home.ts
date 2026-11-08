@@ -2,18 +2,18 @@
  * Home page content, ported from the Google Sites original
  * (https://www.neteinstein.org/ — crawl snapshot in `.crawl/report.json`).
  */
-import type { Glimpse, Role, Useful } from './types';
+import type { Glimpse, Recent, Role } from './types';
 
 import yellowBox from '../assets/home/yellow-box-podcast.webp';
-import portoGuide from '../assets/home/porto-guide.webp';
-import games from '../assets/home/games.webp';
-import myApps from '../assets/home/my-apps.webp';
-import teslaUtils from '../assets/home/tesla-utils.webp';
 import kid1 from '../assets/home/kids/kid-1.svg';
 import kid2 from '../assets/home/kids/kid-2.svg';
 import kid3 from '../assets/home/kids/kid-3.svg';
 import acorda from '../assets/what-i-do/improver/workshop-classroom.webp';
 import minderaJourneyMap from '../assets/what-i-do/tech-engineer/mindera-journey-map.webp';
+import goodCompany from '../assets/my-apps/good-company-feature.webp';
+import scamDetector from '../assets/my-apps/scam-detector-feature.webp';
+import mathClash from '../assets/my-apps/math-clash-feature.webp';
+import feedbackDecks from '../assets/what-i-do/improver/loopgain-feedback-decks.webp';
 
 export const welcome = {
   title: 'Welcome to my little virtual home',
@@ -108,35 +108,53 @@ export const glimpses: Glimpse[] = [
   },
 ];
 
-export const useful: Useful[] = [
+/**
+ * What's new on the site, newest first. The home page shows the latest four,
+ * so adding one pushes the oldest off — delete it here when that happens.
+ */
+export const recent: Recent[] = [
   {
-    title: 'Porto Guide',
-    href: '/porto/visit-porto',
-    description: 'A quick guide on places to visit, eat and have fun!',
-    image: portoGuide,
-    imageAlt: 'Illustration of the Ribeira do Porto skyline at dusk, with the Dom Luís bridge',
-  },
-  {
-    title: 'My Apps',
-    href: '/my-apps',
-    description: "I've been developing a number of free apps.",
-    image: myApps,
-    imageAlt: 'Illustration of the same app running in a browser window and on a phone',
-  },
-  {
-    title: 'Group Games',
-    href: '/games',
-    description: '365 group games for parties, camps and team building, ready to play and print.',
-    image: games,
-    imageAlt:
-      'Illustration of two people tossing a balloon to each other, framed like a card with a dice, a smiley and a star',
-  },
-  {
-    title: 'Tesla Utils',
-    href: '/tesla',
+    kind: 'New app',
+    date: '2026-11',
+    title: 'Good Company',
+    href: '/my-apps#good-company',
     description:
-      'If you have a Tesla, here you can find a list of utilities: some useful, some just for fun.',
-    image: teslaUtils,
-    imageAlt: 'The Tesla logo as a glossy sticker on a dark card',
+      "A little CRM for friendship, now in alpha testing: birthdays, catch-ups and a gentle nudge before it's been too long.",
+    image: goodCompany,
+    imageAlt:
+      "Good Company banner: five phones showing the home screen, a friend's page, the I'm with… check-in, the Coming up agenda in dark mode and AI ideas",
+  },
+  {
+    kind: 'Chrome extension',
+    date: '2026-11',
+    title: 'Scam Detector',
+    href: '/my-apps#scam-detector',
+    description:
+      'Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money.',
+    image: scamDetector,
+    imageAlt:
+      'Scam Detector banner: a red shield with an exclamation mark, the title and the tagline "Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money."',
+  },
+  {
+    kind: 'New page',
+    date: '2026-11',
+    title: 'My Games',
+    href: '/my-games',
+    description:
+      'Games for 2 to 4 players on one screen: MathClash, Memory Clash and Halloween Minder, free in the browser.',
+    image: mathClash,
+    imageAlt:
+      'MathClash banner: the app icon, a blue and red square split by a diagonal with a plus and a times sign, next to the title and the tagline "Two players, one screen"',
+  },
+  {
+    kind: 'Talk',
+    date: '2026-10',
+    title: 'Don’t wait for the chaos to think about feedback',
+    href: '/what-i-do/improver#feedback-talk',
+    description:
+      'The slides behind LoopGain feedback sessions: why feedback matters, how a session runs and how to facilitate one.',
+    image: feedbackDecks,
+    imageAlt:
+      'Two LoopGain card boxes: the “Feedback Sessions Deck” and the Portuguese “Baralho para sessões de feedback”',
   },
 ];

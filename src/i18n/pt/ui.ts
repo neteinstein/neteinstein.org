@@ -89,10 +89,9 @@ export const ui: Catalog = {
   Speaker: 'Orador',
   '📱 AI & Mobile @ Mindera': '📱 IA & Mobile @ Mindera',
   'Glimpses of what I do': 'Um pouco do que faço',
-  'Porto guide': 'Guia do Porto',
   '{name} on stage mid-talk, holding a slide clicker':
     '{name} em palco a meio de uma palestra, com o comando dos slides na mão',
-  'Scroll to Who am I?': 'Deslizar até Quem sou eu?',
+  'Scroll to Recently': 'Deslizar até Recentemente',
   Scroll: 'Deslizar',
   "Only the edible kind — this site doesn't track you.":
     'Só dos que se comem — este site não te segue.',
@@ -100,9 +99,8 @@ export const ui: Catalog = {
   'Who am I?': 'Quem sou eu?',
   'Previously:': 'Anteriormente:',
   'Glimpses of what I do...': 'Um pouco do que faço...',
-  'Sections of this site': 'Secções deste site',
-  'Free stuff': 'Coisas grátis',
-  'Things that can be useful:': 'Coisas que podem ser úteis:',
+  "What's new": 'Novidades',
+  Recently: 'Recentemente',
 
   // Tech engineer
   'Tech Portfolio': 'Portefólio Tech',
