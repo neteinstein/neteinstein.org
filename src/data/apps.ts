@@ -59,6 +59,7 @@ import promptsCollectionIcon from '../assets/my-apps/prompts-collection-icon.web
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
 import githubBadge from '../assets/my-apps/badge-github.webp';
+import chromeBadge from '../assets/my-apps/badge-chrome.webp';
 
 const REVOLUT = 'https://revolut.me/neteinstein';
 const BUY_ME_A_COFFEE = 'https://www.buymeacoffee.com/neteinstein';
@@ -82,6 +83,7 @@ export const storeBadges: Record<AppStore, AppStoreBadge> = {
   'google-play': { image: googlePlayBadge, alt: 'Get it on Google Play' },
   web: { image: webBadge, alt: 'Open it on Web' },
   github: { image: githubBadge, alt: 'View it on GitHub' },
+  chrome: { image: chromeBadge, alt: 'Available in the Chrome Web Store' },
 };
 
 const loopgainTeams: AppListing = {
@@ -360,7 +362,12 @@ const scamDetectorApp: AppListing = {
     'Scam Detector banner: a red shield with an exclamation mark, the title and the tagline "Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money."',
   icon: scamDetectorIcon,
   platform: 'Chrome',
-  links: [{ store: 'github', href: 'https://github.com/neteinstein/Scam-Detector' }],
+  links: [
+    {
+      store: 'chrome',
+      href: 'https://chromewebstore.google.com/detail/scam-detector/lgppgajjfgffahljkkgcnjjelnbgjaod?pli=1',
+    },
+  ],
 };
 
 const promptsCollectionApp: AppListing = {
