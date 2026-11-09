@@ -89,6 +89,7 @@ export const apps: Catalog = {
   'Conceptual Phase': 'Em fase concetual',
   'LoopGain Toolbox Apps': 'Apps da LoopGain Toolbox',
   'View it on GitHub': 'Ver no GitHub',
+  'Available in the Chrome Web Store': 'Disponível na Chrome Web Store',
   'Work Tools': 'Ferramentas de trabalho',
   Finance: 'Finanças',
   'Link to this app': 'Ligação para esta app',
