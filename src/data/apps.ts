@@ -432,7 +432,7 @@ export const appPlatforms: AppPlatform[] = [
   },
   {
     id: 'chrome',
-    title: 'My Chrome Extensions',
+    title: 'My Browser Extensions',
     groups: [
       {
         id: 'security',

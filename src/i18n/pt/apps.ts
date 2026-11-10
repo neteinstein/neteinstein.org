@@ -107,6 +107,7 @@ export const apps: Catalog = {
   'Calendar Hub demo: a client calendar next to the main calendar, where each meeting is copied as "[Calendar A] meeting name" with a Teams Join button, under the heading "Named by its calendar."':
     'Demo do Calendar Hub: o calendário de um cliente ao lado do calendário principal, onde cada reunião é copiada como "[Calendar A] nome da reunião" com um botão Join do Teams, sob o título "Named by its calendar."',
   'My Chrome Extensions': 'As minhas extensões para Chrome',
+  'My Browser Extensions': 'As minhas extensões para browser',
   Security: 'Segurança',
   Prompts: 'Prompts',
   'A Chrome extension that warns you when a website looks like a scam: brand-new domains, look-alike brands, phishing forms, money-fraud wording and marketplace chat scams. Everything runs in your browser, in English, Portuguese, Spanish and French.':
