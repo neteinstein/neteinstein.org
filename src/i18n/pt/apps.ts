@@ -120,4 +120,9 @@ export const apps: Catalog = {
     'Prompts de IA e rotinas agendadas do mundo real que automatizam o dia a dia, prontos a copiar: um email semanal com refeições da época e receitas, e uma lista de compras aprendida a partir das faturas do supermercado. Em inglês e português.',
   'Prompts Collection banner: a speech bubble with a command prompt, the title, the tagline "Real-world AI prompts and routines that automate everyday life." and cards for Weekly Meals and Weekly Groceries':
     'Banner do Prompts Collection: um balão de fala com uma linha de comandos, o título, o slogan "Real-world AI prompts and routines that automate everyday life." e cartões para Weekly Meals e Weekly Groceries',
+  'Software Development': 'Desenvolvimento de software',
+  'Spec-driven development for companies where each function has a different AI: product defines the feature in Rovo or M365 Copilot, the ticket is the hand-off, and engineering takes it from tech proposal to code and living specs in GitHub Copilot. Built at ':
+    'Desenvolvimento orientado por especificações para empresas onde cada função tem uma IA diferente: o produto define a funcionalidade no Rovo ou no M365 Copilot, o ticket é a passagem de testemunho e a engenharia leva-a da proposta técnica ao código e a especificações vivas no GitHub Copilot. Feito na ',
+  'Enterprise Spec Driven Development banner: a four-tile app icon, the name "espec", the tagline "Spec-driven development for teams where each function has a different AI." and cards for Product, The ticket and Engineering':
+    'Banner do Enterprise Spec Driven Development: um ícone de quatro mosaicos, o nome "espec", o slogan "Spec-driven development for teams where each function has a different AI." e cartões para Product, The ticket e Engineering',
 };
