@@ -23,3 +23,4 @@ export * from './hobbies';
 export * from './porto';
 export * from './kids';
 export * from './tesla';
+export * from './donate';

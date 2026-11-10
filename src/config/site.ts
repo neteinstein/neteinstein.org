@@ -105,6 +105,13 @@ export const NAV: NavItem[] = [
   { label: 'Tesla', href: '/tesla' },
 ];
 
+/**
+ * The donate page. Linked from the footer rather than the header, so it is not
+ * in `NAV`; `navPages()` still lists it so it gets a Portuguese mirror, a
+ * breadcrumb label and a place on the 404 page.
+ */
+export const DONATE: NavLeaf = { label: 'Donate', href: '/donate' };
+
 export const SOCIALS: SocialLink[] = [
   {
     label: 'LinkedIn',
@@ -123,12 +130,12 @@ export const SOCIALS: SocialLink[] = [
   },
 ];
 
-/** Every leaf page in the nav, in menu order. Used by the sitemap and 404 page. */
+/** Every leaf page in the nav, in menu order, then the footer's donate page. Used by the sitemap and 404 page. */
 export function navPages(): NavLeaf[] {
   return NAV.flatMap((item) => [
     ...(item.href ? [{ label: item.label, href: item.href }] : []),
     ...(item.children ?? []),
-  ]);
+  ]).concat(DONATE);
 }
 
 /**

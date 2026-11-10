@@ -1,6 +1,7 @@
 ---
-import { NAV, SITE, SOCIALS } from '../config/site';
+import { DONATE, NAV, SITE, SOCIALS } from '../config/site';
 import { useI18n } from '../i18n';
+import Icon from './Icon.astro';
 import SocialIcon from './SocialIcon.astro';
 
 const { t, localHref } = useI18n(Astro);
@@ -97,6 +98,15 @@ const secondary = SOCIALS.filter((social) => !social.footer);
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href={localHref(DONATE.href)}
+                class="link-underline text-fg inline-flex items-center gap-1.5"
+              >
+                <Icon name="heart" class="text-accent-2 size-3.5" />
+                {t(DONATE.label)}
+              </a>
+            </li>
             {secondary.map((social) => (
               <li>
                 <a
