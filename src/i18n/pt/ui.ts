@@ -33,6 +33,7 @@ export const ui: Catalog = {
   'Visit Porto': 'Visitar o Porto',
   'With Kids': 'Com Crianças',
   Tesla: 'Tesla',
+  Donate: 'Donativo',
 
   // Layout and header
   'Skip to content': 'Saltar para o conteúdo',

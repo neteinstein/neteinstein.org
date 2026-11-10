@@ -90,6 +90,7 @@ export const apps: Catalog = {
   'LoopGain Toolbox Apps': 'Apps da LoopGain Toolbox',
   'View it on GitHub': 'Ver no GitHub',
   'Available in the Chrome Web Store': 'Disponível na Chrome Web Store',
+  'Install on macOS': 'Instalar no macOS',
   'Work Tools': 'Ferramentas de trabalho',
   Finance: 'Finanças',
   'Link to this app': 'Ligação para esta app',
@@ -103,8 +104,8 @@ export const apps: Catalog = {
     'Demo do AI Podcast Short Editor: um plano de podcast com duas pessoas e uma caixa amarela à volta de quem fala, transformado num short vertical com a legenda "So who decides what ships?", sob o título "Frames whoever\'s talking. Captions, word by word."',
   "A tiny macOS menu bar app that copies meetings from your secondary calendars into your main calendar, so colleagues stop booking you over meetings they can't see. Also provides full screen meeting reminder and more.":
     'Uma pequena app de barra de menus para macOS que copia as reuniões dos teus calendários secundários para o teu calendário principal, para os colegas deixarem de te marcar reuniões por cima de reuniões que não conseguem ver. Também tem lembretes de reuniões em ecrã inteiro e mais.',
-  'Calendar Sync demo: a client calendar next to the main calendar, where each meeting is copied as "[Calendar A] meeting name" with a Teams Join button, under the heading "Named by its calendar."':
-    'Demo do Calendar Sync: o calendário de um cliente ao lado do calendário principal, onde cada reunião é copiada como "[Calendar A] nome da reunião" com um botão Join do Teams, sob o título "Named by its calendar."',
+  'Calendar Hub demo: a client calendar next to the main calendar, where each meeting is copied as "[Calendar A] meeting name" with a Teams Join button, under the heading "Named by its calendar."':
+    'Demo do Calendar Hub: o calendário de um cliente ao lado do calendário principal, onde cada reunião é copiada como "[Calendar A] nome da reunião" com um botão Join do Teams, sob o título "Named by its calendar."',
   'My Chrome Extensions': 'As minhas extensões para Chrome',
   Security: 'Segurança',
   Prompts: 'Prompts',
