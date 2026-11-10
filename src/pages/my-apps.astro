@@ -35,6 +35,7 @@ const operatingSystems: Record<AppStore, string | undefined> = {
   github: undefined,
   chrome: 'Chrome',
   firefox: 'Firefox',
+  apk: 'Android',
   macos: 'macOS',
 };
 const schema = [
@@ -52,7 +53,9 @@ const schema = [
             url: app.links[0]!.href,
             operatingSystem:
               app.platform ??
-              app.links.flatMap((link) => operatingSystems[link.store] ?? []).join(', '),
+              [...new Set(app.links.flatMap((link) => operatingSystems[link.store] ?? []))].join(
+                ', ',
+              ),
             offers: { '@type': 'Offer', price: 0, priceCurrency: 'EUR' },
           }),
           image: await imageUrl(app.image),
