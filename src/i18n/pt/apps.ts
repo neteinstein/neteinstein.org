@@ -91,6 +91,7 @@ export const apps: Catalog = {
   'View it on GitHub': 'Ver no GitHub',
   'Available in the Chrome Web Store': 'Disponível na Chrome Web Store',
   'Install on macOS': 'Instalar no macOS',
+  'Get the add-on for Firefox': 'Obter o extra para Firefox',
   'Work Tools': 'Ferramentas de trabalho',
   Finance: 'Finanças',
   'Link to this app': 'Ligação para esta app',
@@ -110,8 +111,8 @@ export const apps: Catalog = {
   'My Browser Extensions': 'As minhas extensões para browser',
   Security: 'Segurança',
   Prompts: 'Prompts',
-  'A Chrome extension that warns you when a website looks like a scam: brand-new domains, look-alike brands, phishing forms, money-fraud wording and marketplace chat scams. Everything runs in your browser, in English, Portuguese, Spanish and French.':
-    'Uma extensão para Chrome que te avisa quando um site parece uma burla: domínios acabados de registar, marcas imitadas, formulários de phishing, linguagem de fraude financeira e burlas em chats de marketplaces. Tudo corre no teu browser, em inglês, português, espanhol e francês.',
+  'A browser extension for Chrome and Firefox that warns you when a website looks like a scam: brand-new domains, look-alike brands, phishing forms, money-fraud wording and marketplace chat scams. Everything runs in your browser, in English, Portuguese, Spanish and French.':
+    'Uma extensão para Chrome e Firefox que te avisa quando um site parece uma burla: domínios acabados de registar, marcas imitadas, formulários de phishing, linguagem de fraude financeira e burlas em chats de marketplaces. Tudo corre no teu browser, em inglês, português, espanhol e francês.',
   'Scam Detector banner: a red shield with an exclamation mark, the title and the tagline "Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money."':
     'Banner do Scam Detector: um escudo vermelho com um ponto de exclamação, o título e o slogan "Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money."',
   'Real-world AI prompts and scheduled routines that automate everyday life, ready to copy: a weekly email with seasonal meals and recipes, and a grocery list learned from your supermarket invoices. In English and Portuguese.':

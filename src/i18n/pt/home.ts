@@ -34,7 +34,7 @@ export const home: Catalog = {
   'New app': 'Nova app',
   "A little CRM for friendship, now in alpha testing: birthdays, catch-ups and a gentle nudge before it's been too long.":
     'Um pequeno CRM para a amizade, agora em testes alfa: aniversários, encontros e um lembrete gentil antes que passe demasiado tempo.',
-  'Chrome extension': 'Extensão do Chrome',
+  'Browser extension': 'Extensão para browser',
   'Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money.':
     'Avisa-te antes que um login falso, um domínio acabado de criar ou uma burla em chats de marketplace te leve o dinheiro.',
   'New page': 'Nova página',

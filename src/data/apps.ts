@@ -61,6 +61,7 @@ import webBadge from '../assets/my-apps/badge-web.webp';
 import githubBadge from '../assets/my-apps/badge-github.webp';
 import chromeBadge from '../assets/my-apps/badge-chrome.webp';
 import macosBadge from '../assets/my-apps/badge-macos.webp';
+import firefoxBadge from '../assets/my-apps/badge-firefox.webp';
 
 const REVOLUT = 'https://revolut.me/neteinstein';
 const BUY_ME_A_COFFEE = 'https://www.buymeacoffee.com/neteinstein';
@@ -86,6 +87,7 @@ export const storeBadges: Record<AppStore, AppStoreBadge> = {
   github: { image: githubBadge, alt: 'View it on GitHub' },
   chrome: { image: chromeBadge, alt: 'Available in the Chrome Web Store' },
   macos: { image: macosBadge, alt: 'Install on macOS' },
+  firefox: { image: firefoxBadge, alt: 'Get the add-on for Firefox' },
 };
 
 const loopgainTeams: AppListing = {
@@ -363,17 +365,21 @@ const scamDetectorApp: AppListing = {
   id: 'scam-detector',
   title: 'Scam Detector',
   description: [
-    'A Chrome extension that warns you when a website looks like a scam: brand-new domains, look-alike brands, phishing forms, money-fraud wording and marketplace chat scams. Everything runs in your browser, in English, Portuguese, Spanish and French.',
+    'A browser extension for Chrome and Firefox that warns you when a website looks like a scam: brand-new domains, look-alike brands, phishing forms, money-fraud wording and marketplace chat scams. Everything runs in your browser, in English, Portuguese, Spanish and French.',
   ],
   image: scamDetector,
   imageAlt:
     'Scam Detector banner: a red shield with an exclamation mark, the title and the tagline "Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money."',
   icon: scamDetectorIcon,
-  platform: 'Chrome',
+  platform: 'Chrome, Firefox',
   links: [
     {
       store: 'chrome',
       href: 'https://chromewebstore.google.com/detail/scam-detector/lgppgajjfgffahljkkgcnjjelnbgjaod?pli=1',
+    },
+    {
+      store: 'firefox',
+      href: 'https://addons.mozilla.org/en-US/firefox/addon/scam-detector-firefox/',
     },
   ],
 };
