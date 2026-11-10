@@ -56,6 +56,9 @@ import scamDetector from '../assets/my-apps/scam-detector-feature.webp';
 import scamDetectorIcon from '../assets/my-apps/scam-detector-icon.webp';
 import promptsCollection from '../assets/my-apps/prompts-collection-feature.webp';
 import promptsCollectionIcon from '../assets/my-apps/prompts-collection-icon.webp';
+import espec from '../assets/my-apps/espec-feature.webp';
+import especIcon from '../assets/my-apps/espec-icon.webp';
+import especWorkflowMp4 from '../assets/my-apps/espec-workflow.mp4?url';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
 import githubBadge from '../assets/my-apps/badge-github.webp';
@@ -400,6 +403,25 @@ const promptsCollectionApp: AppListing = {
   links: [{ store: 'github', href: 'https://github.com/neteinstein/prompts-collection' }],
 };
 
+const especApp: AppListing = {
+  id: 'espec',
+  title: 'Enterprise Spec Driven Development',
+  description: [
+    'Spec-driven development for companies where each function has a different AI: product defines the feature in Rovo or M365 Copilot, the ticket is the hand-off, and engineering takes it from tech proposal to code and living specs in GitHub Copilot. Built at ',
+    { label: 'Mindera', href: 'https://www.mindera.com' },
+    '.',
+  ],
+  image: espec,
+  imageAlt:
+    'Enterprise Spec Driven Development banner: a four-tile app icon, the name "espec", the tagline "Spec-driven development for teams where each function has a different AI." and cards for Product, The ticket and Engineering',
+  icon: especIcon,
+  links: [
+    { store: 'github', href: 'https://github.com/Mindera/Enterprise-Spec-Driven-Development' },
+  ],
+  // The workflow animation from the repo's README, as an H.264 video.
+  videoFile: [{ src: especWorkflowMp4, type: 'video/mp4' }],
+};
+
 /** /my-apps's tabs — phone apps, Mac tools, browser extensions, then AI tools — each split into sections. */
 export const appPlatforms: AppPlatform[] = [
   {
@@ -466,6 +488,12 @@ export const appPlatforms: AppPlatform[] = [
         title: 'Prompts',
         category: 'LifestyleApplication',
         apps: [promptsCollectionApp],
+      },
+      {
+        id: 'software-development',
+        title: 'Software Development',
+        category: 'DeveloperApplication',
+        apps: [especApp],
       },
     ],
   },
