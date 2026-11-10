@@ -2,7 +2,7 @@
  * Panel switching for the /my-apps tab bar (`AppTabs.astro`). Each in-page tab
  * (`data-tab="<id>"`) shows the `data-tab-panel` with that id and hides the
  * rest. A link to anything inside a hidden panel — the hero's icon dock, a
- * shared `/my-apps#calendar-sync` — opens its tab first. Switching tabs while
+ * shared `/my-apps#calendar-hub` — opens its tab first. Switching tabs while
  * the sticky bar is pinned scrolls back to the top of the new panel. With JS
  * off every panel stays visible and the tabs are ordinary anchors.
  */
@@ -28,7 +28,12 @@ function show(id: string) {
 
 /** Opens whichever panel holds the hash's target; false when no panel does. */
 function followHash() {
-  const id = decodeURIComponent(location.hash.slice(1));
+  let id = decodeURIComponent(location.hash.slice(1));
+  // The app was first published as "Calendar Sync"; keep that shared link alive.
+  if (id === 'calendar-sync') {
+    id = 'calendar-hub';
+    history.replaceState(null, '', `#${id}`);
+  }
   const panel = id ? document.getElementById(id)?.closest<HTMLElement>('[data-tab-panel]') : null;
   if (!panel) return false;
   show(panel.id);
