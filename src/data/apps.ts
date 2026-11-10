@@ -60,6 +60,7 @@ import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
 import githubBadge from '../assets/my-apps/badge-github.webp';
 import chromeBadge from '../assets/my-apps/badge-chrome.webp';
+import macosBadge from '../assets/my-apps/badge-macos.webp';
 
 const REVOLUT = 'https://revolut.me/neteinstein';
 const BUY_ME_A_COFFEE = 'https://www.buymeacoffee.com/neteinstein';
@@ -84,6 +85,7 @@ export const storeBadges: Record<AppStore, AppStoreBadge> = {
   web: { image: webBadge, alt: 'Open it on Web' },
   github: { image: githubBadge, alt: 'View it on GitHub' },
   chrome: { image: chromeBadge, alt: 'Available in the Chrome Web Store' },
+  macos: { image: macosBadge, alt: 'Install on macOS' },
 };
 
 const loopgainTeams: AppListing = {
@@ -346,7 +348,13 @@ const calendarHubApp: AppListing = {
     'Calendar Hub demo: a client calendar next to the main calendar, where each meeting is copied as "[Calendar A] meeting name" with a Teams Join button, under the heading "Named by its calendar."',
   icon: calendarHubIcon,
   platform: 'macOS',
-  links: [{ store: 'github', href: 'https://github.com/neteinstein/Calendar-Hub' }],
+  links: [
+    {
+      store: 'macos',
+      href: 'https://github.com/neteinstein/Calendar-Hub/blob/main/docs/download.md',
+    },
+    { store: 'github', href: 'https://github.com/neteinstein/Calendar-Hub' },
+  ],
   // The demo from the repo's README, as published there.
   videoFile: [{ src: calendarHubDemoMp4, type: 'video/mp4' }],
 };
