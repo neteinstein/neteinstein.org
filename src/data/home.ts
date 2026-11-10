@@ -125,7 +125,7 @@ export const recent: Recent[] = [
       "Good Company banner: five phones showing the home screen, a friend's page, the I'm with… check-in, the Coming up agenda in dark mode and AI ideas",
   },
   {
-    kind: 'Chrome extension',
+    kind: 'Browser extension',
     date: '2026-11',
     title: 'Scam Detector',
     href: '/my-apps#scam-detector',
