@@ -41,8 +41,8 @@ import halloweenMinder from '../assets/my-apps/halloween-minder-feature.webp';
 import halloweenMinderIcon from '../assets/my-apps/halloween-minder-icon.webp';
 import podcastShorts from '../assets/my-apps/podcast-shorts-feature.webp';
 import podcastShortsIcon from '../assets/my-apps/podcast-shorts-icon.webp';
-import calendarSync from '../assets/my-apps/calendar-sync-feature.webp';
-import calendarSyncIcon from '../assets/my-apps/calendar-sync-icon.webp';
+import calendarHub from '../assets/my-apps/calendar-hub-feature.webp';
+import calendarHubIcon from '../assets/my-apps/calendar-hub-icon.webp';
 import smsToolboxLaunchMp4 from '../assets/my-apps/sms-toolbox-launch.mp4?url';
 import invoice2sheetDemoMp4 from '../assets/my-apps/invoice2sheet-demo.mp4?url';
 import invoice2sheetDemoWebm from '../assets/my-apps/invoice2sheet-demo.webm?url';
@@ -51,7 +51,7 @@ import mathClashDemoMp4 from '../assets/my-apps/math-clash-demo.mp4?url';
 import memoryClashDemoMp4 from '../assets/my-apps/memory-clash-demo.mp4?url';
 import halloweenMinderDemoMp4 from '../assets/my-apps/halloween-minder-demo.mp4?url';
 import podcastShortsDemoMp4 from '../assets/my-apps/podcast-shorts-demo.mp4?url';
-import calendarSyncDemoMp4 from '../assets/my-apps/calendar-sync-demo.mp4?url';
+import calendarHubDemoMp4 from '../assets/my-apps/calendar-hub-demo.mp4?url';
 import scamDetector from '../assets/my-apps/scam-detector-feature.webp';
 import scamDetectorIcon from '../assets/my-apps/scam-detector-icon.webp';
 import promptsCollection from '../assets/my-apps/prompts-collection-feature.webp';
@@ -335,20 +335,20 @@ const podcastShortsApp: AppListing = {
   videoFile: [{ src: podcastShortsDemoMp4, type: 'video/mp4' }],
 };
 
-const calendarSyncApp: AppListing = {
-  id: 'calendar-sync',
-  title: 'Calendar Sync',
+const calendarHubApp: AppListing = {
+  id: 'calendar-hub',
+  title: 'Calendar Hub',
   description: [
     "A tiny macOS menu bar app that copies meetings from your secondary calendars into your main calendar, so colleagues stop booking you over meetings they can't see. Also provides full screen meeting reminder and more.",
   ],
-  image: calendarSync,
+  image: calendarHub,
   imageAlt:
-    'Calendar Sync demo: a client calendar next to the main calendar, where each meeting is copied as "[Calendar A] meeting name" with a Teams Join button, under the heading "Named by its calendar."',
-  icon: calendarSyncIcon,
+    'Calendar Hub demo: a client calendar next to the main calendar, where each meeting is copied as "[Calendar A] meeting name" with a Teams Join button, under the heading "Named by its calendar."',
+  icon: calendarHubIcon,
   platform: 'macOS',
-  links: [{ store: 'github', href: 'https://github.com/neteinstein/Calendar-Sync' }],
+  links: [{ store: 'github', href: 'https://github.com/neteinstein/Calendar-Hub' }],
   // The demo from the repo's README, as published there.
-  videoFile: [{ src: calendarSyncDemoMp4, type: 'video/mp4' }],
+  videoFile: [{ src: calendarHubDemoMp4, type: 'video/mp4' }],
 };
 
 const scamDetectorApp: AppListing = {
@@ -418,7 +418,7 @@ export const appPlatforms: AppPlatform[] = [
         id: 'work',
         title: 'Work Tools',
         category: 'BusinessApplication',
-        apps: [calendarSyncApp],
+        apps: [calendarHubApp],
       },
     ],
   },
