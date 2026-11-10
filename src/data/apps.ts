@@ -62,6 +62,7 @@ import githubBadge from '../assets/my-apps/badge-github.webp';
 import chromeBadge from '../assets/my-apps/badge-chrome.webp';
 import macosBadge from '../assets/my-apps/badge-macos.webp';
 import firefoxBadge from '../assets/my-apps/badge-firefox.webp';
+import apkBadge from '../assets/my-apps/badge-apk.webp';
 
 const REVOLUT = 'https://revolut.me/neteinstein';
 const BUY_ME_A_COFFEE = 'https://www.buymeacoffee.com/neteinstein';
@@ -88,6 +89,7 @@ export const storeBadges: Record<AppStore, AppStoreBadge> = {
   chrome: { image: chromeBadge, alt: 'Available in the Chrome Web Store' },
   macos: { image: macosBadge, alt: 'Install on macOS' },
   firefox: { image: firefoxBadge, alt: 'Get the add-on for Firefox' },
+  apk: { image: apkBadge, alt: 'Install the APK' },
 };
 
 const loopgainTeams: AppListing = {
@@ -179,6 +181,7 @@ const smsToolbox: AppListing = {
       store: 'google-play',
       href: 'https://play.google.com/store/apps/details?id=com.neteinstein.smsredirect',
     },
+    { store: 'apk', href: 'https://github.com/neteinstein/SMS-Redirect/blob/main/README.md' },
   ],
   // The launch video from the app's repo (store-listing/video).
   videoFile: [{ src: smsToolboxLaunchMp4, type: 'video/mp4' }],

@@ -91,6 +91,7 @@ export const apps: Catalog = {
   'View it on GitHub': 'Ver no GitHub',
   'Available in the Chrome Web Store': 'Disponível na Chrome Web Store',
   'Install on macOS': 'Instalar no macOS',
+  'Install the APK': 'Instalar o APK',
   'Get the add-on for Firefox': 'Obter o extra para Firefox',
   'Work Tools': 'Ferramentas de trabalho',
   Finance: 'Finanças',

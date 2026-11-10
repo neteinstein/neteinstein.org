@@ -2,8 +2,8 @@
 import type { ImageMetadata } from 'astro';
 import type { RichText } from './home';
 
-/** Where an app can be installed or opened — one store badge each on the original, plus GitHub for apps shipped as source, the Chrome Web Store and Firefox Add-ons for extensions and an install guide for macOS apps. */
-export type AppStore = 'google-play' | 'web' | 'github' | 'chrome' | 'firefox' | 'macos';
+/** Where an app can be installed or opened — one store badge each on the original, plus a sideloadable APK for Android apps, GitHub for apps shipped as source, the Chrome Web Store and Firefox Add-ons for extensions and an install guide for macOS apps. */
+export type AppStore = 'google-play' | 'apk' | 'web' | 'github' | 'chrome' | 'firefox' | 'macos';
 
 export interface AppStoreLink {
   store: AppStore;
