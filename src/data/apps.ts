@@ -59,6 +59,9 @@ import promptsCollectionIcon from '../assets/my-apps/prompts-collection-icon.web
 import espec from '../assets/my-apps/espec-feature.webp';
 import especIcon from '../assets/my-apps/espec-icon.webp';
 import especWorkflowMp4 from '../assets/my-apps/espec-workflow.mp4?url';
+import dashface from '../assets/my-apps/dashface-feature.webp';
+import dashfaceIcon from '../assets/my-apps/dashface-icon.webp';
+import dashfaceDemoMp4 from '../assets/my-apps/dashface-demo.mp4?url';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
 import githubBadge from '../assets/my-apps/badge-github.webp';
@@ -422,7 +425,23 @@ const especApp: AppListing = {
   videoFile: [{ src: especWorkflowMp4, type: 'video/mp4' }],
 };
 
-/** /my-apps's tabs — phone apps, Mac tools, browser extensions, then AI tools — each split into sections. */
+const dashfaceApp: AppListing = {
+  id: 'dashface',
+  title: 'Dashface',
+  description: [
+    'Your day at a glance, on your wrist: a battery-friendly Wear OS watch face with battery, steps, stress and heart rate around the bezel, and the weather, your next meetings and your skin temperature in the middle. No internet access, no analytics.',
+  ],
+  image: dashface,
+  imageAlt:
+    'Dashface banner: the tagline "Your day at a glance, on your wrist." next to a round watch face showing the weather for morning, afternoon and night, the time 10:08, the next two meetings, a skin temperature bar and coloured bars around the bezel for battery, steps, stress and heart rate',
+  icon: dashfaceIcon,
+  platform: 'Wear OS',
+  links: [{ store: 'github', href: 'https://github.com/neteinstein/Dashface' }],
+  // The 22-second demo from the repo's README, as published there.
+  videoFile: [{ src: dashfaceDemoMp4, type: 'video/mp4' }],
+};
+
+/** /my-apps's tabs — phone apps, watch faces, Mac tools, browser extensions, then AI tools — each split into sections. */
 export const appPlatforms: AppPlatform[] = [
   {
     id: 'mobile',
@@ -447,6 +466,18 @@ export const appPlatforms: AppPlatform[] = [
         apps: [invoice2gdriveApp, netWorthApp],
       },
       { id: 'trivia', title: 'Trivia', category: 'ReferenceApplication', apps: [allowedNamesApp] },
+    ],
+  },
+  {
+    id: 'watch',
+    title: 'My Watch Apps',
+    groups: [
+      {
+        id: 'watch-faces',
+        title: 'Watch Faces',
+        category: 'LifestyleApplication',
+        apps: [dashfaceApp],
+      },
     ],
   },
   {

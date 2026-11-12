@@ -54,7 +54,7 @@ export interface AppGroup {
   apps: AppListing[];
 }
 
-/** One tab of /my-apps — the platform its apps run on ("My Mobile Apps", "My macOS Apps", "My Browser Extensions"). */
+/** One tab of /my-apps — the platform its apps run on ("My Mobile Apps", "My Watch Apps", "My macOS Apps", "My Browser Extensions"). */
 export interface AppPlatform {
   /** In-page anchor for the tab's panel (`/my-apps#macos`). */
   id: string;

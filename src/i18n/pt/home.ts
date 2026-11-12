@@ -41,6 +41,7 @@ export const home: Catalog = {
   'Games for 2 to 4 players on one screen: MathClash, Memory Clash and Halloween Minder, free in the browser.':
     'Jogos para 2 a 4 jogadores no mesmo ecrã: MathClash, Memory Clash e Halloween Minder, grátis no browser.',
   Talk: 'Palestra',
-  'The slides behind LoopGain feedback sessions: why feedback matters, how a session runs and how to facilitate one.':
-    'Os slides por trás das sessões de feedback LoopGain: porque é que o feedback importa, como corre uma sessão e como facilitar uma.',
+  'Watch face': 'Mostrador de relógio',
+  'A battery-friendly Wear OS watch face: health bars around the bezel, the weather and your next meetings in the middle.':
+    'Um mostrador para Wear OS que poupa bateria: barras de saúde à volta do aro, e o tempo e as tuas próximas reuniões ao centro.',
 };

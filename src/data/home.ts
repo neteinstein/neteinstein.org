@@ -13,7 +13,7 @@ import minderaJourneyMap from '../assets/what-i-do/tech-engineer/mindera-journey
 import goodCompany from '../assets/my-apps/good-company-feature.webp';
 import scamDetector from '../assets/my-apps/scam-detector-feature.webp';
 import mathClash from '../assets/my-apps/math-clash-feature.webp';
-import feedbackDecks from '../assets/what-i-do/improver/loopgain-feedback-decks.webp';
+import dashface from '../assets/my-apps/dashface-feature.webp';
 
 export const welcome = {
   title: 'Welcome to my little virtual home',
@@ -114,6 +114,17 @@ export const glimpses: Glimpse[] = [
  */
 export const recent: Recent[] = [
   {
+    kind: 'Watch face',
+    date: '2026-11',
+    title: 'Dashface',
+    href: '/my-apps#dashface',
+    description:
+      'A battery-friendly Wear OS watch face: health bars around the bezel, the weather and your next meetings in the middle.',
+    image: dashface,
+    imageAlt:
+      'Dashface banner: the tagline "Your day at a glance, on your wrist." next to a round watch face showing the weather for morning, afternoon and night, the time 10:08, the next two meetings, a skin temperature bar and coloured bars around the bezel for battery, steps, stress and heart rate',
+  },
+  {
     kind: 'New app',
     date: '2026-11',
     title: 'Good Company',
@@ -145,16 +156,5 @@ export const recent: Recent[] = [
     image: mathClash,
     imageAlt:
       'MathClash banner: the app icon, a blue and red square split by a diagonal with a plus and a times sign, next to the title and the tagline "Two players, one screen"',
-  },
-  {
-    kind: 'Talk',
-    date: '2026-10',
-    title: 'Don’t wait for the chaos to think about feedback',
-    href: '/what-i-do/improver#feedback-talk',
-    description:
-      'The slides behind LoopGain feedback sessions: why feedback matters, how a session runs and how to facilitate one.',
-    image: feedbackDecks,
-    imageAlt:
-      'Two LoopGain card boxes: the “Feedback Sessions Deck” and the Portuguese “Baralho para sessões de feedback”',
   },
 ];

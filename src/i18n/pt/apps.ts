@@ -98,7 +98,13 @@ export const apps: Catalog = {
   'Link to this app': 'Ligação para esta app',
   'Podcast Tools': 'Ferramentas de podcast',
   'My Mobile Apps': 'As minhas apps móveis',
+  'My Watch Apps': 'As minhas apps para relógio',
   'My macOS Apps': 'As minhas apps para macOS',
+  'Watch Faces': 'Mostradores de relógio',
+  'Your day at a glance, on your wrist: a battery-friendly Wear OS watch face with battery, steps, stress and heart rate around the bezel, and the weather, your next meetings and your skin temperature in the middle. No internet access, no analytics.':
+    'O teu dia num relance, no pulso: um mostrador para Wear OS que poupa bateria, com a bateria, os passos, o stress e o ritmo cardíaco à volta do aro, e o tempo, as tuas próximas reuniões e a temperatura da pele ao centro. Sem acesso à internet, sem analytics.',
+  'Dashface banner: the tagline "Your day at a glance, on your wrist." next to a round watch face showing the weather for morning, afternoon and night, the time 10:08, the next two meetings, a skin temperature bar and coloured bars around the bezel for battery, steps, stress and heart rate':
+    'Banner do Dashface: o slogan "Your day at a glance, on your wrist." ao lado de um mostrador redondo com o tempo para a manhã, a tarde e a noite, a hora 10:08, as duas próximas reuniões, uma barra de temperatura da pele e barras coloridas à volta do aro para a bateria, os passos, o stress e o ritmo cardíaco',
   'My AI Apps': 'As minhas apps de IA',
   'One command turns a full podcast episode into ready-to-post vertical shorts: Claude picks the moments that stand on their own, the crop follows whoever is talking and the captions light up word by word. Built at ':
     'Um só comando transforma um episódio inteiro de podcast em shorts verticais prontos a publicar: o Claude escolhe os momentos que se aguentam sozinhos, o enquadramento segue quem está a falar e as legendas acendem palavra a palavra. Feito na ',
