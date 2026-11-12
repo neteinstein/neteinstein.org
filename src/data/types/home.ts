@@ -1,5 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import type { SvgComponent } from 'astro/types';
+import type { AppStoreLink } from './apps';
 import type { LinkRef } from './shared';
 
 /** Text with inline links, rendered by `RichText.astro`: `['Helping ', { label, href }, ' with…']`. */
@@ -55,4 +56,6 @@ export interface Recent {
   image: ImageMetadata;
   imageAlt: string;
   imageFit?: 'cover' | 'contain';
+  /** Store badges under the description (an app's Google Play listing), clickable on their own. */
+  links?: AppStoreLink[];
 }

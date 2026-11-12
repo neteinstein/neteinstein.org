@@ -182,11 +182,9 @@ const smsToolbox: AppListing = {
   imageAlt:
     'SMS Toolbox banner: a speech-bubble app icon, the tagline "Back up & restore your texts with your own Gmail. Plus forwarding rules and scheduled SMS." and two phones showing the redirect rules and the Backup to Gmail screen',
   icon: smsRedirectIcon,
+  // The Google Play badge is hidden for now; restore it with
+  // { store: 'google-play', href: 'https://play.google.com/store/apps/details?id=com.neteinstein.smsredirect' }
   links: [
-    {
-      store: 'google-play',
-      href: 'https://play.google.com/store/apps/details?id=com.neteinstein.smsredirect',
-    },
     { store: 'apk', href: 'https://github.com/neteinstein/SMS-Redirect/blob/main/README.md' },
   ],
   // The launch video from the app's repo (store-listing/video).
@@ -436,7 +434,12 @@ const dashfaceApp: AppListing = {
     'Dashface banner: the tagline "Your day at a glance, on your wrist." next to a round watch face showing the weather for morning, afternoon and night, the time 10:08, the next two meetings, a skin temperature bar and, around the bezel, battery bars, a trail of footprints for steps, weather icons for stress and a heartbeat line for heart rate',
   icon: dashfaceIcon,
   platform: 'Wear OS',
-  links: [{ store: 'github', href: 'https://github.com/neteinstein/Dashface' }],
+  links: [
+    {
+      store: 'google-play',
+      href: 'https://play.google.com/store/apps/details?id=org.neteinstein.dashface',
+    },
+  ],
   // The 22-second demo from the repo's README, as published there.
   videoFile: [{ src: dashfaceDemoMp4, type: 'video/mp4' }],
 };
