@@ -9,6 +9,7 @@ import RichText from '../components/RichText.astro';
 import VideoEmbed from '../components/VideoEmbed.astro';
 import Icon from '../components/Icon.astro';
 import Portraits from '../components/home/Portraits.astro';
+import StoreBadges from '../components/apps/StoreBadges.astro';
 import { SITE } from '../config/site';
 import * as home from '../data/home';
 import { isExternal } from '../lib/url';
@@ -38,7 +39,9 @@ const previously = roles.filter((role) => role.past);
           image={item.image}
           imageAlt={item.imageAlt}
           imageFit={item.imageFit}
-        />
+        >
+          {item.links && <StoreBadges app={item.title} links={item.links} class="mt-auto pt-5" />}
+        </Card>
       ))}
     </CardGrid>
   </Section>

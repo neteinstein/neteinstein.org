@@ -123,6 +123,12 @@ export const recent: Recent[] = [
     image: dashface,
     imageAlt:
       'Dashface banner: the tagline "Your day at a glance, on your wrist." next to a round watch face showing the weather for morning, afternoon and night, the time 10:08, the next two meetings, a skin temperature bar and, around the bezel, battery bars, a trail of footprints for steps, weather icons for stress and a heartbeat line for heart rate',
+    links: [
+      {
+        store: 'google-play',
+        href: 'https://play.google.com/store/apps/details?id=org.neteinstein.dashface',
+      },
+    ],
   },
   {
     kind: 'New app',

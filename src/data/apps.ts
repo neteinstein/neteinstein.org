@@ -436,7 +436,12 @@ const dashfaceApp: AppListing = {
     'Dashface banner: the tagline "Your day at a glance, on your wrist." next to a round watch face showing the weather for morning, afternoon and night, the time 10:08, the next two meetings, a skin temperature bar and, around the bezel, battery bars, a trail of footprints for steps, weather icons for stress and a heartbeat line for heart rate',
   icon: dashfaceIcon,
   platform: 'Wear OS',
-  links: [{ store: 'github', href: 'https://github.com/neteinstein/Dashface' }],
+  links: [
+    {
+      store: 'google-play',
+      href: 'https://play.google.com/store/apps/details?id=org.neteinstein.dashface',
+    },
+  ],
   // The 22-second demo from the repo's README, as published there.
   videoFile: [{ src: dashfaceDemoMp4, type: 'video/mp4' }],
 };
