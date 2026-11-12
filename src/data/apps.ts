@@ -182,11 +182,9 @@ const smsToolbox: AppListing = {
   imageAlt:
     'SMS Toolbox banner: a speech-bubble app icon, the tagline "Back up & restore your texts with your own Gmail. Plus forwarding rules and scheduled SMS." and two phones showing the redirect rules and the Backup to Gmail screen',
   icon: smsRedirectIcon,
+  // The Google Play badge is hidden for now; restore it with
+  // { store: 'google-play', href: 'https://play.google.com/store/apps/details?id=com.neteinstein.smsredirect' }
   links: [
-    {
-      store: 'google-play',
-      href: 'https://play.google.com/store/apps/details?id=com.neteinstein.smsredirect',
-    },
     { store: 'apk', href: 'https://github.com/neteinstein/SMS-Redirect/blob/main/README.md' },
   ],
   // The launch video from the app's repo (store-listing/video).
