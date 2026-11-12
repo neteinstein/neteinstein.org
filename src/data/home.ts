@@ -122,7 +122,7 @@ export const recent: Recent[] = [
       'A battery-friendly Wear OS watch face: health bars around the bezel, the weather and your next meetings in the middle.',
     image: dashface,
     imageAlt:
-      'Dashface banner: the tagline "Your day at a glance, on your wrist." next to a round watch face showing the weather for morning, afternoon and night, the time 10:08, the next two meetings, a skin temperature bar and coloured bars around the bezel for battery, steps, stress and heart rate',
+      'Dashface banner: the tagline "Your day at a glance, on your wrist." next to a round watch face showing the weather for morning, afternoon and night, the time 10:08, the next two meetings, a skin temperature bar and, around the bezel, battery bars, a trail of footprints for steps, weather icons for stress and a heartbeat line for heart rate',
   },
   {
     kind: 'New app',
