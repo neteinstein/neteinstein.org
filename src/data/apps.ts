@@ -386,7 +386,7 @@ const scamDetectorApp: AppListing = {
     },
     {
       store: 'firefox',
-      href: 'https://addons.mozilla.org/en-US/firefox/addon/scam-detector-firefox/',
+      href: 'https://addons.mozilla.org/addon/scam-detector-firefox/',
     },
   ],
 };
