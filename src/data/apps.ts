@@ -63,6 +63,7 @@ import especIcon from '../assets/my-apps/espec-icon.webp';
 import especWorkflowMp4 from '../assets/my-apps/espec-workflow.mp4?url';
 import dashface from '../assets/my-apps/dashface-feature.webp';
 import dashfaceIcon from '../assets/my-apps/dashface-icon.webp';
+import perfsentientDemoMp4 from '../assets/my-apps/perfsentient-demo.mp4?url';
 import dashfaceDemoMp4 from '../assets/my-apps/dashface-demo.mp4?url';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
@@ -186,6 +187,8 @@ const perfsentientApp: AppListing = {
   icon: perfsentientIcon,
   platform: 'Android',
   links: [{ store: 'apk', href: 'https://github.com/neteinstein/Perfsentient/releases/latest' }],
+  // The 20-second launch video from the repo's README.
+  videoFile: [{ src: perfsentientDemoMp4, type: 'video/mp4' }],
 };
 
 const smsToolbox: AppListing = {
