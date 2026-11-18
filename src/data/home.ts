@@ -12,8 +12,8 @@ import acorda from '../assets/what-i-do/improver/workshop-classroom.webp';
 import minderaJourneyMap from '../assets/what-i-do/tech-engineer/mindera-journey-map.webp';
 import goodCompany from '../assets/my-apps/good-company-feature.webp';
 import scamDetector from '../assets/my-apps/scam-detector-feature.webp';
-import mathClash from '../assets/my-apps/math-clash-feature.webp';
 import dashface from '../assets/my-apps/dashface-feature.webp';
+import perfsentient from '../assets/my-apps/perfsentient-feature.webp';
 
 export const welcome = {
   title: 'Welcome to my little virtual home',
@@ -114,6 +114,18 @@ export const glimpses: Glimpse[] = [
  */
 export const recent: Recent[] = [
   {
+    kind: 'New app',
+    date: '2026-11',
+    title: 'Perfsentient',
+    href: '/my-apps#perfsentient',
+    description:
+      "Your phone's watchdog: finds the apps draining your battery or showing pop-up ads, in one daily report.",
+    image: perfsentient,
+    imageAlt:
+      'Perfsentient banner: a shield with a heartbeat line, the title, the tagline "Find the apps that slow your phone, show ads or drain your battery." and two phones showing today\'s health score and a list of flagged apps',
+    links: [{ store: 'apk', href: 'https://github.com/neteinstein/Perfsentient/releases/latest' }],
+  },
+  {
     kind: 'Watch face',
     date: '2026-11',
     title: 'Dashface',
@@ -151,16 +163,5 @@ export const recent: Recent[] = [
     image: scamDetector,
     imageAlt:
       'Scam Detector banner: a red shield with an exclamation mark, the title and the tagline "Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money."',
-  },
-  {
-    kind: 'New page',
-    date: '2026-11',
-    title: 'My Games',
-    href: '/my-games',
-    description:
-      'Games for 2 to 4 players on one screen: MathClash, Memory Clash and Halloween Minder, free in the browser.',
-    image: mathClash,
-    imageAlt:
-      'MathClash banner: the app icon, a blue and red square split by a diagonal with a plus and a times sign, next to the title and the tagline "Two players, one screen"',
   },
 ];

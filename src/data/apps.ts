@@ -21,6 +21,8 @@ import coupleMoments from '../assets/my-apps/couple-moments-feature.webp';
 import coupleMomentsIcon from '../assets/my-apps/couple-moments-icon.webp';
 import goodCompany from '../assets/my-apps/good-company-feature.webp';
 import goodCompanyIcon from '../assets/my-apps/good-company-icon.webp';
+import perfsentient from '../assets/my-apps/perfsentient-feature.webp';
+import perfsentientIcon from '../assets/my-apps/perfsentient-icon.webp';
 import smsRedirect from '../assets/my-apps/sms-redirect-feature.webp';
 import smsRedirectIcon from '../assets/my-apps/sms-redirect-icon.webp';
 import allowedNames from '../assets/my-apps/allowed-names-feature.webp';
@@ -61,6 +63,7 @@ import especIcon from '../assets/my-apps/espec-icon.webp';
 import especWorkflowMp4 from '../assets/my-apps/espec-workflow.mp4?url';
 import dashface from '../assets/my-apps/dashface-feature.webp';
 import dashfaceIcon from '../assets/my-apps/dashface-icon.webp';
+import perfsentientDemoMp4 from '../assets/my-apps/perfsentient-demo.mp4?url';
 import dashfaceDemoMp4 from '../assets/my-apps/dashface-demo.mp4?url';
 import googlePlayBadge from '../assets/my-apps/badge-google-play.webp';
 import webBadge from '../assets/my-apps/badge-web.webp';
@@ -170,6 +173,22 @@ const goodCompanyApp: AppListing = {
   platform: 'Android, iOS, Web',
   status: 'Alpha Testing',
   links: [{ store: 'github', href: 'https://github.com/neteinstein/Good-Company' }],
+};
+
+const perfsentientApp: AppListing = {
+  id: 'perfsentient',
+  title: 'Perfsentient',
+  description: [
+    "Your phone's watchdog: it finds the apps that drain your battery, show pop-up ads or hide their icon, and gives you one plain report a day with a health score and the evidence. Everything is worked out on the device and the app has no internet permission.",
+  ],
+  image: perfsentient,
+  imageAlt:
+    'Perfsentient banner: a shield with a heartbeat line, the title, the tagline "Find the apps that slow your phone, show ads or drain your battery." and two phones showing today\'s health score and a list of flagged apps',
+  icon: perfsentientIcon,
+  platform: 'Android',
+  links: [{ store: 'apk', href: 'https://github.com/neteinstein/Perfsentient/releases/latest' }],
+  // The 20-second launch video from the repo's README.
+  videoFile: [{ src: perfsentientDemoMp4, type: 'video/mp4' }],
 };
 
 const smsToolbox: AppListing = {
@@ -460,7 +479,7 @@ export const appPlatforms: AppPlatform[] = [
         id: 'utils',
         title: 'Utils',
         category: 'UtilitiesApplication',
-        apps: [goodCompanyApp, smsToolbox, privateDnsApp],
+        apps: [goodCompanyApp, perfsentientApp, smsToolbox, privateDnsApp],
       },
       {
         id: 'finance',
