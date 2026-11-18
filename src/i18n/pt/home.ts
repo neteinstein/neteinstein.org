@@ -37,11 +37,10 @@ export const home: Catalog = {
   'Browser extension': 'Extensão para browser',
   'Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money.':
     'Avisa-te antes que um login falso, um domínio acabado de criar ou uma burla em chats de marketplace te leve o dinheiro.',
-  'New page': 'Nova página',
-  'Games for 2 to 4 players on one screen: MathClash, Memory Clash and Halloween Minder, free in the browser.':
-    'Jogos para 2 a 4 jogadores no mesmo ecrã: MathClash, Memory Clash e Halloween Minder, grátis no browser.',
   Talk: 'Palestra',
   'Watch face': 'Mostrador de relógio',
   'A battery-friendly Wear OS watch face: health bars around the bezel, the weather and your next meetings in the middle.':
     'Um mostrador para Wear OS que poupa bateria: barras de saúde à volta do aro, e o tempo e as tuas próximas reuniões ao centro.',
+  "Your phone's watchdog: finds the apps draining your battery or showing pop-up ads, in one daily report.":
+    'O cão de guarda do teu telemóvel: encontra as apps que gastam a bateria ou mostram anúncios, num relatório diário.',
 };
