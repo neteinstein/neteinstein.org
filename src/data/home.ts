@@ -11,9 +11,9 @@ import kid3 from '../assets/home/kids/kid-3.svg';
 import acorda from '../assets/what-i-do/improver/workshop-classroom.webp';
 import minderaJourneyMap from '../assets/what-i-do/tech-engineer/mindera-journey-map.webp';
 import goodCompany from '../assets/my-apps/good-company-feature.webp';
-import scamDetector from '../assets/my-apps/scam-detector-feature.webp';
 import dashface from '../assets/my-apps/dashface-feature.webp';
 import perfsentient from '../assets/my-apps/perfsentient-feature.webp';
+import privateDnsMacos from '../assets/my-apps/private-dns-macos-feature.webp';
 
 export const welcome = {
   title: 'Welcome to my little virtual home',
@@ -116,6 +116,23 @@ export const recent: Recent[] = [
   {
     kind: 'New app',
     date: '2026-11',
+    title: 'Private DNS for macOS',
+    href: '/my-apps#private-dns-macos',
+    description:
+      "Encrypted DNS from your Mac's menu bar: one click and every app looks up sites over TLS.",
+    image: privateDnsMacos,
+    imageAlt:
+      'Private DNS for macOS banner: the title "One click. Encrypted DNS." over a log of DNS lookups now encrypted with Cloudflare, and the menu bar menu showing "Private DNS: Cloudflare" and "Provider is answering"',
+    links: [
+      {
+        store: 'macos',
+        href: 'https://github.com/neteinstein/MacOS-MenuBar-DNS-Changer/blob/main/docs/download.md',
+      },
+    ],
+  },
+  {
+    kind: 'New app',
+    date: '2026-11',
     title: 'Perfsentient',
     href: '/my-apps#perfsentient',
     description:
@@ -123,7 +140,13 @@ export const recent: Recent[] = [
     image: perfsentient,
     imageAlt:
       'Perfsentient banner: a shield with a heartbeat line, the title, the tagline "Find the apps that slow your phone, show ads or drain your battery." and two phones showing today\'s health score and a list of flagged apps',
-    links: [{ store: 'apk', href: 'https://github.com/neteinstein/Perfsentient/releases/latest' }],
+    links: [
+      {
+        store: 'google-play',
+        href: 'https://play.google.com/store/apps/details?id=org.neteinstein.perfsentient',
+      },
+      { store: 'apk', href: 'https://github.com/neteinstein/Perfsentient/releases/latest' },
+    ],
   },
   {
     kind: 'Watch face',
@@ -152,16 +175,5 @@ export const recent: Recent[] = [
     image: goodCompany,
     imageAlt:
       "Good Company banner: five phones showing the home screen, a friend's page, the I'm with… check-in, the Coming up agenda in dark mode and AI ideas",
-  },
-  {
-    kind: 'Browser extension',
-    date: '2026-11',
-    title: 'Scam Detector',
-    href: '/my-apps#scam-detector',
-    description:
-      'Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money.',
-    image: scamDetector,
-    imageAlt:
-      'Scam Detector banner: a red shield with an exclamation mark, the title and the tagline "Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money."',
   },
 ];

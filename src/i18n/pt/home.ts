@@ -34,13 +34,12 @@ export const home: Catalog = {
   'New app': 'Nova app',
   "A little CRM for friendship, now in alpha testing: birthdays, catch-ups and a gentle nudge before it's been too long.":
     'Um pequeno CRM para a amizade, agora em testes alfa: aniversários, encontros e um lembrete gentil antes que passe demasiado tempo.',
-  'Browser extension': 'Extensão para browser',
-  'Warns you before a fake login, a brand-new domain or a marketplace chat scam gets your money.':
-    'Avisa-te antes que um login falso, um domínio acabado de criar ou uma burla em chats de marketplace te leve o dinheiro.',
   Talk: 'Palestra',
   'Watch face': 'Mostrador de relógio',
   'A battery-friendly Wear OS watch face: health bars around the bezel, the weather and your next meetings in the middle.':
     'Um mostrador para Wear OS que poupa bateria: barras de saúde à volta do aro, e o tempo e as tuas próximas reuniões ao centro.',
   "Your phone's watchdog: finds the apps draining your battery or showing pop-up ads, in one daily report.":
     'O cão de guarda do teu telemóvel: encontra as apps que gastam a bateria ou mostram anúncios, num relatório diário.',
+  "Encrypted DNS from your Mac's menu bar: one click and every app looks up sites over TLS.":
+    'DNS encriptado na barra de menus do teu Mac: um clique e todas as apps pesquisam os sites sobre TLS.',
 };
