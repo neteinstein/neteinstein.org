@@ -45,7 +45,7 @@ import podcastShorts from '../assets/my-apps/podcast-shorts-feature.webp';
 import podcastShortsIcon from '../assets/my-apps/podcast-shorts-icon.webp';
 import calendarHub from '../assets/my-apps/calendar-hub-feature.webp';
 import calendarHubIcon from '../assets/my-apps/calendar-hub-icon.webp';
-import smsToolboxLaunchMp4 from '../assets/my-apps/sms-toolbox-launch.mp4?url';
+import smsToolboxNavigationMp4 from '../assets/my-apps/sms-toolbox-navigation.mp4?url';
 import invoice2sheetDemoMp4 from '../assets/my-apps/invoice2sheet-demo.mp4?url';
 import invoice2sheetDemoWebm from '../assets/my-apps/invoice2sheet-demo.webm?url';
 import privateDnsDemoMp4 from '../assets/my-apps/private-dns-changer-demo.mp4?url';
@@ -54,6 +54,9 @@ import memoryClashDemoMp4 from '../assets/my-apps/memory-clash-demo.mp4?url';
 import halloweenMinderDemoMp4 from '../assets/my-apps/halloween-minder-demo.mp4?url';
 import podcastShortsDemoMp4 from '../assets/my-apps/podcast-shorts-demo.mp4?url';
 import calendarHubDemoMp4 from '../assets/my-apps/calendar-hub-demo.mp4?url';
+import privateDnsMacos from '../assets/my-apps/private-dns-macos-feature.webp';
+import privateDnsMacosIcon from '../assets/my-apps/private-dns-macos-icon.webp';
+import privateDnsMacosDemoMp4 from '../assets/my-apps/private-dns-macos-demo.mp4?url';
 import scamDetector from '../assets/my-apps/scam-detector-feature.webp';
 import scamDetectorIcon from '../assets/my-apps/scam-detector-icon.webp';
 import promptsCollection from '../assets/my-apps/prompts-collection-feature.webp';
@@ -186,7 +189,13 @@ const perfsentientApp: AppListing = {
     'Perfsentient banner: a shield with a heartbeat line, the title, the tagline "Find the apps that slow your phone, show ads or drain your battery." and two phones showing today\'s health score and a list of flagged apps',
   icon: perfsentientIcon,
   platform: 'Android',
-  links: [{ store: 'apk', href: 'https://github.com/neteinstein/Perfsentient/releases/latest' }],
+  links: [
+    {
+      store: 'google-play',
+      href: 'https://play.google.com/store/apps/details?id=org.neteinstein.perfsentient',
+    },
+    { store: 'apk', href: 'https://github.com/neteinstein/Perfsentient/releases/latest' },
+  ],
   // The 20-second launch video from the repo's README.
   videoFile: [{ src: perfsentientDemoMp4, type: 'video/mp4' }],
 };
@@ -201,13 +210,15 @@ const smsToolbox: AppListing = {
   imageAlt:
     'SMS Toolbox banner: a speech-bubble app icon, the tagline "Back up & restore your texts with your own Gmail. Plus forwarding rules and scheduled SMS." and two phones showing the redirect rules and the Backup to Gmail screen',
   icon: smsRedirectIcon,
-  // The Google Play badge is hidden for now; restore it with
-  // { store: 'google-play', href: 'https://play.google.com/store/apps/details?id=com.neteinstein.smsredirect' }
   links: [
+    {
+      store: 'google-play',
+      href: 'https://play.google.com/store/apps/details?id=com.neteinstein.smsredirect',
+    },
     { store: 'apk', href: 'https://github.com/neteinstein/SMS-Redirect/blob/main/README.md' },
   ],
-  // The launch video from the app's repo (store-listing/video).
-  videoFile: [{ src: smsToolboxLaunchMp4, type: 'video/mp4' }],
+  // The navigation walkthrough from the app's repo (store-listing/video), silent, scaled to 720p.
+  videoFile: [{ src: smsToolboxNavigationMp4, type: 'video/mp4' }],
 };
 
 const allowedNamesApp: AppListing = {
@@ -387,6 +398,28 @@ const calendarHubApp: AppListing = {
   videoFile: [{ src: calendarHubDemoMp4, type: 'video/mp4' }],
 };
 
+const privateDnsMacosApp: AppListing = {
+  id: 'private-dns-macos',
+  title: 'Private DNS for macOS',
+  description: [
+    "Encrypted DNS from your Mac's menu bar: one click turns on DNS over TLS for every app, with the provider you picked from 24 (Cloudflare, Quad9, Mullvad, NextDNS or your own). Pause it, or set rules per Wi-Fi network. The macOS cousin of Private DNS Changer.",
+  ],
+  image: privateDnsMacos,
+  imageAlt:
+    'Private DNS for macOS banner: the title "One click. Encrypted DNS." over a log of DNS lookups now encrypted with Cloudflare, and the menu bar menu showing "Private DNS: Cloudflare" and "Provider is answering"',
+  icon: privateDnsMacosIcon,
+  platform: 'macOS',
+  links: [
+    {
+      store: 'macos',
+      href: 'https://github.com/neteinstein/MacOS-MenuBar-DNS-Changer/blob/main/docs/download.md',
+    },
+    { store: 'github', href: 'https://github.com/neteinstein/MacOS-MenuBar-DNS-Changer' },
+  ],
+  // The 22-second demo from the repo's README, scaled down to 720p.
+  videoFile: [{ src: privateDnsMacosDemoMp4, type: 'video/mp4' }],
+};
+
 const scamDetectorApp: AppListing = {
   id: 'scam-detector',
   title: 'Scam Detector',
@@ -511,6 +544,12 @@ export const appPlatforms: AppPlatform[] = [
         title: 'Work Tools',
         category: 'BusinessApplication',
         apps: [calendarHubApp],
+      },
+      {
+        id: 'macos-utils',
+        title: 'Utils',
+        category: 'UtilitiesApplication',
+        apps: [privateDnsMacosApp],
       },
     ],
   },
