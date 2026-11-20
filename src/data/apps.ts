@@ -39,6 +39,8 @@ import mathClash from '../assets/my-apps/math-clash-feature.webp';
 import mathClashIcon from '../assets/my-apps/math-clash-icon.webp';
 import memoryClash from '../assets/my-apps/memory-clash-feature.webp';
 import memoryClashIcon from '../assets/my-apps/memory-clash-icon.webp';
+import multiquest from '../assets/my-apps/multiquest-feature.webp';
+import multiquestIcon from '../assets/my-apps/multiquest-icon.webp';
 import halloweenMinder from '../assets/my-apps/halloween-minder-feature.webp';
 import halloweenMinderIcon from '../assets/my-apps/halloween-minder-icon.webp';
 import podcastShorts from '../assets/my-apps/podcast-shorts-feature.webp';
@@ -342,6 +344,22 @@ const memoryClashApp: AppListing = {
   videoFile: [{ src: memoryClashDemoMp4, type: 'video/mp4' }],
 };
 
+const multiquestApp: AppListing = {
+  id: 'multiquest',
+  title: 'MultiQuest',
+  description: [
+    'A quiz board game for 2 to 6 players on one device: roll the die, answer questions on maths, Portuguese history, science, Portuguese and English, and be the first to land exactly on square 75. Each player picks their own difficulty.',
+  ],
+  image: multiquest,
+  imageAlt:
+    'MultiQuest banner: a die over a row of board squares and a question mark, next to the title and the tagline "Quiz board game, 2–6 players"',
+  icon: multiquestIcon,
+  links: [
+    { store: 'web', href: 'https://neteinstein.github.io/MultiQuest/' },
+    { store: 'github', href: 'https://github.com/neteinstein/MultiQuest' },
+  ],
+};
+
 const halloweenMinderApp: AppListing = {
   id: 'halloween-minder',
   title: 'Halloween Minder',
@@ -597,7 +615,7 @@ export const gameGroups: AppGroup[] = [
     id: 'educational-games',
     title: 'Educational Games',
     category: 'GameApplication',
-    apps: [mathClashApp, memoryClashApp],
+    apps: [mathClashApp, memoryClashApp, multiquestApp],
   },
   {
     id: 'festivity-games',

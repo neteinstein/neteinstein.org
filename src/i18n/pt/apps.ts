@@ -84,6 +84,10 @@ export const apps: Catalog = {
     'Banner do MathClash: o ícone da app, um quadrado azul e vermelho dividido na diagonal com um sinal de mais e um de vezes, junto ao título e ao slogan "Two players, one screen"',
   'Memory Clash banner: the app icon next to the title and the tagline "Two players, one board"':
     'Banner do Memory Clash: o ícone da app junto ao título e ao slogan "Two players, one board"',
+  'A quiz board game for 2 to 6 players on one device: roll the die, answer questions on maths, Portuguese history, science, Portuguese and English, and be the first to land exactly on square 75. Each player picks their own difficulty.':
+    'Um jogo de tabuleiro de perguntas para 2 a 6 jogadores no mesmo dispositivo: lança o dado, responde a perguntas de matemática, história de Portugal, ciências, português e inglês, e sê o primeiro a chegar exatamente à casa 75. Cada jogador escolhe a sua dificuldade.',
+  'MultiQuest banner: a die over a row of board squares and a question mark, next to the title and the tagline "Quiz board game, 2–6 players"':
+    'Banner do MultiQuest: um dado sobre uma fila de casas do tabuleiro e um ponto de interrogação, junto ao título e ao slogan "Quiz board game, 2–6 players"',
   'Halloween Minder banner: a spooky maze with monsters and the title "Halloween Minder"':
     'Banner do Halloween Minder: um labirinto assustador com monstros e o título "Halloween Minder"',
   'Conceptual Phase': 'Em fase concetual',

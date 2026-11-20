@@ -32,8 +32,9 @@ export const home: Catalog = {
   'My talk at the Mindera AI Insights Event 2026: what our AI mistakes taught us about building software.':
     'A minha palestra no Mindera AI Insights Event 2026: o que os nossos erros com IA nos ensinaram sobre construir software.',
   'New app': 'Nova app',
-  "A little CRM for friendship, now in alpha testing: birthdays, catch-ups and a gentle nudge before it's been too long.":
-    'Um pequeno CRM para a amizade, agora em testes alfa: aniversários, encontros e um lembrete gentil antes que passe demasiado tempo.',
+  'New game': 'Novo jogo',
+  'A quiz board game for 2 to 6 players on one device: roll the die, get the question right and reach square 75 first.':
+    'Um jogo de tabuleiro de perguntas para 2 a 6 jogadores no mesmo dispositivo: lança o dado, acerta na pergunta e chega primeiro à casa 75.',
   Talk: 'Palestra',
   'Watch face': 'Mostrador de relógio',
   'A battery-friendly Wear OS watch face: health bars around the bezel, the weather and your next meetings in the middle.':

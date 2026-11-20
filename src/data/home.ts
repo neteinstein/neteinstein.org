@@ -10,9 +10,9 @@ import kid2 from '../assets/home/kids/kid-2.svg';
 import kid3 from '../assets/home/kids/kid-3.svg';
 import acorda from '../assets/what-i-do/improver/workshop-classroom.webp';
 import minderaJourneyMap from '../assets/what-i-do/tech-engineer/mindera-journey-map.webp';
-import goodCompany from '../assets/my-apps/good-company-feature.webp';
 import dashface from '../assets/my-apps/dashface-feature.webp';
 import perfsentient from '../assets/my-apps/perfsentient-feature.webp';
+import multiquest from '../assets/my-apps/multiquest-feature.webp';
 import privateDnsMacos from '../assets/my-apps/private-dns-macos-feature.webp';
 
 export const welcome = {
@@ -114,6 +114,18 @@ export const glimpses: Glimpse[] = [
  */
 export const recent: Recent[] = [
   {
+    kind: 'New game',
+    date: '2026-11',
+    title: 'MultiQuest',
+    href: '/my-games#multiquest',
+    description:
+      'A quiz board game for 2 to 6 players on one device: roll the die, get the question right and reach square 75 first.',
+    image: multiquest,
+    imageAlt:
+      'MultiQuest banner: a die over a row of board squares and a question mark, next to the title and the tagline "Quiz board game, 2–6 players"',
+    links: [{ store: 'web', href: 'https://neteinstein.github.io/MultiQuest/' }],
+  },
+  {
     kind: 'New app',
     date: '2026-11',
     title: 'Private DNS for macOS',
@@ -164,16 +176,5 @@ export const recent: Recent[] = [
         href: 'https://play.google.com/store/apps/details?id=org.neteinstein.dashface',
       },
     ],
-  },
-  {
-    kind: 'New app',
-    date: '2026-11',
-    title: 'Good Company',
-    href: '/my-apps#good-company',
-    description:
-      "A little CRM for friendship, now in alpha testing: birthdays, catch-ups and a gentle nudge before it's been too long.",
-    image: goodCompany,
-    imageAlt:
-      "Good Company banner: five phones showing the home screen, a friend's page, the I'm with… check-in, the Coming up agenda in dark mode and AI ideas",
   },
 ];
